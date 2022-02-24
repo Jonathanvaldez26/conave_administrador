@@ -273,6 +273,7 @@
             </div>
         </div>
         <br>
+
         <a href="/Bu/Add" type="button" class="btn btn-primary btn-sm">Nuevo</a>
         <button type="button" class="btn btn-secondary btn-sm">Eliminar</button>
         <br>

@@ -22745,7 +22745,9 @@ hr.horizontal.gray-light {
 }
 
 .sidenav {
-  z-index: 9999;
+/*!
+z-index: 9999;
+*/
 }
 
 .sidenav .navbar-brand,

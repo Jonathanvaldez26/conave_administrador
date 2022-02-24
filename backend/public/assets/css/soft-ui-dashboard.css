@@ -10368,6 +10368,10 @@ fieldset:disabled .btn {
   background-image: var(--bs-gradient) !important;
 }
 
+.bg-gradient-red {
+  background-image: linear-gradient(310deg, #ff0032 0%, #b10303 100%);
+}
+
 .user-select-all {
   user-select: all !important;
 }

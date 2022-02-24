@@ -92,7 +92,7 @@ html;
         });
       </script>
 html;
-      $empresas = EmpresaDao::getAll();
+      $empresas = BuDao::getAll();
       //$usuario = $this->__usuario;
       //$editarHidden = (Controller::getPermisosUsuario($usuario, "seccion_empresas", 5)==1)? "" : "style=\"display:none;\"";
       //$eliminarHidden = (Controller::getPermisosUsuario($usuario, "seccion_empresas", 6)==1)? "" : "style=\"display:none;\"";
@@ -268,10 +268,10 @@ html;
         });//fin del document.ready
       </script>
 html;
-      $empresa = EmpresaDao::getById($id);
+      $empresa = BuDao::getById($id);
 
       $status = "";
-      foreach (EmpresaDao::getStatus() as $key => $value) {
+      foreach (BuDao::getStatus() as $key => $value) {
         $selected = ($empresa['status']==$value['catalogo_status_id'])? 'selected' : '';
         $status .=<<<html
         <option {$selected} value="{$value['catalogo_status_id']}">{$value['nombre']}</option>
@@ -411,7 +411,7 @@ html;
         });//fin del document.ready
       </script>
 html;
-      $empresa = EmpresaDao::getById($id);
+      $empresa = BuDao::getById($id);
       View::set('empresa',$empresa);
       View::set('header',$header);
       View::set('footer',$this->_contenedor->footer($extraFooter));
@@ -422,7 +422,7 @@ html;
       $id = MasterDom::getDataAll('borrar');
       $array = array();
       foreach ($id as $key => $value) {
-        $id = EmpresaDao::delete($value);
+        $id = BuDao::delete($value);
         if($id['seccion'] == 2){
           array_push($array, array('seccion' => 2, 'id' => $id['id'] ));
         }else if($id['seccion'] == 1){
@@ -435,7 +435,7 @@ html;
     public function empresaEdit(){
       $empresa = new \stdClass();
       $empresa->_catalogo_empresa_id = MasterDom::getData('catalogo_empresa_id');
-      $id = EmpresaDao::verificarRelacion(MasterDom::getData('catalogo_empresa_id'));
+      $id = BuDao::verificarRelacion(MasterDom::getData('catalogo_empresa_id'));
       $nombre = MasterDom::getDataAll('nombre');
       $nombre = MasterDom::procesoAcentosNormal($nombre);
       $empresa->_nombre = $nombre;
@@ -450,7 +450,7 @@ html;
         //
         $idStatus = (MasterDom::getData('status')!=2) ? true : false;
         if($idStatus){
-          if(EmpresaDao::update($empresa) > 0)
+          if(BuDao::update($empresa) > 0)
             $this->alerta($id,'edit');
           else
             $this->alerta($id,'nothing');
@@ -462,13 +462,13 @@ html;
       if($id['seccion'] == 1){
         array_push($array, array('seccion' => 1, 'id' => $id['id'] ));
 
-        //$id = EmpresaDao::update($empresa);
+        //$id = BuDao::update($empresa);
 
         if(MasterDom::getData('status') == 2){
-          EmpresaDao::update($empresa);
+          BuDao::update($empresa);
           $this->alerta(MasterDom::getData('catalogo_empresa_id'),'delete');
         }else{
-          if(EmpresaDao::update($empresa) >= 1) $this->alerta($id,'edit');
+          if(BuDao::update($empresa) >= 1) $this->alerta($id,'edit');
           else $this->alerta("",'no_cambios');
         }
 
@@ -517,7 +517,7 @@ html;
 
       if($ids!=''){
         foreach ($ids as $key => $value) {
-          $empresa = EmpresaDao::getByIdReporte($value);
+          $empresa = BuDao::getByIdReporte($value);
             $tabla.=<<<html
               <tr style="background-color:#B8B8B8;">
               <td style="height:auto; width: 200px;background-color:#E4E4E4;">{$empresa['catalogo_empresa_id']}</td>
@@ -528,7 +528,7 @@ html;
 html;
         }
       }else{
-        foreach (EmpresaDao::getAll() as $key => $empresa) {
+        foreach (BuDao::getAll() as $key => $empresa) {
           $tabla.=<<<html
             <tr style="background-color:#B8B8B8;">
             <td style="height:auto; width: 200px;background-color:#E4E4E4;">{$empresa['catalogo_empresa_id']}</td>
@@ -626,7 +626,7 @@ html;
       /* FILAS DEL ARCHIVO EXCEL */
       if($ids!=''){
         foreach ($ids as $key => $value) {
-          $empresa = EmpresaDao::getByIdReporte($value);
+          $empresa = BuDao::getByIdReporte($value);
           foreach ($nombreCampo as $key => $campo) {
             $objPHPExcel->getActiveSheet()->SetCellValue($columna[$key].$fila, html_entity_decode($empresa[$campo], ENT_QUOTES, "UTF-8"));
             $objPHPExcel->getActiveSheet()->getStyle($columna[$key].$fila)->applyFromArray($estilo_celda);
@@ -635,7 +635,7 @@ html;
           $fila +=1;
         }
       }else{
-        foreach (EmpresaDao::getAll() as $key => $value) {
+        foreach (BuDao::getAll() as $key => $value) {
           foreach ($nombreCampo as $key => $campo) {
             $objPHPExcel->getActiveSheet()->SetCellValue($columna[$key].$fila, html_entity_decode($value[$campo], ENT_QUOTES, "UTF-8"));
             $objPHPExcel->getActiveSheet()->getStyle($columna[$key].$fila)->applyFromArray($estilo_celda);

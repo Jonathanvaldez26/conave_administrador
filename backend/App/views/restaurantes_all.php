@@ -39,16 +39,16 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/Lineas/" class="nav-link active" role="button" aria-expanded="false">
-                                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2">
-                                    <span class="fa fa-hospital" style="color: white"></span>
-                                </div>
+                            <a href="/Lineas/" class="nav-link" role="button" aria-expanded="false">
+                            <span class="sidenav-mini-icon"> L </span>
                                 <span class="nav-link-text ms-1">Lineas Asofarma</span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link " href="/Posiciones/">
-                                <span class="sidenav-mini-icon"> P </span>
+                            <a class="nav-link active" href="/Posiciones/">
+                                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2">
+                                    <span class="fa fa-hospital" style="color: white"></span>
+                                </div>
                                 <span class="sidenav-normal"> Posiciones Asofarma  </span>
                             </a>
                         </li>
@@ -209,7 +209,7 @@
                     </li>
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/Principal/">Principal</a></li>
                     <li class="breadcrumb-item text-sm opacity-5 text-dark" aria-current="page">Catálogos</li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Lineas</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Restaurantes</li>
                 </ol>
             </nav>
             <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
@@ -338,7 +338,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="d-flex flex-column h-100">
-                                    <h2 class="font-weight-bolder mb-0">Líneas Asofarma</h2>
+                                    <h2 class="font-weight-bolder mb-0">Restaurantes Asofarma</h2>
                                 </div>
                             </div>
                         </div>

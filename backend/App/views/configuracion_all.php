@@ -122,9 +122,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/PruebasCovidUsuarios/" class="nav-link active" aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a href="/PruebasCovidUsuarios/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-virus-slash" style="color: #fff"></span>
+                        <span class="fa fa-virus-slash" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
                 </a>
@@ -142,14 +142,14 @@
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
             </li>
             <li class="nav-item">
-                <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                <a href="/Configuracion/" id="configuracion" class="nav-link active" aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-tools" style="color: #344767"></span>
+                        <span class="fa fa-tools" style="color: #fff"></span>
                     </div>
                     <span class="nav-link-text ms-1">Configuración</span>
                 </a>
             </li>
-
+ 
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -209,7 +209,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/Principal/">Principal</a></li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pruebas Covid Usuarios</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Configuración</li>
                 </ol>
             </nav>
             <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
@@ -338,7 +338,7 @@
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="d-flex flex-column h-100">
-                                    <h2 class="font-weight-bolder mb-0">Pruebas Covid de Usuarios</h2>
+                                    <h2 class="font-weight-bolder mb-0">Configuración</h2>
                                 </div>
                             </div>
                         </div>

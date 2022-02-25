@@ -24,13 +24,13 @@
             </li>
 
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link active" aria-controls="pagesExamples" role="button" aria-expanded="true">
+                <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link" aria-controls="pagesExamples" role="button" aria-expanded="true">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-sitemap" style="color: white"></span>
+                        <span class="fa fa-sitemap" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Catálogos</span>
                 </a>
-                <div class="collapse show" id="pagesExamples">
+                <div class="collapse" id="pagesExamples">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " href="/Bu/">
@@ -40,15 +40,13 @@
                         </li>
                         <li class="nav-item">
                             <a href="/Lineas/" class="nav-link" role="button" aria-expanded="false">
-                            <span class="sidenav-mini-icon"> L </span>
+                                <span class="sidenav-mini-icon"> L </span>
                                 <span class="nav-link-text ms-1">Lineas Asofarma</span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link active" href="/Posiciones/">
-                                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2">
-                                    <span class="fa fa-hospital" style="color: white"></span>
-                                </div>
+                            <a class="nav-link" href="/Posiciones/">
+                            <span class="sidenav-mini-icon"> P </span>
                                 <span class="sidenav-normal"> Posiciones Asofarma  </span>
                             </a>
                         </li>
@@ -70,6 +68,7 @@
                     </ul>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a href="/Asistentes/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -87,9 +86,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/PickUp/" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+                <a href="/PickUp/" class="nav-link active" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-bus" style="color: #344767"></span>
+                        <span class="fa fa-bus" style="color: #fff"></span>
                     </div>
                     <span class="nav-link-text ms-1">PickUp</span>
                 </a>
@@ -150,36 +149,38 @@
                     <span class="nav-link-text ms-1">Configuración</span>
                 </a>
             </li>
+
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link " aria-controls="pagesExamples" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-user-circle-o" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Utilerias</span>
                 </a>
-                <div class="collapse " id="pagesExamples">
+                <div class="collapse " id="utilerias">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " href="/Administradores/">
-                                <span class="sidenav-mini-icon"> E </span>
+                                <span class="sidenav-mini-icon"> A </span>
                                 <span class="sidenav-normal">Administradores</span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link " href="/Posiciones/">
+                            <a class="nav-link " href="/Perfiles/">
                                 <span class="sidenav-mini-icon"> P </span>
                                 <span class="sidenav-normal"> Perfiles  </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link " href="/Restaurantes/">
-                                <span class="sidenav-mini-icon"> E </span>
+                            <a class="nav-link " href="/Log/">
+                                <span class="sidenav-mini-icon"> L </span>
                                 <span class="sidenav-normal"> Log </span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
+
         </ul>
     </div>
 

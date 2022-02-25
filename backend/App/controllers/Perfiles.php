@@ -19,7 +19,7 @@ class Perfiles extends Controller{
         View::set('footer',$this->_contenedor->footer());
 
         if(Controller::getPermisosUsuario($this->__usuario, "permisos_globales",7) == 0)
-          header('Location: /Home/');
+          header('Location: /Principal/');
     }
 
     public function index() {

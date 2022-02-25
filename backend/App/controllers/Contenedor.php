@@ -70,6 +70,8 @@ class Contenedor extends Controller{
            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <!-- TEMPLATE VIEJO-->
+
+
         </head>
 html;
 
@@ -79,6 +81,29 @@ html;
     public function footer($extra = ''){
         $footer =<<<html
 <!-- jQuery -->
+
+          <script>
+            function catalogos(params) {
+                var catalogo = document.getElementById("catalogos");
+
+                if (catalogo.hasAttribute('hidden')) {
+                    catalogo.removeAttribute('hidden');
+                } else {
+                    catalogo.setAttribute('hidden','')
+                }
+            }
+
+            function utilerias(params) {
+                var utileria = document.getElementById("utilerias");
+
+                if (utileria.hasAttribute('hidden')) {
+                    utileria.removeAttribute('hidden');
+                } else {
+                    utileria.setAttribute('hidden','')
+                }
+            }
+        </script>
+
         <script src="/js/jquery.min.js"></script>
         <!--   Core JS Files   -->
         <script src="../../assets/js/core/popper.min.js"></script>

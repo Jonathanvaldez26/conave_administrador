@@ -24,13 +24,13 @@
             </li>
 
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#catalogos" class="nav-link" aria-controls="catalogos" role="button" aria-expanded="true">
+                <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link" aria-controls="catalogos" role="button" aria-expanded="true">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-sitemap" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Catálogos</span>
                 </a>
-                <div class="collapse" id="catalogos">
+                <div class="collapse" id="catalogos" hidden>
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " href="/Bu/">
@@ -151,13 +151,13 @@
             </li>
             
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-user-circle-o" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Utilerias</span>
                 </a>
-                <div class="collapse " id="utilerias">
+                <div class="collapse " id="utilerias" hidden>
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " href="/Administradores/">

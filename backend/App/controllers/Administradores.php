@@ -1262,7 +1262,7 @@ $tabla =<<<html
 <br>
 <div style="page-break-inside: avoid;" align='center'>
 <H1 class="titulo">Administradoress</H1>
-<table border="0" style="width:100%;text-align: center">
+  <table border="0" style="width:100%;text-align: center">
     <tr style="background-color:#B8B8B8;">
     <th><strong>Id</strong></th>
     <th><strong>Nombre</strong></th>

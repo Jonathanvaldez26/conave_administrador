@@ -22147,6 +22147,7 @@ hr.horizontal.gray-light {
 
 .navbar-vertical.navbar-expand-xs.fixed-start {
   left: 0;
+  z-index: 200;
 }
 
 .navbar-vertical.navbar-expand-xs.fixed-end {
@@ -22865,6 +22866,7 @@ z-index: 9999;
 
 .navbar-main {
   transition: box-shadow 0.25s ease-in, background-color 0.25s ease-in;
+  z-index: 100;
 }
 
 .navbar-main.fixed-top {

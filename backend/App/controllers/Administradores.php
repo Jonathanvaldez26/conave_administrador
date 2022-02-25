@@ -18,7 +18,7 @@ class Administradores extends Controller{
         View::set('header',$this->_contenedor->header());
         View::set('footer',$this->_contenedor->footer());
         if(Controller::getPermisosUsuario($this->__usuario, "permisos_globales",7) == 0)
-          header('Location: /principal/');
+          header('Location: /Principal/');
     }
 
     public function index() {

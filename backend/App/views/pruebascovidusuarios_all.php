@@ -95,7 +95,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#authExamples" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
+                <a href="/Habitaciones/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-hotel" style="color: #344767"></span>
                     </div>
@@ -103,7 +103,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#authExamples" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
+                <a href="/Cenas/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-coffee" style="color: #344767"></span>
                     </div>
@@ -115,7 +115,7 @@
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
             </li>
             <li class="nav-item">
-                <a href="#basicExamples" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a href="/ComprobantesVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-shield-virus" style="color: #344767"></span>
                     </div>
@@ -123,7 +123,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#basicExamples" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a href="/PruebasCovidUsuarios/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-virus-slash" style="color: #344767"></span>
                     </div>
@@ -131,7 +131,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#basicExamples" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-viruses" style="color: #344767"></span>
                     </div>
@@ -143,7 +143,7 @@
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
             </li>
             <li class="nav-item">
-                <a href="#applicationsExamples" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-tools" style="color: #344767"></span>
                     </div>
@@ -151,7 +151,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#pagesExamples" class="nav-link " aria-controls="pagesExamples" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" href="" class="nav-link " aria-controls="pagesExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-user-circle-o" style="color: #344767"></span>
                     </div>
@@ -208,8 +208,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/Principal/">Principal</a></li>
-                    <li class="breadcrumb-item text-sm opacity-5 text-dark" aria-current="page">Catálogos</li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Posiciones</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pruebas Covid Usuarios</li>
                 </ol>
             </nav>
             <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
@@ -338,7 +337,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="d-flex flex-column h-100">
-                                    <h2 class="font-weight-bolder mb-0">Posiciones Asofarma</h2>
+                                    <h2 class="font-weight-bolder mb-0">Comprobantes de Vacunación</h2>
                                 </div>
                             </div>
                         </div>

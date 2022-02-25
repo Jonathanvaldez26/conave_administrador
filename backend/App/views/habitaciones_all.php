@@ -103,7 +103,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#authExamples" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
+                <a href="/Cenas/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-coffee" style="color: #344767"></span>
                     </div>
@@ -208,8 +208,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/Principal/">Principal</a></li>
-                    <li class="breadcrumb-item text-sm opacity-5 text-dark" aria-current="page">Catálogos</li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Posiciones</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Habitaciones</li>
                 </ol>
             </nav>
             <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
@@ -338,7 +337,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="d-flex flex-column h-100">
-                                    <h2 class="font-weight-bolder mb-0">Posiciones Asofarma</h2>
+                                    <h2 class="font-weight-bolder mb-0">Habitaciones</h2>
                                 </div>
                             </div>
                         </div>

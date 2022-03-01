@@ -12,7 +12,7 @@ class Bu implements Crud{
     public static function getAll(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-SELECT e.catalogo_empresa_id, e.clave, e.rfc, e.razon_social, e.email, e.telefono_uno, e.telefono_dos, e.domicilio_fiscal, e.sitio_web, e.fecha_alta FROM catalogo_empresa e ORDER BY e.catalogo_empresa_id ASC;
+        SELECT * FROM bu ORDER BY nombre ASC;
 sql;
       return $mysqli->queryAll($query);
     }

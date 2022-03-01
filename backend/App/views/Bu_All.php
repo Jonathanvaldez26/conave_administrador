@@ -275,9 +275,8 @@
                 <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex"></div>
             </div>
         </div>
-        <br>
 
-        <div class="d-flex m-1">
+        <div class="d-flex m-0">
             <div class="ms-auto d-flex">
                 <div class="pe-4 mt-1 position-relative">
                     <hr class="vertical dark mt-0">

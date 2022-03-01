@@ -100,17 +100,8 @@ html;
                 <tr>
                 <td><input type="checkbox" name="borrar[]" value="{$value['clave']}"/></td>
                 <td><h6 class="mb-0 text-sm">{$status}{$value['nombre']}</h6></td>
-                <td>
-                    <div class="d-flex px-2 py-1">
-                         <div>
-                              <img src="../../../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="avatar image">
-                         </div>
-                         <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">{$value['clave']}</h6>
-                         </div>
-                    </div>
-                </td>
-                <td><p class="text-sm text-secondary mb-0">{$value['clave']}</p></td>
+           
+                <td><p class="text-sm text-secondary mb-0">{$value['fecha_alta']}</p></td>
                 <td><span class="text-secondary text-center text-sm">{$value['clave']}</span></td>
                 <td class="center" >
                     <a href="/Empresa/edit/{$value['catalogo_empresa_id']}" type="submit" name="id" class="btn btn-outline-primary"><span class="fa fa-pencil-square-o"></span> </a>

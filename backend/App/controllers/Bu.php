@@ -124,7 +124,7 @@ html;
       View::set('tabla',$tabla);
       View::set('header',$this->_contenedor->header($extraheader));
       View::set('footer',$this->_contenedor->footer($extraFooter));
-      View::render("Bu_all");
+      View::render("Bu_All");
     }
 
     public function Add(){

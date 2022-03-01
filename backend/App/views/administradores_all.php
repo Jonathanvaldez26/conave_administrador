@@ -347,6 +347,7 @@
                             <div class="clearfix"></div>
                         </div>
                         <form name="all" id="all" action="/Administradores/delete" method="POST">
+                            
                             <div class="panel-body">
                                 <a href="/Administradores/add" type="button" class="btn bg-gradient-info btn-circle"><i class="fa fa-plus"> </i></a>
                                 <button id="delete" type="button" class="btn bg-gradient-danger btn-circle"><i class="fa fa-trash"> <b></b></i></button>
@@ -379,29 +380,7 @@
 
 <?php echo $footer; ?>
 
-<script>
-$(document).ready(function(){
-    $("#muestra-cupones").DataTable();
-    $("#delete2").on('click',function(){0
 
-  alert("funciona");
-  console.log("funciona");
-//   var seleccionados = $("input[name='borrar[]']:checked").length;
-//   if(seleccionados>0){
-//     alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
-//       if(response){
-//         $('#all').attr('target', '');
-//         $('#all').attr('action', '/Administradores/delete');
-//         $("#all").submit();
-//         alertify.success("Se ha eliminado correctamente");
-//       }
-//     });
-//   }else{
-//     alertify.confirm('Selecciona al menos uno para eliminar');
-//   }
- });
-});
-</script>
 
 
 

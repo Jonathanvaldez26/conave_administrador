@@ -103,11 +103,7 @@ html;
            
                 <td><p class="text-sm text-secondary mb-0">{$value['fecha_alta']}</p></td>
                 <td><span class="text-secondary text-center text-sm">{$value['clave']}</span></td>
-                <td class="center" >
-                    <a href="/Empresa/edit/{$value['catalogo_empresa_id']}" type="submit" name="id" class="btn btn-outline-primary"><span class="fa fa-pencil-square-o"></span> </a>
-                    <a href="/Empresa/show/{$value['catalogo_empresa_id']}" type="submit" name="id_empresa" class="btn btn-outline-success"><span class="fa fa-eye" ></span> </a>
-                    <button type="submit" name="id_empresa" class="btn btn-outline-info"><span class="fa fa-eye"></span></button>                
-                </td>
+               
                 </tr>
 html;
       }

@@ -10,7 +10,7 @@ class Administradores implements Crud{
     public static function getAll(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-            SELECT a.utilerias_administradores_id, a.nombre, a.usuario, a.perfil_id, a.descripcion, a.status, s.nombre AS nombre_status, p.nombre AS nombre_perfil,
+            SELECT a.utilerias_administradores_id, a.nombre, a.usuario, a.perfil_id, a.descripcion, a.status, a.code, s.nombre AS nombre_status, p.nombre AS nombre_perfil,
             per.permisos_globales, per.seccion_principal, per.seccion_asistentes, per.seccion_bu, per.seccion_lineas, per.seccion_posiciones,
             per.seccion_restaurantes, per.seccion_gafete, per.seccion_vuelos, per.seccion_pickup, per.seccion_habitaciones, per.seccion_cenas, per.seccion_vacunacion,
             per.seccion_pruebas_covid, per.seccion_sorteo_prueba_covid, per.seccion_utilerias, per.seccion_configuracion
@@ -30,11 +30,20 @@ sql;
         return $mysqli->queryOne($query);
         
     }
+
+    public static function getByCode($code){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+          SELECT * FROM utilerias_administradores WHERE code  = '$code'
+sql;
+      return $mysqli->queryOne($query);
+      
+  }
     public static function insert($administradores){
 	    $mysqli = Database::getInstance(1);
         $query=<<<sql
-            INSERT INTO utilerias_administradores(nombre, usuario, contrasena, perfil_id, descripcion, fecha_alta, status) 
-            VALUES (:nombre, :usuario, :contrasena, :perfil_id, :descripcion, NOW(), :status)
+            INSERT INTO utilerias_administradores(nombre, usuario, contrasena, perfil_id, descripcion, fecha_alta, code,status) 
+            VALUES (:nombre, :usuario, :contrasena, :perfil_id, :descripcion, NOW(),:code ,1)
     sql;
             $parametros = array(
             ':nombre'=>$administradores->_nombre,
@@ -42,7 +51,7 @@ sql;
             ':contrasena'=>$administradores->_contrasena,
             ':perfil_id'=>$administradores->_perfil_id,
             ':descripcion'=>$administradores->_descripcion,
-            ':status'=>$administradores->_status
+            ':code'=>$administradores->_code
             );
 
             $id = $mysqli->insert($query,$parametros);
@@ -98,7 +107,27 @@ sql;
         
     }
     public static function delete($id){
+      $mysqli = Database::getInstance();
+      $query = <<<sql
+      UPDATE utilerias_administradores SET status = 2 WHERE utilerias_administradores_id = $id and usuario != 'root@grupolahe.com';
+sql;
+      $sql = $mysqli->update($query);
+      //$accion = new \stdClass();
+      //$accion->_sql= $query;
+      //$accion->_parametros = $parametros;
+     // $accion->_id = $id;
+      //UtileriasLog::addAccion($accion);
+      return array('seccion'=>1, 'id'=>$id); // Cambia el status a eliminado
         
+    }
+
+    public static function getUser($user){
+      $mysqli = Database::getInstance();
+      $query =<<<sql
+      SELECT * FROM utilerias_administradores WHERE usuario LIKE '$user'
+sql;
+      $dato = $mysqli->queryOne($query);
+      return ($dato>=1) ? 1 : 2 ;
     }
 
     ///////////

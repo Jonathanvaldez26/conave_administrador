@@ -92,27 +92,10 @@ html;
         });
       </script>
 html;
-      $empresas = BuDao::getAll();
-      //$usuario = $this->__usuario;
-      //$editarHidden = (Controller::getPermisosUsuario($usuario, "seccion_empresas", 5)==1)? "" : "style=\"display:none;\"";
-      //$eliminarHidden = (Controller::getPermisosUsuario($usuario, "seccion_empresas", 6)==1)? "" : "style=\"display:none;\"";
+      $bu = BuDao::getAll();
       $tabla= '';
       $status= '';
-      foreach ($empresas as $key => $value) {
-          if($value['status'] = 1){
-              $status =<<<html
-                 <span class="badge badge-dot me-1">
-                        <i class="bg-success"></i>
-                 </span>   
-html;
-          }elseif ($value['status'] = 2)
-          {
-              $status =<<<html
-                 <span class="badge badge-dot me-1">
-                        <i class="bg-danger"></i>
-                 </span>   
-html;
-          }
+      foreach ($bu as $key => $value) {
         $tabla.=<<<html
                 <tr>
                 <td><input type="checkbox" name="borrar[]" value="{$value['catalogo_empresa_id']}"/></td>
@@ -137,12 +120,7 @@ html;
                 </tr>
 html;
       }
-      $pdfHidden = (Controller::getPermisosUsuario($usuario, "seccion_empresas", 2)==1)?  "" : "style=\"display:none;\"";
-      $excelHidden = (Controller::getPermisosUsuario($usuario, "seccion_empresas", 3)==1)? "" : "style=\"display:none;\"";
-      $agregarHidden = (Controller::getPermisosUsuario($usuario, "seccion_empresas", 4)==1)? "" : "style=\"display:none;\"";
-      View::set('pdfHidden',$pdfHidden);
-      View::set('excelHidden',$excelHidden);
-      View::set('agregarHidden',$agregarHidden);
+
       View::set('tabla',$tabla);
       View::set('header',$this->_contenedor->header($extraheader));
       View::set('footer',$this->_contenedor->footer($extraFooter));

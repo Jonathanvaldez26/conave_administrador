@@ -35,9 +35,9 @@
                         <li class="nav-item">
                             <a href="/Bu/" class="nav-link active" role="button" aria-expanded="false">
                                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2">
-                                    <span class="fa fa-hospital" style="color: white"></span>
+                                    <span class="fa fa-business-time" style="color: white"></span>
                                 </div>
-                                <span class="nav-link-text ms-1">Bu Asofarma</span>
+                                <span class="nav-link-text ms-1">BU Asofarma</span>
                             </a>
                         </li>
                         <li class="nav-item ">
@@ -256,15 +256,16 @@
     <div class="container-fluid py-3 col-md-12">
         <div class="card card-body" id="profile">
             <div class="row justify-content-center align-items-center">
-                <div class="col-sm-auto col-4">
-                    <div class="avatar avatar-xl position-relative">
-                        <img src="/assets/img/Empresa.png" alt="bruce" class="w-100 border-radius-lg shadow-sm">
+                <div class="col-auto">
+                    <div class="bg-gradient-red avatar avatar-xl position-relative">
+                        <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                        <span class="fa fa-business-time" style="font-size: xx-large;"></span>
                     </div>
                 </div>
                 <div class="col-sm-auto col-8">
                     <div class="h-100">
                         <h5 class="mb-1 font-weight-bolder col-sm-auto col-8">
-                            BU
+                            BU (Business Unit)
                         </h5>
                         <p class="mb-0 font-weight-bold text-sm col-sm-auto col-8">
                             Registros Existentes
@@ -286,10 +287,10 @@
                         <thead>
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Clave</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">RFC</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Razon Social</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre Bussines Unit</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Alta</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quién Registró?</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                         </tr>
                         </thead>
                         <tbody>

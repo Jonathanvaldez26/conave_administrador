@@ -24,14 +24,15 @@
                 </a>
             </li>
 
+            
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#catalogos" class="nav-link" aria-controls="catalogos" role="button" aria-expanded="true">
+                <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link" aria-controls="catalogos" role="button" aria-expanded="true">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-sitemap" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Catálogos</span>
                 </a>
-                <div class="collapse" id="catalogos">
+                <div class="collapse" id="catalogos" hidden>
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " href="/Bu/">
@@ -42,7 +43,7 @@
                         <li class="nav-item">
                             <a href="/Lineas/" class="nav-link" role="button" aria-expanded="false">
                                 <span class="sidenav-mini-icon"> L </span>
-                                <span class="nav-link-text ms-1">Lineas Asofarma</span>
+                                <span class="sidenav-normal"> Lineas Asofarma </span>
                             </a>
                         </li>
                         <li class="nav-item ">
@@ -145,14 +146,14 @@
             <li class="nav-item">
                 <a href="/Configuracion/" id="configuracion" class="nav-link" aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-tools" style="color: #fff"></span>
+                        <span class="fa fa-tools" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Configuración</span>
                 </a>
             </li>
  
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#utilerias" class="nav-link active" aria-controls="utilerias" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link active" aria-controls="utilerias" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-user-circle-o" style="color: #fff"></span>
                     </div>
@@ -417,4 +418,7 @@
 </body>
 
 
+
 <?php echo $footer; ?>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -62,6 +62,22 @@ class Contenedor extends Controller{
             <!-- CSS Files -->
             <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
 
+            <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
+            <link rel="stylesheet" href="/css/alertify/alertify.default.css" id="toggleCSS" />
+
+
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+            <script src = "http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer ></script>
+            <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
+            
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+            <script src = "http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer ></script>
+
 
            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
             
@@ -70,6 +86,8 @@ class Contenedor extends Controller{
            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
             <!-- TEMPLATE VIEJO-->
+
+
         </head>
 html;
 
@@ -79,6 +97,29 @@ html;
     public function footer($extra = ''){
         $footer =<<<html
 <!-- jQuery -->
+
+          <script>
+            function catalogos(params) {
+                var catalogo = document.getElementById("catalogos");
+
+                if (catalogo.hasAttribute('hidden')) {
+                    catalogo.removeAttribute('hidden');
+                } else {
+                    catalogo.setAttribute('hidden','')
+                }
+            }
+
+            function utilerias(params) {
+                var utileria = document.getElementById("utilerias");
+
+                if (utileria.hasAttribute('hidden')) {
+                    utileria.removeAttribute('hidden');
+                } else {
+                    utileria.setAttribute('hidden','')
+                }
+            }
+        </script>
+
         <script src="/js/jquery.min.js"></script>
         <!--   Core JS Files   -->
         <script src="../../assets/js/core/popper.min.js"></script>
@@ -119,6 +160,22 @@ html;
         <script src="../../assets/js/plugins/chartjs.min.js"></script>
         <script src="../../assets/js/plugins/threejs.js"></script>
         <script src="../../assets/js/plugins/orbit-controls.js"></script>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <script src = "http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" />
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+        <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        
+        <script>
+          $(document).ready(function(){
+            $('#constanciasAll').DataTable();
+            
+          });
+        </script>
+
+
         <script>
           var ctx = document.getElementById("chart-bars").getContext("2d");
 

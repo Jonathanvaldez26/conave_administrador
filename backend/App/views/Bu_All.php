@@ -282,15 +282,14 @@
         <br>
         <div class="col-12">
             <div class="card">
-                <div class="table-responsive">
-                    <table class="table align-items-center mb-0">
+                <div class="table-responsive text-center">
+                    <table class="table align-items-center mb-0 text-center">
                         <thead>
                         <tr>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre Bussines Unit</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Alta</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quién Registró?</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                         </tr>
                         </thead>
                         <tbody>

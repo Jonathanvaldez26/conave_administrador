@@ -345,6 +345,7 @@
               <h1> Administradores</h1>
               <div class="clearfix"></div>
             </div>
+            <button id="delete2" type="button" class="btn btn-danger btn-circle"><i class="fa fa-remove"> <b>Eliminar</b></i></button>
             <form name="all" id="all" action="/Administradores/delete" method="POST">
               <div class="panel-body">
                 <a href="/Administradores/add" type="button" class="btn btn-primary btn-circle"><i class="fa fa-plus"> <b>Nueva Administrador</b></i></a>
@@ -360,7 +361,7 @@
                         <th style="vertical-align:middle;"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
                         <th style="vertical-align:middle;">Datos Usuario</th>
                         <th style="vertical-align:middle;">Secciones a visualizar</th>
-                        <th style="vertical-align:middle;">Departamento</th>
+                        <!-- <th style="vertical-align:middle;">Departamento</th> -->
                         <th style="vertical-align:middle;">Acciones</th>
                       </tr>
                     </thead>
@@ -378,6 +379,32 @@
 </body>
 
 <?php echo $footer; ?>
+
+<script>
+$(document).ready(function(){
+    $("#delete2").on('click',function(){
+
+  alert("funciona");
+  console.log("funciona");
+//   var seleccionados = $("input[name='borrar[]']:checked").length;
+//   if(seleccionados>0){
+//     alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
+//       if(response){
+//         $('#all').attr('target', '');
+//         $('#all').attr('action', '/Administradores/delete');
+//         $("#all").submit();
+//         alertify.success("Se ha eliminado correctamente");
+//       }
+//     });
+//   }else{
+//     alertify.confirm('Selecciona al menos uno para eliminar');
+//   }
+ });
+});
+</script>
+
+
+
 
 
 

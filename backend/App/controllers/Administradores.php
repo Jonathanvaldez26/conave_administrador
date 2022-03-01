@@ -27,22 +27,42 @@ class Administradores extends Controller{
       <script>
         $(document).ready(function(){
 
-          $("#muestra-cupones").tablesorter();
-          var oTable = $('#muestra-cupones').DataTable({
-                "columnDefs": [{
-                    "orderable": false,
-                    "targets": 0
-                }],
-                 "order": false
+          $("#delete").click(function(){
+
+              alert("funciona");
+              var seleccionados = $("input[name='borrar[]']:checked").length;
+              if(seleccionados>0){
+                alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
+                  if(response){
+                    $('#all').attr('target', '');
+                    $('#all').attr('action', '/Administradores/delete');
+                    $("#all").submit();
+                    alertify.success("Se ha eliminado correctamente");
+                  }
+                });
+              }else{
+                alertify.confirm('Selecciona al menos uno para eliminar');
+              }
             });
 
+          $('#muestra-cupones').DataTable();
+          
+          // $("#muestra-cupones").tablesorter();
+          // var oTable = $('#muestra-cupones').DataTable({
+          //       "columnDefs": [{
+          //           "orderable": false,
+          //           "targets": 0
+          //       }],
+          //        "order": false
+          //   });
+
             // Remove accented character from search input as well
-            $('#muestra-cupones input[type=search]').keyup( function () {
-                var table = $('#example').DataTable();
-                table.search(
-                    jQuery.fn.DataTable.ext.type.search.html(this.value)
-                ).draw();
-            });
+            // $('#muestra-cupones input[type=search]').keyup( function () {
+            //     var table = $('#example').DataTable();
+            //     table.search(
+            //         jQuery.fn.DataTable.ext.type.search.html(this.value)
+            //     ).draw();
+            // });
 
             var checkAll = 0;
             $("#checkAll").click(function () {
@@ -69,23 +89,7 @@ class Administradores extends Controller{
               $("#all").submit();
             });
 
-            // $("#delete").click(function(){
-
-            //   alert("funciona");
-            //   var seleccionados = $("input[name='borrar[]']:checked").length;
-            //   if(seleccionados>0){
-            //     alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
-            //       if(response){
-            //         $('#all').attr('target', '');
-            //         $('#all').attr('action', '/Administradores/delete');
-            //         $("#all").submit();
-            //         alertify.success("Se ha eliminado correctamente");
-            //       }
-            //     });
-            //   }else{
-            //     alertify.confirm('Selecciona al menos uno para eliminar');
-            //   }
-            // });
+            
 
         });
       </script>
@@ -100,16 +104,17 @@ html;
         $administrador_id = $value['administrador_id'];
         $tabla.=<<<html
                 <tr>
-                <td style="vertical-align:middle;"><input type="checkbox" name="borrar[]" value="{$value['administrador_id']}"/></td>
-                <td style="vertical-align:middle;">
-                    <b>Nombre</b><br>
-                    {$value['nombre']}<br><br>
-                    <b>Usuario</b><br>
-                    {$value['usuario']} <br><br>
-                    <b>Perfil Usuario</b> <br>
-                    {$value['nombre_perfil']} <br><br>
-                </td>
-                <td style="vertical-align:middle;">
+                  <td style="vertical-align:middle;"><input type="checkbox" name="borrar[]" value="{$value['administrador_id']}"/></td>
+                  <td style="vertical-align:middle;">
+                      <b>Nombre</b><br>
+                      {$value['nombre']}<br><br>
+                      <b>Usuario</b><br>
+                      {$value['usuario']} <br><br>
+                      <b>Perfil Usuario</b> <br>
+                      {$value['nombre_perfil']} <br><br>
+                  </td>
+                  <td style="vertical-align:middle;">
+                
 html;
 
         $s1 = explode("-",$value['seccion_principal']);
@@ -249,23 +254,23 @@ html;
         // $editar17 = ($s17['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
         // $eliminar17 = ($s17['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
 
-        $varSeccion1 = ($ver1!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver1}</span> {$pdf1} {$excel1} {$agregar1} {$editar1} {$eliminar1}</li>": "";
-        $varSeccion2 = ($ver2!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver2}</span> {$pdf2} {$excel2} {$agregar2} {$editar2} {$eliminar2}</li>": "";
-        $varSeccion3 = ($ver3!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver3}</span> {$pdf3} {$excel3} {$agregar3} {$editar3} {$eliminar3}</li>": "";
-        $varSeccion4 = ($ver4!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver4}</span> {$pdf4} {$excel4} {$agregar4} {$editar4} {$eliminar4}</li>": "";
-        $varSeccion5 = ($ver5!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver5}</span> {$pdf5} {$excel5} {$agregar5} {$editar5} {$eliminar5}</li>": "";
-        $varSeccion6 = ($ver6!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver6}</span> {$pdf6} {$excel6} {$agregar6} {$editar6} {$eliminar6}</li>": "";
-        $varSeccion7 = ($ver7!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver7}</span> {$pdf7} {$excel7} {$agregar7} {$editar7} {$eliminar7}</li>": "";
-        $varSeccion8 = ($ver8!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver8}</span> {$pdf8} {$excel8} {$agregar8} {$editar8} {$eliminar8}</li>": "";
-        $varSeccion9 = ($ver9!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver9}</span> {$pdf9} {$excel9} {$agregar9} {$editar9} {$eliminar9}</li>": "";
-        $varSeccion10 = ($ver10!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver10}</span> {$pdf10} {$excel10} {$agregar10} {$editar10} {$eliminar10}</li>": "";
-        $varSeccion11 = ($ver11!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver11}</span> {$pdf11} {$excel11} {$agregar11} {$editar11} {$eliminar11}</li>": "";
-        $varSeccion12 = ($ver12!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver12}</span> {$pdf12} {$excel12} {$agregar12} {$editar12} {$eliminar12}</li>": "";
-        $varSeccion13 = ($ver13!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver13}</span> {$pdf13} {$excel13} {$agregar13} {$editar13} {$eliminar13}</li>": "";
-        $varSeccion14 = ($ver14!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver14}</span> {$pdf14} {$excel14} {$agregar14} {$editar14} {$eliminar14}</li>": "";
-        $varSeccion15 = ($ver15!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver15}</span> {$pdf15} {$excel15} {$agregar15} {$editar15} {$eliminar15}</li>": "";
-        $varSeccion16 = ($ver16!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver16}</span> {$pdf16} {$excel16} {$agregar16} {$editar16} {$eliminar16}</li>": "";
-        //$varSeccion17 = ($ver17!="")?"<li class=\"list-group-item col-md-4 col-sm-6 col-xs-6\"><span style=\"font-size:10px;\">{$ver17}</span> {$pdf17} {$excel17} {$agregar17} {$editar17} {$eliminar17}</li>": "";
+        $varSeccion1 = ($ver1!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver1}</span> {$pdf1} {$excel1} {$agregar1} {$editar1} {$eliminar1}</li>": "";
+        $varSeccion2 = ($ver2!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver2}</span> {$pdf2} {$excel2} {$agregar2} {$editar2} {$eliminar2}</li>": "";
+        $varSeccion3 = ($ver3!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver3}</span> {$pdf3} {$excel3} {$agregar3} {$editar3} {$eliminar3}</li>": "";
+        $varSeccion4 = ($ver4!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver4}</span> {$pdf4} {$excel4} {$agregar4} {$editar4} {$eliminar4}</li>": "";
+        $varSeccion5 = ($ver5!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver5}</span> {$pdf5} {$excel5} {$agregar5} {$editar5} {$eliminar5}</li>": "";
+        $varSeccion6 = ($ver6!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver6}</span> {$pdf6} {$excel6} {$agregar6} {$editar6} {$eliminar6}</li>": "";
+        $varSeccion7 = ($ver7!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver7}</span> {$pdf7} {$excel7} {$agregar7} {$editar7} {$eliminar7}</li>": "";
+        $varSeccion8 = ($ver8!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver8}</span> {$pdf8} {$excel8} {$agregar8} {$editar8} {$eliminar8}</li>": "";
+        $varSeccion9 = ($ver9!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver9}</span> {$pdf9} {$excel9} {$agregar9} {$editar9} {$eliminar9}</li>": "";
+        $varSeccion10 = ($ver10!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver10}</span> {$pdf10} {$excel10} {$agregar10} {$editar10} {$eliminar10}</li>": "";
+        $varSeccion11 = ($ver11!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver11}</span> {$pdf11} {$excel11} {$agregar11} {$editar11} {$eliminar11}</li>": "";
+        $varSeccion12 = ($ver12!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver12}</span> {$pdf12} {$excel12} {$agregar12} {$editar12} {$eliminar12}</li>": "";
+        $varSeccion13 = ($ver13!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver13}</span> {$pdf13} {$excel13} {$agregar13} {$editar13} {$eliminar13}</li>": "";
+        $varSeccion14 = ($ver14!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver14}</span> {$pdf14} {$excel14} {$agregar14} {$editar14} {$eliminar14}</li>": "";
+        $varSeccion15 = ($ver15!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver15}</span> {$pdf15} {$excel15} {$agregar15} {$editar15} {$eliminar15}</li>": "";
+        $varSeccion16 = ($ver16!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver16}</span> {$pdf16} {$excel16} {$agregar16} {$editar16} {$eliminar16}</li>": "";
+        //$varSeccion17 = ($ver17!="")?"<li class=\"list-group-item \"><span style=\"font-size:10px;\">{$ver17}</span> {$pdf17} {$excel17} {$agregar17} {$editar17} {$eliminar17}</li>": "";
 
         $tabla .= "<div class=\"list-group\">" .$varSeccion1 . $varSeccion2 . $varSeccion3 . $varSeccion4 . $varSeccion5 . $varSeccion6 . $varSeccion7 . $varSeccion8 . $varSeccion9 . $varSeccion10 . $varSeccion11 . $varSeccion12 . $varSeccion13 . $varSeccion14 . $varSeccion15 . $varSeccion16 ."</div></td>";
         //$HaySeccion = AdministradoresDao::getDepartamentosAdministrador($value['administrador_id']);

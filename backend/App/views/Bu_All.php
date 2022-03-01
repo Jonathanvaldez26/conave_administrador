@@ -275,6 +275,7 @@
                 <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex"></div>
             </div>
         </div>
+        <br>
 
         <div class="d-flex m-0">
             <div class="ms-auto d-flex">

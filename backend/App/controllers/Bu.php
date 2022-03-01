@@ -102,7 +102,7 @@ html;
                 <td><h6 class="mb-0 text-sm">{$status}{$value['nombre']}</h6></td>
            
                 <td><p class="text-sm text-secondary mb-0">{$value['fecha_alta']}</p></td>
-                <td><span class="text-secondary text-center text-sm">{$value['clave']}</span></td>
+                <td><span class="text-secondary text-center text-sm">{$value['creo']}</span></td>
                
                 </tr>
 html;

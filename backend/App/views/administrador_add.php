@@ -487,35 +487,35 @@
             </div>
 
             <div class="container-fluid col-md-12 card mt-4" id="basic-info">
-              <form method="POST" class="form-horizontal" id="add" action="/Administradores/administradorAdd">
+              <form autocomplete="off" method="POST" class="form-horizontal" id="add" action="/Administradores/administradorAdd">
                   <div class="form-group ">
-                      <div class="card-header">
-                          <h5>Datos Generales para Agregar un Administrador</h5>
+                      <div class="card-header text-center">
+                          <h3>Datos Generales para Agregar un Administrador</h3>
                       </div>
                       <div class="card-body pt-0">
                           <div class="row">
-                              <div class="form-group col-6">
+                              <div class="form-group col-12 col-md-6 ">
                                   <label class="form-label">Nombre del Administrador *</label>
                                   <div class="input-group">
                                       <input id="nombre" name="nombre"  id="nombre" class="form-control" type="text" placeholder="Ej. Jonathan Valdez Martinez" required="required" onfocus="focused(this)" onfocusout="defocused(this)">
                                   </div>
                               </div>
-                              <div class="form-group col-6">
+                              <div class="form-group  col-12 col-md-6">
                                 <label class="form-label">Correo Electrónico *</label>
                                   <div class="input-group">
-                                      <input id="usuario" name="usuario"  id="usuario" class="form-control" type="email" placeholder="ejemplo@grupolahe.com" required onfocus="focused(this)" onfocusout="defocused(this)">
+                                      <input id="usuario" autocomplete="off" name="usuario"  id="usuario" class="form-control" type="email" placeholder="ejemplo@grupolahe.com" required onfocus="focused(this)" onfocusout="defocused(this)">
                                   </div>
                                   <span id="availability"></span>
                               </div>
                           </div>
-                          <div class="form-group row" hidden>
+                          <div class="row">
                               <div class="col-6">
                                   <label class="form-label">Contraseña *</label>
                                   <div class="input-group">
                                       <input id="contrasena_1" name="contrasena_1" id="contrasena_1" class="form-control" value="" type="password" value="" placeholder="Ingresa Contraseña" onfocus="focused(this)" onfocusout="defocused(this)">
                                   </div>
                               </div>
-                              <div class="form-group col-6">
+                              <div class="form-group col-12 col-md-6">
                                   <label class="form-label">Confirmar Contraseña *</label>
                                   <div class="input-group">
                                       <input id="contrasena_2" name="contrasena_2" id="contrasena_2" class="form-control" value="" type="password" value="" placeholder="Confirma Contraseña" onfocus="focused(this)" onfocusout="defocused(this)">
@@ -523,9 +523,9 @@
                               </div>
                           </div>
                           <div class="form-group row">
-                              <div class="col-6">
-                              <label class="form-label ">Perfil del Administrador *</label>
-                                <select class="form-control" name="perfil_id" onchange="showDiv(this)">
+                              <div class="col-12 col-md-6">
+                                <label class="form-label">Perfil del Administrador *</label>
+                                <select class="form-control col-12 col-md-6" name="perfil_id" onchange="showDiv(this)">
                                   <option value="" disabled selected>Selecciona un perfil para el este administrador</option>
                                   <?php echo $perfiles; ?>
                                 </select>
@@ -620,14 +620,14 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus<span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <select class="form-control" name="status" id="status">
-                                <option value="" disabled selected>Selecciona un estatus</option>
+                                <option value="1" disabled selected>Selecciona un estatus</option>
                                 <?php echo $status; ?>
                               </select>
                             </div>
                           </div>
                           <br>
-                          <div class="form-group">
-                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-2 col-xs-offset-3">
+                          <div class="form-group text-center">
+                            <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-2 col-xs-offset-3">
                               <button class="btn bg-gradient-success col-md-3 col-sm-3 col-xs-5" id="btnAdd" type="submit">Agregar</button>
                               <button class="btn bg-gradient-danger col-md-3 col-sm-3 col-xs-5" type="button" id="btnCancel">Cancelar</button>
                               <button class="btn bg-gradient-primary col-md-3 col-sm-3 col-xs-5" type="reset">Resetear</button>
@@ -636,7 +636,8 @@
                         </div>
                   </div>
               </form>
-          </div>
+            </div>
+
           <div class="x_title">
               <br><br>
               <h1 style="color: #0000;">Agregar un nuevo Administrador</h1>

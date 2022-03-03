@@ -65,7 +65,14 @@ html;
       
 
         <script>
+
+            
+
             $(document).ready(function(){
+
+                // var show = $(#eye);
+                // console.log('a'+show);
+
                 $.validator.addMethod("checkUserName",function(value, element) {
                   var response = false;
                     $.ajax({
@@ -98,10 +105,10 @@ html;
                     },
                     messages:{
                         usuario:{
-                            required: "Este campo es requerido",
+                            required: "<br>Este campo es requerido",
                         },
                         password:{
-                            required: "Este campo es requerido",
+                            required: "<br>Este campo es requerido",
                         }
                     }
                 });

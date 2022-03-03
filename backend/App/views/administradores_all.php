@@ -213,7 +213,7 @@
                     </li>
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/Principal/">Principal</a></li>
                     <li class="breadcrumb-item text-sm opacity-5 text-dark">Utilerias</li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Administradores</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page"><a class="text-dark" href="/Administradores/">Administradores</a></li>
                 </ol>
             </nav>
             <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
@@ -338,7 +338,7 @@
 
     
        <div>
-            <div class="right_col">
+            <div class="right_col p-2">
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
                     <div class="panel panel-default">
                         <div class="x_title">
@@ -351,22 +351,24 @@
                                 <a href="/Administradores/add" type="button" class="btn bg-gradient-info btn-circle"><i class="fa fa-plus"> </i></a>
                                 <button id="delete" type="button" class="btn bg-gradient-danger btn-circle"><i class="fa fa-trash"> <b></b></i></button>
                             </div>
-                            <div class="panel-body">
-                                <div class="dataTable_wrapper">
-                                    <table class="table table-striped table-bordered table-hover" id="muestra-cupones">
-                                        <thead>
-                                            <tr>
-                                                <th style="vertical-align:middle;"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
-                                                <th style="vertical-align:middle;">Datos Usuario</th>
-                                                <th style="vertical-align:middle;">Secciones a visualizar</th>
-                                                <!-- <th style="vertical-align:middle;">Departamento</th> -->
-                                                <th style="vertical-align:middle;">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php echo $tabla; ?>
-                                        </tbody>
-                                    </table>
+                            <div class="m-2">
+                                <div class="card card-body px-0 pt-0 pb-2">
+                                    <div class="table-responsive p-0">
+                                        <table class="align-items-center mb-0" id="muestra-cupones">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos Usuario</th>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Secciones a visualizar</th>
+                                                    <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Departamento</th> -->
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php echo $tabla; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </form>

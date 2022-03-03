@@ -18,8 +18,8 @@ class Administradores extends Controller{
         View::set('header',$this->_contenedor->header());
         View::set('footer',$this->_contenedor->footer());
 
-        // if(Controller::getPermisosUsuario($this->__usuario, "permisos_globales",7) == 0)
-        //   header('Location: /Principal/');
+        if(Controller::getPermisosUsuario($this->__usuario, "permisos_globales",1) == 0)
+          header('Location: /Principal/');
     }
 
     public function index() {
@@ -86,17 +86,97 @@ class Administradores extends Controller{
             });
 
 
-            $("#export_pdf").click(function(){
-              $('#all').attr('action', '/Administradores/generarPDF/');
-              $('#all').attr('target', '_blank');
-              $("#all").submit();
-            });
+            // $("#export_pdf").click(function(){
+            //   $('#all').attr('action', '/Administradores/generarPDF/');
+            //   $('#all').attr('target', '_blank');
+            //   $("#all").submit();
+            // });
 
-            $("#export_excel").click(function(){
-              $('#all').attr('action', '/Administradores/generarExcel/');
-              $('#all').attr('target', '_blank');
-              $("#all").submit();
+            // $("#export_excel").click(function(){
+            //   $('#all').attr('action', '/Administradores/generarExcel/');
+            //   $('#all').attr('target', '_blank');
+            //   $("#all").submit();
+            // });
+
+            // $("#delete").click(function(){
+            //   var seleccionados = $("input[name='borrar[]']:checked").length;
+            //   if(seleccionados>0){
+            //     alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
+            //       if(response){
+            //         $('#all').attr('target', '');
+            //         $('#all').attr('action', '/Administradores/delete');
+            //         $("#all").submit();
+            //         alertify.success("Se ha eliminado correctamente");
+            //       }
+            //     });
+            //   }else{
+            //     alertify.confirm('Selecciona al menos uno para eliminar');
+            //   }
+            // });
+
+            $("#delete").click(function(event){
+              event.preventDefault();
+              var borrar = $("input[name='borrar[]']:checked");
+
+              var arrayUser = [];
+
+              $.each( borrar, function(i, n){
+                
+                if($(this).attr("data-user") == "root@grupolahe.com"){
+                    arrayUser.push($(this).attr("data-user"));
+                }
+              });
+              var existe = arrayUser.includes("root@grupolahe.com");
+              if(existe){
+                console.log(existe);
+                alertify.error('No puedes borrar al administrador root');
+              
+              }else{
+                $("#all").submit();
+              }
+
             });
+        
+        $("#all").on("submit",function(event){
+            event.preventDefault();
+            
+            var seleccionados = $("input[name='borrar[]']:checked").length;
+            var borrar = $("input[name='borrar[]']:checked");
+            var formData = new FormData(document.getElementById("all"));
+            
+            if(seleccionados>0){
+            alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
+                if(response){
+                $.ajax({
+                    url: "/Administradores/delete",
+                    type: "POST",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        console.log("Procesando....");
+        
+                    },
+                    success: function(respuesta) {
+                        console.log(respuesta);
+                    },
+                    error: function(respuesta) {
+                        console.log(respuesta);
+                    }
+        
+                });
+                
+                alertify.success("Se ha eliminado correctamente");
+                setTimeout(function() {
+                    window.location.href = '/Administradores';
+                }, 2000);
+                }
+            });
+            }else{
+            alertify.confirm('Selecciona al menos uno para eliminar');
+            }
+        });
 
             
 
@@ -295,8 +375,8 @@ html;
 
           $tabla.=<<<html
                 
-                <td style="vertical-align:middle;" class="center text-center">
-                    <a href="/Administradores/edit/{$value['utilerias_administradores_id']}" class="btn bg-gradient-primary"><span class="fa fa-pencil-square-o" style="color:white"></span> </a>
+                <td style="vertical-align:middle;" class="center">
+                    <a href="/Administradores/edit/{$value['code']}" class="btn btn-primary"><span class="fa fa-pencil-square-o" style="color:white"></span> </a>
                 </td>
               </tr>
 html;
@@ -826,6 +906,7 @@ html;
         $administrador->_descripcion = MasterDom::getData('descripcion');
         $administrador->_status = MasterDom::getData('status');
         $administrador->_tipo = 0;
+        $administrador->_code = $this->generateRandomString();
         
         $permisos = new \stdClass();
 
@@ -869,7 +950,10 @@ html;
       
 
       $idAdministrador = AdministradoresDao::insert($administrador);
-      $idPermisos = AdministradoresDao::insertPermisos($permisos);
+      if($idAdministrador){
+        $idPermisos = AdministradoresDao::insertPermisos($permisos);
+      }
+      
 
         //if(MasterDom::getData('perfil_id') != 6){
        
@@ -894,7 +978,7 @@ html;
 
     }
 
-    public function edit($id){
+    public function edit($code){
       $extraHeader =<<<html
     
 html;
@@ -1304,7 +1388,7 @@ html;
 
       </script>
 html;
-      $administrador = AdministradoresDao::getById($id);
+      $administrador = AdministradoresDao::getByCode($code);
 
       
 
@@ -1400,6 +1484,7 @@ html;
 
     public function delete(){
       $id = MasterDom::getDataAll('borrar');
+      
       $array = array();
       foreach ($id as $key => $value) {
         $id = AdministradoresDao::delete($value);
@@ -1721,4 +1806,8 @@ html;
       View::set('titulo', $title);
       View::render("alertas");
     }
+
+    function generateRandomString($length = 10) { 
+      return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
+  } 
 }

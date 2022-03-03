@@ -35,9 +35,9 @@
                         <li class="nav-item">
                             <a href="/Bu/" class="nav-link active" role="button" aria-expanded="false">
                                 <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2">
-                                    <span class="fa fa-hospital" style="color: white"></span>
+                                    <span class="fa fa-business-time" style="color: white"></span>
                                 </div>
-                                <span class="nav-link-text ms-1">Bu Asofarma</span>
+                                <span class="nav-link-text ms-1">BU Asofarma</span>
                             </a>
                         </li>
                         <li class="nav-item ">
@@ -256,15 +256,16 @@
     <div class="container-fluid py-3 col-md-12">
         <div class="card card-body" id="profile">
             <div class="row justify-content-center align-items-center">
-                <div class="col-sm-auto col-4">
-                    <div class="avatar avatar-xl position-relative">
-                        <img src="/assets/img/Empresa.png" alt="bruce" class="w-100 border-radius-lg shadow-sm">
+                <div class="col-auto">
+                    <div class="bg-gradient-red avatar avatar-xl position-relative">
+                        <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                        <span class="fa fa-business-time" style="font-size: xx-large;"></span>
                     </div>
                 </div>
                 <div class="col-sm-auto col-8">
                     <div class="h-100">
                         <h5 class="mb-1 font-weight-bolder col-sm-auto col-8">
-                            BU
+                            BU (Business Unit)
                         </h5>
                         <p class="mb-0 font-weight-bold text-sm col-sm-auto col-8">
                             Registros Existentes
@@ -276,20 +277,32 @@
         </div>
         <br>
 
-        <a href="/Bu/Add" type="button" class="btn btn-primary btn-sm">Nuevo</a>
-        <button type="button" class="btn btn-secondary btn-sm">Eliminar</button>
+        <div class="d-flex m-0">
+            <div class="ms-auto d-flex">
+                <div class="pe-4 mt-1 position-relative">
+                    <hr class="vertical dark mt-0">
+                </div>
+                <div class="ps-4">
+                    <div class="panel-body" <?php echo $visible; ?>></div>
+                    <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#Modal_Add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
+                        <span class="fa fa-info"></span>
+                    </button>
+
+                </div>
+            </div>
+        </div>
         <br>
         <div class="col-12">
             <div class="card">
-                <div class="table-responsive">
-                    <table class="table align-items-center mb-0">
+                <div class="table-responsive text-center">
+                    <table class="table align-items-center mb-0 text-center" id="muestra-cupones">
                         <thead>
                         <tr>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Clave</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">RFC</th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Razon Social</th>
+                            <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre Bussines Unit</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Alta</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quién Registró?</th>
                         </tr>
                         </thead>
                         <tbody>

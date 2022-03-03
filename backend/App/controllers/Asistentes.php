@@ -19,9 +19,13 @@ class Asistentes extends Controller{
         $this->_contenedor = new Contenedor;
         View::set('header',$this->_contenedor->header());
         View::set('footer',$this->_contenedor->footer());
+        if(Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes",1) == 0)
+          header('Location: /Principal/');
     }
 
     public function index() {
+
+        
         $user = GeneralDao::getDatosUsuarioLogeado($this->__usuario);
         $filtros = "";
         if($_POST != "")

@@ -12,7 +12,8 @@ class Bu implements Crud{
     public static function getAll(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-SELECT e.catalogo_empresa_id, e.clave, e.rfc, e.razon_social, e.email, e.telefono_uno, e.telefono_dos, e.domicilio_fiscal, e.sitio_web, e.fecha_alta FROM catalogo_empresa e ORDER BY e.catalogo_empresa_id ASC;
+       SELECT b.id_bu, b.clave, b.nombre, b.fecha_alta, ua.nombre as creo FROM bu b
+ INNER JOIN utilerias_administradores ua on ua.utilerias_administradores_id = b.utilerias_administradores_id  ORDER BY b.nombre ASC;
 sql;
       return $mysqli->queryAll($query);
     }

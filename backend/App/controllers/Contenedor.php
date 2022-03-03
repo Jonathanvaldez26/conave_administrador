@@ -20,6 +20,40 @@ class Contenedor extends Controller{
 
     public function header($extra = ''){
      $usuario = $this->__usuario;
+     
+        $principal = Controller::getPermisosUsuario($usuario, "seccion_principal", 1);
+        $principalAdd = Controller::getPermisosUsuario($usuario, "seccion_principal", 1);
+        $asistentes = Controller::getPermisosUsuario($usuario, "seccion_asistentes", 1);
+        $asistentessAdd = Controller::getPermisosUsuario($usuario, "seccion_asistentes", 1);
+        $bu = Controller::getPermisosUsuario($usuario, "seccion_bu", 1);
+        $buAdd = Controller::getPermisosUsuario($usuario, "seccion_bu", 1);
+        $lineas = Controller::getPermisosUsuario($usuario, "seccion_lineas", 1);
+        $lineasAdd = Controller::getPermisosUsuario($usuario, "seccion_lineas", 1);
+        $posiciones = Controller::getPermisosUsuario($usuario, "seccion_posiciones", 1);
+        $posicionesAdd = Controller::getPermisosUsuario($usuario, "seccion_posiciones", 1);
+        $restaurantes = Controller::getPermisosUsuario($usuario, "seccion_restaurantes", 1);
+        $restaurantesAdd = Controller::getPermisosUsuario($usuario, "seccion_restaurantes", 1);
+        $gafete = Controller::getPermisosUsuario($usuario, "seccion_gafete", 1);
+        $gafeteAdd = Controller::getPermisosUsuario($usuario, "seccion_gafete", 1);
+        $vuelos = Controller::getPermisosUsuario($usuario, "seccion_vuelos", 1);
+        $vuelosAdd = Controller::getPermisosUsuario($usuario, "seccion_vuelos", 1);
+        $pickup = Controller::getPermisosUsuario($usuario, "seccion_pickup", 1);
+        $pickupAdd = Controller::getPermisosUsuario($usuario, "seccion_pickup", 1);
+        $habitaciones = Controller::getPermisosUsuario($usuario, "seccion_habitaciones", 1);
+        $habitacionesAdd = Controller::getPermisosUsuario($usuario, "seccion_habitaciones", 1);
+        $cenas = Controller::getPermisosUsuario($usuario, "seccion_cenas", 1);
+        $cenasAdd = Controller::getPermisosUsuario($usuario, "seccion_cenas", 1);
+        $vacunacion = Controller::getPermisosUsuario($usuario, "seccion_vacunacion", 1);
+        $vacunacionAdd = Controller::getPermisosUsuario($usuario, "seccion_vacunacion", 1);
+
+        $pruebas_covid = Controller::getPermisosUsuario($usuario, "seccion_pruebas_covid", 1);
+        $pruebas_covidAdd = Controller::getPermisosUsuario($usuario, "seccion_pruebas_covid", 1);
+        $sorteo_prueba_covid = Controller::getPermisosUsuario($usuario, "seccion_sorteo_prueba_covid", 1);
+        $sorteo_prueba_covidAdd = Controller::getPermisosUsuario($usuario, "seccion_sorteo_prueba_covid", 1);
+        $utilerias = Controller::getPermisosUsuario($usuario, "seccion_utilerias", 1);
+        $utileriasAdd = Controller::getPermisosUsuario($usuario, "seccion_utilerias", 1);
+        $configuracion = Controller::getPermisosUsuario($usuario, "seccion_configuracion", 1);
+        $configuracionAdd = Controller::getPermisosUsuario($usuario, "seccion_configuracion", 1);
       
      $header =<<<html
         <!DOCTYPE html>
@@ -90,6 +124,8 @@ class Contenedor extends Controller{
 
         </head>
 html;
+
+
 
     return $header.$extra;
     }
@@ -475,6 +511,8 @@ html;
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="../../assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
 html;
+
+
 
     return $footer.$extra;
     }

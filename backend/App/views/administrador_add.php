@@ -508,7 +508,7 @@
                                   <span id="availability"></span>
                               </div>
                           </div>
-                          <div class="row">
+                          <div class="form-group row">
                               <div class="col-6">
                                   <label class="form-label">Contraseña *</label>
                                   <div class="input-group">

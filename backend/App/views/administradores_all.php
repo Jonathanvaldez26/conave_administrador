@@ -382,55 +382,55 @@
             <div class="tab-content" id="v-pills-tabContent">
 
                     <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1" style="background-image: url('../../assets/img/miercoles.jpeg'); background-size:cover;">
-                    <div class="d-flex m-1">
-                        <div class="ms-auto d-flex">
-                            <div class="pe-4 mt-1 position-relative">
-                                <hr class="vertical dark mt-0">
-                            </div>
-
-                            <div class="ps-4">
-                                <div class="panel-body" <?php echo $visible; ?>></div>
-                                <a href="/Administradores/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-plus"> </i></a>
-                                <button id="delete" type="button" class="btn bg-gradient-danger btn-icon-only mb-0 mt-3"><i class="fa fa-trash"> <b></b></i></button>
-                                <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
-                                    <span class="fa fa-info"></span>
-                                </button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <div class="card mb-4">
-                                <div class="card-header pb-0">
-                                    <h6>Administradores del Sistemas y Asignación de Permisos</h6>
-                                </div>
-
-                                    <div class="card-body px-0 pt-0 pb-2">
-                                        <div class="table-responsive p-0">
-                                            <table class="table align-items-center mb-0" id="muestra-cupones">
-                                                <thead>
-                                                <tr>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos usuario</th>
-                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Permisos</th>
-                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Asignar Línea</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php echo $tabla; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                        <form name="all" id="all" action="/Administradores/delete" method="POST">
+                            <div class="d-flex m-1">
+                                <div class="ms-auto d-flex">
+                                    <div class="pe-4 mt-1 position-relative">
+                                        <hr class="vertical dark mt-0">
                                     </div>
+
+                                    <div class="ps-4">
+                                        <div class="panel-body" <?php echo $visible; ?>></div>
+                                        <a href="/Administradores/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-plus"> </i></a>
+                                        <button id="delete" type="button" class="btn bg-gradient-danger btn-icon-only mb-0 mt-3"><i class="fa fa-trash"> <b></b></i></button>
+                                        <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
+                                            <span class="fa fa-info"></span>
+                                        </button>
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div class="card mb-4">
+                                        <div class="card-header pb-0">
+                                            <h6>Administradores del Sistemas y Asignación de Permisos</h6>
+                                        </div>
+
+                                            <div class="card-body px-0 pt-0 pb-2">
+                                                <div class="table-responsive p-0">
+                                                    <table class="table align-items-center mb-0">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
+                                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos usuario</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Permisos</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Asignar Línea</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <?php echo $tabla; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                 </div>
-                <form name="all" id="all" action="/Administradores/delete" method="POST">
-                    
-                </form>
+
                 <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
                     B
                 </div>

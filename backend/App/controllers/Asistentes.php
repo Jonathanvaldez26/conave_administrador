@@ -9,6 +9,7 @@ use \Core\Controller;
 use \App\models\Colaboradores AS ColaboradoresDao;
 use \App\models\Accidentes AS AccidentesDao;
 use \App\models\General AS GeneralDao;
+use Generator;
 
 class Asistentes extends Controller{
 
@@ -27,47 +28,44 @@ class Asistentes extends Controller{
 
         
         $user = GeneralDao::getDatosUsuarioLogeado($this->__usuario);
+        $asistentes = GeneralDao::getAllColaboradores();
         $filtros = "";
         if($_POST != "")
-            $filtros = $this->getFiltro($post);
+            //$filtros = $this->getFiltro($post);
 
         ///////////////////////////////////////////////////////
-        View::set('tabla',$this->getAllColaboradoresAsignados($user['perfil_id'], $user['identificador'], $user['catalogo_planta_id'], $user['catalogo_departamento_id'], $filtros));
+        // var_dump($user);
+        // var_dump($asistentes);
+        View::set('tabla',$this->getAllColaboradoresAsignados());
         View::set('header',$this->_contenedor->header($this->getHeader()));
         View::set('footer',$this->_contenedor->footer($this->getFooter()));
         View::render("asistentes_all");
 
     }
 
-    public function getAllColaboradoresAsignados($perfil, $identificador, $planta, $departamento, $filtros){
+    public function getAllColaboradoresAsignados(){
         $html = "";
         $personal = '';
-        foreach (GeneralDao::getAllColaboradores($perfil, $identificador, $planta, $departamento, $filtros) as $key => $value) {
+        foreach (GeneralDao::getAllColaboradores() as $key => $value) {
             $value['apellido_paterno'] = utf8_encode($value['apellido_paterno']);
             $value['apellido_materno'] = utf8_encode($value['apellido_materno']);
             $value['nombre'] = utf8_encode($value['nombre']);
 
-            if($value['pago'] == 'Semanal'){
-                $personal = 'PRODUCCIÓN';
-            }
-            else{
-                $personal = 'ADMINISTRATIVO';
-            }
+            
 
             $value['identificador_noi'] = (!empty($value['identificador_noi'])) ? $value['identificador_noi'] : "SIN<br>IDENTIFICADOR";
             $html .=<<<html
         <tr>
-          <td style="text-align:center; vertical-align:middle;"><input type="checkbox" name="borrar[]" value="{$value['catalogo_colaboradores_id']}"/> {$value['catalogo_colaboradores_id']}</td>
-          <td style="text-align:center; vertical-align:middle;"><img class="foto" src="/img/colaboradores/{$value['foto']}"/></td>
+          <td style="text-align:center; vertical-align:middle;"><input type="checkbox" name="borrar[]" value="{$value['utilerias_asistentes_id']}"/> {$value['utilerias_asistentes_id']}</td>
+          <td style="text-align:center; vertical-align:middle;"><img class="foto" src="/img/users_conave/{$value['img']}"/></td>
           <td style="text-align:left; vertical-align:middle;">
-            <b># EMPLEADO</b> {$value['numero_empleado']} <br>
-            <b># PUESTO</b> {$value['nombre_puesto']}
+            <b># Usuario</b> {$value['usuario']} <br>
+            <b># Numero Empleado</b> {$value['numero_empleado']}
           </td>
           <td style="text-align:center; vertical-align:middle;"> {$value['apellido_paterno']} <br> {$value['apellido_materno']} <br> {$value['nombre']} </td>
-          <td style="text-align:center; vertical-align:middle;"> {$value['nombre_empresa']} </td>
-          <td style="text-align:center; vertical-align:middle;"> {$value['nombre_departamento']} </td>
-          <td style="text-align:center; vertical-align:middle;"> $personal</td>
-          <td style="text-align:center; vertical-align:middle;"> {$value['identificador_noi']} </td>
+          <td style="text-align:center; vertical-align:middle;"> {$value['nombre_linea']} </td>
+          <td style="text-align:center; vertical-align:middle;"> -- </td>
+          
           <td style="text-align:center; vertical-align:middle;">
           <a href="/Colaboradores/show/{$value['catalogo_colaboradores_id']}" type="submit" name="id_empresa" class="btn btn-success"><span class="glyphicon glyphicon-eye-open" style="color:white"></span> </a>
           </td>
@@ -154,12 +152,12 @@ html;
             });
 
             // Remove accented character from search input as well
-            $('#muestra-cupones input[type=search]').keyup( function () {
-                var table = $('#example').DataTable();
-                table.search(
-                    jQuery.fn.DataTable.ext.type.search.html(this.value)
-                ).draw();
-            } );
+            // $('#muestra-cupones input[type=search]').keyup( function () {
+            //     var table = $('#example').DataTable();
+            //     table.search(
+            //         jQuery.fn.DataTable.ext.type.search.html(this.value)
+            //     ).draw();
+            // } );
 
             var checkAll = 0;
             $("#checkAll").click(function () {
@@ -174,33 +172,33 @@ html;
             });
 
 
-           $("#btnExcel").click(function(){
-              $('#all').attr('action', '/Colaboradores/generarExcel/');
-              $('#all').attr('target', '_blank');
-              $("#all").submit();
-            });
+        //    $("#btnExcel").click(function(){
+        //       $('#all').attr('action', '/Colaboradores/generarExcel/');
+        //       $('#all').attr('target', '_blank');
+        //       $("#all").submit();
+        //     });
 
-            $("#btnPDF").click(function(){
-              $('#all').attr('action', '/Colaboradores/generarPDF/');
-              $('#all').attr('target', '_blank');
-              $("#all").submit();
-            });
+        //     $("#btnPDF").click(function(){
+        //       $('#all').attr('action', '/Colaboradores/generarPDF/');
+        //       $('#all').attr('target', '_blank');
+        //       $("#all").submit();
+        //     });
 
-            $("#delete").click(function(){
-              var seleccionados = $("input[name='borrar[]']:checked").length;
-              if(seleccionados>0){
-                alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
-                  if(response){
-                    $('#all').attr('action', '/Colaboradores/delete');
-                    $('#all').attr('target', '');
-                    $("#all").submit();
-                    alertify.success("Se ha eliminado correctamente");
-                   }
-                });
-              }else{
-                alertify.confirm('Selecciona al menos uno para eliminar');
-              }
-            });
+        //     $("#delete").click(function(){
+        //       var seleccionados = $("input[name='borrar[]']:checked").length;
+        //       if(seleccionados>0){
+        //         alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
+        //           if(response){
+        //             $('#all').attr('action', '/Colaboradores/delete');
+        //             $('#all').attr('target', '');
+        //             $("#all").submit();
+        //             alertify.success("Se ha eliminado correctamente");
+        //            }
+        //         });
+        //       }else{
+        //         alertify.confirm('Selecciona al menos uno para eliminar');
+        //       }
+        //     });
 
             /*$("select").change(function(){
               $.ajax({
@@ -1982,13 +1980,13 @@ html;
                  "order": false
             });
 
-            // Remove accented character from search input as well
-            $('#muestra-cupones input[type=search]').keyup( function () {
-                var table = $('#example').DataTable();
-                table.search(
-                    jQuery.fn.DataTable.ext.type.search.html(this.value)
-                ).draw();
-            } );
+        //     // Remove accented character from search input as well
+        //     $('#muestra-cupones input[type=search]').keyup( function () {
+        //         var table = $('#example').DataTable();
+        //         table.search(
+        //             jQuery.fn.DataTable.ext.type.search.html(this.value)
+        //         ).draw();
+        //     } );
 
             var checkAll = 0;
             $("#checkAll").click(function () {
@@ -2003,33 +2001,33 @@ html;
             });
 
 
-           $("#btnExcel").click(function(){
-              $('#all').attr('action', '/Colaboradores/generarExcel/');
-              $('#all').attr('target', '_blank');
-              $("#all").submit();
-            });
+        //    $("#btnExcel").click(function(){
+        //       $('#all').attr('action', '/Colaboradores/generarExcel/');
+        //       $('#all').attr('target', '_blank');
+        //       $("#all").submit();
+        //     });
 
-            $("#btnPDF").click(function(){
-              $('#all').attr('action', '/Colaboradores/generarPDF/');
-              $('#all').attr('target', '_blank');
-              $("#all").submit();
-            });
+        //     $("#btnPDF").click(function(){
+        //       $('#all').attr('action', '/Colaboradores/generarPDF/');
+        //       $('#all').attr('target', '_blank');
+        //       $("#all").submit();
+        //     });
 
-            $("#delete").click(function(){
-              var seleccionados = $("input[name='borrar[]']:checked").length;
-              if(seleccionados>0){
-                alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
-                  if(response){
-                    $('#all').attr('target', '');
-                    $('#all').attr('action', '/Colaboradores/delete');
-                    $("#all").submit();
-                    alertify.success("Se ha eliminado correctamente");
-                  }
-                });
-              }else{
-                alertify.confirm('Selecciona al menos uno para eliminar');
-              }
-            });
+        //     $("#delete").click(function(){
+        //       var seleccionados = $("input[name='borrar[]']:checked").length;
+        //       if(seleccionados>0){
+        //         alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
+        //           if(response){
+        //             $('#all').attr('target', '');
+        //             $('#all').attr('action', '/Colaboradores/delete');
+        //             $("#all").submit();
+        //             alertify.success("Se ha eliminado correctamente");
+        //           }
+        //         });
+        //       }else{
+        //         alertify.confirm('Selecciona al menos uno para eliminar');
+        //       }
+        //     });
 
             /*$("select").change(function(){
               $.ajax({

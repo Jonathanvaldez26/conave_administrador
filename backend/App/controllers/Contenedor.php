@@ -206,7 +206,8 @@ html;
         
         <script>
           $(document).ready(function(){
-            $('#constanciasAll').DataTable();
+            
+            $('#user-list').DataTable();
             
           });
         </script>

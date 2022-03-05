@@ -38,7 +38,7 @@ class Asistentes extends Controller{
         // var_dump($asistentes);
         View::set('tabla',$this->getAllColaboradoresAsignados());
         View::set('header',$this->_contenedor->header($this->getHeader()));
-        View::set('footer',$this->_contenedor->footer($this->getFooter()));
+        View::set('footer',($this->getFooter()));
         View::render("asistentes_all");
 
     }
@@ -56,18 +56,43 @@ class Asistentes extends Controller{
             $value['identificador_noi'] = (!empty($value['identificador_noi'])) ? $value['identificador_noi'] : "SIN<br>IDENTIFICADOR";
             $html .=<<<html
         <tr>
-          <td style="text-align:center; vertical-align:middle;"><input type="checkbox" name="borrar[]" value="{$value['utilerias_asistentes_id']}"/> {$value['utilerias_asistentes_id']}</td>
-          <td style="text-align:center; vertical-align:middle;"><img class="foto" src="/img/users_conave/{$value['img']}"/></td>
+        
+        <td>
+            <div class="d-flex">
+                <div class="form-check my-auto">
+                    <input class="form-check-input" type="checkbox" id="customCheck1" name="borrar[]" value="{$value['utilerias_asistentes_id']}">
+                </div>
+                <img class="w-10 ms-3" src="/img/users_conave/{$value['img']}" alt="">
+                <h6 class="ms-3 my-auto">{$value['usuario']}</h6>
+            </div>
+        </td>
+          
+          
           <td style="text-align:left; vertical-align:middle;">
-            <b># Usuario</b> {$value['usuario']} <br>
-            <b># Numero Empleado</b> {$value['numero_empleado']}
+            
+            <b>Numero empleado: </b>{$value['numero_empleado']}<br>
+            <b>Nombre: </b>{$value['apellido_paterno']}
+            {$value['apellido_materno']}
+            {$value['nombre']}<br>
+            <b>Genero: </b>{$value['genero']} <br>
           </td>
-          <td style="text-align:center; vertical-align:middle;"> {$value['apellido_paterno']} <br> {$value['apellido_materno']} <br> {$value['nombre']} </td>
-          <td style="text-align:center; vertical-align:middle;"> {$value['nombre_linea']} </td>
+          <td style="text-align:center; vertical-align:middle;"> 
+          <b>Bu: </b>{$value['nombre_bu']}<br> 
+          <b>Linea Principal: </b>{$value['nombre_linea']}<br>
+          <b>Posición: </b>{$value['nombre_posicion']}<br>
+          
+          </td>
+          <td style="text-align:center; vertical-align:middle;"> 
+          <b>Restricciones alimenticias: </b>{$value['restricciones_alimenticias']} <br>
+          <b>Alergias: </b>{$value['alergias']} <br>
+          {$value['alergias_otro']} <br>
+          {$value['alergia_medicamento_cual']} <br>
+          </td>
+          <td style="text-align:center; vertical-align:middle;"> -- </td>
           <td style="text-align:center; vertical-align:middle;"> -- </td>
           
           <td style="text-align:center; vertical-align:middle;">
-          <a href="/Colaboradores/show/{$value['catalogo_colaboradores_id']}" type="submit" name="id_empresa" class="btn btn-success"><span class="glyphicon glyphicon-eye-open" style="color:white"></span> </a>
+          
           </td>
         </tr>
 html;
@@ -1970,15 +1995,8 @@ html;
       <script>
         $(document).ready(function(){
 
-          
-          $("#muestra-cupones").tablesorter();
-          var oTable = $('#muestra-cupones').DataTable({
-                "columnDefs": [{
-                    "orderable": false,
-                    "targets": 0
-                }],
-                 "order": false
-            });
+            $('#user-list').DataTable();
+
 
         //     // Remove accented character from search input as well
         //     $('#muestra-cupones input[type=search]').keyup( function () {

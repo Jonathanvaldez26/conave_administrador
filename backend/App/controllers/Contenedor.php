@@ -207,7 +207,7 @@ html;
         <script>
           $(document).ready(function(){
             
-            $('#user-list').DataTable();
+            //$('#user-list').DataTable();
             
           });
         </script>

@@ -14,11 +14,12 @@ class General implements Crud{
   public static function getAllColaboradores(){
     $mysqli = Database::getInstance();
     $query =<<<sql
-    SELECT ua.utilerias_asistentes_id, ua.usuario, ra.numero_empleado, ra.nombre, ra.segundo_nombre, ra.apellido_paterno, ra.apellido_materno, ra.img, 
-lp.nombre as nombre_linea
-FROM utilerias_asistentes ua
-INNER JOIN registros_acceso ra ON (ra.id_registro_acceso = ua.id_registro_acceso) 
-INNER JOIN linea_principal lp ON (ra.id_linea_principal = lp.id_linea_principal) 
+    SELECT ua.utilerias_asistentes_id, ua.usuario, ra.numero_empleado, ra.nombre, ra.segundo_nombre, ra.apellido_paterno, ra.apellido_materno, ra.img, ra.genero, ra.alergias, ra.alergias_otro, ra.alergia_medicamento_cual, ra.restricciones_alimenticias, lp.nombre as nombre_linea, bu.nombre as nombre_bu, ps.nombre as nombre_posicion 
+    FROM utilerias_asistentes ua
+    INNER JOIN registros_acceso ra ON (ra.id_registro_acceso = ua.id_registro_acceso) 
+    INNER JOIN  bu ON (bu.id_bu = ra.id_bu) 
+    INNER JOIN  posiciones ps ON (ps.id_posicion = ra.id_posicion) 
+    INNER JOIN linea_principal lp ON (ra.id_linea_principal = lp.id_linea_principal) 
 sql;
 
     return $mysqli->queryAll($query);

@@ -27,22 +27,24 @@ class Perfiles extends Controller{
       <script>
         $(document).ready(function(){
 
-          $("#muestra-cupones").tablesorter();
-          var oTable = $('#muestra-cupones').DataTable({
-                "columnDefs": [{
-                    "orderable": false,
-                    "targets": 0
-                }],
-                 "order": false
-            });
+          $('#muestra-cupones').DataTable( {
+            "drawCallback": function( settings ) {
+                 $('.current').addClass("btn btn-info").removeClass("paginate_button");
+                 $('.paginate_button').addClass("btn").removeClass("paginate_button");
+                 $('.dataTables_length').addClass("m-4");
+                 $('.dataTables_info').addClass("mx-4");
+                 $('.dataTables_filter').addClass("m-4");
+                 $('.odd').addClass("bg-gris");
+            }
+          });
 
             // Remove accented character from search input as well
-            $('#muestra-cupones input[type=search]').keyup( function () {
-                var table = $('#example').DataTable();
-                table.search(
-                    jQuery.fn.DataTable.ext.type.search.html(this.value)
-                ).draw();
-            });
+            // $('#muestra-cupones input[type=search]').keyup( function () {
+            //     var table = $('#example').DataTable();
+            //     table.search(
+            //         jQuery.fn.DataTable.ext.type.search.html(this.value)
+            //     ).draw();
+            // });
 
             var checkAll = 0;
             $("#checkAll").click(function () {
@@ -91,6 +93,14 @@ html;
       $empresas = PerfilesDao::getAll();
       $secciones = PerfilesDao::getSeccionesMenu();
       $tabla= '';
+
+      $sStatus = "";
+      foreach (PerfilesDao::getStatus() as $key => $value) {
+        $sStatus .=<<<html
+        <option value="{$value['catalogo_status_id']}">{$value['nombre']}</option>
+html;
+      }
+
       foreach ($empresas as $key => $value) {
 $tabla.=<<<html
                 <tr>
@@ -99,12 +109,109 @@ $tabla.=<<<html
                 <td style="text-align:center; vertical-align:middle;">{$value['descripcion']}</td>
                 <td style="text-align:center; vertical-align:middle;">{$value['nombre_status']}</td>
                 <td style="text-align:center; vertical-align:middle;" class="center">
-                    <a href="/Perfiles/edit/{$value['perfil_id']}" type="submit" name="id" class="btn btn-primary"><span class="fa fa-pencil-square-o" style="color:white"></span> </a>
-                </td>
+                    <a href="/Perfiles/edit/{$value['perfil_id']}" type="submit" name="id" class="btn btn-primary" ><span class="fa fa-pencil-square-o" style="color:white"></span> </a>  <!-- data-toggle="modal" data-target="#editModal{$value['perfil_id']}" -->
+                </td><!--   -->
                 </tr>
+                
+                <div class="modal" id="editModal{$value['perfil_id']}" tabindex="-1" role="dialog" aria-labelledby="editModal{$value['perfil_id']}" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editModal{$value['perfil_id']}">Editar Perfil</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                      <div class="right_col">
+                      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                        <div class="x_panel tile fixed_height_240">
+                          <div class="x_title">
+                            <br><br>
+                            <h1>Editar un nuevo Perfil </h1>
+                            <div class="clearfix"></div>
+                          </div>
+                          <div class="x_content">
+                            <form class="form-horizontal" id="add" action="/Perfiles/perfilEdit" method="POST">
+                              <div class="form-group ">
+                    
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre <span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="nombre" id="nombre" class="form-control col-md-7 col-xs-12" placeholder="Nombre del perfil" value=" {$value['nombre']}">
+                                  </div>
+                                </div>
+                    
+                                <!--div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="opciones">Opciones de secciones <span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="opciones" id="opciones" class="form-control col-md-7 col-xs-12" placeholder="Nombre del perfil" value=" {$value['opciones']}">
+                                  </div>
+                                </div-->
+                    
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Descripci&oacute;n <span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n la empresa"> {$value['descripcion']}</textarea>
+                                  </div>
+                                </div>
+                    
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus<span class="required">*</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control" name="status" id="status">
+                                    
+                              <option value="" disabled selected>Selecciona un estatus</option>
+                              
+html;
+                            foreach (PerfilesDao::getStatus() as $key => $value) {
+                              if ($value['nombre_status'] == 1) {
+                                $sStatus .=<<<html
+                                  <option value="{$value['catalogo_status_id']}" selected>{$value['nombre']}</option>
+                                html;
+                              }
+                            }
+                              
+
+                          $tabla.=<<<html
+                          {$sStatus}
+                                    </select>
+                                  </div>
+                                </div>
+
+                                {$value['perfil_id']}
+                    
+                                <input type="hidden" name="perfil_id" id="perfil_id" value="{$value['perfil_id']}">
+                    
+                                <div class="form-group">
+                                  <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-2 col-xs-offset-3">
+                                    <button class="btn btn-danger col-md-3 col-sm-3 col-xs-5" type="button" id="btnCancel">Cancelar</button>
+                                    <button class="btn btn-primary col-md-3 col-sm-3 col-xs-5" type="reset" >Resetear</button>
+                                    <button class="btn btn-success col-md-3 col-sm-3 col-xs-5" id="btnAdd" type="submit">Actualizar</button>
+                                  </div>
+                                </div>
+                                <div id="resultado">
+                    
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
 html;
 
       }
+      View::set('empresas',$empresas);
       View::set('tabla',$tabla);
       View::set('header',$this->_contenedor->header($extraHeader));
       View::set('footer',$this->_contenedor->footer($extraFooter));

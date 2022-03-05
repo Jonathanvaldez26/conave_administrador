@@ -344,21 +344,21 @@
             </div>
             <form name="all" id="all" action="/Perfiles/delete" method="POST">
               <div class="panel-body">
-                <a href="/Perfiles/add" type="button" class="btn btn-primary btn-circle"><i class="fa fa-plus"> <b>Nueva Perfil</b></i></a>
-                <button id="delete" type="button" class="btn btn-danger btn-circle"><i class="fa fa-remove"> <b>Eliminar</b></i></button>
-                <button id="export_pdf" type="button" class="btn btn-info btn-circle"><i class="fa fa-file-pdf-o"> <b>Exportar a PDF</b></i></button>
-                <button id="export_excel" type="button" class="btn btn-success btn-circle"><i class="fa fa-file-excel-o"> <b>Exportar a Excel</b></i></button>
+                <a href="/Perfiles/add" type="button" class="btn bg-gradient-info btn-circle"><i class="fa fa-plus"> </i></a>
+                <button id="delete" type="button" class="btn bg-gradient-danger btn-circle"><i class="fa fa-trash"></i></button>
+                <!-- <button id="export_pdf" type="button" class="btn btn-info btn-circle"><i class="fa fa-file-pdf-o"> <b>Exportar a PDF</b></i></button>
+                <button id="export_excel" type="button" class="btn btn-success btn-circle"><i class="fa fa-file-excel-o"> <b>Exportar a Excel</b></i></button> -->
               </div>
-              <div class="panel-body">
-                <div class="dataTable_wrapper">
-                  <table class="table table-striped table-bordered table-hover" id="muestra-cupones">
+              <div class=" card card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="align-items-center mb-0" id="muestra-cupones">
                     <thead>
                       <tr>
-                        <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Estatus</th>
-                        <th>Acciones</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Descripción</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estatus</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -374,5 +374,7 @@
 
   </main>
 </body>
+
+
 
 <?php echo $footer; ?>

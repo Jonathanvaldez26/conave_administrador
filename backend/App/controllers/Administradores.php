@@ -375,8 +375,21 @@ html;
 
           $tabla.=<<<html
                 
-                <td style="vertical-align:middle;" class="center">
-                    <a href="/Administradores/edit/{$value['code']}" class="btn btn-primary"><span class="fa fa-pencil-square-o" style="color:white"></span> </a>
+                <td class="text-sm text-center">
+                        <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Desactivar Acceso al Administrador">
+                          <i class="fas fa-power-off text-secondary fa-1x" aria-hidden="true"></i>
+                        </a>
+                        <a href="/Administradores/edit/{$value['code']}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar Administrador">
+                          <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Borrar Administrador de la Tabla (Se Desactivaran los Accesos)">
+                          <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
+                        </a>
+                </td>
+                <td class="text-sm text-center">
+                        <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Asignar una Línea al Administrador">
+                          <i class="fas fa-check-circle text-secondary" aria-hidden="true"></i>
+                        </a>
                 </td>
               </tr>
 html;

@@ -362,7 +362,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
                                         <span class="fa fa-user-friends"></span>
-                                        <span class="ms-1">Administradores</span>
+                                        <span class="ms-1">Administrador</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">

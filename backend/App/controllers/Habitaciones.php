@@ -27,14 +27,6 @@ class Habitaciones extends Controller{
 
     public function index() {
      $extraHeader =<<<html
-      <style>
-        .logo{
-          width:100%;
-          height:150px;
-          margin: 0px;
-          padding: 0px;
-        }
-      </style>
 html;
       View::set('header',$this->_contenedor->header($extraHeader));
       View::set('footer',$this->_contenedor->footer($extraFooter));

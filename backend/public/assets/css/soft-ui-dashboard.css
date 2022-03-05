@@ -36799,4 +36799,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
   background: #eee !important;
 }
 
+@media (max-width: 576px){
+  .hide-desk{
+    display: none;
+  }
+}
+
+.list-group-item {
+    border-radius: 10px !important;
+}
 /*# sourceMappingURL=dashboard-pro.css.map */

@@ -359,11 +359,14 @@
                 </form>
 
             </div>
+            
+
+            
         </div>
 
         
 
-        <div class="container-fluid py-4">
+        <div class="container-fluid py-4" id="lista-asistentes">
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -442,8 +445,8 @@
                       <td>
                         <span class="badge badge-danger badge-sm">Out of Stock</span>
                       </td>
-                      <td class="text-sm">
-                        <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
+                      <td class="text-sm">                        
+                        <a href="/Asistentes/Detalles" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
                           <i class="fas fa-eye text-secondary"></i>
                         </a>
                         <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
@@ -472,6 +475,7 @@
             </div>
           </div>
         </div>
+        
       </div>
       <footer class="footer pt-3  ">
         <div class="container-fluid">
@@ -506,6 +510,7 @@
         </div>
       </footer>
     </div>
+
 </main>
 </body>
 

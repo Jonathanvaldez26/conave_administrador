@@ -327,46 +327,12 @@
         </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
-        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-            <div class="panel panel-default">
-                <div class="x_title">
-                    <br><br>
-                    <h1> <!--Catálogo de Gestión de Colaboradores</small> --> <?php echo $tituloColaboradores; ?></h1>
-                    <div class="clearfix"></div>
-                </div>
-                <form name="all" id="all" action="/Colaboradores/delete" method="POST">
-                    <div class="panel-body">
-                        <div class="dataTable_wrapper">
-                            <table class="table table-striped table-bordered table-hover" id="muestra-cupones">
-                                <thead>
-                                <tr>
-                                    <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
-                                    <th></th>
-                                    <th># Usuario</th>
-                                    <th>Nombre</th>
-                                    <th>Linea</th>
-                                    <th>Encargado Linea</th>
-                                    <th>Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody id="registros">
-                                <?= $tabla; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-            
-
-            
-        </div>
+  
+       
 
         
 
-        <div class="container-fluid py-4" id="lista-asistentes">
+        <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -415,67 +381,32 @@
             </div>
             <div class="card-body px-0 pb-0">
               <div class="table-responsive">
+              <form name="all" id="all" action="/Colaboradores/delete" method="POST">
                 <table class="table table-flush" id="user-list">
                   <thead class="thead-light">
                     <tr>
-                      <th>Product</th>
-                      <th>Category</th>
-                      <th>Price</th>
-                      <th>SKU</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                        <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
+                        
+                        
+                        <th>Usuario</th>
+                        <th>Unidad de Negocio</th>
+                        <th>Alergias</th>
+                        <th>Encargado Linea</th>
+                        <th>Documentos</th>
+                        <th>Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex">
-                          <div class="form-check my-auto">
-                            <input class="form-check-input" type="checkbox" id="customCheck1" checked>
-                          </div>
-                          <img class="w-10 ms-3" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/adidas-hoodie.jpg" alt="hoodie">
-                          <h6 class="ms-3 my-auto">BKLGO Full Zip Hoodie</h6>
-                        </div>
-                      </td>
-                      <td class="text-sm">Clothing</td>
-                      <td class="text-sm">$1,321</td>
-                      <td class="text-sm">243598234</td>
-                      <td class="text-sm">0</td>
-                      <td>
-                        <span class="badge badge-danger badge-sm">Out of Stock</span>
-                      </td>
-                      <td class="text-sm">                        
-                        <a href="/Asistentes/Detalles" data-bs-toggle="tooltip" data-bs-original-title="Preview product">
-                          <i class="fas fa-eye text-secondary"></i>
-                        </a>
-                        <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
-                          <i class="fas fa-user-edit text-secondary"></i>
-                        </a>
-                        <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
-                          <i class="fas fa-trash text-secondary"></i>
-                        </a>
-                      </td>
-                    </tr>
+                    <?php echo $tabla;?>
                     
                   </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>Product</th>
-                      <th>Category</th>
-                      <th>Price</th>
-                      <th>SKU</th>
-                      <th>Quantity</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </tfoot>
+                 
                 </table>
+              </form>
               </div>
             </div>
           </div>
         </div>
-        
       </div>
       <footer class="footer pt-3  ">
         <div class="container-fluid">
@@ -509,8 +440,7 @@
           </div>
         </div>
       </footer>
-    </div>
-
+    
 </main>
 </body>
 

@@ -377,17 +377,13 @@
                         <thead>
                         <tr>
                             <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
-                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre Business Unit</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre Línea</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Alta</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quién Registró?</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php echo $tabla; ?>
-                        <?php
-
-                        echo $rfc;
-                        ?>
                         </tbody>
                     </table>
                 </div>

@@ -335,48 +335,110 @@
     </nav>
     <!-- End Navbar -->
 
+    <div class="container-fluid py-0">
+        <!-- Inicio barrita -->
 
-    
-       <div>
-            <div class="right_col p-2">
-                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="x_title">
-                            <br><br>
-                            <h1> Administradores</h1>
-                            <div class="clearfix"></div>
+        <div class=" mt-7">
+            <div class="card card-body mt-n6 overflow-hidden">
+                <div class="row gx-4">
+                    <div class="col-auto">
+                        <div class="bg-gradient-red avatar avatar-xl position-relative">
+                            <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                            <span class="fa fa-user-shield" style="font-size: xx-large;"></span>
                         </div>
-                        <form name="all" id="all" action="/Administradores/delete" method="POST">
-                            
-                            <div class="panel-body">
-                                <a href="/Administradores/add" type="button" class="btn bg-gradient-info btn-circle"><i class="fa fa-plus"> </i></a>
-                                <button id="delete" type="button" class="btn bg-gradient-danger btn-circle"><i class="fa fa-trash"> <b></b></i></button>
-                            </div>
-                            <div class="m-2">
-                                <div class="card card-body px-0 pt-0 pb-2">
-                                    <div class="table-responsive p-0">
-                                        <table class="align-items-center mb-0" id="muestra-cupones">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos Usuario</th>
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Secciones a visualizar</th>
-                                                    <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Departamento</th> -->
-                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php echo $tabla; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                    </div>
+                    <div class="col-auto my-auto">
+                        <div class="h-100">
+                            <h5 class="mb-1">
+                                Utilerias Administradores
+                            </h5>
+                            <p class="mb-0 font-weight-bold text-sm">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                        <div class="nav-wrapper position-relative end-0">
+                            <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                        <span class="fa fa-user-friends"></span>
+                                        <span class="ms-1">Administradores</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                        <span class="fa fa-key"></span>
+                                        <span class="ms-1">Asigna Líneas</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>  
-       </div>
+            </div>
+        </div>
+
+        <div class="card-body p-1 mt-1">
+            <div class="tab-content" id="v-pills-tabContent">
+
+                    <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1" style="background-image: url('../../assets/img/miercoles.jpeg'); background-size:cover;">
+                    <div class="d-flex m-1">
+                        <div class="ms-auto d-flex">
+                            <div class="pe-4 mt-1 position-relative">
+                                <hr class="vertical dark mt-0">
+                            </div>
+
+                            <div class="ps-4">
+                                <div class="panel-body" <?php echo $visible; ?>></div>
+                                <a href="/Administradores/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-plus"> </i></a>
+                                <button id="delete" type="button" class="btn bg-gradient-danger btn-icon-only mb-0 mt-3"><i class="fa fa-trash"> <b></b></i></button>
+                                <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
+                                    <span class="fa fa-info"></span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card mb-4">
+                                <div class="card-header pb-0">
+                                    <h6>Administradores del Sistemas y Asignación de Permisos</h6>
+                                </div>
+
+                                    <div class="card-body px-0 pt-0 pb-2">
+                                        <div class="table-responsive p-0">
+                                            <table class="table align-items-center mb-0" id="muestra-cupones">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos usuario</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Permisos</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Asignar Línea</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php echo $tabla; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form name="all" id="all" action="/Administradores/delete" method="POST">
+                    
+                </form>
+                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                    B
+                </div>
+            </div>
+        </div>
+        <!-- Fin barrita -->
+    </div>
+
     </main>
 </body>
 

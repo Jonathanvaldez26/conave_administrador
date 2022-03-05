@@ -3,10 +3,8 @@ namespace App\controllers;
 defined("APPPATH") OR die("Access denied");
 
 use \Core\View;
-use \Core\MasterDom;
-use \App\controllers\Contenedor;
 use \Core\Controller;
-use \App\models\Lineas as LineasDao;
+use \App\models\Linea as LineaDao;
 
 class Lineas extends Controller{
 
@@ -27,15 +25,23 @@ class Lineas extends Controller{
 
     public function index() {
      $extraHeader =<<<html
-      <style>
-        .logo{
-          width:100%;
-          height:150px;
-          margin: 0px;
-          padding: 0px;
-        }
-      </style>
 html;
+
+        $lineas = LineaDao::getAll();
+        $tabla= '';
+        foreach ($lineas as $key => $value) {
+            $tabla.=<<<html
+                <tr>
+                <td><input type="checkbox" name="borrar[]" value="{$value['clave']}"/></td>
+                <td><h6 class="mb-0 text-sm">{$value['nombre']}</h6></td>
+           
+                <td><p class="text-sm text-secondary mb-0">{$value['fecha_alta']}</p></td>
+                <td><h6 class="mb-0 text-sm">{$value['creo']}</h6></td>
+                </tr>
+html;
+        }
+
+      View::set('tabla',$tabla);
       View::set('header',$this->_contenedor->header($extraHeader));
       View::set('footer',$this->_contenedor->footer($extraFooter));
       View::render("lineas_all");

@@ -16,6 +16,8 @@ class Vuelos extends Controller{
         $this->_contenedor = new Contenedor;
         View::set('header',$this->_contenedor->header());
         View::set('footer',$this->_contenedor->footer());
+        if(Controller::getPermisosUsuario($this->__usuario, "seccion_vuelos",1) == 0)
+          header('Location: /Principal/');
     }
 
     public function getUsuario(){
@@ -28,6 +30,7 @@ class Vuelos extends Controller{
 html;
       View::set('header',$this->_contenedor->header($extraHeader));
       View::render("vuelos_all");
+      
     }
 
 }

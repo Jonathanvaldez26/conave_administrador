@@ -11,64 +11,16 @@ class General implements Crud{
   // perfil_id -> 1.- ROOT 4.- Admin 5.- Personalizado 6. Recursos humanos
   // identificador_noi -> "" | "GATSA -> Pam liquidos" | "UNIDESH -> Pan deshidratados" | "VALLEJO" | "XOCHIMILCO"
   // planta_id -> "" | "GATSA -> Pam liquidos" | "UNIDESH -> Pan deshidratados" | "VALLEJO" | "XOCHIMILCO"
-  public static function getAllColaboradores($perfil, $identificador, $planta, $departamento, $filtro){
-    $identificador = explode("_", $identificador);
-    $identificador = strtoupper($identificador[0]);
-    $html =<<<html
-      perfil -> {$perfil} <br>
-      identificador -> {$identificador} <br>
-      planta -> {$planta} <br>
-      departamento -> {$departamento} <br>
-html;
-
+  public static function getAllColaboradores(){
     $mysqli = Database::getInstance();
     $query =<<<sql
-SELECT c.catalogo_colaboradores_id, c.catalogo_colaboradores_id, c.nombre, c.apellido_paterno, c.apellido_materno, c.identificador_noi, c.foto, c.numero_empleado, c.pago, ce.nombre AS nombre_empresa, cp.nombre AS nombre_puesto, cd.nombre AS nombre_departamento FROM catalogo_colaboradores c 
-INNER JOIN catalogo_empresa AS ce USING (catalogo_empresa_id) 
-INNER JOIN catalogo_puesto AS cp USING (catalogo_puesto_id) 
-INNER JOIN catalogo_departamento AS cd USING (catalogo_departamento_id) 
+    SELECT ua.utilerias_asistentes_id, ua.usuario, ra.numero_empleado, ra.nombre, ra.segundo_nombre, ra.apellido_paterno, ra.apellido_materno, ra.img, 
+lp.nombre as nombre_linea
+FROM utilerias_asistentes ua
+INNER JOIN registros_acceso ra ON (ra.id_registro_acceso = ua.id_registro_acceso) 
+INNER JOIN linea_principal lp ON (ra.id_linea_principal = lp.id_linea_principal) 
 sql;
-    // FILTRO POR PERFIL
-    if($perfil == 1){ // PERFIL ROOT
-$query .=<<<sql
-WHERE c.status = 1 
-sql;
-    }elseif($perfil == 4){ // PERFIL ADMINISTRADOR
-      $query .=<<<sql
-WHERE c.status = 1 
-sql;
-    }elseif($perfil == 5){ // PERFIL PERSONALIZADO
-// WHERE c.status = 1 AND c.identificador_noi = "$identificador" 
-      $query .=<<<sql
-WHERE c.status = 1 AND c.catalogo_departamento_id = "$departamento" 
-sql;
-    }elseif($perfil == 6){ // PERFIL RECURSOS HUMANOS
-      if($planta == 1){
-        $query .=<<<sql
-WHERE c.status = 1 
-sql;
-      }else{
-        $query .=<<<sql
-WHERE c.status = 1 AND c.identificador_noi = "$identificador" 
-sql;
-      }
-    }else{ 
-      $query .=<<<sql
-WHERE c.status = 3 
-sql;
-    }
 
-    $nuevoFiltro = "";
-    foreach ($filtro as $key => $value) {
-      if(!empty($value)){
-        if($value == 'vacio' && $key == 'c.identificador_noi') $nuevoFiltro .= " AND " . $key . " = " . "''" . " ";
-        else $nuevoFiltro .= " AND " . $key . " = " . " '$value' " . " ";
-      }
-    }
-
-    $query .=<<<sql
-{$nuevoFiltro} ORDER BY c.apellido_paterno ASC 
-sql;
     return $mysqli->queryAll($query);
   }
 
@@ -114,20 +66,10 @@ sql;
 
     public static function getDatosUsuarioLogeado($user){
         $mysqli = Database::getInstance();
-        $query1=<<<sql
-SELECT *, cp.nombre AS nombre_planta, cp.catalogo_planta_id 
-FROM utilerias_administradores AS a 
-INNER JOIN catalogo_planta AS cp USING (catalogo_planta_id)
-WHERE usuario LIKE '$user'
+        $query=<<<sql
+        SELECT * FROM utilerias_administradores WHERE usuario LIKE '$user'
 sql;
-      $query=<<<sql
-SELECT u.administrador_id, u.usuario, u.perfil_id, u.identificador, u.catalogo_planta_id,
-cd.nombre AS nombre_departamento, cd.catalogo_departamento_id
-FROM `utilerias_administradores` u 
-INNER JOIN utilerias_administradores_departamentos ud ON (u.administrador_id = ud.id_administrador)
-INNER JOIN catalogo_departamento cd ON (ud.catalogo_departamento_id = cd.catalogo_departamento_id)
-WHERE u.status = 1 AND u.usuario = "$user"
-sql;
+
         return $mysqli->queryOne($query);
     }
 

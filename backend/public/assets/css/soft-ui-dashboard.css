@@ -36787,5 +36787,16 @@ svg.leaflet-image-layer.leaflet-interactive path {
   transform: scale(1);
 }
 
+.border-radius-10{
+  border-radius: 10px !important;
+}
+
+.bg-gradient-conave{
+  background-image: linear-gradient(310deg, #0c3ada69 0%, #fd212166 100%) !important;
+}
+
+.bg-gris{
+  background: #eee !important;
+}
 
 /*# sourceMappingURL=dashboard-pro.css.map */

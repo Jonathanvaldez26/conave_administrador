@@ -19,11 +19,17 @@
                                         <div class="mb-3">
                                             <input type="email" name="usuario" id="usuario" class="form-control" placeholder="usuario@grupolahe.com" aria-label="Email">
                                         </div>
-                                        <label>Contraseña</label>
-                                        <div class="mb-3">
-                                            <input type="password" name="password" id="password" class="form-control" placeholder="•••••••••" aria-label="Password">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label>Contraseña</label>
+                                                <div class="mb-0">
+                                                    <input type="password" name="password" id="password" class="form-control" placeholder="•••••••••" aria-label="Password">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-2" id="eye">
+                                                <i class="fa fa-eye mt-4 pt-3"></i>
+                                            </div> -->
                                         </div>
-
                                         <div class="text-center">
                                             <button type="button" id="btnEntrar" class="btn bg-gradient-primary w-100 mt-4 mb-0">ENTRAR</button>
                                         </div>

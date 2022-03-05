@@ -36808,4 +36808,14 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .list-group-item {
     border-radius: 10px !important;
 }
+
+.chk{
+  display: none;
+}
+
+input:checked + label{
+  background-color: black;
+}
+
+
 /*# sourceMappingURL=dashboard-pro.css.map */

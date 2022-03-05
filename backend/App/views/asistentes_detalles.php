@@ -374,50 +374,55 @@
                     <hr class="horizontal dark mt-4 mb-4">
                     <div class="row">
                         <div class="col-lg-3 col-md-6 col-12">
-                        <h6 class="mb-3">Track Asistente</h6>
+                        <h6 class="mb-3">Log</h6>
                         <div class="timeline timeline-one-side">
                             <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="ni ni-bell-55 text-secondary"></i>
-                            </span>
-                            <div class="timeline-content">
+                                <input class="chk" type="checkbox" id="chk-0">
+                                <label for="chk-0" class="timeline-step">
+                                    <i class="fa fa-bell text-warning text-gradient text-secondary"></i>
+                                </label>
+                            <div id="divss" class="timeline-content">
                                 <h6 class="text-dark text-sm font-weight-bold mb-0">Asistente received</h6>
                                 <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 AM</p>
                             </div>
-                            </div>
-                            <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="ni ni-html5 text-secondary"></i>
-                            </span>
+                        </div>
+                        <div class="timeline-block mb-3">
+                            <input class="chk" type="checkbox" id="chk-1">
+                            <label for="chk-1" class="timeline-step">
+                                <i class="fa fa-pills text-danger text-gradient text-secondary"></i>
+                            </label>
                             <div class="timeline-content">
                                 <h6 class="text-dark text-sm font-weight-bold mb-0">Generate Asistente id #1832412</h6>
                                 <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:21 AM</p>
                             </div>
-                            </div>
-                            <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="ni ni-cart text-secondary"></i>
-                            </span>
+                        </div>
+                        <div class="timeline-block mb-3">
+                            <input class="chk" type="checkbox" id="chk-2">
+                            <label for="chk-2" class="timeline-step">
+                                <i class="fa fa-check text-info text-gradient text-secondary"></i>
+                            </label>
                             <div class="timeline-content">
                                 <h6 class="text-dark text-sm font-weight-bold mb-0">Asistente transmited to courier</h6>
                                 <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 8:10 AM</p>
                             </div>
-                            </div>
-                            <div class="timeline-block mb-3">
-                            <span class="timeline-step">
-                                <i class="ni ni-check-bold text-success text-gradient"></i>
-                            </span>
+                        </div>
+                        <div class="timeline-block mb-3">
+                            <input class="chk" type="checkbox" id="chk-3">
+                            <label for="chk-3" class="timeline-step">
+                                <i class="fa fa-virus text-success text-gradient"></i>
+                            </label>
                             <div class="timeline-content">
                                 <h6 class="text-dark text-sm font-weight-bold mb-0">Asistente delivered</h6>
                                 <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 4:54 PM</p>
                             </div>
-                            </div>
                         </div>
-                        </div>
+                    </div>
+                </div>
                         <div class="col-lg-5 col-md-6 col-12">
                         <h6 class="mb-3">Payment details</h6>
                         <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                            <img class="w-10 me-3 mb-0" src="../../../assets/img/logos/mastercard.png" alt="logo">
+                            <!-- <img class="w-10 me-3 mb-0" src="/img/users_conave/8mVMLa56xh.png" alt="logo"> -->
+                            <img class="w-10 me-3 mb-0" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/1200px-Mastercard_2019_logo.svg.png" alt="logo">
                             <h6 class="mb-0">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852</h6>
                             <button type="button" class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="We do not store card details">
                             <i class="fas fa-info" aria-hidden="true"></i>

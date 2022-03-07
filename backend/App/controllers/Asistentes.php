@@ -167,13 +167,13 @@ html;
             if($pruebacovid){
                 
                 if($pruebacovid['status'] == 1){
-                    $pru_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Prueba Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
+                    $pru_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Prueba Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
                 }else {
-                    $pru_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Prueba Covid (<i class="fa fa-solid fa-hourglass-end" style="color: #1a8fdd;"></i>)</p>';
+                    $pru_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Prueba Covid (<i class="fa fa-solid fa-hourglass-end" style="color: #1a8fdd;"></i>)</p>';
                 }
                 
             }else{
-                $pru_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Prueba Covid (<i class="fas fa-times" style="color:red;"></i>)</p>';
+                $pru_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Prueba Covid (<i class="fas fa-times" style="color:red;"></i>)</p>';
             }
 
             $comprobantecovid = ComprobantesVacunacionDao::getByIdUser($value['utilerias_asistentes_id'])[0];
@@ -186,15 +186,15 @@ html;
                 if($comprobantecovid['validado'] == 1){
                      // $pru_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: green; font-size: 13px"></span>Prueba Covid</p><br>';
                     
-                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Comprobante Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
+                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Comprobante Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
                 }else{
                     
-                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Comprobante Covid (<i class="fa fa-solid fa-hourglass-end" style="color:#1a8fdd;"></i>)</p>';
+                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Comprobante Covid (<i class="fa fa-solid fa-hourglass-end" style="color:#1a8fdd;"></i>)</p>';
                 }
                
                
             }else{
-                $compro_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Comprobante Covid  (<i class="fas fa-times" style="color: red;" ></i>)</p>';
+                $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Comprobante Covid  (<i class="fas fa-times" style="color: red;" ></i>)</p>';
                 
             }
 

@@ -26,7 +26,7 @@ class PruebasCovidUsuarios implements Crud{
     public static function getByIdUser($id_usuario){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT * FROM prueba_covid WHERE utilerias_asistentes_id = '$id_usuario' and status = 1
+        SELECT * FROM prueba_covid WHERE utilerias_asistentes_id = '$id_usuario'
 sql;
 
         return $mysqli->queryAll($query);

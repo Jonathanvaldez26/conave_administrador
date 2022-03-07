@@ -393,7 +393,7 @@
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Linea</th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alergias</th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Encargado Linea</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documentos</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                                             </tr>
                                         </thead>

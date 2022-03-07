@@ -1,186 +1,187 @@
 <?php echo $header; ?>
+
 <body class="g-sidenav-show  bg-gray-100">
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-    <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
-        <a class="navbar-brand m-0" href="/Principal/" target="_blank">
-            <img src="/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold">ADMIN CONVENCIÓN</span>
-        </a>
-    </div>
-    <hr class="horizontal dark mt-0">
+            <a class="navbar-brand m-0" href="/Principal/" target="_blank">
+                <img src="/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
+                <span class="ms-1 font-weight-bold">ADMIN CONVENCIÓN</span>
+            </a>
+        </div>
+        <hr class="horizontal dark mt-0">
 
 
-    <div class="collapse navbar-collapse  w-auto h-auto h-100" id="sidenav-collapse-main">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="/Principal/" role="button" class="nav-link" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-home" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Principal</span>
-                </a>
+        <div class="collapse navbar-collapse  w-auto h-auto h-100" id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/Principal/" role="button" class="nav-link" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-home" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Principal</span>
+                    </a>
 
-            </li>
+                </li>
 
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link " aria-controls="catalogos" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-sitemap" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Catálogos</span>
-                </a>
-                <div class="collapse " id="catalogos" hidden>
-                    <ul class="nav ms-4 ps-3">
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Bu/">
-                                <span class="sidenav-mini-icon"> B </span>
-                                <span class="sidenav-normal">Bu Asofarma</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Lineas/">
-                                <span class="sidenav-mini-icon"> L </span>
-                                <span class="sidenav-normal">Lineas Asofarma</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Posiciones/">
-                                <span class="sidenav-mini-icon"> P </span>
-                                <span class="sidenav-normal"> Posiciones Asofarma  </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Restaurantes/">
-                                <span class="sidenav-mini-icon"> R </span>
-                                <span class="sidenav-normal"> Restaurates </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <hr class="horizontal dark" />
-                        </li>
-                        <!-- <li class="nav-item ">
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link " aria-controls="catalogos" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-sitemap" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Catálogos</span>
+                    </a>
+                    <div class="collapse " id="catalogos" hidden>
+                        <ul class="nav ms-4 ps-3">
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/Bu/">
+                                    <span class="sidenav-mini-icon"> B </span>
+                                    <span class="sidenav-normal">Bu Asofarma</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/Lineas/">
+                                    <span class="sidenav-mini-icon"> L </span>
+                                    <span class="sidenav-normal">Lineas Asofarma</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/Posiciones/">
+                                    <span class="sidenav-mini-icon"> P </span>
+                                    <span class="sidenav-normal"> Posiciones Asofarma </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/Restaurantes/">
+                                    <span class="sidenav-mini-icon"> R </span>
+                                    <span class="sidenav-normal"> Restaurates </span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <hr class="horizontal dark" />
+                            </li>
+                            <!-- <li class="nav-item ">
                             <a class="nav-link " href="/Restaurantes/">
                                 <span class="sidenav-mini-icon"> E </span>
                                 <span class="sidenav-normal"> Restaurates </span>
                             </a>
                         </li> -->
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="/Asistentes/" class="nav-link active" aria-controls="applicationsExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-users" style="color: white"></span>
+                        </ul>
                     </div>
-                    <span class="nav-link-text ms-1">Asistentes</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Vuelos/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-plane" style="color: #344767"></span>
+                </li>
+                <li class="nav-item">
+                    <a href="/Asistentes/" class="nav-link active" aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-users" style="color: white"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Asistentes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Vuelos/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-plane" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Vuelos</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/PickUp/" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-bus" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">PickUp</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Habitaciones/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-shield-virus" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Habitaciones</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Cenas/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-coffee" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Cenas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <hr class="horizontal dark" />
+                    <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
+                </li>
+                <li class="nav-item">
+                    <a href="/ComprobanteVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-shield-virus" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Comprobante Vacunación</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/PruebasCovidUsuarios/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-virus-slash" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-viruses" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <hr class="horizontal dark" />
+                    <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
+                </li>
+                <li class="nav-item">
+                    <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-tools" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Configuración</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-user-circle-o" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Utilerias</span>
+                    </a>
+                    <div class="collapse " id="utilerias" hidden>
+                        <ul class="nav ms-4 ps-3">
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/Administradores/">
+                                    <span class="sidenav-mini-icon"> A </span>
+                                    <span class="sidenav-normal">Administradores</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/Perfiles/">
+                                    <span class="sidenav-mini-icon"> P </span>
+                                    <span class="sidenav-normal"> Perfiles </span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="/Log/">
+                                    <span class="sidenav-mini-icon"> L </span>
+                                    <span class="sidenav-normal"> Log </span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <span class="nav-link-text ms-1">Vuelos</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/PickUp/" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-bus" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">PickUp</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Habitaciones/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-shield-virus" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Habitaciones</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Cenas/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-coffee" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Cenas</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <hr class="horizontal dark" />
-                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
-            </li>
-            <li class="nav-item">
-                <a href="/ComprobanteVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-shield-virus" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Comprobante Vacunación</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/PruebasCovidUsuarios/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-virus-slash" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-viruses" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <hr class="horizontal dark" />
-                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
-            </li>
-            <li class="nav-item">
-                <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-tools" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Configuración</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-user-circle-o" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Utilerias</span>
-                </a>
-                <div class="collapse " id="utilerias" hidden>
-                    <ul class="nav ms-4 ps-3">
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Administradores/">
-                                <span class="sidenav-mini-icon"> A </span>
-                                <span class="sidenav-normal">Administradores</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Perfiles/">
-                                <span class="sidenav-mini-icon"> P </span>
-                                <span class="sidenav-normal"> Perfiles  </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Log/">
-                                <span class="sidenav-mini-icon"> L </span>
-                                <span class="sidenav-normal"> Log </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
+                </li>
+            </ul>
+        </div>
 
 </aside>
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -328,120 +329,120 @@
             </div>
         </nav>
         <!-- End Navbar -->
-  
-       
 
-        
 
-    <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <!-- Card header -->
-            <div class="card-header pb-0">
-              <div class="d-lg-flex">
-                <div>
-                  <h5 class="mb-0">Lista de usuarios</h5>
-                  <p class="text-sm mb-0">
-                    En esta sección se podran visualizar todos los usuarios registrados
-                  </p>
-                </div>
-                <div class="ms-auto my-auto mt-lg-0 mt-4">
-                  <div class="ms-auto my-auto">
-                    <a href="./new-product.html" class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; New Product</a>
-                    <button type="button" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
-                      Import
-                    </button>
-                    <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
-                      <div class="modal-dialog mt-lg-10">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel">Import CSV</h5>
-                            <i class="fas fa-upload ms-3"></i>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <p>You can browse your computer for a file.</p>
-                            <input type="text" placeholder="Browse file..." class="form-control mb-3">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="importCheck" checked="">
-                              <label class="custom-control-label" for="importCheck">I accept the terms and conditions</label>
+
+
+
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header pb-0">
+                            <div class="d-lg-flex">
+                                <div>
+                                    <h5 class="mb-0">Lista de usuarios</h5>
+                                    <p class="text-sm mb-0">
+                                        En esta sección se podran visualizar todos los usuarios registrados
+                                    </p>
+                                </div>
+                                <div class="ms-auto my-auto mt-lg-0 mt-4">
+                                    <div class="ms-auto my-auto">
+                                        <a href="./new-product.html" class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; New Product</a>
+                                        <button type="button" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
+                                            Import
+                                        </button>
+                                        <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog mt-lg-10">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="ModalLabel">Import CSV</h5>
+                                                        <i class="fas fa-upload ms-3"></i>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>You can browse your computer for a file.</p>
+                                                        <input type="text" placeholder="Browse file..." class="form-control mb-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="" id="importCheck" checked="">
+                                                            <label class="custom-control-label" for="importCheck">I accept the terms and conditions</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn bg-gradient-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn bg-gradient-primary btn-sm">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Export</button>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn bg-gradient-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn bg-gradient-primary btn-sm">Upload</button>
-                          </div>
                         </div>
-                      </div>
+                        <div class="card-body px-0 pb-0">
+                            <div class="table-responsive p-0">
+                                <form name="all" id="all" action="/Colaboradores/delete" method="POST">
+                                    <table class="table align-items-center mb-0" id="user-list">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                
+                                                
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Linea</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alergias</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Encargado Linea</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documentos</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php echo $tabla; ?>
+
+                                        </tbody>
+
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Export</button>
-                  </div>
                 </div>
-              </div>
             </div>
-            <div class="card-body px-0 pb-0">
-              <div class="table-responsive">
-              <form name="all" id="all" action="/Colaboradores/delete" method="POST">
-                <table class="table table-flush" id="user-list">
-                  <thead class="thead-light">
-                    <tr>
-                        <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
-                        
-                        
-                        <th>Usuario</th>
-                        <th>Unidad de Negocio</th>
-                        <th>Alergias</th>
-                        <th>Encargado Linea</th>
-                        <th>Documentos</th>
-                        <th>Acciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php echo $tabla;?>
-                  </tbody>
-                 
-                </table>
-              </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <footer class="footer pt-3  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
-    
-</main>
+            <footer class="footer pt-3  ">
+                <div class="container-fluid">
+                    <div class="row align-items-center justify-content-lg-between">
+                        <div class="col-lg-6 mb-lg-0 mb-4">
+                            <div class="copyright text-center text-sm text-muted text-lg-start">
+                                © <script>
+                                    document.write(new Date().getFullYear())
+                                </script>,
+                                made with <i class="fa fa-heart"></i> by
+                                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+                                for a better web.
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+    </main>
 </body>
 
 <?php echo $footer; ?>

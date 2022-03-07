@@ -9,7 +9,11 @@ use \Core\Controller;
 use \App\models\Colaboradores AS ColaboradoresDao;
 use \App\models\Accidentes AS AccidentesDao;
 use \App\models\General AS GeneralDao;
+use \App\models\Pases AS PasesDao;
+use \App\models\PruebasCovidUsuarios AS PruebasCovidUsuariosDao;
+use \App\models\ComprobantesVacunacion AS ComprobantesVacunacionDao;
 use \App\models\Asistentes AS AsistentesDao;
+
 use Generator;
 
 class Asistentes extends Controller{
@@ -103,50 +107,105 @@ html;
     public function getAllColaboradoresAsignados(){
         $html = "";
         $personal = '';
+        $pase = '';
         foreach (GeneralDao::getAllColaboradores() as $key => $value) {
             $value['apellido_paterno'] = utf8_encode($value['apellido_paterno']);
             $value['apellido_materno'] = utf8_encode($value['apellido_materno']);
             $value['nombre'] = utf8_encode($value['nombre']);
 
-            
+            if(empty($value['img']) || $value['img'] == null){
+                $img_user = "/img/user.png";
+            }else{
+                $img_user = "/img/users_conave/{$value['img']}";
+            }
 
-            $value['identificador_noi'] = (!empty($value['identificador_noi'])) ? $value['identificador_noi'] : "SIN<br>IDENTIFICADOR";
+            $pases = PasesDao::getByIdUser($value['utilerias_asistentes_id']);
+            foreach($pases as $key => $pas){
+
+                if($pas['tipo'] == 1){
+
+                    if($pas['status'] == 1){
+                        
+                        $pase_ida = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-departure" style="color: green; font-size: 13px"></span>ida</p>';
+                    }else{
+                        $pase_ida = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-departure" style="color: red; font-size: 13px"></span>ida</p>';
+                    }
+                    
+                }elseif($pas['tipo'] == 2){
+
+                    if($pas['status'] == 1){
+                        
+                        $pase_regreso = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-arrival" style="color: green; font-size: 13px"></span>regreso</p>';
+                    }else{
+                        $pase_regreso = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-arrival" style="color: red; font-size: 13px"></span>regreso</p>';
+                    }
+                }
+                
+            }
+
+            $pruebacovid = PruebasCovidUsuariosDao::getByIdUser($value['utilerias_asistentes_id'])[0];
+            if($pruebacovid){
+                // $pru_covid = '<span style="color:green;"><b>Prueba Covid </b><i class="fa fas fa-virus"></i></span><br>';
+                $pru_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: green; font-size: 13px"></span>Prueba Covid</p>';
+            }else{
+                $pru_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: red; font-size: 13px"></span>Prueba Covid</p>';
+            }
+
+            $comprobantecovid = ComprobantesVacunacionDao::getByIdUser($value['utilerias_asistentes_id'])[0];
+
+            if($comprobantecovid){
+               
+                // $pru_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: green; font-size: 13px"></span>Prueba Covid</p><br>';
+                $compro_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: green; font-size: 13px"></span>Comprobante Covid</p>';
+            }else{
+                $compro_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: red; font-size: 13px"></span>Comprobante Covid</p>';
+            }
+
+
+
             $html .=<<<html
         <tr>
-        
-        <td>
-            <div class="d-flex">
-                <div class="form-check my-auto">
-                    <input class="form-check-input" type="checkbox" id="customCheck1" name="borrar[]" value="{$value['utilerias_asistentes_id']}">
+            <td>
+                <div class="d-flex px-3 py-1">
+                    <div>
+                        <img src="{$img_user}" class="avatar me-3" alt="image">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                   
+                        <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['apellido_paterno']} {$value['apellido_materno']}</h6>
+                        <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-envelope" style="font-size: 13px"></span> {$value['usuario']}</p>
+                        <p class="text-sm mb-0"><span class="fa fa-solid fa-id-card" style="color: #125a16; font-size: 13px"></span> {$value['numero_empleado']}</p>
+                    </div>
                 </div>
-                <img class="w-10 ms-3" src="/img/users_conave/{$value['img']}" alt="">
-                <h6 class="ms-3 my-auto">{$value['usuario']}</h6>
-            </div>
-        </td>
+            </td>
+         
+          
+
+          <td style="text-align:left; vertical-align:middle;"> 
+
+          <p class="text-sm font-weight-bold mb-0 "><b>Bu: </b>{$value['nombre_bu']}</p>
+          <p class="text-sm font-weight-bold mb-0 "><b>Linea Principal: </b>{$value['nombre_linea']}</p>
+          <p class="text-sm font-weight-bold mb-0 "><b>Posición: </b>{$value['nombre_posicion']}</p>
           
           
+          </td>
           <td style="text-align:left; vertical-align:middle;">
-            
-            <b>Numero empleado: </b>{$value['numero_empleado']}<br>
-            <b>Nombre: </b>{$value['apellido_paterno']}
-            {$value['apellido_materno']}
-            {$value['nombre']}<br>
-            <b>Genero: </b>{$value['genero']} <br>
-          </td>
-          <td style="text-align:center; vertical-align:middle;"> 
-          <b>Bu: </b>{$value['nombre_bu']}<br> 
-          <b>Linea Principal: </b>{$value['nombre_linea']}<br>
-          <b>Posición: </b>{$value['nombre_posicion']}<br>
           
+          <p class="text-sm font-weight-bold mb-0 "><b>Restricciones alimenticias: </b>{$value['restricciones_alimenticias']}</p>
+          <p class="text-sm font-weight-bold mb-0 "><b>Alergias: </b>{$value['alergias']}{$value['alergias_otro']} <br>
+          {$value['alergia_medicamento_cual']}</p>
+          <p class="text-sm font-weight-bold mb-0 "><b>Posición: </b>{$value['nombre_posicion']}</p>
+
           </td>
-          <td style="text-align:center; vertical-align:middle;"> 
-          <b>Restricciones alimenticias: </b>{$value['restricciones_alimenticias']} <br>
-          <b>Alergias: </b>{$value['alergias']} <br>
-          {$value['alergias_otro']} <br>
-          {$value['alergia_medicamento_cual']} <br>
+          <td style="text-align:left; vertical-align:middle;"> -- </td>
+
+          <td style="text-align:left; vertical-align:middle;"> 
+            {$pase_ida}
+            {$pase_regreso}
+            <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-solid fa-ticket" style="color: green; font-size: 13px"></span>Ticket</p>
+            {$pru_covid}
+            {$compro_covid}  
           </td>
-          <td style="text-align:center; vertical-align:middle;"> -- </td>
-          <td style="text-align:center; vertical-align:middle;"> -- </td>
           
           <td style="text-align:center; vertical-align:middle;">
           

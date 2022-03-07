@@ -132,9 +132,9 @@ html;
                         
                         if($pas['status'] == 1){
                             
-                            $pase_ida = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-departure" style="color: green; font-size: 13px"></span>ida <i class="fa fa-solid fa-check"></i></p> ';
+                            $pase_ida = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fa-plane-departure" style=" font-size: 13px;"></span>Salida (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p> ';
                         }else{
-                            $pase_ida = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-departure" style="color: red; font-size: 13px"></span>ida <i class="fa fa-solid fa-hourglass-end"></i></p> ';
+                            $pase_ida = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fa-plane-departure" style="font-size: 13px;"></span>Salida (<i class="fa fa-solid fa-hourglass-end" style="color: #1a8fdd;"></i>)</p> ';
                         }
                         
                     }elseif($pas['tipo'] == 2){
@@ -142,9 +142,9 @@ html;
 
                         if($pas['status'] == 1){
                             
-                            $pase_regreso = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-arrival" style="color: green; font-size: 13px"></span>regreso <i class="fa fa-solid fa-check"></i></p>';
+                            $pase_regreso = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fa-plane-arrival" style=" font-size: 13px;"></span>Llegada (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
                         }else{
-                            $pase_regreso = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-arrival" style="color: red; font-size: 13px"></span>regreso <i class="fa fa-solid fa-hourglass-end"></i></p>';
+                            $pase_regreso = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fa-plane-arrival" style="font-size: 13px"></span>Llegada (<i class="fa fa-solid fa-hourglass-end" style="color: #1a8fdd;"></i>)</p>';
                         }
                      }
                 }
@@ -152,38 +152,50 @@ html;
             }
 
             if($cont_pase_regreso <= 0){
-                $pase_regreso = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-arrival" style="color: red; font-size: 13px"></span>regreso <i class="fas fa-times"></i></p>';
+                $pase_regreso = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fa-plane-arrival" style="font-size: 13px"></span>Llegada (<i class="fas fa-times" style="color: red;"></i>)</p>';
             }
 
             if($cont_pase_ida <= 0){
-                $pase_ida = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fa-plane-departure" style="color: red; font-size: 13px"></span>ida <i class="fas fa-times"></i></p>';
+                $pase_ida = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;"  data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fa-plane-departure" style="font-size: 13px;"></span>Regreso (<i class="fas fa-times" style="color: red;"></i>)</p>';
             }
 
             
 
             $pruebacovid = PruebasCovidUsuariosDao::getByIdUser($value['utilerias_asistentes_id'])[0];
 
-            print_r($pruebacovid);
+            
             if($pruebacovid){
                 
                 if($pruebacovid['status'] == 1){
-                    $pru_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: green; font-size: 13px"></span>Prueba Covid <i class="fa fa-solid fa-check"></i></p>';
+                    $pru_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Prueba Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
                 }else {
-                    $pru_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: red; font-size: 13px"></span>Prueba Covid <i class="fa fa-solid fa-hourglass-end"></i></p>';
+                    $pru_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Prueba Covid (<i class="fa fa-solid fa-hourglass-end" style="color: #1a8fdd;"></i>)</p>';
                 }
                 
             }else{
-                $pru_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: red; font-size: 13px"></span>Prueba Covid <i class="fas fa-times"></i></p>';
+                $pru_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Prueba Covid (<i class="fas fa-times" style="color:red;"></i>)</p>';
             }
 
             $comprobantecovid = ComprobantesVacunacionDao::getByIdUser($value['utilerias_asistentes_id'])[0];
 
+            //var_dump($comprobantecovid);
+
+
             if($comprobantecovid){
+
+                if($comprobantecovid['validado'] == 1){
+                     // $pru_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: green; font-size: 13px"></span>Prueba Covid</p><br>';
+                    
+                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Comprobante Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
+                }else{
+                    
+                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Comprobante Covid (<i class="fa fa-solid fa-hourglass-end" style="color:#1a8fdd;"></i>)</p>';
+                }
                
-                // $pru_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: green; font-size: 13px"></span>Prueba Covid</p><br>';
-                $compro_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: green; font-size: 13px"></span>Comprobante Covid</p>';
+               
             }else{
-                $compro_covid = '<p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-virus" style="color: red; font-size: 13px"></span>Comprobante Covid</p>';
+                $compro_covid = '<p class="text-sm font-weight-bold mb-0 " data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span>Comprobante Covid  (<i class="fas fa-times" style="color: red;" ></i>)</p>';
+                
             }
 
 
@@ -200,6 +212,8 @@ html;
                         <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['apellido_paterno']} {$value['apellido_materno']}</h6>
                         <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-envelope" style="font-size: 13px"></span> {$value['usuario']}</p>
                         <p class="text-sm mb-0"><span class="fa fa-solid fa-id-card" style="color: #125a16; font-size: 13px"></span>Numero de empleado  <span style="text-decoration: underline;">{$value['numero_empleado']}</span></p>
+                        <hr>
+                        <p class="text-sm font-weight-bold mb-0 "><b> Ejecutivo Encargado: </b>----</p>
                     </div>
                 </div>
             </td>
@@ -211,20 +225,20 @@ html;
           <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
           <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
           <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
-          </td>
-          <td style="text-align:left; vertical-align:middle;">
-          
+
+          <hr>
           <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-egg-fried" style="font-size: 13px;"></span><b> Restricciones alimenticias: </b>{$value['restricciones_alimenticias']}</p>
+          
           <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-allergies" style="font-size: 13px;"></span><b> Alergias: </b>{$value['alergias']}{$value['alergias_otro']} <br>
           {$value['alergia_medicamento_cual']}</p>
-          
+
           </td>
-          <td style="text-align:left; vertical-align:middle;"> -- </td>
+        
 
           <td style="text-align:left; vertical-align:middle;"> 
-            {$pase_ida}  {$cont_pase_ida}
-            {$pase_regreso} {$cont_pase_regreso}
-            <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-solid fa-ticket" style="color: #1a8fdd; font-size: 13px"></span>Ticket</p>
+            {$pase_ida}
+            {$pase_regreso}
+            <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-solid fa-ticket" style="font-size: 13px;"></span>Ticket Virtual</p>
             {$pru_covid}
             {$compro_covid}  
           </td>

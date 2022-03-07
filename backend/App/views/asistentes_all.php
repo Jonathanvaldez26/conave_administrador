@@ -183,10 +183,10 @@
             </ul>
         </div>
 
-    </aside>
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-        <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
+</aside>
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -207,7 +207,8 @@
                                 </svg>
                             </a>
                         </li>
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Principal</a></li>
+                        <li class="breadcrumb-item text-sm opacity-5 text-dark">Principal</li>
+                        <li class="breadcrumb-item text-sm opacity-10 text-dark">Asistentes</li>
                     </ol>
                 </nav>
                 <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
@@ -232,11 +233,11 @@
                     </ul>
                     <ul class="navbar-nav  justify-content-end">
                         <!-- <li class="nav-item d-flex align-items-center">
-                        <a href="/Login/" class="nav-link text-body font-weight-bold px-0" >
-                            <i class="fa fa-user me-sm-1"></i>
-                            <span class="d-sm-inline d-none">Sign In</span>
-                        </a>
-                    </li> -->
+                            <a href="/Login/" class="nav-link text-body font-weight-bold px-0" >
+                                <i class="fa fa-user me-sm-1"></i>
+                                <span class="d-sm-inline d-none">Sign In</span>
+                            </a>
+                        </li> -->
 
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -393,7 +394,7 @@
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alergias</th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Encargado Linea</th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documentos</th>
-                                                <!-- <th>Acciones</th> -->
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>

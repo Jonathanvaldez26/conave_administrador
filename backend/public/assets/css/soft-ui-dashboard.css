@@ -36813,9 +36813,45 @@ svg.leaflet-image-layer.leaflet-interactive path {
   display: none;
 }
 
-input:checked + label{
-  background-color: black;
+input:checked ~ label{
+  display: none;
+  padding-bottom: 20% !important;
+  /* background-color: #000; */
 }
 
+.scroll-log{
+  height: 15rem;
+  overflow-y: auto;
+}
+
+.scroll-log::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.scroll-log::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+.scroll-log::-webkit-scrollbar:hover{
+  width: px;
+}
+
+.scroll-log::-webkit-scrollbar-button:increment,.scroll-log::-webkit-scrollbar-button {
+  display: none;
+} 
+
+.scroll-log::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.scroll-log::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.scroll-log::-webkit-scrollbar-track {
+  border-radius: 10px;  
+}
 
 /*# sourceMappingURL=dashboard-pro.css.map */

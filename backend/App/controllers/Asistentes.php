@@ -216,11 +216,7 @@ html;
 
             $pruebacovid = PruebasCovidUsuariosDao::getByIdUser($value['utilerias_asistentes_id'])[0];
 
-<<<<<<< HEAD
-            // print_r($pruebacovid);
-=======
             
->>>>>>> cdb36bcac27b94d5ee2903069e587bb1105fde36
             if($pruebacovid){
                 
                 if($pruebacovid['status'] == 1){

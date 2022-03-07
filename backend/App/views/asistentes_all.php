@@ -342,17 +342,17 @@
                         <div class="card-header pb-0">
                             <div class="d-lg-flex">
                                 <div>
-                                    <h5 class="mb-0">Lista de usuarios</h5>
+                                    <h5 class="mb-0">Asistentes Registrados Convencion CONAVE 2022</h5>
                                     <p class="text-sm mb-0">
-                                        En esta sección se podran visualizar todos los usuarios registrados
+                                        En esta sección se podran visualizar todos los usuarios que han finalizado su registro, si usted desea ver quienes no han terminado el registro dirijasé a la pestaña nuevos accesos 
                                     </p>
                                 </div>
                                 <div class="ms-auto my-auto mt-lg-0 mt-4">
                                     <div class="ms-auto my-auto">
-                                        <a href="./new-product.html" class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; New Product</a>
-                                        <button type="button" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
+                                        <!-- <a href="./new-product.html" class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; New Product</a> -->
+                                        <!-- <button type="button" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
                                             Import
-                                        </button>
+                                        </button> -->
                                         <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
                                             <div class="modal-dialog mt-lg-10">
                                                 <div class="modal-content">
@@ -376,7 +376,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Export</button>
+                                        <!-- <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Export</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -390,9 +390,7 @@
                                                 
                                                 
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Linea</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alergias</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Encargado Linea</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                                             </tr>

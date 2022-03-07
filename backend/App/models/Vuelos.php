@@ -33,4 +33,17 @@ sql;
     public static function delete($id){
         
     }
+
+    public static function getAsistenteNombre($linea_asignada){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+SELECT cc.catalogo_colaboradores_id, CONCAT(cc.nombre, " ", cc.apellido_paterno, " ", cc.apellido_materno) AS nombre 
+      FROM catalogo_colaboradores cc
+      WHERE cc.catalogo_colaboradores_id NOT IN (SELECT id_colaborador FROM capacitaciones_asistentes WHERE id_capacitacion = $id)
+      AND STATUS = 1
+      ORDER BY nombre ASC
+      
+sql;
+        return $mysqli->queryAll($query);
+    }
 }

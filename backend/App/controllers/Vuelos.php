@@ -54,21 +54,20 @@ html;
                           </div>
                       </div>
                  </td>
-                 <td class="align-middle text-center text-sm">
-                     <p class="text-sm font-weight-bold mb-0 text-success">El asistente descargo el PDF</p>
-                 </td>
-                 <td class="align-middle text-center text-sm">
-                     <p class="text-sm font-weight-bold mb-0 text-dark">{$value['nombre_registro']}</p>
-                 </td>
                  <td class="align-middle text-end">
                      <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                         <p class="text-sm font-weight-bold mb-0">13</p>
-                         <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
                          <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Descargo el archivo el día 23/02/2022 18:00:14">
                              <i class="fas fa-info" aria-hidden="true"></i>
                          </button>
                      </div>
                  </td>
+                 <td class="align-middle text-center text-sm">
+                     <p class="text-sm font-weight-bold mb-0 text-dark">{$value['nombre_registro']}</p>
+                 </td>
+                 <td class="align-middle text-center text-sm">
+                     
+                 </td>
+                 
             </tr>
 html;
         }
@@ -77,6 +76,16 @@ html;
      View::set('header',$this->_contenedor->header($extraHeader));
      View::render("vuelos_all");
       
+    }
+
+    public function getAsistenteNombreLinea($linea_asignada){
+        $asistente = '';
+        foreach (VuelosDao::getAsistenteNombre($linea_asignada) as $key => $value) {
+            $asistente .=<<<html
+        <option value="{$value['catalogo_colaboradores_id']}">{$value['nombre']}</option>
+html;
+        }
+        return $asistente;
     }
 
 }

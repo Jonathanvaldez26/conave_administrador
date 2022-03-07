@@ -132,6 +132,7 @@ html;
           
           <td style="text-align:center; vertical-align:middle;">
           
+          <a href="Detalles/"><i class="fa fa-eye"></i></a>
           </td>
         </tr>
 html;

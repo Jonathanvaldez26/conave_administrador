@@ -22,4 +22,14 @@ class ComprobantesVacunacion implements Crud{
     public static function delete($id){
         
     }
+
+    public static function getByIdUser($id_usuario){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM comprobante_vacuna WHERE utilerias_asistentes_id = '$id_usuario' and status = 1
+sql;
+
+        return $mysqli->queryAll($query);
+   
+    }
 }

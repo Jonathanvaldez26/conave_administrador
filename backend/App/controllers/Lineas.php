@@ -27,9 +27,9 @@ class Lineas extends Controller{
      $extraHeader =<<<html
 html;
 
-        $lineas = LineaDao::getAll();
-        $tabla= '';
-        foreach ($lineas as $key => $value) {
+     $lineas = LineaDao::getAll();
+     $tabla= '';
+     foreach ($lineas as $key => $value) {
             $tabla.=<<<html
                 <tr>
                 <td><input type="checkbox" name="borrar[]" value="{$value['clave']}"/></td>

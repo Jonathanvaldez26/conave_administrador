@@ -479,8 +479,8 @@
                                         <table class="table align-items-center mb-0">
                                             <thead>
                                             <tr>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Notificaciones</th>
+                                                <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Con quien Comparte?</th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                                             </tr>
@@ -494,12 +494,13 @@
                                                         </div>
                                                         <div class="d-flex flex-column justify-content-center">
                                                             <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
-                                                            <p class="text-sm font-weight-bold text-secondary mb-0"></span>23/02/2022 12:00:04</p>
+                                                            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <p class="text-sm font-weight-bold mb-0 text-success">El asistente descargo el PDF</p>
+                                                    <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
+                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
                                                     <p class="text-sm font-weight-bold mb-0 text-dark">Jonathan Valdez Martinez</p>

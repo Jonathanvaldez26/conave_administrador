@@ -104,6 +104,59 @@ html;
 
     }
 
+    public function Actualizar(){
+
+
+        $documento = new \stdClass();
+
+
+          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+              $id_registro = $_POST['id_registro'];
+            //   $id_registro = $id;
+              $nombre = $_POST['nombre'];
+              $segundo_nombre = $_POST['segundo_nombre'];
+              $apellido_paterno = $_POST['apellido_paterno'];
+              $apellido_materno = $_POST['apellido_materno'];
+            //   $genero = $_POST['genero'];
+              $fecha_nacimiento = $_POST['fecha_nacimiento'];
+              $email = $_POST['email'];
+              $telefono = $_POST['telefono'];
+            //   $linea_principal = $_POST['linea_principal'];
+            //   $talla = $_POST['talla'];
+            //   $actividad = $_POST['actividad'];
+            //   $alergias = $_POST['alergias'];
+
+              $documento->_id_registro = $id_registro;
+              $documento->_nombre = $nombre;
+              $documento->_segundo_nombre = $segundo_nombre;
+              $documento->_apellido_paterno = $apellido_paterno;
+              $documento->_apellido_materno = $apellido_materno;
+            //   $documento->_genero = $genero;
+              $documento->_fecha_nacimiento = $fecha_nacimiento;
+              $documento->_email = $email;
+              $documento->_telefono = $telefono;
+              //$documento->_linea_principal = $linea_principal;
+              //$documento->_talla = $talla;
+              //$documento->_actividad = $actividad;
+            //   $documento->_alergias = $alergias;
+
+              $id = AsistentesDao::update($documento);
+
+              if($id){
+                  echo "success";
+                //header("Location: /Home");
+              }else{
+                  echo "fail";
+               // header("Location: /Home/");
+              }
+
+          } else {
+              echo 'fail REQUEST';
+          }
+
+    }
+
     public function getAllColaboradoresAsignados(){
 
         $html = "";
@@ -163,7 +216,7 @@ html;
 
             $pruebacovid = PruebasCovidUsuariosDao::getByIdUser($value['utilerias_asistentes_id'])[0];
 
-            print_r($pruebacovid);
+            // print_r($pruebacovid);
             if($pruebacovid){
                 
                 if($pruebacovid['status'] == 1){

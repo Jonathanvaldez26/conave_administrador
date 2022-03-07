@@ -542,24 +542,268 @@
         <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModal3Label">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModal3Label">Modal title</h5>
+                        <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="update_form" action="" method="POST">
+                            <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-12 col-lg-3">
+                                        <!-- <input type="text" id="id_registro" name="id_registro" value="<?= $userData['id_registro'] ?> "> -->
+                                        <label class="form-label">Nombre *</label>
+                                        <div class="input-group">
+                                            <input id="nombre" name="nombre" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Alec" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-3">
+                                        <label class="form-label">Segundo Nombre </label>
+                                        <div class="input-group">
+                                            <input id="segundo_nombre" name="segundo_nombre" maxlength="49" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Alec" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['segundo_nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-3">
+                                        <label class="form-label">Apellido Paterno *</label>
+                                        <div class="input-group">
+                                            <input id="apellido_paterno" name="apellido_paterno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellido_paterno'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-lg-3">
+                                        <label class="form-label">Apellido Materno *</label>
+                                        <div class="input-group">
+                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellido_materno'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="row">
+
+                                    <!-- <div class="col-12 col-lg-4">
+                                        <label class="form-label mt-4">Genero: *</label>
+                                        <select class="form-control" style="cursor: pointer;" name="genero" id="genero" placeholder="Genero">
+                                            <option value="" disabled selected>Selecciona una opción</option>
+                                            <option value="Mujer">Mujer</option>
+                                                <option value="Hombre">Hombre</option>
+                                            <?php echo $optionsGenero; ?>
+                                        </select>
+                                        <input type="text" class="form-control" value="<?= $userData['genero'] ?>" disabled>
+                                    </div> -->
+
+                                    <div class="col-12 col-lg-4">
+
+                                        <label class="form-label mt-4">Fecha de Nacimiento * </label>
+
+                                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required="" value="<?= $detalles_registro['fecha_nacimiento'] ?>">
+
+
+
+                                    </div>
+
+                                    <div class="col-lg-4 col-12">
+                                        <label class="form-label mt-4">Número de Telefono *</label>
+                                        <div class="input-group">
+                                            <input id="telefono" name="telefono" minlength="10" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['telefono'] ?>" required>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-12 col-lg-2">
+                                        <label class="form-label mt-4">Número de empleado *</label>
+                                        <div class="input-group">
+                                            <input id="numero_empleado" name="numero_empleado" maxlength="29" pattern="[a-zA-Z0-9]*" class="form-control" type="text" placeholder="" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['numero_empleado'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-12">
+                                        <label class="form-label mt-4">Email Registrado y Verificado *</label>
+                                        <div class="input-group">
+                                            <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['usuario'] ?>" readonly>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="col-lg-3 align-self-center">
+                                        <label class="form-label mt-4">Unidad de Negocio *</label>
+                                        <select class="form-control" style="cursor: pointer;" name="bu" id="bu" tabindex="-1" data-choice="active" required>
+                                            <option value="" disabled selected>Selecciona una opción</option>
+                                            <?php echo $optionsBu; ?>
+                                        </select>
+                                        <input id="bu" name="bu" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_bu'] ?>" readonly>
+                                    </div> -->
+
+                                    <!-- <div class="col-lg-3 align-self-center">
+                                        <label class="form-label mt-4">Pertenezco a la Línea ASOFARMA</label>
+                                        <select class="form-control" style="cursor: pointer;" name="linea_principal" id="linea_principal" tabindex="-1" data-choice="active">
+                                            <option value="" disabled selected>Selecciona una opción</option>
+                                            <?php echo $optionsLineaPrincipal; ?>
+                                        </select>
+                                        <input id="linea_principal" name="linea_principal" maxlength="49" class="form-control" type="text" placeholder="linea" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_linea'] ?>" readonly>
+                                    </div> -->
+
+
+                                </div>
+
+                                <div class="row">
+
+                                    <!-- <div class="col-lg-4 align-self-center">
+                                        <label class="form-label mt-4">Posición *</label>
+                                        <select class="form-control" style="cursor: pointer;" name="posicion" id="posicion" tabindex="-1" data-choice="active" required>
+                                            <option value="" disabled selected>Selecciona una opción</option>
+                                            <?php echo $optionsPosiciones; ?>
+                                        </select>
+                                        <input id="posicion" name="posicion" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_posicion'] ?>" readonly>
+                                    </div> -->
+
+                                    <!-- <div class="col-lg-4 align-self-center">
+                                        <label class="form-label mt-4">Ciudad de Residencia *</label>
+                                        <select class="form-control" style="cursor: pointer;" name="residencia" id="residencia" tabindex="-1" data-choice="active" required>
+                                            <option value="" disabled selected>Selecciona una opción</option>
+                                            <?php echo $optionsEstados; ?>
+                                        </select>
+                                        <input id="residencia" name="residencia" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_estado'] ?>" readonly>
+                                    </div> -->
+
+
+                                    <div class="col-md-4 align-self-center col-cp">
+                                        <div id="show-cp">
+                                            <label class="form-label mt-4">Codigo Postal: </label>
+                                            <!-- <select class="form-control" name="cp" id="cp">
+                                                <option value="" disabled selected>Seleccione una opción</option>
+                                                <?php echo $optionsCp; ?>
+                                            </select> -->
+                                            <!-- <input id="cp" name="cp" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['codigo_postal']. " - ". $userData['colonia']." - ". $userData['del_mpio'] ?>" readonly> -->
+                                            <input id="cp" name="cp" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['id_cp'] ?>" readonly>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- <div class="col-lg-3 align-self-center">
+                                        <label class="form-label mt-4">Aeropuerto: </label>
+                                        <select class="form-control" style="cursor: pointer;" name="aeropuerto" id="aeropuerto" tabindex="-1" data-choice="active" required>
+                                            <option value="" disabled selected>Selecciona una opción</option>
+                                            <?php echo $optionsEstados; ?>
+                                        </select>
+                                        <input id="aeropuerto" name="aeropuerto" maxlength="49" class="form-control" type="text" placeholder="aeropuerto" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_aeropuerto']?>" readonly>
+                                    </div> -->
+                                    <div class="col-md-3 align-self-center">
+                                        <label class="form-label mt-4">Actividad *</label>
+                                        <!-- <select class="form-control" style="cursor: pointer;" name="actividad" id="actividad" tabindex="-1" data-choice="active" required>
+                                            <option value disabled>Selecciona una opción</option>
+                                            <option value="caminata_3k">Caminata 3k</option>
+                                            <option value="carrera_5k">Carrera 5k</option>
+                                            
+                                        </select> -->
+                                        <input id="actividad" name="actividad" maxlength="49" class="form-control" type="text" placeholder="actividad" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['actividad']?>" readonly>
+                                    </div>
+                                    <div class="col-md-3 align-self-center">
+                                        <label class="form-label mt-4">Talla de Playera *</label>
+                                        <!-- <select class="form-control" style="cursor: pointer;" required="true" name="talla_playera" id="talla_playera" tabindex="-1" data-choice="active">
+                                            <option value="" disabled>Seleccione una Talla</option>
+                                            <option value="Chica">Chica</option>
+                                            <option value="Mediana">Mediana</option>
+                                            <option value="Grande">Grande</option>
+                                            <option value="Extra_Grande">Extra Grande</option>
+                                        </select> -->
+                                        <input id="talla_playera" name="talla_playera" maxlength="49" class="form-control" type="text" placeholder="talla_playera" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['talla_playera']?>" readonly>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label mt-4">Restricciones alimenticias *</label>
+                                        <input class="form-control" name="restricciones_alimenticias" id="restricciones_alimenticias" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['restricciones_alimenticias'] ?>" placeholder="" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="form-label mt-4">Alergias *</label>
+                                        <input class="form-control" name="alergias" id="alergias" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias'] ?>" placeholder="" readonly />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label mt-4">Alergias Otro *</label>
+                                        <input class="form-control" name="alergias_otro" id="alergias_otro" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias_otro'] ?>" placeholder="" readonly />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <label class="form-label mt-4">Alergias Medicamento *</label>
+                                        <input class="form-control" name="alergia_medicamento_cual" id="alergia_medicamento_cual" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergia_medicamento_cual'] ?>" placeholder="" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="button-row d-flex mt-4 col-12">
+                                        <a class="btn bg-gradient-danger mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
+                                        <button class="btn bg-gradient-primary ms-auto mb-0" type="submit" title="Actualizar">Actualizar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
                 </div>
             </div>
         </div>
 
     </main>
 </body>
+
+<script>
+    $(document).ready(function() {
+        
+        $("#update_form").on("submit", function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(document.getElementById("update_form"));
+            for (var value of formData.values()) {
+                console.log(value);
+            }
+
+            $.ajax({
+                url: "Detalles/Actualizar/",
+                type: "POST",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+
+                },
+                success: function(respuesta) {
+
+                    if (respuesta == 'success') {
+                        swal("Se actualizaron tus datos correctamente!", "", "success").
+                        then((value) => {
+                            window.location.replace("/Detalles/Actualizar");
+                        });
+                    } else {
+                        swal("Usted No Actualizo Nada!", "", "warning").
+                        then((value) => {
+                            window.location.replace("/Detalles/Actualizar")
+                        });
+                    }
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
+</script>
 
 <?php echo $footer; ?>

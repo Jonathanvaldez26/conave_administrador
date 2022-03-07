@@ -9,6 +9,7 @@ use \Core\Controller;
 use \App\models\Colaboradores AS ColaboradoresDao;
 use \App\models\Accidentes AS AccidentesDao;
 use \App\models\General AS GeneralDao;
+use \App\models\Asistentes AS AsistentesDao;
 use Generator;
 
 class Asistentes extends Controller{
@@ -38,12 +39,12 @@ class Asistentes extends Controller{
         // var_dump($asistentes);
         View::set('tabla',$this->getAllColaboradoresAsignados());
         View::set('header',$this->_contenedor->header($this->getHeader()));
-        View::set('footer',($this->getFooter()));
+        View::set('footer',$this->_contenedor->footer($extraFooter));
         View::render("asistentes_all");
 
     }
 
-    public function Detalles() {
+    public function Detalles($id) {
 
         $extraHeader = <<<html
         <title>
@@ -76,6 +77,17 @@ html;
             <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
             <script src="../../../assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>   
 html;
+        $detalles = AsistentesDao::getById($id);
+        $detalles_registro = AsistentesDao::getTotalById($id);
+
+        $img_asistente =<<<html
+        <img src="..\..\..\img\users_conave\\{$detalles_registro[0]['img']}" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
+html;
+
+        View::set('id_asistente',$id);
+        View::set('detalles',$detalles[0]);
+        View::set('img_asistente',$img_asistente);
+        View::set('detalles_registro',$detalles_registro[0]);
         View::set('header',$this->_contenedor->header($extraHeader));
         View::set('footer',$this->_contenedor->footer($extraFooter));
         View::render("asistentes_detalles");
@@ -132,7 +144,7 @@ html;
           
           <td style="text-align:center; vertical-align:middle;">
           
-          <a href="Detalles/"><i class="fa fa-eye"></i></a>
+          <a href="Detalles/{$value['utilerias_asistentes_id']}"><i class="fa fa-eye"></i></a>
           </td>
         </tr>
 html;

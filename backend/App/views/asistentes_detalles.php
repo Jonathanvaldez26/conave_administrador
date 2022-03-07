@@ -340,13 +340,13 @@
                                 <div>
                                     <h6>Asistente - Detalles</h6>
                                     <p class="text-sm mb-0">
-                                        No. Asistente <b>241342</b>
+                                        No. Asistente: <b><?php echo $id_asistente; ?></b>
                                     </p>
                                     <p class="text-sm mb-0">
-                                        Fecha de Alta: <b>23.02.2021</b>
+                                        Fecha de Alta: <b><?php echo $detalles_registro['fecha_alta']; ?></b>
                                     </p>
                                     <p class="text-sm">
-                                        Usuario: <b>example@example.com</b>
+                                        Usuario: <b><?php echo $detalles['usuario']; ?></b>
                                     </p>
                                 </div>
                                 <!-- <a href="javascript:;" class="btn bg-gradient-secondary ms-auto mb-0">Invoice</a> -->
@@ -358,12 +358,12 @@
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="d-flex">
                                         <div>
-                                            <img src="https://lamenteesmaravillosa.com/wp-content/uploads/2018/09/hombre-creido-pensando-que-sabe-260x260.jpg" class="avatar avatar-xxl me-3" alt="John Smith">
+                                            <?php echo $img_asistente;?>
                                         </div>
                                         <div>
-                                            <span class="text-lg font-weight-bold mb-0 mt-2">John Smith</span>&nbsp;&nbsp;&nbsp;<span class="badge badge-sm bg-gradient-success"> Activo</span>
+                                            <span class="text-lg font-weight-bold mb-0 mt-2"><?php echo $detalles_registro['nombre'].' '; echo $detalles_registro['segundo_nombre'].' '; echo $detalles_registro['apellido_paterno'].' '; echo $detalles_registro['apellido_materno']; ?></span>&nbsp;&nbsp;&nbsp;<span class="badge badge-sm bg-gradient-success"> Activo</span>
                                             <br> <br>
-                                            <p class="text-sm mb-3">Línea ASOFARMA: <strong>ADIUM</strong></p> 
+                                            <p class="text-sm mb-3">Línea ASOFARMA: <strong>ADIUM</strong></p>
                                         </div>
                                     </div>
                                 </div>

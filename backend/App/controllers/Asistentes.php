@@ -80,9 +80,15 @@ html;
         $detalles = AsistentesDao::getById($id);
         $detalles_registro = AsistentesDao::getTotalById($id);
 
+        if ($detalles_registro[0]['img'] == '') {
         $img_asistente =<<<html
-        <img src="..\..\..\img\users_conave\\{$detalles_registro[0]['img']}" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
+            <img src="..\..\..\img\users_conave\user.png" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
 html;
+        } else {
+        $img_asistente =<<<html
+            <img src="..\..\..\img\users_conave\\{$detalles_registro[0]['img']}" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
+html;
+        }
 
         View::set('id_asistente',$id);
         View::set('detalles',$detalles[0]);

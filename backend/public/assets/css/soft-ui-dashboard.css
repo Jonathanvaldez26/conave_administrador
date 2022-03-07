@@ -36813,14 +36813,17 @@ svg.leaflet-image-layer.leaflet-interactive path {
   display: none;
 }
 
-input:checked ~ label{
+label#divss{
   display: none;
-  padding-bottom: 20% !important;
+}
+
+input:checked ~ label#divss{
+  display: block;
   /* background-color: #000; */
 }
 
 .scroll-log{
-  height: 15rem;
+  height: 25rem;
   overflow-y: auto;
 }
 

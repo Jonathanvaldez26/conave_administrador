@@ -333,15 +333,15 @@
 
         <div class="container-fluid py-4">
             <div class="row">
-                <div class="col-lg-10 mx-auto">
+                <div class="col-lg-12 mx-auto">
                     <div class="card mb-4">
                         <div class="card-header p-3 pb-0">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
                                     <h6>Asistente - Detalles</h6>
-                                    <p class="text-sm mb-0">
+                                    <!-- <p class="text-sm mb-0">
                                         No. Asistente: <b><?php echo $id_asistente; ?></b>
-                                    </p>
+                                    </p> -->
                                     <p class="text-sm mb-0">
                                         Fecha de Alta: <b><?php echo $detalles_registro['fecha_alta']; ?></b>
                                     </p>
@@ -353,28 +353,8 @@
                             </div>
                         </div>
                         <div class="card-body p-3 pt-0">
-                            <hr class="horizontal dark mt-0 mb-4">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-12">
-                                    <div class="d-flex">
-                                        <div>
-                                            <?php echo $img_asistente;?>
-                                        </div>
-                                        <div>
-                                            <span class="text-lg font-weight-bold mb-0 mt-2"><?php echo $detalles_registro['nombre'].' '; echo $detalles_registro['segundo_nombre'].' '; echo $detalles_registro['apellido_paterno'].' '; echo $detalles_registro['apellido_materno']; ?></span>&nbsp;&nbsp;&nbsp;<span class="badge badge-sm bg-gradient-success"> Activo</span>
-                                            <br> <br>
-                                            <p class="text-sm mb-3">Línea ASOFARMA: <strong>ADIUM</strong></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-12 my-auto text-end">
-                                    <a href="javascript:;" class="btn bg-gradient-primary mb-0" title="Editar Asistente"><i class="fa fa-edit"></i></a>
-                                    <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
-                                </div>
-                            </div>
-                            <hr class="horizontal dark mt-4 mb-4">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-12">
+                                <div class="col-lg-3 col-md-3 col-12">
                                     <h6 class="mb-3">Log</h6>
                                     <div class="timeline timeline-one-side scroll-log">
                                         <div class="timeline-block mb-4">
@@ -382,8 +362,10 @@
                                                 <i class="fa fa-bell text-warning  text-gradient text-secondary"></i>
                                             </label>
                                             <input class="chk" type="checkbox" id="chk-0">
-                                            <label for="chk-0" id="divss" class="timeline-content">
+                                            <label for="chk-0" class="timeline-content">
                                                 <h6 class="text-dark text-sm font-weight-bold mb-0">Asistente received</h6>
+                                            </label><br>
+                                            <label for="chk-0" id="divss" class="timeline-content">
                                                 <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 AM</p>
                                             </label>
                                         </div>
@@ -392,8 +374,10 @@
                                                 <i class="fa fa-pills text-danger text-gradient text-secondary"></i>
                                             </label>
                                             <input class="chk" type="checkbox" id="chk-1">
-                                            <label for="chk-1" id="divss" class="timeline-content">
+                                            <label for="chk-1" class="timeline-content">
                                                 <h6 class="text-dark text-sm font-weight-bold mb-0">Generate Asistente id #1832412</h6>
+                                            </label><br>
+                                            <label for="chk-1" id="divss" class="timeline-content">
                                                 <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:21 AM</p>
                                             </label>
                                         </div>
@@ -402,8 +386,10 @@
                                                 <i class="fa fa-check text-info text-gradient text-secondary"></i>
                                             </label>
                                             <input class="chk" type="checkbox" id="chk-2">
-                                            <label for="chk-2" id="divss" class="timeline-content">
+                                            <label for="chk-2" class="timeline-content">
                                                 <h6 class="text-dark text-sm font-weight-bold mb-0">Asistente transmited to courier</h6>
+                                            </label><br>
+                                            <label for="chk-2" id="divss" class="timeline-content">
                                                 <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 8:10 AM</p>
                                             </label>
                                         </div>
@@ -412,143 +398,165 @@
                                                 <i class="fa fa-virus text-success text-gradient"></i>
                                             </label>
                                             <input class="chk" type="checkbox" id="chk-3">
-                                            <label for="chk-3" id="divss" class="timeline-content">
+                                            <label for="chk-3" class="timeline-content">
                                                 <h6 class="text-dark text-sm font-weight-bold mb-0">Asistente delivered</h6>
+                                            </label><br>
+                                            <label for="chk-3" id="divss" class="timeline-content">
                                                 <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 4:54 PM</p>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-8 col-md-8 col-12 mt-4 mt-md-0">
-                                    <h6 class="mb-3">Sections</h6>
-                                    <!-- <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                            <img class="w-10 me-3 mb-0" src="/img/users_conave/8mVMLa56xh.png" alt="logo">
-                            <img class="w-10 me-3 mb-0" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/1200px-Mastercard_2019_logo.svg.png" alt="logo">
-                            <h6 class="mb-0">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852</h6>
-                            <button type="button" class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="We do not store card details">
-                            <i class="fas fa-info" aria-hidden="true"></i>
-                            </button>
-                        </div> -->
-                                    <!-- <h6 class="mb-3 mt-4">Billing Information</h6> -->
-                                    <div class="mt-2 nav-wrapper position-relative end-0">
-                                        <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="true">
-                                                    <span class="fa fa-plane"></span>
-                                                    <span class="ms-1">Vuelos</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                    <span class="fa fa-ticket"></span>
-                                                    <span class="ms-1">Ticket Virtual</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link mb-0 px-0 py-1" href="#cam3" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                    <span class="fa fa-virus"></span>
-                                                    <span class="ms-1">Covid</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link mb-0 px-0 py-1" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                    <span class="fa fa-syringe"></span>
-                                                    <span class="ms-1">Vacunación</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="tab-content" id="v-pills-tabContent">
-                                        <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
-                                            <ul class="list-group">
-                                                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                    <div class="d-flex flex-column">
-                                                        <h6 class="mb-3 text-sm">Oliver Liam</h6>
-                                                        <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                        <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                        <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                <div class="col-md-9 col-12">
+                                    <hr class="horizontal dark mt-0 mb-4">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-12">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <?php echo $img_asistente;?>
                                                     </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
-                                            <ul class="list-group">
-                                                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                    <div class="d-flex flex-column">
-                                                        <h6 class="mb-3 text-sm">Peter Parker</h6>
-                                                        <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                        <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                        <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                    <div>
+                                                        <span class="text-lg font-weight-bold mb-0 mt-2"><?php echo $detalles_registro['nombre'].' '; echo $detalles_registro['segundo_nombre'].' '; echo $detalles_registro['apellido_paterno'].' '; echo $detalles_registro['apellido_materno']; ?></span>&nbsp;&nbsp;&nbsp;<span class="badge badge-sm bg-gradient-success"> Activo</span>
+                                                        <br> <br>
+                                                        <p class="text-sm mb-3">Línea ASOFARMA: <strong>ADIUM</strong></p>
                                                     </div>
-                                                </li>
-                                            </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-12 my-auto text-end">
+                                                <button class="btn bg-gradient-primary mb-0" title="Editar Asistente" data-toggle="modal" data-target="#exampleModal3"><i class="fa fa-edit"></i></button>
+                                                <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
+                                            </div>
                                         </div>
+                                        <hr class="horizontal dark mt-4 mb-4">
+                                        <div class="row">
+                                            
+                                            <div class="col-lg-12 col-md-12 col-12 mt-4 mt-md-0">
+                                                <h6 class="mb-3">Sections</h6>
+                                                <!-- <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
+                                                    <img class="w-10 me-3 mb-0" src="/img/users_conave/8mVMLa56xh.png" alt="logo">
+                                                    <img class="w-10 me-3 mb-0" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/1200px-Mastercard_2019_logo.svg.png" alt="logo">
+                                                    <h6 class="mb-0">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852</h6>
+                                                    <button type="button" class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="We do not store card details">
+                                                    <i class="fas fa-info" aria-hidden="true"></i>
+                                                    </button>
+                                                </div> -->
+                                                <!-- <h6 class="mb-3 mt-4">Billing Information</h6> -->
+                                                <div class="mt-2 nav-wrapper position-relative end-0">
+                                                    <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="true">
+                                                                <span class="fa fa-plane"></span>
+                                                                <span class="ms-1">Vuelos</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                                <span class="fa fa-ticket"></span>
+                                                                <span class="ms-1">Ticket Virtual</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam3" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                                <span class="fa fa-virus"></span>
+                                                                <span class="ms-1">Covid</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                                <span class="fa fa-syringe"></span>
+                                                                <span class="ms-1">Vacunación</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
 
-                                        <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam3" role="tabpanel" aria-labelledby="cam3">
-                                            <ul class="list-group">
-                                                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                    <div class="d-flex flex-column">
-                                                        <h6 class="mb-3 text-sm">Eddie Brook</h6>
-                                                        <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                        <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                        <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                <div class="tab-content" id="v-pills-tabContent">
+                                                    <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                                                <div class="d-flex flex-column">
+                                                                    <h6 class="mb-3 text-sm">Oliver Liam</h6>
+                                                                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
+                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
                                                     </div>
-                                                </li>
-                                            </ul>
-                                        </div>
 
-                                        <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam4" role="tabpanel" aria-labelledby="cam4">
-                                            <ul class="list-group">
-                                                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                    <div class="d-flex flex-column">
-                                                        <h6 class="mb-3 text-sm">Mary Jane</h6>
-                                                        <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                        <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                        <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                                                <div class="d-flex flex-column">
+                                                                    <h6 class="mb-3 text-sm">Peter Parker</h6>
+                                                                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
+                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
                                                     </div>
-                                                </li>
-                                            </ul>
+
+                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam3" role="tabpanel" aria-labelledby="cam3">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                                                <div class="d-flex flex-column">
+                                                                    <h6 class="mb-3 text-sm">Eddie Brook</h6>
+                                                                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
+                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam4" role="tabpanel" aria-labelledby="cam4">
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                                                <div class="d-flex flex-column">
+                                                                    <h6 class="mb-3 text-sm">Mary Jane</h6>
+                                                                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
+                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   <!-- <div class="d-flex justify-conts-2 font-weight-bold">Mediana</span> -->
+                                            </div> 
                                         </div>
-
-                                    </div>
-
                                 </div>
-                                <!-- <div class="col-lg-3 col-12 ms-auto">
-                                    <h6 class="mb-3">More Details</h6>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="mb-2 text-sm">
-                                            Actividad:
-                                        </span>
-                                        <span class="text-dark font-weight-bold mb-2">Carrera de 5k</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="text-sm">
-                                            Talla de playera:
-                                        </span>
-                                        <span class="text-dark mb-2 font-weight-bold">9Mediana5</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <span class="text-sm">
-                                            Bu:
-                                        </span>
-                                        <span class="text-dark mb-2 font-weight-bold">95</span>
-                                    </div>    -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       <!-- <div class="d-flex justify-conts-2 font-weight-bold">Mediana</span> -->
-                                </div> 
-                                
-                                <!-- <div class="d-flex justify-content-between mt-4">
-                            <span class="mb-2 text-lg">
-                            Total:
-                            </span>
-                            <span class="text-dark text-lg mb-2 font-weight-bold">$105.95</span>
-                        </div> -->
                             </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal3Label">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
         </div>
 
     </main>

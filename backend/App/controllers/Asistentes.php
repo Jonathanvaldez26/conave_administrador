@@ -275,32 +275,28 @@ html;
                     <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-allergies" style="font-size: 13px;"></span><b> Alergias: </b>{$value['alergias']}{$value['alergias_otro']} <br>
                     {$value['alergia_medicamento_cual']}</p>
 
-<<<<<<< HEAD
-          <hr>
-          <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-ban" style="font-size: 13px;"></span><b> Restricciones alimenticias: </b>{$value['restricciones_alimenticias']}</p>
-          
-          <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-allergies" style="font-size: 13px;"></span><b> Alergias: {$alergia}
+            <hr>
+            <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-ban" style="font-size: 13px;"></span><b> Restricciones alimenticias: </b>{$value['restricciones_alimenticias']}</p>
+            
+            <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-allergies" style="font-size: 13px;"></span><b> Alergias: {$alergia}
 
-       
-
-          </td>
         
-=======
-                </td>      
->>>>>>> 3e683eb2324d940d99c50edfb06fd82f3f64cdcc
 
-          <td style="text-align:left; vertical-align:middle;"> 
-            {$pase_ida}
-            {$pase_regreso}
-            <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-solid fa-ticket" style="font-size: 13px;"></span> Ticket Virtual</p>
-            {$pru_covid}
-            {$compro_covid}  
-          </td>
-          
-          <td style="text-align:center; vertical-align:middle;">
-          
-          <a href="Detalles/{$value['utilerias_asistentes_id']}"><i class="fa fa-eye"></i></a>
-          </td>
+            </td>
+            
+
+            <td style="text-align:left; vertical-align:middle;"> 
+                {$pase_ida}
+                {$pase_regreso}
+                <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-solid fa-ticket" style="font-size: 13px;"></span> Ticket Virtual</p>
+                {$pru_covid}
+                {$compro_covid}  
+            </td>
+            
+            <td style="text-align:center; vertical-align:middle;">
+            
+            <a href="Detalles/{$value['utilerias_asistentes_id']}"><i class="fa fa-eye"></i></a>
+            </td>
         </tr>
 html;
         }

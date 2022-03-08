@@ -382,27 +382,66 @@
                             </div>
                         </div>
                         <div class="card-body px-0 pb-0">
-                            <div class="table-responsive p-0">
-                                <form name="all" id="all" action="/Colaboradores/delete" method="POST">
-                                    <table class="table align-items-center mb-0" id="user-list">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                
-                                                
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php echo $tabla; ?>
-
-                                        </tbody>
-
-                                    </table>
-                                </form>
+                            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto m-auto mt-3">
+                                <div class="nav-wrapper position-relative end-0">
+                                    <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                        <li class="nav-item">
+                                        <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                            <span class="fa fa-table"></span>
+                                            <span class="ms-1">Tabla 1</span>
+                                        </a>
+                                        </li>
+                                        <li class="nav-item">
+                                        <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                            <span class="fa fa-table"></span>
+                                            <span class="ms-1">Tabla 2</span>
+                                        </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
+                            <br>
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
+                                    <div class="table-responsive p-0" >
+                                        
+                                        <form name="all" id="all" action="/Colaboradores/delete" method="POST">
+                                            <table class="table align-items-center mb-0" id="user-list">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        
+                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th>
+                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php echo $tabla; ?>
+
+                                                </tbody>
+
+                                            </table>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
+                                    
+                                    <ul class="list-group">
+                                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-3 text-sm">Peter Parker</h6>
+                                                <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
+                                                <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

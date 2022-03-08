@@ -964,12 +964,8 @@
 
 
 
-                        <div class="row" id="cont_fechas">
-                            <!-- <div class="col-12 col-lg-6">
-                                            <label class="form-label mt-4">Fechas * </label>
-                                            <input type="date" class="form-control" id="fecha" name="fecha" required="" value="<?= $hotel['fechas']; ?>">
-                                        </div> -->
-                            <?php echo $dates ?>
+                        <div  id="cont_fechas">
+                            <?php echo $dates; ?>
                         </div>
 
 

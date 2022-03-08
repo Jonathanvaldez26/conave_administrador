@@ -55,4 +55,18 @@ sql;
     public static function delete($id){
         
     }
+
+    public static function getEncargadoLinea($id_linea){
+      
+      $mysqli = Database::getInstance();
+      $query =<<<sql
+      SELECT ua.nombre as nombre_encargado, lp.clave, lp.nombre as nombre_linea, al.id_linea_principal
+      FROM asigna_linea al
+      INNER JOIN linea_principal lp ON (lp.id_linea_principal = al.id_linea_principal) 
+      INNER JOIN  utilerias_administradores ua ON (al.utilerias_administradores_id_linea_asignada = ua.utilerias_administradores_id) 
+      WHERE al.id_linea_principal = $id_linea;
+sql;
+  
+      return $mysqli->queryAll($query);
+    }
 }

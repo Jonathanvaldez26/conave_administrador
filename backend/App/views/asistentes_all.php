@@ -342,7 +342,7 @@
                         <div class="card-header pb-0">
                             <div class="d-lg-flex">
                                 <div>
-                                    <h5 class="mb-0">Asistentes Registrados Convencion CONAVE 2022</h5>
+                                    <h5 class="mb-0">Asistentes ASOFARMA (Invitados)</h5>
                                     <p class="text-sm mb-0">
                                         En esta sección se podran visualizar todos los usuarios que han finalizado su registro, si usted desea ver quienes no han terminado el registro dirijasé a la pestaña nuevos accesos 
                                     </p>
@@ -382,25 +382,6 @@
                             </div>
                         </div>
                         <div class="card-body px-0 pb-0">
-                            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto m-auto mt-3">
-                                <div class="nav-wrapper position-relative end-0">
-                                    <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
-                                        <li class="nav-item">
-                                        <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
-                                            <span class="fa fa-table"></span>
-                                            <span class="ms-1">Tabla 1</span>
-                                        </a>
-                                        </li>
-                                        <li class="nav-item">
-                                        <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
-                                            <span class="fa fa-table"></span>
-                                            <span class="ms-1">Tabla 2</span>
-                                        </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <br>
                             <div class="tab-content" id="v-pills-tabContent">
                                 <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
                                     <div class="table-responsive p-0" >

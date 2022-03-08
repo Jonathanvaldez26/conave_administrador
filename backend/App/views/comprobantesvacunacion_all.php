@@ -329,391 +329,678 @@
             </div>
         </div>
     </nav>
-    <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row">
-            <div class="col-lg-7 position-relative z-index-2">
-                <div class="card card-plain mb-4">
-                    <div class="card-body p-3">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body p-3 position-relative">
                         <div class="row">
-                            <div class="col-lg-8">
-                                <div class="d-flex flex-column h-100">
-                                    <h2 class="font-weight-bolder mb-0">Comprobantes de Vacunación</h2>
+                            <div class="col-7 text-start">
+                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Total De Comprobantes Validos</p>
+                                <h5 class="font-weight-bolder mb-0" style="color:#8a0062;">
+                                    452 de 700
+                                </h5>
+                            </div>
+                            <div class="col-5">
+                                <div class="dropdown text-end">
+                                    <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="fa fa-clock" style="color:#8a0062;"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-5 col-sm-6">
-                        <div class="card  mb-4">
-                            <div class="card-body p-3">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="numbers">
-                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Money</p>
-                                            <h5 class="font-weight-bolder mb-0">
-                                                $53,000
-                                                <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 text-end">
-                                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                            <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
+            </div>
+            <div class="col-sm-4 mt-sm-0 mt-4">
+                <div class="card">
+                    <div class="card-body p-3 position-relative">
+                        <div class="row">
+                            <div class="col-7 text-start">
+                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Comprobantes Pendientes Por Cargar</p>
+                                <h5 class="font-weight-bolder mb-0" style="color:green;">
+                                    152 de 700
+                                </h5>
                             </div>
-                        </div>
-                        <div class="card ">
-                            <div class="card-body p-3">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="numbers">
-                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Users</p>
-                                            <h5 class="font-weight-bolder mb-0">
-                                                2,300
-                                                <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 text-end">
-                                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                            <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-sm-6 mt-sm-0 mt-4">
-                        <div class="card  mb-4">
-                            <div class="card-body p-3">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="numbers">
-                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">New Clients</p>
-                                            <h5 class="font-weight-bolder mb-0">
-                                                +3,462
-                                                <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 text-end">
-                                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                            <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card ">
-                            <div class="card-body p-3">
-                                <div class="row">
-                                    <div class="col-8">
-                                        <div class="numbers">
-                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Sales</p>
-                                            <h5 class="font-weight-bolder mb-0">
-                                                $103,430
-                                                <span class="text-success text-sm font-weight-bolder">+5%</span>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 text-end">
-                                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                            <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
+                            <div class="col-5">
+                                <div class="dropdown text-end">
+                                    <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="fa fa-check-circle" style="color:green;"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-12 col-lg-10">
-                        <div class="card ">
-                            <div class="card-header pb-0 p-3">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="mb-2">Sales by Country</h6>
-                                </div>
+            </div>
+            <div class="col-sm-4 mt-sm-0 mt-4">
+                <div class="card">
+                    <div class="card-body p-3 position-relative">
+                        <div class="row">
+                            <div class="col-8 text-start">
+                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Total de Comprobantes a Cargar</p>
+                                <h5 class="font-weight-bolder mb-0" style="color:#02b7b7;">
+                                    452 Habitaciones
+                                </h5>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table align-items-center ">
-                                    <tbody>
-                                    <tr>
-                                        <td class="w-30">
-                                            <div class="d-flex px-2 py-1 align-items-center">
-                                                <div>
-                                                    <img src="../../assets/img/icons/flags/US.png" alt="Country flag">
-                                                </div>
-                                                <div class="ms-4">
-                                                    <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                    <h6 class="text-sm mb-0">United States</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                                <h6 class="text-sm mb-0">2500</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                                <h6 class="text-sm mb-0">$230,900</h6>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <div class="col text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                                <h6 class="text-sm mb-0">29.9%</h6>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-30">
-                                            <div class="d-flex px-2 py-1 align-items-center">
-                                                <div>
-                                                    <img src="../../assets/img/icons/flags/DE.png" alt="Country flag">
-                                                </div>
-                                                <div class="ms-4">
-                                                    <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                    <h6 class="text-sm mb-0">Germany</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                                <h6 class="text-sm mb-0">3.900</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                                <h6 class="text-sm mb-0">$440,000</h6>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <div class="col text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                                <h6 class="text-sm mb-0">40.22%</h6>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-30">
-                                            <div class="d-flex px-2 py-1 align-items-center">
-                                                <div>
-                                                    <img src="../../assets/img/icons/flags/GB.png" alt="Country flag">
-                                                </div>
-                                                <div class="ms-4">
-                                                    <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                    <h6 class="text-sm mb-0">Great Britain</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                                <h6 class="text-sm mb-0">1.400</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                                <h6 class="text-sm mb-0">$190,700</h6>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <div class="col text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                                <h6 class="text-sm mb-0">23.44%</h6>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="w-30">
-                                            <div class="d-flex px-2 py-1 align-items-center">
-                                                <div>
-                                                    <img src="../../assets/img/icons/flags/BR.png" alt="Country flag">
-                                                </div>
-                                                <div class="ms-4">
-                                                    <p class="text-xs font-weight-bold mb-0">Country:</p>
-                                                    <h6 class="text-sm mb-0">Brasil</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                                <h6 class="text-sm mb-0">562</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                                <h6 class="text-sm mb-0">$143,960</h6>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle text-sm">
-                                            <div class="col text-center">
-                                                <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                                <h6 class="text-sm mb-0">32.14%</h6>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="col-4">
+                                <div class="dropdown text-end">
+                                    <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="fa fa-hotel" style="color:#02b7b7;"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col-lg-5 mb-lg-0 mb-4">
-                <div class="card z-index-2">
-                    <div class="card-body p-3">
-                        <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
-                            <div class="chart">
-                                <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+
+        <!-- Inicio barrita -->
+
+        <div class=" mt-7">
+            <div class="card card-body mt-n6 overflow-hidden">
+                <div class="row gx-4">
+                    <div class="col-auto">
+                        <div class="bg-gradient-red avatar avatar-xl position-relative">
+                            <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                            <span class="fa fa-hotel" style="font-size: xx-large;"></span>
+                        </div>
+                    </div>
+                    <div class="col-auto my-auto">
+                        <div class="h-100">
+                            <h5 class="mb-1">
+                                Comprobantes de Vacunación Cargados
+                            </h5>
+                            <p class="mb-0 font-weight-bold text-sm">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                        <div class="nav-wrapper position-relative end-0">
+                            <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link mb-0 px-0 py-1 active" href="#asistentes" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                        <span class="fa fa-hourglass"></span>
+                                        <span class="ms-1">APROBADOS</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mb-0 px-0 py-1" href="#staff" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                        <span class="fa fa-handshake-o"></span>
+                                        <span class="ms-1">PENDIENTES</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mb-0 px-0 py-1" href="#vip" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                        <span class="fa fa-diamond"></span>
+                                        <span class="ms-1">RECHAZADOS</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body p-1 mt-1">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="asistentes" role="tabpanel" aria-labelledby="cam1" style="background-image: url('../../assets/img/miercoles.jpeg'); background-size:cover;">
+                    <div class="d-flex m-1">
+                        <div class="ms-auto d-flex">
+                            <div class="pe-4 mt-1 position-relative">
+                                <hr class="vertical dark mt-0">
+                            </div>
+                            <div class="ps-4">
+                                <div class="panel-body" <?php echo $visible; ?>></div>
+                                <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#Modal_Add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <a style="background: #1C6C42; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-excel" aria-hidden="true"></i></a>
+                                <a style="background: #9A1622; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
+                                <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
+                                    <span class="fa fa-info"></span>
+                                </button>
+
                             </div>
                         </div>
-                        <h6 class="ms-2 mt-4 mb-0"> Active Users </h6>
-                        <p class="text-sm ms-2"> (<span class="font-weight-bolder">+23%</span>) than last week </p>
-                        <div class="container border-radius-lg">
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card mb-4">
+                                <div class="card-header pb-0">
+                                    <h6>Comprobantes Cargados con Exito - Que Fueron Validados y Aceptados por un Ejecutivo</h6>
+                                </div>
+                                <div class="card-body px-0 pt-0 pb-2">
+                                    <div class="table-responsive p-0">
+                                        <table class="table align-items-center mb-0">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Con quien Comparte?</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-3 py-1">
+                                                        <div>
+                                                            <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
+                                                        </div>
+                                                        <div class="d-flex flex-column justify-content-center">
+                                                            <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
+                                                            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
+                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
+                                                </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <p class="text-sm font-weight-bold mb-0 text-dark">Jonathan Valdez Martinez</p>
+                                                </td>
+                                                <td class="align-middle text-end">
+                                                    <div class="d-flex px-3 py-1 justify-content-center align-items-center">
+                                                        <p class="text-sm font-weight-bold mb-0">13</p>
+                                                        <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
+                                                        <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Descargo el archivo el día 23/02/2022 18:00:14">
+                                                            <i class="fas fa-info" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="staff" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header pb-0">
+                                <h6>Comprobantes Cargados con Exito - Pendientes de Validar por un Ejecutivo(a)</h6>
+                            </div>
+                            <div class="card-body px-0 pt-0 pb-2">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Con quien Comparte?</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-3 py-1">
+                                                    <div>
+                                                        <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
+                                                        <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
+                                                <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <p class="text-sm font-weight-bold mb-0 text-dark">Jonathan Valdez Martinez</p>
+                                            </td>
+                                            <td class="align-middle text-end">
+                                                <div class="d-flex px-3 py-1 justify-content-center align-items-center">
+                                                    <p class="text-sm font-weight-bold mb-0">13</p>
+                                                    <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
+                                                    <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Descargo el archivo el día 23/02/2022 18:00:14">
+                                                        <i class="fas fa-info" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="vip" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                    B
+                </div>
+                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="hotel" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                    <div class="row">
+                        <div class="col-lg-12 mx-auto">
+                            <div class="card mb-4">
+                                <div class="card-header p-3 pb-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6>Datos y Detalles Generales del Rooming List <span class="badge badge-sm bg-gradient-success">Completo</span></h6>
+                                            <p class="text-sm mb-0">
+                                                <i class="fa fa-user-md"></i>Cliente. <b>Asofarma</b><br>
+                                                <i class="fa fa-flag"></i> Evento: <b>Convención CONAVE 2022</b><br>
+                                                <i class="fa fa-calendar"></i> Fechas: <b>Del 04 de Abril al 09 de Abril 2022</b><br>
+                                                <i class="fa fa-map-marker"></i> Lugar: <b>RIVERA MAYA</b><br>
+                                                <i class="fa fa-h-square"></i> Hotel: <b>BARCELO</b>
+                                            </p>
+
+                                        </div>
+                                        <a href="javascript:;" class="btn bg-gradient-secondary ms-auto mb-0">Editar</a>
+                                    </div>
+                                </div>
+                                <div class="card-body p-3 pt-0">
+                                    <div class="card-body p-3 pt-0">
+                                        <hr class="horizontal dark mt-0 mb-4">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-6 col-12">
+                                                <h6 class="mb-3">Puntos A Validar</h6>
+                                                <div class="timeline timeline-one-side">
+                                                    <div class="timeline-block mb-3">
+                                                    <span class="timeline-step">
+                                                    <i class="fa fa-check text-success"></i>
+                                                  </span>
+                                                        <div class="timeline-content">
+                                                            <h6 class="text-dark text-sm font-weight-bold mb-0">Datos Generales</h6>
+                                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Completó el 05/03/2022</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-block mb-3">
+                                                    <span class="timeline-step">
+                                                        <i class="fa fa-check text-success"></i>
+                                                     </span>
+                                                        <div class="timeline-content">
+                                                            <h6 class="text-dark text-sm font-weight-bold mb-0">Datos de Contacto Hotel</h6>
+                                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Completó el 05/03/2022</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-block mb-3">
+                                                  <span class="timeline-step">
+                                                    <i class="fa fa-close text-danger"></i>
+                                                  </span>
+                                                        <div class="timeline-content">
+                                                            <h6 class="text-dark text-sm font-weight-bold mb-0">Asignación de X Habitaciones Marcadas en Contrato</h6>
+                                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Aún Hay habitaciones Pendientes de Asignación</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-block mb-3">
+                                                      <span class="timeline-step">
+                                                        <i class="fa fa-clock-o text-warning text-gradient"></i>
+                                                      </span>
+                                                        <div class="timeline-content">
+                                                            <h6 class="text-dark text-sm font-weight-bold mb-0">Cierre Habitaciones, Bloqueo, Sobrantes</h6>
+                                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Disponible Para Aplicar</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-block mb-3">
+                                                      <span class="timeline-step">
+                                                        <i class="fa fa-clock-o text-warning text-gradient"></i>
+                                                      </span>
+                                                        <div class="timeline-content">
+                                                            <h6 class="text-dark text-sm font-weight-bold mb-0">Enviar Rooming List Hotel</h6>
+                                                            <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Disponible Para Aplicar</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-6 col-12">
+                                                <div class="col-12">
+                                                    <div class="card">
+                                                        <div class="table-responsive">
+                                                            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                                                                <div class="dataTable-container">
+                                                                    <table class="table table-flush dataTable-table" id="datatable-search">
+                                                                        <thead class="thead-light">
+                                                                        <tr>
+                                                                            <th data-sortable="" style="width: 10.7306%;"><a href="#" class="dataTable-sorter">Tipo</a></th>
+                                                                            <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">Date</a></th>
+                                                                            <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Status</a></th>
+                                                                            <th data-sortable="" style="width: 10.6128%;"><a href="#" class="dataTable-sorter">Customer</a></th>
+                                                                            <th data-sortable="" style="width: 10.3906%;"><a href="#" class="dataTable-sorter">Product</a></th>
+                                                                            <th data-sortable="" style="width: 10.7744%;"><a href="#" class="dataTable-sorter">Revenue</a></th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="form-check">
+                                                                                        <input class="form-check-input" type="checkbox" id="customCheck1">
+                                                                                    </div>
+                                                                                    <p class="text-xs font-weight-bold ms-2 mb-0">#10421</p>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="font-weight-bold">
+                                                                                <span class="my-2 text-xs">1 Nov, 10:20 AM</span>
+                                                                            </td>
+                                                                            <td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
+                                                                                    <span>Paid</span>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">s
+                                                                                    <span>Orlando Imieto</span>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="text-xs font-weight-bold">
+                                                                                <span class="my-2 text-xs">Nike Sport V2</span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <span class="my-2 text-xs">$140,20</span>
+                                                                            </td></tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="form-check pt-0">
+                                                                                        <input class="form-check-input" type="checkbox" id="customCheck2">
+                                                                                    </div>
+                                                                                    <p class="text-xs font-weight-bold ms-2 mb-0">#10422</p>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="font-weight-bold">
+                                                                                <span class="my-2 text-xs">1 Nov, 10:53 AM</span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
+                                                                                    <span>Paid</span>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <span>Alice Murinho</span>
+                                                                                </div>
+                                                                            </td><td class="font-weight-bold">
+                                                                                <span class="my-2 text-xs">Valvet T-shirt</span>
+                                                                            </td><td class="font-weight-bold">
+                                                                                <span class="my-2 text-xs">$42,00</span>
+                                                                            </td></tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="form-check">
+                                                                                        <input class="form-check-input" type="checkbox" id="customCheck3">
+                                                                                    </div>
+                                                                                    <p class="text-xs font-weight-bold ms-2 mb-0">#10423</p>
+                                                                                </div>
+                                                                            </td><td class="font-weight-bold">
+                                                                                <span class="my-2 text-xs">1 Nov, 11:13 AM</span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <button class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-undo" aria-hidden="true"></i></button>
+                                                                                    <span>Refunded</span>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="avatar avatar-xs me-2 bg-gradient-dark">
+                                                                                        <span>M</span>
+                                                                                    </div>
+                                                                                    <span>Michael Mirra</span>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                          <span class="my-2 text-xs">
+                            Leather Wallet
+                            <span class="text-secondary ms-2"> +1 more </span>
+                          </span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <span class="my-2 text-xs">$25,50</span>
+                                                                            </td></tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="form-check">
+                                                                                        <input class="form-check-input" type="checkbox" id="customCheck4">
+                                                                                    </div>
+                                                                                    <p class="text-xs font-weight-bold ms-2 mb-0">#10424</p>
+                                                                                </div>
+                                                                            </td><td class="font-weight-bold">
+                                                                                <span class="my-2 text-xs">1 Nov, 12:20 PM</span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
+                                                                                    <span>Paid</span>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <img src="../../../assets/img/team-3.jpg" class="avatar avatar-xs me-2" alt="user image">
+                                                                                        <span>Andrew Nichel</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                          <span class="my-2 text-xs">
+                            Bracelet Onu-Lino
+                          </span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <span class="my-2 text-xs">$19,40</span>
+                                                                            </td></tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="form-check">
+                                                                                        <input class="form-check-input" type="checkbox" id="customCheck5">
+                                                                                    </div>
+                                                                                    <p class="text-xs font-weight-bold ms-2 mb-0">#10425</p>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="font-weight-bold">
+                                                                                <span class="my-2 text-xs">1 Nov, 1:40 PM</span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-times" aria-hidden="true"></i></button>
+                                                                                    <span>Canceled</span>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        <img src="../../../assets/img/team-4.jpg" class="avatar avatar-xs me-2" alt="user image">
+                                                                                        <span>Sebastian Koga</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                          <span class="my-2 text-xs">
+                            Phone Case Pink
+                            <span class="text-secondary ms-2"> x 2 </span>
+                          </span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <span class="my-2 text-xs">$44,90</span>
+                                                                            </td></tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="form-check">
+                                                                                        <input class="form-check-input" type="checkbox" id="customCheck6">
+                                                                                    </div>
+                                                                                    <p class="text-xs font-weight-bold ms-2 mb-0">#10426</p>
+                                                                                </div>
+                                                                            </td><td class="font-weight-bold">
+                                                                                <span class="my-2 text-xs">1 Nov, 2:19 AM</span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
+                                                                                    <span>Paid</span>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="avatar avatar-xs me-2 bg-gradient-primary">
+                                                                                        <span>L</span>
+                                                                                    </div>
+                                                                                    <span>Laur Gilbert</span>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                          <span class="my-2 text-xs">
+                            Backpack Niver
+                          </span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <span class="my-2 text-xs">$112,50</span>
+                                                                            </td></tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="form-check">
+                                                                                        <input class="form-check-input" type="checkbox" id="customCheck6">
+                                                                                    </div>
+                                                                                    <p class="text-xs font-weight-bold ms-2 mb-0">#10426</p>
+                                                                                </div>
+                                                                            </td><td class="font-weight-bold">
+                                                                                <span class="my-2 text-xs">1 Nov, 2:19 AM</span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
+                                                                                    <span>Paid</span>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <div class="avatar avatar-xs me-2 bg-gradient-primary">
+                                                                                        <span>L</span>
+                                                                                    </div>
+                                                                                    <span>Laur Gilbert</span>
+                                                                                </div>
+                                                                            </td><td class="text-xs font-weight-bold">
+                          <span class="my-2 text-xs">
+                            Backpack Niver
+                          </span>
+                                                                            </td><td class="text-xs font-weight-bold">
+                                                                                <span class="my-2 text-xs">$112,50</span>
+                                                                            </td></tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="horizontal dark mt-0 mb-1">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="">
+                                                <h6 class="mb-z mt-4">Información de Contacto <span class="badge badge-sm bg-gradient-success">Completo</span></h6>
+
+                                                <ul class="list-group">
+                                                    <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                                        <div class="d-flex flex-column">
+                                                            <h6 class="mb-3 text-sm">HOTEL BARCELO - RIVERA MAYA</h6>
+                                                            <span class="mb-2 text-xs">Atención a: <span class="text-dark font-weight-bold ms-2">Roberto González Marcos</span></span>
+                                                            <span class="mb-2 text-xs">Email: <span class="text-dark ms-2 font-weight-bold">reservaciones@barcelo.com</span></span>
+                                                            <span class="text-xs">Número telefónico: <span class="text-dark ms-2 font-weight-bold">+52 7412365474</span></span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12 my-auto text-end">
+                                            <a href="javascript:;" class="btn bg-gradient-info mb-0">Editar</a>
+                                        </div>
+                                        <p class="text-sm mt-2 mb-0">Si usted desea reenviar el Rooming List a un contacto distinto presione <a href="javascript:;">aquí</a>.</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin barrita -->
+
+
+    </div>
+
+    <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="Modal_Prueba_COVID" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Asistente para Generar Rooming List
+                    </h5>
+                    <span type="button" class="btn btn-dark" data-dismiss="modal" aria-label="Close">
+                        X
+                    </span>
+                </div>
+                <div class="modal-header">
+                    <label id="fecha_actual"><?php echo $fechaActual; ?></label>
+                    <p>A continuación seleccione el nombre del Asistente y complete todos los campos marcados con (*).</p>
+                </div>
+
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" id="form_prueba_covid">
+                        <div class="form-group row">
                             <div class="row">
-                                <div class="col-3 py-3 ps-0">
-                                    <div class="d-flex mb-2">
-                                        <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-primary text-center me-2 d-flex align-items-center justify-content-center">
-                                            <svg width="10px" height="10px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <title>document</title>
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <g transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                                                        <g transform="translate(1716.000000, 291.000000)">
-                                                            <g transform="translate(154.000000, 300.000000)">
-                                                                <path class="color-background" d="M40,40 L36.3636364,40 L36.3636364,3.63636364 L5.45454545,3.63636364 L5.45454545,0 L38.1818182,0 C39.1854545,0 40,0.814545455 40,1.81818182 L40,40 Z" opacity="0.603585379"></path>
-                                                                <path class="color-background" d="M30.9090909,7.27272727 L1.81818182,7.27272727 C0.814545455,7.27272727 0,8.08727273 0,9.09090909 L0,41.8181818 C0,42.8218182 0.814545455,43.6363636 1.81818182,43.6363636 L30.9090909,43.6363636 C31.9127273,43.6363636 32.7272727,42.8218182 32.7272727,41.8181818 L32.7272727,9.09090909 C32.7272727,8.08727273 31.9127273,7.27272727 30.9090909,7.27272727 Z M18.1818182,34.5454545 L7.27272727,34.5454545 L7.27272727,30.9090909 L18.1818182,30.9090909 L18.1818182,34.5454545 Z M25.4545455,27.2727273 L7.27272727,27.2727273 L7.27272727,23.6363636 L25.4545455,23.6363636 L25.4545455,27.2727273 Z M25.4545455,20 L7.27272727,20 L7.27272727,16.3636364 L25.4545455,16.3636364 L25.4545455,20 Z"></path>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg>
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <?php
+                                        $mes = '';
+                                        if(date("m") == '01')
+                                        {$mes = 'Enero';}if(date("m") == '02') {$mes = 'Febrero';}if(date("m") == '03') {$mes = 'Marzo';}if(date("m") == '04')
+                                        {$mes = 'Abril';}if(date("m") == '05') {$mes = 'Mayo';}if(date("m") == '06') {$mes = 'Junio';}if(date("m") == '07')
+                                        {$mes = 'Julio';}if(date("m") == '08') {$mes = 'Agosto';}if(date("m") == '09') {$mes = 'Septiembre';}if(date("m") == '10')
+                                        {$mes = 'Octubre';}if(date("m") == '11') {$mes = 'Noviembre';}if(date("m") == '12') {$mes = 'Diciembre';}
+                                        ?>
+                                        <div class="row">
+                                            <div class="col-md-6 col-12">
+                                                <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Fecha de Carga al Sistema:</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <input class="form-control col-md-6 col-xs-12" disabled value="<?php echo date("d") . " de " .$mes. " de " . date("Y"); ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Categoria *</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <select class="form-control" name="resultado_" id="resultado_">
+                                                        <option selected>Seleccione Un Resultado</option>
+                                                        <option value="positivo">Positivo</option>
+                                                        <option value="negativo">Negativo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <p class="text-xs mt-1 mb-0 font-weight-bold">Users</p>
-                                    </div>
-                                    <h4 class="font-weight-bolder">36K</h4>
-                                    <div class="progress w-75">
-                                        <div class="progress-bar bg-dark w-60" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
-                                <div class="col-3 py-3 ps-0">
-                                    <div class="d-flex mb-2">
-                                        <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center">
-                                            <svg width="10px" height="10px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <title>spaceship</title>
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <g transform="translate(-1720.000000, -592.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                                                        <g transform="translate(1716.000000, 291.000000)">
-                                                            <g transform="translate(4.000000, 301.000000)">
-                                                                <path class="color-background" d="M39.3,0.706666667 C38.9660984,0.370464027 38.5048767,0.192278529 38.0316667,0.216666667 C14.6516667,1.43666667 6.015,22.2633333 5.93166667,22.4733333 C5.68236407,23.0926189 5.82664679,23.8009159 6.29833333,24.2733333 L15.7266667,33.7016667 C16.2013871,34.1756798 16.9140329,34.3188658 17.535,34.065 C17.7433333,33.98 38.4583333,25.2466667 39.7816667,1.97666667 C39.8087196,1.50414529 39.6335979,1.04240574 39.3,0.706666667 Z M25.69,19.0233333 C24.7367525,19.9768687 23.3029475,20.2622391 22.0572426,19.7463614 C20.8115377,19.2304837 19.9992882,18.0149658 19.9992882,16.6666667 C19.9992882,15.3183676 20.8115377,14.1028496 22.0572426,13.5869719 C23.3029475,13.0710943 24.7367525,13.3564646 25.69,14.31 C26.9912731,15.6116662 26.9912731,17.7216672 25.69,19.0233333 L25.69,19.0233333 Z"></path>
-                                                                <path class="color-background" d="M1.855,31.4066667 C3.05106558,30.2024182 4.79973884,29.7296005 6.43969145,30.1670277 C8.07964407,30.6044549 9.36054508,31.8853559 9.7979723,33.5253085 C10.2353995,35.1652612 9.76258177,36.9139344 8.55833333,38.11 C6.70666667,39.9616667 0,40 0,40 C0,40 0,33.2566667 1.855,31.4066667 Z"></path>
-                                                                <path class="color-background" d="M17.2616667,3.90166667 C12.4943643,3.07192755 7.62174065,4.61673894 4.20333333,8.04166667 C3.31200265,8.94126033 2.53706177,9.94913142 1.89666667,11.0416667 C1.5109569,11.6966059 1.61721591,12.5295394 2.155,13.0666667 L5.47,16.3833333 C8.55036617,11.4946947 12.5559074,7.25476565 17.2616667,3.90166667 L17.2616667,3.90166667 Z" opacity="0.598539807"></path>
-                                                                <path class="color-background" d="M36.0983333,22.7383333 C36.9280725,27.5056357 35.3832611,32.3782594 31.9583333,35.7966667 C31.0587397,36.6879974 30.0508686,37.4629382 28.9583333,38.1033333 C28.3033941,38.4890431 27.4704606,38.3827841 26.9333333,37.845 L23.6166667,34.53 C28.5053053,31.4496338 32.7452344,27.4440926 36.0983333,22.7383333 L36.0983333,22.7383333 Z" opacity="0.598539807"></path>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg>
+                                <div class="col-md-12">
+                                    <div class="form-group col-md-12">
+                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Nombre del Asistente <span class="required">*</span></label>
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                            <select class="form-control" name="resultado_" id="resultado_">
+                                                <option selected>Seleccione Un Resultado</option>
+                                                <option value="positivo">Positivo</option>
+                                                <option value="negativo">Negativo</option>
+                                            </select>
                                         </div>
-                                        <p class="text-xs mt-1 mb-0 font-weight-bold">Clicks</p>
-                                    </div>
-                                    <h4 class="font-weight-bolder">2m</h4>
-                                    <div class="progress w-75">
-                                        <div class="progress-bar bg-dark w-90" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <span id="availability_"></span>
                                     </div>
                                 </div>
-                                <div class="col-3 py-3 ps-0">
-                                    <div class="d-flex mb-2">
-                                        <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-warning text-center me-2 d-flex align-items-center justify-content-center">
-                                            <svg width="10px" height="10px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <title>credit-card</title>
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                                                        <g transform="translate(1716.000000, 291.000000)">
-                                                            <g transform="translate(453.000000, 454.000000)">
-                                                                <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
-                                                                <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg>
-                                        </div>
-                                        <p class="text-xs mt-1 mb-0 font-weight-bold">Sales</p>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label col-md-12 col-sm-12 col-xs-12" for="file_">Archivo .PDF Ticket/Pase de Abordar de llegada: <span class="required">*</span></label>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <input type="file" accept="application/pdf" class="form-control" id="file_" name="file_">
                                     </div>
-                                    <h4 class="font-weight-bolder">435$</h4>
-                                    <div class="progress w-75">
-                                        <div class="progress-bar bg-dark w-30" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="col-3 py-3 ps-0">
-                                    <div class="d-flex mb-2">
-                                        <div class="icon icon-shape icon-xxs shadow border-radius-sm bg-gradient-danger text-center me-2 d-flex align-items-center justify-content-center">
-                                            <svg width="10px" height="10px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                <title>settings</title>
-                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                    <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                                                        <g transform="translate(1716.000000, 291.000000)">
-                                                            <g transform="translate(304.000000, 151.000000)">
-                                                                <polygon class="color-background" opacity="0.596981957" points="18.0883333 15.7316667 11.1783333 8.82166667 13.3333333 6.66666667 6.66666667 0 0 6.66666667 6.66666667 13.3333333 8.82166667 11.1783333 15.315 17.6716667"></polygon>
-                                                                <path class="color-background" d="M31.5666667,23.2333333 C31.0516667,23.2933333 30.53,23.3333333 30,23.3333333 C29.4916667,23.3333333 28.9866667,23.3033333 28.48,23.245 L22.4116667,30.7433333 L29.9416667,38.2733333 C32.2433333,40.575 35.9733333,40.575 38.275,38.2733333 L38.275,38.2733333 C40.5766667,35.9716667 40.5766667,32.2416667 38.275,29.94 L31.5666667,23.2333333 Z" opacity="0.596981957"></path>
-                                                                <path class="color-background" d="M33.785,11.285 L28.715,6.215 L34.0616667,0.868333333 C32.82,0.315 31.4483333,0 30,0 C24.4766667,0 20,4.47666667 20,10 C20,10.99 20.1483333,11.9433333 20.4166667,12.8466667 L2.435,27.3966667 C0.95,28.7083333 0.0633333333,30.595 0.00333333333,32.5733333 C-0.0583333333,34.5533333 0.71,36.4916667 2.11,37.89 C3.47,39.2516667 5.27833333,40 7.20166667,40 C9.26666667,40 11.2366667,39.1133333 12.6033333,37.565 L27.1533333,19.5833333 C28.0566667,19.8516667 29.01,20 30,20 C35.5233333,20 40,15.5233333 40,10 C40,8.55166667 39.685,7.18 39.1316667,5.93666667 L33.785,11.285 Z"></path>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </svg>
-                                        </div>
-                                        <p class="text-xs mt-1 mb-0 font-weight-bold">Items</p>
-                                    </div>
-                                    <h4 class="font-weight-bolder">43</h4>
-                                    <div class="progress w-75">
-                                        <div class="progress-bar bg-dark w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    <span id="availability_4_"></span>
                                 </div>
                             </div>
+                            <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["administrador_id"]?>">
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="card z-index-2">
-                    <div class="card-header pb-0">
-                        <h6>Sales overview</h6>
-                        <p class="text-sm">
-                            <i class="fa fa-arrow-up text-success"></i>
-                            <span class="font-weight-bold">4% more</span> in 2021
-                        </p>
-                    </div>
-                    <div class="card-body p-3">
-                        <div class="chart">
-                            <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success" id="btn_upload" name="btn_upload">Aceptar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
+
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div id="globe" class="position-absolute end-0 top-10 mt-sm-3 mt-7 me-lg-7">
-                    <canvas width="700" height="600" class="w-lg-100 h-lg-100 w-75 h-75 me-lg-0 me-n10 mt-lg-5"></canvas>
-                </div>
-            </div>
-        </div>
+    </div>
+
 </main>
 </body>
 

@@ -49,7 +49,7 @@ html;
                               <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-calendar" style="font-size: 13px"></span> {$value['fecha_alta']}</p>
                               <p class="text-sm mb-0"><span class="fa fa-plane" style="color: #125a16; font-size: 13px"></span> {$value['aeropuerto_llegada']}</p>
                               <p class="text-sm mb-0"><span class="fa fa-flag" style="color: #353535; font-size: 13px"></span> {$value['aeropuerto_salida']}</p>
-                              <p class="text-sm mb-0"><span class="fa fa-ticket" style="color: #1a8fdd; font-size: 13px"></span> Número de Vuelo: {$value['numero_vuelo']}</p>
+                              <p class="text-sm mb-0"><span class="fa fa-ticket" style="color: #1a8fdd; font-size: 13px"></span> Número de Vuelo: <strong>{$value['numero_vuelo']}</strong></p>
                               <p class="text-sm mb-0"><span class="fa fa-clock-o" font-size: 13px"></span> Hora Estimada de Llegada: {$value['hora_llegada_destino']}</p>
                           </div>
                       </div>
@@ -64,9 +64,10 @@ html;
                  <td class="align-middle text-center text-sm">
                      <p class="text-sm font-weight-bold mb-0 text-dark">{$value['nombre_registro']}</p>
                  </td>
-                 <td class="align-middle text-center text-sm">
-                     
-                 </td>
+                <td style="text-align:center; vertical-align:middle;">
+                    <a href="Detalles/{$value['clave']}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Ver .PDF Pase de Abordar"><i class="fa fa-eye"></i></a>
+                    <a href="Detalles/{$value['clave']}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Eliminar el Pase de Abordar"><i class="fa fa-trash" style="color:firebrick"></i></a>
+                </td>
                  
             </tr>
 html;
@@ -76,6 +77,16 @@ html;
      View::set('header',$this->_contenedor->header($extraHeader));
      View::render("vuelos_all");
       
+    }
+
+    public function getAsistenteNombreLineaRoot($linea_asignada){
+        $asistente = '';
+        foreach (VuelosDao::getAsistenteNombre($linea_asignada) as $key => $value) {
+            $asistente .=<<<html
+        <option value="{$value['catalogo_colaboradores_id']}">{$value['nombre']}</option>
+html;
+        }
+        return $asistente;
     }
 
     public function getAsistenteNombreLinea($linea_asignada){

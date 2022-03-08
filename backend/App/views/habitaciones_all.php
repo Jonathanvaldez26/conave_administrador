@@ -874,7 +874,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        Asistente Para Cargar Pases de Abordar (Vuelos)
+                        Asistente para Generar Rooming List
                     </h5>
                     <span type="button" class="btn btn-dark" data-dismiss="modal" aria-label="Close">
                         X
@@ -882,16 +882,15 @@
                 </div>
                 <div class="modal-header">
                     <label id="fecha_actual"><?php echo $fechaActual; ?></label>
-                    <p>A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p>
+                    <p>A continuación seleccione el nombre del Asistente y complete todos los campos marcados con (*).</p>
                 </div>
 
                 <div class="modal-body">
                     <form method="POST" enctype="multipart/form-data" id="form_prueba_covid">
                         <div class="form-group row">
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <div class="form-group col-md-12">
-                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Fecha de Carga al Sistema:</label>
                                         <?php
                                         $mes = '';
                                         if(date("m") == '01')
@@ -900,8 +899,23 @@
                                         {$mes = 'Julio';}if(date("m") == '08') {$mes = 'Agosto';}if(date("m") == '09') {$mes = 'Septiembre';}if(date("m") == '10')
                                         {$mes = 'Octubre';}if(date("m") == '11') {$mes = 'Noviembre';}if(date("m") == '12') {$mes = 'Diciembre';}
                                         ?>
-                                        <div class="col-md-6 col-sm-12 col-xs-12">
-                                            <input class="form-control col-md-7 col-xs-12" disabled value="<?php echo date("d") . " de " .$mes. " de " . date("Y"); ?>">
+                                        <div class="row">
+                                            <div class="col-md-6 col-12">
+                                                <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Fecha de Carga al Sistema:</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <input class="form-control col-md-6 col-xs-12" disabled value="<?php echo date("d") . " de " .$mes. " de " . date("Y"); ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Categoria *</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <select class="form-control" name="resultado_" id="resultado_">
+                                                        <option selected>Seleccione Un Resultado</option>
+                                                        <option value="positivo">Positivo</option>
+                                                        <option value="negativo">Negativo</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

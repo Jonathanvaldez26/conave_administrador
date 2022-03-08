@@ -297,7 +297,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive text-center">
-                    <table class="table align-items-center mb-0 text-center" id="muestra-cupones">
+                    <table class="table align-items-center mb-0 text-center" id="bu-list">
                         <thead>
                         <tr>
                             <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>

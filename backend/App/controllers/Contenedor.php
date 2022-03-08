@@ -213,13 +213,30 @@ html;
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
         <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
         
-        <script>
-          $(document).ready(function(){
-            
-            //$('#user-list').DataTable();
-            
-          });
-        </script>
+        <script src="/js/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <!-- jQuery -->
+        <script src="/js/jquery.min.js"></script>
+        <!--   Core JS Files   -->
+        <script src="/assets/js/core/popper.min.js"></script>
+        <script src="/assets/js/core/bootstrap.min.js"></script>
+        <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+        <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+        <!-- Kanban scripts -->
+        <script src="/assets/js/plugins/dragula/dragula.min.js"></script>
+        <script src="/assets/js/plugins/jkanban/jkanban.js"></script>
+        <script src="/assets/js/plugins/chartjs.min.js"></script>
+        <script src="/assets/js/plugins/threejs.js"></script>
+        <script src="/assets/js/plugins/orbit-controls.js"></script>
+        
+    <!-- Github buttons -->
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
+
+
+        
 
 
         <script>

@@ -2261,7 +2261,7 @@ html;
                     $('select').addClass("form-control");
                     $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
                     $('.next').addClass("btn-outline-danger btn-rounded mx-2");
-                    $('.odd').addClass("bg-gray-conave").remove('odd')
+                    $('.odd').addClass("bg-gray-conave")
                }   
             });
 

@@ -589,26 +589,9 @@
 
 
                                 <div class="row">
-
-                                    <!-- <div class="col-12 col-lg-4">
-                                        <label class="form-label mt-4">Genero: *</label>
-                                        <select class="form-control" style="cursor: pointer;" name="genero" id="genero" placeholder="Genero">
-                                            <option value="" disabled selected>Selecciona una opción</option>
-                                            <option value="Mujer">Mujer</option>
-                                                <option value="Hombre">Hombre</option>
-                                            <?php echo $optionsGenero; ?>
-                                        </select>
-                                        <input type="text" class="form-control" value="<?= $userData['genero'] ?>" disabled>
-                                    </div> -->
-
                                     <div class="col-12 col-lg-6">
-
                                         <label class="form-label mt-4">Fecha de Nacimiento * </label>
-
                                         <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required="" value="<?= $detalles_registro['fecha_nacimiento'] ?>">
-
-
-
                                     </div>
 
                                     <div class="col-lg-6 col-12">
@@ -617,117 +600,14 @@
                                             <input id="telefono" name="telefono" minlength="10" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['telefono'] ?>" required>
                                         </div>
                                     </div>
-
-
                                 </div>
 
                                 <div class="row">
-
-                                    
-
                                     <div class="col-lg-12 col-12">
                                         <label class="form-label mt-4">Email Registrado y Verificado *</label>
                                         <div class="input-group">
                                             <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['usuario'] ?>" readonly>
                                         </div>
-                                    </div>
-
-                                    <!-- <div class="col-lg-3 align-self-center">
-                                        <label class="form-label mt-4">Unidad de Negocio *</label>
-                                        <select class="form-control" style="cursor: pointer;" name="bu" id="bu" tabindex="-1" data-choice="active" required>
-                                            <option value="" disabled selected>Selecciona una opción</option>
-                                            <?php echo $optionsBu; ?>
-                                        </select>
-                                        <input id="bu" name="bu" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_bu'] ?>" readonly>
-                                    </div> -->
-
-                                    <!-- <div class="col-lg-3 align-self-center">
-                                        <label class="form-label mt-4">Pertenezco a la Línea ASOFARMA</label>
-                                        <select class="form-control" style="cursor: pointer;" name="linea_principal" id="linea_principal" tabindex="-1" data-choice="active">
-                                            <option value="" disabled selected>Selecciona una opción</option>
-                                            <?php echo $optionsLineaPrincipal; ?>
-                                        </select>
-                                        <input id="linea_principal" name="linea_principal" maxlength="49" class="form-control" type="text" placeholder="linea" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_linea'] ?>" readonly>
-                                    </div> -->
-
-
-                                </div>
-
-                                <div class="row">
-
-                                    <!-- <div class="col-lg-4 align-self-center">
-                                        <label class="form-label mt-4">Posición *</label>
-                                        <select class="form-control" style="cursor: pointer;" name="posicion" id="posicion" tabindex="-1" data-choice="active" required>
-                                            <option value="" disabled selected>Selecciona una opción</option>
-                                            <?php echo $optionsPosiciones; ?>
-                                        </select>
-                                        <input id="posicion" name="posicion" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_posicion'] ?>" readonly>
-                                    </div> -->
-
-                                    <!-- <div class="col-lg-4 align-self-center">
-                                        <label class="form-label mt-4">Ciudad de Residencia *</label>
-                                        <select class="form-control" style="cursor: pointer;" name="residencia" id="residencia" tabindex="-1" data-choice="active" required>
-                                            <option value="" disabled selected>Selecciona una opción</option>
-                                            <?php echo $optionsEstados; ?>
-                                        </select>
-                                        <input id="residencia" name="residencia" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_estado'] ?>" readonly>
-                                    </div> -->
-
-                                    <div class="col-12 col-lg-5">
-                                        <label class="form-label mt-4">Número de empleado *</label>
-                                        <div class="input-group">
-                                            <input id="numero_empleado" name="numero_empleado" maxlength="29" pattern="[a-zA-Z0-9]*" class="form-control" type="text" placeholder="" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['numero_empleado'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" readonly>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-7 align-self-center col-cp">
-                                        <div id="show-cp">
-                                            <label class="form-label mt-4">Codigo Postal: </label>
-                                            <!-- <select class="form-control" name="cp" id="cp">
-                                                <option value="" disabled selected>Seleccione una opción</option>
-                                                <?php echo $optionsCp; ?>
-                                            </select> -->
-                                            <!-- <input id="cp" name="cp" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $userData['codigo_postal']. " - ". $userData['colonia']." - ". $userData['del_mpio'] ?>" readonly> -->
-                                            <input id="cp" name="cp" maxlength="49" class="form-control" type="text" placeholder="bu" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['id_cp'] ?>" readonly>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <!-- <div class="col-lg-3 align-self-center">
-                                        <label class="form-label mt-4">Aeropuerto: </label>
-                                        <select class="form-control" style="cursor: pointer;" name="aeropuerto" id="aeropuerto" tabindex="-1" data-choice="active" required>
-                                            <option value="" disabled selected>Selecciona una opción</option>
-                                            <?php echo $optionsEstados; ?>
-                                        </select>
-                                        <input id="aeropuerto" name="aeropuerto" maxlength="49" class="form-control" type="text" placeholder="aeropuerto" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre_aeropuerto']?>" readonly>
-                                    </div> -->
-                                    <div class="col-md-4 align-self-center">
-                                        <label class="form-label mt-4">Actividad *</label>
-                                        <!-- <select class="form-control" style="cursor: pointer;" name="actividad" id="actividad" tabindex="-1" data-choice="active" required>
-                                            <option value disabled>Selecciona una opción</option>
-                                            <option value="caminata_3k">Caminata 3k</option>
-                                            <option value="carrera_5k">Carrera 5k</option>
-                                            
-                                        </select> -->
-                                        <input id="actividad" name="actividad" maxlength="49" class="form-control" type="text" placeholder="actividad" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['actividad']?>" readonly>
-                                    </div>
-                                    <div class="col-md-4 align-self-center">
-                                        <label class="form-label mt-4">Talla de Playera *</label>
-                                        <!-- <select class="form-control" style="cursor: pointer;" required="true" name="talla_playera" id="talla_playera" tabindex="-1" data-choice="active">
-                                            <option value="" disabled>Seleccione una Talla</option>
-                                            <option value="Chica">Chica</option>
-                                            <option value="Mediana">Mediana</option>
-                                            <option value="Grande">Grande</option>
-                                            <option value="Extra_Grande">Extra Grande</option>
-                                        </select> -->
-                                        <input id="talla_playera" name="talla_playera" maxlength="49" class="form-control" type="text" placeholder="talla_playera" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['talla_playera']?>" readonly>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label mt-4">Restricciones alimenticias *</label>
-                                        <input class="form-control" name="restricciones_alimenticias" id="restricciones_alimenticias" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['restricciones_alimenticias'] ?>" placeholder="" readonly />
                                     </div>
                                 </div>
 

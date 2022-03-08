@@ -275,7 +275,6 @@ html;
                     <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-allergies" style="font-size: 13px;"></span><b> Alergias: </b>{$value['alergias']}{$value['alergias_otro']} <br>
                     {$value['alergia_medicamento_cual']}</p>
 
-<<<<<<< HEAD
           <hr>
           <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-ban" style="font-size: 13px;"></span><b> Restricciones alimenticias: </b>{$value['restricciones_alimenticias']}</p>
           
@@ -285,9 +284,6 @@ html;
 
           </td>
         
-=======
-                </td>      
->>>>>>> 3e683eb2324d940d99c50edfb06fd82f3f64cdcc
 
           <td style="text-align:left; vertical-align:middle;"> 
             {$pase_ida}

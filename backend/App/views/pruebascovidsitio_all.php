@@ -130,11 +130,11 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/PruebasCovidSitio/" class="nav-link active" aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a href="/Asistencias/" class="nav-link active" aria-controls="basicExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-viruses" style="color: #fff"></span>
+                        <span class="fa fa-bell" style="color: #fff"></span>
                     </div>
-                    <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
+                    <span class="nav-link-text ms-1">Asistencias</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -338,7 +338,7 @@
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="d-flex flex-column h-100">
-                                    <h2 class="font-weight-bolder mb-0">Pruebas Covid en Sitio</h2>
+                                    <h2 class="font-weight-bolder mb-0">Asistencias</h2>
                                 </div>
                             </div>
                         </div>

@@ -8,7 +8,7 @@ use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\PruebasCovidSitio as PruebasCovidSitioDao;
 
-class PruebasCovidSitio extends Controller{
+class Asistencias extends Controller{
 
     private $_contenedor;
 

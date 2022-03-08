@@ -36861,4 +36861,8 @@ input:checked ~ label#divss{
   width: max-content;
 }
 
+table.dataTable.no-footer {
+    border-bottom: 1px solid #f005 !important;
+}
+
 /*# sourceMappingURL=dashboard-pro.css.map */

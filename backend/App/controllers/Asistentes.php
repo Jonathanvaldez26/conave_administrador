@@ -43,7 +43,7 @@ class Asistentes extends Controller{
         // var_dump($asistentes);
         View::set('tabla',$this->getAllColaboradoresAsignados());
         View::set('header',$this->_contenedor->header($this->getHeader()));
-        View::set('footer',$this->_contenedor->footer($extraFooter));
+        View::set('footer',$this->_contenedor->footer($this->getFooter()));
         View::render("asistentes_all");
 
     }
@@ -55,6 +55,7 @@ class Asistentes extends Controller{
             Detalles
         </title>
 
+        
 
 html;
 
@@ -79,7 +80,60 @@ html;
             <!-- Github buttons -->
             <script async defer src="https://buttons.github.io/buttons.js"></script>
             <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-            <script src="../../../assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>   
+            <script src="../../../assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
+            <script src="../../../assets/js/plugins/choices.min.js"></script>
+            <script type="text/javascript" wfd-invisible="true">
+                if (document.getElementById('choices-button')) {
+                    var element = document.getElementById('choices-button');
+                    const example = new Choices(element, {});
+                }
+                var choicesTags = document.getElementById('choices-tags');
+                var color = choicesTags.dataset.color;
+                if (choicesTags) {
+                    const example = new Choices(choicesTags, {
+                    delimiter: ',',
+                    editItems: true,
+                    maxItemCount: 5,
+                    removeItemButton: true,
+                    addItems: true,
+                    classNames: {
+                        item: 'badge rounded-pill choices-' + color + ' me-2'
+                    }
+                    });
+                }
+            </script>
+            <script src="/js/jquery.min.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+            <!-- jQuery -->
+            <script src="/js/jquery.min.js"></script>
+            <!--   Core JS Files   -->
+            <script src="/assets/js/core/popper.min.js"></script>
+            <script src="/assets/js/core/bootstrap.min.js"></script>
+            <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+            <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+            <!-- Kanban scripts -->
+            <script src="/assets/js/plugins/dragula/dragula.min.js"></script>
+            <script src="/assets/js/plugins/jkanban/jkanban.js"></script>
+            <script src="/assets/js/plugins/chartjs.min.js"></script>
+            <script src="/assets/js/plugins/threejs.js"></script>
+            <script src="/assets/js/plugins/orbit-controls.js"></script>
+            
+        <!-- Github buttons -->
+            <script async defer src="https://buttons.github.io/buttons.js"></script>
+        <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+            <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
+
+
+            <!-- VIEJO INICIO -->
+            <script src="/js/jquery.min.js"></script>
+        
+            <script src="/js/custom.min.js"></script>
+
+            <script src="/js/validate/jquery.validate.js"></script>
+            <script src="/js/alertify/alertify.min.js"></script>
+            <script src="/js/login.js"></script>
+            <!-- VIEJO FIN -->
 html;
         $detalles = AsistentesDao::getById($id);
         $detalles_registro = AsistentesDao::getTotalById($id);
@@ -293,8 +347,7 @@ html;
           </td>
           
           <td style="text-align:center; vertical-align:middle;">
-          
-          <a href="Detalles/{$value['utilerias_asistentes_id']}"><i class="fa fa-eye"></i></a>
+            <a href="/Asistentes/Detalles/{$value['utilerias_asistentes_id']}"><i class="fa fa-eye"></i></a>
           </td>
         </tr>
 html;
@@ -2197,7 +2250,20 @@ html;
       <script>
         $(document).ready(function(){
 
-            $('#user-list').DataTable();
+            $('#user-list').DataTable({
+                "drawCallback": function( settings ) {
+                    $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+                    $('.paginate_button').addClass("btn").removeClass("paginate_button");
+                    $('.dataTables_length').addClass("m-4");
+                    $('.dataTables_info').addClass("mx-4");
+                    $('.dataTables_filter').addClass("m-4");
+                    $('input').addClass("form-control");
+                    $('select').addClass("form-control");
+                    $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+                    $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+                    $('.odd').addClass("bg-gray-conave").remove('odd')
+               }   
+            });
 
 
         //     // Remove accented character from search input as well

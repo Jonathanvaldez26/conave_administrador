@@ -141,7 +141,7 @@ html;
 
     public function footer($extra = ''){
         $footer =<<<html
-<!-- jQuery -->
+        <!-- jQuery -->
 
           <script>
             function catalogos(params) {

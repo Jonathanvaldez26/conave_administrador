@@ -29,12 +29,15 @@ class Perfiles extends Controller{
 
           $('#muestra-cupones').DataTable( {
             "drawCallback": function( settings ) {
-                 $('.current').addClass("btn btn-info").removeClass("paginate_button");
-                 $('.paginate_button').addClass("btn").removeClass("paginate_button");
-                 $('.dataTables_length').addClass("m-4");
-                 $('.dataTables_info').addClass("mx-4");
-                 $('.dataTables_filter').addClass("m-4");
-                 $('.odd').addClass("bg-gris");
+              $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+                    $('.paginate_button').addClass("btn").removeClass("paginate_button");
+                    $('.dataTables_length').addClass("m-4");
+                    $('.dataTables_info').addClass("mx-4");
+                    $('.dataTables_filter').addClass("m-4");
+                    // $('input').addClass("form-control");
+                    $('select').addClass("form-control");
+                    $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+                    $('.next').addClass("btn-outline-danger btn-rounded mx-2");
             }
           });
 
@@ -109,7 +112,7 @@ $tabla.=<<<html
                 <td style="text-align:center; vertical-align:middle;">{$value['descripcion']}</td>
                 <td style="text-align:center; vertical-align:middle;">{$value['nombre_status']}</td>
                 <td style="text-align:center; vertical-align:middle;" class="center">
-                    <a href="/Perfiles/edit/{$value['perfil_id']}" type="submit" name="id" class="btn btn-primary" ><span class="fa fa-pencil-square-o" style="color:white"></span> </a>  <!-- data-toggle="modal" data-target="#editModal{$value['perfil_id']}" -->
+                    <a href="/Perfiles/edit/{$value['perfil_id']}" type="submit" name="id" class="btn bg-gradient-primary" ><span class="fa fa-pencil-square-o" style="color:white"></span> </a>  <!-- data-toggle="modal" data-target="#editModal{$value['perfil_id']}" -->
                 </td><!--   -->
                 </tr>
                 

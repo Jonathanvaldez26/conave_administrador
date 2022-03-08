@@ -94,7 +94,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#authExamples" class="nav-link active" aria-controls="authExamples" role="button" aria-expanded="false">
+                    <a href="/Habitaciones" class="nav-link active" aria-controls="authExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-hotel" style="color: #fff"></span>
                         </div>
@@ -178,112 +178,9 @@
                             </li>
                         </ul>
                     </div>
-<<<<<<< HEAD
-                    <span class="nav-link-text ms-1">Vuelos</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/PickUp/" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-bus" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">PickUp</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="#authExamples" class="nav-link active" aria-controls="authExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-hotel" style="color: #fff"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Habitaciones</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Cenas/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-coffee" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Cenas</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-bell" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Asistencias</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <hr class="horizontal dark" />
-                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
-            </li>
-            <li class="nav-item">
-                <a href="/ComprobanteVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-shield-virus" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Comprobante Vacunación</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/PruebasCovidUsuarios/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-virus-slash" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <hr class="horizontal dark" />
-                <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
-            </li>
-            <li class="nav-item">
-                <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-tools" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Configuración</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-user-circle-o" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Utilerias</span>
-                </a>
-                <div class="collapse " id="utilerias" hidden>
-                    <ul class="nav ms-4 ps-3">
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Administradores/">
-                                <span class="sidenav-mini-icon"> A </span>
-                                <span class="sidenav-normal">Administradores</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Perfiles/">
-                                <span class="sidenav-mini-icon"> P </span>
-                                <span class="sidenav-normal"> Perfiles  </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Log/">
-                                <span class="sidenav-mini-icon"> L </span>
-                                <span class="sidenav-normal"> Log </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
-=======
                 </li>
             </ul>
         </div>
->>>>>>> aa43b9d7dbe2320809ed0bc1d4cb28a56abf80ae
 
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -1067,12 +964,8 @@
 
 
 
-                        <div class="row" id="cont_fechas">
-                            <!-- <div class="col-12 col-lg-6">
-                                            <label class="form-label mt-4">Fechas * </label>
-                                            <input type="date" class="form-control" id="fecha" name="fecha" required="" value="<?= $hotel['fechas']; ?>">
-                                        </div> -->
-                            <?php echo $dates ?>
+                        <div  id="cont_fechas">
+                            <?php echo $dates; ?>
                         </div>
 
 

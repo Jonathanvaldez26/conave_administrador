@@ -426,7 +426,7 @@
                                     <div class="table-responsive p-0" >
                                         
                                         <form name="all" id="all" action="/Colaboradores/delete" method="POST">
-                                            <table class="table align-items-center mb-0" id="user-list">
+                                            <table class="table align-items-center mb-0 table table-borderless" id="user-list">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         

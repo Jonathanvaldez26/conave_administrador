@@ -347,8 +347,7 @@ html;
           </td>
           
           <td style="text-align:center; vertical-align:middle;">
-          
-          <a href="/Asistentes/Detalles/{$value['utilerias_asistentes_id']}"><i class="fa fa-eye"></i></a>
+            <a href="/Asistentes/Detalles/{$value['utilerias_asistentes_id']}"><i class="fa fa-eye"></i></a>
           </td>
         </tr>
 html;
@@ -2251,7 +2250,20 @@ html;
       <script>
         $(document).ready(function(){
 
-            $('#user-list').DataTable();
+            $('#user-list').DataTable({
+                "drawCallback": function( settings ) {
+                    $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+                    $('.paginate_button').addClass("btn").removeClass("paginate_button");
+                    $('.dataTables_length').addClass("m-4");
+                    $('.dataTables_info').addClass("mx-4");
+                    $('.dataTables_filter').addClass("m-4");
+                    $('input').addClass("form-control");
+                    $('select').addClass("form-control");
+                    $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+                    $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+                    $('.odd').addClass("bg-gray-conave").remove('odd')
+               }   
+            });
 
 
         //     // Remove accented character from search input as well

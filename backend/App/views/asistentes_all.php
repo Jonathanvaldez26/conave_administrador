@@ -111,6 +111,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-bell" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Asistencias</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
                 </li>
@@ -130,14 +138,7 @@
                         <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                            <span class="fa fa-bell" style="color: #344767"></span>
-                        </div>
-                        <span class="nav-link-text ms-1">Asistencias</span>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
@@ -377,7 +378,6 @@
                         <div class="card-header pb-0">
                             <div class="d-lg-flex">
                                 <div>
-                                    <h5 class="mb-0">Asistentes ASOFARMA (Invitados)</h5>
                                     <p class="text-sm mb-0">
                                         En esta sección se podran visualizar todos los usuarios que han finalizado su registro, si usted desea ver quienes no han terminado el registro dirijasé a la pestaña nuevos accesos 
                                     </p>

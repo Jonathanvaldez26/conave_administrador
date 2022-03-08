@@ -392,39 +392,39 @@
         <div class=" mt-7">
             <div class="card card-body mt-n6 overflow-hidden">
                 <div class="row gx-4">
-                <div class="col-auto">
-                    <div class="bg-gradient-red avatar avatar-xl position-relative">
-                        <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
-                        <span class="fa fa-plane" style="font-size: xx-large;"></span>
+                    <div class="col-auto">
+                        <div class="bg-gradient-red avatar avatar-xl position-relative">
+                            <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                            <span class="fa fa-plane" style="font-size: xx-large;"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-auto my-auto">
-                    <div class="h-100">
-                    <h5 class="mb-1">
-                        Vuelos
-                    </h5>
-                    <p class="mb-0 font-weight-bold text-sm">
-                    </p>
+                    <div class="col-auto my-auto">
+                        <div class="h-100">
+                        <h5 class="mb-1">
+                            Vuelos
+                        </h5>
+                        <p class="mb-0 font-weight-bold text-sm">
+                        </p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
-                    <div class="nav-wrapper position-relative end-0">
-                        <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
-                            <li class="nav-item">
-                            <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
-                                <span class="fa fa-plane-arrival"></span>
-                                <span class="ms-1">Vuelos Llegada</span>
-                            </a>
-                            </li>
-                            <li class="nav-item">
-                            <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
-                                <span class="fa fa-plane-departure"></span>
-                                <span class="ms-1">Vuelos Salida</span>
-                            </a>
-                            </li>
-                        </ul>
+                    <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                        <div class="nav-wrapper position-relative end-0">
+                            <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                    <span class="fa fa-plane-arrival"></span>
+                                    <span class="ms-1">Vuelos Llegada</span>
+                                </a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                    <span class="fa fa-plane-departure"></span>
+                                    <span class="ms-1">Vuelos Salida</span>
+                                </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>

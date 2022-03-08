@@ -342,17 +342,17 @@
                         <div class="card-header pb-0">
                             <div class="d-lg-flex">
                                 <div>
-                                    <h5 class="mb-0">Lista de usuarios</h5>
+                                    <h5 class="mb-0">Asistentes Registrados Convencion CONAVE 2022</h5>
                                     <p class="text-sm mb-0">
-                                        En esta sección se podran visualizar todos los usuarios registrados
+                                        En esta sección se podran visualizar todos los usuarios que han finalizado su registro, si usted desea ver quienes no han terminado el registro dirijasé a la pestaña nuevos accesos 
                                     </p>
                                 </div>
                                 <div class="ms-auto my-auto mt-lg-0 mt-4">
                                     <div class="ms-auto my-auto">
-                                        <a href="./new-product.html" class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; New Product</a>
-                                        <button type="button" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
+                                        <!-- <a href="./new-product.html" class="btn bg-gradient-primary btn-sm mb-0" target="_blank">+&nbsp; New Product</a> -->
+                                        <!-- <button type="button" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
                                             Import
-                                        </button>
+                                        </button> -->
                                         <div class="modal fade" id="import" tabindex="-1" aria-hidden="true">
                                             <div class="modal-dialog mt-lg-10">
                                                 <div class="modal-content">
@@ -376,35 +376,72 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Export</button>
+                                        <!-- <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Export</button> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body px-0 pb-0">
-                            <div class="table-responsive p-0">
-                                <form name="all" id="all" action="/Colaboradores/delete" method="POST">
-                                    <table class="table align-items-center mb-0" id="user-list">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                
-                                                
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Linea</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alergias</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Encargado Linea</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php echo $tabla; ?>
-
-                                        </tbody>
-
-                                    </table>
-                                </form>
+                            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto m-auto mt-3">
+                                <div class="nav-wrapper position-relative end-0">
+                                    <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                        <li class="nav-item">
+                                        <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                            <span class="fa fa-table"></span>
+                                            <span class="ms-1">Tabla 1</span>
+                                        </a>
+                                        </li>
+                                        <li class="nav-item">
+                                        <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                            <span class="fa fa-table"></span>
+                                            <span class="ms-1">Tabla 2</span>
+                                        </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
+                            <br>
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
+                                    <div class="table-responsive p-0" >
+                                        
+                                        <form name="all" id="all" action="/Colaboradores/delete" method="POST">
+                                            <table class="table align-items-center mb-0" id="user-list">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        
+                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th>
+                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php echo $tabla; ?>
+
+                                                </tbody>
+
+                                            </table>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
+                                    
+                                    <ul class="list-group">
+                                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                            <div class="d-flex flex-column">
+                                                <h6 class="mb-3 text-sm">Peter Parker</h6>
+                                                <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
+                                                <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -418,26 +455,11 @@
                                     document.write(new Date().getFullYear())
                                 </script>,
                                 made with <i class="fa fa-heart"></i> by
-                                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                                for a better web.
+                                <a href="https://www.grupolahe.com" class="font-weight-bold" target="_blank">Grupo LAHE</a>
+                                
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
             </footer>

@@ -32,10 +32,47 @@ sql;
     }
 
     public static function update($data){
+      $mysqli = Database::getInstance(true);
+      $query=<<<sql
+      UPDATE registros_acceso SET nombre = :nombre, segundo_nombre = :segundo_nombre, apellido_materno = :apellido_materno, apellido_paterno = :apellido_paterno, fecha_nacimiento = :fecha_nacimiento, telefono = :telefono, alergias = :alergias WHERE email = :email;
+  sql;
+      $parametros = array(
         
-    }
+        ':nombre'=>$data->_nombre,
+        ':segundo_nombre'=>$data->_segundo_nombre,
+        ':apellido_paterno'=>$data->_apellido_paterno,
+        ':apellido_materno'=>$data->_apellido_materno,
+        ':fecha_nacimiento'=>$data->_fecha_nacimiento,
+        ':telefono'=>$data->_telefono,
+        ':alergias'=>$data->_alergias,
+        ':email'=>$data->_email
+        
+      );
+
+
+      $accion = new \stdClass();
+      $accion->_sql= $query;
+      $accion->_parametros = $parametros;
+      $accion->_id = $data->_administrador_id;
+      // UtileriasLog::addAccion($accion);
+      return $mysqli->update($query, $parametros);
+  }
 
     public static function delete($id){
         
+    }
+
+    public static function getEncargadoLinea($id_linea){
+      
+      $mysqli = Database::getInstance();
+      $query =<<<sql
+      SELECT ua.nombre as nombre_encargado, lp.clave, lp.nombre as nombre_linea, al.id_linea_principal
+      FROM asigna_linea al
+      INNER JOIN linea_principal lp ON (lp.id_linea_principal = al.id_linea_principal) 
+      INNER JOIN  utilerias_administradores ua ON (al.utilerias_administradores_id_linea_asignada = ua.utilerias_administradores_id) 
+      WHERE al.id_linea_principal = $id_linea;
+sql;
+  
+      return $mysqli->queryAll($query);
     }
 }

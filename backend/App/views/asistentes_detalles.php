@@ -338,7 +338,7 @@
                         <div class="card-header p-3 pb-0">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <h6>Asistente - Detalles</h6>
+                                    <h6>Detalles - Asistente ASOFARMA</h6>
                                     <!-- <p class="text-sm mb-0">
                                         No. Asistente: <b><?php echo $id_asistente; ?></b>
                                     </p> -->
@@ -423,7 +423,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-12 my-auto text-end">
-                                                <button class="btn bg-gradient-primary mb-0" title="Editar Asistente" data-toggle="modal" data-target="#exampleModal3"><i class="fa fa-edit"></i></button>
+                                                <button class="btn bg-gradient-primary mb-0" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
                                                 <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
                                             </div>
                                         </div>
@@ -539,27 +539,158 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+        <div class="modal fade" id="editar-asistente" tabindex="-1" role="dialog" aria-labelledby="editar-asistenteLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModal3Label">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                <div class="modal-content" id="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editar-asistenteLabel">Editar Asistente</h5>
+                        <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="update_form" action="" method="POST">
+                            <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <!-- <input type="text" id="id_registro" name="id_registro" value="<?= $userData['id_registro'] ?> "> -->
+                                        <label class="form-label">Nombre *</label>
+                                        <div class="input-group">
+                                            <input id="nombre" name="nombre" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Alec" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <label class="form-label">Segundo Nombre </label>
+                                        <div class="input-group">
+                                            <input id="segundo_nombre" name="segundo_nombre" maxlength="49" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Alec" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['segundo_nombre'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    
+                                    <div class="col-12 col-lg-6">
+                                        <label class="form-label">Apellido Paterno *</label>
+                                        <div class="input-group">
+                                            <input id="apellido_paterno" name="apellido_paterno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellido_paterno'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label class="form-label">Apellido Materno *</label>
+                                        <div class="input-group">
+                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellido_materno'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <label class="form-label mt-4">Fecha de Nacimiento * </label>
+                                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required="" value="<?= $detalles_registro['fecha_nacimiento'] ?>">
+                                    </div>
+
+                                    <div class="col-lg-6 col-12">
+                                        <label class="form-label mt-4">Número de Telefono *</label>
+                                        <div class="input-group">
+                                            <input id="telefono" name="telefono" minlength="10" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['telefono'] ?>" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 col-12">
+                                        <label class="form-label mt-4">Email Registrado y Verificado *</label>
+                                        <div class="input-group">
+                                            <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['usuario'] ?>" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="form-label mt-4">Alergias *</label>
+                                        <input class="form-control" name="alergias" id="alergias" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias'] ?>" placeholder="" readonly />
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label mt-4">Alergias Otro *</label>
+                                        <input class="form-control" name="alergias_otro" id="alergias_otro" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias_otro'] ?>" placeholder="" readonly />
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label class="form-label mt-4">Alergias Medicamento *</label>
+                                        <input class="form-control" name="alergia_medicamento_cual" id="alergia_medicamento_cual" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergia_medicamento_cual'] ?>" placeholder="" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="button-row d-flex mt-4 col-12">
+                                        <a class="btn bg-gradient-danger mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
+                                        <button class="btn bg-gradient-primary ms-auto mb-0" type="submit" title="Actualizar">Actualizar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
                 </div>
             </div>
         </div>
 
     </main>
 </body>
+
+<script>
+    $(document).ready(function() {
+        
+        $("#update_form").on("submit", function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(document.getElementById("update_form"));
+            for (var value of formData.values()) {
+                console.log(value);
+            }
+
+            $.ajax({
+                url: "Asistentes/Detalles/Actualizar/",
+                type: "POST",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+
+                },
+                success: function(respuesta) {
+
+                    if (respuesta == 'success') {
+                        swal("Se actualizaron tus datos correctamente!", "", "success").
+                        then((value) => {
+                            window.location.replace("/Detalles/Actualizar");
+                        });
+                    } else {
+                        swal("Usted No Actualizo Nada!", "", "warning").
+                        then((value) => {
+                            window.location.replace("/Detalles/Actualizar")
+                        });
+                    }
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
+</script>
 
 <?php echo $footer; ?>

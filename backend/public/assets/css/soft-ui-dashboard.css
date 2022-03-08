@@ -36857,4 +36857,8 @@ input:checked ~ label#divss{
   border-radius: 10px;  
 }
 
+#modal-content{
+  width: max-content;
+}
+
 /*# sourceMappingURL=dashboard-pro.css.map */

@@ -113,33 +113,21 @@ html;
           if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
               $id_registro = $_POST['id_registro'];
-            //   $id_registro = $id;
               $nombre = $_POST['nombre'];
               $segundo_nombre = $_POST['segundo_nombre'];
               $apellido_paterno = $_POST['apellido_paterno'];
               $apellido_materno = $_POST['apellido_materno'];
-            //   $genero = $_POST['genero'];
               $fecha_nacimiento = $_POST['fecha_nacimiento'];
               $email = $_POST['email'];
               $telefono = $_POST['telefono'];
-            //   $linea_principal = $_POST['linea_principal'];
-            //   $talla = $_POST['talla'];
-            //   $actividad = $_POST['actividad'];
-            //   $alergias = $_POST['alergias'];
 
-              $documento->_id_registro = $id_registro;
               $documento->_nombre = $nombre;
               $documento->_segundo_nombre = $segundo_nombre;
               $documento->_apellido_paterno = $apellido_paterno;
               $documento->_apellido_materno = $apellido_materno;
-            //   $documento->_genero = $genero;
               $documento->_fecha_nacimiento = $fecha_nacimiento;
               $documento->_email = $email;
               $documento->_telefono = $telefono;
-              //$documento->_linea_principal = $linea_principal;
-              //$documento->_talla = $talla;
-              //$documento->_actividad = $actividad;
-            //   $documento->_alergias = $alergias;
 
               $id = AsistentesDao::update($documento);
 
@@ -273,20 +261,19 @@ html;
          
           
 
-          <td style="text-align:left; vertical-align:middle;"> 
+                <td style="text-align:left; vertical-align:middle;"> 
+                    
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
 
-          <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
-          <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
-          <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
+                    <hr>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-egg-fried" style="font-size: 13px;"></span><b> Restricciones alimenticias: </b>{$value['restricciones_alimenticias']}</p>
+                    
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-allergies" style="font-size: 13px;"></span><b> Alergias: </b>{$value['alergias']}{$value['alergias_otro']} <br>
+                    {$value['alergia_medicamento_cual']}</p>
 
-          <hr>
-          <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-egg-fried" style="font-size: 13px;"></span><b> Restricciones alimenticias: </b>{$value['restricciones_alimenticias']}</p>
-          
-          <p class="text-sm font-weight-bold mb-0 "><span class="fas fa-allergies" style="font-size: 13px;"></span><b> Alergias: </b>{$value['alergias']}{$value['alergias_otro']} <br>
-          {$value['alergia_medicamento_cual']}</p>
-
-          </td>
-        
+                </td>      
 
           <td style="text-align:left; vertical-align:middle;"> 
             {$pase_ida}

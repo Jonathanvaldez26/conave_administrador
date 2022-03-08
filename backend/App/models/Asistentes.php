@@ -32,25 +32,31 @@ sql;
     }
 
     public static function update($data){
-            $mysqli = Database::getInstance(true);
-            $query=<<<sql
-            UPDATE registros_acceso SET nombre = :nombre, segundo_nombre = :segundo_nombre, apellido_materno = :apellido_materno, apellido_paterno = :apellido_paterno, fecha_nacimiento = :fecha_nacimiento, telefono = :telefono WHERE id_registro = :id_registro;
-        sql;
-            $parametros = array(
-              
-              ':id_registro'=>$data->_id_registro,
-              ':nombre'=>$data->_nombre,
-              ':segundo_nombre'=>$data->_segundo_nombre,
-              ':apellido_paterno'=>$data->_apellido_paterno,
-              ':apellido_materno'=>$data->_apellido_materno,
-            //   ':genero'=>$data->_genero,
-              ':fecha_nacimiento'=>$data->_fecha_nacimiento,
-              ':telefono'=>$data->_telefono,
-            //   ':alergias'=>$data->_alergias,
-            //   ':email'=>$data->_email
-              
-            );
-    }
+      $mysqli = Database::getInstance(true);
+      $query=<<<sql
+      UPDATE registros_acceso SET nombre = :nombre, segundo_nombre = :segundo_nombre, apellido_materno = :apellido_materno, apellido_paterno = :apellido_paterno, fecha_nacimiento = :fecha_nacimiento, telefono = :telefono, alergias = :alergias WHERE email = :email;
+  sql;
+      $parametros = array(
+        
+        ':nombre'=>$data->_nombre,
+        ':segundo_nombre'=>$data->_segundo_nombre,
+        ':apellido_paterno'=>$data->_apellido_paterno,
+        ':apellido_materno'=>$data->_apellido_materno,
+        ':fecha_nacimiento'=>$data->_fecha_nacimiento,
+        ':telefono'=>$data->_telefono,
+        ':alergias'=>$data->_alergias,
+        ':email'=>$data->_email
+        
+      );
+
+
+      $accion = new \stdClass();
+      $accion->_sql= $query;
+      $accion->_parametros = $parametros;
+      $accion->_id = $data->_administrador_id;
+      // UtileriasLog::addAccion($accion);
+      return $mysqli->update($query, $parametros);
+  }
 
     public static function delete($id){
         

@@ -39,7 +39,7 @@ class Asistencias extends Controller{
 html;
       View::set('header',$this->_contenedor->header($extraHeader));
       View::set('footer',$this->_contenedor->footer($extraFooter));
-      View::render("pruebascovidsitio_all");
+      View::render("asistencias_all");
     }
 
 }

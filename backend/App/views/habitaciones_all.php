@@ -94,7 +94,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/Habitaciones" class="nav-link active" aria-controls="authExamples" role="button" aria-expanded="false">
+                    <a href="/Habitaciones/" class="nav-link active" aria-controls="authExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-hotel" style="color: #fff"></span>
                         </div>
@@ -107,6 +107,14 @@
                             <span class="fa fa-coffee" style="color: #344767"></span>
                         </div>
                         <span class="nav-link-text ms-1">Cenas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-bell" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Asistencias</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -127,14 +135,6 @@
                             <span class="fa fa-virus-slash" style="color: #344767"></span>
                         </div>
                         <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                            <span class="fa fa-viruses" style="color: #344767"></span>
-                        </div>
-                        <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
                     </a>
                 </li>
                 <li class="nav-item">

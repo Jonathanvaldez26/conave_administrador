@@ -8,7 +8,7 @@ use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\ComprobantesVacunacion as ComprobantesVacunacionDao;
 
-class ComprobantesVacunacion extends Controller{
+class ComprobanteVacunacion extends Controller{
 
     private $_contenedor;
 

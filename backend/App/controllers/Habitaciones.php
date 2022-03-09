@@ -97,7 +97,7 @@ html;
         foreach ($hoteles as $key => $value_cat) {
             if ($value['id_hotel' == $value_cat]) {
                 $modal_habitaciones .= <<<html
-                    <option value="{$value_cat['id_hotel']}" selected> {$value_cat['nombre_hotel']}</option>
+                    <option value="{$value_cat['id_hotel']}" selected> {$value_cat['id_hotel']}</option>
 html;
             }else{
                 $modal_habitaciones .= <<<html
@@ -224,19 +224,6 @@ html;
 
   public function ActualizarCategoria(){
     $documento = new \stdClass();
-
-
-    // echo "id habitacion". $_POST['id_habitacion'] ."<br>";
-    // echo "id hotel". $_POST['id_hotel']."<br>";
-    // echo "categoria". $_POST['categoria_habitacion']."<br>";
-    // echo "nombre categoria". $_POST['nombre_categoria']."<br>";
-    // echo "huespedes". $_POST['huespedes']."<br>";
-    // echo "total huespedes". $_POST['total_huespedes']."<br>";
-
-    // exit;
-
-    
-
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

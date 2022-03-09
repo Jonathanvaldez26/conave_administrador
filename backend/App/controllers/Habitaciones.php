@@ -75,7 +75,7 @@ html;
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="edit-habitacionLabel">Editar Categoria{$value['id_habitacion']}</h5>
+                            <h5 class="modal-title" id="edit-habitacionLabel">Editar Categoria</h5>
                             <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -83,6 +83,7 @@ html;
             
                         <div class="modal-body">
                             <form class="form-horizontal" id="update_form_cat" action="" method="POST">
+                            <input id="id_habitacion" name="id_habitacion"  class="form-control" type="hidden" placeholder="Sencilla" "  value="{$value['id_habitacion']}">
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-12 col-lg-6">

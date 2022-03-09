@@ -46,7 +46,11 @@ sql;
     public static function updateCategoria($data){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
+<<<<<<< HEAD
       UPDATE categorias_habitaciones SET id_hotel = :id_hotel, categoria_habitacion = :categoria_habitacion, nombre_categoria = :nombre_categoria, huespedes = :huespedes, total_huespedes = :total_huespedes WHERE id_habitacion = :id_habitacion;
+=======
+      UPDATE categorias_habitaciones SET id_hotel = :id_hotel, categoria_habitacion = :categoria_habitacion, nombre_categoria = :nombre_categoria, huespedes = :huespedes, total_huespedes = :total_huespedes WHERE id_habitacion = :id_habitacion
+>>>>>>> 07872629cac940f534df04e146545f98879f298e
 sql;
       $parametros = array(
         ':id_habitacion'=>$data->_id_habitacion,

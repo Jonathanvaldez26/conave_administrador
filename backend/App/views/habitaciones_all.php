@@ -539,11 +539,12 @@
                                             <div>
                                                 <h6>Datos y Detalles Generales del Rooming List <span class="badge badge-sm bg-gradient-success">Completo</span></h6>
                                                 <p class="text-sm mb-0">
-                                                    <i class="fa fa-user-md"></i>Cliente. <b>Asofarma</b><br>
-                                                    <i class="fa fa-flag"></i> Evento: <b>Convención CONAVE 2022</b><br>
-                                                    <i class="fa fa-calendar"></i> Fechas: <b>Del 04 de Abril al 09 de Abril 2022</b><br>
-                                                    <i class="fa fa-map-marker"></i> Lugar: <b>RIVERA MAYA</b><br>
-                                                    <i class="fa fa-h-square"></i> Hotel: <b>BARCELO</b>
+                                                    <i class="fa fa-user-md"></i>Cliente. <b><?=$hotel['cliente'];?></b><br>
+                                                    <i class="fa fa-flag"></i> Evento: <b><?=$hotel['evento'];?></b><br>
+                                                    <i class="fa fa-calendar"></i> Fechas: <b>Del <?=$fecha_de;?> al  <?=$fecha_al;?></b><br>
+                                                    <i class="fa fa-map-marker"></i> Lugar: <b><?=$hotel['evento'];?></b><br>
+                                                    <i class="fa fa-h-square"></i> Hotel: <b><?=$hotel['nombre_hotel'];?></b><br>
+                                                    <i class="fa fa-h-square"></i> Total Habitaciones: <b><?=$hotel['total_habitaciones'];?></b>
                                                 </p>
 
                                             </div>
@@ -611,7 +612,7 @@
                                                             <div class="table-responsive">
                                                                 <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                                                                     <div class="dataTable-container">
-                                                                        <table class="table table-flush dataTable-table" id="datatable-search">
+                                                                        <!-- <table class="table table-flush dataTable-table" id="datatable-search">
                                                                             <thead class="thead-light">
                                                                                 <tr>
                                                                                     <th data-sortable="" style="width: 10.7306%;"><a href="#" class="dataTable-sorter">Tipo</a></th>
@@ -861,6 +862,24 @@
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
+                                                                        </table> -->
+
+                                                                        <table class="table table-flush dataTable-table" id="datatable-search">
+                                                                            <thead class="thead-light">
+                                                                                <tr>
+                                                                                    <th data-sortable="" style="width: 10.7306%;"><a href="#" class="dataTable-sorter">Categoria</a></th>
+                                                                                    <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">Cupo Huespedes</a></th>
+                                                                                    <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Total de huespedes</a></th>
+                                                                                    <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Editar</a></th>
+                                                                                    
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                
+                                                                                    <?php echo $tabla_categorias?>
+                                                                                    
+                                                                               
+                                                                            </tbody>
                                                                         </table>
                                                                     </div>
                                                                 </div>
@@ -912,32 +931,37 @@
 </body>
 
 <?php echo $footer; ?>
+
+<?php echo $modal_habitaciones; ?>
+
+
+
 <!-- Modal -->
-<div class="modal fade " id="editar-hotel" tabindex="-1" role="dialog" aria-labelledby="editar-hotelLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content " id="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editar-hotelLabel">Editar Hotel</h5>
-                <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" id="update_form" action="" method="POST">
+<div class="modal fade" id="editar-hotel" tabindex="-1" role="dialog" aria-labelledby="editar-hotelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editar-hotelLabel">Editar Hotel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form class="form-horizontal" id="update_form" action="" method="POST">
                     <div class="card-body pt-0">
 
                         <div class="row">
                             <div class="col-12 col-lg-6">
-                                <input type="text" id="id_hotel" name="id_hotel" value="<?= $hotel['id_hotel'] ?> ">
+                                <input type="hidden" id="id_hotel" name="id_hotel" value="<?= $hotel['id_hotel'] ?> ">
                                 <label class="form-label">Cliente *</label>
                                 <div class="input-group">
-                                    <input id="cliente" name="cliente" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['cliente']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="cliente" name="cliente" maxlength="29" class="form-control" type="text" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['cliente']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label class="form-label">Evento *</label>
                                 <div class="input-group">
-                                    <input id="evento" name="evento" maxlength="49" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="event" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['evento']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="evento" name="evento" maxlength="49" class="form-control" type="text" placeholder="event" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['evento']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
 
@@ -948,7 +972,7 @@
                             <div class="col-12 col-lg-6">
                                 <label class="form-label">Lugar *</label>
                                 <div class="input-group">
-                                    <input id="lugar" name="lugar" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['lugar']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="lugar" name="lugar" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['lugar']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
 
@@ -957,7 +981,19 @@
 
                                 <label class="form-label">Hotel *</label>
                                 <div class="input-group">
-                                    <input id="nombre_hotel" name="nombre_hotel" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['nombre_hotel']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="nombre_hotel" name="nombre_hotel" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['nombre_hotel']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+
+                                <label class="form-label">Total Habitaciones *</label>
+                                <div class="input-group">
+                                    <input id="total_habitaciones" name="total_habitaciones" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['total_habitaciones']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                         </div>
@@ -976,13 +1012,15 @@
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
-
-                </div>
-
-            </div>
+      </div>
+      
     </div>
+  </div>
 </div>
-</div>
+
+
+
+
 
 <script>
     $(document).ready(function() {
@@ -1025,17 +1063,20 @@
 
                     console.log(respuesta);
 
-                    // if (respuesta == 'success') {
-                    //     swal("Se actualizaron tus datos correctamente!", "", "success").
-                    //     then((value) => {
-                    //         window.location.replace("/Account/");
-                    //     });
-                    // } else {
-                    //     swal("Usted No Actualizo Nada!", "", "warning").
-                    //     then((value) => {
-                    //         window.location.replace("/Account/")
-                    //     });
-                    // }
+                    if (respuesta == 'success') {
+                        window.location.replace("/Habitaciones/");
+                        // swal("Se actualizaron tus datos correctamente!", "", "success").
+                        // then((value) => {
+                        //     window.location.replace("/Habitaciones/");
+                        // });
+
+
+                    } else {
+                        // swal("Usted No Actualizo Nada!", "", "warning").
+                        // then((value) => {
+                        //     window.location.replace("/Habitaciones/")
+                        // });
+                    }
                 },
                 error: function(respuesta) {
                     console.log(respuesta);

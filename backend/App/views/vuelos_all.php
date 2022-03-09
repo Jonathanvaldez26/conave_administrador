@@ -500,7 +500,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">
                         Asistente Para Cargar Pases de Abordar (Vuelos)
                     </h5>
-                    <span type="button" class="btn btn-dark" data-dismiss="modal" aria-label="Close">
+                    <span type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
                         X
                     </span>
                 </div>
@@ -554,8 +554,8 @@
                             <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["administrador_id"]?>">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success" id="btn_upload" name="btn_upload">Aceptar</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
+                            <button type="button" class="btn bg-gradient-secondary" data-dismiss="modal">Cancelar</button>
                         </div>
                     </form>
                 </div>

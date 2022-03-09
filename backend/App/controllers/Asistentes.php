@@ -2259,6 +2259,8 @@ html;
                     $('.dataTables_filter').addClass("m-4");
                     $('input').addClass("form-control");
                     $('select').addClass("form-control");
+                    $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+                    $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
                     $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
                     $('.next').addClass("btn-outline-danger btn-rounded mx-2");
                     $('.odd').addClass("bg-gray-conave")

@@ -75,7 +75,7 @@ html;
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="edit-habitacionLabel">Editar Categoria{$value['id_habitacion']}</h5>
+                            <h5 class="modal-title" id="edit-habitacionLabel">Editar Categoria</h5>
                             <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -83,6 +83,7 @@ html;
             
                         <div class="modal-body">
                             <form class="form-horizontal" id="update_form_cat" action="" method="POST">
+                            <input id="id_habitacion" name="id_habitacion"  class="form-control" type="hidden" placeholder="Sencilla" "  value="{$value['id_habitacion']}">
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-12 col-lg-6">
@@ -223,6 +224,18 @@ html;
 
   public function ActualizarCategoria(){
     $documento = new \stdClass();
+
+
+    // echo "id habitacion". $_POST['id_habitacion'] ."<br>";
+    // echo "id hotel". $_POST['id_hotel']."<br>";
+    // echo "categoria". $_POST['categoria_habitacion']."<br>";
+    // echo "nombre categoria". $_POST['nombre_categoria']."<br>";
+    // echo "huespedes". $_POST['huespedes']."<br>";
+    // echo "total huespedes". $_POST['total_huespedes']."<br>";
+
+    // exit;
+
+    
 
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

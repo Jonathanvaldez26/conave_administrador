@@ -704,6 +704,7 @@
                                     <input id="cliente" name="cliente" maxlength="29" class="form-control" type="text" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['cliente']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
+
                             <div class="col-12 col-lg-6">
                                 <label class="form-label">Evento *</label>
                                 <div class="input-group">
@@ -718,39 +719,31 @@
                             <div class="col-12 col-lg-6">
                                 <label class="form-label">Lugar *</label>
                                 <div class="input-group">
-                                    <input id="lugar" name="lugar" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['lugar']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="lugar" name="lugar" maxlength="29" class="form-control" type="text" placeholder="Cancún" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['lugar']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
-
 
                             <div class="col-12 col-lg-6">
-
                                 <label class="form-label">Hotel *</label>
                                 <div class="input-group">
-                                    <input id="nombre_hotel" name="nombre_hotel" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['nombre_hotel']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="nombre_hotel" name="nombre_hotel" maxlength="29" class="form-control" type="text" placeholder="Hotel Casablanca" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['nombre_hotel']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
-
 
                         </div>
 
                         <div class="row">
                             <div class="col-12 col-lg-6">
-
                                 <label class="form-label">Total Habitaciones *</label>
                                 <div class="input-group">
-                                    <input id="total_habitaciones" name="total_habitaciones" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['total_habitaciones']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="total_habitaciones" name="total_habitaciones" maxlength="11" class="form-control" type="number" placeholder="285" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['total_habitaciones']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                         </div>
 
-
-
                         <div class="row" id="cont_fechas" style="width: 567px; overflow:hidden;">
-
                             <?php echo $dates ?>
                         </div>
-
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-info" id="remove_date">quitar fecha</button>
@@ -758,19 +751,18 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
+
+                    </div>
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>
-
-
-
-<?php echo $footer; ?>
+<!--End Modal-->
 
 <?php echo $modal_habitaciones; ?>
+
+<?php echo $footer; ?>
 
 <script>
     $(document).ready(function() {

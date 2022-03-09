@@ -54,29 +54,24 @@
                                     <div class="multisteps-form">
                                         <!--form panels-->
                                         <div class="row">
-                                            <div class="col-12 col-lg-12 m-auto">
+                                            <div class="col-12 col-lg-10 m-auto">
                                                 <div id="card_one" class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one"data-animation="FadeIn">
-                                                    <h5 class="font-weight-bolder mb-0">¡Asistencia - !</h5>
                                                     <div class="multisteps-form__content">
-                                                        <br>
-                                                        <p class="mb-0 text-sm">
-                                                            Estimado: <strong><?php echo $name; ?></strong> ¡Tu pago ha sido exitoso!
-                                                        </p>
-                                                        <div id="card_pay">
-                                                            <img class="w-100 fadeIn1 fadeInBottom" src="../../../assets/img/illustrations/error-500.png" alt="500-error">
-                                                        </div>
-                                                        <p class="mb-0 text-sm">
-
-                                                            ¡Agradecemos inmensamente su preferencia!
-                                                            ¡Gracias de antemano! Y, por supuesto, si necesitas ayuda, ¡siempre puedes contar con nuestro equipo!
-                                                            <br>
-                                                            Espere instrucciones por parte del equipo - VI Congreso Mundial de Patología Dual.
-
-                                                        </p>
-                                                        <br>
-                                                        <div class="button-row d-flex mt-4">
-                                                            <a href="<?php echo ($regreso) ? $regreso : '/'?>" class="btn btn-sm btn bg-gradient-info ms-auto mb-0 js-btn-next" type="button" title="Next">Regresar al Sitio y Cargar mi Comprobante de Pago PAYPAL</a>
-                                                        </div>
+                                                        <section class="min-vh-75 d-flex align-items-center">
+                                                            <div class="container">
+                                                                <div class="row mt-lg-0 mt-1">
+                                                                    <div class="col-lg-5 my-auto">
+                                                                        <h1 class=" text-bolder text-gradient text-danger fadeIn1 fadeInBottom ">Error</h1>
+                                                                        <h4 class="fadeIn3 fadeInBottom opacity-8">Su Código de Asistencias NO es Válido. </h4>
+                                                                        <p class="lead opacity-6 fadeIn2 fadeInBottom">Verifique su link de acceso.</p>
+                                                                        <a href="/Login/" type="button" class="btn bg-gradient-danger mt-4 fadeIn2 fadeInBottom">Ir a la página de inicio</a>
+                                                                    </div>
+                                                                    <div class="col-lg-7 my-auto">
+                                                                        <img class="w-100 fadeIn1 fadeInBottom" src="../../../assets/img/illustrations/error-500.png" alt="500-error">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
                                                     </div>
                                                 </div>
 

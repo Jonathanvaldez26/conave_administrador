@@ -146,13 +146,23 @@ html;
         {
             if($value['id_asistencia'] != '')
             {
-
                 $flag = true;
+                $nombre = $value['nombre'];
+                $descripcion = $value['descripcion'];
+                $fecha_asistencia = $value['fecha_asistencia'];
+                $hora_asistencia_inicio = $value['hora_asistencia_inicio'];
+                $hora_asistencia_fin = $value['hora_asistencia_fin'];
             }
         }
 
         if($flag == true)
         {
+            View::set('nombre',$nombre);
+            View::set('descripcion',$descripcion);
+            View::set('nombre',$nombre);
+            View::set('fecha_asistencia',$fecha_asistencia);
+            View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
+            View::set('$hora_asistencia_fin',$hora_asistencia_fin);
             View::render("asistencias_all");
         }
         else

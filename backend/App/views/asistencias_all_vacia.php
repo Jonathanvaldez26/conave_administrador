@@ -63,37 +63,7 @@
                                                             Estimado: <strong><?php echo $name; ?></strong> ¡Tu pago ha sido exitoso!
                                                         </p>
                                                         <div id="card_pay">
-                                                            <p class="mb-0 text-sm">
-                                                                Imprima este formato como comprobante de pago, tome una captura y regrese al sitio principal, inicie sesión con el correo electrónico que acaba de registrar y cargue este comprobante en formato PDF.
-                                                            </p>
-                                                            <hr>
-                                                            <h5 class="text-center"> COMPROBANTE DE PAGO ELECTRÓNICO PAYPAL</h5>
-                                                            <hr>
-                                                            <p class="mb-0 text-sm">
-                                                                a)  Nombre Completo: <strong> <?php echo $name; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                a)  Correo Electrónico Registrado: <strong> <?php echo $email; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                b)  Payment ID: <strong> <?php echo $paymentID; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                c) Id de cliente Paypal: <strong> <?php echo $payerID; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                c) Cantidad Pagada: <strong> <?php echo $pay; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                d) Nombre del Congreso : <strong> "VI Congreso Mundial de Patología Dual"
-                                                                </strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                d) Tipo de Pago : <strong> "Electrónico PAYPAL "
-                                                                </strong>
-                                                            </p>
-                                                            <hr>
-
+                                                            <img class="w-100 fadeIn1 fadeInBottom" src="../../../assets/img/illustrations/error-500.png" alt="500-error">
                                                         </div>
                                                         <p class="mb-0 text-sm">
 

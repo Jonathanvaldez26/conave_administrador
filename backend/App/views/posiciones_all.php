@@ -374,10 +374,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive text-center">
-                    <table class="table align-items-center mb-0 text-center" id="muestra-cupones">
+                    <table class="table align-items-center mb-0 table table-striped table-bordered" id="posiciones-list">
                         <thead>
                         <tr>
-                            <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
+                            <!-- <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th> -->
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre Bussines Unit</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Alta</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quién Registró?</th>

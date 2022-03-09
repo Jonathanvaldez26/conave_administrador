@@ -34,6 +34,8 @@ html;
       <script>
         $(document).ready(function(){
 
+          $('#bu-list').DataTable();
+
           $("#muestra-cupones").tablesorter();
           var oTable = $('#muestra-cupones').DataTable({
                 "columnDefs": [{
@@ -669,6 +671,9 @@ html;
         $class = "danger";
       }
 
+      $extraFooter =<<<html
+        
+html;
 
       View::set('class',$class);
       View::set('regreso',$regreso);

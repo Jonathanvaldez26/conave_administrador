@@ -8,7 +8,7 @@ use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\PruebasCovidSitio as PruebasCovidSitioDao;
 
-class PruebasCovidSitio extends Controller{
+class Asistencias extends Controller{
 
     private $_contenedor;
 
@@ -39,7 +39,7 @@ class PruebasCovidSitio extends Controller{
 html;
       View::set('header',$this->_contenedor->header($extraHeader));
       View::set('footer',$this->_contenedor->footer($extraFooter));
-      View::render("pruebascovidsitio_all");
+      View::render("asistencias_all");
     }
 
 }

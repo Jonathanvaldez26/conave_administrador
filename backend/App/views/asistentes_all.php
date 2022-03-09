@@ -111,6 +111,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-bell" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Asistencias</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
                 </li>
@@ -130,14 +138,7 @@
                         <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                            <span class="fa fa-viruses" style="color: #344767"></span>
-                        </div>
-                        <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
@@ -330,11 +331,46 @@
         </nav>
         <!-- End Navbar -->
 
-
-
-
-
         <div class="container-fluid py-4">
+            <div class=" mt-7 mb-4">
+                <div class="card card-body mt-n6 overflow-hidden">
+                    <div class="row gx-4">
+                        <div class="col-auto">
+                            <div class="bg-gradient-red avatar avatar-xl position-relative">
+                                <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                                <span class="fa fa-users" style="font-size: xx-large;"></span>
+                            </div>
+                        </div>
+                        <div class="col-auto my-auto">
+                            <div class="h-100">
+                            <h5 class="mb-1">
+                                Asistentes ASOFARMA (Invitados)
+                            </h5>
+                            <p class="mb-0 font-weight-bold text-sm">
+                            </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                            <div class="nav-wrapper position-relative end-0">
+                                <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                    <li class="nav-item">
+                                    <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                        <span class="fa fa-door-open"></span>
+                                        <span class="ms-1">Acceso</span>
+                                    </a>
+                                    </li>
+                                    <li class="nav-item">
+                                    <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                        <span class="fa fa-user-check"></span>
+                                        <span class="ms-1">Registrados</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -342,7 +378,6 @@
                         <div class="card-header pb-0">
                             <div class="d-lg-flex">
                                 <div>
-                                    <h5 class="mb-0">Asistentes ASOFARMA (Invitados)</h5>
                                     <p class="text-sm mb-0">
                                         En esta sección se podran visualizar todos los usuarios que han finalizado su registro, si usted desea ver quienes no han terminado el registro dirijasé a la pestaña nuevos accesos 
                                     </p>
@@ -387,7 +422,7 @@
                                     <div class="table-responsive p-0" >
                                         
                                         <form name="all" id="all" action="/Colaboradores/delete" method="POST">
-                                            <table class="table align-items-center mb-0" id="user-list">
+                                            <table class="table align-items-center mb-0 table table-borderless" id="user-list">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         

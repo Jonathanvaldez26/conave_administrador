@@ -36861,4 +36861,12 @@ input:checked ~ label#divss{
   width: max-content;
 }
 
+table.dataTable.no-footer {
+    border-bottom: 1px solid #f005 !important;
+}
+
+.bg-gray-conave{
+  background-color: #f8f9fa !important;
+}
+
 /*# sourceMappingURL=dashboard-pro.css.map */

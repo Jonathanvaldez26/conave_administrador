@@ -111,6 +111,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <span class="fa fa-bell" style="color: #344767"></span>
+                    </div>
+                    <span class="nav-link-text ms-1">Asistencias</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <hr class="horizontal dark" />
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
             </li>
@@ -130,14 +138,7 @@
                     <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-viruses" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
-                </a>
-            </li>
+
             <li class="nav-item">
                 <hr class="horizontal dark" />
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
@@ -351,7 +352,7 @@
               </div>
               <div class=" card card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-0">
-                  <table class="align-items-center mb-0" id="muestra-cupones">
+                  <table class="table align-items-center mb-0 table table-striped table-bordered" id="muestra-cupones">
                     <thead>
                       <tr>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>

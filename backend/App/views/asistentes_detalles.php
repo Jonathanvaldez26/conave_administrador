@@ -131,11 +131,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                    <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                            <span class="fa fa-viruses" style="color: #344767"></span>
+                            <span class="fa fa-bell" style="color: #344767"></span>
                         </div>
-                        <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
+                        <span class="nav-link-text ms-1">Asistencias</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -549,7 +549,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" id="update_form" action="" method="POST">
+                        <form class="form-horizontal" id="update_detalles" action="" method="POST">
                             <div class="card-body pt-0">
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
@@ -614,17 +614,17 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="form-label mt-4">Alergias *</label>
-                                        <input class="form-control" name="alergias" id="alergias" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias'] ?>" placeholder="" readonly />
+                                        <input class="form-control" name="alergias" id="alergias" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias'] ?>" placeholder="" />
                                     </div>
 
                                     <div class="col-md-4">
                                         <label class="form-label mt-4">Alergias Otro *</label>
-                                        <input class="form-control" name="alergias_otro" id="alergias_otro" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias_otro'] ?>" placeholder="" readonly />
+                                        <input class="form-control" name="alergias_otro" id="alergias_otro" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias_otro'] ?>" placeholder="" />
                                     </div>
 
                                     <div class="col-md-4">
                                         <label class="form-label mt-4">Alergias Medicamento *</label>
-                                        <input class="form-control" name="alergia_medicamento_cual" id="alergia_medicamento_cual" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergia_medicamento_cual'] ?>" placeholder="" readonly />
+                                        <input class="form-control" name="alergia_medicamento_cual" id="alergia_medicamento_cual" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergia_medicamento_cual'] ?>" placeholder="" />
                                     </div>
                                 </div>
 
@@ -635,7 +635,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
                     <!-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -650,17 +650,18 @@
 
 <script>
     $(document).ready(function() {
-        
-        $("#update_form").on("submit", function(event) {
+        $("#update_detalles").on("submit", function(event) {
             event.preventDefault();
 
-            var formData = new FormData(document.getElementById("update_form"));
+            // alert("Hola");
+
+            var formData = new FormData(document.getElementById("update_detalles"));
             for (var value of formData.values()) {
                 console.log(value);
             }
 
             $.ajax({
-                url: "Asistentes/Detalles/Actualizar/",
+                url: "/Asistentes/Actualizar",
                 type: "POST",
                 data: formData,
                 cache: false,
@@ -672,16 +673,17 @@
 
                 },
                 success: function(respuesta) {
+                    // alert("Successs");
 
                     if (respuesta == 'success') {
                         swal("Se actualizaron tus datos correctamente!", "", "success").
                         then((value) => {
-                            window.location.replace("/Detalles/Actualizar");
+                            window.location.replace("/Asistentes");
                         });
                     } else {
                         swal("Usted No Actualizo Nada!", "", "warning").
                         then((value) => {
-                            window.location.replace("/Detalles/Actualizar")
+                            window.location.replace("/Asistentes")
                         });
                     }
                 },
@@ -691,6 +693,7 @@
 
             });
         });
+    });
 </script>
 
 <?php echo $footer; ?>

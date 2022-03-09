@@ -111,6 +111,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                        <span class="fa fa-bell" style="color: #344767"></span>
+                    </div>
+                    <span class="nav-link-text ms-1">Asistencias</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <hr class="horizontal dark" />
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
             </li>
@@ -130,14 +138,7 @@
                     <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-viruses" style="color: #344767"></span>
-                    </div>
-                    <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
-                </a>
-            </li>
+
             <li class="nav-item">
                 <hr class="horizontal dark" />
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
@@ -296,7 +297,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive text-center">
-                    <table class="table align-items-center mb-0 text-center" id="muestra-cupones">
+                    <table class="table align-items-center mb-0 text-center" id="bu-list">
                         <thead>
                         <tr>
                             <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>

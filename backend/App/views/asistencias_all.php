@@ -1,7 +1,6 @@
 <?php echo $header; ?>
-
 <body class="g-sidenav-show  bg-gray-100">
-  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
@@ -24,7 +23,6 @@
                 </a>
             </li>
 
-            
             <li class="nav-item">
                 <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link" aria-controls="catalogos" role="button" aria-expanded="true">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -43,7 +41,7 @@
                         <li class="nav-item">
                             <a href="/Lineas/" class="nav-link" role="button" aria-expanded="false">
                                 <span class="sidenav-mini-icon"> L </span>
-                                <span class="sidenav-normal"> Lineas Asofarma </span>
+                                <span class="nav-link-text ms-1">Lineas Asofarma</span>
                             </a>
                         </li>
                         <li class="nav-item ">
@@ -112,9 +110,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a href="/Asistencias/" class="nav-link active" aria-controls="basicExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-bell" style="color: #344767"></span>
+                        <span class="fa fa-bell" style="color: #fff"></span>
                     </div>
                     <span class="nav-link-text ms-1">Asistencias</span>
                 </a>
@@ -145,26 +143,26 @@
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
             </li>
             <li class="nav-item">
-                <a href="/Configuracion/" id="configuracion" class="nav-link" aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-tools" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Configuración</span>
                 </a>
             </li>
- 
+            
             <li class="nav-item">
-                <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link active" aria-controls="utilerias" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-user-circle-o" style="color: #fff"></span>
+                        <span class="fa fa-user-circle-o" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Utilerias</span>
                 </a>
-                <div class="collapse show" id="utilerias">
+                <div class="collapse " id="utilerias" hidden>
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " href="/Administradores/">
-                              <span class="sidenav-mini-icon"> A </span>
+                                <span class="sidenav-mini-icon"> A </span>
                                 <span class="sidenav-normal">Administradores</span>
                             </a>
                         </li>
@@ -174,11 +172,9 @@
                                 <span class="sidenav-normal"> Perfiles  </span>
                             </a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link active" href="/Log/">
-                                <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2">
-                                    <span class="fa fa-clipboard-check" style="color: white"></span>
-                                </div>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="/Log/">
+                                <span class="sidenav-mini-icon"> L </span>
                                 <span class="sidenav-normal"> Log </span>
                             </a>
                         </li>
@@ -214,8 +210,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/Principal/">Principal</a></li>
-                    <li class="breadcrumb-item text-sm opacity-5 text-dark">Utilerias</li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Log</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Asistencias</li>
                 </ol>
             </nav>
             <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
@@ -336,90 +331,160 @@
         </div>
     </nav>
     <!-- End Navbar -->
-
-
-    
-    <div class="right_col">
-      <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-        <div class="panel panel-default">
-          <div class="x_title">
-            <br><br>
-            <h1> Historial de Actividades Base de Datos </h1>
-            <div class="clearfix"></div>
-          </div>
-          <form name="all" id="all" action="" method="POST">
-            <div class="panel-body" <?php echo $visible; ?>>
-              <button id="export_pdf" type="button" class="btn btn-info btn-circle"><i class="fa fa-file-pdf-o"> <b>Exportar a PDF</b></i></button>
-              <button id="export_excel" type="button" class="btn btn-success btn-circle"><i class="fa fa-file-excel-o"> <b>Exportar a Excel</b></i></button>
-            </div>
-
-            <div class="x_content">
-                <div class="form-group col-md-9 col-sm-9 col-xs-12">
-
-                  <div class="form-group">
-                    <fieldset>
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Fecha Inicio</label>
-                      <div class="control-group">
-                        <div class="controls">
-                          <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                            <input type="text" id="single_cal2" name="fecha_inicio" class="form-control has-feedback-left" placeholder="Ingresa la fecha del dia festivo" aria-describedby="inputSuccess2Status2" value="<?php echo $fecha_inicio;?>">
-                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                          </div>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body p-3 position-relative">
+                        <div class="row">
+                            <div class="col-7 text-start">
+                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Pases de Abordar Cargados - Llegada</p>
+                                <h5 class="font-weight-bolder mb-0">
+                                    452 de 700
+                                </h5>
+                            </div>
+                            <div class="col-5">
+                                <div class="dropdown text-end">
+                                    <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="fa fa-plane"></span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </fieldset>
-                  </div>
-
-                  <div class="form-group">
-                    <fieldset>
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Fecha Fin</label>
-                      <div class="control-group">
-                        <div class="controls">
-                          <div class="col-md-6 col-sm-6 col-xs-12 xdisplay_inputx form-group has-feedback">
-                            <input type="text" id="single_cal4" name="fecha_fin" class="form-control has-feedback-left" placeholder="Ingresa la fecha del dia festivo" aria-describedby="inputSuccess2Status2" value="<?php echo $fecha_fin;?>">
-                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                          </div>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-
-                  <div class="col-md-6 col-sm-6 col-xs-6">
-                    <button class="btn btn-success col-md-3 col-sm-3 col-xs-3" type="button" id="btnFiltro">Filtrar</button>
-                  </div>
-
-                  </div>
+                    </div>
                 </div>
-              </div>
-
-            <div class="panel-body">
-              <div class="dataTable_wrapper">
-                <table class="table table-striped table-bordered table-hover" id="muestra-cupones">
-                  <thead>
-                    <tr>
-                      <!--<th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>-->
-                      <th>fecha</th>
-                      <th>usuario</th>
-                      <th>Descripción</th>
-                      <th>Accion</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php echo $tabla; ?>
-                  </tbody>
-                </table>
-              </div>
             </div>
-          </form>
+            <div class="col-sm-4 mt-sm-0 mt-4">
+                <div class="card">
+                    <div class="card-body p-3 position-relative">
+                        <div class="row">
+                            <div class="col-7 text-start">
+                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Pases de Abordar Cargados - Salida</p>
+                                <h5 class="font-weight-bolder mb-0">
+                                    152 de 700
+                                </h5>
+                            </div>
+                            <div class="col-5">
+                                <div class="dropdown text-end">
+                                    <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="fa fa-plane"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 mt-sm-0 mt-4">
+                <div class="card">
+                    <div class="card-body p-3 position-relative">
+                        <div class="row">
+                            <div class="col-8 text-start">
+                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Total Usuarios - Carga Pases de Abordar Llegada - Salida</p>
+                                <h5 class="font-weight-bolder mb-0">
+                                    452 vuelos
+                                </h5>
+                            </div>
+                            <div class="col-4">
+                                <div class="dropdown text-end">
+                                    <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="fa fa-users"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </main>
+        <!-- Inicio barrita -->
+
+        <div class=" mt-7">
+            <div class="card card-body mt-n6 overflow-hidden">
+                <div class="row gx-4">
+                    <div class="col-auto">
+                        <div class="bg-gradient-red avatar avatar-xl position-relative">
+                            <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                            <span class="fa fa-bell" style="font-size: xx-large;"></span>
+                        </div>
+                    </div>
+                    <div class="col-auto my-auto">
+                        <div class="h-100">
+                            <h5 class="mb-1">
+                                Asistencias
+                            </h5>
+                            <p class="mb-0 font-weight-bold text-sm">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body p-1 mt-1">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1" style="background-image: url('../../assets/img/miercoles.jpeg'); background-size:cover;">
+                    <div class="d-flex m-1">
+                        <div class="ms-auto d-flex">
+                            <div class="pe-4 mt-1 position-relative">
+                                <hr class="vertical dark mt-0">
+                            </div>
+                            <div class="ps-4">
+                                <div class="panel-body" <?php echo $visible; ?>></div>
+                                <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#Modal_Add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <a style="background: #1C6C42; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-excel" aria-hidden="true"></i></a>
+                                <a style="background: #9A1622; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
+                                <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
+                                    <span class="fa fa-info"></span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card mb-4">
+                                <div class="card-header pb-0">
+                                    <h6>Asistencia por sesión (varios)</h6>
+                                    <p style="font-size: 12px">
+                                        <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida
+                                        <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada
+                                        <span class="fa fa-ticket" style="color: #1a8fdd"> </span> No. de Vuelo
+                                    </p>
+                                </div>
+                                <div class="card-body px-0 pt-0 pb-2">
+                                    <div class="table-responsive p-0">
+                                        <table class="table align-items-center mb-0">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Info</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php echo $tabla; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                    B
+                </div>
+            </div>
+        </div>
+        <!-- Fin barrita -->
+
+
+    </div>
+</main></main>
 </body>
 
-
-
 <?php echo $footer; ?>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

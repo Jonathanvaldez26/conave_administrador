@@ -94,7 +94,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/Habitaciones/" class="nav-link active" aria-controls="authExamples" role="button" aria-expanded="false">
+                    <a href="#authExamples" class="nav-link active" aria-controls="authExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-hotel" style="color: #fff"></span>
                         </div>
@@ -107,14 +107,6 @@
                             <span class="fa fa-coffee" style="color: #344767"></span>
                         </div>
                         <span class="nav-link-text ms-1">Cenas</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                            <span class="fa fa-bell" style="color: #344767"></span>
-                        </div>
-                        <span class="nav-link-text ms-1">Asistencias</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -135,6 +127,14 @@
                             <span class="fa fa-virus-slash" style="color: #344767"></span>
                         </div>
                         <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-viruses" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -539,12 +539,12 @@
                                             <div>
                                                 <h6>Datos y Detalles Generales del Rooming List <span class="badge badge-sm bg-gradient-success">Completo</span></h6>
                                                 <p class="text-sm mb-0">
-                                                    <i class="fa fa-user-md"></i>Cliente. <b><?=$hotel['cliente'];?></b><br>
-                                                    <i class="fa fa-flag"></i> Evento: <b><?=$hotel['evento'];?></b><br>
-                                                    <i class="fa fa-calendar"></i> Fechas: <b>Del <?=$fecha_de;?> al  <?=$fecha_al;?></b><br>
-                                                    <i class="fa fa-map-marker"></i> Lugar: <b><?=$hotel['evento'];?></b><br>
-                                                    <i class="fa fa-h-square"></i> Hotel: <b><?=$hotel['nombre_hotel'];?></b><br>
-                                                    <i class="fa fa-h-square"></i> Total Habitaciones: <b><?=$hotel['total_habitaciones'];?></b>
+                                                    <i class="fa fa-user-md"></i>Cliente. <b><?= $hotel['cliente']; ?></b><br>
+                                                    <i class="fa fa-flag"></i> Evento: <b><?= $hotel['evento']; ?></b><br>
+                                                    <i class="fa fa-calendar"></i> Fechas: <b>Del <?= $fecha_de; ?> al <?= $fecha_al; ?></b><br>
+                                                    <i class="fa fa-map-marker"></i> Lugar: <b><?= $hotel['evento']; ?></b><br>
+                                                    <i class="fa fa-h-square"></i> Hotel: <b><?= $hotel['nombre_hotel']; ?></b><br>
+                                                    <i class="fa fa-h-square"></i> Total Habitaciones: <b><?= $hotel['total_habitaciones']; ?></b>
                                                 </p>
 
                                             </div>
@@ -612,257 +612,7 @@
                                                             <div class="table-responsive">
                                                                 <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                                                                     <div class="dataTable-container">
-                                                                        <!-- <table class="table table-flush dataTable-table" id="datatable-search">
-                                                                            <thead class="thead-light">
-                                                                                <tr>
-                                                                                    <th data-sortable="" style="width: 10.7306%;"><a href="#" class="dataTable-sorter">Tipo</a></th>
-                                                                                    <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">Date</a></th>
-                                                                                    <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Status</a></th>
-                                                                                    <th data-sortable="" style="width: 10.6128%;"><a href="#" class="dataTable-sorter">Customer</a></th>
-                                                                                    <th data-sortable="" style="width: 10.3906%;"><a href="#" class="dataTable-sorter">Product</a></th>
-                                                                                    <th data-sortable="" style="width: 10.7744%;"><a href="#" class="dataTable-sorter">Revenue</a></th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="form-check">
-                                                                                                <input class="form-check-input" type="checkbox" id="customCheck1">
-                                                                                            </div>
-                                                                                            <p class="text-xs font-weight-bold ms-2 mb-0">#10421</p>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="font-weight-bold">
-                                                                                        <span class="my-2 text-xs">1 Nov, 10:20 AM</span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
-                                                                                            <span>Paid</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">s
-                                                                                            <span>Orlando Imieto</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">Nike Sport V2</span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">$140,20</span>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="form-check pt-0">
-                                                                                                <input class="form-check-input" type="checkbox" id="customCheck2">
-                                                                                            </div>
-                                                                                            <p class="text-xs font-weight-bold ms-2 mb-0">#10422</p>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="font-weight-bold">
-                                                                                        <span class="my-2 text-xs">1 Nov, 10:53 AM</span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
-                                                                                            <span>Paid</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <span>Alice Murinho</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="font-weight-bold">
-                                                                                        <span class="my-2 text-xs">Valvet T-shirt</span>
-                                                                                    </td>
-                                                                                    <td class="font-weight-bold">
-                                                                                        <span class="my-2 text-xs">$42,00</span>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="form-check">
-                                                                                                <input class="form-check-input" type="checkbox" id="customCheck3">
-                                                                                            </div>
-                                                                                            <p class="text-xs font-weight-bold ms-2 mb-0">#10423</p>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="font-weight-bold">
-                                                                                        <span class="my-2 text-xs">1 Nov, 11:13 AM</span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <button class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-undo" aria-hidden="true"></i></button>
-                                                                                            <span>Refunded</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="avatar avatar-xs me-2 bg-gradient-dark">
-                                                                                                <span>M</span>
-                                                                                            </div>
-                                                                                            <span>Michael Mirra</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">
-                                                                                            Leather Wallet
-                                                                                            <span class="text-secondary ms-2"> +1 more </span>
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">$25,50</span>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="form-check">
-                                                                                                <input class="form-check-input" type="checkbox" id="customCheck4">
-                                                                                            </div>
-                                                                                            <p class="text-xs font-weight-bold ms-2 mb-0">#10424</p>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="font-weight-bold">
-                                                                                        <span class="my-2 text-xs">1 Nov, 12:20 PM</span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
-                                                                                            <span>Paid</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="d-flex align-items-center">
-                                                                                                <img src="../../../assets/img/team-3.jpg" class="avatar avatar-xs me-2" alt="user image">
-                                                                                                <span>Andrew Nichel</span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">
-                                                                                            Bracelet Onu-Lino
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">$19,40</span>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="form-check">
-                                                                                                <input class="form-check-input" type="checkbox" id="customCheck5">
-                                                                                            </div>
-                                                                                            <p class="text-xs font-weight-bold ms-2 mb-0">#10425</p>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="font-weight-bold">
-                                                                                        <span class="my-2 text-xs">1 Nov, 1:40 PM</span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-times" aria-hidden="true"></i></button>
-                                                                                            <span>Canceled</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="d-flex align-items-center">
-                                                                                                <img src="../../../assets/img/team-4.jpg" class="avatar avatar-xs me-2" alt="user image">
-                                                                                                <span>Sebastian Koga</span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">
-                                                                                            Phone Case Pink
-                                                                                            <span class="text-secondary ms-2"> x 2 </span>
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">$44,90</span>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="form-check">
-                                                                                                <input class="form-check-input" type="checkbox" id="customCheck6">
-                                                                                            </div>
-                                                                                            <p class="text-xs font-weight-bold ms-2 mb-0">#10426</p>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="font-weight-bold">
-                                                                                        <span class="my-2 text-xs">1 Nov, 2:19 AM</span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
-                                                                                            <span>Paid</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="avatar avatar-xs me-2 bg-gradient-primary">
-                                                                                                <span>L</span>
-                                                                                            </div>
-                                                                                            <span>Laur Gilbert</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">
-                                                                                            Backpack Niver
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">$112,50</span>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="form-check">
-                                                                                                <input class="form-check-input" type="checkbox" id="customCheck6">
-                                                                                            </div>
-                                                                                            <p class="text-xs font-weight-bold ms-2 mb-0">#10426</p>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="font-weight-bold">
-                                                                                        <span class="my-2 text-xs">1 Nov, 2:19 AM</span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-2 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-check" aria-hidden="true"></i></button>
-                                                                                            <span>Paid</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <div class="avatar avatar-xs me-2 bg-gradient-primary">
-                                                                                                <span>L</span>
-                                                                                            </div>
-                                                                                            <span>Laur Gilbert</span>
-                                                                                        </div>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">
-                                                                                            Backpack Niver
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="text-xs font-weight-bold">
-                                                                                        <span class="my-2 text-xs">$112,50</span>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table> -->
+
 
                                                                         <table class="table table-flush dataTable-table" id="datatable-search">
                                                                             <thead class="thead-light">
@@ -871,14 +621,14 @@
                                                                                     <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">Cupo Huespedes</a></th>
                                                                                     <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Total de huespedes</a></th>
                                                                                     <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Editar</a></th>
-                                                                                    
+
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
-                                                                                
-                                                                                    <?php echo $tabla_categorias?>
-                                                                                    
-                                                                               
+
+                                                                                <?php echo $tabla_categorias ?>
+
+
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -925,29 +675,25 @@
 
 
         </div>
-
-
     </main>
 </body>
 
-<?php echo $footer; ?>
 
-<?php echo $modal_habitaciones; ?>
 
 
 
 <!-- Modal -->
-<div class="modal fade" id="editar-hotel" tabindex="-1" role="dialog" aria-labelledby="editar-hotelLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editar-hotelLabel">Editar Hotel</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <form class="form-horizontal" id="update_form" action="" method="POST">
+<div class="modal fade " id="editar-hotel" tabindex="-1" role="dialog" aria-labelledby="editar-hotelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content " id="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editar-hotelLabel">Editar Hotel</h5>
+                <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="update_form" action="" method="POST">
                     <div class="card-body pt-0">
 
                         <div class="row">
@@ -985,7 +731,7 @@
                                 </div>
                             </div>
 
-                            
+
                         </div>
 
                         <div class="row">
@@ -1000,8 +746,9 @@
 
 
 
-                        <div  id="cont_fechas">
-                            <?php echo $dates; ?>
+                        <div class="row" id="cont_fechas" style="width: 567px; overflow:hidden;">
+
+                            <?php echo $dates ?>
                         </div>
 
 
@@ -1011,16 +758,19 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
-                    </form>
-      </div>
-      
+                </form>
+
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 
 
 
+<?php echo $footer; ?>
 
+<?php echo $modal_habitaciones; ?>
 
 <script>
     $(document).ready(function() {

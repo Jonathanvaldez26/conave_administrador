@@ -827,6 +827,40 @@
         });
 
 
+        $("#update_form_cat").on("submit", function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(document.getElementById("update_form_cat"));
+
+            $.ajax({
+                url: "/Habitaciones/ActualizarCategoria",
+                type: "POST",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+                },
+                success: function(respuesta) {
+
+                    console.log(respuesta);
+
+                    if (respuesta == 'success') {
+                        window.location.replace("/Habitaciones/");
+
+                        
+                    } else {
+                        // swal("Usted No Actualizo Nada!", "", "warning").
+                    }
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
 
     });
 </script>

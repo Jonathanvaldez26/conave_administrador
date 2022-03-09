@@ -65,7 +65,7 @@ html;
             <td> <p class="text-xs font-weight-bold ms-2 mb-0">{$value['nombre_categoria']}</p> </td>
             <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$value['huespedes']}</p></td>
             <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$value['total_huespedes']}</p></td>
-            <td> <a href="#" type="submit" name="id" class="btn btn-primary" data-toggle="modal" data-target="#edit-habitacion{$value['id_habitacion']}"><span class="fa fa-pencil-square-o" style="color:white" ></span> </a>  </td>
+            <td> <a href="#" type="submit" name="id" class="btn bg-gradient-primary" data-toggle="modal" data-target="#edit-habitacion{$value['id_habitacion']}"><span class="fa fa-pencil-square-o" style="color:white" ></span> </a>  </td>
         </tr>
 html;
 
@@ -186,8 +186,7 @@ html;
     View::render("habitaciones_all");
   }
 
-  public function Actualizar()
-  {
+  public function Actualizar(){
     $documento = new \stdClass();
 
 
@@ -210,6 +209,43 @@ html;
       // echo $nombre_hotel;
       // //var_dump($fechas);
       // echo $fechas_;
+
+      $documento->_id_hotel = $id_hotel;
+      $documento->_cliente = $cliente;
+      $documento->_evento = $evento;
+      $documento->_lugar = $lugar;
+      $documento->_total_habitaciones = $total_habitaciones;
+      $documento->_nombre_hotel = $nombre_hotel;
+      $documento->_fechas = $fechas_;
+
+      $update = HabitacionesDao::update($documento);
+
+      if ($update) {
+
+        echo 'success';
+      } else {
+        echo 'fail';
+      }
+    } else {
+      echo 'fail REQUEST';
+    }
+  }
+
+  public function ActualizarCategoria(){
+    $documento = new \stdClass();
+
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+      $id_hotel = $_POST['id_hotel'];
+      $cliente = $_POST['cliente'];
+      $evento = $_POST['evento'];
+      $lugar = $_POST['lugar'];
+      $total_habitaciones = $_POST['total_habitaciones'];
+      $nombre_hotel = $_POST['nombre_hotel'];
+      $fechas = $_POST['fecha'];
+      $fechas_ = implode(",", $fechas);
 
       $documento->_id_hotel = $id_hotel;
       $documento->_cliente = $cliente;

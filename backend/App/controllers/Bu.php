@@ -34,7 +34,7 @@ html;
       <script>
         $(document).ready(function(){
 
-          $('#l-list').DataTable({
+          $('#bu-list').DataTable({
               "drawCallback": function( settings ) {
                 $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
                 $('.paginate_button').addClass("btn").removeClass("paginate_button");

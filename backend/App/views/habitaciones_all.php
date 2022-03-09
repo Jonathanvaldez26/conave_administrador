@@ -628,7 +628,6 @@
 
                                                                                 <?php echo $tabla_categorias ?>
 
-
                                                                             </tbody>
                                                                         </table>
                                                                     </div>

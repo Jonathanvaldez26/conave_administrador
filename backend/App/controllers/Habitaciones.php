@@ -96,7 +96,7 @@ html;
         foreach ($hoteles as $key => $value_cat) {
             if ($value['id_hotel' == $value_cat]) {
                 $modal_habitaciones .= <<<html
-                    <option value="{$value_cat['id_hotel']}" selected> {$value_cat['nombre_hotel']}</option>
+                    <option value="{$value_cat['id_hotel']}" selected> {$value_cat['id_hotel']}</option>
 html;
             }else{
                 $modal_habitaciones .= <<<html
@@ -223,7 +223,6 @@ html;
 
   public function ActualizarCategoria(){
     $documento = new \stdClass();
-
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

@@ -25,7 +25,7 @@ sql;
     public static function update($hotel){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE hoteles SET nombre_hotel = :nombre_hotel, cliente = :cliente, evento = :evento, fechas = :fechas, lugar = :lugar WHERE id_hotel = :id_hotel;
+      UPDATE hoteles SET nombre_hotel = :nombre_hotel, cliente = :cliente, evento = :evento, fechas = :fechas, lugar = :lugar, total_habitaciones =	:total_habitaciones WHERE id_hotel = :id_hotel;
 sql;
       $parametros = array(
         ':id_hotel'=>$hotel->_id_hotel,
@@ -33,6 +33,7 @@ sql;
         ':cliente'=>$hotel->_cliente,
         ':evento'=>$hotel->_evento,
         ':fechas'=>$hotel->_fechas,
+        ':total_habitaciones'=>$hotel->_total_habitaciones,
         ':lugar' =>$hotel->_lugar
       );
         $accion = new \stdClass();
@@ -43,5 +44,15 @@ sql;
     }
     public static function delete($id){
         
+    }
+
+    public static function getCategoriasHabitaciones($id_hotel){
+      $mysqli = Database::getInstance(true);
+      $query =<<<sql
+      SELECT * FROM categorias_habitaciones WHERE id_hotel = '$id_hotel'
+sql;
+
+      return $mysqli->queryAll($query);
+ 
     }
 }

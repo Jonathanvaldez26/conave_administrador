@@ -46,10 +46,10 @@ sql;
     public static function updateCategoria($hotel_cat){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE categorias_habitaciones SET id_hotel = :id_hotel, categoria_habitacion = :categoria_habitacion, nombre_categoria = :nombre_categoria, huespedes = :huespedes, total_huespedes = :total_huespedes WHERE id_habitacion = :id_habitacion
+      UPDATE categorias_habitaciones SET id_hotel = :id_hotel, categoria_habitacion = :categoria_habitacion, nombre_categoria = :nombre_categoria, huespedes = :huespedes, total_huespedes = :total_huespedes WHERE id_categoria_habitacion = :id_categoria_habitacion
 sql;
       $parametros = array(
-        ':id_habitacion'=>$hotel_cat->_id_habitacion,
+        ':id_categoria_habitacion'=>$hotel_cat->_id_categoria_habitacion,
         ':id_hotel'=>$hotel_cat->_id_hotel,
         ':categoria_habitacion'=>$hotel_cat->_categoria_habitacion,
         ':nombre_categoria'=>$hotel_cat->_nombre_categoria,

@@ -459,7 +459,7 @@
                                 </div>
                                 <div class="ps-4">
                                     <div class="panel-body" <?php echo $visible; ?>></div>
-                                    <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#Modal_Add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#addHabitacion"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                     <a style="background: #1C6C42; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-excel" aria-hidden="true"></i></a>
                                     <a style="background: #9A1622; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
                                     <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
@@ -488,33 +488,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>
-                                                            <div class="d-flex px-3 py-1">
-                                                                <div>
-                                                                    <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
-                                                                </div>
-                                                                <div class="d-flex flex-column justify-content-center">
-                                                                    <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
-                                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td class="align-middle text-center text-sm">
-                                                            <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
-                                                            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
-                                                        </td>
-                                                        <td class="align-middle text-center text-sm">
-                                                            <p class="text-sm font-weight-bold mb-0 text-dark">Jonathan Valdez Martinez</p>
-                                                        </td>
-                                                        <td class="align-middle text-end">
-                                                            <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                                <p class="text-sm font-weight-bold mb-0">13</p>
-                                                                <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
-                                                                <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Descargo el archivo el día 23/02/2022 18:00:14">
-                                                                    <i class="fas fa-info" aria-hidden="true"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
+                                                        <?php echo $tabla_asistentes; ?>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -618,8 +592,11 @@
                                                                             <thead class="thead-light">
                                                                                 <tr>
                                                                                     <th data-sortable="" style="width: 10.7306%;"><a href="#" class="dataTable-sorter">Categoria</a></th>
-                                                                                    <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">Cupo Huespedes</a></th>
-                                                                                    <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Total de huespedes</a></th>
+                                                                                    <!-- <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Total de huespedes</a></th> -->
+                                                                                    <?php echo $th_table_fechas;?>
+                                                                                    <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">NTS</a></th>
+                                                                                    <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">PAX</a></th>
+                                                                                    <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">STAY</a></th>
                                                                                     <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Editar</a></th>
 
                                                                                 </tr>
@@ -679,9 +656,53 @@
 
 
 
+<!-- Modal edit hotel-->
+<div class="modal fade " id="addHabitacion" tabindex="-1" role="dialog" aria-labelledby="addHabitacionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content " id="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addHabitacionLabel">Crear Habitacion</h5>
+                <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="update_form" action="" method="POST">
+                    <div class="card-body pt-0">
 
+                        <div class="row">
+                        <div class="col-12 col-lg-6">
+                                <label class="form-label">Categoria Habitacion</label>
+                                <div class="input-group">
+                                    <input id="evento" name="evento" maxlength="49" class="form-control" type="text" placeholder="event" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['evento']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <input type="hidden" id="id_hotel" name="id_hotel" value="<?= $hotel['id_hotel'] ?> ">
+                                <label class="form-label">Numero Habitacion</label>
+                                <div class="input-group">
+                                    <input id="cliente" name="cliente" maxlength="29" class="form-control" type="text" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['cliente']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
 
-<!-- Modal -->
+                           
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Modal-->
+
+<!-- Modal edit hotel-->
 <div class="modal fade " id="editar-hotel" tabindex="-1" role="dialog" aria-labelledby="editar-hotelLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content " id="modal-content">

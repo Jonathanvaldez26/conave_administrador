@@ -43,24 +43,24 @@ sql;
         return $mysqli->update($query, $parametros);
     }
 
-    public static function updateCategoria($data){
+    public static function updateCategoria($hotel_cat){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE categorias_habitaciones SET id_hotel = :id_hotel, categoria_habitacion = :categoria_habitacion, nombre_categoria = :nombre_categoria, huespedes = :huespedes, total_huespedes = :total_huespedes WHERE id_habitacion = :id_habitacion
+      UPDATE categorias_habitaciones SET id_hotel = :id_hotel, categoria_habitacion = :categoria_habitacion, nombre_categoria = :nombre_categoria, huespedes = :huespedes, total_huespedes = :total_huespedes WHERE id_categoria_habitacion = :id_categoria_habitacion
 sql;
       $parametros = array(
-        ':id_habitacion'=>$data->_id_habitacion,
-        ':id_hotel'=>$data->_id_hotel,
-        ':categoria_habitacion'=>$data->_categoria_habitacion,
-        ':nombre_categoria'=>$data->_nombre_categoria,
-        ':huespedes'=>$data->_huespedes,
-        ':total_huespedes'=>$data->_total_huespedes,
+        ':id_categoria_habitacion'=>$hotel_cat->_id_categoria_habitacion,
+        ':id_hotel'=>$hotel_cat->_id_hotel,
+        ':categoria_habitacion'=>$hotel_cat->_categoria_habitacion,
+        ':nombre_categoria'=>$hotel_cat->_nombre_categoria,
+        ':huespedes'=>$hotel_cat->_huespedes,
+        ':total_huespedes'=>$hotel_cat->_total_huespedes,
       );
 
         $accion = new \stdClass();
         $accion->_sql= $query;
         $accion->_parametros = $parametros;
-        $accion->_id = $data->_id_habitacion;
+        $accion->_id = $hotel_cat->_id_habitacion;
         return $mysqli->update($query, $parametros);
     }
     

@@ -7,7 +7,20 @@ use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
 
 class Asistentes implements Crud{
+
     public static function getAll(){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT ra.nombre as nombre_usuario, ra.apellido_paterno, ra.apellido_materno, ua.status as status_user, hh.numero_habitacion, ch.nombre_categoria, uad.nombre as nombre_administrador
+      FROM registros_acceso ra
+      INNER JOIN utilerias_asistentes ua ON (ra.id_registro_acceso = ua.id_registro_acceso) 
+      INNER JOIN habitaciones_hotel hh ON (ra.id_habitacion = hh.id_habitacion) 
+      INNER JOIN categorias_habitaciones ch ON (ch.id_categoria_habitacion = hh.id_categoria_habitacion)
+      INNER JOIN utilerias_administradores uad ON (hh.utilerias_administradores_id = uad.utilerias_administradores_id)
+      WHERE ra.id_registro_acceso = ua.id_registro_acceso
+      and ra.politica = 1 and ua.status = 1 
+sql;
+      return $mysqli->queryAll($query);
         
     }
 
@@ -18,6 +31,21 @@ class Asistentes implements Crud{
 sql;
         return $mysqli->queryAll($query);
     }
+
+    public static function getHabitacionByNumber($numero_habitacion){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT DISTINCT ra.nombre as nombre_usuario, ra.apellido_paterno, ra.apellido_materno, ua.status as status_user, hh.numero_habitacion, ch.nombre_categoria, uad.nombre as nombre_administrador
+      FROM registros_acceso ra
+      INNER JOIN utilerias_asistentes ua ON (ra.id_registro_acceso = ua.id_registro_acceso) 
+      INNER JOIN habitaciones_hotel hh ON (ra.id_habitacion = hh.id_habitacion) 
+      INNER JOIN categorias_habitaciones ch ON (ch.id_categoria_habitacion = hh.id_categoria_habitacion)
+      INNER JOIN utilerias_administradores uad ON (hh.utilerias_administradores_id = uad.utilerias_administradores_id)
+      WHERE ra.id_registro_acceso = ua.id_registro_acceso
+      and ra.politica = 1 and ua.status = 1 and hh.numero_habitacion = $numero_habitacion
+sql;
+      return $mysqli->queryAll($query);
+  }
 
     public static function getTotalById($id){
         $mysqli = Database::getInstance();

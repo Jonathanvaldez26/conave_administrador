@@ -9,6 +9,7 @@ use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\Habitaciones as HabitacionesDao;
+use \App\models\Asistentes as AsistentesDao;
 
 class Habitaciones extends Controller
 {
@@ -32,14 +33,71 @@ class Habitaciones extends Controller
 
   public function index()
   {
+    setlocale(LC_TIME, "spanish");
     $extraHeader = <<<html
 html;
 
+    $tabla_asistentes = '';
+
+    //tab asistetes
+    $asistentes = AsistentesDao::getAll();
+
+    foreach($asistentes as $key => $value){
+    $distinct = AsistentesDao::getHabitacionByNumber($value['numero_habitacion']);
+
+    $tabla_asistentes .= <<<html
+    <tr>
+    <td>
+      <div class="d-flex px-3 py-1">
+          <div>
+              <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
+          </div>
+          <div class="d-flex flex-column justify-content-center">
+              <h6 class="mb-0 text-sm">{$value['nombre_usuario']} {$value['apellido_paterno']} {$value['apellido_materno']}</h6>
+              <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['nombre_categoria']}</p>
+              <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['numero_habitacion']} </p>
+          </div>
+      </div>
+    </td>
+    <td class="align-middle text-center text-sm">
+html;
+
+      foreach($distinct as $key => $val){
+        if($val['nombre_usuario'] != $value['nombre_usuario']){
+          $tabla_asistentes .= <<<html
+          <h6 class="mb-0 text-sm">{$val['nombre_usuario']} {$val['apellido_paterno']} {$val['apellido_materno']}</h6>
+          <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['nombre_categoria']}</p>
+  html;  
+        }
+             
+      }
+
+        $tabla_asistentes .= <<<html
+                
+            </td>
+            <td class="align-middle text-center text-sm">
+                <p class="text-sm font-weight-bold mb-0 text-dark">{$value['nombre_administrador']}</p>
+            </td>
+            <td class="align-middle text-end">
+                <div class="d-flex px-3 py-1 justify-content-center align-items-center">
+                  
+                </div>
+            </td>
+            </tr>
+ 
+html;
+}
+
+
+
+    //tab hoteles
     $hotel = HabitacionesDao::getAll()[0];
     $fechas = $hotel['fechas'];
     $dates = '';
     $tabla_categorias = '';
     $modal_habitaciones = '';
+    $th_table_fechas = '';
+    $array_total_huespedes = [];
     // echo $fechas;
     $fecha = explode(",", $fechas);
 
@@ -48,11 +106,25 @@ html;
 
 
     foreach ($fecha as $key => $value) {
+      //convertir fecha a letras
+      $new_date = date("d-m-Y", strtotime($value));
+      $dia_en_letras = strftime("%A", strtotime($new_date));
+      utf8_decode($dia_en_letras);
+
+
+      $fecha_split = explode("-", $value);
+      //$fecha_split[2]; // dia
+
+
       $dates .= <<<html
         <div class="col-12 col-lg-6 date">
           <label class="form-label mt-4">Fechas * </label>
           <input type="date" class="form-control " id="fecha{$key}" name="fecha[]" required="" value="{$value}">
         </div>
+html;
+
+      $th_table_fechas .= <<<html
+      <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">{$value}</a></th>
 html;
     }
 
@@ -60,18 +132,41 @@ html;
     // var_dump($categoriasHabitaciones);
 
     foreach ($categoriasHabitaciones as $key => $value) {
-        $tabla_categorias .= <<<html
+      $tabla_categorias .= <<<html
             <tr>
                 <td> <p class="text-xs font-weight-bold ms-2 mb-0">{$value['nombre_categoria']}</p> </td>
+              
+html;
+      //se reinicia el array
+      $array_total_huespedes = [];
+      foreach ($fecha as $key => $f) {
+        if ($f == $fecha[array_key_last($fecha)]) {
+          $tabla_categorias .= <<<html
+      <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">OUT</p></td>
+html;
+        } else {
+          array_push($array_total_huespedes, $value['total_huespedes']);
+          $tabla_categorias .= <<<html
+      <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$value['total_huespedes']}</p></td>
+html;
+        }
+      }
+      $total_huespedes = array_sum($array_total_huespedes);
+      $stay = $total_huespedes * $value['huespedes'];
+
+      // var_dump($total_huespedes);
+      $tabla_categorias .= <<<html
+                <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$total_huespedes}</p></td>
                 <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$value['huespedes']}</p></td>
-                <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$value['total_huespedes']}</p></td>
-                <td> <a href="#" type="submit" name="id" class="btn bg-gradient-primary" data-toggle="modal" data-target="#edit-habitacion{$value['id_habitacion']}"><span class="fa fa-pencil-square-o" style="color:white" ></span> </a>  </td>
-            </tr>
+                <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$stay}</p></td>
+                <td> <a href="#" type="submit" name="id" class="btn bg-gradient-primary" data-toggle="modal" data-target="#edit-habitacion{$value['id_categoria_habitacion']}"><span class="fa fa-pencil-square-o" style="color:white" ></span> </a>  </td>
+ 
 html;
 
 
-        $modal_habitaciones .= <<<html
-            <div class="modal fade" id="edit-habitacion{$value['id_habitacion']}" tabindex="-1" role="dialog" aria-labelledby="edit-habitacionLabel" aria-hidden="true">
+
+      $modal_habitaciones .= <<<html
+            <div class="modal fade" id="edit-habitacion{$value['id_categoria_habitacion']}" tabindex="-1" role="dialog" aria-labelledby="edit-habitacionLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -83,7 +178,7 @@ html;
             
                         <div class="modal-body">
                             <form class="form-horizontal" id="update_form_cat" action="" method="POST">
-                            <input id="id_habitacion" name="id_habitacion"  class="form-control" type="hidden" placeholder="Sencilla" "  value="{$value['id_habitacion']}">
+                            <input id="id_categoria_habitacion" name="id_categoria_habitacion"  class="form-control" type="hidden" placeholder="Sencilla" "  value="{$value['id_categoria_habitacion']}">
                                 <div class="card-body pt-0">
                                     <div class="row">
                                         <div class="col-12 col-lg-6">
@@ -92,22 +187,21 @@ html;
                                                 <select id="id_hotel" name="id_hotel" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                                     <option value="" disabled>Selecciona un Hotel</option>
 html;
-        $hoteles = HabitacionesDao::getAll();
+      $hoteles = HabitacionesDao::getAll();
 
-        foreach ($hoteles as $key => $value_cat) {
-            if ($value['id_hotel' == $value_cat]) {
-                $modal_habitaciones .= <<<html
-                    <option value="{$value_cat['id_hotel']}" selected> {$value_cat['id_hotel']}</option>
+      foreach ($hoteles as $key => $value_cat) {
+        if ($value['id_hotel' == $value_cat]) {
+          $modal_habitaciones .= <<<html
+                    <option value="{$value_cat['id_hotel']}" selected> {$value_cat['nombre_hotel']}</option>
 html;
-            }else{
-                $modal_habitaciones .= <<<html
+        } else {
+          $modal_habitaciones .= <<<html
                     <option value="{$value_cat['id_hotel']}">{$value_cat['nombre_hotel']}</option>
 html;
-            }
-            
         }
+      }
 
-        $modal_habitaciones .= <<<html
+      $modal_habitaciones .= <<<html
                                                     
                                                 </select>
                                             </div>
@@ -164,20 +258,23 @@ html;
     // echo count($fecha);
     // echo "<br>";
     // echo $fecha[0]; // porción1
-    // echo $fecha[1]; // porción2
+    // echo $fecha[1]; // porción2 
 
-    View::set('modal_habitaciones',$modal_habitaciones);
+    View::set('tabla_asistentes',$tabla_asistentes);
+    View::set('modal_habitaciones', $modal_habitaciones);
     View::set('hotel', $hotel);
     View::set('dates', $dates);
     View::set('fecha_de', $fecha_de);
     View::set('fecha_al', $fecha_al);
     View::set('tabla_categorias', $tabla_categorias);
+    View::set('th_table_fechas', $th_table_fechas);
     View::set('header', $this->_contenedor->header($extraHeader));
     View::set('footer', $this->_contenedor->footer($extraFooter));
     View::render("habitaciones_all");
   }
 
-  public function Actualizar(){
+  public function Actualizar()
+  {
     $documento = new \stdClass();
 
 
@@ -193,13 +290,6 @@ html;
       $fechas = $_POST['fecha'];
       $fechas_ = implode(",", $fechas);
 
-      // echo $total_habitaciones;
-      // echo $cliente;
-      // echo $evento;
-      // echo $lugar;
-      // echo $nombre_hotel;
-      // //var_dump($fechas);
-      // echo $fechas_;
 
       $documento->_id_hotel = $id_hotel;
       $documento->_cliente = $cliente;
@@ -222,19 +312,20 @@ html;
     }
   }
 
-  public function ActualizarCategoria(){
+  public function ActualizarCategoria()
+  {
     $documento = new \stdClass();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-      $id_habitacion = $_POST['id_habitacion'];
+      $id_categoria_habitacion = $_POST['id_categoria_habitacion'];
       $id_hotel = $_POST['id_hotel'];
       $categoria_habitacion = $_POST['categoria_habitacion'];
       $nombre_categoria = $_POST['nombre_categoria'];
       $huespedes = $_POST['huespedes'];
       $total_huespedes = $_POST['total_huespedes'];
 
-      $documento->_id_habitacion = $id_habitacion;
+      $documento->_id_categoria_habitacion = $id_categoria_habitacion;
       $documento->_id_hotel = $id_hotel;
       $documento->_categoria_habitacion = $categoria_habitacion;
       $documento->_nombre_categoria = $nombre_categoria;

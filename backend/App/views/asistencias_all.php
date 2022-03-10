@@ -67,7 +67,7 @@
                                                         </p>
                                                         <div id="card_pay">
                                                             <hr>
-                                                            <h5 class="text-center">dddd</h5>
+                                                            <h5 class="text-center"><?php echo $fecha_asistencia.' - HORA DE INICIO DE: '.$hora_asistencia_inicio.' A '.$hora_asistencia_fin; ?> </h5>
                                                             <hr>
                                                             <p class="mb-0 text-sm">
                                                                 a)  Nombre Completo: <strong> <?php echo $name; ?></strong>

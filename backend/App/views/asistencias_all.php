@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-lg  blur blur-rounded top-0  z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
         <div class="container-fluid">
             <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 ">
-                <img src="../../assets/img/logos/asistencias.jpeg" style="width: 40px; height: 40px; margin-left: 5px; margin-right: 5px;">
+                <img src="../../../img/logos/asistencias.jpeg" style="width: 40px; height: 40px; margin-left: 5px; margin-right: 5px;">
                 Asistencia CONAVE Convención 2022 ASOFARMA
             </a>
             <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
@@ -56,18 +56,18 @@
                                         <div class="row">
                                             <div class="col-12 col-lg-12 m-auto">
                                                 <div id="card_one" class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one"data-animation="FadeIn">
-                                                    <h5 class="font-weight-bolder mb-0">¡Asistencia - !</h5>
+                                                    <h5 class="font-weight-bolder mb-0">Asistencia <strong><?php echo $nombre; ?></strong></h5>
                                                     <div class="multisteps-form__content">
+                                                        <p class="mb-0 text-sm">
+                                                            Indique al <strong>Invitado</strong> lo siguiente, proporcionar su código QR que podrá encontrar al reverso de su gafete o en la app móvil en la sección de Ticket Virtual y que es único e irrepetible para cada invitado.
+                                                        </p>
                                                         <br>
                                                         <p class="mb-0 text-sm">
-                                                            Estimado: <strong><?php echo $name; ?></strong> ¡Tu pago ha sido exitoso!
+                                                            <strong><?php echo $descripcion; ?></strong>
                                                         </p>
                                                         <div id="card_pay">
-                                                            <p class="mb-0 text-sm">
-                                                                Imprima este formato como comprobante de pago, tome una captura y regrese al sitio principal, inicie sesión con el correo electrónico que acaba de registrar y cargue este comprobante en formato PDF.
-                                                            </p>
                                                             <hr>
-                                                            <h5 class="text-center"> COMPROBANTE DE PAGO ELECTRÓNICO PAYPAL</h5>
+                                                            <h5 class="text-center"><?php echo $fecha_asistencia.' - HORA DE INICIO DE: '.$hora_asistencia_inicio.' A '.$hora_asistencia_fin; ?> </h5>
                                                             <hr>
                                                             <p class="mb-0 text-sm">
                                                                 a)  Nombre Completo: <strong> <?php echo $name; ?></strong>
@@ -104,9 +104,6 @@
 
                                                         </p>
                                                         <br>
-                                                        <div class="button-row d-flex mt-4">
-                                                            <a href="<?php echo ($regreso) ? $regreso : '/'?>" class="btn btn-sm btn bg-gradient-info ms-auto mb-0 js-btn-next" type="button" title="Next">Regresar al Sitio y Cargar mi Comprobante de Pago PAYPAL</a>
-                                                        </div>
                                                     </div>
                                                 </div>
 

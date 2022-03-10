@@ -54,24 +54,56 @@
                                     <div class="multisteps-form">
                                         <!--form panels-->
                                         <div class="row">
-                                            <div class="col-12 col-lg-10 m-auto">
+                                            <div class="col-12 col-lg-12 m-auto">
                                                 <div id="card_one" class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one"data-animation="FadeIn">
+                                                    <h5 class="font-weight-bolder mb-0">Asistencia <strong><?php echo $nombre; ?></strong></h5>
                                                     <div class="multisteps-form__content">
-                                                        <section class="min-vh-75 d-flex align-items-center">
-                                                            <div class="container">
-                                                                <div class="row mt-lg-0 mt-1">
-                                                                    <div class="col-lg-5 my-auto">
-                                                                        <h1 class=" text-bolder text-gradient text-danger fadeIn1 fadeInBottom ">Error</h1>
-                                                                        <h4 class="fadeIn3 fadeInBottom opacity-8">Su Código de Asistencias NO es Válido. </h4>
-                                                                        <p class="lead opacity-6 fadeIn2 fadeInBottom">Verifique su link de acceso.</p>
-                                                                        <a href="/Login/" type="button" class="btn bg-gradient-danger mt-4 fadeIn2 fadeInBottom">Ir a la página de inicio</a>
-                                                                    </div>
-                                                                    <div class="col-lg-7 my-auto">
-                                                                        <img class="w-100 fadeIn1 fadeInBottom" src="../../../assets/img/illustrations/error-500.png" alt="500-error">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </section>
+                                                        <p class="mb-0 text-sm">
+                                                            Indique al <strong>Invitado</strong> lo siguiente, proporcionar su código QR que podrá encontrar al reverso de su gafete o en la app móvil en la sección de Ticket Virtual y que es único e irrepetible para cada invitado.
+                                                        </p>
+                                                        <br>
+                                                        <p class="mb-0 text-sm">
+                                                            <strong><?php echo $descripcion; ?></strong>
+                                                        </p>
+                                                        <div id="card_pay">
+                                                            <hr>
+                                                            <h5 class="text-center">dddd</h5>
+                                                            <hr>
+                                                            <p class="mb-0 text-sm">
+                                                                a)  Nombre Completo: <strong> <?php echo $name; ?></strong>
+                                                            </p>
+                                                            <p class="mb-0 text-sm">
+                                                                a)  Correo Electrónico Registrado: <strong> <?php echo $email; ?></strong>
+                                                            </p>
+                                                            <p class="mb-0 text-sm">
+                                                                b)  Payment ID: <strong> <?php echo $paymentID; ?></strong>
+                                                            </p>
+                                                            <p class="mb-0 text-sm">
+                                                                c) Id de cliente Paypal: <strong> <?php echo $payerID; ?></strong>
+                                                            </p>
+                                                            <p class="mb-0 text-sm">
+                                                                c) Cantidad Pagada: <strong> <?php echo $pay; ?></strong>
+                                                            </p>
+                                                            <p class="mb-0 text-sm">
+                                                                d) Nombre del Congreso : <strong> "VI Congreso Mundial de Patología Dual"
+                                                                </strong>
+                                                            </p>
+                                                            <p class="mb-0 text-sm">
+                                                                d) Tipo de Pago : <strong> "Electrónico PAYPAL "
+                                                                </strong>
+                                                            </p>
+                                                            <hr>
+
+                                                        </div>
+                                                        <p class="mb-0 text-sm">
+
+                                                            ¡Agradecemos inmensamente su preferencia!
+                                                            ¡Gracias de antemano! Y, por supuesto, si necesitas ayuda, ¡siempre puedes contar con nuestro equipo!
+                                                            <br>
+                                                            Espere instrucciones por parte del equipo - VI Congreso Mundial de Patología Dual.
+
+                                                        </p>
+                                                        <br>
                                                     </div>
                                                 </div>
 

@@ -60,7 +60,7 @@ sql;
         $accion = new \stdClass();
         $accion->_sql= $query;
         $accion->_parametros = $parametros;
-        $accion->_id = $hotel_cat->_id_hotel;
+        $accion->_id = $hotel_cat->_id_habitacion;
         return $mysqli->update($query, $parametros);
     }
     

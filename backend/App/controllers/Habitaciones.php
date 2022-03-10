@@ -316,7 +316,6 @@ html;
   {
     $documento = new \stdClass();
 
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       $id_categoria_habitacion = $_POST['id_categoria_habitacion'];

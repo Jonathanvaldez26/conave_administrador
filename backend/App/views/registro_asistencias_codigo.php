@@ -56,54 +56,129 @@
                                         <div class="row">
                                             <div class="col-12 col-lg-12 m-auto">
                                                 <div id="card_one" class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one"data-animation="FadeIn">
-                                                    <h5 class="font-weight-bolder mb-0">Asistencia <strong><?php echo $nombre; ?></strong></h5>
+
                                                     <div class="multisteps-form__content">
-                                                        <p class="mb-0 text-sm">
-                                                            Indique al <strong>Invitado</strong> lo siguiente, proporcionar su código QR que podrá encontrar al reverso de su gafete o en la app móvil en la sección de Ticket Virtual y que es único e irrepetible para cada invitado.
-                                                        </p>
-                                                        <br>
-                                                        <p class="mb-0 text-sm">
-                                                            <strong><?php echo $descripcion; ?></strong>
-                                                        </p>
                                                         <div id="card_pay">
-                                                            <hr>
-                                                            <h5 class="text-center">dddd</h5>
-                                                            <hr>
-                                                            <p class="mb-0 text-sm">
-                                                                a)  Nombre Completo: <strong> <?php echo $name; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                a)  Correo Electrónico Registrado: <strong> <?php echo $email; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                b)  Payment ID: <strong> <?php echo $paymentID; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                c) Id de cliente Paypal: <strong> <?php echo $payerID; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                c) Cantidad Pagada: <strong> <?php echo $pay; ?></strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                d) Nombre del Congreso : <strong> "VI Congreso Mundial de Patología Dual"
-                                                                </strong>
-                                                            </p>
-                                                            <p class="mb-0 text-sm">
-                                                                d) Tipo de Pago : <strong> "Electrónico PAYPAL "
-                                                                </strong>
-                                                            </p>
-                                                            <hr>
+                                                            <div class=" mt-6">
+                                                                <div class="card card-body mt-n6 overflow-hidden">
+                                                                    <div class="row gx-4">
+                                                                        <div class="col-auto">
+                                                                            <div class="bg-gradient-red avatar avatar-xl position-relative">
+                                                                                <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                                                                                <span class="fa fa-user-md" style="font-size: xx-large;"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-auto my-auto">
+                                                                            <div class="h-100">
+                                                                                <h5 class="mb-1">
+                                                                                    Asistencias
+                                                                                </h5>
+                                                                                <p class="mb-0 font-weight-bold text-sm">
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-5 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                                                                            <div class="nav-wrapper position-relative end-0">
+                                                                                <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                                                                    <li class="nav-item">
+                                                                                        <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                                                                            <span class="fa fa-plane-arrival"></span>
+                                                                                            <span class="ms-1">Principal</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="nav-item">
+                                                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                                                                            <span class="fa fa-plane-departure"></span>
+                                                                                            <span class="ms-1">Registros Asistencia</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="card-body p-1 mt-1">
+                                                                <div class="tab-content" id="v-pills-tabContent">
+                                                                    <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1" style="background-image: url('../../assets/img/miercoles.jpeg'); background-size:cover;">
+                                                                        <div class="row mt-1">
+                                                                            <div class="col-lg-4 col-sm-6">
+                                                                                <div class="card h-100">
+                                                                                    <div class="card-header pb-0 p-3">
+                                                                                        <div class="d-flex justify-content-between">
+                                                                                            <h6 class="mb-0">Datos del Invitado</h6>
+                                                                                            <button type="button" class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="See traffic channels">
+                                                                                                <i class="fas fa-info" aria-hidden="true"></i>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="card-body pb-0 p-3 mt-4">
+                                                                                        <div class="row">
+                                                                                            <div class="col-7 text-start">
+                                                                                                <div class="chart">
+                                                                                                    <canvas id="chart-pie" class="chart-canvas" height="400" style="display: block; box-sizing: border-box; height: 200px; width: 169.7px;" width="339"></canvas>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="card-footer pt-0 pb-0 p-3 d-flex align-items-center">
+                                                                                        <div class="w-100">
+                                                                                            <p class="text-sm">
+                                                                                                More than <b>1,200,000</b> sales are made using referral marketing, and <b>700,000</b> are from social media.
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-8 col-sm-6 mt-sm-0 mt-4">
+                                                                                <div class="card">
+                                                                                    <div class="card-header pb-0 p-3">
+                                                                                        <div class="d-flex justify-content-between">
+                                                                                            <h6 class="font-weight-bolder mb-0">Asistencia <strong><?php echo $nombre; ?></strong></h6>
+                                                                                            <button type="button" class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="See which ads perform better">
+                                                                                                <i class="fas fa-info" aria-hidden="true"></i>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <span class="badge badge-md badge-dot me-4">
+                                                                                              <i class="bg-success"></i>
+                                                                                              <span class="text-dark text-xs">Descripción de la asitencia:</span>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <hr>
+                                                                                        <br>
+                                                                                        <div class="row gx-2 gx-sm-3">
+                                                                                            <div class="col">
+                                                                                                <div class="form-group">
+                                                                                                    <input style="font-size: 25px" type="text" id="uno" name="uno" class="form-control form-control-lg text-center" maxlength="6" autocomplete="off" autocapitalize="off" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row gx-2 gx-sm-3">
+                                                                                            <div class="col">
+                                                                                                <div class="form-group">
+                                                                                                    <div class="text-center">
+                                                                                                        <button class="btn  w-100 my-0 mb-2 ms-auto" type="submit" id="btn_registro_email">Verifica tu Código</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <br>
+                                                                                    <br>
+                                                                                    <br>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                                                                        B
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
                                                         </div>
-                                                        <p class="mb-0 text-sm">
-
-                                                            ¡Agradecemos inmensamente su preferencia!
-                                                            ¡Gracias de antemano! Y, por supuesto, si necesitas ayuda, ¡siempre puedes contar con nuestro equipo!
-                                                            <br>
-                                                            Espere instrucciones por parte del equipo - VI Congreso Mundial de Patología Dual.
-
-                                                        </p>
-                                                        <br>
                                                     </div>
                                                 </div>
 

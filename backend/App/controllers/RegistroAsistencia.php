@@ -163,7 +163,7 @@ html;
             View::set('fecha_asistencia',$fecha_asistencia);
             View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
             View::set('$hora_asistencia_fin',$hora_asistencia_fin);
-            View::render("asistencias_all");
+            View::render("registro_asistencias_codigo");
         }
         else
         {

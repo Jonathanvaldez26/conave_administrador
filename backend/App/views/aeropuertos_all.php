@@ -1,3 +1,4 @@
+
 <?php echo $header; ?>
 <body class="g-sidenav-show  bg-gray-100">
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
@@ -21,17 +22,16 @@
                     </div>
                     <span class="nav-link-text ms-1">Principal</span>
                 </a>
-
             </li>
 
             <li class="nav-item">
-                <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link " aria-controls="catalogos" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link" aria-controls="catalogos" role="button" aria-expanded="true">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-sitemap" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Catálogos</span>
                 </a>
-                <div class="collapse " id="catalogos" hidden>
+                <div class="collapse" id="catalogos" hidden>
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " href="/Bu/">
@@ -39,15 +39,15 @@
                                 <span class="sidenav-normal">Bu Asofarma</span>
                             </a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Lineas/">
+                        <li class="nav-item">
+                            <a href="/Lineas/" class="nav-link" role="button" aria-expanded="false">
                                 <span class="sidenav-mini-icon"> L </span>
-                                <span class="sidenav-normal">Lineas Asofarma</span>
+                                <span class="nav-link-text ms-1">Lineas Asofarma</span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link " href="/Posiciones/">
-                                <span class="sidenav-mini-icon"> P </span>
+                            <a class="nav-link" href="/Posiciones/">
+                            <span class="sidenav-mini-icon"> P </span>
                                 <span class="sidenav-normal"> Posiciones Asofarma  </span>
                             </a>
                         </li>
@@ -69,6 +69,7 @@
                     </ul>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a href="/Asistentes/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -78,9 +79,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link active"  aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                <a href="/Vuelos/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-plane" style="color: white"></span>
+                        <span class="fa fa-plane" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Vuelos</span>
                 </a>
@@ -122,7 +123,7 @@
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
             </li>
             <li class="nav-item">
-                <a href="/ComprobanteVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a href="/ComprobantesVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-shield-virus" style="color: #344767"></span>
                     </div>
@@ -143,21 +144,22 @@
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
             </li>
             <li class="nav-item">
-                <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                <a href="/Configuracion/" id="configuracion" class="nav-link" aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-tools" style="color: #344767"></span>
                     </div>
                     <span class="nav-link-text ms-1">Configuración</span>
                 </a>
             </li>
+ 
             <li class="nav-item">
-                <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
+                <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link active" aria-controls="utilerias" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                        <span class="fa fa-user-circle-o" style="color: #344767"></span>
+                        <span class="fa fa-user-circle-o" style="color: #fff"></span>
                     </div>
                     <span class="nav-link-text ms-1">Utilerias</span>
                 </a>
-                <div class="collapse " id="utilerias" hidden>
+                <div class="collapse show" id="utilerias">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a class="nav-link " href="/Administradores/">
@@ -165,9 +167,11 @@
                                 <span class="sidenav-normal">Administradores</span>
                             </a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link " href="/Perfiles/">
-                                <span class="sidenav-mini-icon"> P </span>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="/Perfiles/">
+                              <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center me-2">
+                                    <span class="fa fa-user" style="color: white"></span>
+                                </div>
                                 <span class="sidenav-normal"> Perfiles  </span>
                             </a>
                         </li>
@@ -180,6 +184,7 @@
                     </ul>
                 </div>
             </li>
+
         </ul>
     </div>
 
@@ -207,7 +212,8 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Principal</a></li>
+                    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="/Principal/">Principal</a></li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Aeropuertos</li>
                 </ol>
             </nav>
             <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
@@ -231,6 +237,13 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav  justify-content-end">
+                    <!-- <li class="nav-item d-flex align-items-center">
+                        <a href="/Login/" class="nav-link text-body font-weight-bold px-0" >
+                            <i class="fa fa-user me-sm-1"></i>
+                            <span class="d-sm-inline d-none">Sign In</span>
+                        </a>
+                    </li> -->
+
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                             <div class="sidenav-toggler-inner">
@@ -321,260 +334,47 @@
         </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body p-3 position-relative">
-                        <div class="row">
-                            <div class="col-7 text-start">
-                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Pases de Abordar Cargados - Llegada</p>
-                                <h5 class="font-weight-bolder mb-0">
-                                    452 de 700
-                                </h5>
-                            </div>
-                            <div class="col-5">
-                                <div class="dropdown text-end">
-                                    <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="fa fa-plane"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="right_col">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+          <div class="panel panel-default">
+            <div class="x_title">
+              <br><br>
+              <h1> Aeropuertos </h1>
+              <div class="clearfix"></div>
             </div>
-            <div class="col-sm-4 mt-sm-0 mt-4">
-                <div class="card">
-                    <div class="card-body p-3 position-relative">
-                        <div class="row">
-                            <div class="col-7 text-start">
-                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Pases de Abordar Cargados - Salida</p>
-                                <h5 class="font-weight-bolder mb-0">
-                                    152 de 700
-                                </h5>
-                            </div>
-                            <div class="col-5">
-                                <div class="dropdown text-end">
-                                    <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="fa fa-plane"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <form name="all" id="all" action="/Aeropuertos/delete" method="POST">
+              <div class="panel-body">
+                <a href="/Aeropuertos/Add" type="button" class="btn bg-gradient-info btn-circle"><i class="fa fa-plus"> </i></a>
+                <button id="delete" type="button" class="btn bg-gradient-danger btn-circle"><i class="fa fa-trash"></i></button>
+                <!-- <button id="export_pdf" type="button" class="btn btn-info btn-circle"><i class="fa fa-file-pdf-o"> <b>Exportar a PDF</b></i></button>
+                <button id="export_excel" type="button" class="btn btn-success btn-circle"><i class="fa fa-file-excel-o"> <b>Exportar a Excel</b></i></button> -->
+              </div>
+              <div class=" card card-body px-0 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0 table table-striped table-bordered" id="muestra-cupones">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><input type="checkbox" name="checkAll" id="checkAll" value=""/></th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estado</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ciudad</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">aeropuerto</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php echo $tabla; ?>
+                    </tbody>
+                  </table>
                 </div>
-            </div>
-            <div class="col-sm-4 mt-sm-0 mt-4">
-                <div class="card">
-                    <div class="card-body p-3 position-relative">
-                        <div class="row">
-                            <div class="col-8 text-start">
-                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Total Usuarios - Carga Pases de Abordar Llegada - Salida</p>
-                                <h5 class="font-weight-bolder mb-0">
-                                    452 vuelos
-                                </h5>
-                            </div>
-                            <div class="col-4">
-                                <div class="dropdown text-end">
-                                    <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span class="fa fa-users"></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
 
-        <!-- Inicio barrita -->
-
-        <div class=" mt-7">
-            <div class="card card-body mt-n6 overflow-hidden">
-                <div class="row gx-4">
-                    <div class="col-auto">
-                        <div class="bg-gradient-red avatar avatar-xl position-relative">
-                            <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
-                            <span class="fa fa-plane" style="font-size: xx-large;"></span>
-                        </div>
-                    </div>
-                    <div class="col-auto my-auto">
-                        <div class="h-100">
-                        <h5 class="mb-1">
-                            Vuelos
-                        </h5>
-                        <p class="mb-0 font-weight-bold text-sm">
-                        </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
-                        <div class="nav-wrapper position-relative end-0">
-                            <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
-                                <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
-                                    <span class="fa fa-plane-arrival"></span>
-                                    <span class="ms-1">Vuelos Llegada</span>
-                                </a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
-                                    <span class="fa fa-plane-departure"></span>
-                                    <span class="ms-1">Vuelos Salida</span>
-                                </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-body p-1 mt-1">
-            <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1" style="background-image: url('../../assets/img/miercoles.jpeg'); background-size:cover;">
-                    <div class="d-flex m-1">
-                        <div class="ms-auto d-flex">
-                            <div class="pe-4 mt-1 position-relative">
-                                <hr class="vertical dark mt-0">
-                            </div>
-                            <div class="ps-4">
-                                <div class="panel-body" <?php echo $visible; ?>></div>
-                                <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#Modal_Add"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                <a style="background: #1C6C42; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-excel" aria-hidden="true"></i></a>
-                                <a style="background: #9A1622; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
-                                <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
-                                    <span class="fa fa-info"></span>
-                                </button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <div class="card mb-4">
-                                <div class="card-header pb-0">
-                                    <h6>Pases de Abordar para Vuelos de Llegada - Cargados con Éxito</h6>
-                                    <p style="font-size: 12px">
-                                    <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida
-                                    <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada
-                                    <span class="fa fa-ticket" style="color: #1a8fdd"> </span> No. de Vuelo
-                                    </p>
-                                </div>
-                                <div class="card-body px-0 pt-0 pb-2">
-                                    <div class="table-responsive p-0">
-                                        <table class="table align-items-center mb-0">
-                                            <thead>
-                                            <tr>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Info</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php echo $tabla; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
-                    B
-                </div>
-            </div>
-        </div>
-        <!-- Fin barrita -->
-
-        
-    </div>
-
-    <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="Modal_Prueba_COVID" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        Asistente Para Cargar Pases de Abordar (Vuelos)
-                    </h5>
-                    <span type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
-                        X
-                    </span>
-                </div>
-                <div class="modal-header">
-                    <label id="fecha_actual"><?php echo $fechaActual; ?></label>
-                    <p>A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p>
-                </div>
-
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" id="form_prueba_covid">
-                        <div class="form-group row">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Asistente:</label>
-                                        
-                                        <div class="col-md-6 col-sm-12 col-xs-12">
-                                            <input class="form-control col-md-7 col-xs-12" placeholder="Jonathan" required>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- <div class="col-md-10">
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Fecha de Carga al Sistema:</label>
-                                        <?php
-                                        $mes = '';
-                                        if(date("m") == '01')
-                                        {$mes = 'Enero';}if(date("m") == '02') {$mes = 'Febrero';}if(date("m") == '03') {$mes = 'Marzo';}if(date("m") == '04')
-                                        {$mes = 'Abril';}if(date("m") == '05') {$mes = 'Mayo';}if(date("m") == '06') {$mes = 'Junio';}if(date("m") == '07')
-                                        {$mes = 'Julio';}if(date("m") == '08') {$mes = 'Agosto';}if(date("m") == '09') {$mes = 'Septiembre';}if(date("m") == '10')
-                                        {$mes = 'Octubre';}if(date("m") == '11') {$mes = 'Noviembre';}if(date("m") == '12') {$mes = 'Diciembre';}
-                                        ?>
-                                        <div class="col-md-6 col-sm-12 col-xs-12">
-                                            <input class="form-control col-md-7 col-xs-12" disabled value="<?php echo date("d") . " de " .$mes. " de " . date("Y"); ?>">
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="col-md-12">
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Nombre del Asistente <span class="required">*</span></label>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12">
-                                            <select class="form-control" name="resultado_" id="resultado_">
-                                                <option selected>Seleccione Un Resultado</option>
-                                                <option value="positivo">Positivo</option>
-                                                <option value="negativo">Negativo</option>
-                                            </select>
-                                        </div>
-                                        <span id="availability_"></span>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="form-group col-md-12">
-                                    <label class="control-label col-md-12 col-sm-12 col-xs-12" for="file_">Archivo .PDF Ticket/Pase de Abordar de llegada: <span class="required">*</span></label>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <input type="file" accept="application/pdf" class="form-control" id="file_" name="file_">
-                                    </div>
-                                    <span id="availability_4_"></span>
-                                </div> -->
-                            </div>
-                            <!-- <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["administrador_id"]?>"> -->
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
-                            <button type="button" class="btn bg-gradient-secondary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-</main>
+  </main>
 </body>
+
+
 
 <?php echo $footer; ?>

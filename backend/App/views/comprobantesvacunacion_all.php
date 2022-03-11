@@ -475,15 +475,75 @@
                                     <div class="table-responsive p-0">
                                         <table class="table align-items-center mb-0">
                                             <thead>
+                                                <tr>
+                                                    <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha de Carga de Documento</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Número de Dosis</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Marca Dosis</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documento</th>
+                                                </tr>
+                                                </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <?php echo $tabla;?>
+                                                    <!-- <td>
+                                                        <div class="d-flex px-3 py-1">
+                                                            <div>
+                                                                <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
+                                                            </div>
+                                                            <div class="d-flex flex-column justify-content-center">
+                                                                <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
+                                                                <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
+                                                        <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
+                                                    </td>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <p class="text-sm font-weight-bold mb-0 text-dark">Jonathan Valdez Martinez</p>
+                                                    </td>
+                                                    <td class="align-middle text-end">
+                                                        <div class="d-flex px-3 py-1 justify-content-center align-items-center">
+                                                            <p class="text-sm font-weight-bold mb-0">13</p>
+                                                            <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
+                                                            <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Descargo el archivo el día 23/02/2022 18:00:14">
+                                                                <i class="fas fa-info" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="staff" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header pb-0">
+                                <h6>Comprobantes Cargados con Exito - Pendientes de Validar por un Ejecutivo(a)</h6>
+                            </div>
+                            <div class="card-body px-0 pt-0 pb-2">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center mb-0">
+                                        <thead>
                                             <tr>
                                                 <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Con quien Comparte?</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha de Carga de Documento</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Número de Dosis</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Marca Dosis</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documento</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Validar</th>
                                             </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php echo $tabla_no_v;?>
+                                            <!-- <tr>
                                                 <td>
                                                     <div class="d-flex px-3 py-1">
                                                         <div>
@@ -511,62 +571,7 @@
                                                         </button>
                                                     </div>
                                                 </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="staff" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
-                    <div class="col-12">
-                        <div class="card mb-4">
-                            <div class="card-header pb-0">
-                                <h6>Comprobantes Cargados con Exito - Pendientes de Validar por un Ejecutivo(a)</h6>
-                            </div>
-                            <div class="card-body px-0 pt-0 pb-2">
-                                <div class="table-responsive p-0">
-                                    <table class="table align-items-center mb-0">
-                                        <thead>
-                                        <tr>
-                                            <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Con quien Comparte?</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-3 py-1">
-                                                    <div>
-                                                        <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
-                                                        <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
-                                                <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
-                                            </td>
-                                            <td class="align-middle text-center text-sm">
-                                                <p class="text-sm font-weight-bold mb-0 text-dark">Jonathan Valdez Martinez</p>
-                                            </td>
-                                            <td class="align-middle text-end">
-                                                <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                    <p class="text-sm font-weight-bold mb-0">13</p>
-                                                    <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
-                                                    <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Descargo el archivo el día 23/02/2022 18:00:14">
-                                                        <i class="fas fa-info" aria-hidden="true"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>

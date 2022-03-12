@@ -37,15 +37,30 @@ class Habitaciones extends Controller
     $extraHeader = <<<html
 html;
 
-    $tabla_asistentes = '';
-
     //tab asistetes
+    $tabla_asistentes = '';
+    $optionsHotel = '';
+    $optionsCategoriaHotel = '';
+
+    $hoteles = HabitacionesDao::getAll();
+    foreach ($hoteles as $key => $value) {
+      $optionsHotel .= <<<html
+          <option value="{$value['id_hotel']}" selected>{$value['nombre_hotel']}</option>
+html;
+    }
+
+    $CategoriasHabitacion = HabitacionesDao::getAllCategoriasHabitaciones();
+    foreach ($CategoriasHabitacion as $key => $value) {
+      $optionsCategoriaHotel .= <<<html
+            <option value="{$value['id_categoria_habitacion']}">{$value['nombre_categoria']}</option>
+html;
+    }
+
     $asistentes = AsistentesDao::getAll();
+    foreach ($asistentes as $key => $value) {
+      //$distinct = AsistentesDao::getHabitacionByNumber($value['numero_habitacion']);
 
-    foreach($asistentes as $key => $value){
-    $distinct = AsistentesDao::getHabitacionByNumber($value['numero_habitacion']);
-
-    $tabla_asistentes .= <<<html
+      $tabla_asistentes .= <<<html
     <tr>
     <td>
       <div class="d-flex px-3 py-1">
@@ -62,17 +77,16 @@ html;
     <td class="align-middle text-center text-sm">
 html;
 
-      foreach($distinct as $key => $val){
-        if($val['nombre_usuario'] != $value['nombre_usuario']){
-          $tabla_asistentes .= <<<html
-          <h6 class="mb-0 text-sm">{$val['nombre_usuario']} {$val['apellido_paterno']} {$val['apellido_materno']}</h6>
-          <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['nombre_categoria']}</p>
-  html;  
-        }
-             
-      }
+  //     foreach ($distinct as $key => $val) {
+  //       if ($val['nombre_usuario'] != $value['nombre_usuario']) {
+  //         $tabla_asistentes .= <<<html
+  //         <h6 class="mb-0 text-sm">{$val['nombre_usuario']} {$val['apellido_paterno']} {$val['apellido_materno']}</h6>
+  //         <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['nombre_categoria']}</p>
+  // html;
+  //       }
+  //     }
 
-        $tabla_asistentes .= <<<html
+      $tabla_asistentes .= <<<html
                 
             </td>
             <td class="align-middle text-center text-sm">
@@ -86,7 +100,7 @@ html;
             </tr>
  
 html;
-}
+    }
 
 
 
@@ -159,11 +173,9 @@ html;
                 <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$total_huespedes}</p></td>
                 <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$value['huespedes']}</p></td>
                 <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$stay}</p></td>
-                <td> <a href="#" type="submit" name="id" class="btn bg-gradient-primary" data-toggle="modal" data-target="#edit-habitacion{$value['id_categoria_habitacion']}"><span class="fa fa-pencil-square-o" style="color:white" ></span> </a>  </td>
+                <td> <a href="#" type="button" name="id" class="btn bg-gradient-primary" data-toggle="modal" data-target="#edit-habitacion{$value['id_categoria_habitacion']}"><span class="fa fa-pencil-square-o" style="color:white" ></span> </a>  </td>
  
 html;
-
-
 
       $modal_habitaciones .= <<<html
             <div class="modal fade" id="edit-habitacion{$value['id_categoria_habitacion']}" tabindex="-1" role="dialog" aria-labelledby="edit-habitacionLabel" aria-hidden="true">
@@ -184,7 +196,7 @@ html;
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Nombre *</label>
                                             <div class="input-group c">
-                                                <select id="id_hotel" name="id_hotel" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                                <select id="id_hotel" name="id_hotel" maxlength="29"  class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                                     <option value="" disabled>Selecciona un Hotel</option>
 html;
       $hoteles = HabitacionesDao::getAll();
@@ -202,8 +214,7 @@ html;
       }
 
       $modal_habitaciones .= <<<html
-                                                    
-                                                </select>
+                                   </select>
                                             </div>
                                         </div>
                                     </div>
@@ -212,14 +223,14 @@ html;
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Categoría Habitación *</label>
                                             <div class="input-group">
-                                                <input id="categoria_habitacion" name="categoria_habitacion" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="SENCILLA" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['categoria_habitacion']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                                <input id="categoria_habitacion" name="categoria_habitacion" maxlength="29"  class="form-control" type="text" placeholder="SENCILLA" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['categoria_habitacion']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                             </div>
                                         </div>
             
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Nombre Categoría *</label>
                                             <div class="input-group">
-                                                <input id="nombre_categoria" name="nombre_categoria" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Sencilla" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['nombre_categoria']}">
+                                                <input id="nombre_categoria" name="nombre_categoria" maxlength="29"  class="form-control" type="text" placeholder="Sencilla" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['nombre_categoria']}">
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +246,7 @@ html;
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Total Huéspedes *</label>
                                             <div class="input-group">
-                                                <input id="total_huespedes" name="total_huespedes" maxlength="10" class="form-control" type="number" placeholder="SENCILLA" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['total_huespedes']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                                <input id="total_huespedes" name="total_huespedes" maxlength="10" class="form-control" type="number" placeholder="SENCILLA" required="required" value="{$value['total_huespedes']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                             </div>
                                         </div>
                                     </div>
@@ -252,15 +263,18 @@ html;
                     </div>
                 </div>
             </div>
+            <br>
 html;
     }
 
     // echo count($fecha);
     // echo "<br>";
-    // echo $fecha[0]; // porción1
-    // echo $fecha[1]; // porción2 
+    // echo $fecha[0]; 
+    // echo $fecha[1];  
 
-    View::set('tabla_asistentes',$tabla_asistentes);
+    View::set('optionsCategoriaHotel', $optionsCategoriaHotel);
+    View::set('optionsHotel', $optionsHotel);
+    View::set('tabla_asistentes', $tabla_asistentes);
     View::set('modal_habitaciones', $modal_habitaciones);
     View::set('hotel', $hotel);
     View::set('dates', $dates);
@@ -271,6 +285,31 @@ html;
     View::set('header', $this->_contenedor->header($extraHeader));
     View::set('footer', $this->_contenedor->footer($extraFooter));
     View::render("habitaciones_all");
+  }
+
+  public function CrearHabitacion(){
+    $data = new \stdClass();
+
+    $hotel = $_POST['hotel'];
+    $categoria_habitacion = $_POST['cat_habitacion'];
+    $administrador = $_SESSION['id_administrador'];
+    $numero_habitacion = $_POST['no_habitacion'];
+
+  
+      $data->_hotel = $hotel;
+      $data->_categoria_habitacion = $categoria_habitacion;
+      $data->_administrador = $administrador;
+      $data->_numero_habitacion = $numero_habitacion;
+
+      $id = HabitacionesDao::insert($data);
+      if($id){
+        echo "success";
+      }else{
+        echo "fail";
+      }
+
+    
+    
   }
 
   public function Actualizar()
@@ -319,14 +358,14 @@ html;
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       $id_categoria_habitacion = $_POST['id_categoria_habitacion'];
-      $id_hotel = $_POST['id_hotel'];
+      // $id_hotel = $_POST['id_hotel'];
       $categoria_habitacion = $_POST['categoria_habitacion'];
       $nombre_categoria = $_POST['nombre_categoria'];
       $huespedes = $_POST['huespedes'];
       $total_huespedes = $_POST['total_huespedes'];
 
       $documento->_id_categoria_habitacion = $id_categoria_habitacion;
-      $documento->_id_hotel = $id_hotel;
+      // $documento->_id_hotel = $id_hotel;
       $documento->_categoria_habitacion = $categoria_habitacion;
       $documento->_nombre_categoria = $nombre_categoria;
       $documento->_huespedes = $huespedes;
@@ -343,4 +382,93 @@ html;
       echo 'fail REQUEST';
     }
   }
+
+  public function BuscarHabitacion(){
+    $no_habitacion = $_POST['no_habitacion'];
+
+    $seacrh_habitacion = HabitacionesDao::BuscarHabitacion($no_habitacion)[0];
+
+    if($seacrh_habitacion){
+
+      $data = [
+        'status' => 'encontrado',
+        'msg' => 'Este numero de habitacion ya esta registrado'
+      ];
+      
+    }else{
+      $data = [
+        'status' => 'no se encontro'
+      ];
+    }
+
+    echo json_encode($data);
+
+  }
+
+  public function searchAsistentes(){
+    $asistente = $_POST['asistente'];
+   
+
+    if(isset($asistente) && !empty($asistente)){
+        $Asistente = AsistentesDao::getUsuarioByName($asistente);
+    
+        echo json_encode($Asistente);
+
+    }
+
+}
+
+public function categoriaHabitacion(){
+  $cat_habitacion = $_POST['cat_habitacion'];
+ 
+
+  if(isset($cat_habitacion) && !empty($cat_habitacion)){
+      $asistentes = AsistentesDao::getAllRegisterSinHabitacion();
+      $habitacion = HabitacionesDao::getCategoriasHabitacionesById($cat_habitacion)[0];
+
+      $data = [
+        'categoria_habitacion' => $habitacion,
+        'asistentes' => $asistentes
+      ];
+  
+      echo json_encode($data);
+     
+
+  }
+
+}
+
+
+  public function AsignarHabitacion(){
+    // echo $_POST['asistente_name'];
+
+    $documento = new \stdClass();
+
+    $id_categoria_habitacion = $_POST['asigna_cat_habitacion'];
+    $asistente_name = $_POST['asistente_name'];
+    $id_administrador = $_SESSION['id_administrador'];
+    $clave = $this->generateRandomString();
+
+
+    $documento->_id_categoria_habitacion = $id_categoria_habitacion;
+    $documento->_id_administrador = $id_administrador;
+    $documento->_clave = $clave;
+
+    //$id = HabitacionesDao::insertAsignaHabitacion($documento);
+
+    foreach($asistente_name as $key => $value){
+
+      $documento->_id_registro_acceso = $value;
+      $id = HabitacionesDao::insertAsignaHabitacion($documento);
+     
+      
+      // echo $value;
+    }
+  }
+
+  function generateRandomString($length = 6) { 
+    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
+} 
+
+  
 }

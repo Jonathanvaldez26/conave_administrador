@@ -25,7 +25,81 @@ class Vuelos extends Controller{
 
     public function index() {
      $extraHeader =<<<html
-    
+html;
+
+     $extraFooter =<<<html
+
+          <!-- jQuery -->
+            <script src="/js/jquery.min.js"></script>
+            <!--   Core JS Files   -->
+            <script src="/assets/js/core/popper.min.js"></script>
+            <script src="/assets/js/core/bootstrap.min.js"></script>
+            <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+            <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+            <!-- Kanban scripts -->
+            <script src="/assets/js/plugins/dragula/dragula.min.js"></script>
+            <script src="/assets/js/plugins/jkanban/jkanban.js"></script>
+            <script src="/assets/js/plugins/chartjs.min.js"></script>
+            <script src="/assets/js/plugins/threejs.js"></script>
+            <script src="/assets/js/plugins/orbit-controls.js"></script>
+            
+          <!-- Github buttons -->
+            <script async defer src="https://buttons.github.io/buttons.js"></script>
+          <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+            <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
+
+          <!-- VIEJO INICIO -->
+            <script src="/js/jquery.min.js"></script>
+          
+            <script src="/js/custom.min.js"></script>
+
+            <script src="/js/validate/jquery.validate.js"></script>
+            <script src="/js/alertify/alertify.min.js"></script>
+            <script src="/js/login.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          <!-- VIEJO FIN -->
+   <script>
+    $( document ).ready(function() {
+
+          $("#form_vuelo_uno").on("submit",function(event){
+              event.preventDefault();
+              
+                  var formData = new FormData(document.getElementById("form_vuelo_uno"));
+                  for (var value of formData.values()) 
+                  {
+                     console.log(value);
+                  }
+                  $.ajax({
+                      url:"/Vuelos/uploadVueloUno",
+                      type: "POST",
+                      data: formData,
+                      cache: false,
+                      contentType: false,
+                      processData: false,
+                      beforeSend: function(){
+                      console.log("Procesando....");
+                  },
+                  success: function(respuesta){
+                      if(respuesta == 'success'){
+                         // $('#modal_payment_ticket').modal('toggle');
+                         
+                          swal("¡El vuelo se Cargo Correctamente!", "", "success").
+                          then((value) => {
+                              window.location.replace("/Vuelos/");
+                          });
+                      }
+                      console.log(respuesta);
+                  },
+                  error:function (respuesta)
+                  {
+                      console.log(respuesta);
+                  }
+              });
+          });
+
+      });
+</script>
+
 html;
 
      $vuelos = VuelosDao::getAll();
@@ -73,30 +147,88 @@ html;
 html;
         }
 
+     View::set('idAsistente',$this->getAsistentes());
      View::set('tabla',$tabla);
      View::set('header',$this->_contenedor->header($extraHeader));
+     View::set('footer',$extraFooter);
      View::render("vuelos_all");
-      
     }
 
-    public function getAsistenteNombreLineaRoot($linea_asignada){
-        $asistente = '';
-        foreach (VuelosDao::getAsistenteNombre($linea_asignada) as $key => $value) {
-            $asistente .=<<<html
-        <option value="{$value['catalogo_colaboradores_id']}">{$value['nombre']}</option>
-html;
+    public function uploadVueloUno(){
+
+        $documento = new \stdClass();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $utilerias_asistentes_id = $_POST['id_asistente'];
+            $documento->_utilerias_asistentes_id = $utilerias_asistentes_id;
+
+            $utilerias_administradores_id = $_POST["user_"];
+            $documento->_utilerias_administradores_id = $utilerias_administradores_id;
+
+            $clave = $this->generateClave();
+            $documento->_clave = $clave;
+
+            $id_aeropuerto_origen = $_POST['id_origen'];
+            $documento->_id_aeropuerto_origen = $id_aeropuerto_origen;
+
+            $id_aeropuerto_destino = $_POST['id_destino'];
+            $documento->_id_aeropuerto_destino = $id_aeropuerto_destino;
+
+            $numero_vuelo = $_POST['numero_vuelo'];
+            $documento->_numero_vuelo = $numero_vuelo;
+
+            $hora_llegada = $_POST['hora_llegada'];
+            $documento->_hora_llegada = $hora_llegada;
+
+            $file = $_FILES["file_"];
+            $pdf = $this->generateRandomString();
+            move_uploaded_file($file["tmp_name"], "comprobante_vuelo_uno/".$pdf.'.pdf');
+
+            $documento->_url = $pdf.'.pdf';
+
+            $notas = $_POST['notas'];
+            if($notas == '')
+            {
+                $notas = 'Sin Notas';
+                $documento->_notas = $notas;
+            }
+            else
+            {
+                $notas = $_POST['notas'];
+                $documento->_notas = $notas;
+            }
+
+            $id = VuelosDao::insert($documento);
+
+            if ($id) {
+                echo 'success';
+
+            } else {
+                echo 'fail';
+            }
+        } else {
+            echo 'fail REQUEST';
         }
-        return $asistente;
     }
 
-    public function getAsistenteNombreLinea($linea_asignada){
-        $asistente = '';
-        foreach (VuelosDao::getAsistenteNombre($linea_asignada) as $key => $value) {
-            $asistente .=<<<html
-        <option value="{$value['catalogo_colaboradores_id']}">{$value['nombre']}</option>
+    function generateRandomString($length = 10) {
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    }
+
+    function generateClave($length = 6) {
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    }
+
+    public function getAsistentes(){
+        $asistentes = '';
+        foreach (VuelosDao::getAsistenteNombre() as $key => $value) {
+            $asistentes .=<<<html
+      <option value="{$value['id_registro_acceso']}"> {$value['nombre']}</option>
 html;
         }
-        return $asistente;
+        return $asistentes;
     }
+
 
 }

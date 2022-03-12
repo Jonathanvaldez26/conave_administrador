@@ -131,6 +131,19 @@ class Contenedor extends Controller{
             <link href="../../../assets/css/nucleo-svg.css" rel="stylesheet" />
             <!-- CSS Files -->
             <link id="pagestyle" href="../../../assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
+            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+            <style>
+            .select2-container--default .select2-selection--single {
+            height: 38px!important;
+            border-radius: 8px!important;
+            
+            }
+            .select2-container {
+              width: 100%!important;
+              
+          }
+           
+            </style>
         </head>
 html;
 
@@ -234,6 +247,7 @@ html;
         <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
         

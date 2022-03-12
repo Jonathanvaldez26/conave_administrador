@@ -437,6 +437,12 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link mb-0 px-0 py-1" href="#habitaciones" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                            <span class="fa fa-hotel"></span>
+                                            <span class="ms-1">HABITACIONES</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link mb-0 px-0 py-1" href="#hotel" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
                                             <span class="fa fa-h-square"></span>
                                             <span class="ms-1">DATOS HOTEL</span>
@@ -459,7 +465,7 @@
                                 </div>
                                 <div class="ps-4">
                                     <div class="panel-body" <?php echo $visible; ?>></div>
-                                    <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#addHabitacion"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#asignar_habitacion"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                     <a style="background: #1C6C42; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-excel" aria-hidden="true"></i></a>
                                     <a style="background: #9A1622; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
                                     <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
@@ -498,12 +504,45 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="tab-pane fade position-relative height-350 border-radius-lg" id="staff" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
                         B
                     </div>
                     <div class="tab-pane fade position-relative height-350 border-radius-lg" id="vip" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
                         B
                     </div>
+                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="habitaciones" role="tabpanel" aria-labelledby="cam1" style="background-image: url('../../assets/img/miercoles.jpeg'); background-size:cover;">
+                        <div class="d-flex m-1">
+                            <div class="ms-auto d-flex">
+                                <div class="pe-4 mt-1 position-relative">
+                                    <hr class="vertical dark mt-0">
+                                </div>
+                                <div class="ps-4">
+                                    <div class="panel-body" <?php echo $visible; ?>></div>
+                                    <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#addHabitacion"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    <a style="background: #1C6C42; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-excel" aria-hidden="true"></i></a>
+                                    <a style="background: #9A1622; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
+                                    <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
+                                        <span class="fa fa-info"></span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="card mb-4">
+                                    <div class="card-header pb-0">
+                                        <h6>Habitaciones Asignadas para los Asistentes Asofarma</h6>
+                                    </div>
+                                    <div class="card-body px-0 pt-0 pb-2">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="tab-pane fade position-relative height-350 border-radius-lg" id="hotel" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
                         <div class="row">
                             <div class="col-lg-12 mx-auto">
@@ -593,7 +632,7 @@
                                                                                 <tr>
                                                                                     <th data-sortable="" style="width: 10.7306%;"><a href="#" class="dataTable-sorter">Categoria</a></th>
                                                                                     <!-- <th data-sortable="" style="width: 10.0774%;"><a href="#" class="dataTable-sorter">Total de huespedes</a></th> -->
-                                                                                    <?php echo $th_table_fechas;?>
+                                                                                    <?php echo $th_table_fechas; ?>
                                                                                     <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">NTS</a></th>
                                                                                     <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">PAX</a></th>
                                                                                     <th data-sortable="" style="width: 10.4141%;"><a href="#" class="dataTable-sorter">STAY</a></th>
@@ -656,51 +695,116 @@
 
 
 
-<!-- Modal edit hotel-->
-<div class="modal fade " id="addHabitacion" tabindex="-1" role="dialog" aria-labelledby="addHabitacionLabel" aria-hidden="true">
+
+<!-- Modal crear habitacion-->
+<div class="modal fade" id="addHabitacion" tabindex="-1" role="dialog" aria-labelledby="addHabitacionLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content " id="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addHabitacionLabel">Crear Habitacion</h5>
-                <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" id="update_form" action="" method="POST">
+        <div class="modal-content">
+            <form class="form-horizontal" id="crear_habitacion_form" action="" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addHabitacionLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
                     <div class="card-body pt-0">
 
                         <div class="row">
-                        <div class="col-12 col-lg-6">
-                                <label class="form-label">Categoria Habitacion</label>
-                                <div class="input-group">
-                                    <input id="evento" name="evento" maxlength="49" class="form-control" type="text" placeholder="event" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['evento']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                </div>
+
+                            <div class="col-12">
+                                <label class="form-label mt-4">Hotel </label>
+                                <select class="form-control" style="cursor: pointer;" name="hotel" id="hotel" tabindex="-1" required>
+                                    <?php echo $optionsHotel; ?>
+                                </select>
                             </div>
-                            <div class="col-12 col-lg-6">
-                                <input type="hidden" id="id_hotel" name="id_hotel" value="<?= $hotel['id_hotel'] ?> ">
+
+                            <div class="col-12 align-self-center">
+                                <label class="form-label mt-4">Categoria Habitación *</label>
+                                <select class="form-control" style="cursor: pointer;" name="cat_habitacion" id="cat_habitacion" tabindex="-1" required>
+                                    <option value="" disabled selected>Selecciona una opción</option>
+                                    <?php echo $optionsCategoriaHotel; ?>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
                                 <label class="form-label">Numero Habitacion</label>
                                 <div class="input-group">
-                                    <input id="cliente" name="cliente" maxlength="29" class="form-control" type="text" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['cliente']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="no_habitacion" name="no_habitacion" maxlength="29" class="form-control" type="number" placeholder="No de habitación" required="">
                                 </div>
+                                <span id="msg_encontrado" style="font-size: 12px;color:#EC2F1E;"></span>
                             </div>
-
-                           
-
                         </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-
                     </div>
-                </form>
-            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 <!--End Modal-->
+
+<!-- Modal asignar habitacion-->
+<div class="modal fade" id="asignar_habitacion" role="dialog" aria-labelledby="asignar_habitacionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-horizontal" id="form_asisgnar_habitacion" action="" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="asignar_habitacionLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="card-body pt-0">
+
+                        <div class="row">
+
+
+
+                            <div class="col-12 align-self-center">
+                                <label class="form-label mt-4">Habitacion *</label>
+                                <select class="form-control" style="cursor: pointer;" name="asigna_cat_habitacion" id="asigna_cat_habitacion" tabindex="-1" required>
+                                    <option value="" disabled selected>Selecciona una opción</option>
+                                    <?php echo $optionsCategoriaHotel; ?>
+                                </select>
+                            </div>
+                           
+                            <div id="cont_asigna_huespedes">
+
+                             
+
+                            </div>
+
+<!-- 
+                            <div class="col-12">
+                                <label class="form-label">Numero Habitacion</label>
+                                <div class="input-group">
+                                    <input id="no_habitacion" name="no_habitacion" maxlength="29" class="form-control" type="number" placeholder="No de habitación" required="">
+                                </div>
+                                <span id="msg_encontrado" style="font-size: 12px;color:#EC2F1E;"></span>
+                            </div> -->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--End Modal-->
+
+
 
 <!-- Modal edit hotel-->
 <div class="modal fade " id="editar-hotel" tabindex="-1" role="dialog" aria-labelledby="editar-hotelLabel" aria-hidden="true">
@@ -785,7 +889,11 @@
 <?php echo $footer; ?>
 
 <script>
+
+    
     $(document).ready(function() {
+
+
 
         $("#add_date").click(function() {
             $("#cont_fechas").append("<div class='col-12 col-lg-6 date'><label class='form-label mt-4'>Fechas * </label><input type='date' class='form-control' id='fecha' name='fecha[]' required='' value=''></div>");
@@ -795,6 +903,72 @@
 
             $('#cont_fechas .date').last().remove();
             console.log($("#cont_fechas last"));
+        });
+
+        $("#crear_habitacion_form").on("submit", function(event) {
+            event.preventDefault();
+            var formData = new FormData(document.getElementById("crear_habitacion_form"));
+
+            $.ajax({
+                url: "/Habitaciones/CrearHabitacion",
+                type: "POST",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+
+                },
+                success: function(respuesta) {
+
+                    console.log(respuesta);
+                    if (respuesta == "success") {
+                        window.location.replace("/Habitaciones/");
+                    }
+
+
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
+
+        $("#no_habitacion").on("keyup", function() {
+            // console.log($(this).val());
+            var no_habitacion = $(this).val();
+            $.ajax({
+                url: "/Habitaciones/BuscarHabitacion",
+                type: "POST",
+                data: {
+                    no_habitacion
+                },
+                dataType: 'json',
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+                },
+                success: function(respuesta) {
+
+                    //console.log(respuesta);
+                    if (respuesta.status == 'encontrado') {
+                        $("#msg_encontrado").html(respuesta.msg);
+                        $("#save_habitacion").attr("disabled", "disabled");
+                    } else {
+                        $("#msg_encontrado").html('');
+                        $("#save_habitacion").removeAttr("disabled");
+                    }
+
+
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
         });
 
 
@@ -871,7 +1045,7 @@
                     if (respuesta == 'success') {
                         window.location.replace("/Habitaciones/");
 
-                        
+
                     } else {
                         // swal("Usted No Actualizo Nada!", "", "warning").
                     }
@@ -882,6 +1056,103 @@
 
             });
         });
+
+        $("#asistente_name").on('change', function() {
+
+            console.log($(this).data("value"))
+
+            // var value_input = document.getElementById("asistente_name").value;
+            // var value2send = document.querySelector("#list_asistente_name option[value='"+value_input+"']").dataset.value;
+
+            // $("#asistente_name_aux").val(value2send);
+
+            // alert(value2send);
+        });
+
+        $("#asigna_cat_habitacion").on("change", function() {
+            var cat_habitacion = $(this).val();
+            $.ajax({
+                url: "/Habitaciones/categoriaHabitacion",
+                type: "POST",
+                data: {
+                    cat_habitacion
+                },
+                dataType: "json",
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+                    $('#cont_asigna_huespedes .asign_huesped').remove();
+                    
+
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+                    console.log(respuesta.asistentes.length);
+
+                    for (var i = 1; i <= respuesta.categoria_habitacion.huespedes; i++) {
+
+                        $("#cont_asigna_huespedes").append('<div class="col-12 align-self-center asign_huesped">'+
+                                    '<label class="form-label mt-4">Asistentes *</label><br>'+
+                                    '<select class="form-control select_2" style="cursor: pointer;" name="asistente_name[]" id="asistente_name'+i+'" tabindex="-1" required>'+
+                                    '<option value="" disabled selected>Selecciona una opción</option>'+
+                                    '</select>'+
+                                '</div>');
+
+                                for (var j = 0; j < respuesta.asistentes.length; j++) {
+                                    console.log(respuesta.asistentes[j].id_registro_acceso);
+                                    console.log(respuesta.asistentes[j].nombre_usuario);
+                                    console.log(respuesta.asistentes[j].apellido_paterno);
+                                    console.log(respuesta.asistentes[j].apellido_materno);
+                                    $("#asistente_name"+i).append('<option value="'+respuesta.asistentes[j].id_registro_acceso+'">'+respuesta.asistentes[j].nombre +' '+respuesta.asistentes[j].apellido_paterno+' '+respuesta.asistentes[j].apellido_materno+'</option>');
+                                }
+                        
+                    }
+
+                    $(".select_2").select2();
+                    
+
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
+
+        //$(".select_2").select2();
+     
+
+        $("#form_asisgnar_habitacion").on('submit', function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(document.getElementById("form_asisgnar_habitacion"));
+
+
+            $.ajax({
+                url: "/Habitaciones/AsignarHabitacion",
+                type: "POST",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+                },
+                success: function(respuesta) {
+
+                    console.log(respuesta);
+
+
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+
+        });
+
 
     });
 </script>

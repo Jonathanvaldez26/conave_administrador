@@ -162,8 +162,13 @@ html;
             View::set('nombre',$nombre);
             View::set('fecha_asistencia',$fecha_asistencia);
             View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
+<<<<<<< HEAD
+            View::set('$hora_asistencia_fin',$hora_asistencia_fin);
+            View::render("registro_asistencias_codigo");
+=======
             View::set('hora_asistencia_fin',$hora_asistencia_fin);
             View::render("asistencias_all");
+>>>>>>> 10f81e82338ead9a10cba5b096fcee4ca9cf79b3
         }
         else
         {

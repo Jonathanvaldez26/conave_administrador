@@ -8,7 +8,16 @@ use \App\controllers\UtileriasLog;
 
 class ComprobantesVacunacion implements Crud{
     public static function getAll(){
-        
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM comprobante_vacuna cv
+        INNER JOIN utilerias_asistentes u
+        INNER JOIN registros_acceso ra
+        ON cv.utilerias_asistentes_id = u.utilerias_asistentes_id
+        and u.id_registro_acceso = ra.id_registro_acceso
+sql;
+
+        return $mysqli->queryAll($query);
     }
     public static function getById($id){
         

@@ -10,9 +10,9 @@ class ComprobantesVacunacion implements Crud{
     public static function getAll(){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT * FROM comprobante_vacuna cv
-        INNER JOIN utilerias_asistentes u
-        INNER JOIN registros_acceso ra
+        SELECT cv.id_comprobante_vacuna AS id_c_v, cv.utilerias_asistentes_id , fecha_carga_documento, numero_dosis, marca_dosis, documento, cv.status AS status_comprobante, cv.validado, CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo FROM comprobante_vacuna cv
+        JOIN utilerias_asistentes u
+        JOIN registros_acceso ra
         ON cv.utilerias_asistentes_id = u.utilerias_asistentes_id
         and u.id_registro_acceso = ra.id_registro_acceso
 sql;

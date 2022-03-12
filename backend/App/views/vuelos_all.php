@@ -510,7 +510,7 @@
                     <hr>
                     <form method="POST" enctype="multipart/form-data" id="form_vuelo_uno">
                         <div class="form-group row">
-<<<<<<< HEAD
+
                             <div class="form-group col-md-12">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_asistente">Nombre del Invitado al que Cargaran el Pase de Abordar <span class="required">*</span></label>
                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -571,59 +571,7 @@
                                 </div>
                             </div>
                             <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["administrador_id"]?>">
-=======
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Asistente:</label>
-                                        
-                                        <div class="col-md-6 col-sm-12 col-xs-12">
-                                            <input class="form-control col-md-7 col-xs-12" placeholder="Jonathan" required>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- <div class="col-md-10">
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Fecha de Carga al Sistema:</label>
-                                        <?php
-                                        $mes = '';
-                                        if(date("m") == '01')
-                                        {$mes = 'Enero';}if(date("m") == '02') {$mes = 'Febrero';}if(date("m") == '03') {$mes = 'Marzo';}if(date("m") == '04')
-                                        {$mes = 'Abril';}if(date("m") == '05') {$mes = 'Mayo';}if(date("m") == '06') {$mes = 'Junio';}if(date("m") == '07')
-                                        {$mes = 'Julio';}if(date("m") == '08') {$mes = 'Agosto';}if(date("m") == '09') {$mes = 'Septiembre';}if(date("m") == '10')
-                                        {$mes = 'Octubre';}if(date("m") == '11') {$mes = 'Noviembre';}if(date("m") == '12') {$mes = 'Diciembre';}
-                                        ?>
-                                        <div class="col-md-6 col-sm-12 col-xs-12">
-                                            <input class="form-control col-md-7 col-xs-12" disabled value="<?php echo date("d") . " de " .$mes. " de " . date("Y"); ?>">
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="col-md-12">
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Nombre del Asistente <span class="required">*</span></label>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12">
-                                            <select class="form-control" name="resultado_" id="resultado_">
-                                                <option selected>Seleccione Un Resultado</option>
-                                                <option value="positivo">Positivo</option>
-                                                <option value="negativo">Negativo</option>
-                                            </select>
-                                        </div>
-                                        <span id="availability_"></span>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="form-group col-md-12">
-                                    <label class="control-label col-md-12 col-sm-12 col-xs-12" for="file_">Archivo .PDF Ticket/Pase de Abordar de llegada: <span class="required">*</span></label>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <input type="file" accept="application/pdf" class="form-control" id="file_" name="file_">
-                                    </div>
-                                    <span id="availability_4_"></span>
-                                </div> -->
-                            </div>
-                            <!-- <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["administrador_id"]?>"> -->
                         </div>
->>>>>>> 90d06944ae05b19bee7a0bffdf6ce638c0b58ef6
                         <div class="modal-footer">
                             <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
                             <button type="button" class="btn bg-gradient-secondary" data-dismiss="modal">Cancelar</button>

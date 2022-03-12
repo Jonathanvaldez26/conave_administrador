@@ -168,12 +168,15 @@ html;
         session_start();
         $_SESSION['usuario'] = $user['usuario'];
         $_SESSION['nombre'] = $user['nombre'];
+        $_SESSION['id_administrador'] = $user['utilerias_administradores_id'];
+
         header("location: /Principal/");
     }
 
     public function cerrarSession(){
-        unset($_SESSION);
-        session_unset();
+        session_start();
+        // unset($_SESSION);
+        // session_unset();
         session_destroy();
         header("Location: /Login/");
     }

@@ -11,7 +11,7 @@ class Asistentes implements Crud{
     public static function getAll(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ra.nombre as nombre_usuario, ra.apellido_paterno, ra.apellido_materno, ua.status as status_user, hh.numero_habitacion, ch.nombre_categoria, uad.nombre as nombre_administrador
+      SELECT ra.nombre as nombre_usuario, ra.apellido_paterno, ra.apellido_materno, ra.id_registro_acceso, ua.status as status_user, ch.nombre_categoria, uad.nombre as nombre_administrador
       FROM registros_acceso ra
       INNER JOIN utilerias_asistentes ua ON (ra.id_registro_acceso = ua.id_registro_acceso) 
       INNER JOIN habitaciones_hotel hh ON (ra.id_habitacion = hh.id_habitacion) 
@@ -23,6 +23,51 @@ sql;
       return $mysqli->queryAll($query);
         
     }
+
+    public static function getAllRegister(){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM registros_acceso WHERE politica = 1
+sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
+    public static function getAllRegisterSinHabitacion(){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno, ' - <b>',ra.email,'</b>') as nombre
+      FROM registros_acceso ra
+      WHERE ra.id_registro_acceso NOT IN (SELECT id_registro_acceso FROM asigna_habitacion) ORDER BY nombre ASC
+  sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
+    public static function getAllRegisterConHabitacion(){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT ra.*, ah.*
+      FROM registros_acceso ra
+      INNER JOIN asigna_habitacion ah
+      ON (ra.id_registro_acceso = ah.id_registro_acceso)
+      WHERE ra.politica = 1
+  sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
+
+
+    public static function getUsuarioByName($nombre){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM registros_acceso WHERE nombre LIKE '$nombre%'
+sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
 
     public static function getById($id){
         $mysqli = Database::getInstance();

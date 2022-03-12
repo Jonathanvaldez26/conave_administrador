@@ -498,61 +498,78 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        Asistente Para Cargar Pases de Abordar (Vuelos)
+                        Asistente Para Cargar Pases de Abordar (Vuelos) - 1er Vuelo
                     </h5>
+
                     <span type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
                         X
                     </span>
                 </div>
-                <div class="modal-header">
-                    <label id="fecha_actual"><?php echo $fechaActual; ?></label>
-                    <p>A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p>
-                </div>
-
                 <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" id="form_prueba_covid">
+                    <p style="font-size: 12px">A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p>
+                    <hr>
+                    <form method="POST" enctype="multipart/form-data" id="form_vuelo_uno">
                         <div class="form-group row">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Fecha de Carga al Sistema:</label>
-                                        <?php
-                                        $mes = '';
-                                        if(date("m") == '01')
-                                        {$mes = 'Enero';}if(date("m") == '02') {$mes = 'Febrero';}if(date("m") == '03') {$mes = 'Marzo';}if(date("m") == '04')
-                                        {$mes = 'Abril';}if(date("m") == '05') {$mes = 'Mayo';}if(date("m") == '06') {$mes = 'Junio';}if(date("m") == '07')
-                                        {$mes = 'Julio';}if(date("m") == '08') {$mes = 'Agosto';}if(date("m") == '09') {$mes = 'Septiembre';}if(date("m") == '10')
-                                        {$mes = 'Octubre';}if(date("m") == '11') {$mes = 'Noviembre';}if(date("m") == '12') {$mes = 'Diciembre';}
-                                        ?>
-                                        <div class="col-md-6 col-sm-12 col-xs-12">
-                                            <input class="form-control col-md-7 col-xs-12" disabled value="<?php echo date("d") . " de " .$mes. " de " . date("Y"); ?>">
-                                        </div>
-                                    </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_asistente">Nombre del Invitado al que Cargaran el Pase de Abordar <span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                    <select class="form-control" name="id_asistente" id="id_asistente" required>
+                                        <option selected disabled>Seleccione una Opción</option>
+                                        <?php echo $idAsistente; ?>
+                                    </select>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label col-md-12 col-sm-12 col-xs-12" for="fecha_">Nombre del Asistente <span class="required">*</span></label>
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                            <select class="form-control" name="resultado_" id="resultado_">
-                                                <option selected>Seleccione Un Resultado</option>
-                                                <option value="positivo">Positivo</option>
-                                                <option value="negativo">Negativo</option>
-                                            </select>
-                                        </div>
-                                        <span id="availability_"></span>
-                                    </div>
+                                <span id="availability_"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_origen">Seleccione el Origen de la Ciudad (¿De Donde Sale?) <span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                    <select class="form-control" name="id_origen" id="id_origen" required>
+                                        <option selected>Seleccione una Opción</option>
+                                        <option value="1">2 Dosis</option>
+                                        <option value="1">3 Dosis</option>
+                                    </select>
                                 </div>
-                                <div class="form-group col-md-12">
-                                    <label class="control-label col-md-12 col-sm-12 col-xs-12" for="file_">Archivo .PDF Ticket/Pase de Abordar de llegada: <span class="required">*</span></label>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <input type="file" accept="application/pdf" class="form-control" id="file_" name="file_">
-                                    </div>
-                                    <span id="availability_4_"></span>
+                                <span id="availability_"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_destino">Seleccione el Destino de la Ciudad (¿A Donde Llega?) <span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                    <select class="form-control" name="id_destino" id="id_destino" required>
+                                        <option selected>Seleccione una Opción</option>
+                                        <option value="1">2 Dosis</option>
+                                        <option value="1">3 Dosis</option>
+                                    </select>
+                                </div>
+                                <span id="availability_"></span>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label class="form-label">Número de Vuelo *</label>
+                                <div class="input-group">
+                                    <input id="numero_vuelo" name="numero_vuelo" maxlength="49" class="form-control" type="text" placeholder="event" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['evento']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label class="form-label">Hora de Llegada (Local) *</label>
+                                <div class="input-group">
+                                    <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['cliente']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-12 col-sm-12 col-xs-12" for="file_">Ticket en Formato .PDF: <span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="file" accept="application/pdf" class="form-control" id="file_" name="file_" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <label class="form-label">Notas (Opcional)</label>
+                                <div class="input-group">
+                                    <textarea id="notas" name="notas" maxlength="1000" class="form-control" placeholder="Añade Alguna Nota de Importancia"></textarea>
                                 </div>
                             </div>
                             <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["administrador_id"]?>">
-                        </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
                             <button type="button" class="btn bg-gradient-secondary" data-dismiss="modal">Cancelar</button>

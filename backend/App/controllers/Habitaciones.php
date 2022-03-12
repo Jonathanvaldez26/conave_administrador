@@ -56,9 +56,9 @@ html;
 html;
     }
 
-    $asistentes = AsistentesDao::getAll();
+    $asistentes = AsistentesDao::getAllRegisterConHabitacion();
     foreach ($asistentes as $key => $value) {
-      //$distinct = AsistentesDao::getHabitacionByNumber($value['numero_habitacion']);
+      $habitacionCompartida = AsistentesDao::getUsuariosByClaveHabitacion($value['clave']);
 
       $tabla_asistentes .= <<<html
     <tr>
@@ -68,27 +68,38 @@ html;
               <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
           </div>
           <div class="d-flex flex-column justify-content-center">
-              <h6 class="mb-0 text-sm">{$value['nombre_usuario']} {$value['apellido_paterno']} {$value['apellido_materno']}</h6>
-              <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['nombre_categoria']}</p>
-              <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['numero_habitacion']} </p>
-          </div>
-      </div>
-    </td>
-    <td class="align-middle text-center text-sm">
 html;
-
-  //     foreach ($distinct as $key => $val) {
-  //       if ($val['nombre_usuario'] != $value['nombre_usuario']) {
-  //         $tabla_asistentes .= <<<html
-  //         <h6 class="mb-0 text-sm">{$val['nombre_usuario']} {$val['apellido_paterno']} {$val['apellido_materno']}</h6>
-  //         <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['nombre_categoria']}</p>
-  // html;
-  //       }
-  //     }
+      $cont_user = 0;
+      foreach ($habitacionCompartida as $key => $val) {
+        $cont_user++;
+        $tabla_asistentes .= <<<html
+        <h6 class="mb-0 text-sm"><span class="fas fa-user-md"></span> ({$cont_user}) {$val['nombre']} | {$val['email']} | {$val['telefono']}</h6>
+html;        
+      }
+      $tabla_asistentes .= <<<html
+            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-hotel"></span> {$value['nombre_categoria']}</p>
+            <!--<p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['numero_habitacion']} </p>-->
+            </div>
+          </div>
+      </td>
+html;
+      // <td class="align-middle text-center text-sm">
+      //     foreach ($distinct as $key => $val) {
+      //       if ($val['nombre_usuario'] != $value['nombre_usuario']) {
+      //         $tabla_asistentes .= <<<html
+      //         <h6 class="mb-0 text-sm">{$val['nombre_usuario']} {$val['apellido_paterno']} {$val['apellido_materno']}</h6>
+      //         <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['nombre_categoria']}</p>
+      // html;
+      //       }
+      //     }
+      // </td>
 
       $tabla_asistentes .= <<<html
                 
+            <td class="align-middle text-center text-sm">
+                <p class="text-sm font-weight-bold mb-0 text-dark">con lugar disponible/ habitacion completa</p>
             </td>
+            
             <td class="align-middle text-center text-sm">
                 <p class="text-sm font-weight-bold mb-0 text-dark">{$value['nombre_administrador']}</p>
             </td>
@@ -287,7 +298,8 @@ html;
     View::render("habitaciones_all");
   }
 
-  public function CrearHabitacion(){
+  public function CrearHabitacion()
+  {
     $data = new \stdClass();
 
     $hotel = $_POST['hotel'];
@@ -295,21 +307,18 @@ html;
     $administrador = $_SESSION['id_administrador'];
     $numero_habitacion = $_POST['no_habitacion'];
 
-  
-      $data->_hotel = $hotel;
-      $data->_categoria_habitacion = $categoria_habitacion;
-      $data->_administrador = $administrador;
-      $data->_numero_habitacion = $numero_habitacion;
 
-      $id = HabitacionesDao::insert($data);
-      if($id){
-        echo "success";
-      }else{
-        echo "fail";
-      }
+    $data->_hotel = $hotel;
+    $data->_categoria_habitacion = $categoria_habitacion;
+    $data->_administrador = $administrador;
+    $data->_numero_habitacion = $numero_habitacion;
 
-    
-    
+    $id = HabitacionesDao::insert($data);
+    if ($id) {
+      echo "success";
+    } else {
+      echo "fail";
+    }
   }
 
   public function Actualizar()
@@ -383,46 +392,45 @@ html;
     }
   }
 
-  public function BuscarHabitacion(){
+  public function BuscarHabitacion()
+  {
     $no_habitacion = $_POST['no_habitacion'];
 
     $seacrh_habitacion = HabitacionesDao::BuscarHabitacion($no_habitacion)[0];
 
-    if($seacrh_habitacion){
+    if ($seacrh_habitacion) {
 
       $data = [
         'status' => 'encontrado',
         'msg' => 'Este numero de habitacion ya esta registrado'
       ];
-      
-    }else{
+    } else {
       $data = [
         'status' => 'no se encontro'
       ];
     }
 
     echo json_encode($data);
-
   }
 
-  public function searchAsistentes(){
+  public function searchAsistentes()
+  {
     $asistente = $_POST['asistente'];
-   
 
-    if(isset($asistente) && !empty($asistente)){
-        $Asistente = AsistentesDao::getUsuarioByName($asistente);
-    
-        echo json_encode($Asistente);
 
+    if (isset($asistente) && !empty($asistente)) {
+      $Asistente = AsistentesDao::getUsuarioByName($asistente);
+
+      echo json_encode($Asistente);
     }
+  }
 
-}
+  public function categoriaHabitacion()
+  {
+    $cat_habitacion = $_POST['cat_habitacion'];
 
-public function categoriaHabitacion(){
-  $cat_habitacion = $_POST['cat_habitacion'];
- 
 
-  if(isset($cat_habitacion) && !empty($cat_habitacion)){
+    if (isset($cat_habitacion) && !empty($cat_habitacion)) {
       $asistentes = AsistentesDao::getAllRegisterSinHabitacion();
       $habitacion = HabitacionesDao::getCategoriasHabitacionesById($cat_habitacion)[0];
 
@@ -430,17 +438,15 @@ public function categoriaHabitacion(){
         'categoria_habitacion' => $habitacion,
         'asistentes' => $asistentes
       ];
-  
       echo json_encode($data);
-     
-
+    }
   }
 
-}
 
-
-  public function AsignarHabitacion(){
+  public function AsignarHabitacion()
+  {
     // echo $_POST['asistente_name'];
+    $cont = 0;
 
     $documento = new \stdClass();
 
@@ -456,19 +462,21 @@ public function categoriaHabitacion(){
 
     //$id = HabitacionesDao::insertAsignaHabitacion($documento);
 
-    foreach($asistente_name as $key => $value){
+    foreach ($asistente_name as $key => $value) {
 
       $documento->_id_registro_acceso = $value;
       $id = HabitacionesDao::insertAsignaHabitacion($documento);
-     
-      
+      $cont++;
+
       // echo $value;
+    }
+    if($cont > 0){
+      echo 'success';
     }
   }
 
-  function generateRandomString($length = 6) { 
-    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
-} 
-
-  
+  function generateRandomString($length = 6)
+  {
+    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+  }
 }

@@ -11,7 +11,7 @@ class Vuelos implements Crud{
         $mysqli = Database::getInstance();
         $query=<<<sql
             SELECT pa.id_pase_abordar, pa.clave, CONCAT(ra.nombre," ", ra.segundo_nombre," ", ra.apellido_paterno," ", ra.apellido_materno) as nombre, pa.fecha_alta, CONCAT(ae.iata, " - ",ae.aeropuerto) as aeropuerto_salida, CONCAT(aeo.iata, " - ",aeo.aeropuerto) as aeropuerto_llegada , pa.numero_vuelo, pa.hora_llegada_destino, 
-            pa.nota , ua.nombre as nombre_registro FROM pases_abordar pa
+            pa.nota , ua.nombre as nombre_registro, ra.email, ra.telefono FROM pases_abordar pa
             INNER JOIN aeropuertos ae on ae.id_aeropuerto = pa.id_aeropuerto_origen
             INNER JOIN aeropuertos aeo on aeo.id_aeropuerto = pa.id_aeropuerto_destino
             INNER JOIN utilerias_administradores ua on ua.utilerias_administradores_id = pa.utilerias_administradores_id
@@ -58,12 +58,12 @@ sql;
     public static function getAsistenteNombre(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-    select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre 
-    from utilerias_asistentes ua 
-    INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
-    INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.id_registro_acceso 
-    INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.id_registro_acceso 
-    WHERE cv.status = 1 and pc.status = 2;
+        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre 
+        from utilerias_asistentes ua 
+        INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
+        INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.id_registro_acceso
+        INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.id_registro_acceso 
+        WHERE ua.utilerias_asistentes_id NOT IN (SELECT utilerias_asistentes_id FROM pases_abordar) AND cv.status = 1 and pc.status = 2;
 sql;
         return $mysqli->queryAll($query);
     }

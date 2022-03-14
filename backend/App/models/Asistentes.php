@@ -47,12 +47,25 @@ sql;
     public static function getAllRegisterConHabitacion(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ra.*, ah.*
+      SELECT ra.nombre, ra.segundo_nombre, ra.apellido_paterno, ra.apellido_materno, ah.*, ch.nombre_categoria, ua.nombre as nombre_administrador
       FROM registros_acceso ra
-      INNER JOIN asigna_habitacion ah
-      ON (ra.id_registro_acceso = ah.id_registro_acceso)
-      WHERE ra.politica = 1
+      INNER JOIN asigna_habitacion ah ON (ra.id_registro_acceso = ah.id_registro_acceso)
+      INNER JOIN categorias_habitaciones ch ON (ch.id_categoria_habitacion = ah.id_categoria_habitacion)
+      INNER JOIN utilerias_administradores ua ON(ua.utilerias_administradores_id = ah.utilerias_administradores_id)
+      WHERE ra.politica = 1 GROUP BY ah.clave
   sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
+    public static function getUsuariosByClaveHabitacion($clave){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT ah.id_registro_acceso, ah.clave, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno) as nombre, ra.email, ra.telefono
+      FROM asigna_habitacion ah
+      INNER JOIN registros_acceso ra ON (ah.id_registro_acceso = ra.id_registro_acceso)
+      WHERE clave = '$clave'
+sql;
       return $mysqli->queryAll($query);
         
     }

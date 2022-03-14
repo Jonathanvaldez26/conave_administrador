@@ -487,7 +487,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Con quien Comparte?</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                                                     </tr>
@@ -755,7 +755,7 @@
         <div class="modal-content">
             <form class="form-horizontal" id="form_asisgnar_habitacion" action="" method="POST">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="asignar_habitacionLabel">Modal title</h5>
+                    <h5 class="modal-title" id="asignar_habitacionLabel">Asignar Habitacion</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -893,7 +893,7 @@
     
     $(document).ready(function() {
 
-
+        
 
         $("#add_date").click(function() {
             $("#cont_fechas").append("<div class='col-12 col-lg-6 date'><label class='form-label mt-4'>Fechas * </label><input type='date' class='form-control' id='fecha' name='fecha[]' required='' value=''></div>");
@@ -1103,7 +1103,7 @@
                                     console.log(respuesta.asistentes[j].nombre_usuario);
                                     console.log(respuesta.asistentes[j].apellido_paterno);
                                     console.log(respuesta.asistentes[j].apellido_materno);
-                                    $("#asistente_name"+i).append('<option value="'+respuesta.asistentes[j].id_registro_acceso+'">'+respuesta.asistentes[j].nombre +' '+respuesta.asistentes[j].apellido_paterno+' '+respuesta.asistentes[j].apellido_materno+'</option>');
+                                    $("#asistente_name"+i).append('<option value="'+respuesta.asistentes[j].id_registro_acceso+'">'+respuesta.asistentes[j].nombre+'</option>');
                                 }
                         
                     }
@@ -1141,6 +1141,12 @@
                 },
                 success: function(respuesta) {
 
+                    if(respuesta == 'success'){
+                         swal("Se asigno la habitación correctamente!", "", "success").
+                        then((value) => {
+                            window.location.replace("/Habitaciones/");
+                        });
+                    }
                     console.log(respuesta);
 
 

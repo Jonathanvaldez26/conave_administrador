@@ -36869,4 +36869,24 @@ table.dataTable.no-footer {
   background-color: #f8f9fa !important;
 }
 
+.hide-section{
+  display: none;
+}
+
+.show-section{
+  display: block;
+}
+
+.div-info {
+  color: #0e748b !important;
+  background-color: #d1f3fa !important;
+  border-color: #b9ecf8 !important;
+}
+
+.div-danger {
+  color: #8c0404;
+  background-color: #fbcdcd;
+  border-color: #f9b4b4;
+}
+
 /*# sourceMappingURL=dashboard-pro.css.map */

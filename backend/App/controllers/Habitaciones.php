@@ -77,12 +77,11 @@ html;
          $cont_user++;
          $tabla_asistentes.= <<<html
          <h6 class="mb-0 text-sm"><span class="fas fa-user-md"></span>
-         <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Quitar huesped de la habitacion" class="btn_quitar_huesped" data-value="{$val['id_asigna_habitacion']}" value="{$val['id_asigna_habitacion']}"> ({$cont_user}) {$val['nombre']}  {$val['email']}  {$val['telefono']}</a>
-         </h6>
-   
-      }
+         <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Quitar huesped de la habitacion" class="btn_quitar_huesped" data-value="{$val['id_asigna_habitacion']}" value="{$val['id_asigna_habitacion']}"> ({$cont_user}) {$val['nombre']} | {$val['email']} | {$val['telefono']}</a></h6>
 html;
-          $tabla_asistentes .= <<<html
+      }
+
+      $tabla_asistentes .= <<<html
             <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-hotel"></span> {$value['nombre_categoria']}</p>
             <!--<p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['numero_habitacion']} </p>-->
             </div>
@@ -158,15 +157,16 @@ html;
 html;
               foreach($selectUsersinHabitacion as $key => $v)
               {
-                    $modal_asigna_habitacion .= <<<html
-                    <option value="{$v['id_registro_acceso']}">{$v['nombre']}</option>
-              
-              }
+                $modal_asigna_habitacion .= <<<html
+                <option value="{$v['id_registro_acceso']}">{$v['nombre']}</option>
 html;
+              }
 
-                  $modal_asigna_habitacion .= <<<html
+
+
+              $modal_asigna_habitacion .= <<<html
               </select>
-                     </div>
+                            </div>
 html;
                             
               $modal_asigna_habitacion .= <<<html

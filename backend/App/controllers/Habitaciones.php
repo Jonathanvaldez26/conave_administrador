@@ -64,8 +64,8 @@ html;
       $habitacionCompartida = AsistentesDao::getUsuariosByClaveHabitacion($value['clave']);
 
       $tabla_asistentes .= <<<html
-    <tr>
-    <td>
+      <tr>
+      <td>
       <div class="d-flex px-3 py-1">
           <div>
               <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
@@ -74,15 +74,13 @@ html;
 html;
       $cont_user = 0;
       foreach ($habitacionCompartida as $key => $val) {
-        $cont_user++;
-        $tabla_asistentes .= <<<html
-        <h6 class="mb-0 text-sm"><span class="fas fa-user-md"></span><a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Quitar huesped de la habitacion" class="btn_quitar_huesped" data-value="{$val['id_asigna_habitacion']}" value="{$val['id_asigna_habitacion']}"> ({$cont_user}) {$val['nombre']} | {$val['email']} | {$val['telefono']}</a></h6>
-
-        
-                    
-
+         $cont_user++;
+         $tabla_asistentes.= <<<html
+         <h6 class="mb-0 text-sm"><span class="fas fa-user-md"></span>
+         <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Quitar huesped de la habitacion" class="btn_quitar_huesped" data-value="{$val['id_asigna_habitacion']}" value="{$val['id_asigna_habitacion']}"> ({$cont_user}) {$val['nombre']} | {$val['email']} | {$val['telefono']}</a></h6>
 html;        
       }
+
       $tabla_asistentes .= <<<html
             <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-hotel"></span> {$value['nombre_categoria']}</p>
             <!--<p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['numero_habitacion']} </p>-->
@@ -131,9 +129,8 @@ html;
             </tr>
 html;
 
-$modal_asigna_habitacion .= <<<html
-
-<div class="modal fade" id="asignaUsuario{$value['clave']}" role="dialog" aria-labelledby="asignaUsuarioLabel" aria-hidden="true">
+    $modal_asigna_habitacion .= <<<html
+    <div class="modal fade" id="asignaUsuario{$value['clave']}" role="dialog" aria-labelledby="asignaUsuarioLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form class="form-horizontal" id="form_asig_habitacion" action="" method="POST">
@@ -144,9 +141,7 @@ $modal_asigna_habitacion .= <<<html
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="card-body pt-0">
-
                         <div class="row">
 html;
       
@@ -160,17 +155,17 @@ html;
                   <select class="form-control asis_name select_2" style="cursor: pointer;" data-value="{$value['clave']}" name="asis_name" id="asis_name" tabindex="-1" required>
                   <option value="" disabled selected>Selecciona una opción</option>
 html;
-              foreach($selectUsersinHabitacion as $key => $v){
-                $modal_asigna_habitacion .= <<<html
-                <option value="{$v['id_registro_acceso']}">{$v['nombre']}</option>
+              foreach($selectUsersinHabitacion as $key => $v)
+              {
+                    $modal_asigna_habitacion .= <<<html
+                    <option value="{$v['id_registro_acceso']}">{$v['nombre']}</option>
 html;                
               }
               
-              
-                               
+
               $modal_asigna_habitacion .= <<<html
               </select>
-                            </div>
+                     </div>
 html;
                             
               $modal_asigna_habitacion .= <<<html

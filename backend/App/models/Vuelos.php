@@ -67,4 +67,29 @@ sql;
 sql;
         return $mysqli->queryAll($query);
     }
+
+    public static function getAeropuertoOrigen(){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT * FROM `aeropuertos` where id_aeropuerto != 40 ORDER BY iata ASC;
+sql;
+        return $mysqli->queryAll($query);
+    }
+
+    public static function getAeropuertoDestino(){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT * FROM `aeropuertos` where id_aeropuerto = 40;
+sql;
+        return $mysqli->queryAll($query);
+    }
+
+    public static function getCountVuelos(){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT COUNT(*) as usuarios FROM `utilerias_asistentes` where status = 1;
+sql;
+        return $mysqli->queryAll($query);
+    }
+
 }

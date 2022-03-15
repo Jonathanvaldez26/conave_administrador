@@ -116,6 +116,8 @@ html;
                               <p class="text-sm mb-0"><span class="fa fa-flag" style="color: #353535; font-size: 13px"></span> {$value['aeropuerto_salida']}</p>
                               <p class="text-sm mb-0"><span class="fa fa-ticket" style="color: #1a8fdd; font-size: 13px"></span> Número de Vuelo: <strong>{$value['numero_vuelo']}</strong></p>
                               <p class="text-sm mb-0"><span class="fa fa-clock-o" font-size: 13px"></span> Hora Estimada de Llegada: {$value['hora_llegada_destino']}</p>
+                              <hr>
+                              <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-sticky-note" style="font-size: 13px"></span> {$value['nota']}</p>
                           </div>
                       </div>
                  </td>
@@ -132,15 +134,24 @@ html;
                  </td>
                 <td style="text-align:center; vertical-align:middle;">
                     <a href="Detalles/{$value['clave']}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Ver .PDF Pase de Abordar"><i class="fa fa-eye"></i></a>
-                    <a href="Detalles/{$value['clave']}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Eliminar el Pase de Abordar"><i class="fa fa-trash" style="color:firebrick"></i></a>
+                    <a href="Detalles/{$value['clave']}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Eliminar el Pase de Abordar"><i class="fa fa-edit"></i></a>
                 </td>
                  
             </tr>
 html;
         }
 
+        $totalvuelos = '';
+        foreach (VuelosDao::getCountVuelos() as $key => $value)
+        {
+            $totalvuelos  = $value['usuarios'];
+        }
+
      View::set('idAsistente',$this->getAsistentes());
+     View::set('idAeropuertoOrigen',$this->getAeropuertosOrigen());
+     View::set('idAeropuertoDestino',$this->getAeropuertosDestino());
      View::set('tabla',$tabla);
+     View::set('totalvuelos',$totalvuelos);
      View::set('header',$this->_contenedor->header($extraHeader));
      View::set('footer',$extraFooter);
      View::render("vuelos_all");
@@ -220,6 +231,26 @@ html;
 html;
         }
         return $asistentes;
+    }
+
+    public function getAeropuertosOrigen(){
+        $aeropuertos = '';
+        foreach (VuelosDao::getAeropuertoOrigen() as $key => $value) {
+            $aeropuertos .=<<<html
+      <option value="{$value['id_aeropuerto']}"> {$value['iata']} - {$value['aeropuerto']}</option>
+html;
+        }
+        return $aeropuertos;
+    }
+
+    public function getAeropuertosDestino(){
+        $aeropuertos = '';
+        foreach (VuelosDao::getAeropuertoDestino() as $key => $value) {
+            $aeropuertos .=<<<html
+      <option value="{$value['id_aeropuerto']}"> {$value['iata']} - {$value['aeropuerto']}</option>
+html;
+        }
+        return $aeropuertos;
     }
 
 

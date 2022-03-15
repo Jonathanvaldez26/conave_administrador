@@ -480,7 +480,9 @@
                                 <div class="card mb-4">
                                     <div class="card-header pb-0">
                                         <h6>Habitaciones Asignadas para los Asistentes Asofarma</h6>
+                                        
                                     </div>
+                                    
                                     <div class="card-body px-0 pt-0 pb-2">
                                         <div class="table-responsive p-0">
                                             <table class="table align-items-center mb-0">
@@ -884,6 +886,8 @@
 </div>
 <!--End Modal-->
 
+<?php echo $modal_asigna_habitacion; ?>
+
 <?php echo $modal_habitaciones; ?>
 
 <?php echo $footer; ?>
@@ -893,7 +897,69 @@
     
     $(document).ready(function() {
 
-        
+        $("#form_asig_habitacion").on("submit",function(event){
+            event.preventDefault();
+            var id_asistente = $("#asis_name").val();
+           // alert(id_asistente);
+            var clave_ah = $("#asis_name").attr('data-value');
+
+            swal({
+                title: "Quieres agregar este usuario a la habitacion?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    
+                    $.ajax({
+                        url: "/Habitaciones/agregarUsusarioHabitacion",
+                        type: "POST",
+                        data: {clave_ah,id_asistente},
+                        beforeSend: function() {
+                            console.log("Procesando....");
+
+                        },
+                        success: function(respuesta) {
+
+                            console.log(respuesta);
+
+                            if(respuesta == 'success'){
+                                swal("Se agrego el usuario correctamente!!", "", "success").
+                                then((value) => {
+                                    window.location.replace("/Habitaciones/");
+                                });
+                            }else{
+                                swal("Hubo un error!!", "", "warning")
+                            }
+                        },
+                        error: function(respuesta) {
+                            console.log(respuesta);
+                        }
+
+                    });
+
+                    // swal("Se quito al usuario de la habitación correctamente!!", {
+                    // icon: "success",
+                    // });
+
+
+                } else {
+                    swal("Se cancelo la acción");
+                }
+            });
+            
+
+            
+        });
+
+        $(".asis_name").on("change",function(){
+            // var id_asistente = $(this).val();
+            // var id_clave_ah = $(this).attr('data-value');
+           
+            
+        });
 
         $("#add_date").click(function() {
             $("#cont_fechas").append("<div class='col-12 col-lg-6 date'><label class='form-label mt-4'>Fechas * </label><input type='date' class='form-control' id='fecha' name='fecha[]' required='' value=''></div>");

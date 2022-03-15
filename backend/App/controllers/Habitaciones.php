@@ -41,6 +41,7 @@ html;
     $tabla_asistentes = '';
     $optionsHotel = '';
     $optionsCategoriaHotel = '';
+    $cant_huespedes_permitida = 0;
 
     $hoteles = HabitacionesDao::getAll();
     foreach ($hoteles as $key => $value) {
@@ -73,7 +74,11 @@ html;
       foreach ($habitacionCompartida as $key => $val) {
         $cont_user++;
         $tabla_asistentes .= <<<html
-        <h6 class="mb-0 text-sm"><span class="fas fa-user-md"></span> ({$cont_user}) {$val['nombre']} | {$val['email']} | {$val['telefono']}</h6>
+        <h6 class="mb-0 text-sm"><span class="fas fa-user-md"></span><a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Quitar huesped de la habitacion" class="btn_quitar_huesped" data-value="{$val['id_asigna_habitacion']}" value="{$val['id_asigna_habitacion']}"> ({$cont_user}) {$val['nombre']} | {$val['email']} | {$val['telefono']}</a></h6>
+
+        
+                    
+
 html;        
       }
       $tabla_asistentes .= <<<html
@@ -94,10 +99,22 @@ html;
       //     }
       // </td>
 
+      //Validacion de lugares disponibles
+      $habitacion = HabitacionesDao::getCategoriasHabitacionesById($value['id_categoria_habitacion'])[0];
+      $cant_huespedes_permitida = $habitacion['huespedes'];
+
+      $countAsistentes = AsistentesDao::getCountAsistentesByClave($value['clave'])[0];
+
+      $con_lugares_disponibles = $countAsistentes['total_asignados'] % $cant_huespedes_permitida;
+      $total_lugares_disponibles = $cant_huespedes_permitida - $countAsistentes['total_asignados'];
+      
+
+
+      $status_disponible = $con_lugares_disponibles > 0 ? "<span class='badge bg-success'>Hay ".$total_lugares_disponibles." lugares disponible</span>" : "<span class='badge bg-warning text-dark'>Habitación llena</span>";
       $tabla_asistentes .= <<<html
                 
             <td class="align-middle text-center text-sm">
-                <p class="text-sm font-weight-bold mb-0 text-dark">con lugar disponible/ habitacion completa</p>
+                <p class="text-sm font-weight-bold mb-0 text-dark">{$status_disponible} </p>
             </td>
             
             <td class="align-middle text-center text-sm">
@@ -105,7 +122,8 @@ html;
             </td>
             <td class="align-middle text-end">
                 <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                  
+                    
+                  </a>
                 </div>
             </td>
             </tr>
@@ -472,6 +490,20 @@ html;
     }
     if($cont > 0){
       echo 'success';
+    }
+  }
+
+  public function quitarUsuarioHabitacion(){
+    $id_ah = $_POST['id_ah'];
+    
+    // echo $id_ah;
+    
+
+    $delete = HabitacionesDao::deleteAsignaHabitacion($id_ah);
+    if($delete){
+      echo "success";
+    }else{
+      echo "fail";
     }
   }
 

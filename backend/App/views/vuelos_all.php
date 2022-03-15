@@ -466,9 +466,8 @@
                                         <table class="table align-items-center mb-0">
                                             <thead>
                                             <tr>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Info</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">DATOS DE CONTACTO</th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                                             </tr>
@@ -570,7 +569,7 @@
                                     <textarea id="notas" name="notas" maxlength="1000" class="form-control" placeholder="Añade Alguna Nota de Importancia"></textarea>
                                 </div>
                             </div>
-                            <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["administrador_id"]?>">
+                            <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["utilerias_administradores_id"]?>">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>

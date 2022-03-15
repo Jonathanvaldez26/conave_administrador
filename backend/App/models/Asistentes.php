@@ -36,9 +36,9 @@ sql;
     public static function getAllRegisterSinHabitacion(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno, ' - <b>',ra.email,'</b>') as nombre
+      SELECT ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno, ' - ',ra.email,'') as nombre
       FROM registros_acceso ra
-      WHERE ra.id_registro_acceso NOT IN (SELECT id_registro_acceso FROM asigna_habitacion) ORDER BY nombre ASC
+      WHERE ra.id_registro_acceso NOT IN (SELECT id_registro_acceso FROM asigna_habitacion) and ra.politica = 1 ORDER BY nombre ASC
   sql;
       return $mysqli->queryAll($query);
         
@@ -61,7 +61,19 @@ sql;
     public static function getUsuariosByClaveHabitacion($clave){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ah.id_registro_acceso, ah.clave, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno) as nombre, ra.email, ra.telefono
+      SELECT ah.id_registro_acceso, ah.clave, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno) as nombre, ra.email, ra.telefono, ah.id_asigna_habitacion
+      FROM asigna_habitacion ah
+      INNER JOIN registros_acceso ra ON (ah.id_registro_acceso = ra.id_registro_acceso)
+      WHERE clave = '$clave'
+sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
+    public static function getCountAsistentesByClave($clave){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT count(*) as total_asignados
       FROM asigna_habitacion ah
       INNER JOIN registros_acceso ra ON (ah.id_registro_acceso = ra.id_registro_acceso)
       WHERE clave = '$clave'

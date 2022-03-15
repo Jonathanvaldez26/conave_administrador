@@ -151,6 +151,17 @@ sql;
       // return "insert"+$data;
   }
 
+  public static function deleteAsignaHabitacion($id){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    DELETE FROM asigna_habitacion WHERE id_asigna_habitacion  = $id
+sql;
+          
+    return $mysqli->update($query);
+    
+  
+  }
+
   
 
 }

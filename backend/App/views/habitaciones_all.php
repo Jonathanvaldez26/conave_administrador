@@ -1159,6 +1159,56 @@
 
         });
 
+        $(".btn_quitar_huesped").on("click",function(){
+            var id_ah = $(this).attr("data-value");
+            
+            //console.log(id_ah);
+            swal({
+                title: "Estas seguro quitar al usuario de la habitación?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+                .then((willDelete) => {
+                if (willDelete) {
+                    
+                    $.ajax({
+                        url: "/Habitaciones/quitarUsuarioHabitacion",
+                        type: "POST",
+                        data: {id_ah},
+                        beforeSend: function() {
+                            console.log("Procesando....");
+
+                        },
+                        success: function(respuesta) {
+
+                            console.log(respuesta);
+
+                            if(respuesta == 'success'){
+                                swal("Se quito al usuario de la habitación correctamente!!", "", "success").
+                                then((value) => {
+                                    window.location.replace("/Habitaciones/");
+                                });
+                            }
+                        },
+                        error: function(respuesta) {
+                            console.log(respuesta);
+                        }
+
+                    });
+
+                    // swal("Se quito al usuario de la habitación correctamente!!", {
+                    // icon: "success",
+                    // });
+
+
+                } else {
+                    swal("Se cancelo la acción");
+                }
+            });
+        });
+
 
     });
 </script>

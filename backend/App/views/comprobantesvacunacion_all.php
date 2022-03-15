@@ -381,7 +381,7 @@
                                 <div class="col-8 text-start">
                                     <p class="text-sm mb-1 text-capitalize font-weight-bold">Total de Comprobantes por Revisar</p>
                                     <h5 class="font-weight-bolder mb-0" style="color:#02b7b7;">
-                                    <?php echo $numero_sin_revisar;?> de <?php echo $numero_comprobantes;?>
+                                        <?php echo $numero_sin_revisar;?> de <?php echo $numero_comprobantes;?>
                                     </h5>
                                 </div>
                                 <div class="col-4">

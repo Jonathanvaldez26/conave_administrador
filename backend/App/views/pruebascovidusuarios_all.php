@@ -380,7 +380,7 @@
                     <div class="card-body p-3 position-relative">
                         <div class="row">
                             <div class="col-8 text-start">
-                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Pruebas Pendientes por CArgar</p>
+                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Pruebas Pendientes por Cargar</p>
                                 <h5 class="font-weight-bolder mb-0" style="color:#02b7b7;">
                                     <?php echo $numero_sin_revisar;?> de <?php echo $numero_pruebas;?>
                                 </h5>

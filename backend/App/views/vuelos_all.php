@@ -630,7 +630,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        Asistente Para Cargar Pases de Abordar (Vuelos) - 1er Vuelo
+                        Asistente Para Cargar Pases de Abordar (Vuelos) - 2do Vuelo
                     </h5>
 
                     <span type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">

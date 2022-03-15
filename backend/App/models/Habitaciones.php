@@ -127,6 +127,15 @@ sql;
         
     }
 
+    public static function getAsignaHabitacionByClave($clave){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM asigna_habitacion WHERE clave = '$clave'
+sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
     public static function insertAsignaHabitacion($data){
       $mysqli = Database::getInstance(1);
       $query=<<<sql

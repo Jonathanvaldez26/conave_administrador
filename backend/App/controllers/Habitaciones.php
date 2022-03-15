@@ -34,14 +34,16 @@ class Habitaciones extends Controller
   public function index()
   {
     setlocale(LC_TIME, "spanish");
-    $extraHeader = <<<html
-html;
+//     $extraHeader = <<<html
+// html;
 
     //tab asistetes
     $tabla_asistentes = '';
     $optionsHotel = '';
     $optionsCategoriaHotel = '';
     $cant_huespedes_permitida = 0;
+    $btnAddUser = '';
+    $modal_asigna_habitacion = '';
 
     $hoteles = HabitacionesDao::getAll();
     foreach ($hoteles as $key => $value) {
@@ -107,10 +109,11 @@ html;
 
       $con_lugares_disponibles = $countAsistentes['total_asignados'] % $cant_huespedes_permitida;
       $total_lugares_disponibles = $cant_huespedes_permitida - $countAsistentes['total_asignados'];
-      
-
 
       $status_disponible = $con_lugares_disponibles > 0 ? "<span class='badge bg-success'>Hay ".$total_lugares_disponibles." lugares disponible</span>" : "<span class='badge bg-warning text-dark'>Habitación llena</span>";
+
+      $btnAddUser = $con_lugares_disponibles > 0 ? "<a href='javascript:;' data-bs-toggle='tooltip' data-bs-original-title='Asignar usuario' class='btn_asignar_usuario' data-value='{$value['clave']}' data-toggle='modal' data-target='#asignaUsuario{$value['clave']}'><i class='fa fa-hotel' aria-hidden='true'></i></a>" : "";
+
       $tabla_asistentes .= <<<html
                 
             <td class="align-middle text-center text-sm">
@@ -122,13 +125,70 @@ html;
             </td>
             <td class="align-middle text-end">
                 <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                    
-                  </a>
+                  {$btnAddUser}
                 </div>
-            </td>
+              </td>
             </tr>
- 
 html;
+
+$modal_asigna_habitacion .= <<<html
+
+<div class="modal fade" id="asignaUsuario{$value['clave']}" role="dialog" aria-labelledby="asignaUsuarioLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-horizontal" id="form_asig_habitacion" action="" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="asignaUsuarioLabel">Asignar Habitacion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="card-body pt-0">
+
+                        <div class="row">
+html;
+      
+              $selectUsersinHabitacion = AsistentesDao::getAllRegisterSinHabitacion();
+
+              
+
+              $modal_asigna_habitacion .= <<<html
+                  <div class="col-12 align-self-center">
+                  <label class="form-label mt-4">Asistentes *</label><br>
+                  <select class="form-control asis_name select_2" style="cursor: pointer;" data-value="{$value['clave']}" name="asis_name" id="asis_name" tabindex="-1" required>
+                  <option value="" disabled selected>Selecciona una opción</option>
+html;
+              foreach($selectUsersinHabitacion as $key => $v){
+                $modal_asigna_habitacion .= <<<html
+                <option value="{$v['id_registro_acceso']}">{$v['nombre']}</option>
+html;                
+              }
+              
+              
+                               
+              $modal_asigna_habitacion .= <<<html
+              </select>
+                            </div>
+html;
+                            
+              $modal_asigna_habitacion .= <<<html
+
+                                  </div>
+                          </div>
+
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+html;
+
     }
 
 
@@ -304,6 +364,7 @@ html;
     View::set('optionsCategoriaHotel', $optionsCategoriaHotel);
     View::set('optionsHotel', $optionsHotel);
     View::set('tabla_asistentes', $tabla_asistentes);
+    View::set('modal_asigna_habitacion', $modal_asigna_habitacion);
     View::set('modal_habitaciones', $modal_habitaciones);
     View::set('hotel', $hotel);
     View::set('dates', $dates);
@@ -311,8 +372,8 @@ html;
     View::set('fecha_al', $fecha_al);
     View::set('tabla_categorias', $tabla_categorias);
     View::set('th_table_fechas', $th_table_fechas);
-    View::set('header', $this->_contenedor->header($extraHeader));
-    View::set('footer', $this->_contenedor->footer($extraFooter));
+    View::set('header', $this->_contenedor->header());
+    View::set('footer', $this->_contenedor->footer());
     View::render("habitaciones_all");
   }
 
@@ -470,7 +531,7 @@ html;
 
     $id_categoria_habitacion = $_POST['asigna_cat_habitacion'];
     $asistente_name = $_POST['asistente_name'];
-    $id_administrador = $_SESSION['id_administrador'];
+    $id_administrador = $_SESSION['utilerias_administradores_id'];
     $clave = $this->generateRandomString();
 
 
@@ -495,15 +556,37 @@ html;
 
   public function quitarUsuarioHabitacion(){
     $id_ah = $_POST['id_ah'];
-    
-    // echo $id_ah;
-    
-
+   
     $delete = HabitacionesDao::deleteAsignaHabitacion($id_ah);
     if($delete){
       echo "success";
     }else{
       echo "fail";
+    }
+  }
+
+  public function agregarUsusarioHabitacion(){
+    $documento = new \stdClass();
+    $clave_ah = $_POST['clave_ah'];
+
+    $asigna_habitacion = HabitacionesDao::getAsignaHabitacionByClave($clave_ah)[0];
+
+    
+    $id_categoria_habitacion = $asigna_habitacion['id_categoria_habitacion'];
+    $id_asistente = $_POST['id_asistente'];
+    $id_administrador = $_SESSION['utilerias_administradores_id'];
+
+    $documento->_id_categoria_habitacion = $id_categoria_habitacion;
+    $documento->_id_administrador = $id_administrador;
+    $documento->_clave = $clave_ah;
+    $documento->_id_registro_acceso = $id_asistente;
+
+    $id = HabitacionesDao::insertAsignaHabitacion($documento);
+
+    if($id){
+      echo "success";
+    }else{
+      "fail";
     }
   }
 

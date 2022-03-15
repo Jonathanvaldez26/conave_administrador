@@ -90,7 +90,18 @@ html;
               </div>
           </td>
 html;
-      
+      // <td class="align-middle text-center text-sm">
+      //     foreach ($distinct as $key => $val) {
+      //       if ($val['nombre_usuario'] != $value['nombre_usuario']) {
+      //         $tabla_asistentes .= <<<html
+      //         <h6 class="mb-0 text-sm">{$val['nombre_usuario']} {$val['apellido_paterno']} {$val['apellido_materno']}</h6>
+      //         <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['nombre_categoria']}</p>
+      // html;
+      //       }
+      //     }
+      // </td>
+
+      //Validacion de lugares disponibles
       $habitacion = HabitacionesDao::getCategoriasHabitacionesById($value['id_categoria_habitacion'])[0];
 
       $cant_huespedes_permitida = $habitacion['huespedes'];

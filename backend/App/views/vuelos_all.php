@@ -122,7 +122,7 @@
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
             </li>
             <li class="nav-item">
-                <a href="/ComprobanteVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a href="/ComprobantesVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-shield-virus" style="color: #344767"></span>
                     </div>
@@ -372,7 +372,7 @@
                             <div class="col-8 text-start">
                                 <p class="text-sm mb-1 text-capitalize font-weight-bold">Total Usuarios - Carga Pases de Abordar Llegada - Salida</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    452 vuelos
+                                    <?php echo $idAeropuertoOrigen; ?> vuelos
                                 </h5>
                             </div>
                             <div class="col-4">
@@ -526,9 +526,8 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
                                     <select class="form-control" name="id_origen" id="id_origen" required>
-                                        <option selected>Seleccione una Opción</option>
-                                        <option value="1">2 Dosis</option>
-                                        <option value="1">3 Dosis</option>
+                                        <option selected disabled>Seleccione una Opción</option>
+                                        <?php echo $idAeropuertoOrigen; ?>
                                     </select>
                                 </div>
                                 <span id="availability_"></span>
@@ -538,9 +537,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
                                     <select class="form-control" name="id_destino" id="id_destino" required>
-                                        <option selected>Seleccione una Opción</option>
-                                        <option value="1">2 Dosis</option>
-                                        <option value="1">3 Dosis</option>
+                                        <?php echo $idAeropuertoDestino; ?>
                                     </select>
                                 </div>
                                 <span id="availability_"></span>
@@ -548,13 +545,13 @@
                             <div class="col-12 col-lg-6">
                                 <label class="form-label">Número de Vuelo *</label>
                                 <div class="input-group">
-                                    <input id="numero_vuelo" name="numero_vuelo" maxlength="49" class="form-control" type="text" placeholder="event" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['evento']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="numero_vuelo" name="numero_vuelo" minlength="6" maxlength="8" class="form-control" type="text" placeholder="OKL018" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                             <div class="col-12 col-lg-6">
                                 <label class="form-label">Hora de Llegada (Local) *</label>
                                 <div class="input-group">
-                                    <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $hotel['cliente']; ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                             <div class="form-group col-md-12">

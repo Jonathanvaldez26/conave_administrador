@@ -125,7 +125,7 @@ html;
                 <div class="modal fade" id="asignaUsuario-{$value['clave']}" role="dialog" aria-labelledby="asignaUsuarioLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form class="form-horizontal" id="form_asig_habitacion" action="" method="POST">
+                            <form class="form-horizontal" id="form_asignar_habitacion" action="" method="POST">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="asignaUsuarioLabel">Asignar Habitacion</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -241,7 +241,11 @@ html;
                 <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$total_huespedes}</p></td>
                 <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$value['huespedes']}</p></td>
                 <td class="font-weight-bold"> <p class="text-xs font-weight-bold ms-2 mb-0">{$stay}</p></td>
-                <td> <a href="#" type="button" name="id" class="btn bg-gradient-primary" data-toggle="modal" data-target="#edit-habitacion{$value['id_categoria_habitacion']}"><span class="fa fa-pencil-square-o" style="color:white" ></span> </a>  </td>
+                <td> 
+                  <a href="#" type="button" name="id" class="btn bg-gradient-primary" data-toggle="modal" data-target="#edit-habitacion{$value['id_categoria_habitacion']}">
+                    <span class="fa fa-pencil-square-o" style="color:white" ></span>
+                  </a>  
+                </td>
  
 html;
 

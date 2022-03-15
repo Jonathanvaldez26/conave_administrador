@@ -753,7 +753,7 @@
 <div class="modal fade" id="asignar_habitacion" role="dialog" aria-labelledby="asignar_habitacionLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="form-horizontal" id="form_asisgnar_habitacion" action="" method="POST">
+            <form class="form-horizontal" id="form_asignar_habitacion" action="" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="asignar_habitacionLabel">Asignar Habitacion</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -1186,10 +1186,10 @@
         //$(".select_2").select2();
      
 
-        $("#form_asisgnar_habitacion").on('submit', function(event) {
+        $("#form_asignar_habitacion").on('submit', function(event) {
             event.preventDefault();
 
-            var formData = new FormData(document.getElementById("form_asisgnar_habitacion"));
+            var formData = new FormData(document.getElementById("form_asignar_habitacion"));
 
 
             $.ajax({

@@ -340,7 +340,7 @@
                             <div class="col-7 text-start">
                                 <p class="text-sm mb-1 text-capitalize font-weight-bold">Total De Pruebas Validas</p>
                                 <h5 class="font-weight-bolder mb-0" style="color:#8a0062;">
-                                    452 de 700
+                                    <?php echo $numero_validos;?> de <?php echo $numero_pruebas;?>
                                 </h5>
                             </div>
                             <div class="col-5">
@@ -361,7 +361,7 @@
                             <div class="col-7 text-start">
                                 <p class="text-sm mb-1 text-capitalize font-weight-bold">Pruebas Pendientes Por Cargar</p>
                                 <h5 class="font-weight-bolder mb-0" style="color:green;">
-                                    152 de 700
+                                <?php echo $numero_asistentes-$numero_pruebas;?> de <?php echo $numero_asistentes;?>
                                 </h5>
                             </div>
                             <div class="col-5">
@@ -380,9 +380,9 @@
                     <div class="card-body p-3 position-relative">
                         <div class="row">
                             <div class="col-8 text-start">
-                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Total de Pruebas a Cargar</p>
+                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Pruebas Pendientes por CArgar</p>
                                 <h5 class="font-weight-bolder mb-0" style="color:#02b7b7;">
-                                    452 Pruebas
+                                    <?php echo $numero_sin_revisar;?> de <?php echo $numero_pruebas;?>
                                 </h5>
                             </div>
                             <div class="col-4">

@@ -336,13 +336,13 @@
                     <div class="card">
                         <div class="card-body p-3 position-relative">
                             <div class="row">
-                                <div class="col-7 text-start">
-                                    <p class="text-sm mb-1 text-capitalize font-weight-bold">Total De Comprobantes Validos</p>
+                                <div class="col-8 text-start">
+                                    <p class="text-sm mb-1 text-capitalize font-weight-bold">Total De Comprobantes Válidos</p>
                                     <h5 class="font-weight-bolder mb-0" style="color:#8a0062;">
-                                        452 de 700
+                                        <?php echo $numero_validos;?> de <?php echo $numero_comprobantes;?> 
                                     </h5>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-4">
                                     <div class="dropdown text-end">
                                         <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="fa fa-clock" style="color:#8a0062;"></span>
@@ -357,13 +357,13 @@
                     <div class="card">
                         <div class="card-body p-3 position-relative">
                             <div class="row">
-                                <div class="col-7 text-start">
+                                <div class="col-8 text-start">
                                     <p class="text-sm mb-1 text-capitalize font-weight-bold">Comprobantes Pendientes Por Cargar</p>
                                     <h5 class="font-weight-bolder mb-0" style="color:green;">
-                                        152 de 700
+                                        <?php echo $numero_asistentes-$numero_comprobantes;?> de <?php echo $numero_asistentes;?>
                                     </h5>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-4">
                                     <div class="dropdown text-end">
                                         <a href="" class="cursor-pointer text-secondary" id="dropdownUsers1" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="fa fa-check-circle" style="color:green;"></span>
@@ -379,9 +379,9 @@
                         <div class="card-body p-3 position-relative">
                             <div class="row">
                                 <div class="col-8 text-start">
-                                    <p class="text-sm mb-1 text-capitalize font-weight-bold">Total de Comprobantes a Cargar</p>
+                                    <p class="text-sm mb-1 text-capitalize font-weight-bold">Total de Comprobantes por Revisar</p>
                                     <h5 class="font-weight-bolder mb-0" style="color:#02b7b7;">
-                                        452 Comprobantes
+                                    <?php echo $numero_sin_revisar;?> de <?php echo $numero_comprobantes;?>
                                     </h5>
                                 </div>
                                 <div class="col-4">
@@ -1038,10 +1038,3 @@
 </body>
 
 <?php echo $footer; ?>
-
-<script>
-    $(document).ready(function() {
-
-        
-    });
-</script>

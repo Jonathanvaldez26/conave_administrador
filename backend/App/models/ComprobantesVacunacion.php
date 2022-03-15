@@ -46,6 +46,42 @@ sql;
         
     }
 
+    public static function contarComprobantesValidos(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(id_comprobante_vacuna) FROM comprobante_vacuna WHERE validado = 1
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
+    public static function contarComprobantesTotales(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(id_comprobante_vacuna) FROM comprobante_vacuna
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
+    public static function contarComprobantesPorRevisar(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(id_comprobante_vacuna) FROM comprobante_vacuna WHERE validado = 0
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
+    public static function contarAsistentes(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(utilerias_asistentes_id) FROM utilerias_asistentes
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+    
     public static function validar($id){
         $mysqli = Database::getInstance(true);
         $query=<<<sql

@@ -735,6 +735,7 @@
                                 </div>
                                 <span id="msg_encontrado" style="font-size: 12px;color:#EC2F1E;"></span>
                             </div>
+                            
                         </div>
                     </div>
 
@@ -766,8 +767,6 @@
 
                         <div class="row">
 
-
-
                             <div class="col-12 align-self-center">
                                 <label class="form-label mt-4">Habitacion *</label>
                                 <select class="form-control" style="cursor: pointer;" name="asigna_cat_habitacion" id="asigna_cat_habitacion" tabindex="-1" required>
@@ -778,12 +777,9 @@
                            
                             <div id="cont_asigna_huespedes">
 
-                             
-
                             </div>
 
-<!-- 
-                            <div class="col-12">
+                            <!--div class="col-12">
                                 <label class="form-label">Numero Habitacion</label>
                                 <div class="input-group">
                                     <input id="no_habitacion" name="no_habitacion" maxlength="29" class="form-control" type="number" placeholder="No de habitación" required="">
@@ -791,6 +787,7 @@
                                 <span id="msg_encontrado" style="font-size: 12px;color:#EC2F1E;"></span>
                             </div> -->
                         </div>
+                        
                     </div>
 
                 </div>

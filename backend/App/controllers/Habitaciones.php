@@ -125,7 +125,7 @@ html;
                 <div class="modal fade" id="asignaUsuario-{$value['clave']}" role="dialog" aria-labelledby="asignaUsuarioLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form class="form-horizontal" id="form_asignar_habitacion" action="" method="POST">
+                            <form class="form-horizontal" id="form_asig_habitacion" action="" method="POST">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="asignaUsuarioLabel">Asignar Habitacion</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

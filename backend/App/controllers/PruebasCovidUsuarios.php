@@ -357,7 +357,7 @@ html;
             $tabla_no_v .= <<<html
               <tr>
                 <td class="text-center">
-                  <span class="badge badge-warning"><i class="fas fa-clock"></i> Pendiente</span>
+                  <span class="badge badge-warning text-dark"><i class="fas fa-clock"></i> Pendiente</span>
                 </td>
                 <td>
                   <p class="text-center" style="font-size: small;">{$value['nombre_completo']}</p>
@@ -382,7 +382,7 @@ html;
                 <div class="modal-dialog" role="document" style="max-width: 1000px;">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Documento Prueba SARS-CoV-2</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Prueba de SARS-CoV-2</h5>
                             <span type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
                                 X
                             </span>
@@ -499,13 +499,13 @@ html;
                             </div>
                           </div>
                         </div>
-                        <div class="pt-4">
+                        <div class="pt-4 modal-footer">
                           <div class="row text-center">
                             <div class="col-md-6 col-12">
                               <form class="form-horizontal" id="btn_validar" action="" method="POST">
                                 <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;" hidden>
                                 
-                                <button type="submit" class="btn bg-gradient-success w-50" >
+                                <button type="submit" class="btn bg-gradient-success" >
                                   Aceptar
                                 </button>
                               </form>
@@ -513,7 +513,7 @@ html;
                             <div class="col-md-6 col-12">
                               <form class="form" id="btn_rechazar" action="" method="POST">
                                 <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;">
-                                <button type="submit" class="btn bg-gradient-danger w-50" >
+                                <button type="submit" class="btn bg-gradient-secondary" >
                                   Rechazar
                                 </button>
                               </form>

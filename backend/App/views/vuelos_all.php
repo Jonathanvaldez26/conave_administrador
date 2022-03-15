@@ -330,7 +330,7 @@
                             <div class="col-7 text-start">
                                 <p class="text-sm mb-1 text-capitalize font-weight-bold">Pases de Abordar Cargados - Llegada</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    452 de 700
+                                    <?php echo $totalvueloscargadosllegada; ?> de <?php echo $totalvuelos; ?> vuelos
                                 </h5>
                             </div>
                             <div class="col-5">
@@ -351,7 +351,7 @@
                             <div class="col-7 text-start">
                                 <p class="text-sm mb-1 text-capitalize font-weight-bold">Pases de Abordar Cargados - Salida</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    152 de 700
+                                    <?php echo $totalvueloscargadossalida; ?> de <?php echo $totalvuelos; ?> vuelos
                                 </h5>
                             </div>
                             <div class="col-5">
@@ -372,7 +372,7 @@
                             <div class="col-8 text-start">
                                 <p class="text-sm mb-1 text-capitalize font-weight-bold">Total Usuarios - Carga Pases de Abordar Llegada - Salida</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    <?php echo $idAeropuertoOrigen; ?> vuelos
+                                    <?php echo $totalvuelos; ?> vuelos
                                 </h5>
                             </div>
                             <div class="col-4">
@@ -456,8 +456,8 @@
                                 <div class="card-header pb-0">
                                     <h6>Pases de Abordar para Vuelos de Llegada - Cargados con Éxito</h6>
                                     <p style="font-size: 12px">
-                                    <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida
-                                    <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada
+                                    <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida a la Convención
+                                    <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada (Sede Convención)
                                     <span class="fa fa-ticket" style="color: #1a8fdd"> </span> No. de Vuelo
                                     </p>
                                 </div>
@@ -483,7 +483,54 @@
                     </div>
                 </div>
                 <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
-                    B
+                    <div class="d-flex m-1">
+                        <div class="ms-auto d-flex">
+                            <div class="pe-4 mt-1 position-relative">
+                                <hr class="vertical dark mt-0">
+                            </div>
+                            <div class="ps-4">
+                                <div class="panel-body" <?php echo $visible; ?>></div>
+                                <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#Modal_Add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <a style="background: #1C6C42; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-excel" aria-hidden="true"></i></a>
+                                <a style="background: #9A1622; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
+                                <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
+                                    <span class="fa fa-info"></span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card mb-4">
+                                <div class="card-header pb-0">
+                                    <h6>Pases de Abordar para Vuelos de Salida Evento - Cargados con Éxito</h6>
+                                    <p style="font-size: 12px">
+                                        <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida de la Convención
+                                        <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada
+                                        <span class="fa fa-ticket" style="color: #1a8fdd"> </span> No. de Vuelo
+                                    </p>
+                                </div>
+                                <div class="card-body px-0 pt-0 pb-2">
+                                    <div class="table-responsive p-0">
+                                        <table class="table align-items-center mb-0">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">DATOS DE CONTACTO</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php echo $tabla1; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -492,7 +539,93 @@
         
     </div>
 
-    <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="Modal_Prueba_COVID" aria-hidden="true">
+    <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Asistente Para Cargar Pases de Abordar (Vuelos) - 1er Vuelo
+                    </h5>
+
+                    <span type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
+                        X
+                    </span>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: 12px">A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p>
+                    <hr>
+                    <form method="POST" enctype="multipart/form-data" id="form_vuelo_uno">
+                        <div class="form-group row">
+
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_asistente">Nombre del Invitado al que Cargaran el Pase de Abordar <span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                    <select class="form-control" name="id_asistente" id="id_asistente" required>
+                                        <option selected disabled>Seleccione una Opción</option>
+                                        <?php echo $idAsistente; ?>
+                                    </select>
+                                </div>
+                                <span id="availability_"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_origen">Seleccione el Origen de la Ciudad (¿De Donde Sale?) <span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                    <select class="form-control" name="id_origen" id="id_origen" required>
+                                        <option selected disabled>Seleccione una Opción</option>
+                                        <?php echo $idAeropuertoOrigen; ?>
+                                    </select>
+                                </div>
+                                <span id="availability_"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_destino">Seleccione el Destino de la Ciudad (¿A Donde Llega?) <span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                    <select class="form-control" name="id_destino" id="id_destino" required>
+                                        <?php echo $idAeropuertoDestino; ?>
+                                    </select>
+                                </div>
+                                <span id="availability_"></span>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label class="form-label">Número de Vuelo *</label>
+                                <div class="input-group">
+                                    <input id="numero_vuelo" name="numero_vuelo" minlength="6" maxlength="8" class="form-control" type="text" placeholder="OKL018" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label class="form-label">Hora de Llegada (Local) *</label>
+                                <div class="input-group">
+                                    <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="control-label col-md-12 col-sm-12 col-xs-12" for="file_">Ticket en Formato .PDF: <span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="file" accept="application/pdf" class="form-control" id="file_" name="file_" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <label class="form-label">Notas (Opcional)</label>
+                                <div class="input-group">
+                                    <textarea id="notas" name="notas" maxlength="1000" class="form-control" placeholder="Añade Alguna Nota de Importancia"></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["utilerias_administradores_id"]?>">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
+                            <button type="button" class="btn bg-gradient-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Modal_Add_Salidas" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

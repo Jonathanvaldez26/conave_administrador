@@ -44,6 +44,7 @@ class Habitaciones extends Controller
     $cant_huespedes_permitida = 0;
     $btnAddUser = '';
     $modal_asigna_habitacion = '';
+    $jsModal = '';
 
     $hoteles = HabitacionesDao::getAll();
     foreach ($hoteles as $key => $value) {
@@ -133,7 +134,7 @@ html;
     <div class="modal fade" id="asignaUsuario{$value['clave']}" role="dialog" aria-labelledby="asignaUsuarioLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="form-horizontal" id="form_asig_habitacion" action="" method="POST">
+            <form class="form-horizontal form_asig_habitacion"  action="" method="POST" id="">
                 <div class="modal-header">
                     <h5 class="modal-title" id="asignaUsuarioLabel">Asignar Habitacion</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -151,27 +152,23 @@ html;
 
               $modal_asigna_habitacion .= <<<html
                   <div class="col-12 align-self-center">
+                  <input type="hidden" id="clave_ah" name="clave_ah" value="{$value['clave']}">
                   <label class="form-label mt-4">Asistentes *</label><br>
-                  <select class="form-control asis_name select_2" style="cursor: pointer;" data-value="{$value['clave']}" name="asis_name" id="asis_name" tabindex="-1" required>
-                  <option value="" disabled selected>Selecciona una opción</option>
+                          <select class="select_2" name="id_asistente" >
+                                 <option value="" disabled selected>Selecciona una opción</option>
 html;
               foreach($selectUsersinHabitacion as $key => $v)
               {
                 $modal_asigna_habitacion .= <<<html
                 <option value="{$v['id_registro_acceso']}">{$v['nombre']}</option>
 html;
-              }
-
-
-
+              }          
               $modal_asigna_habitacion .= <<<html
-              </select>
-                            </div>
-html;
-                            
-              $modal_asigna_habitacion .= <<<html
+                                    </select>
+                                    
+                                </div>
 
-                                  </div>
+                              </div>
                           </div>
 
                       </div>
@@ -184,6 +181,8 @@ html;
           </div>
       </div>
 html;
+
+     
 
     }
 
@@ -563,7 +562,11 @@ html;
 
   public function agregarUsusarioHabitacion(){
     $documento = new \stdClass();
+    // $clave_ah = $_POST['clave_ah'];
+    // $id_asistente = $_POST['id_asistente'];
+
     $clave_ah = $_POST['clave_ah'];
+    //$id_asistente = $_POST['id_asistente'];
 
     $asigna_habitacion = HabitacionesDao::getAsignaHabitacionByClave($clave_ah)[0];
 

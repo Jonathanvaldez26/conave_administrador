@@ -91,4 +91,40 @@ sql;
         return $mysqli->queryAll($query);
    
     }
+
+    public static function contarPruebasValidos(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(id_prueba_covid) FROM prueba_covid WHERE status = 2
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
+    public static function contarPruebasTotales(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(id_prueba_covid) FROM prueba_covid
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
+    public static function contarPruebasPorRevisar(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(id_prueba_covid) FROM prueba_covid WHERE status = 0
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
+    public static function contarAsistentes(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(utilerias_asistentes_id) FROM utilerias_asistentes
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
 }

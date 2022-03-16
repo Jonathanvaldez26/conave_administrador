@@ -122,7 +122,7 @@
                 <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
             </li>
             <li class="nav-item">
-                <a href="/ComprobanteVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                <a href="/ComprobantesVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-shield-virus" style="color: #344767"></span>
                     </div>

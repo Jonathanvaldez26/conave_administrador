@@ -114,7 +114,7 @@
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
                 </li>
                 <li class="nav-item">
-                    <a href="/ComprobanteVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                    <a href="/ComprobantesVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-shield-virus" style="color: #344767"></span>
                         </div>
@@ -495,9 +495,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <?php echo $tabla_asistentes; ?>
-                                                    </tr>
+                                                    <?php echo $tabla_asistentes; ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -739,6 +737,7 @@
                                 </div>
                                 <span id="msg_encontrado" style="font-size: 12px;color:#EC2F1E;"></span>
                             </div>
+                            
                         </div>
                     </div>
 
@@ -757,7 +756,7 @@
 <div class="modal fade" id="asignar_habitacion" role="dialog" aria-labelledby="asignar_habitacionLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="form-horizontal" id="form_asisgnar_habitacion" action="" method="POST">
+            <form class="form-horizontal" id="form_asignar_habitacion" action="" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="asignar_habitacionLabel">Asignar Habitacion</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -770,8 +769,6 @@
 
                         <div class="row">
 
-
-
                             <div class="col-12 align-self-center">
                                 <label class="form-label mt-4">Habitacion *</label>
                                 <select class="form-control" style="cursor: pointer;" name="asigna_cat_habitacion" id="asigna_cat_habitacion" tabindex="-1" required>
@@ -782,12 +779,9 @@
                            
                             <div id="cont_asigna_huespedes">
 
-                             
-
                             </div>
 
-<!-- 
-                            <div class="col-12">
+                            <!--div class="col-12">
                                 <label class="form-label">Numero Habitacion</label>
                                 <div class="input-group">
                                     <input id="no_habitacion" name="no_habitacion" maxlength="29" class="form-control" type="number" placeholder="No de habitación" required="">
@@ -795,6 +789,7 @@
                                 <span id="msg_encontrado" style="font-size: 12px;color:#EC2F1E;"></span>
                             </div> -->
                         </div>
+                        
                     </div>
 
                 </div>
@@ -1183,10 +1178,10 @@
         //$(".select_2").select2();
      
 
-        $("#form_asisgnar_habitacion").on('submit', function(event) {
+        $("#form_asignar_habitacion").on('submit', function(event) {
             event.preventDefault();
 
-            var formData = new FormData(document.getElementById("form_asisgnar_habitacion"));
+            var formData = new FormData(document.getElementById("form_asignar_habitacion"));
 
 
             $.ajax({

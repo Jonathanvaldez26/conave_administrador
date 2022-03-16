@@ -137,9 +137,57 @@ html;
                             </div>
                             <div class="card card-body">
                               <h5>Notas</h5>
-                              <div class="alert div-danger">
+html;
+
+                        if ($value['nota'] != '') {
+                          $tabla_rechazados .=<<<html
+                            <div id="editar_section">
+                              <p id="">
                                 {$value['nota']}
-                              </div>
+                              </p>
+                              <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50" >
+                                Editar
+                              </button>
+                            </div>
+
+                            <div class="hide-section" id="editar_section_textarea">
+                              <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                                <input type="text" id="id_comprobante_vacuna" name="id_comprobante_vacuna" value="{$value['id_c_v']}" readonly style="display:none;"> 
+                                <p>
+                                  <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
+                                </p>
+                                <div class="row">
+                                  <div class="col-md-6 col-12">
+                                  <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark " >
+                                    Guardar
+                                  </button>
+                                  </div>
+                                  <div class="col-md-6 col-12">
+                                    <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger" >
+                                      Cancelar
+                                    </button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+html;
+                        }else{
+                          $tabla_rechazados .=<<<html
+                            <p>
+                              {$value['nota']}
+                            </p>
+                            <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                              <input type="text" id="id_comprobante_vacuna" name="id_comprobante_vacuna" value="{$value['id_c_v']}" readonly style="display:none;"> 
+                              <p>
+                                <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
+                              </p>
+                              <button type="submit" class="btn bg-gradient-dark w-50" >
+                                Guardar
+                              </button>
+                            </form>
+html;
+                        }
+                        $tabla_rechazados .=<<<html
                             </div>
                           </div>
                         </div>
@@ -242,9 +290,57 @@ html;
                           </div>
                           <div class="card card-body">
                             <h5>Notas</h5>
-                            <div class="alert div-info">
-                              {$value['nota']}
+html;
+
+                        if ($value['nota'] != '') {
+                          $tabla .=<<<html
+                            <div id="editar_section">
+                              <p id="">
+                                {$value['nota']}
+                              </p>
+                              <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50" >
+                                Editar
+                              </button>
                             </div>
+
+                            <div class="hide-section" id="editar_section_textarea">
+                              <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                                <input type="text" id="id_comprobante_vacuna" name="id_comprobante_vacuna" value="{$value['id_c_v']}" readonly style="display:none;"> 
+                                <p>
+                                  <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
+                                </p>
+                                <div class="row">
+                                  <div class="col-md-6 col-12">
+                                  <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark " >
+                                    Guardar
+                                  </button>
+                                  </div>
+                                  <div class="col-md-6 col-12">
+                                    <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger" >
+                                      Cancelar
+                                    </button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                        html;
+                        }else{
+                          $tabla .=<<<html
+                            <p>
+                              {$value['nota']}
+                            </p>
+                            <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                              <input type="text" id="id_comprobante_vacuna" name="id_comprobante_vacuna" value="{$value['id_c_v']}" readonly style="display:none;"> 
+                              <p>
+                                <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
+                              </p>
+                              <button type="submit" class="btn bg-gradient-dark w-50" >
+                                Guardar
+                              </button>
+                            </form>
+                        html;
+                        }
+                        $tabla .=<<<html
                           </div>
                         </div>
                       </div>
@@ -260,7 +356,7 @@ html;
             
               <tr>
                 <td class="text-center">
-                  <span class="badge badge-warning"><i class="fas fa-clock"></i> Pendiente</span>
+                  <span class="badge badge-warning text-dark"><i class="fas fa-clock"></i> Pendiente</span>
                 </td>
                 <td>
                   <p class="text-center" style="font-size: small;">{$value['nombre_completo']}</p>
@@ -362,7 +458,7 @@ html;
                   </div>
 
                   <div class="hide-section" id="editar_section_textarea">
-                    <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                    <form class="form-horizontal" id="guardar_nota_pendiente" action="" method="POST">
                       <input type="text" id="id_comprobante_vacuna" name="id_comprobante_vacuna" value="{$value['id_c_v']}" readonly style="display:none;"> 
                       <p>
                         <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
@@ -387,7 +483,7 @@ html;
                   <p>
                     {$value['nota']}
                   </p>
-                  <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                  <form class="form-horizontal" id="guardar_nota_pendiente" action="" method="POST">
                     <input type="text" id="id_comprobante_vacuna" name="id_comprobante_vacuna" value="{$value['id_c_v']}" readonly style="display:none;"> 
                     <p>
                       <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
@@ -406,13 +502,13 @@ html;
                             </div>
                           </div>
                         </div>
-                        <div class="pt-4">
+                        <div class="pt-4 modal-footer">
                           <div class="row text-center">
                             <div class="col-md-6 col-12">
                               <form class="form-horizontal" id="btn_validar" action="" method="POST">
                                 <input type="text" id="id_comprobante" name="id_comprobante" value="{$value['id_c_v']}" readonly style="display:none;" hidden>
                                 
-                                <button type="submit" class="btn bg-gradient-success w-50" >
+                                <button type="submit" class="btn bg-gradient-success" >
                                   Aceptar
                                 </button>
                               </form>
@@ -420,7 +516,7 @@ html;
                             <div class="col-md-6 col-12">
                               <form class="form" id="btn_rechazar" action="" method="POST">
                                 <input type="text" id="id_comprobante" name="id_comprobante" value="{$value['id_c_v']}" readonly style="display:none;">
-                                <button type="submit" class="btn bg-gradient-danger w-50" >
+                                <button type="submit" class="btn bg-gradient-secondary" >
                                   Rechazar
                                 </button>
                               </form>
@@ -543,7 +639,7 @@ html;
                       if (respuesta == 'success') {
                           swal("¡Se guardó correctamente la nota!", "", "success").
                           then((value) => {
-                              // window.location.replace("/ComprobantesVacunacion/");
+                              window.location.replace("/ComprobantesVacunacion/");
                           });
                           var ta = document.getElementById("nota");
                           ta.setAttribute('disabled','');
@@ -557,7 +653,7 @@ html;
                       } else {
                           swal("¡No se pudo guardar correctamente la nota!", "", "warning").
                           then((value) => {
-                              // window.location.replace("/ComprobantesVacunacion/")
+                              window.location.replace("/ComprobantesVacunacion/")
                           });
                       }
                   },
@@ -567,6 +663,54 @@ html;
   
               });
           });
+
+          $("#guardar_nota_pendiente").on("submit", function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(document.getElementById("guardar_nota_pendiente"));
+            for (var value of formData.values()) {
+                console.log(value);
+            }
+
+            $.ajax({
+                url: "/ComprobantesVacunacion/GuardarNota",
+                type: "POST",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    console.log("Procesando....");
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+                    if (respuesta == 'success') {
+                        swal("¡Se guardó correctamente la nota!", "", "success").
+                        then((value) => {
+                            // window.location.replace("/ComprobantesVacunacion/");
+                        });
+                        var ta = document.getElementById("nota");
+                        ta.setAttribute('disabled','');
+
+                        var btn_cancelar = document.getElementById('cancelar_editar_nota');
+                        btn_cancelar.setAttribute('hidden','');
+
+                        var btn_guardar = document.getElementById('guardar_editar_nota');
+                        btn_guardar.setAttribute('hidden','');
+
+                    } else {
+                        swal("¡No se pudo guardar correctamente la nota!", "", "warning").
+                        then((value) => {
+                            // window.location.replace("/ComprobantesVacunacion/")
+                        });
+                    }
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
   
           $("#editar_nota").on("click", function(event) {
               $('#editar_section').addClass('hide-section').removeClass('show-section');
@@ -584,7 +728,31 @@ html;
   
 html;
 
+      $comprobantes_validos = ComprobantesVacunacionDao::contarComprobantesValidos();
+      foreach ($comprobantes_validos[0] as $key => $value) {
+        $numero_validos = $value;
+      }
+
+      $asistentes_total = ComprobantesVacunacionDao::contarAsistentes();
+      foreach ($asistentes_total[0] as $key => $value) {
+        $numero_asistentes = $value;
+      }
+
+      $comprobantes_total = ComprobantesVacunacionDao::contarComprobantesTotales();
+      foreach ($comprobantes_total[0] as $key => $value) {
+        $numero_comprobantes = $value;
+      }
+
+      $comprobantes_sin_revisar = ComprobantesVacunacionDao::contarComprobantesPorRevisar();
+      foreach ($comprobantes_sin_revisar[0] as $key => $value) {
+        $numero_sin_revisar = $value;
+      }
+
       View::set('comprobantes',$comprobantes);
+      View::set('numero_sin_revisar',$numero_sin_revisar);
+      View::set('numero_comprobantes',$numero_comprobantes);
+      View::set('numero_asistentes',$numero_asistentes);
+      View::set('numero_validos',$numero_validos);
       View::set('tabla',$tabla);
       View::set('tabla_no_v',$tabla_no_v);
       View::set('tabla_rechazados',$tabla_rechazados);

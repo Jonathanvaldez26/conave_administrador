@@ -83,7 +83,7 @@ html;
                         <div class="row">
                           <div class="col-md-8 col-12">
                             <div class="card card-body mb-4">
-                              <iframe src="/PDF/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
+                              <iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
                               </iframe>
                             </div>
                           </div>
@@ -236,7 +236,7 @@ html;
                       <div class="row">
                         <div class="col-md-8 col-12">
                           <div class="card card-body mb-4">
-                            <iframe src="/PDF/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
+                            <iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
                             </iframe>
                           </div>
                         </div>
@@ -390,7 +390,7 @@ html;
                           <div class="row">
                             <div class="col-md-8 col-12">
                               <div class="card card-body mb-4">
-                                <iframe src="/PDF/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
+                                <iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
                                 </iframe>
                               </div>
                             </div>

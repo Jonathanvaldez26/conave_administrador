@@ -417,7 +417,7 @@
                                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos usuario</th>
                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Permisos</th>
                                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Asignar Línea</th>
+                                                            <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Asignar Línea</th> -->
                                                         </tr>
                                                         </thead>
                                                         <tbody>

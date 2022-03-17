@@ -339,18 +339,18 @@
             <div class="right_col">
                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
                     <div class="x_panel tile fixed_height_240">
-                        
-                        
+
+
                         <div class="container-fluid col-md-10 card mt-4">
                             <form class="form-horizontal" id="edit" action="/Administradores/administradoresEdit" method="POST">
-                                
+
                                 <div class="form-group">
                                     <div class="card-header text-center">
                                         <h3>Datos Generales para Editar un Administrador</h3>
                                     </div>
 
                                     <input type="hidden" name="usuario" id="usuario" value="<?php echo $administrador['usuario']; ?>">
-                                    
+
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="form-group col-12 col-md-6">
@@ -369,17 +369,29 @@
                                             </div>
 
 
-                                            <div class="form-group col-12">
-                                                <div class="col-12 col-md-6">
-                                                    <label class="form-label" for="perfil_id">Perfil del Administrador<span class="required">*</span></label>
-        
-                                                    <select class="form-control" id="perfil_id" name="perfil_id">
-                                                        <option value="" disabled selected>Selecciona un perfil para el este administrador</option>
-                                                        <?php echo $perfiles; ?>
-                                                    </select>
+                                            <div class="form-group col-12 col-md-6">
 
-                                                </div>
+                                                <label class="form-label" for="perfil_id">Perfil del Administrador<span class="required">*</span></label>
+
+                                                <select class="form-control" id="perfil_id" name="perfil_id">
+                                                    <option value="" disabled selected>Selecciona un perfil para el este administrador</option>
+                                                    <?php echo $perfiles; ?>
+                                                </select>
+
+
                                             </div>
+
+
+                                            <div class="form-group col-12 col-md-6 ">
+
+                                                <label class="form-label" for="linea_id">Linea <span class="required">*</span></label>
+                                                <select class="form-control col-12 col-md-6" name="linea_id">
+                                                    <option value="" disabled selected>Selecciona una linea para este administrador</option>
+                                                    <?php echo $lineas; ?>
+                                                </select>
+
+                                            </div>
+
 
                                             <div class="form-group" id="permiosos-root" style="display: none;">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos Root</label>
@@ -474,11 +486,11 @@
                                             </div>
                                             <br>
                                             <input type="hidden" name="administrador_id" id="administrador_id" value="<?php echo $administrador['utilerias_administradores_id']; ?>">
-                                            
+
                                             <div class="form-group text-center">
                                                 <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-2 col-xs-offset-3"><br>
                                                     <button class="btn bg-gradient-success col-md-3 col-sm-3 col-xs-5" id="btnAdd" type="submit">Actualizar</button>
-                                                    <button class="btn bg-gradient-danger col-md-3 col-sm-3 col-xs-5" type="button" id="btnCancel">Cancelar</button>
+                                                    <a href="/Administradores/" class="btn bg-gradient-danger col-md-3 col-sm-3 col-xs-5" id="btnCancel">Cancelar</a>
                                                     <button class="btn bg-gradient-primary col-md-3 col-sm-3 col-xs-5" type="reset">Resetear</button>
                                                 </div>
                                             </div>

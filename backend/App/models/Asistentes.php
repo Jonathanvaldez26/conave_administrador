@@ -6,7 +6,7 @@ use \Core\Database;
 use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
 
-class Asistentes implements Crud{
+class Asistentes{
 
     public static function getAll(){
       $mysqli = Database::getInstance();
@@ -39,7 +39,7 @@ sql;
       SELECT ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno, ' - ',ra.email,'') as nombre
       FROM registros_acceso ra
       WHERE ra.id_registro_acceso NOT IN (SELECT id_registro_acceso FROM asigna_habitacion) and ra.politica = 1 ORDER BY nombre ASC
-  sql;
+sql;
       return $mysqli->queryAll($query);
         
     }
@@ -53,7 +53,7 @@ sql;
       INNER JOIN categorias_habitaciones ch ON (ch.id_categoria_habitacion = ah.id_categoria_habitacion)
       INNER JOIN utilerias_administradores ua ON(ua.utilerias_administradores_id = ah.utilerias_administradores_id)
       WHERE ra.politica = 1 GROUP BY ah.clave
-  sql;
+sql;
       return $mysqli->queryAll($query);
         
     }
@@ -133,7 +133,7 @@ sql;
       $mysqli = Database::getInstance(true);
       $query=<<<sql
       UPDATE registros_acceso SET nombre = :nombre, segundo_nombre = :segundo_nombre, apellido_materno = :apellido_materno, apellido_paterno = :apellido_paterno, fecha_nacimiento = :fecha_nacimiento, telefono = :telefono, alergias = :alergias, alergias_otro = :alergias_otro, alergia_medicamento = :alergia_medicamento, alergia_medicamento_cual = :alergia_medicamento_cual, restricciones_alimenticias = :restricciones_alimenticias, restricciones_alimenticias_cual = :restricciones_alimenticias_cual WHERE email = :email;
-  sql;
+sql;
       $parametros = array(
         
         ':nombre'=>$data->_nombre,

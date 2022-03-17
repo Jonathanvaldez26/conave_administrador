@@ -83,8 +83,8 @@ html;
                         <div class="row">
                           <div class="col-md-8 col-12">
                             <div class="card card-body mb-4">
-                              <iframe src="/PDF/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
-                              </iframe>
+                              <!--<iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
+                              </iframe>-->
                             </div>
                           </div>
                           <div class="col-md-4 col-12">
@@ -195,7 +195,7 @@ html;
                   </div>
               </div>
             </div>
-  html;
+html;
         } else {
 
           if ($value['validado'] == 1) {
@@ -236,8 +236,8 @@ html;
                       <div class="row">
                         <div class="col-md-8 col-12">
                           <div class="card card-body mb-4">
-                            <iframe src="/PDF/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
-                            </iframe>
+                            <!--<iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
+                            </iframe>-->
                           </div>
                         </div>
                         <div class="col-md-4 col-12">
@@ -323,7 +323,7 @@ html;
                                 </div>
                               </form>
                             </div>
-                        html;
+html;
                         }else{
                           $tabla .=<<<html
                             <p>
@@ -338,7 +338,7 @@ html;
                                 Guardar
                               </button>
                             </form>
-                        html;
+html;
                         }
                         $tabla .=<<<html
                           </div>
@@ -348,7 +348,7 @@ html;
                   </div>
                 </div>
               </div>
-  html;
+html;
           }
   
           if ($value['validado'] == 0) {
@@ -371,7 +371,7 @@ html;
                   <p class="text-center" style="font-size: small;">{$value['marca_dosis']}</p>
                 </td>
                 <td class="text-center">
-                  <button type="button" class="btn bg-gradient-primary" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">
+                  <button type="button" class="btn bg-gradient-primary btn_iframe" data-document="{$value['documento']}" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">
                     <i class="fas fa-eye"></i>
                   </button>
                 </td>
@@ -389,9 +389,8 @@ html;
                         <div class="modal-body bg-gray-200">
                           <div class="row">
                             <div class="col-md-8 col-12">
-                              <div class="card card-body mb-4">
-                                <iframe src="/PDF/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
-                                </iframe>
+                              <div class="card card-body mb-4 iframe">
+                                
                               </div>
                             </div>
                             <div class="col-md-4 col-12">
@@ -528,7 +527,7 @@ html;
                     
                 </div>
               </div>
-  html;
+html;
           }
         }      
     }
@@ -722,6 +721,14 @@ html;
               $('#editar_section_textarea').addClass('hide-section').removeClass('show-section');
               $('#editar_section').addClass('show-section').removeClass('hide-section');
               console.log('Holaa');
+          });
+
+          $(".btn_iframe").on("click",function(){
+            var documento = $(this).attr('data-document');
+            var modal_id = $(this).attr('data-target');
+            
+            $(modal_id+" .iframe").append('<iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/'+documento+'" style="width:100%; height:700px;" frameborder="0" ></iframe>')
+            
           });
         });
       </script>

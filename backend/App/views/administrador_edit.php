@@ -381,6 +381,14 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-sm-12 col-md-6">
+                                                <label class="form-label">Linea *</label>
+                                                <select class="form-control col-12 col-md-6" name="linea_id">
+                                                <option value="" disabled selected>Selecciona una linea para este administrador</option>
+                                                <?php //echo $lineas; ?>
+                                                </select>
+                                            </div>
+
                                             <div class="form-group" id="permiosos-root" style="display: none;">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos Root</label>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">

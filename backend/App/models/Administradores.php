@@ -22,6 +22,7 @@ class Administradores implements Crud{
 sql;
         return $mysqli->queryAll($query);
     }
+    
     public static function getById($id){
         $mysqli = Database::getInstance();
         $query=<<<sql
@@ -39,6 +40,18 @@ sql;
       return $mysqli->queryOne($query);
       
   }
+
+  public static function getAllByCode($code){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    SELECT ua.*, al.id_linea_principal
+    FROM utilerias_administradores ua
+    INNER JOIN asigna_linea al ON(ua.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada)
+    WHERE ua.code  = '$code'
+sql;
+    return $mysqli->queryOne($query);
+    
+}
     public static function insert($administradores){
 	    $mysqli = Database::getInstance(1);
         $query=<<<sql

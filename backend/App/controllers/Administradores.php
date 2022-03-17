@@ -1430,8 +1430,15 @@ html;
 
       </script>
 html;
-      $administrador = AdministradoresDao::getByCode($code);
+      $administrador = AdministradoresDao::getAllByCode($code);
 
+
+      $lineas = '';
+      foreach (LineaDao::getLineasAll() as $key => $value) {
+          $lineas .= <<<html
+              <option value="{$value['id_linea_principal']}">{$value['nombre']}</option>
+html;
+      }
       
 
       $status = "";

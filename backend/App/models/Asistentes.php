@@ -39,7 +39,7 @@ sql;
       SELECT ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno, ' - ',ra.email,'') as nombre
       FROM registros_acceso ra
       WHERE ra.id_registro_acceso NOT IN (SELECT id_registro_acceso FROM asigna_habitacion) and ra.politica = 1 ORDER BY nombre ASC
-  sql;
+sql;
       return $mysqli->queryAll($query);
         
     }
@@ -53,7 +53,7 @@ sql;
       INNER JOIN categorias_habitaciones ch ON (ch.id_categoria_habitacion = ah.id_categoria_habitacion)
       INNER JOIN utilerias_administradores ua ON(ua.utilerias_administradores_id = ah.utilerias_administradores_id)
       WHERE ra.politica = 1 GROUP BY ah.clave
-  sql;
+sql;
       return $mysqli->queryAll($query);
         
     }

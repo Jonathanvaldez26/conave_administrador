@@ -693,6 +693,8 @@
     </main>
 </body>
 
+<?php echo $modal_asigna_habitacion; ?>
+
 
 
 
@@ -881,23 +883,31 @@
 </div>
 <!--End Modal-->
 
-<?php echo $modal_asigna_habitacion; ?>
+
 
 <?php echo $modal_habitaciones; ?>
 
 <?php echo $footer; ?>
+
 
 <script>
 
     
     $(document).ready(function() {
 
-        $("#form_asig_habitacion").on("submit",function(event){
-            event.preventDefault();
-            var id_asistente = $("#asis_name").val();
-           // alert(id_asistente);
-            var clave_ah = $("#asis_name").attr('data-value');
+        $('.select_2').select2();
 
+        $(".save_habitacion_").on("click", function (){
+           console.log("funciona");
+        });
+
+
+        $(".form_asig_habitacion").on("submit",function(event){
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+            console.log(formData);
+               
             swal({
                 title: "Quieres agregar este usuario a la habitacion?",
                 text: "",
@@ -911,7 +921,7 @@
                     $.ajax({
                         url: "/Habitaciones/agregarUsusarioHabitacion",
                         type: "POST",
-                        data: {clave_ah,id_asistente},
+                        data: formData,
                         beforeSend: function() {
                             console.log("Procesando....");
 
@@ -921,7 +931,7 @@
                             console.log(respuesta);
 
                             if(respuesta == 'success'){
-                                swal("Se agrego el usuario correctamente!!", "", "success").
+                                swal("¡Se agrego el usuario correctamente!!", "", "success").
                                 then((value) => {
                                     window.location.replace("/Habitaciones/");
                                 });
@@ -949,12 +959,7 @@
             
         });
 
-        $(".asis_name").on("change",function(){
-            // var id_asistente = $(this).val();
-            // var id_clave_ah = $(this).attr('data-value');
-           
-            
-        });
+
 
         $("#add_date").click(function() {
             $("#cont_fechas").append("<div class='col-12 col-lg-6 date'><label class='form-label mt-4'>Fechas * </label><input type='date' class='form-control' id='fecha' name='fecha[]' required='' value=''></div>");
@@ -1118,17 +1123,7 @@
             });
         });
 
-        $("#asistente_name").on('change', function() {
-
-            console.log($(this).data("value"))
-
-            // var value_input = document.getElementById("asistente_name").value;
-            // var value2send = document.querySelector("#list_asistente_name option[value='"+value_input+"']").dataset.value;
-
-            // $("#asistente_name_aux").val(value2send);
-
-            // alert(value2send);
-        });
+    
 
         $("#asigna_cat_habitacion").on("change", function() {
             var cat_habitacion = $(this).val();

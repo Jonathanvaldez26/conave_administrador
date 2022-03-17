@@ -33,11 +33,12 @@ html;
      foreach ($lineas as $key => $value) {
             $tabla.=<<<html
                 <tr>
-                <!--td><input type="checkbox" name="borrar[]" value="{$value['clave']}"/></td-->
-                <td><h6 class="mb-0 text-sm">{$value['nombre']}</h6></td>
-           
-                <td><p class="text-sm text-secondary mb-0">{$value['fecha_alta']}</p></td>
-                <td><h6 class="mb-0 text-sm">{$value['creo']}</h6></td>
+                  <!--td><input type="checkbox" name="borrar[]" value="{$value['clave']}"/></td-->
+                  <td><h6 class="mb-0 text-sm">{$value['nombre']}</h6></td>
+            
+                  <td><p class="text-sm text-secondary mb-0">{$value['fecha_alta']}</p></td>
+                  <td><h6 class="mb-0 text-sm">{$value['creo']}</h6></td>
+                  <td><h6 class="mb-0 text-sm">{$value['nombre_bu']}</h6></td>
                 </tr>
 html;
         }

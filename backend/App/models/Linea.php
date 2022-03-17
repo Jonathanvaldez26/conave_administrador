@@ -10,8 +10,11 @@ class Linea implements Crud{
     public static function getAll(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-SELECT b.id_linea_principal, b.clave, b.nombre, b.fecha_alta, ua.nombre as creo FROM linea_principal b
- INNER JOIN utilerias_administradores ua on ua.utilerias_administradores_id = b.utilerias_administradores_id  ORDER BY b.nombre ASC;
+        SELECT lp.id_linea_principal, lp.clave, lp.nombre, lp.fecha_alta, ua.nombre as creo, b.nombre AS nombre_bu
+        FROM linea_principal lp
+        INNER JOIN utilerias_administradores ua ON ua.utilerias_administradores_id = lp.utilerias_administradores_id 
+        INNER JOIN bu b ON b.id_bu = lp.id_bu 
+        ORDER BY lp.nombre ASC
 sql;
         return $mysqli->queryAll($query);
     }

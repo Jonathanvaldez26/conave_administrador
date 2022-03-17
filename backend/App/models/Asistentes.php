@@ -132,7 +132,7 @@ sql;
     public static function update($data){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE registros_acceso SET nombre = :nombre, segundo_nombre = :segundo_nombre, apellido_materno = :apellido_materno, apellido_paterno = :apellido_paterno, fecha_nacimiento = :fecha_nacimiento, telefono = :telefono, alergias = :alergias WHERE email = :email;
+      UPDATE registros_acceso SET nombre = :nombre, segundo_nombre = :segundo_nombre, apellido_materno = :apellido_materno, apellido_paterno = :apellido_paterno, fecha_nacimiento = :fecha_nacimiento, telefono = :telefono, alergias = :alergias, alergias_otro = :alergias_otro, alergia_medicamento = :alergia_medicamento, alergia_medicamento_cual = :alergia_medicamento_cual, restricciones_alimenticias = :restricciones_alimenticias, restricciones_alimenticias_cual = :restricciones_alimenticias_cual WHERE email = :email;
   sql;
       $parametros = array(
         
@@ -143,6 +143,11 @@ sql;
         ':fecha_nacimiento'=>$data->_fecha_nacimiento,
         ':telefono'=>$data->_telefono,
         ':alergias'=>$data->_alergias,
+        ':alergias_otro'=>$data->_alergias_otro,
+        ':alergia_medicamento'=>$data->_alergia_medicamento,
+        ':alergia_medicamento_cual'=>$data->_alergia_medicamento_cual,
+        ':restricciones_alimenticias'=>$data->_restricciones_alimenticias,
+        ':restricciones_alimenticias_cual'=>$data->_restricciones_alimenticias_cual,
         ':email'=>$data->_email
         
       );
@@ -165,10 +170,10 @@ sql;
       $mysqli = Database::getInstance();
       $query =<<<sql
       SELECT ua.nombre as nombre_encargado, lp.clave, lp.nombre as nombre_linea, al.id_linea_principal
-      FROM asigna_linea al
-      INNER JOIN linea_principal lp ON (lp.id_linea_principal = al.id_linea_principal) 
-      INNER JOIN  utilerias_administradores ua ON (al.utilerias_administradores_id_linea_asignada = ua.utilerias_administradores_id) 
-      WHERE al.id_linea_principal = $id_linea;
+        FROM asigna_linea al
+        INNER JOIN linea_principal lp ON (lp.id_linea_principal = al.id_linea_principal) 
+        INNER JOIN utilerias_administradores ua ON (al.utilerias_administradores_id_linea_asignada = ua.utilerias_administradores_id) 
+        WHERE al.id_linea_principal = $id_linea;
 sql;
   
       return $mysqli->queryAll($query);

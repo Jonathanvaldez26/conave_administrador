@@ -444,15 +444,15 @@
                                                 <div class="mt-2 nav-wrapper position-relative end-0">
                                                     <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                                                         <li class="nav-item">
-                                                            <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="true">
-                                                                <span class="fa fa-plane"></span>
-                                                                <span class="ms-1">Vuelos</span>
+                                                            <a class="nav-link mb-0 px-0 py-1 active" href="#cam2" data-bs-toggle="tab" role="tab" aria-selected="true">
+                                                                <span class="fa fa-ticket"></span>
+                                                                <span class="ms-1">Ticket Virtual</span>
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                                <span class="fa fa-ticket"></span>
-                                                                <span class="ms-1">Ticket Virtual</span>
+                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                                <span class="fa fa-plane"></span>
+                                                                <span class="ms-1">Vuelos</span>
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
@@ -586,8 +586,6 @@
 
                                 </div>
 
-
-
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
                                         <label class="form-label mt-4">Fecha de Nacimiento * </label>
@@ -612,26 +610,32 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4">
+
+                                    <?php echo $res_alimenticias;?>
+
+                                    <?php echo $alergia_medicamento_cual;?>
+
+                                    <?php echo $alergias_a;?>
+
+                                    <!-- <div class="col-md-4">
                                         <label class="form-label mt-4">Alergias *</label>
                                         <input class="form-control" name="alergias" id="alergias" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias'] ?>" placeholder="" />
-                                    </div>
-
-                                    <div class="col-md-4">
+                                    
                                         <label class="form-label mt-4">Alergias Otro *</label>
                                         <input class="form-control" name="alergias_otro" id="alergias_otro" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergias_otro'] ?>" placeholder="" />
-                                    </div>
+                                    </div> -->
 
-                                    <div class="col-md-4">
+
+                                    <!-- <div class="col-md-4">
                                         <label class="form-label mt-4">Alergias Medicamento *</label>
                                         <input class="form-control" name="alergia_medicamento_cual" id="alergia_medicamento_cual" maxlength="149" name="alergias" data-color="dark" type="text" value="<?= $detalles_registro['alergia_medicamento_cual'] ?>" placeholder="" />
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <div class="row">
                                     <div class="button-row d-flex mt-4 col-12">
-                                        <a class="btn bg-gradient-danger mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
-                                        <button class="btn bg-gradient-primary ms-auto mb-0" type="submit" title="Actualizar">Actualizar</button>
+                                        <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
+                                        <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
                                     </div>
                                 </div>
                             </div>
@@ -650,6 +654,7 @@
 
 <script>
     $(document).ready(function() {
+        $('#alergias').select2();
         $("#update_detalles").on("submit", function(event) {
             event.preventDefault();
 
@@ -676,14 +681,14 @@
                     // alert("Successs");
 
                     if (respuesta == 'success') {
-                        swal("Se actualizaron tus datos correctamente!", "", "success").
+                        swal("!Se actualizaron tus datos correctamente!", "", "success").
                         then((value) => {
                             window.location.replace("/Asistentes");
                         });
                     } else {
-                        swal("Usted No Actualizo Nada!", "", "warning").
+                        swal("!Usted No Actualizo Nada!", "", "warning").
                         then((value) => {
-                            window.location.replace("/Asistentes")
+                            //window.location.replace("/Asistentes")
                         });
                     }
                 },
@@ -692,6 +697,31 @@
                 }
 
             });
+        });
+
+        $('input:radio[name="confirm_alergia"]').change(function() {
+            if ($("#confirm_alergia_no").is(':checked')) {
+                $(".medicamento_cual").css("display", "none");
+                // $("#alergia_medicamento_cual").val("");
+                $('#alergia_medicamento_cual').removeAttr('required');
+            }
+        
+            if ($("#confirm_alergia_si").is(':checked')) {
+                $(".medicamento_cual").css("display", "block");
+                $("#alergia_medicamento_cual").attr('required', 'required');
+            }
+        });
+        
+        $('input:radio[name="restricciones_alimenticias"]').change(function() {
+            if ($("#res_ali_5").is(':checked')) {
+                $(".restricciones_alimenticias").css("display", "block");
+                $("#restricciones_alimenticias_cual").attr('required', 'required');
+            } else {
+                $(".restricciones_alimenticias").css("display", "none");
+                $('#restricciones_alimenticias_cual').removeAttr('required');
+                // $('#restricciones_alimenticias_cual').val('')
+            }
+        
         });
     });
 </script>

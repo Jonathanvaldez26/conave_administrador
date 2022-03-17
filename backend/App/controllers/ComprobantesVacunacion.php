@@ -195,7 +195,7 @@ html;
                   </div>
               </div>
             </div>
-  html;
+html;
         } else {
 
           if ($value['validado'] == 1) {

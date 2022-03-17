@@ -656,8 +656,7 @@ html;
 
             $id_linea = $value['id_linea_principal'];
             $encargado = AsistentesDao::getEncargadoLinea($id_linea);
-            // var_dump($encargado);
-            $html .=<<<html
+            $html.=<<<html
             <tr>
                 <td>
                     <div class="d-flex px-3 py-1">

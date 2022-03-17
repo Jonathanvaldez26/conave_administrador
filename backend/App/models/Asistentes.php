@@ -133,7 +133,7 @@ sql;
       $mysqli = Database::getInstance(true);
       $query=<<<sql
       UPDATE registros_acceso SET nombre = :nombre, segundo_nombre = :segundo_nombre, apellido_materno = :apellido_materno, apellido_paterno = :apellido_paterno, fecha_nacimiento = :fecha_nacimiento, telefono = :telefono, alergias = :alergias, alergias_otro = :alergias_otro, alergia_medicamento = :alergia_medicamento, alergia_medicamento_cual = :alergia_medicamento_cual, restricciones_alimenticias = :restricciones_alimenticias, restricciones_alimenticias_cual = :restricciones_alimenticias_cual WHERE email = :email;
-  sql;
+sql;
       $parametros = array(
         
         ':nombre'=>$data->_nombre,

@@ -323,7 +323,7 @@ html;
                                 </div>
                               </form>
                             </div>
-                        html;
+html;
                         }else{
                           $tabla .=<<<html
                             <p>
@@ -338,7 +338,7 @@ html;
                                 Guardar
                               </button>
                             </form>
-                        html;
+html;
                         }
                         $tabla .=<<<html
                           </div>
@@ -348,7 +348,7 @@ html;
                   </div>
                 </div>
               </div>
-  html;
+html;
           }
   
           if ($value['validado'] == 0) {
@@ -528,7 +528,7 @@ html;
                     
                 </div>
               </div>
-  html;
+html;
           }
         }      
     }

@@ -16,6 +16,12 @@ sql;
         return $mysqli->queryAll($query);
     }
     public static function getById($id){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM linea_principal WHERE id_linea_principal = $id
+sql;
+
+        return $mysqli->queryAll($query);
         
     }
     public static function insert($data){
@@ -32,6 +38,28 @@ sql;
         $mysqli = Database::getInstance(true);
         $query =<<<sql
         SELECT * FROM linea_principal
+sql;
+
+        return $mysqli->queryAll($query);
+    }
+
+    public static function getLineasSinEjecutivo(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT lp.*
+        FROM linea_principal lp
+        WHERE lp.id_linea_principal NOT IN (select id_linea_principal from asigna_linea)
+sql;
+
+        return $mysqli->queryAll($query);
+    }
+
+    public static function getLineaEjecutivo(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT lp.*
+        FROM linea_principal lp
+        WHERE lp.id_linea_principal NOT IN (select id_linea_principal from asigna_linea)
 sql;
 
         return $mysqli->queryAll($query);

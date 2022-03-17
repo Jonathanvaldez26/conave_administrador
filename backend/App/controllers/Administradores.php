@@ -862,7 +862,7 @@ html;
 html;
        
         $lineas = '';
-        foreach (LineaDao::getLineasAll() as $key => $value) {
+        foreach (LineaDao::getLineasSinEjecutivo() as $key => $value) {
             $lineas .= <<<html
                 <option value="{$value['id_linea_principal']}">{$value['nombre']}</option>
 html;
@@ -1432,8 +1432,12 @@ html;
 html;
       $administrador = AdministradoresDao::getAllByCode($code);
 
+      $linea_ejecutivo = LineaDao::getById($administrador['id_linea_principal'])[0];
       $lineas = '';
-      foreach (LineaDao::getLineasAll() as $key => $value) {
+      $lineas .=<<<html
+        <option selected value="{$linea_ejecutivo['id_linea_principal']}">{$linea_ejecutivo['nombre']}</option>
+html; 
+      foreach (LineaDao::getLineasSinEjecutivo() as $key => $value) {
         $selected = ($administrador['id_linea_principal'] == $value['id_linea_principal'])? 'selected' : '';
         $lineas .=<<<html
         <option {$selected} value="{$value['id_linea_principal']}">{$value['nombre']}</option>

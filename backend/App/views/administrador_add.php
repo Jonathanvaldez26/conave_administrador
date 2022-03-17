@@ -638,7 +638,7 @@
                           <div class="form-group text-center">
                             <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-2 col-xs-offset-3">
                               <button class="btn bg-gradient-success col-md-3 col-sm-3 col-xs-5" id="btnAdd" type="submit">Agregar</button>
-                              <button class="btn bg-gradient-danger col-md-3 col-sm-3 col-xs-5" type="button" id="btnCancel">Cancelar</button>
+                              <a href="/Administradores/" class="btn bg-gradient-danger col-md-3 col-sm-3 col-xs-5"  id="btnCancel">Cancelar</a>
                               <button class="btn bg-gradient-primary col-md-3 col-sm-3 col-xs-5" type="reset">Resetear</button>
                             </div>
                           </div>

@@ -7,6 +7,7 @@ use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\Administradores AS AdministradoresDao;
+use \App\models\Linea as LineaDao;
 
 class Administradores extends Controller{
 
@@ -386,11 +387,12 @@ html;
                           <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
                         </a>
                 </td>
-                <td class="text-sm text-center">
+                <!--<td class="text-sm text-center">
                         <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Asignar una Línea al Administrador">
                           <i class="fas fa-check-circle text-secondary" aria-hidden="true"></i>
                         </a>
                 </td>
+                -->
               </tr>
 html;
       }
@@ -810,6 +812,16 @@ html;
             // document.getElementById('add-departamentos').style.display = "block";
             document.getElementById('permiosos-personalizados').style.display = "block";
           }
+          if(elem.value == '3'){
+            // document.getElementById('permiosos-root').style.display = "none";
+            // document.getElementById('permiosos-administrador').style.display = "none";
+            // document.getElementById('permiosos-recursos-humanos').style.display = "none";
+            // document.getElementById('permiosos-personales').style.display = "block";
+            // document.getElementById('permiosos-prorrateo').style.display = "none";
+            // document.getElementById('departamentos').style.display = "block";
+            // document.getElementById('add-departamentos').style.display = "block";
+            document.getElementById('permiosos-personalizados').style.display = "block";
+          }
 
           
         }
@@ -848,7 +860,13 @@ html;
       </script>
 
 html;
-        
+       
+        $lineas = '';
+        foreach (LineaDao::getLineasAll() as $key => $value) {
+            $lineas .= <<<html
+                <option value="{$value['id_linea_principal']}">{$value['nombre']}</option>
+html;
+        }
 
         $perfiles = "";
         foreach (AdministradoresDao::getPerfiles() as $key => $value) {
@@ -872,26 +890,27 @@ html;
               <input type="checkbox" id="myCheck{$value['utilerias_seccion_id']}" name="seccion{$value['utilerias_seccion_id']}" > {$value['nombre_seccion']}
             </td>
             <td>
-              <input class="toggle botonEstado" name="pdf{$value['utilerias_seccion_id']}" id="pdf{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" disabled >
+              <input class="toggle botonEstado" name="pdf{$value['utilerias_seccion_id']}" id="pdf{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" >
             </td>
             <td>
-              <input class="toggle botonEstado" name="excel{$value['utilerias_seccion_id']}" id="excel{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" disabled >
+              <input class="toggle botonEstado" name="excel{$value['utilerias_seccion_id']}" id="excel{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" >
             </td>
             <td>
-              <input class="toggle botonEstado" name="agregar{$value['utilerias_seccion_id']}" id="agregar{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" disabled >
+              <input class="toggle botonEstado" name="agregar{$value['utilerias_seccion_id']}" id="agregar{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" >
             </td>
             <td>
               <!--No <input type="checkbox" class="js-switch" id="b{$value['utilerias_seccion_id']}" name="editar{$value['utilerias_seccion_id']}"/> Si-->
-              <input class="toggle botonEstado" name="editar{$value['utilerias_seccion_id']}" id="editar{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" disabled >
+              <input class="toggle botonEstado" name="editar{$value['utilerias_seccion_id']}" id="editar{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" >
             </td>
             <td>
               <!--No <input type="checkbox" class="js-switch" name="eliminar{$value['utilerias_seccion_id']}"/> Si -->
-              <input class="toggle botonEstado" name="eliminar{$value['utilerias_seccion_id']}" id="eliminar{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" disabled >
+              <input class="toggle botonEstado" name="eliminar{$value['utilerias_seccion_id']}" id="eliminar{$value['utilerias_seccion_id']}" type="checkbox" data-toggle="toggle" >
             </td>
         </tr>
 html;
       }
 
+      View::set('lineas',$lineas);
       View::set('permisos', $tabla1);
       View::set('perfiles', $perfiles);
       View::set('status',$status);
@@ -916,6 +935,7 @@ html;
         $administrador->_nombre = MasterDom::getData('nombre');
         $administrador->_usuario = MasterDom::getData('usuario');
         $administrador->_perfil_id = MasterDom::getData('perfil_id');
+        $administrador->_linea_id = MasterDom::getData('linea_id');
         $administrador->_descripcion = MasterDom::getData('descripcion');
         $administrador->_status = MasterDom::getData('status');
         $administrador->_tipo = 0;
@@ -940,7 +960,7 @@ html;
           $permisos->$sec = "1-2-3-4-5-6";
         }
       }
-      elseif(MasterDom::getData('perfil_id') == 2){
+      elseif(MasterDom::getData('perfil_id') == 2 || MasterDom::getData('perfil_id') == 3){
 
         $permisos->_usuario = MasterDom::getData('usuario');
         $permisos->_permisos_globales = 0;
@@ -964,6 +984,12 @@ html;
 
       $idAdministrador = AdministradoresDao::insert($administrador);
       if($idAdministrador){
+        $asignaLinea = new \stdClass();
+        $asignaLinea->_linea_id = MasterDom::getData('linea_id');
+        $asignaLinea->_utilerias_administradores_linea_asignada = $idAdministrador;
+        $asignaLinea->_utilerias_administradores = $_SESSION['utilerias_administradores_id'];
+
+        $idAsignaLinea = LineaDao::insertAsignaLinea($asignaLinea);
         $idPermisos = AdministradoresDao::insertPermisos($permisos);
       }
       
@@ -983,7 +1009,7 @@ html;
 
      // if($idAdministrador){
 
-     if($idAdministrador >= 1 && $idPermisos >= 1){
+     if($idAdministrador >= 1 && $idPermisos >= 1 && $idAsignaLinea>= 1){
         $this->alerta($id,'add');
       }else{
         $this->alerta($id,'error');
@@ -1293,6 +1319,9 @@ html;
 
             
             if($(this).find(':selected').data('id') == 'Personalizado'){
+              document.getElementById('permiosos-personalizados').style.display = "block";
+            }
+            elseif($(this).find(':selected').data('id') == 'Medico'){
               document.getElementById('permiosos-personalizados').style.display = "block";
             }
             else{

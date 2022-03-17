@@ -491,6 +491,7 @@
                   <div class="form-group ">
                       <div class="card-header text-center">
                           <h3>Datos Generales para Agregar un Administrador</h3>
+                          
                       </div>
                       <div class="card-body pt-0">
                           <div class="row">
@@ -523,11 +524,19 @@
                               </div>
                           </div>
                           <div class="form-group row">
-                              <div class="col-12 col-md-6">
+                              <div class="col-sm-12 col-md-6">
                                 <label class="form-label">Perfil del Administrador *</label>
                                 <select class="form-control col-12 col-md-6" name="perfil_id" onchange="showDiv(this)">
                                   <option value="" disabled selected>Selecciona un perfil para el este administrador</option>
                                   <?php echo $perfiles; ?>
+                                </select>
+                              </div>
+                         
+                              <div class="col-sm-12 col-md-6">
+                                <label class="form-label">Linea *</label>
+                                <select class="form-control col-12 col-md-6" name="linea_id">
+                                  <option value="" disabled selected>Selecciona una linea para este administrador</option>
+                                  <?php echo $lineas; ?>
                                 </select>
                               </div>
                           </div>

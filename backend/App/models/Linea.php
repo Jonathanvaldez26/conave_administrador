@@ -27,4 +27,30 @@ sql;
     public static function delete($id){
         
     }
+
+    public static function getLineasAll(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM linea_principal
+sql;
+
+        return $mysqli->queryAll($query);
+    }
+
+    public static function insertAsignaLinea($asigaLinea){
+	    $mysqli = Database::getInstance(1);
+        $query=<<<sql
+            INSERT INTO asigna_linea(id_linea_principal, utilerias_administradores_id_linea_asignada, fecha_alta, status, utilerias_administradores) 
+            VALUES (:id_linea_principal, :utilerias_administradores_id_linea_asignada, NOW(), 1, :utilerias_administradores)
+    sql;
+            $parametros = array(
+            ':id_linea_principal'=>$asigaLinea->_linea_id,
+            ':utilerias_administradores_id_linea_asignada'=>$asigaLinea->_utilerias_administradores_linea_asignada,
+            ':utilerias_administradores'=>$asigaLinea->_utilerias_administradores
+            );
+
+            $id = $mysqli->insert($query,$parametros);
+
+            return $id;
+    }
 }

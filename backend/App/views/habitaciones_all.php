@@ -506,7 +506,23 @@
                     </div>
 
                     <div class="tab-pane fade position-relative height-350 border-radius-lg" id="staff" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
-                        B
+                    <div class="d-flex m-1">
+                            <div class="ms-auto d-flex">
+                                <div class="pe-4 mt-1 position-relative">
+                                    <hr class="vertical dark mt-0">
+                                </div>
+                                <div class="ps-4">
+                                    <div class="panel-body" <?php echo $visible; ?>></div>
+                                    <button type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#addHabitacion"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    <a style="background: #1C6C42; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-excel" aria-hidden="true"></i></a>
+                                    <a style="background: #9A1622; color: #ffffff;" href="/Vuelos/Add/" type="button" class="btn bg-gradient-info btn-icon-only mb-0 mt-3"><i class="fa fa-file-pdf" aria-hidden="true"></i></a>
+                                    <button type="button" class="btn bg-gradient-secondary btn-icon-only mb-0 mt-3" data-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Todo cambio que usted realice en el sistema será guardado con fecha, usuario y transacción.">
+                                        <span class="fa fa-info"></span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade position-relative height-350 border-radius-lg" id="vip" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
                         B

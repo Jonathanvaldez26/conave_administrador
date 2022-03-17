@@ -369,7 +369,7 @@
                                             </div>
 
 
-                                            <div class="form-group col-12">
+                                            <div class="form-group col-12 ">
                                                 <div class="col-12 col-md-6">
                                                     <label class="form-label" for="perfil_id">Perfil del Administrador<span class="required">*</span></label>
         
@@ -381,13 +381,18 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-sm-12 col-md-6">
-                                                <label class="form-label">Linea *</label>
-                                                <select class="form-control col-12 col-md-6" name="linea_id">
-                                                <option value="" disabled selected>Selecciona una linea para este administrador</option>
-                                                <?php //echo $lineas; ?>
-                                                </select>
+
+                                            <div class="form-group col-12 ">
+                                                <div class="col-12 col-md-6">
+                                                    <label class="form-label" for="linea_id">Linea <span class="required">*</span></label>
+                                                    <select class="form-control col-12 col-md-6" name="linea_id">
+                                                        <option value="" disabled selected>Selecciona una linea para este administrador</option>
+                                                        <?php echo $lineas; ?>
+                                                    </select>
+
+                                                </div>
                                             </div>
+
 
                                             <div class="form-group" id="permiosos-root" style="display: none;">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos Root</label>

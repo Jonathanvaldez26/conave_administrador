@@ -6,7 +6,7 @@ use \Core\Database;
 use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
 
-class Asistentes implements Crud{
+class Asistentes{
 
     public static function getAll(){
       $mysqli = Database::getInstance();

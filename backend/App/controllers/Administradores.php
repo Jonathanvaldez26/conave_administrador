@@ -1432,11 +1432,12 @@ html;
 html;
       $administrador = AdministradoresDao::getAllByCode($code);
 
-
       $lineas = '';
       foreach (LineaDao::getLineasAll() as $key => $value) {
-          $lineas .= <<<html
-              <option value="{$value['id_linea_principal']}">{$value['nombre']}</option>
+        $selected = ($administrador['id_linea_principal'] == $value['id_linea_principal'])? 'selected' : '';
+        $lineas .=<<<html
+        <option {$selected} value="{$value['id_linea_principal']}">{$value['nombre']}</option>
+         
 html;
       }
       
@@ -1521,7 +1522,7 @@ html;
 html;
       }
       
-        
+        View::set('lineas',$lineas);
         View::set('perfiles', $perfiles);
         View::set('status',$status);
         View::set('permisos',$tabla1);

@@ -44,9 +44,10 @@ sql;
   public static function getAllByCode($code){
     $mysqli = Database::getInstance();
     $query=<<<sql
-    SELECT ua.*, al.id_linea_principal
+    SELECT ua.*, al.id_linea_principal, lp.id_bu, lp.clave, lp.nombre as nombre_linea
     FROM utilerias_administradores ua
     INNER JOIN asigna_linea al ON(ua.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada)
+    INNER JOIN linea_principal lp ON(al.id_linea_principal = lp.id_linea_principal)
     WHERE ua.code  = '$code'
 sql;
     return $mysqli->queryOne($query);

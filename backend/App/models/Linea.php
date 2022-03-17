@@ -42,7 +42,7 @@ sql;
         $query=<<<sql
             INSERT INTO asigna_linea(id_linea_principal, utilerias_administradores_id_linea_asignada, fecha_alta, status, utilerias_administradores) 
             VALUES (:id_linea_principal, :utilerias_administradores_id_linea_asignada, NOW(), 1, :utilerias_administradores)
-    sql;
+sql;
             $parametros = array(
             ':id_linea_principal'=>$asigaLinea->_linea_id,
             ':utilerias_administradores_id_linea_asignada'=>$asigaLinea->_utilerias_administradores_linea_asignada,

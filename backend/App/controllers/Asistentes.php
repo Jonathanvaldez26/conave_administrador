@@ -249,7 +249,7 @@ html;
                         <input id="alergia_medicamento_cual" name="alergia_medicamento_cual" maxlength="29" pattern="[a-zA-Z0-9]*" class="form-control" type="text" placeholder="Escriba a que medicamento es alérgico" value="{$detalles_registro[0]['alergia_medicamento_cual']}">
                     </div>
                 </div>
-    html;
+html;
             } else {
                 $alergia_medicamento_cual = <<<html
                 <div class="col-md-4 col-sm-12">
@@ -273,7 +273,7 @@ html;
                         <input id="alergia_medicamento_cual" name="alergia_medicamento_cual" maxlength="29" pattern="[a-zA-Z0-9]*" class="form-control" type="text" placeholder="Escriba a que medicamento es alérgico" value="{$detalles_registro[0]['alergia_medicamento_cual']}">
                     </div>
                 </div>
-    html;
+html;
             }
         }
 

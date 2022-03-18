@@ -14,9 +14,9 @@ class Linea implements Crud{
         FROM linea_principal lp
         INNER JOIN utilerias_administradores ua ON ua.utilerias_administradores_id = lp.utilerias_administradores_id 
         INNER JOIN bu b ON b.id_bu = lp.id_bu 
-        ORDER BY bu.nombre ASC
-        ORDER BY lp.nombre ASC
-        ORDER BY p.nombre ASC
+        ORDER BY b.nombre and lp.nombre ASC
+        
+        
 sql;
         return $mysqli->queryAll($query);
     }

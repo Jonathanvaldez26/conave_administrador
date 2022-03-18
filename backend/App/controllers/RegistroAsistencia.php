@@ -5,10 +5,14 @@ defined("APPPATH") OR die("Access denied");
 use \Core\View;
 use \Core\MasterDom;
 use \App\controllers\Contenedor;
+use \Core\Controller;
 use \App\models\RegistroAsistencia AS LoginDao;
 
 class RegistroAsistencia{
+   
+
     private $_contenedor;
+
 
     public function codigo($id) {
         $extraHeader =<<<html
@@ -163,9 +167,15 @@ html;
             View::set('fecha_asistencia',$fecha_asistencia);
             View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
             View::set('$hora_asistencia_fin',$hora_asistencia_fin);
+<<<<<<< HEAD
             View::set('header',$extraHeader);
             View::set('footer',$extraFooter);
             View::render("registro_asistencias_codigo");
+=======
+            //View::set('header');
+            //View::set('footer'); 
+            //View::render("registro_asistencias_codigo");
+>>>>>>> 105ae2e8b9ebaebc3d4e1a3cdceab00315caf0c8
 
             // View::render("asistencias_all");
         }

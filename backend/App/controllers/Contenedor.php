@@ -48,8 +48,8 @@ class Contenedor extends Controller{
 
         $pruebas_covid = Controller::getPermisosUsuario($usuario, "seccion_pruebas_covid", 1);
         $pruebas_covidAdd = Controller::getPermisosUsuario($usuario, "seccion_pruebas_covid", 1);
-        $sorteo_prueba_covid = Controller::getPermisosUsuario($usuario, "seccion_sorteo_prueba_covid", 1);
-        $sorteo_prueba_covidAdd = Controller::getPermisosUsuario($usuario, "seccion_sorteo_prueba_covid", 1);
+        $asistencias = Controller::getPermisosUsuario($usuario, "seccion_asistencias", 1);
+        $asistenciasAdd = Controller::getPermisosUsuario($usuario, "seccion_asistencias", 1);
         $utilerias = Controller::getPermisosUsuario($usuario, "seccion_utilerias", 1);
         $utileriasAdd = Controller::getPermisosUsuario($usuario, "seccion_utilerias", 1);
         $configuracion = Controller::getPermisosUsuario($usuario, "seccion_configuracion", 1);

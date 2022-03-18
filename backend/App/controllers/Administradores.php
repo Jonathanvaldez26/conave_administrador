@@ -1,30 +1,35 @@
 <?php
+
 namespace App\controllers;
-defined("APPPATH") OR die("Access denied");
+
+defined("APPPATH") or die("Access denied");
 
 use \Core\View;
 use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
-use \App\models\Administradores AS AdministradoresDao;
+use \App\models\Administradores as AdministradoresDao;
 use \App\models\Linea as LineaDao;
 
-class Administradores extends Controller{
+class Administradores extends Controller
+{
 
-    private $_contenedor;
+  private $_contenedor;
 
-    function __construct(){
-        parent::__construct();
-        $this->_contenedor = new Contenedor;
-        View::set('header',$this->_contenedor->header());
-        View::set('footer',$this->_contenedor->footer());
+  function __construct()
+  {
+    parent::__construct();
+    $this->_contenedor = new Contenedor;
+    View::set('header', $this->_contenedor->header());
+    View::set('footer', $this->_contenedor->footer());
 
-        if(Controller::getPermisosUsuario($this->__usuario, "permisos_globales",1) == 0)
-          header('Location: /Principal/');
-    }
+    if (Controller::getPermisosUsuario($this->__usuario, "permisos_globales", 1) == 0)
+      header('Location: /Principal/');
+  }
 
-    public function index() {
-      $extraFooter =<<<html
+  public function index()
+  {
+    $extraFooter = <<<html
       <script>
         $(document).ready(function(){
 
@@ -184,15 +189,15 @@ class Administradores extends Controller{
         });
       </script>
 html;
-      $Administradoress = AdministradoresDao::getAll();
-      // var_dump($Administradoress);
-      // exit;
-      $tabla= '';
-      foreach ($Administradoress as $key => $value) {
-        $explode =  explode('_', $value['identificador']);
-        $identificador = strtoupper($explode['0']);
-        $administrador_id = $value['administrador_id'];
-        $tabla.=<<<html
+    $Administradoress = AdministradoresDao::getAll();
+    // var_dump($Administradoress);
+    // exit;
+    $tabla = '';
+    foreach ($Administradoress as $key => $value) {
+      $explode =  explode('_', $value['identificador']);
+      $identificador = strtoupper($explode['0']);
+      $administrador_id = $value['administrador_id'];
+      $tabla .= <<<html
                 <tr>
                   <td style="vertical-align:middle;"><input type="checkbox" name="borrar[]" value="{$value['administrador_id']}"/></td>
                   <td class="mr-2" style="vertical-align:middle;">
@@ -215,172 +220,172 @@ html;
                 
 html;
 
-        $s1 = explode("-",$value['seccion_principal']);
-        $s2 = explode("-",$value['seccion_asistentes']);
-        $s3 = explode("-",$value['seccion_bu']);
-        $s4 = explode("-",$value['seccion_lineas']);
-        $s5 = explode("-",$value['seccion_posiciones']);
-        $s6 = explode("-",$value['seccion_restaurantes']);
-        $s7 = explode("-",$value['seccion_gafete']);
-        $s8 = explode("-",$value['seccion_vuelos']);
-        $s9 = explode("-",$value['seccion_pickup']);
-        $s10 = explode("-",$value['seccion_habitaciones']);
-        $s11 = explode("-",$value['seccion_cenas']);
-        $s12 = explode("-",$value['seccion_vacunacion']);
-        $s13 = explode("-",$value['seccion_pruebas_covid']);
-        $s14 = explode("-",$value['seccion_sorteo_prueba_covid']);
-        $s15 = explode("-",$value['seccion_utilerias']);
-        $s16 = explode("-",$value['seccion_configuracion']);
-        //$s17 = explode("-",$value['seccion_prorrateo']);
+      $s1 = explode("-", $value['seccion_principal']);
+      $s2 = explode("-", $value['seccion_asistentes']);
+      $s3 = explode("-", $value['seccion_bu']);
+      $s4 = explode("-", $value['seccion_lineas']);
+      $s5 = explode("-", $value['seccion_posiciones']);
+      $s6 = explode("-", $value['seccion_restaurantes']);
+      $s7 = explode("-", $value['seccion_gafete']);
+      $s8 = explode("-", $value['seccion_vuelos']);
+      $s9 = explode("-", $value['seccion_pickup']);
+      $s10 = explode("-", $value['seccion_habitaciones']);
+      $s11 = explode("-", $value['seccion_cenas']);
+      $s12 = explode("-", $value['seccion_vacunacion']);
+      $s13 = explode("-", $value['seccion_pruebas_covid']);
+      $s14 = explode("-", $value['seccion_sorteo_prueba_covid']);
+      $s15 = explode("-", $value['seccion_utilerias']);
+      $s16 = explode("-", $value['seccion_configuracion']);
+      //$s17 = explode("-",$value['seccion_prorrateo']);
 
-        $ver1 = ($s1['0'] == 1) ? "Principal":"";
-        $pdf1 = ($s1['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel1 = ($s1['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar1 = ($s1['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar1 = ($s1['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar1 = ($s1['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver1 = ($s1['0'] == 1) ? "Principal" : "";
+      $pdf1 = ($s1['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel1 = ($s1['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar1 = ($s1['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar1 = ($s1['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar1 = ($s1['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver2 = ($s2['0'] == 1) ? "Asistentes":"";
-        $pdf2 = ($s2['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel2 = ($s2['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar2 = ($s2['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar2 = ($s2['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar2 = ($s2['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver2 = ($s2['0'] == 1) ? "Asistentes" : "";
+      $pdf2 = ($s2['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel2 = ($s2['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar2 = ($s2['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar2 = ($s2['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar2 = ($s2['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver3 = ($s3['0'] == 1) ? "Bu":"";
-        $pdf3 = ($s3['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel3 = ($s3['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar3 = ($s3['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar3 = ($s3['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar3 = ($s3['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver3 = ($s3['0'] == 1) ? "Bu" : "";
+      $pdf3 = ($s3['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel3 = ($s3['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar3 = ($s3['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar3 = ($s3['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar3 = ($s3['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver4 = ($s4['0'] == 1) ? "Lineas":"";
-        $pdf4 = ($s4['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel4 = ($s4['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar4 = ($s4['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar4 = ($s4['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar4 = ($s4['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver4 = ($s4['0'] == 1) ? "Lineas" : "";
+      $pdf4 = ($s4['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel4 = ($s4['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar4 = ($s4['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar4 = ($s4['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar4 = ($s4['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver5 = ($s5['0'] == 1) ? "Posiciones":"";
-        $pdf5 = ($s5['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel5 = ($s5['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar5 = ($s5['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar5 = ($s5['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar5 = ($s5['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver5 = ($s5['0'] == 1) ? "Posiciones" : "";
+      $pdf5 = ($s5['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel5 = ($s5['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar5 = ($s5['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar5 = ($s5['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar5 = ($s5['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver6 = ($s6['0'] == 1) ? "Restaurantes":"";
-        $pdf6 = ($s6['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel6 = ($s6['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar6 = ($s6['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar6 = ($s6['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar6 = ($s6['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver6 = ($s6['0'] == 1) ? "Restaurantes" : "";
+      $pdf6 = ($s6['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel6 = ($s6['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar6 = ($s6['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar6 = ($s6['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar6 = ($s6['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver7 = ($s7['0'] == 1) ? "Gafete":"";
-        $pdf7 = ($s7['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel7 = ($s7['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar7 = ($s7['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar7 = ($s7['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar7 = ($s7['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver7 = ($s7['0'] == 1) ? "Gafete" : "";
+      $pdf7 = ($s7['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel7 = ($s7['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar7 = ($s7['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar7 = ($s7['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar7 = ($s7['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver8 = ($s8['0'] == 1) ? "Vuelos":"";
-        $pdf8 = ($s8['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel8 = ($s8['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar8 = ($s8['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar8 = ($s8['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar8 = ($s8['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver8 = ($s8['0'] == 1) ? "Vuelos" : "";
+      $pdf8 = ($s8['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel8 = ($s8['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar8 = ($s8['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar8 = ($s8['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar8 = ($s8['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver9 = ($s9['0'] == 1) ? "PickUp":"";
-        $pdf9 = ($s9['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel9 = ($s9['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar9 = ($s9['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar9 = ($s9['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar9 = ($s9['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver9 = ($s9['0'] == 1) ? "PickUp" : "";
+      $pdf9 = ($s9['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel9 = ($s9['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar9 = ($s9['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar9 = ($s9['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar9 = ($s9['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver10 = ($s10['0'] == 1) ? "Habitaciones":"";
-        $pdf10 = ($s10['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel10 = ($s10['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar10 = ($s10['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar10 = ($s10['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar10 = ($s10['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver10 = ($s10['0'] == 1) ? "Habitaciones" : "";
+      $pdf10 = ($s10['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel10 = ($s10['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar10 = ($s10['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar10 = ($s10['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar10 = ($s10['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver11 = ($s11['0'] == 1) ? "Cenas":"";
-        $pdf11 = ($s11['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel11 = ($s11['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar11 = ($s11['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar11 = ($s11['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar11 = ($s11['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver11 = ($s11['0'] == 1) ? "Cenas" : "";
+      $pdf11 = ($s11['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel11 = ($s11['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar11 = ($s11['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar11 = ($s11['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar11 = ($s11['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver12 = ($s12['0'] == 1) ? "Vacunación":"";
-        $pdf12 = ($s12['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel12 = ($s12['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar12 = ($s12['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar12 = ($s12['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar12 = ($s12['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver12 = ($s12['0'] == 1) ? "Vacunación" : "";
+      $pdf12 = ($s12['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel12 = ($s12['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar12 = ($s12['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar12 = ($s12['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar12 = ($s12['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver13 = ($s13['0'] == 1) ? "Pruebas Covid":"";
-        $pdf13 = ($s13['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel13 = ($s13['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar13 = ($s13['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar13 = ($s13['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar13 = ($s13['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver13 = ($s13['0'] == 1) ? "Pruebas Covid" : "";
+      $pdf13 = ($s13['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel13 = ($s13['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar13 = ($s13['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar13 = ($s13['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar13 = ($s13['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver14 = ($s14['0'] == 1) ? "Sorteo Prueba Covid":"";
-        $pdf14 = ($s14['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel14 = ($s14['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar14 = ($s14['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar14 = ($s14['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar14 = ($s14['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver14 = ($s14['0'] == 1) ? "Sorteo Prueba Covid" : "";
+      $pdf14 = ($s14['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel14 = ($s14['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar14 = ($s14['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar14 = ($s14['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar14 = ($s14['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver15 = ($s15['0'] == 1) ? "Utilerias":"";
-        $pdf15 = ($s15['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel15 = ($s15['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar15 = ($s15['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar15 = ($s15['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar15 = ($s15['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver15 = ($s15['0'] == 1) ? "Utilerias" : "";
+      $pdf15 = ($s15['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel15 = ($s15['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar15 = ($s15['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar15 = ($s15['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar15 = ($s15['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        $ver16 = ($s16['0'] == 1) ? "Configuración":"";
-        $pdf16 = ($s16['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        $excel16 = ($s16['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        $agregar16 = ($s16['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        $editar16 = ($s16['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        $eliminar16 = ($s16['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      $ver16 = ($s16['0'] == 1) ? "Configuración" : "";
+      $pdf16 = ($s16['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>" : "";
+      $excel16 = ($s16['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>" : "";
+      $agregar16 = ($s16['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>" : "";
+      $editar16 = ($s16['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>" : "";
+      $eliminar16 = ($s16['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>" : "";
 
-        // $ver17 = ($s17['0'] == 1) ? "Prorrateo":"";
-        // $pdf17 = ($s17['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
-        // $excel17 = ($s17['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
-        // $agregar17 = ($s17['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
-        // $editar17 = ($s17['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
-        // $eliminar17 = ($s17['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
+      // $ver17 = ($s17['0'] == 1) ? "Prorrateo":"";
+      // $pdf17 = ($s17['1'] == 2) ? "<span class=\"fa fa-file-pdf-o\" style=\"font-size:10px;\"></span>":"";
+      // $excel17 = ($s17['2'] == 3) ? "<span class=\"fa fa-file-excel-o\" style=\"font-size:10px;\"></span>":"";
+      // $agregar17 = ($s17['3'] == 4) ? "<span class=\"fa fa-check\" style=\"font-size:10px;\"></span>":"";
+      // $editar17 = ($s17['4'] == 5) ? "<span class=\"fa fa-edit\" style=\"font-size:10px;\"></span>":"";
+      // $eliminar17 = ($s17['5'] == 6) ? "<span class=\"fa fa-close\" style=\"font-size:10px;\"></span>":"";
 
-        $varSeccion1 = ($ver1!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver1}<br></span> {$pdf1} {$excel1} {$agregar1} {$editar1} {$eliminar1}</div>": "";
-        $varSeccion2 = ($ver2!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver2}<br></span> {$pdf2} {$excel2} {$agregar2} {$editar2} {$eliminar2}</div>": "";
-        $varSeccion3 = ($ver3!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver3}<br></span> {$pdf3} {$excel3} {$agregar3} {$editar3} {$eliminar3}</div>": "";
-        $varSeccion4 = ($ver4!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver4}<br></span> {$pdf4} {$excel4} {$agregar4} {$editar4} {$eliminar4}</div>": "";
-        $varSeccion5 = ($ver5!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver5}<br></span> {$pdf5} {$excel5} {$agregar5} {$editar5} {$eliminar5}</div>": "";
-        $varSeccion6 = ($ver6!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver6}<br></span> {$pdf6} {$excel6} {$agregar6} {$editar6} {$eliminar6}</div>": "";
-        $varSeccion7 = ($ver7!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver7}<br></span> {$pdf7} {$excel7} {$agregar7} {$editar7} {$eliminar7}</div>": "";
-        $varSeccion8 = ($ver8!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver8}<br></span> {$pdf8} {$excel8} {$agregar8} {$editar8} {$eliminar8}</div>": "";
-        $varSeccion9 = ($ver9!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver9}<br></span> {$pdf9} {$excel9} {$agregar9} {$editar9} {$eliminar9}</div>": "";
-        $varSeccion10 = ($ver10!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver10}<br></span> {$pdf10} {$excel10} {$agregar10} {$editar10} {$eliminar10}</div>": "";
-        $varSeccion11 = ($ver11!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver11}<br></span> {$pdf11} {$excel11} {$agregar11} {$editar11} {$eliminar11}</div>": "";
-        $varSeccion12 = ($ver12!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver12}<br></span> {$pdf12} {$excel12} {$agregar12} {$editar12} {$eliminar12}</div>": "";
-        $varSeccion13 = ($ver13!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver13}<br></span> {$pdf13} {$excel13} {$agregar13} {$editar13} {$eliminar13}</div>": "";
-        $varSeccion14 = ($ver14!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver14}<br></span> {$pdf14} {$excel14} {$agregar14} {$editar14} {$eliminar14}</div>": "";
-        $varSeccion15 = ($ver15!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver15}<br></span> {$pdf15} {$excel15} {$agregar15} {$editar15} {$eliminar15}</div>": "";
-        $varSeccion16 = ($ver16!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver16}<br></span> {$pdf16} {$excel16} {$agregar16} {$editar16} {$eliminar16}</div>": "";
-        //$varSeccion17 = ($ver17!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver17}<br></span> {$pdf17} {$excel17} {$agregar17} {$editar17} {$elimina17}</div>": "";
+      $varSeccion1 = ($ver1 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver1}<br></span> {$pdf1} {$excel1} {$agregar1} {$editar1} {$eliminar1}</div>" : "";
+      $varSeccion2 = ($ver2 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver2}<br></span> {$pdf2} {$excel2} {$agregar2} {$editar2} {$eliminar2}</div>" : "";
+      $varSeccion3 = ($ver3 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver3}<br></span> {$pdf3} {$excel3} {$agregar3} {$editar3} {$eliminar3}</div>" : "";
+      $varSeccion4 = ($ver4 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver4}<br></span> {$pdf4} {$excel4} {$agregar4} {$editar4} {$eliminar4}</div>" : "";
+      $varSeccion5 = ($ver5 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver5}<br></span> {$pdf5} {$excel5} {$agregar5} {$editar5} {$eliminar5}</div>" : "";
+      $varSeccion6 = ($ver6 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver6}<br></span> {$pdf6} {$excel6} {$agregar6} {$editar6} {$eliminar6}</div>" : "";
+      $varSeccion7 = ($ver7 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver7}<br></span> {$pdf7} {$excel7} {$agregar7} {$editar7} {$eliminar7}</div>" : "";
+      $varSeccion8 = ($ver8 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver8}<br></span> {$pdf8} {$excel8} {$agregar8} {$editar8} {$eliminar8}</div>" : "";
+      $varSeccion9 = ($ver9 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver9}<br></span> {$pdf9} {$excel9} {$agregar9} {$editar9} {$eliminar9}</div>" : "";
+      $varSeccion10 = ($ver10 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver10}<br></span> {$pdf10} {$excel10} {$agregar10} {$editar10} {$eliminar10}</div>" : "";
+      $varSeccion11 = ($ver11 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver11}<br></span> {$pdf11} {$excel11} {$agregar11} {$editar11} {$eliminar11}</div>" : "";
+      $varSeccion12 = ($ver12 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver12}<br></span> {$pdf12} {$excel12} {$agregar12} {$editar12} {$eliminar12}</div>" : "";
+      $varSeccion13 = ($ver13 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver13}<br></span> {$pdf13} {$excel13} {$agregar13} {$editar13} {$eliminar13}</div>" : "";
+      $varSeccion14 = ($ver14 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver14}<br></span> {$pdf14} {$excel14} {$agregar14} {$editar14} {$eliminar14}</div>" : "";
+      $varSeccion15 = ($ver15 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver15}<br></span> {$pdf15} {$excel15} {$agregar15} {$editar15} {$eliminar15}</div>" : "";
+      $varSeccion16 = ($ver16 != "") ? "<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver16}<br></span> {$pdf16} {$excel16} {$agregar16} {$editar16} {$eliminar16}</div>" : "";
+      //$varSeccion17 = ($ver17!="")?"<div class=\"col-md-3 col-6 list-group-item \"\"><span style=\"font-size:small;\">{$ver17}<br></span> {$pdf17} {$excel17} {$agregar17} {$editar17} {$elimina17}</div>": "";
 
-        $tabla .= "<div class=\"row text-center\">" .$varSeccion1 . $varSeccion2 . $varSeccion3 . $varSeccion4 . $varSeccion5 . $varSeccion6 . $varSeccion7 . $varSeccion8 . $varSeccion9 . $varSeccion10 . $varSeccion11 . $varSeccion12 . $varSeccion13 . $varSeccion14 . $varSeccion15 . $varSeccion16 ."</div></td>";
-        //$HaySeccion = AdministradoresDao::getDepartamentosAdministrador($value['administrador_id']);
-        
+      $tabla .= "<div class=\"row text-center\">" . $varSeccion1 . $varSeccion2 . $varSeccion3 . $varSeccion4 . $varSeccion5 . $varSeccion6 . $varSeccion7 . $varSeccion8 . $varSeccion9 . $varSeccion10 . $varSeccion11 . $varSeccion12 . $varSeccion13 . $varSeccion14 . $varSeccion15 . $varSeccion16 . "</div></td>";
+      //$HaySeccion = AdministradoresDao::getDepartamentosAdministrador($value['administrador_id']);
 
-          $tabla.=<<<html
+
+      $tabla .= <<<html
                 
                 <td class="text-sm text-center">
                         <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Desactivar Acceso al Administrador">
                           <i class="fas fa-power-off text-secondary fa-1x" aria-hidden="true"></i>
                         </a>
-                        <a href="/Administradores/edit/{$value['code']}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar Administrador">
+                        <a href="/Administradores/edit/{$value['code']}/{$value['perfil_id']}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar Administrador">
                           <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
                         </a>
                         <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Borrar Administrador de la Tabla (Se Desactivaran los Accesos)">
@@ -395,16 +400,42 @@ html;
                 -->
               </tr>
 html;
-      }
-
-      View::set('tabla',$tabla);
-      View::set('header',$this->_contenedor->header($header));
-      View::set('footer',$this->_contenedor->footer($extraFooter));
-      View::render("administradores_all");
     }
 
-    public function add(){
-      $extraFooter =<<<html
+    $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) == 0 ? "style=\"display:none;\"" : "";
+    $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
+    $vuelosHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vuelos", 1) == 0) ? "style=\"display:none;\"" : "";
+    $pickUpHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pickup", 1) == 0) ? "style=\"display:none;\"" : "";
+    $habitacionesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_habitaciones", 1) == 0) ? "style=\"display:none;\"" : "";
+    $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
+    $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
+    $aistenciasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistencias", 1) == 0) ? "style=\"display:none;\"" : "";
+    $vacunacionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 1) == 0) ? "style=\"display:none;\"" : "";
+    $pruebasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pruebas_covid", 1) == 0) ? "style=\"display:none;\"" : "";
+    $configuracionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_configuracion", 1) == 0) ? "style=\"display:none;\"" : "";
+    $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1) == 0) ? "style=\"display:none;\"" : "";
+
+    View::set('permisoGlobalHidden', $permisoGlobalHidden);
+    View::set('asistentesHidden', $asistentesHidden);
+    View::set('vuelosHidden', $vuelosHidden);
+    View::set('pickUpHidden', $pickUpHidden);
+    View::set('habitacionesHidden', $habitacionesHidden);
+    View::set('cenasHidden', $cenasHidden);
+    View::set('aistenciasHidden', $aistenciasHidden);
+    View::set('vacunacionHidden', $vacunacionHidden);
+    View::set('pruebasHidden', $pruebasHidden);
+    View::set('configuracionHidden', $configuracionHidden);
+    View::set('utileriasHidden', $utileriasHidden);
+
+    View::set('tabla', $tabla);
+    View::set('header', $this->_contenedor->header($header));
+    View::set('footer', $this->_contenedor->footer($extraFooter));
+    View::render("administradores_all");
+  }
+
+  public function add()
+  {
+    $extraFooter = <<<html
       <script>
         $(document).ready(function(){
 
@@ -794,6 +825,7 @@ html;
           if(elem.value == '1'){
             //document.getElementById('permiosos-root').style.display = "block";
             document.getElementById('permiosos-personalizados').style.display = "none";
+            
             //document.getElementById('permiosos-recursos-humanos').style.display = "none";
             // document.getElementById('permiosos-personales').style.display = "none";
             // document.getElementById('permiosos-prorrateo').style.display = "none";
@@ -811,6 +843,7 @@ html;
             // document.getElementById('departamentos').style.display = "block";
             // document.getElementById('add-departamentos').style.display = "block";
             document.getElementById('permiosos-personalizados').style.display = "block";
+            document.getElementById('cont_linea').style.display = "block";
           }
           if(elem.value == '3'){
             // document.getElementById('permiosos-root').style.display = "none";
@@ -821,6 +854,7 @@ html;
             // document.getElementById('departamentos').style.display = "block";
             // document.getElementById('add-departamentos').style.display = "block";
             document.getElementById('permiosos-personalizados').style.display = "block";
+            document.getElementById('cont_linea').style.display = "none";
           }
 
           
@@ -860,31 +894,31 @@ html;
       </script>
 
 html;
-       
-        $lineas = '';
-        foreach (LineaDao::getLineasSinEjecutivo() as $key => $value) {
-            $lineas .= <<<html
+
+    $lineas = '';
+    foreach (LineaDao::getLineasSinEjecutivo() as $key => $value) {
+      $lineas .= <<<html
                 <option value="{$value['id_linea_principal']}">{$value['nombre']}</option>
 html;
-        }
+    }
 
-        $perfiles = "";
-        foreach (AdministradoresDao::getPerfiles() as $key => $value) {
-        $perfiles .=<<<html
+    $perfiles = "";
+    foreach (AdministradoresDao::getPerfiles() as $key => $value) {
+      $perfiles .= <<<html
             <option value="{$value['perfil_id']}">{$value['nombre']}</option>
 html;
-        }
+    }
 
-        $status = "";
-        foreach (AdministradoresDao::getStatus() as $key => $value) {
-        $status .=<<<html
+    $status = "";
+    foreach (AdministradoresDao::getStatus() as $key => $value) {
+      $status .= <<<html
             <option value="{$value['catalogo_status_id']}">{$value['nombre']}</option>
 html;
-      }
+    }
 
-        $tabla1= '';
-        foreach (AdministradoresDao::getSeccionesMenu() as $key => $value) {
-            $tabla1.=<<<html
+    $tabla1 = '';
+    foreach (AdministradoresDao::getSeccionesMenu() as $key => $value) {
+      $tabla1 .= <<<html
           <tr>
             <td>
               <input type="checkbox" id="myCheck{$value['utilerias_seccion_id']}" name="seccion{$value['utilerias_seccion_id']}" > {$value['nombre_seccion']}
@@ -908,121 +942,130 @@ html;
             </td>
         </tr>
 html;
-      }
-
-      View::set('lineas',$lineas);
-      View::set('permisos', $tabla1);
-      View::set('perfiles', $perfiles);
-      View::set('status',$status);
-      View::set('header',$this->_contenedor->header(''));
-      View::set('footer',$this->_contenedor->footer($extraFooter));
-      View::render("administrador_add");
     }
 
-    public function isValidateUser(){
-      $dato = AdministradoresDao::getUser($_POST['usuario']);
-      if($dato == 1){
-        echo "true";
-      }else{
-        echo "false";
+    View::set('lineas', $lineas);
+    View::set('permisos', $tabla1);
+    View::set('perfiles', $perfiles);
+    View::set('status', $status);
+    View::set('header', $this->_contenedor->header(''));
+    View::set('footer', $this->_contenedor->footer($extraFooter));
+    View::render("administrador_add");
+  }
+
+  public function isValidateUser()
+  {
+    $dato = AdministradoresDao::getUser($_POST['usuario']);
+    if ($dato == 1) {
+      echo "true";
+    } else {
+      echo "false";
+    }
+  }
+
+  public function administradorAdd()
+  {
+
+    $administrador = new \stdClass();
+
+    $administrador->_nombre = MasterDom::getData('nombre');
+    $administrador->_usuario = MasterDom::getData('usuario');
+    $administrador->_perfil_id = MasterDom::getData('perfil_id');
+    $administrador->_linea_id = MasterDom::getData('linea_id');
+    $administrador->_descripcion = MasterDom::getData('descripcion');
+    $administrador->_status = MasterDom::getData('status');
+    $administrador->_tipo = 0;
+    $administrador->_code = $this->generateRandomString();
+
+    $permisos = new \stdClass();
+
+    if (MasterDom::getData('contrasena_1') == MasterDom::getData('contrasena_2')) {
+      $contrasenaMD5 = MD5(MasterDom::getData('contrasena_1'));
+      $administrador->_contrasena = $contrasenaMD5;
+    }
+
+
+    if (MasterDom::getData('perfil_id') == 1) {
+      $permisos->_usuario = MasterDom::getData('usuario');
+      $permisos->_permisos_globales = 1;
+
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "sorteo_prueba_covid", 15 => "utilerias", 16 => "configuracion");
+      $permisos->_seccion_empresas = "1-2-3-4-5-6";
+      for ($i = 1; $i <= 16; $i++) {
+        $sec = "_seccion_" . $arrSecciones[$i];
+        $permisos->$sec = "1-2-3-4-5-6";
+      }
+    } elseif (MasterDom::getData('perfil_id') == 2 || MasterDom::getData('perfil_id') == 3) {
+
+      $permisos->_usuario = MasterDom::getData('usuario');
+      $permisos->_permisos_globales = 0;
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "sorteo_prueba_covid", 15 => "utilerias", 16 => "configuracion");
+      for ($i = 1; $i <= 16; $i++) {
+        $seccion = "seccion" . $i;
+        $pdf = "pdf" . $i;
+        $excel = "excel" . $i;
+        $agregar = "agregar" . $i;
+        $editar = "editar" . $i;
+        $eliminar = "eliminar" . $i;
+        $varSeccion = "_" . $seccion;
+        $varPdf = "_" . $pdf;
+        $varExcel = "_" . $excel;
+        $varAgregar = "_" . $agregar;
+        $varEditar = "_" . $editar;
+        $varEliminar = "_" . $eliminar;
+        $resultSeccion = (MasterDom::getData($seccion) == "on") ? "1" : "0";
+        $resultPdf = (MasterDom::getData($pdf) == "on") ? "2" : "0";
+        $resultExcel = (MasterDom::getData($excel) == "on") ? "3" : "0";
+        $resultAgregar = (MasterDom::getData($agregar) == "on") ? "4" : "0";
+        $resultEditar = (MasterDom::getData($editar) == "on") ? "5" : "0";
+        $resultEliminar = (MasterDom::getData($eliminar) == "on") ? "6" : "0";
+        $sec = "_seccion_" . $arrSecciones[$i];
+        $permisos->$sec = $resultSeccion . "-" . $resultPdf . "-" . $resultExcel . "-" . $resultAgregar . "-" . $resultEditar . "-" . $resultEliminar;
       }
     }
 
-    public function administradorAdd(){
 
-        $administrador = new \stdClass();
+    $idAdministrador = AdministradoresDao::insert($administrador);
+    if ($idAdministrador) {
+      $asignaLinea = new \stdClass();
+      $asignaLinea->_linea_id = MasterDom::getData('linea_id');
+      $asignaLinea->_utilerias_administradores_linea_asignada = $idAdministrador;
+      $asignaLinea->_utilerias_administradores = $_SESSION['utilerias_administradores_id'];
 
-        $administrador->_nombre = MasterDom::getData('nombre');
-        $administrador->_usuario = MasterDom::getData('usuario');
-        $administrador->_perfil_id = MasterDom::getData('perfil_id');
-        $administrador->_linea_id = MasterDom::getData('linea_id');
-        $administrador->_descripcion = MasterDom::getData('descripcion');
-        $administrador->_status = MasterDom::getData('status');
-        $administrador->_tipo = 0;
-        $administrador->_code = $this->generateRandomString();
-        
-        $permisos = new \stdClass();
-
-        if(MasterDom::getData('contrasena_1') == MasterDom::getData('contrasena_2')){
-            $contrasenaMD5 = MD5(MasterDom::getData('contrasena_1'));
-            $administrador->_contrasena = $contrasenaMD5;
-        }
+      $idAsignaLinea = LineaDao::insertAsignaLinea($asignaLinea);
+      $idPermisos = AdministradoresDao::insertPermisos($permisos);
+    }
 
 
-      if(MasterDom::getData('perfil_id') == 1){
-        $permisos->_usuario = MasterDom::getData('usuario');
-        $permisos->_permisos_globales = 1;
+    //if(MasterDom::getData('perfil_id') != 6){
 
-        $arrSecciones = array(1=>"principal",2=>"asistentes",3=>"bu",4=>"lineas",5=>"posiciones",6=>"restaurantes",7=>"gafete",8=>"vuelos",9=>"pickup",10=>"habitaciones",11=>"cenas",12=>"vacunacion",13=>"pruebas_covid",14=>"sorteo_prueba_covid",15=>"utilerias",16=>"configuracion");
-        $permisos->_seccion_empresas = "1-2-3-4-5-6";
-        for ($i=1; $i <= 16; $i++) {
-          $sec = "_seccion_" . $arrSecciones[$i];
-          $permisos->$sec = "1-2-3-4-5-6";
-        }
-      }
-      elseif(MasterDom::getData('perfil_id') == 2 || MasterDom::getData('perfil_id') == 3){
-
-        $permisos->_usuario = MasterDom::getData('usuario');
-        $permisos->_permisos_globales = 0;
-        $arrSecciones = array(1=>"principal",2=>"asistentes",3=>"bu",4=>"lineas",5=>"posiciones",6=>"restaurantes",7=>"gafete",8=>"vuelos",9=>"pickup",10=>"habitaciones",11=>"cenas",12=>"vacunacion",13=>"pruebas_covid",14=>"sorteo_prueba_covid",15=>"utilerias",16=>"configuracion");
-        for ($i=1; $i <= 16; $i++) {
-            $seccion = "seccion" . $i; $pdf = "pdf" . $i; $excel = "excel" . $i; $agregar = "agregar" . $i; $editar = "editar" . $i; $eliminar = "eliminar" . $i;
-            $varSeccion = "_" . $seccion;
-            $varPdf = "_" . $pdf; $varExcel = "_" . $excel; $varAgregar = "_" . $agregar; $varEditar = "_" . $editar; $varEliminar = "_" . $eliminar;
-            $resultSeccion = (MasterDom::getData($seccion) == "on") ? "1" : "0";
-            $resultPdf = (MasterDom::getData($pdf) == "on") ? "2" : "0";
-            $resultExcel = (MasterDom::getData($excel) == "on") ? "3" : "0";
-            $resultAgregar = (MasterDom::getData($agregar) == "on") ? "4" : "0";
-            $resultEditar = (MasterDom::getData($editar) == "on") ? "5" : "0";
-            $resultEliminar = (MasterDom::getData($eliminar) == "on") ? "6" : "0";
-            $sec = "_seccion_" . $arrSecciones[$i];
-            $permisos->$sec = $resultSeccion . "-" .$resultPdf . "-" . $resultExcel . "-" . $resultAgregar . "-" . $resultEditar . "-" . $resultEliminar;
-        }
-
-      }
-      
-
-      $idAdministrador = AdministradoresDao::insert($administrador);
-      if($idAdministrador){
-        $asignaLinea = new \stdClass();
-        $asignaLinea->_linea_id = MasterDom::getData('linea_id');
-        $asignaLinea->_utilerias_administradores_linea_asignada = $idAdministrador;
-        $asignaLinea->_utilerias_administradores = $_SESSION['utilerias_administradores_id'];
-
-        $idAsignaLinea = LineaDao::insertAsignaLinea($asignaLinea);
-        $idPermisos = AdministradoresDao::insertPermisos($permisos);
-      }
-      
-
-        //if(MasterDom::getData('perfil_id') != 6){
-       
-        //$departamento = MasterDom::getDataAll('departamento');
-        //if($departamento >= 1){
-        //    foreach ($departamento as $key => $value) {
-                /*if($secciones >= 0){  echo "ok";
+    //$departamento = MasterDom::getDataAll('departamento');
+    //if($departamento >= 1){
+    //    foreach ($departamento as $key => $value) {
+    /*if($secciones >= 0){  echo "ok";
                 }else{echo "no";}*/
-        //    }
-        //}else{
-        //    $this->alerta($id,'sin_departamento');
-        //}
-      //}
+    //    }
+    //}else{
+    //    $this->alerta($id,'sin_departamento');
+    //}
+    //}
 
-     // if($idAdministrador){
+    // if($idAdministrador){
 
-     if($idAdministrador >= 1 && $idPermisos >= 1 && $idAsignaLinea>= 1){
-        $this->alerta($id,'add');
-      }else{
-        $this->alerta($id,'error');
-      }
-
+    if ($idAdministrador >= 1 && $idPermisos >= 1 && $idAsignaLinea >= 1) {
+      $this->alerta($id, 'add');
+    } else {
+      $this->alerta($id, 'error');
     }
+  }
 
-    public function edit($code){
-      $extraHeader =<<<html
+  public function edit($code,$perfil = null)
+  {
+    $extraHeader = <<<html
     
 html;
-      
-      $extraFooter =<<<html
+
+    $extraFooter = <<<html
       <script>
         $(document).ready(function(){
 
@@ -1430,77 +1473,88 @@ html;
 
       </script>
 html;
-      $administrador = AdministradoresDao::getAllByCode($code);
+    
 
+    if($perfil == 3){
+      $administrador = AdministradoresDao::getAllWithOutLineaByCode($code);
+      $hiddenLinea = "style=\"display:none;\"";
+      $lineas = '';
+    }
+    else{
+      $hiddenLinea = '';
+      $administrador = AdministradoresDao::getAllByCode($code);
       $linea_ejecutivo = LineaDao::getById($administrador['id_linea_principal'])[0];
       $lineas = '';
-      $lineas .=<<<html
-        <option selected value="{$linea_ejecutivo['id_linea_principal']}">{$linea_ejecutivo['nombre']}</option>
-html; 
+      $lineas .= <<<html
+          <option selected value="{$linea_ejecutivo['id_linea_principal']}">{$linea_ejecutivo['nombre']}</option>
+  html;
       foreach (LineaDao::getLineasSinEjecutivo() as $key => $value) {
-        $selected = ($administrador['id_linea_principal'] == $value['id_linea_principal'])? 'selected' : '';
-        $lineas .=<<<html
-        <option {$selected} value="{$value['id_linea_principal']}">{$value['nombre']}</option>
-         
-html;
+        $selected = ($administrador['id_linea_principal'] == $value['id_linea_principal']) ? 'selected' : '';
+        $lineas .= <<<html
+          <option {$selected} value="{$value['id_linea_principal']}">{$value['nombre']}</option>
+           
+  html;
       }
-      
+    }
 
-      $status = "";
-      foreach (AdministradoresDao::getStatus() as $key => $value) {
-        $selected = ($administrador['status'] == $value['catalogo_status_id'])? 'selected' : '';
-        $status .=<<<html
+   
+
+
+    $status = "";
+    foreach (AdministradoresDao::getStatus() as $key => $value) {
+      $selected = ($administrador['status'] == $value['catalogo_status_id']) ? 'selected' : '';
+      $status .= <<<html
         <option {$selected} value="{$value['catalogo_status_id']}">{$value['nombre']}</option>
 html;
-      }
+    }
 
-      $perfiles = "";
-      foreach (AdministradoresDao::getPerfil() as $key => $value) {
-        $selected = ($administrador['perfil_id'] == $value['perfil_id'])? 'selected' : '';
-        $perfiles .=<<<html
+    $perfiles = "";
+    foreach (AdministradoresDao::getPerfil() as $key => $value) {
+      $selected = ($administrador['perfil_id'] == $value['perfil_id']) ? 'selected' : '';
+      $perfiles .= <<<html
         <option {$selected} id="perfil{$value['perfil_id']}" data-id="{$value['nombre']}" value="{$value['perfil_id']}">{$value['nombre']}</option>
 html;
+    }
+
+    $permisos_usuario = AdministradoresDao::getPermisosByUser($administrador['usuario']);
+
+    // print_r($permisos_usuario);
+    // exit;
+    $tabla1 = '';
+    // $r = AdministradoresDao::getSeccionesMenu();
+    // print_r($r);
+    // exit;
+    foreach (AdministradoresDao::getSeccionesMenu() as $key => $value) {
+
+      if ($permisos_usuario['permisos_globales'] == 0) {
+        $seccion = 'seccion_' . strtolower($value['nombre_seccion']);
+        $seccion = str_replace(' de ', '_', $seccion);
+        $seccion = str_replace(' ', '_', $seccion);
+
+        $permisos = $permisos_usuario[$seccion];
+
+        // if($seccion == 'seccion_pruebas_covid'){
+        //   print_r($permisos);
+        // }
+
+
+
+        $permisos = preg_replace('/1/', 'checked', $permisos, 1);
+        $permisos = preg_replace('/2/', 'checked', $permisos, 1);
+        $permisos = preg_replace('/3/', 'checked', $permisos, 1);
+        $permisos = preg_replace('/4/', 'checked', $permisos, 1);
+        $permisos = preg_replace('/5/', 'checked', $permisos, 1);
+        $permisos = preg_replace('/6/', 'checked', $permisos, 1);
+        $permisos = preg_replace('/0/', '', $permisos);
+        $permisos = explode('-', $permisos);
+
+        $permisos = ($permisos[0] == '') ? array('', '', '', '', '', '') : $permisos; /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
+        $check_habilitado = ($permisos[0] == '') ? array('', 'disabled', 'disabled', 'disabled', 'disabled') : array('', '', '', '', '', ''); /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
+      } else {
+        $permisos = array('checked', 'checked', 'checked', 'checked', 'checked', 'checked');
       }
 
-      $permisos_usuario = AdministradoresDao::getPermisosByUser($administrador['usuario']);
-
-      // print_r($permisos_usuario);
-      // exit;
-      $tabla1= '';
-      // $r = AdministradoresDao::getSeccionesMenu();
-      // print_r($r);
-      // exit;
-      foreach (AdministradoresDao::getSeccionesMenu() as $key => $value) {
-
-        if($permisos_usuario['permisos_globales']==0){
-          $seccion = 'seccion_'.strtolower($value['nombre_seccion']);
-          $seccion = str_replace(' de ','_',$seccion);
-          $seccion = str_replace(' ','_',$seccion);
-
-          $permisos = $permisos_usuario[$seccion];
-
-          // if($seccion == 'seccion_pruebas_covid'){
-          //   print_r($permisos);
-          // }
-          
-          
-
-          $permisos = preg_replace('/1/','checked',$permisos,1);
-          $permisos = preg_replace('/2/','checked',$permisos,1);
-          $permisos = preg_replace('/3/','checked',$permisos,1);
-          $permisos = preg_replace('/4/','checked',$permisos,1);
-          $permisos = preg_replace('/5/','checked',$permisos,1);
-          $permisos = preg_replace('/6/','checked',$permisos,1);
-          $permisos = preg_replace('/0/','',$permisos);
-          $permisos = explode('-',$permisos);
-
-          $permisos = ($permisos[0]=='')? array('','','','','','') : $permisos; /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
-          $check_habilitado = ($permisos[0]=='')? array('','disabled','disabled','disabled','disabled') : array('','','','','',''); /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
-        }else{
-          $permisos = array('checked','checked','checked','checked','checked','checked');
-        }
-
-        $tabla1.=<<<html
+      $tabla1 .= <<<html
           <tr>
             <td>
               <input type="checkbox" id="myCheck{$value['utilerias_seccion_id']}" name="seccion{$value['utilerias_seccion_id']}" {$permisos[0]} {$check_habilitado[0]}> {$value['nombre_seccion']}
@@ -1524,96 +1578,109 @@ html;
             </td>
         </tr>
 html;
-      }
-      
-        View::set('lineas',$lineas);
-        View::set('perfiles', $perfiles);
-        View::set('status',$status);
-        View::set('permisos',$tabla1);
-        View::set('administrador',$administrador);
-        View::set('header',$this->_contenedor->header($extraHeader));
-        View::set('footer',$this->_contenedor->footer($extraFooter));
-        View::render("administrador_edit");
     }
 
-    public function delete(){
-      $id = MasterDom::getDataAll('borrar');
-      
-      $array = array();
-      foreach ($id as $key => $value) {
-        $id = AdministradoresDao::delete($value);
-        if($id['seccion'] == 2){
-          array_push($array, array('seccion' => 2, 'id' => $id['id'] ));
-        }else if($id['seccion'] == 1){
-          array_push($array, array('seccion' => 1, 'id' => $id['id'] ));
-        }
+    
+    View::set('hiddenLinea',$hiddenLinea);
+    View::set('lineas', $lineas);
+    View::set('perfiles', $perfiles);
+    View::set('status', $status);
+    View::set('permisos', $tabla1);
+    View::set('administrador', $administrador);
+    View::set('header', $this->_contenedor->header($extraHeader));
+    View::set('footer', $this->_contenedor->footer($extraFooter));
+    View::render("administrador_edit");
+  }
+
+  public function delete()
+  {
+    $id = MasterDom::getDataAll('borrar');
+
+    $array = array();
+    foreach ($id as $key => $value) {
+      $id = AdministradoresDao::delete($value);
+      if ($id['seccion'] == 2) {
+        array_push($array, array('seccion' => 2, 'id' => $id['id']));
+      } else if ($id['seccion'] == 1) {
+        array_push($array, array('seccion' => 1, 'id' => $id['id']));
       }
-      $this->alertas("Eliminacion de Administradores", $array, "/Administradores/");
+    }
+    $this->alertas("Eliminacion de Administradores", $array, "/Administradores/");
+  }
+
+
+  public function administradoresEdit()
+  {
+
+    $administrador = new \stdClass();
+    $permisos = new \stdClass();
+    $administrador->_usuario = MasterDom::getData('usuario');
+    $administrador->_perfil_id = MasterDom::getData('perfil_id');
+    $administrador->_descripcion = MasterDom::getData('descripcion');
+    $administrador->_tipo = 0;
+    $administrador->_status = MasterDom::getData('status');
+
+
+    // ACTUALIZAR DATOS DEL COLABORADOR
+    $idAdministrador = AdministradoresDao::updateDataAdministrador($administrador);
+
+    if (MasterDom::getData('perfil_id') == 1) {
+      $permisos->_usuario = MasterDom::getData('usuario');
+      $permisos->_permisos_globales = 1;
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "sorteo_prueba_covid", 15 => "utilerias", 16 => "configuracion");
+      //$permisos->_seccion_empresas = "1-2-3-4-5-6";
+      for ($i = 1; $i <= 16; $i++) {
+        $sec = "_seccion_" . $arrSecciones[$i];
+        $permisos->$sec = "1-2-3-4-5-6";
+      }
+    }
+    if (MasterDom::getData('perfil_id') == 2) {
+      $permisos->_usuario = MasterDom::getData('usuario');
+      $permisos->_permisos_globales = 0;
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "sorteo_prueba_covid", 15 => "utilerias", 16 => "configuracion");
+      for ($i = 1; $i <= 16; $i++) {
+        $seccion = "seccion" . $i;
+        $pdf = "pdf" . $i;
+        $excel = "excel" . $i;
+        $agregar = "agregar" . $i;
+        $editar = "editar" . $i;
+        $eliminar = "eliminar" . $i;
+        $varSeccion = "_" . $seccion;
+        $varPdf = "_" . $pdf;
+        $varExcel = "_" . $excel;
+        $varAgregar = "_" . $agregar;
+        $varEditar = "_" . $editar;
+        $varEliminar = "_" . $eliminar;
+        $resultSeccion = (MasterDom::getData($seccion) == "on") ? "1" : "0";
+        $resultPdf = (MasterDom::getData($pdf) == "on") ? "2" : "0";
+        $resultExcel = (MasterDom::getData($excel) == "on") ? "3" : "0";
+        $resultAgregar = (MasterDom::getData($agregar) == "on") ? "4" : "0";
+        $resultEditar = (MasterDom::getData($editar) == "on") ? "5" : "0";
+        $resultEliminar = (MasterDom::getData($eliminar) == "on") ? "6" : "0";
+        $sec = "_seccion_" . $arrSecciones[$i];
+        $permisos->$sec = $resultSeccion . "-" . $resultPdf . "-" . $resultExcel . "-" . $resultAgregar . "-" . $resultEditar . "-" . $resultEliminar;
+      }
     }
 
+    // print_r($permisos);
+    // exit;
 
-    public function administradoresEdit(){
+    $idPermisos = AdministradoresDao::updatePermisosUsuario($permisos);
 
-        $administrador = new \stdClass();
-        $permisos = new \stdClass();
-        $administrador->_usuario = MasterDom::getData('usuario');
-        $administrador->_perfil_id = MasterDom::getData('perfil_id');
-        $administrador->_descripcion = MasterDom::getData('descripcion');
-        $administrador->_tipo = 0;
-        $administrador->_status = MasterDom::getData('status');
-
-      
-      // ACTUALIZAR DATOS DEL COLABORADOR
-      $idAdministrador = AdministradoresDao::updateDataAdministrador($administrador);
-
-      if(MasterDom::getData('perfil_id') == 1){
-        $permisos->_usuario = MasterDom::getData('usuario');
-        $permisos->_permisos_globales = 1;
-        $arrSecciones = array(1=>"principal",2=>"asistentes",3=>"bu",4=>"lineas",5=>"posiciones",6=>"restaurantes",7=>"gafete",8=>"vuelos",9=>"pickup",10=>"habitaciones",11=>"cenas",12=>"vacunacion",13=>"pruebas_covid",14=>"sorteo_prueba_covid",15=>"utilerias",16=>"configuracion");
-        //$permisos->_seccion_empresas = "1-2-3-4-5-6";
-        for ($i=1; $i <= 16; $i++) {
-          $sec = "_seccion_" . $arrSecciones[$i];
-          $permisos->$sec = "1-2-3-4-5-6";
-        }
-      }
-      if(MasterDom::getData('perfil_id') == 2){
-        $permisos->_usuario = MasterDom::getData('usuario');
-        $permisos->_permisos_globales = 0;
-        $arrSecciones = array(1=>"principal",2=>"asistentes",3=>"bu",4=>"lineas",5=>"posiciones",6=>"restaurantes",7=>"gafete",8=>"vuelos",9=>"pickup",10=>"habitaciones",11=>"cenas",12=>"vacunacion",13=>"pruebas_covid",14=>"sorteo_prueba_covid",15=>"utilerias",16=>"configuracion");
-        for ($i=1; $i <= 16; $i++) {
-          $seccion = "seccion" . $i; $pdf = "pdf" . $i; $excel = "excel" . $i; $agregar = "agregar" . $i; $editar = "editar" . $i; $eliminar = "eliminar" . $i;
-          $varSeccion = "_" . $seccion;
-          $varPdf = "_" . $pdf; $varExcel = "_" . $excel; $varAgregar = "_" . $agregar; $varEditar = "_" . $editar; $varEliminar = "_" . $eliminar;
-          $resultSeccion = (MasterDom::getData($seccion) == "on") ? "1" : "0";
-          $resultPdf = (MasterDom::getData($pdf) == "on") ? "2" : "0";
-          $resultExcel = (MasterDom::getData($excel) == "on") ? "3" : "0";
-          $resultAgregar = (MasterDom::getData($agregar) == "on") ? "4" : "0";
-          $resultEditar = (MasterDom::getData($editar) == "on") ? "5" : "0";
-          $resultEliminar = (MasterDom::getData($eliminar) == "on") ? "6" : "0";
-          $sec = "_seccion_" . $arrSecciones[$i];
-          $permisos->$sec = $resultSeccion . "-" .$resultPdf . "-" . $resultExcel . "-" . $resultAgregar . "-" . $resultEditar . "-" . $resultEliminar;
-        }
-      }
-
-      // print_r($permisos);
-      // exit;
-
-      $idPermisos = AdministradoresDao::updatePermisosUsuario($permisos);
-
-      if( ($idAdministrador >= 1 && $idPermisos >= 1) || $idPermisos >0){
-        $this->alerta($id,'edit');
-      }else{
-        $this->alerta($id,'nothing');
-      }
-
+    if (($idAdministrador >= 1 && $idPermisos >= 1) || $idPermisos > 0) {
+      $this->alerta($id, 'edit');
+    } else {
+      $this->alerta($id, 'nothing');
     }
+  }
 
-    public function generarPDF(){
-      $ids = MasterDom::getDataAll('borrar');
-      $mpdf=new \mPDF('c');
-      $mpdf->defaultPageNumStyle = 'I';
-      $mpdf->h2toc = array('H5'=>0,'H6'=>1);
-      $style =<<<html
+  public function generarPDF()
+  {
+    $ids = MasterDom::getDataAll('borrar');
+    $mpdf = new \mPDF('c');
+    $mpdf->defaultPageNumStyle = 'I';
+    $mpdf->h2toc = array('H5' => 0, 'H6' => 1);
+    $style = <<<html
       <style>
         .imagen{
           width:100%;
@@ -1634,7 +1701,7 @@ html;
         }
       </style>
 html;
-$tabla =<<<html
+    $tabla = <<<html
 <img class="imagen" src="/img/ag_logo.png"/>
 <br>
 <div style="page-break-inside: avoid;" align='center'>
@@ -1648,10 +1715,10 @@ $tabla =<<<html
     </tr>
 html;
 
-      if($ids!=''){
-        foreach ($ids as $key => $value) {
-          $Administradores = AdministradoresDao::getByIdReporte($value);
-            $tabla.=<<<html
+    if ($ids != '') {
+      foreach ($ids as $key => $value) {
+        $Administradores = AdministradoresDao::getByIdReporte($value);
+        $tabla .= <<<html
               <tr style="background-color:#B8B8B8;">
               <td style="height:auto; width: 200px;background-color:#E4E4E4;">{$Administradores['administrador_id']}</td>
               <td style="height:auto; width: 200px;background-color:#E4E4E4;">{$Administradores['nombre']}</td>
@@ -1659,10 +1726,10 @@ html;
               <td style="height:auto; width: 200px;background-color:#E4E4E4;">{$Administradores['nombre_status']}</td>
               </tr>
 html;
-        }
-      }else{
-        foreach (AdministradoresDao::getAll() as $key => $Administradores) {
-          $tabla.=<<<html
+      }
+    } else {
+      foreach (AdministradoresDao::getAll() as $key => $Administradores) {
+        $tabla .= <<<html
             <tr style="background-color:#B8B8B8;">
             <td style="height:auto; width: 200px;background-color:#E4E4E4;">{$Administradores['administrador_id']}</td>
             <td style="height:auto; width: 200px;background-color:#E4E4E4;">{$Administradores['nombre']}</td>
@@ -1670,198 +1737,203 @@ html;
             <td style="height:auto; width: 200px;background-color:#E4E4E4;">{$Administradores['nombre_status']}</td>
             </tr>
 html;
-          }
       }
-      $tabla .=<<<html
+    }
+    $tabla .= <<<html
       </table>
       </div>
 html;
-      $mpdf->WriteHTML($style,1);
-      $mpdf->WriteHTML($tabla,2);
+    $mpdf->WriteHTML($style, 1);
+    $mpdf->WriteHTML($tabla, 2);
 
-      //$nombre_archivo = "MPDF_".uniqid().".pdf";/* se genera un nombre unico para el archivo pdf*/
-      print_r($mpdf->Output());/* se genera el pdf en la ruta especificada*/
-      //echo $nombre_archivo;/* se imprime el nombre del archivo para poder retornarlo a CrmCatalogo/index */
+    //$nombre_archivo = "MPDF_".uniqid().".pdf";/* se genera un nombre unico para el archivo pdf*/
+    print_r($mpdf->Output());/* se genera el pdf en la ruta especificada*/
+    //echo $nombre_archivo;/* se imprime el nombre del archivo para poder retornarlo a CrmCatalogo/index */
 
-      exit;
-      //$ids = MasterDom::getDataAll('borrar');
-      //echo shell_exec('php -f /home/granja/backend/public/librerias/mpdf_apis/Api.php Administradores '.json_encode(MasterDom::getDataAll('borrar')));
+    exit;
+    //$ids = MasterDom::getDataAll('borrar');
+    //echo shell_exec('php -f /home/granja/backend/public/librerias/mpdf_apis/Api.php Administradores '.json_encode(MasterDom::getDataAll('borrar')));
+  }
+
+  public function generarExcel()
+  {
+    $ids = MasterDom::getDataAll('borrar');
+    $objPHPExcel = new \PHPExcel();
+    $objPHPExcel->getProperties()->setCreator("jma");
+    $objPHPExcel->getProperties()->setLastModifiedBy("jma");
+    $objPHPExcel->getProperties()->setTitle("Reporte");
+    $objPHPExcel->getProperties()->setSubject("Reorte");
+    $objPHPExcel->getProperties()->setDescription("Descripcion");
+    $objPHPExcel->setActiveSheetIndex(0);
+
+    /*AGREGAR IMAGEN AL EXCEL*/
+    //$gdImage = imagecreatefromjpeg('http://52.32.114.10:8070/img/ag_logo.jpg');
+    $gdImage = imagecreatefrompng('http://52.32.114.10:8070/img/ag_logo.png');
+    // Add a drawing to the worksheetecho date('H:i:s') . " Add a drawing to the worksheet\n";
+    $objDrawing = new \PHPExcel_Worksheet_MemoryDrawing();
+    $objDrawing->setName('Sample image');
+    $objDrawing->setDescription('Sample image');
+    $objDrawing->setImageResource($gdImage);
+    //$objDrawing->setRenderingFunction(\PHPExcel_Worksheet_MemoryDrawing::RENDERING_JPEG);
+    $objDrawing->setRenderingFunction(\PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG);
+    $objDrawing->setMimeType(\PHPExcel_Worksheet_MemoryDrawing::MIMETYPE_DEFAULT);
+    $objDrawing->setWidth(50);
+    $objDrawing->setHeight(125);
+    $objDrawing->setCoordinates('A1');
+    $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
+
+    $estilo_titulo = array(
+      'font' => array('bold' => true, 'name' => 'Verdana', 'size' => 16, 'color' => array('rgb' => 'FEAE41')),
+      'alignment' => array('horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+      'type' => \PHPExcel_Style_Fill::FILL_SOLID
+    );
+
+    $estilo_encabezado = array(
+      'font' => array('bold' => true, 'name' => 'Verdana', 'size' => 14, 'color' => array('rgb' => 'FEAE41')),
+      'alignment' => array('horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+      'type' => \PHPExcel_Style_Fill::FILL_SOLID
+    );
+
+    $estilo_celda = array(
+      'font' => array('bold' => false, 'name' => 'Verdana', 'size' => 12, 'color' => array('rgb' => 'B59B68')),
+      'alignment' => array('horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+      'type' => \PHPExcel_Style_Fill::FILL_SOLID
+
+    );
+
+
+    $fila = 9;
+    $adaptarTexto = true;
+
+    $controlador = "Administradores";
+    $columna = array('A', 'B', 'C', 'D');
+    $nombreColumna = array('Id', 'Nombre', 'Descripción', 'Status');
+    $nombreCampo = array('administrador_id', 'nombre', 'descripcion', 'nombre_status');
+
+    $objPHPExcel->getActiveSheet()->SetCellValue('A' . $fila, 'Reporte de Administradores');
+    $objPHPExcel->getActiveSheet()->mergeCells('A' . $fila . ':' . $columna[count($nombreColumna) - 1] . $fila);
+    $objPHPExcel->getActiveSheet()->getStyle('A' . $fila)->applyFromArray($estilo_titulo);
+    $objPHPExcel->getActiveSheet()->getStyle('A' . $fila)->getAlignment()->setWrapText($adaptarTexto);
+
+    $fila += 1;
+
+    /*COLUMNAS DE LOS DATOS DEL ARCHIVO EXCEL*/
+    foreach ($nombreColumna as $key => $value) {
+      $objPHPExcel->getActiveSheet()->SetCellValue($columna[$key] . $fila, $value);
+      $objPHPExcel->getActiveSheet()->getStyle($columna[$key] . $fila)->applyFromArray($estilo_encabezado);
+      $objPHPExcel->getActiveSheet()->getStyle($columna[$key] . $fila)->getAlignment()->setWrapText($adaptarTexto);
+      $objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($key)->setAutoSize(true);
     }
+    $fila += 1; //fila donde comenzaran a escribirse los datos
 
-    public function generarExcel(){
-      $ids = MasterDom::getDataAll('borrar');
-      $objPHPExcel = new \PHPExcel();
-      $objPHPExcel->getProperties()->setCreator("jma");
-      $objPHPExcel->getProperties()->setLastModifiedBy("jma");
-      $objPHPExcel->getProperties()->setTitle("Reporte");
-      $objPHPExcel->getProperties()->setSubject("Reorte");
-      $objPHPExcel->getProperties()->setDescription("Descripcion");
-      $objPHPExcel->setActiveSheetIndex(0);
-
-      /*AGREGAR IMAGEN AL EXCEL*/
-      //$gdImage = imagecreatefromjpeg('http://52.32.114.10:8070/img/ag_logo.jpg');
-      $gdImage = imagecreatefrompng('http://52.32.114.10:8070/img/ag_logo.png');
-      // Add a drawing to the worksheetecho date('H:i:s') . " Add a drawing to the worksheet\n";
-      $objDrawing = new \PHPExcel_Worksheet_MemoryDrawing();
-      $objDrawing->setName('Sample image');$objDrawing->setDescription('Sample image');
-      $objDrawing->setImageResource($gdImage);
-      //$objDrawing->setRenderingFunction(\PHPExcel_Worksheet_MemoryDrawing::RENDERING_JPEG);
-      $objDrawing->setRenderingFunction(\PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG);
-      $objDrawing->setMimeType(\PHPExcel_Worksheet_MemoryDrawing::MIMETYPE_DEFAULT);
-      $objDrawing->setWidth(50);
-      $objDrawing->setHeight(125);
-      $objDrawing->setCoordinates('A1');
-      $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
-
-      $estilo_titulo = array(
-        'font' => array('bold' => true,'name'=>'Verdana','size'=>16, 'color' => array('rgb' => 'FEAE41')),
-        'alignment' => array('horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-        'type' => \PHPExcel_Style_Fill::FILL_SOLID
-      );
-
-      $estilo_encabezado = array(
-        'font' => array('bold' => true,'name'=>'Verdana','size'=>14, 'color' => array('rgb' => 'FEAE41')),
-        'alignment' => array('horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-        'type' => \PHPExcel_Style_Fill::FILL_SOLID
-      );
-
-      $estilo_celda = array(
-        'font' => array('bold' => false,'name'=>'Verdana','size'=>12,'color' => array('rgb' => 'B59B68')),
-        'alignment' => array('horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-        'type' => \PHPExcel_Style_Fill::FILL_SOLID
-
-      );
-
-
-      $fila = 9;
-      $adaptarTexto = true;
-
-      $controlador = "Administradores";
-      $columna = array('A','B','C','D');
-      $nombreColumna = array('Id','Nombre','Descripción','Status');
-      $nombreCampo = array('administrador_id','nombre','descripcion','nombre_status');
-
-      $objPHPExcel->getActiveSheet()->SetCellValue('A'.$fila, 'Reporte de Administradores');
-      $objPHPExcel->getActiveSheet()->mergeCells('A'.$fila.':'.$columna[count($nombreColumna)-1].$fila);
-      $objPHPExcel->getActiveSheet()->getStyle('A'.$fila)->applyFromArray($estilo_titulo);
-      $objPHPExcel->getActiveSheet()->getStyle('A'.$fila)->getAlignment()->setWrapText($adaptarTexto);
-
-      $fila +=1;
-
-      /*COLUMNAS DE LOS DATOS DEL ARCHIVO EXCEL*/
-      foreach ($nombreColumna as $key => $value) {
-        $objPHPExcel->getActiveSheet()->SetCellValue($columna[$key].$fila, $value);
-        $objPHPExcel->getActiveSheet()->getStyle($columna[$key].$fila)->applyFromArray($estilo_encabezado);
-        $objPHPExcel->getActiveSheet()->getStyle($columna[$key].$fila)->getAlignment()->setWrapText($adaptarTexto);
-        $objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($key)->setAutoSize(true);
-      }
-      $fila +=1; //fila donde comenzaran a escribirse los datos
-
-      /* FILAS DEL ARCHIVO EXCEL */
-      if($ids!=''){
-        foreach ($ids as $key => $value) {
-          $Administradores = AdministradoresDao::getByIdReporte($value);
-          foreach ($nombreCampo as $llave => $campo) {
-            $objPHPExcel->getActiveSheet()->SetCellValue($columna[$llave].$fila, html_entity_decode($Administradores[$campo], ENT_QUOTES, "UTF-8"));
-            $objPHPExcel->getActiveSheet()->getStyle($columna[$llave].$fila)->applyFromArray($estilo_celda);
-            $objPHPExcel->getActiveSheet()->getStyle($columna[$llave].$fila)->getAlignment()->setWrapText($adaptarTexto);
-          }
-          $fila +=1;
+    /* FILAS DEL ARCHIVO EXCEL */
+    if ($ids != '') {
+      foreach ($ids as $key => $value) {
+        $Administradores = AdministradoresDao::getByIdReporte($value);
+        foreach ($nombreCampo as $llave => $campo) {
+          $objPHPExcel->getActiveSheet()->SetCellValue($columna[$llave] . $fila, html_entity_decode($Administradores[$campo], ENT_QUOTES, "UTF-8"));
+          $objPHPExcel->getActiveSheet()->getStyle($columna[$llave] . $fila)->applyFromArray($estilo_celda);
+          $objPHPExcel->getActiveSheet()->getStyle($columna[$llave] . $fila)->getAlignment()->setWrapText($adaptarTexto);
         }
-      }else{
-        foreach (AdministradoresDao::getAll() as $key => $value) {
-          foreach ($nombreCampo as $llave => $campo) {
-            $objPHPExcel->getActiveSheet()->SetCellValue($columna[$llave].$fila, html_entity_decode($value[$campo], ENT_QUOTES, "UTF-8"));
-            $objPHPExcel->getActiveSheet()->getStyle($columna[$llave].$fila)->applyFromArray($estilo_celda);
-            $objPHPExcel->getActiveSheet()->getStyle($columna[$llave].$fila)->getAlignment()->setWrapText($adaptarTexto);
-          }
-          $fila +=1;
+        $fila += 1;
+      }
+    } else {
+      foreach (AdministradoresDao::getAll() as $key => $value) {
+        foreach ($nombreCampo as $llave => $campo) {
+          $objPHPExcel->getActiveSheet()->SetCellValue($columna[$llave] . $fila, html_entity_decode($value[$campo], ENT_QUOTES, "UTF-8"));
+          $objPHPExcel->getActiveSheet()->getStyle($columna[$llave] . $fila)->applyFromArray($estilo_celda);
+          $objPHPExcel->getActiveSheet()->getStyle($columna[$llave] . $fila)->getAlignment()->setWrapText($adaptarTexto);
         }
+        $fila += 1;
       }
-
-      $objPHPExcel->getActiveSheet()->getStyle('A1:'.$columna[count($columna)-1].$fila)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-      for ($i=0; $i <$fila ; $i++) {
-        $objPHPExcel->getActiveSheet()->getRowDimension($i)->setRowHeight(20);
-      }
-
-      $objPHPExcel->getActiveSheet()->setTitle('Reporte');
-
-      header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-      header('Content-Disposition: attachment;filename="Reporte AG '.$controlador.'.xlsx"');
-      header('Cache-Control: max-age=0');
-      header('Cache-Control: max-age=1');
-      header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-      header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
-      header ('Cache-Control: cache, must-revalidate');
-      header ('Pragma: public');
-
-      \PHPExcel_Settings::setZipClass(\PHPExcel_Settings::PCLZIP);
-      $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-      $objWriter->save('php://output');
     }
 
-    public function alerta($id, $parametro){
-      $regreso = "/Administradores/";
-
-      if($parametro == 'add'){
-        $mensaje = "Se ha agregado correctamente";
-        $class = "success";
-      }
-
-      if($parametro == 'edit'){
-        $mensaje = "Se ha modificado correctamente";
-        $class = "success";
-      }
-
-      if($parametro == 'nothing'){
-        $mensaje = "Al parecer no intentaste actualizar ningún campo";
-        $class = "warning";
-      }
-
-      if($parametro == 'union'){
-        $mensaje = "Al parecer este campo de está ha sido enlazada con un campo de Catálogo de Colaboradores, ya que esta usuando esta información";
-        $class = "info";
-      }
-
-      if($parametro == "error"){
-        $mensaje = "Al parecer ha ocurrido un problema";
-        $class = "danger";
-      }
-
-      if($parametro == "sin_departamento"){
-        $mensaje = "Por favor asigna un departamento";
-        $class = "warning";
-        $regreso = "/Administradores/add";
-      }
-
-
-      View::set('class',$class);
-      View::set('regreso',$regreso);
-      View::set('mensaje',$mensaje);
-      View::set('header',$this->_contenedor->header($extraHeader));
-      View::set('footer',$this->_contenedor->footer($extraFooter));
-      View::render("alerta");
+    $objPHPExcel->getActiveSheet()->getStyle('A1:' . $columna[count($columna) - 1] . $fila)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    for ($i = 0; $i < $fila; $i++) {
+      $objPHPExcel->getActiveSheet()->getRowDimension($i)->setRowHeight(20);
     }
 
-    public function alertas($title, $array, $regreso){
-        $mensaje = "";
-        foreach ($array as $key => $value) {
-            if($value['seccion'] == 1){
-                $mensaje .= <<<html
+    $objPHPExcel->getActiveSheet()->setTitle('Reporte');
+
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="Reporte AG ' . $controlador . '.xlsx"');
+    header('Cache-Control: max-age=0');
+    header('Cache-Control: max-age=1');
+    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+    header('Cache-Control: cache, must-revalidate');
+    header('Pragma: public');
+
+    \PHPExcel_Settings::setZipClass(\PHPExcel_Settings::PCLZIP);
+    $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+    $objWriter->save('php://output');
+  }
+
+  public function alerta($id, $parametro)
+  {
+    $regreso = "/Administradores/";
+
+    if ($parametro == 'add') {
+      $mensaje = "Se ha agregado correctamente";
+      $class = "success";
+    }
+
+    if ($parametro == 'edit') {
+      $mensaje = "Se ha modificado correctamente";
+      $class = "success";
+    }
+
+    if ($parametro == 'nothing') {
+      $mensaje = "Al parecer no intentaste actualizar ningún campo";
+      $class = "warning";
+    }
+
+    if ($parametro == 'union') {
+      $mensaje = "Al parecer este campo de está ha sido enlazada con un campo de Catálogo de Colaboradores, ya que esta usuando esta información";
+      $class = "info";
+    }
+
+    if ($parametro == "error") {
+      $mensaje = "Al parecer ha ocurrido un problema";
+      $class = "danger";
+    }
+
+    if ($parametro == "sin_departamento") {
+      $mensaje = "Por favor asigna un departamento";
+      $class = "warning";
+      $regreso = "/Administradores/add";
+    }
+
+
+    View::set('class', $class);
+    View::set('regreso', $regreso);
+    View::set('mensaje', $mensaje);
+    View::set('header', $this->_contenedor->header($extraHeader));
+    View::set('footer', $this->_contenedor->footer($extraFooter));
+    View::render("alerta");
+  }
+
+  public function alertas($title, $array, $regreso)
+  {
+    $mensaje = "";
+    foreach ($array as $key => $value) {
+      if ($value['seccion'] == 1) {
+        $mensaje .= <<<html
                 <div class="alert alert-success" role="alert">
                     <h4>El ID <b>{$value['id']}</b>, se ha eliminado. <b><a href="{$regreso}">Regresar</a></b></h4>
                 </div>
 html;
-            }
-        }
-        
-      View::set('regreso', $regreso);
-      View::set('mensaje', $mensaje);
-      View::set('titulo', $title);
-      View::render("alertas");
+      }
     }
 
-    function generateRandomString($length = 10) { 
-      return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
-  } 
+    View::set('regreso', $regreso);
+    View::set('mensaje', $mensaje);
+    View::set('titulo', $title);
+    View::render("alertas");
+  }
+
+  function generateRandomString($length = 10)
+  {
+    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+  }
 }

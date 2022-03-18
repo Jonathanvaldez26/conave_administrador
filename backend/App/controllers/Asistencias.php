@@ -9,6 +9,7 @@ use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\PruebasCovidSitio as PruebasCovidSitioDao;
+use \App\models\Asistencias as AsistenciasDao;
 
 class Asistencias extends Controller
 {

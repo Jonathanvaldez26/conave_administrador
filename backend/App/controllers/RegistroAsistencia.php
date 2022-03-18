@@ -5,19 +5,23 @@ defined("APPPATH") OR die("Access denied");
 use \Core\View;
 use \Core\MasterDom;
 use \App\controllers\Contenedor;
-use \App\models\RegistroAsistencia AS LoginDao;
+use \Core\Controller;
+use \App\models\RegistroAsistencia AS RegistroAsistenciaDao;
 
 class RegistroAsistencia{
+   
+
     private $_contenedor;
+
 
     public function codigo($id) {
         $extraHeader =<<<html
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon.png">
-        <link rel="icon" type="image/png" href="/img/favicon.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
+        <link rel="icon" type="image/vnd.microsoft.icon" href="/assets/img/angel.png">
         <title>
-            GRUPO LAHE
+            Asistencia CONAVE Convención 2022 ASOFARMA
         </title>
         <!--     Fonts and icons     -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -31,7 +35,9 @@ class RegistroAsistencia{
         <link id="pagestyle" href="/assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
         <link rel="stylesheet" href="/css/alertify/alertify.core.css" />
         <link rel="stylesheet" href="/css/alertify/alertify.default.css" id="toggleCSS" />
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
 
 html;
@@ -62,86 +68,10 @@ html;
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
 
-      
-
-        <script>
-
-            
-
-            $(document).ready(function(){
-
-                // var show = $(#eye);
-                // console.log('a'+show);
-
-                $.validator.addMethod("checkUserName",function(value, element) {
-                  var response = false;
-                    $.ajax({
-                        type:"POST",
-                        async: false,
-                        url: "/Login/isUserValidate",
-                        data: {usuario: $("#usuario").val()},
-                        success: function(data) {
-                            if(data=="true"){
-                                $('#btnEntrar').attr("disabled", false);
-                                response = true;
-                            }else{
-                                $('#btnEntrar').attr("disabled", true);
-                            }
-                        }
-                    });
-
-                    return response;
-                },"El usuario no es correcto");
-
-                $("#login").validate({
-                    rules:{
-                        usuario:{
-                            required: true,
-                            checkUserName: true
-                        },
-                        password:{
-                            required: true,
-                        }
-                    },
-                    messages:{
-                        usuario:{
-                            required: "<br>Este campo es requerido",
-                        },
-                        password:{
-                            required: "<br>Este campo es requerido",
-                        }
-                    }
-                });
-
-                $("#btnEntrar").click(function(){
-                    $.ajax({
-                        type: "POST",
-                        url: "/Login/verificarUsuario",
-                        data: $("#login").serialize(),
-                        success: function(response){
-                            if(response!=""){
-                                var usuario = jQuery.parseJSON(response);
-                                if(usuario.nombre!=""){
-                                    $("#login").append('<input type="hidden" name="autentication" id="autentication" value="OK"/>');
-                                    $("#login").append('<input type="hidden" name="nombre" id="nombre" value="'+usuario.nombre+'"/>');
-                                    $("#login").submit();
-                            }else{
-                                alertify.alert("Error de autenticación <br> El usuario o contraseña es incorrecta");
-                            }
-                            }else{
-                                alertify.alert("Error de autenticación <br> El usuario o contraseña es incorrecta");
-                            }
-                        }
-                    });
-                });
-
-
-          
-            });
-        </script>
 html;
 
-        $codigo = LoginDao::getById($id);
+        $codigo = RegistroAsistenciaDao::getById($id);
+
         foreach($codigo as $key => $value)
         {
             if($value['id_asistencia'] != '')
@@ -155,6 +85,7 @@ html;
             }
         }
 
+
         if($flag == true)
         {
             View::set('nombre',$nombre);
@@ -162,21 +93,37 @@ html;
             View::set('nombre',$nombre);
             View::set('fecha_asistencia',$fecha_asistencia);
             View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
-            View::set('$hora_asistencia_fin',$hora_asistencia_fin);
-            //View::render("registro_asistencias_codigo");
-
-            View::render("asistencias_all");
+            View::set('hora_asistencia_fin',$hora_asistencia_fin);
+            View::set('header',$extraHeader);
+            View::set('footer',$extraFooter);
+            View::render("registro_asistencias_codigo");
         }
         else
         {
-            View::render("asistencias_all_vacia");
+            View::render("asistencias_panel_registro");
         }
-
-
-
-
-
-
     }
 
+    public function registroAsistencia($clave){
+           
+        $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
+
+        print($user_clave[0].' ');
+
+        if($user_clave){
+            // echo "success";
+             $data = [
+                 'datos'=>$user_clave,
+                 'status'=>'success'
+             ];
+            //header("Location: /Home");
+        }else{
+            $data = [
+                'status'=>'fail'
+            ];
+            // header("Location: /Home/");
+        }
+
+        echo json_encode($data);
+    }
 }

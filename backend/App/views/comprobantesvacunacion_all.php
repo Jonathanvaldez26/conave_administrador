@@ -126,7 +126,8 @@
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-shield-virus" style="color: #fff"></span>
                         </div>
-                        <span class="nav-link-text ms-1">Comprobante Vacunación</span>
+                        <span class="nav-link-text ms-1">Comprobantes de <br>
+                        Vacunación</span>
                     </a>
                 </li>
                 <li class="nav-item" <?=$pruebasHidden;?>>

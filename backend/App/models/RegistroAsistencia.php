@@ -19,7 +19,8 @@ sql;
     public static function getAsistentes(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT id_registro_asistencia, id_asistencia, ras.fecha_alta AS fecha_alta_r_asistencias, ra.img AS imagen, clave 
+        SELECT id_registro_asistencia, id_asistencia, ras.fecha_alta AS fecha_alta_r_asistencias, ra.img AS imagen, clave,
+        CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno) AS nombre_completo 
         FROM registros_asistencia ras
         INNER JOIN asistencias a
         INNER JOIN utilerias_asistentes ua

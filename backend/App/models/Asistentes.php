@@ -52,7 +52,8 @@ sql;
       INNER JOIN asigna_habitacion ah ON (ra.id_registro_acceso = ah.id_registro_acceso)
       INNER JOIN categorias_habitaciones ch ON (ch.id_categoria_habitacion = ah.id_categoria_habitacion)
       INNER JOIN utilerias_administradores ua ON(ua.utilerias_administradores_id = ah.utilerias_administradores_id)
-      WHERE ra.politica = 1 GROUP BY ah.clave
+      WHERE ra.politica = 1 
+      GROUP BY ah.clave
 sql;
       return $mysqli->queryAll($query);
         

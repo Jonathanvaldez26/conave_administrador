@@ -6,7 +6,7 @@ use \Core\View;
 use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
-use \App\models\RegistroAsistencia AS LoginDao;
+use \App\models\RegistroAsistencia AS RegistroAsistenciaDao;
 
 class RegistroAsistencia{
    
@@ -145,7 +145,7 @@ html;
         </script>
 html;
 
-        $codigo = LoginDao::getById($id);
+        $codigo = RegistroAsistenciaDao::getById($id);
         foreach($codigo as $key => $value)
         {
             if($value['id_asistencia'] != '')
@@ -159,6 +159,41 @@ html;
             }
         }
 
+        $info_asist = RegistroAsistenciaDao::getAsistentes();
+        $card_asist = '';
+
+        foreach ($info_asist as $key => $value) {
+            $card_asist .=<<<html
+            <div class="col-5">
+html;
+            if ($value['imagen'] != '') {
+                $card_asist .=<<<html
+                
+                <img class="avatar avatar-xxl me-3" src="/img/{$value['imagen']}">
+            </div>
+html;
+            } else {
+            $card_asist .=<<<html
+                <img class="avatar avatar-xxl me-3" src="/img/user.png">
+            </div>
+html;
+            }
+
+            $card_asist .=<<<html
+            <div class="col-7">
+                <div class="card-body text-center">
+                    <span style="font-size: xxx-large;">{$value['clave']}</span>
+                </div>
+                <br>
+                <div class="text-center">
+                    <button class="btn btn-info">Registrar Asistente</button>
+                </div>
+            </div>
+html;
+        }
+
+        View::set('card_asist',$card_asist);
+
         if($flag == true)
         {
             View::set('nombre',$nombre);
@@ -166,7 +201,8 @@ html;
             View::set('nombre',$nombre);
             View::set('fecha_asistencia',$fecha_asistencia);
             View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
-            View::set('$hora_asistencia_fin',$hora_asistencia_fin);
+            View::set('hora_asistencia_fin',$hora_asistencia_fin);
+            
             View::set('header',$extraHeader);
             View::set('footer',$extraFooter);
             View::render("registro_asistencias_codigo");

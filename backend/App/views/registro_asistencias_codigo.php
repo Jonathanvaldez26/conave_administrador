@@ -22,15 +22,60 @@
         </div>
     </nav>
 
-    <div class="page-header min-vh-75">
-        <div class="container">
+    <div class="mt-10">
+        <div class="card card-body mt-n6 overflow-hidden m-5">
             <div class="row">
-                <div class="col-12">
-
+                <div class="col-auto">
+                    <div class="bg-gradient-red avatar avatar-xl position-relative">
+                        <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                        <span class="fa fa-bell" style="font-size: xx-large;"></span>
+                    </div>
+                </div>
+                <div class="col-auto my-auto">
+                    <div class="h-100">
+                        <h5 class="mb-1">
+                            Listas de Asistencias
+                        </h5>
+                        <p class="mb-0 font-weight-bold text-sm">
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                    <div class="nav-wrapper position-relative end-0">
+                        <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                    <span class="fa fa-clock-o"></span>
+                                    <span class="ms-1">Registro</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                    <span class="fa fa-check-circle-o"></span>
+                                    <span class="ms-1">Lista</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body">
+                        <div class="row">
+                            <?php echo $card_asist; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </main>
 <!--   Core JS Files   -->
 <script src="../../assets/js/core/popper.min.js"></script>

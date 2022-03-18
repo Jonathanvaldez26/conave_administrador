@@ -5,19 +5,23 @@ defined("APPPATH") OR die("Access denied");
 use \Core\View;
 use \Core\MasterDom;
 use \App\controllers\Contenedor;
+use \Core\Controller;
 use \App\models\RegistroAsistencia AS LoginDao;
 
 class RegistroAsistencia{
+   
+
     private $_contenedor;
+
 
     public function codigo($id) {
         $extraHeader =<<<html
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon.png">
-        <link rel="icon" type="image/png" href="/img/favicon.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
+        <link rel="icon" type="image/vnd.microsoft.icon" href="/assets/img/angel.png">
         <title>
-            GRUPO LAHE
+            Asistencia CONAVE Convención 2022 ASOFARMA
         </title>
         <!--     Fonts and icons     -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -86,9 +90,11 @@ html;
             View::set('fecha_asistencia',$fecha_asistencia);
             View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
             View::set('$hora_asistencia_fin',$hora_asistencia_fin);
-            //View::render("registro_asistencias_codigo");
+            View::set('header',$extraHeader);
+            View::set('footer',$extraFooter);
+            View::render("registro_asistencias_codigo");
 
-            View::render("asistencias_all");
+            // View::render("asistencias_all");
         }
         else
         {

@@ -82,41 +82,6 @@ html;
             }
         }
 
-        $info_asist = RegistroAsistenciaDao::getAsistentes();
-        $card_asist = '';
-
-        foreach ($info_asist as $key => $value) {
-            $card_asist .=<<<html
-            <div class="col-5">
-html;
-            if ($value['imagen'] != '') {
-                $card_asist .=<<<html
-                
-                <img class="avatar avatar-xxl me-3" src="/img/{$value['imagen']}">
-html;
-            } else {
-            $card_asist .=<<<html
-                <img class="avatar avatar-xxl me-3" src="/img/user.png">
-html;
-            }
-
-            $card_asist .=<<<html
-                <span>{$value['nombre_completo']}</span>
-            </div>
-
-            <div class="col-7">
-                <div class="card-body text-center">
-                    <span style="font-size: xxx-large;">{$value['clave']}</span>
-                </div>
-                <br>
-                <div class="text-center">
-                    <button class="btn btn-info">Registrar Asistente</button>
-                </div>
-            </div>
-html;
-        }
-
-        
 
         if($flag == true)
         {
@@ -126,12 +91,9 @@ html;
             View::set('fecha_asistencia',$fecha_asistencia);
             View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
             View::set('hora_asistencia_fin',$hora_asistencia_fin);
-            View::set('card_asist',$card_asist);
             View::set('header',$extraHeader);
             View::set('footer',$extraFooter);
             View::render("registro_asistencias_codigo");
-
-            // View::render("asistencias_all");
         }
         else
         {

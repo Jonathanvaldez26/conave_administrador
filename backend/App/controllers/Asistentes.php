@@ -1,4 +1,5 @@
 <?php
+
 namespace App\controllers;
 //defined("APPPATH") OR die("Access denied");
 
@@ -6,49 +7,52 @@ use \Core\View;
 use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
-use \App\models\Colaboradores AS ColaboradoresDao;
-use \App\models\Accidentes AS AccidentesDao;
-use \App\models\General AS GeneralDao;
-use \App\models\Pases AS PasesDao;
-use \App\models\PruebasCovidUsuarios AS PruebasCovidUsuariosDao;
-use \App\models\ComprobantesVacunacion AS ComprobantesVacunacionDao;
-use \App\models\Asistentes AS AsistentesDao;
+use \App\models\Colaboradores as ColaboradoresDao;
+use \App\models\Accidentes as AccidentesDao;
+use \App\models\General as GeneralDao;
+use \App\models\Pases as PasesDao;
+use \App\models\PruebasCovidUsuarios as PruebasCovidUsuariosDao;
+use \App\models\ComprobantesVacunacion as ComprobantesVacunacionDao;
+use \App\models\Asistentes as AsistentesDao;
 
 use Generator;
 
-class Asistentes extends Controller{
+class Asistentes extends Controller
+{
 
     private $_contenedor;
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         $this->_contenedor = new Contenedor;
-        View::set('header',$this->_contenedor->header());
-        View::set('footer',$this->_contenedor->footer());
-        if(Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes",1) == 0)
-          header('Location: /Principal/');
+        View::set('header', $this->_contenedor->header());
+        View::set('footer', $this->_contenedor->footer());
+        if (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0)
+            header('Location: /Principal/');
     }
 
-    public function index() {
+    public function index()
+    {
 
-        
+
         $user = GeneralDao::getDatosUsuarioLogeado($this->__usuario);
         $asistentes = GeneralDao::getAllColaboradores();
         $filtros = "";
-        if($_POST != "")
+        if ($_POST != "")
             //$filtros = $this->getFiltro($post);
 
-        ///////////////////////////////////////////////////////
-        // var_dump($user);
-        // var_dump($asistentes);
-        View::set('tabla',$this->getAllColaboradoresAsignados());
-        View::set('header',$this->_contenedor->header($this->getHeader()));
-        View::set('footer',$this->_contenedor->footer($this->getFooter()));
+            ///////////////////////////////////////////////////////
+            // var_dump($user);
+            // var_dump($asistentes);
+            View::set('tabla', $this->getAllColaboradoresAsignados());
+        View::set('header', $this->_contenedor->header($this->getHeader()));
+        View::set('footer', $this->_contenedor->footer($this->getFooter()));
         View::render("asistentes_all");
-
     }
 
-    public function Detalles($id) {
+    public function Detalles($id)
+    {
 
         $extraHeader = <<<html
         <title>
@@ -170,16 +174,16 @@ html;
         $detalles_registro = AsistentesDao::getTotalById($id);
 
         if ($detalles_registro[0]['img'] == '') {
-        $img_asistente =<<<html
+            $img_asistente = <<<html
             <img src="/img/user.png" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
 html;
         } else {
-        $img_asistente =<<<html
+            $img_asistente = <<<html
             <img src="/img/users_conave/{$detalles_registro[0]['img']}" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
 html;
         }
 
-        if ($detalles_registro[0]['alergias'] == 'otro'){
+        if ($detalles_registro[0]['alergias'] == 'otro') {
             $alergias_a = <<<html
             <div class="col-md-4">
                 <label class="form-label mt-4">Alergias *</label>
@@ -311,7 +315,7 @@ html;
                 </div>
             </div>
 html;
-        }  else {
+        } else {
             if ($detalles_registro[0]['restricciones_alimenticias'] == 'otro') {
                 $res_alimenticias = <<<html
             <div class="col-md-4 col-sm-12">
@@ -455,112 +459,134 @@ html;
             </div>
 html;
             }
-
-
         }
 
-        View::set('id_asistente',$id);
-        View::set('detalles',$detalles[0]);
-        View::set('img_asistente',$img_asistente);
-        View::set('alergias_a',$alergias_a);
-        View::set('res_alimenticias',$res_alimenticias);
-        View::set('alergia_medicamento_cual',$alergia_medicamento_cual);
-        View::set('detalles_registro',$detalles_registro[0]);
-        View::set('header',$this->_contenedor->header($extraHeader));
-        View::set('footer',$this->_contenedor->footer($extraFooter));
-        View::render("asistentes_detalles");
+        $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) == 0 ? "style=\"display:none;\"" : "";
+        $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
+        $vuelosHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vuelos", 1) == 0) ? "style=\"display:none;\"" : "";
+        $pickUpHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pickup", 1) == 0) ? "style=\"display:none;\"" : "";
+        $habitacionesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_habitaciones", 1) == 0) ? "style=\"display:none;\"" : "";
+        $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
+        $cenasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_cenas", 1) == 0) ? "style=\"display:none;\"" : "";
+        $aistenciasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistencias", 1) == 0) ? "style=\"display:none;\"" : "";
+        $vacunacionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 1) == 0) ? "style=\"display:none;\"" : "";
+        $pruebasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pruebas_covid", 1) == 0) ? "style=\"display:none;\"" : "";
+        $configuracionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_configuracion", 1) == 0) ? "style=\"display:none;\"" : "";
+        $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1) == 0) ? "style=\"display:none;\"" : "";
 
+        View::set('permisoGlobalHidden', $permisoGlobalHidden);
+        View::set('asistentesHidden', $asistentesHidden);
+        View::set('vuelosHidden', $vuelosHidden);
+        View::set('pickUpHidden', $pickUpHidden);
+        View::set('habitacionesHidden', $habitacionesHidden);
+        View::set('cenasHidden', $cenasHidden);
+        View::set('aistenciasHidden', $aistenciasHidden);
+        View::set('vacunacionHidden', $vacunacionHidden);
+        View::set('pruebasHidden', $pruebasHidden);
+        View::set('configuracionHidden', $configuracionHidden);
+        View::set('utileriasHidden', $utileriasHidden);
+
+        View::set('id_asistente', $id);
+        View::set('detalles', $detalles[0]);
+        View::set('img_asistente', $img_asistente);
+        View::set('alergias_a', $alergias_a);
+        View::set('res_alimenticias', $res_alimenticias);
+        View::set('alergia_medicamento_cual', $alergia_medicamento_cual);
+        View::set('detalles_registro', $detalles_registro[0]);
+        View::set('header', $this->_contenedor->header($extraHeader));
+        View::set('footer', $this->_contenedor->footer($extraFooter));
+        View::render("asistentes_detalles");
     }
 
-    public function Actualizar(){
+    public function Actualizar()
+    {
 
 
         $documento = new \stdClass();
 
 
-          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-              $id_registro = $_POST['id_registro'];
-              $nombre = $_POST['nombre'];
-              $segundo_nombre = $_POST['segundo_nombre'];
-              $apellido_paterno = $_POST['apellido_paterno'];
-              $apellido_materno = $_POST['apellido_materno'];
-              $fecha_nacimiento = $_POST['fecha_nacimiento'];
-              $email = $_POST['email'];
-              $telefono = $_POST['telefono'];
-              $alergias = $_POST['select_alergico'];
-              $alergias_otro = $_POST['alergias_otro'];
-              $alergia_medicamento = $_POST['confirm_alergia'];
-                if (isset($_POST['alergia_medicamento_cual'])) {
-                    $alergia_medicamento_cual = $_POST['alergia_medicamento_cual'];
-                } else {
-                    $alergia_medicamento_cual = '';
-                }
-              $alergia_medicamento_cual = $_POST['alergia_medicamento_cual'];
-              $restricciones_alimenticias = $_POST['restricciones_alimenticias'];
-              $restricciones_alimenticias_cual = $_POST['restricciones_alimenticias_cual'];
+            $id_registro = $_POST['id_registro'];
+            $nombre = $_POST['nombre'];
+            $segundo_nombre = $_POST['segundo_nombre'];
+            $apellido_paterno = $_POST['apellido_paterno'];
+            $apellido_materno = $_POST['apellido_materno'];
+            $fecha_nacimiento = $_POST['fecha_nacimiento'];
+            $email = $_POST['email'];
+            $telefono = $_POST['telefono'];
+            $alergias = $_POST['select_alergico'];
+            $alergias_otro = $_POST['alergias_otro'];
+            $alergia_medicamento = $_POST['confirm_alergia'];
+            if (isset($_POST['alergia_medicamento_cual'])) {
+                $alergia_medicamento_cual = $_POST['alergia_medicamento_cual'];
+            } else {
+                $alergia_medicamento_cual = '';
+            }
+            $alergia_medicamento_cual = $_POST['alergia_medicamento_cual'];
+            $restricciones_alimenticias = $_POST['restricciones_alimenticias'];
+            $restricciones_alimenticias_cual = $_POST['restricciones_alimenticias_cual'];
 
-              $documento->_nombre = $nombre;
-              $documento->_segundo_nombre = $segundo_nombre;
-              $documento->_apellido_paterno = $apellido_paterno;
-              $documento->_apellido_materno = $apellido_materno;
-              $documento->_fecha_nacimiento = $fecha_nacimiento;
-              $documento->_email = $email;
-              $documento->_telefono = $telefono;
-              $documento->_alergias = $alergias;
-              $documento->_alergias_otro = $alergias_otro;
-              $documento->_alergia_medicamento = $alergia_medicamento;
-              $documento->_alergia_medicamento_cual = $alergia_medicamento_cual;
-              $documento->_restricciones_alimenticias = $restricciones_alimenticias;
-              $documento->_restricciones_alimenticias_cual = $restricciones_alimenticias_cual;
+            $documento->_nombre = $nombre;
+            $documento->_segundo_nombre = $segundo_nombre;
+            $documento->_apellido_paterno = $apellido_paterno;
+            $documento->_apellido_materno = $apellido_materno;
+            $documento->_fecha_nacimiento = $fecha_nacimiento;
+            $documento->_email = $email;
+            $documento->_telefono = $telefono;
+            $documento->_alergias = $alergias;
+            $documento->_alergias_otro = $alergias_otro;
+            $documento->_alergia_medicamento = $alergia_medicamento;
+            $documento->_alergia_medicamento_cual = $alergia_medicamento_cual;
+            $documento->_restricciones_alimenticias = $restricciones_alimenticias;
+            $documento->_restricciones_alimenticias_cual = $restricciones_alimenticias_cual;
 
-              $id = AsistentesDao::update($documento);
+            $id = AsistentesDao::update($documento);
 
-              if($id){
-                  echo "success";
+            if ($id) {
+                echo "success";
                 //header("Location: /Home");
-              }else{
-                  echo "fail";
-               // header("Location: /Home/");
-              }
-
-          } else {
-              echo 'fail REQUEST';
-          }
-
+            } else {
+                echo "fail";
+                // header("Location: /Home/");
+            }
+        } else {
+            echo 'fail REQUEST';
+        }
     }
 
-    public function getAllColaboradoresAsignados(){
+    public function getAllColaboradoresAsignados()
+    {
 
         $html = "";
         $personal = '';
         $pase = '';
         foreach (GeneralDao::getAllColaboradores() as $key => $value) {
-            if($value['alergias'] == '' && $value['alergias_otro'] == '' ){
+            if ($value['alergias'] == '' && $value['alergias_otro'] == '') {
                 $alergia = 'No registro alergias';
-            }else{
+            } else {
                 if ($value['alergias'] == 'otro') {
                     $alergia = $value['alergias_otro'];
                 } else {
                     $alergia = $value['alergias'];
                 }
             }
-            
-            if($value['alergia_medicamento'] == 'si'){
-                if($value['alergia_medicamento_cual'] == ''){
+
+            if ($value['alergia_medicamento'] == 'si') {
+                if ($value['alergia_medicamento_cual'] == '') {
                     $alergia_medicamento = 'No registro alergias a medicamentos';
-                }else{
+                } else {
                     $alergia_medicamento = $value['alergia_medicamento_cual'];
                 }
-            }else{
+            } else {
                 $alergia_medicamento = 'No posee ninguna alergia';
             }
-            
-            
 
-            if($value['restricciones_alimenticias'] == 'ninguna' || $value['restricciones_alimenticias'] == ''){
+
+
+            if ($value['restricciones_alimenticias'] == 'ninguna' || $value['restricciones_alimenticias'] == '') {
                 $restricciones_alimenticias = 'No registro restricciones alimenticias';
-            }else{
+            } else {
                 if ($value['restricciones_alimenticias'] == 'otro') {
                     $restricciones_alimenticias = $value['restricciones_alimenticias_cual'];
                 } else {
@@ -568,90 +594,84 @@ html;
                 }
             }
 
-            
+
 
             $value['apellido_paterno'] = utf8_encode($value['apellido_paterno']);
             $value['apellido_materno'] = utf8_encode($value['apellido_materno']);
             $value['nombre'] = utf8_encode($value['nombre']);
 
-            if(empty($value['img']) || $value['img'] == null){
+            if (empty($value['img']) || $value['img'] == null) {
                 $img_user = "/img/user.png";
-            }else{
+            } else {
                 $img_user = "/img/users_conave/{$value['img']}";
             }
 
             $pases = PasesDao::getByIdUser($value['utilerias_asistentes_id']);
             $cont_pase_ida = 0;
             $cont_pase_regreso = 0;
-            foreach($pases as $key => $pas){
+            foreach ($pases as $key => $pas) {
 
-                if($pases >= 1){
+                if ($pases >= 1) {
 
-                    if($pas['tipo'] == 1){
-                        $cont_pase_ida ++;
-                        
-                        if($pas['status'] == 1){
-                            
+                    if ($pas['tipo'] == 1) {
+                        $cont_pase_ida++;
+
+                        if ($pas['status'] == 1) {
+
                             $pase_ida = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fa-plane-departure" style=" font-size: 13px;"></span> Regreso (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p> ';
-                        }else{
+                        } else {
                             $pase_ida = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fa-plane-departure" style="font-size: 13px;"></span> Regreso (<i class="fa fa-solid fa-hourglass-end" style="color: #1a8fdd;"></i>)</p> ';
                         }
-                        
-                    }elseif($pas['tipo'] == 2){
-                        $cont_pase_regreso ++;
+                    } elseif ($pas['tipo'] == 2) {
+                        $cont_pase_regreso++;
 
-                        if($pas['status'] == 1){
-                            
+                        if ($pas['status'] == 1) {
+
                             $pase_regreso = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fa-plane-arrival" style=" font-size: 13px;"></span> Llegada (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
-                        }else{
+                        } else {
                             $pase_regreso = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fa-plane-arrival" style="font-size: 13px"></span> Llegada (<i class="fa fa-solid fa-hourglass-end" style="color: #1a8fdd;"></i>)</p>';
                         }
-                     }
+                    }
                 }
-               
             }
 
-            if($cont_pase_regreso <= 0){
+            if ($cont_pase_regreso <= 0) {
                 $pase_regreso = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fa-plane-arrival" style="font-size: 13px"></span> Llegada (<i class="fas fa-times" style="color: #7B241C;"></i>)</p>';
             }
 
-            if($cont_pase_ida <= 0){
+            if ($cont_pase_ida <= 0) {
                 $pase_ida = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;"  data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fa-plane-departure" style="font-size: 13px;"></span> Regreso (<i class="fas fa-times" style="color: #7B241C;"></i>)</p>';
             }
 
-            
+
 
             $pruebacovid = PruebasCovidUsuariosDao::getByIdUser($value['utilerias_asistentes_id'])[0];
 
-            
-            if($pruebacovid){
-                
-                if($pruebacovid['status'] == 1){
+
+            if ($pruebacovid) {
+
+                if ($pruebacovid['status'] == 1) {
                     $pru_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Prueba Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
-                }else {
+                } else {
                     $pru_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Prueba Covid (<i class="fa fa-solid fa-hourglass-end" style="color: #1a8fdd;"></i>)</p>';
                 }
-                
-            }else{
+            } else {
                 $pru_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Prueba Covid (<i class="fas fa-times" style="color:#7B241C;"></i>)</p>';
             }
 
             $comprobantecovid = ComprobantesVacunacionDao::getByIdUser($value['utilerias_asistentes_id'])[0];
 
-            if($comprobantecovid){
+            if ($comprobantecovid) {
 
-                if($comprobantecovid['validado'] == 1){
-                     
+                if ($comprobantecovid['validado'] == 1) {
+
                     $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Comprobante Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
-                }else{
-                    
+                } else {
+
                     $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Comprobante Covid (<i class="fa fa-solid fa-hourglass-end" style="color:#1a8fdd;"></i>)</p>';
                 }
-               
-               
-            }else{
+            } else {
                 $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Comprobante Covid  (<i class="fas fa-times" style="color: #7B241C;" ></i>)</p>';
-                
             }
 
             $id_linea = $value['id_linea_principal'];
@@ -660,7 +680,7 @@ html;
 
             $ticket_virtual = GeneralDao::getTicketByIdTicket($value['id_ticket_virtual']);
 
-            $html .=<<<html
+            $html .= <<<html
             <tr>
                 <td>
                     <div class="d-flex px-3 py-1">
@@ -722,21 +742,22 @@ html;
         return $html;
     }
 
-    public function generaterQr(){
-       
+    public function generaterQr()
+    {
+
         $id_constancia = $_POST['id_constancia'];
         $user_id = $_SESSION['administrador_id'];
 
         //Eliminar los archivos del servidor
         //$this->deleteFiles($id_constancia);
-      
+
 
         $codigo_rand = $this->generateRandomString();
 
         $config = array(
             'ecc' => 'H',    // L-smallest, M, Q, H-best
             'size' => 12,    // 1-50
-            'dest_file' => '../public/qrs/'.$codigo_rand.'.png',
+            'dest_file' => '../public/qrs/' . $codigo_rand . '.png',
             'quality' => 90,
             'logo' => 'logo.jpg',
             'logo_size' => 100,
@@ -744,42 +765,42 @@ html;
             'logo_outline_color' => '#FFFF00',
             'logo_radius' => 15,
             'logo_opacity' => 100,
-          );
-    
-          // Contenido del código QR
-        //   $data = 'https://bbeltcertificate.sas-lahe.com/DatosConstancia/datos/'.$codigo_rand;
-        $data = '/'.$codigo_rand;
-    
-          // Crea una clase de código QR
-          $oPHPQRCode = new PHPQRCode();
-    
-          // establecer configuración
-          $oPHPQRCode->set_config($config);
-    
-          // Crea un código QR
-          $qrcode = $oPHPQRCode->generate($data);
-    
-          $url = explode('/', $qrcode );
-          $src = $url['0'].'/'.$url['2'].'/'.$url['3'];
+        );
 
-          $documento = new \stdClass();
-      
+        // Contenido del código QR
+        //   $data = 'https://bbeltcertificate.sas-lahe.com/DatosConstancia/datos/'.$codigo_rand;
+        $data = '/' . $codigo_rand;
+
+        // Crea una clase de código QR
+        $oPHPQRCode = new PHPQRCode();
+
+        // establecer configuración
+        $oPHPQRCode->set_config($config);
+
+        // Crea un código QR
+        $qrcode = $oPHPQRCode->generate($data);
+
+        $url = explode('/', $qrcode);
+        $src = $url['0'] . '/' . $url['2'] . '/' . $url['3'];
+
+        $documento = new \stdClass();
+
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $documento->_ruta_qr = $src;
-            $documento->_ruta_constancia = '../PDF/'.$codigo_rand.'.pdf';
+            $documento->_ruta_constancia = '../PDF/' . $codigo_rand . '.pdf';
             $documento->_id_constancia = $id_constancia;
             $documento->_code = $codigo_rand;
-            
-            
+
+
             $id = ConstanciaDao::updateQrRute($documento);
 
             if ($id) {
-              $constancia = ConstanciaDao::getByCode($codigo_rand);
+                $constancia = ConstanciaDao::getByCode($codigo_rand);
 
-              $this->generarPDF($constancia[0]);
-              
+                $this->generarPDF($constancia[0]);
+
                 $data = [
                     'status' => 'success',
                     'src' => $src,
@@ -787,7 +808,7 @@ html;
                     'ruta_constancia' => $constancia[0]['ruta_constancia'],
                     'code' => $constancia[0]['code'],
                     'id_constancia' => $constancia[0]['id_constancia'],
-                    'url_qr' => 'https://bbeltcertificate.sas-lahe.com/DatosConstancia/datos/'.$codigo_rand,
+                    'url_qr' => 'https://bbeltcertificate.sas-lahe.com/DatosConstancia/datos/' . $codigo_rand,
                     'status_generada' => 1
 
                 ];
@@ -796,52 +817,55 @@ html;
             } else {
                 $data = [
                     'status' => 'fail'
-                    
+
                 ];
                 //echo 'fail';
             }
         } else {
             $data = [
                 'status' => 'fail REQUEST'
-                
+
             ];
             //echo 'fail REQUEST';
         }
-     
-          
-          // Mostrar código QR
-          //$imagen = '<img src="'.$src.'">';
-         //echo $src;
-         echo json_encode($data);
+
+
+        // Mostrar código QR
+        //$imagen = '<img src="'.$src.'">';
+        //echo $src;
+        echo json_encode($data);
     }
 
-    function generateRandomString($length = 10) { 
-        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
+    function generateRandomString($length = 10)
+    {
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
-    public function getTituloColaboradores($perfil, $identificador, $planta, $nombreDepartamento){
+    public function getTituloColaboradores($perfil, $identificador, $planta, $nombreDepartamento)
+    {
         $identificador = explode("_", $identificador);
         $identificador = strtoupper($identificador[0]);
         $titulo = "";
-        if($perfil == 1){ // PERFIL ROOT
+        if ($perfil == 1) { // PERFIL ROOT
             $titulo .= "Administra a todos los usuarios";
-        }elseif($perfil == 4){ // PERFIL ADMINISTRADOR
+        } elseif ($perfil == 4) { // PERFIL ADMINISTRADOR
             $titulo .= "Administra a todos los usuarios";
-        }elseif($perfil == 5){ // PERFIL PERSONALIZADO
+        } elseif ($perfil == 5) { // PERFIL PERSONALIZADO
             $titulo .= "Administra unicamente a los usuario del departamento de {$nombreDepartamento}";
-        }elseif($perfil == 6){ // PERFIL RECURSOS HUMANOS
-            if($planta == 1){
+        } elseif ($perfil == 6) { // PERFIL RECURSOS HUMANOS
+            if ($planta == 1) {
                 $titulo .= "Administra a todos los usuarios";
-            }else{
+            } else {
                 $titulo .= "Recursos humanos {$identificador}, Administra a usuarios de {$identificador}";
             }
-        }else{ // NO HAY PERFIL
+        } else { // NO HAY PERFIL
             $titulo .= " -> lo sentimos, no hay ningun perfil asignado para este usuario.";
         }
         return " " . $titulo;
     }
 
-    public function getFiltro($post){
+    public function getFiltro($post)
+    {
         $datos = array();
         $datos['c.catalogo_empresa_id'] = MasterDom::getData('catalogo_empresa_id');
         $datos['c.catalogo_ubicacion_id'] = MasterDom::getData('catalogo_ubicacion_id');
@@ -851,17 +875,18 @@ html;
 
         $filtro = '';
         foreach ($datos as $key => $value) {
-            if($value!=''){
-                if($key == 'c.pago') $filtro .= "AND {$key} = '$value' ";
+            if ($value != '') {
+                if ($key == 'c.pago') $filtro .= "AND {$key} = '$value' ";
                 else $filtro .= "AND {$key} = '$value' ";
             }
         }
         return $datos;
     }
 
-    public function index1() {
+    public function index1()
+    {
 
-        $extraHeader=<<<html
+        $extraHeader = <<<html
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
       <style>
         .incentivo{margin: 2px;font: message-box;height:100%;}
@@ -869,7 +894,7 @@ html;
       </style>
 html;
 
-        $extraFooter =<<<html
+        $extraFooter = <<<html
       <script>
         $(document).ready(function(){
     function funcion(){
@@ -961,7 +986,7 @@ html;
       </script>
 html;
 
-        $extraFooter1 =<<<html
+        $extraFooter1 = <<<html
       <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
       <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
       <script>
@@ -1116,28 +1141,28 @@ html;
         $usuario = $this->__usuario;
         $admin = ColaboradoresDao::getDatosUsuarioLogeado($usuario);
 
-        $editarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 5)==1)?  "" : "style=\"display:none;\"";
-        $eliminarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 6)==1)? "" : "style=\"display:none;\"";
-        $pdfHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 2)==1)?  "" : "style=\"display:none;\"";
-        $excelHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 3)==1)? "" : "style=\"display:none;\"";
-        $agregarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 4)==1)? "" : "style=\"display:none;\"";
-        View::set('pdfHidden',$pdfHidden);
-        View::set('excelHidden',$excelHidden);
-        View::set('agregarHidden',$agregarHidden);
-        View::set('editarHidden',$editarHidden);
-        View::set('eliminarHidden',$eliminarHidden);
+        $editarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 5) == 1) ?  "" : "style=\"display:none;\"";
+        $eliminarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 6) == 1) ? "" : "style=\"display:none;\"";
+        $pdfHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 2) == 1) ?  "" : "style=\"display:none;\"";
+        $excelHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 3) == 1) ? "" : "style=\"display:none;\"";
+        $agregarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 4) == 1) ? "" : "style=\"display:none;\"";
+        View::set('pdfHidden', $pdfHidden);
+        View::set('excelHidden', $excelHidden);
+        View::set('agregarHidden', $agregarHidden);
+        View::set('editarHidden', $editarHidden);
+        View::set('eliminarHidden', $eliminarHidden);
 
         //$datosUsuario = ColaboradoresDao::GeneralDao($this->__usuario);
         $datosUsuario = GeneralDao::getDatosUsuario($this->__usuario);
 
-        if($datosUsuario['perfil_id'] == 1 || $datosUsuario['perfil_id'] == 4){
+        if ($datosUsuario['perfil_id'] == 1 || $datosUsuario['perfil_id'] == 4) {
             $accion = 2;
         }
 
-        if($datosUsuario['perfil_id'] == 6){
-            if($datosUsuario['catalogo_planta_id]'] != 1){
+        if ($datosUsuario['perfil_id'] == 6) {
+            if ($datosUsuario['catalogo_planta_id]'] != 1) {
                 $accion = 6; // RH es diferente a RH xochimilco
-            }else{
+            } else {
                 $accion = 2;
             }
         }
@@ -1151,11 +1176,11 @@ html;
 
         $filtro = '';
         foreach ($datos as $key => $value) {
-            if($value!=''){
-                if($key == 'c.pago'){
+            if ($value != '') {
+                if ($key == 'c.pago') {
                     //$filtro .= 'AND '.$key." = '{$value}' ";
                     $filtro .= "AND {$key} = '$value' ";
-                }else{
+                } else {
                     //$filtro .= 'AND '.$key." = $value ";
                     $filtro .= "AND {$key} = '$value' ";
                 }
@@ -1169,7 +1194,7 @@ html;
             $value['apellido_materno'] = utf8_encode($value['apellido_materno']);
             $value['identificador_noi'] = ($value['identificador_noi'] != '') ? $value['identificador_noi'] : "SIN IDENTIFICADOR";
 
-            $tabla .=<<<html
+            $tabla .= <<<html
           <tr>
             <td {$editarHidden} style="text-align:center; vertical-align:middle;"><input type="checkbox" name="borrar[]" value="{$value['catalogo_colaboradores_id']}"/></td>
             <td style="text-align:center; vertical-align:middle;"><img class="foto" src="/img/colaboradores/{$value['foto']}"/></td>
@@ -1192,75 +1217,75 @@ html;
 
         $sStatus = "";
         foreach (ColaboradoresDao::getStatus() as $key => $value) {
-            $sStatus .=<<<html
+            $sStatus .= <<<html
         <option value="{$value['catalogo_status_id']}">{$value['nombre']}</option>
 html;
         }
 
         $idDepartamento = "";
         foreach (ColaboradoresDao::getIdDepartamento() as $key => $value) {
-            $idDepartamento .=<<<html
+            $idDepartamento .= <<<html
         <option value="{$value['catalogo_departamento_id']}">{$value['nombre']}</option>
 html;
         }
 
         $idEmpresa = '';
         foreach (ColaboradoresDao::getIdEmpresa() as $key => $value) {
-            $idEmpresa .=<<<html
+            $idEmpresa .= <<<html
         <option value="{$value['catalogo_empresa_id']}">{$value['nombre']}</option>
 html;
         }
 
         $idUbicacion = '';
         foreach (ColaboradoresDao::getIdUbicacion() as $key => $value) {
-            $idUbicacion .=<<<html
+            $idUbicacion .= <<<html
         <option value="{$value['catalogo_ubicacion_id']}">{$value['nombre']}</option>
 html;
         }
 
         $idPuesto = '';
         foreach (ColaboradoresDao::getIdPuesto() as $key => $value) {
-            $idPuesto .=<<<html
+            $idPuesto .= <<<html
         <option value="{$value['catalogo_puesto_id']}">{$value['nombre']}</option>
 html;
         }
 
         $nomina = "";
         foreach (ColaboradoresDao::getNominaIdentificador() as $key => $value) {
-            if(!empty($value['identificador_noi'])){
-                $nomina .=<<<html
+            if (!empty($value['identificador_noi'])) {
+                $nomina .= <<<html
             <option value="{$value['identificador_noi']}">NOMINA NOI {$value['identificador_noi']}</option>
 html;
-            }else{
-                $nomina .=<<<html
+            } else {
+                $nomina .= <<<html
             <option value="vacio">SIN NOMINA NOI</option>
 html;
             }
-
         }
 
         View::set('nomina', $nomina);
-        View::set('sStatus',$sStatus);
+        View::set('sStatus', $sStatus);
         View::set('idEmpresa', $idEmpresa);
         View::set('idUbicacion', $idUbicacion);
         View::set('idDepartamento', $idDepartamento);
         View::set('idPuesto', $idPuesto);
-        View::set('tabla',$tabla);
-        View::set('header',$this->_contenedor->header($extraHeader));
-        View::set('footer',$this->_contenedor->footer($extraFooter));
+        View::set('tabla', $tabla);
+        View::set('header', $this->_contenedor->header($extraHeader));
+        View::set('footer', $this->_contenedor->footer($extraFooter));
         View::render("colaboradores_all");
     }
 
-    public function colaboradoresPropios() {
+    public function colaboradoresPropios()
+    {
 
-        $extraHeader=<<<html
+        $extraHeader = <<<html
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
       <style>
         .incentivo{margin: 2px;font: message-box;height:100%;}
         .foto{width:100px;height:100px;border-radius: 50px;}
       </style>
 html;
-        $extraFooter =<<<html
+        $extraFooter = <<<html
       <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
       <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
       <script>
@@ -1352,16 +1377,16 @@ html;
         $usuario = $this->__usuario;
         $admin = ColaboradoresDao::getDatosUsuarioLogeado($usuario);
 
-        $editarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 5)==1)?  "" : "style=\"display:none;\"";
-        $eliminarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 6)==1)? "" : "style=\"display:none;\"";
-        $pdfHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 2)==1)?  "" : "style=\"display:none;\"";
-        $excelHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 3)==1)? "" : "style=\"display:none;\"";
-        $agregarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 4)==1)? "" : "style=\"display:none;\"";
-        View::set('pdfHidden',$pdfHidden);
-        View::set('excelHidden',$excelHidden);
-        View::set('agregarHidden',$agregarHidden);
-        View::set('editarHidden',$editarHidden);
-        View::set('eliminarHidden',$eliminarHidden);
+        $editarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 5) == 1) ?  "" : "style=\"display:none;\"";
+        $eliminarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 6) == 1) ? "" : "style=\"display:none;\"";
+        $pdfHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 2) == 1) ?  "" : "style=\"display:none;\"";
+        $excelHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 3) == 1) ? "" : "style=\"display:none;\"";
+        $agregarHidden = (Controller::getPermisosUsuario($usuario, "seccion_colaboradores", 4) == 1) ? "" : "style=\"display:none;\"";
+        View::set('pdfHidden', $pdfHidden);
+        View::set('excelHidden', $excelHidden);
+        View::set('agregarHidden', $agregarHidden);
+        View::set('editarHidden', $editarHidden);
+        View::set('eliminarHidden', $eliminarHidden);
 
         /*$datosUsuario = ColaboradoresDao::getDatosUsuarioLogeado($this->__usuario);
         $secciones = ColaboradoresDao::getDepartamentos($datosUsuario['administrador_id']);
@@ -1372,7 +1397,7 @@ html;
         $accion = 4; // ES PARA PROPIOS DE RH O ROOT
         $tabla = '';
         foreach (ColaboradoresDao::getAllColaboradores($datosUsuario['perfil_id'], $datosUsuario['catalogo_planta_id'], $datosUsuario['catalogo_departamento_id'], $accion, $value['catalogo_departamento_id'], $admin['nombre_planta'], $admin['usuario'], $admin['perfil_id'], 2) as $key => $value) {
-            $tabla .=<<<html
+            $tabla .= <<<html
           <tr>
             <td {$editarHidden} style="text-align:center; vertical-align:middle;"><input type="checkbox" name="borrar[]" value="{$value['catalogo_colaboradores_id']}"/></td>
             <td style="text-align:center; vertical-align:middle;"><img class="foto" src="/img/colaboradores/{$value['foto']}"/></td>
@@ -1391,50 +1416,51 @@ html;
 
         $sStatus = "";
         foreach (ColaboradoresDao::getStatus() as $key => $value) {
-            $sStatus .=<<<html
+            $sStatus .= <<<html
         <option value="{$value['catalogo_status_id']}">{$value['nombre']}</option>
 html;
         }
 
         $idDepartamento = "";
         foreach (ColaboradoresDao::getIdDepartamento() as $key => $value) {
-            $idDepartamento .=<<<html
+            $idDepartamento .= <<<html
         <option value="{$value['catalogo_departamento_id']}">{$value['nombre']}</option>
 html;
         }
 
         $idEmpresa = '';
         foreach (ColaboradoresDao::getIdEmpresa() as $key => $value) {
-            $idEmpresa .=<<<html
+            $idEmpresa .= <<<html
         <option value="{$value['catalogo_empresa_id']}">{$value['nombre']}</option>
 html;
         }
 
         $idUbicacion = '';
         foreach (ColaboradoresDao::getIdUbicacion() as $key => $value) {
-            $idUbicacion .=<<<html
+            $idUbicacion .= <<<html
         <option value="{$value['catalogo_ubicacion_id']}">{$value['nombre']}</option>
 html;
         }
 
         $idPuesto = '';
         foreach (ColaboradoresDao::getIdPuesto() as $key => $value) {
-            $idPuesto .=<<<html
+            $idPuesto .= <<<html
         <option value="{$value['catalogo_puesto_id']}">{$value['nombre']}</option>
 html;
         }
-        View::set('sStatus',$sStatus);
+        View::set('sStatus', $sStatus);
         View::set('idEmpresa', $idEmpresa);
         View::set('idUbicacion', $idUbicacion);
         View::set('idDepartamento', $idDepartamento);
         View::set('idPuesto', $idPuesto);
-        View::set('tabla',$tabla);
-        View::set('header',$this->_contenedor->header($extraHeader));
-        View::set('footer',$this->_contenedor->footer($extraFooter));
+        View::set('tabla', $tabla);
+        View::set('header', $this->_contenedor->header($extraHeader));
+        View::set('footer', $this->_contenedor->footer($extraFooter));
         View::render("colaboradores_all");
     }
 
-    public function getTabla(){
+    public function getTabla()
+    {
         $datos = array();
         $datos['e.catalogo_empresa_id'] = MasterDom::getData('catalogo_empresa_id');
         $datos['u.catalogo_ubicacion_id'] = MasterDom::getData('catalogo_ubicacion_id');
@@ -1444,16 +1470,16 @@ html;
 
         $filtro = '';
         foreach ($datos as $key => $value) {
-            if($value!=''){
-                if($key == 'c.pago'){
-                    $filtro .= 'AND '.$key." = '{$value}' ";
-                }else{
-                    $filtro .= 'AND '.$key." = $value ";
+            if ($value != '') {
+                if ($key == 'c.pago') {
+                    $filtro .= 'AND ' . $key . " = '{$value}' ";
+                } else {
+                    $filtro .= 'AND ' . $key . " = $value ";
                 }
             }
         }
 
-        $tabla= '';
+        $tabla = '';
         foreach (ColaboradoresDao::getAllReporte($filtro) as $key => $value) {
             $value['numero_empleado'] = utf8_encode($value['numero_empleado']);
             $value['nombre'] = utf8_encode($value['nombre']);
@@ -1462,7 +1488,7 @@ html;
             $value['catalogo_empresa_id'] = utf8_encode($value['catalogo_empresa_id']);
             $value['catalogo_departamento_id'] = utf8_encode($value['catalogo_departamento_id']);
             $value['status'] = utf8_encode($value['status']);
-            $tabla.=<<<html
+            $tabla .= <<<html
                 <tr>
                   <td {$editarHidden}><input type="checkbox" name="borrar[]" value="{$value['catalogo_colaboradores_id']}"/></td>
                   <td><img class="foto" src="/img/colaboradores/{$value['foto']}"/></td>
@@ -1481,8 +1507,9 @@ html;
         echo $tabla;
     }
 
-    public function show($id){
-        $extraHeader =<<<html
+    public function show($id)
+    {
+        $extraHeader = <<<html
       <link href="/css/bootstrap-datetimepicker.css" rel="stylesheet">
       <style>
         .incentivo{
@@ -1518,7 +1545,7 @@ html;
 
       </style>
 html;
-        $extraFooter =<<<html
+        $extraFooter = <<<html
       <script src="/js/moment/moment.min.js"></script>
       <script src="/js/datepicker/scriptdatepicker.js"></script>
       <script src="/js/datepicker/datepicker2.js"></script>
@@ -1579,11 +1606,9 @@ html;
         $puestos_ocupados = ColaboradoresDao::getPuestosOcupados($id);
         $accidentes = ColaboradoresDao::getAccidentes($id);
         $accidentes_count = '';
-        if($accidentes >= 1)
-        {
+        if ($accidentes >= 1) {
             $accidentes_count = 'SI';
-        }
-        else{
+        } else {
             $accidentes_count = 'NO';
         }
 
@@ -1592,40 +1617,35 @@ html;
         $incapacidades_count = "";
         $trabaja_seguridad = "";
 
-        if($incapacidades['days'] <= 1)
-        {
+        if ($incapacidades['days'] <= 1) {
             $incapacidades_count = "0 Incapacidades";
             $trabaja_seguridad = "SI";
-        }
-        else{
-            $incapacidades_count = $incapacidades['days']." Días de Incapacidad (Globales)";
+        } else {
+            $incapacidades_count = $incapacidades['days'] . " Días de Incapacidad (Globales)";
             $trabaja_seguridad = "NO";
         }
 
         $tabla_economicos = '';
         $dias_economicos = ColaboradoresDao::getAllDiasEconomicos($id);
-        if(empty($dias_economicos['dias_sobrantes']))
-        {
-            $tabla_economicos.=<<<html
+        if (empty($dias_economicos['dias_sobrantes'])) {
+            $tabla_economicos .= <<<html
             <input type="text" class="form-control" value="NO DISPONIBLE PARA ADMINISTRATIVOS" disabled>
 html;
-        }
-        else
-        {
-            $tabla_economicos.=<<<html
+        } else {
+            $tabla_economicos .= <<<html
             <input type="text" class="form-control" value="{$dias_economicos['dias_sobrantes']} días" disabled>
 html;
         }
 
         $otros_datos = ColaboradoresDao::getOtrosDatosPersonales($id);
-        $editarHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 5)==1)?  "" : "style=\"display:none;\"";
-        $eliminarHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 6)==1)? "" : "style=\"display:none;\"";
-        $tabla= '';
+        $editarHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 5) == 1) ?  "" : "style=\"display:none;\"";
+        $eliminarHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 6) == 1) ? "" : "style=\"display:none;\"";
+        $tabla = '';
         foreach ($documentos as $key => $value) {
 
             $delete = $value['id'];
             $filename = $value['filename'];
-            $tabla.=<<<html
+            $tabla .= <<<html
                 <tr>
                     <td><input type="checkbox" name="borrar[]" value="{$value['id']}"/></td>
                     <td> {$value['title']} </td>
@@ -1644,42 +1664,42 @@ html;
 
         $sOtros = "";
         foreach (ColaboradoresDao::getEstadoCivil() as $key => $value) {
-            $selected = ($estado_civil_combo['estado_civil']==$value['id_estado_civil'])? 'selected' : '';
-            $sOtros .=<<<html
+            $selected = ($estado_civil_combo['estado_civil'] == $value['id_estado_civil']) ? 'selected' : '';
+            $sOtros .= <<<html
         <option {$selected} value="{$value['id_estado_civil']}">{$value['descripcion']}</option>
 html;
         }
 
         $sUltimoGradoEstudios = "";
         foreach (ColaboradoresDao::getUltimoGradoEstudios() as $key => $value) {
-            $selected = ($estado_civil_combo['ultimo_grado_estudios']==$value['id_ultimo_grado_estudios'])? 'selected' : '';
-            $sUltimoGradoEstudios.=<<<html
+            $selected = ($estado_civil_combo['ultimo_grado_estudios'] == $value['id_ultimo_grado_estudios']) ? 'selected' : '';
+            $sUltimoGradoEstudios .= <<<html
         <option {$selected} value="{$value['id_ultimo_grado_estudios']}">{$value['descripcion']}</option>
 html;
         }
 
-        $pdfHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 2)==1)?  "" : "style=\"display:none;\"";
-        $excelHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 3)==1)? "" : "style=\"display:none;\"";
-        $agregarHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 4)==1)? "" : "style=\"display:none;\"";
-        View::set('pdfHidden',$pdfHidden);
-        View::set('excelHidden',$excelHidden);
-        View::set('agregarHidden',$agregarHidden);
-        View::set('editarHidden',$editarHidden);
-        View::set('eliminarHidden',$eliminarHidden);
-        View::set('tabla_economicos',$tabla_economicos);
-        View::set('accidentes',$accidentes);
-        View::set('trabaja_seguridad',$trabaja_seguridad);
-        View::set('accidentes_count',$accidentes_count);
-        View::set('incapacidades_count',$incapacidades_count);
-        View::set('tabla',$tabla);
-        View::set('sOtros',$sOtros);
+        $pdfHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 2) == 1) ?  "" : "style=\"display:none;\"";
+        $excelHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 3) == 1) ? "" : "style=\"display:none;\"";
+        $agregarHidden = (Controller::getPermisosUsuario($usuario, "seccion_departamentos", 4) == 1) ? "" : "style=\"display:none;\"";
+        View::set('pdfHidden', $pdfHidden);
+        View::set('excelHidden', $excelHidden);
+        View::set('agregarHidden', $agregarHidden);
+        View::set('editarHidden', $editarHidden);
+        View::set('eliminarHidden', $eliminarHidden);
+        View::set('tabla_economicos', $tabla_economicos);
+        View::set('accidentes', $accidentes);
+        View::set('trabaja_seguridad', $trabaja_seguridad);
+        View::set('accidentes_count', $accidentes_count);
+        View::set('incapacidades_count', $incapacidades_count);
+        View::set('tabla', $tabla);
+        View::set('sOtros', $sOtros);
 
         $colaborador = ColaboradoresDao::getById($id);
 
         $sStatus = "";
         foreach (ColaboradoresDao::getStatus() as $key => $value) {
-            $selected = ($value['catalogo_status_id'] == $colaborador['status'])? 'selected' : '';
-            $sStatus .=<<<html
+            $selected = ($value['catalogo_status_id'] == $colaborador['status']) ? 'selected' : '';
+            $sStatus .= <<<html
         <option {$selected} value="{$value['catalogo_status_id']}">{$value['nombre']}</option>
 html;
         }
@@ -1691,46 +1711,46 @@ html;
 
         $sArchivos = "";
         foreach (ColaboradoresDao::getArchivo($id) as $key => $value) {
-            $selected = ($archivo['id_archivo']==$value['id_archivo'])? 'selected' : '';
-            $sArchivos.=<<<html
+            $selected = ($archivo['id_archivo'] == $value['id_archivo']) ? 'selected' : '';
+            $sArchivos .= <<<html
         <option {$selected} value="{$value['id_archivo']}">{$value['Descripcion']}</option>
 html;
         }
 
         $sDocu = "";
         foreach (ColaboradoresDao::getDoc() as $key => $value) {
-            $selected = ($value['id_documento_obtenido']==$value['nombre'])? 'selected' : '';
-            $sDocu.=<<<html
+            $selected = ($value['id_documento_obtenido'] == $value['nombre']) ? 'selected' : '';
+            $sDocu .= <<<html
         <option {$selected} value="{$value['id_documento_obtenido']}">{$value['nombre']}</option>
 html;
         }
 
         $sCompetencia = "";
         foreach (ColaboradoresDao::getCompetencias($id) as $key => $value) {
-            $selected = ($value['catalogo_competencia_id']==$value['nombre'])? 'selected' : '';
-            $sCompetencia.=<<<html
+            $selected = ($value['catalogo_competencia_id'] == $value['nombre']) ? 'selected' : '';
+            $sCompetencia .= <<<html
         <option {$selected} value="{$value['catalogo_competencia_id']}">{$value['nombre']}</option>
 html;
         }
 
         $sOcupacion = "";
         foreach (ColaboradoresDao::getOcupacion() as $key => $value) {
-            $selected = ($value['id_ocupacion']==$value['nombre'])? 'selected' : '';
-            $sOcupacion.=<<<html
+            $selected = ($value['id_ocupacion'] == $value['nombre']) ? 'selected' : '';
+            $sOcupacion .= <<<html
         <option {$selected} value="{$value['id_ocupacion']}">{$value['nombre']}</option>
 html;
         }
 
         $sGeneros = "";
         foreach (ColaboradoresDao::getGenero() as $key => $value) {
-            $selected = ($value['id_genero']==$value['nombre'])? 'selected' : '';
-            $sGeneros.=<<<html
+            $selected = ($value['id_genero'] == $value['nombre']) ? 'selected' : '';
+            $sGeneros .= <<<html
         <option {$selected} value="{$value['id_genero']}">{$value['nombre']}</option>
 html;
         }
 
-        $id_colaborador= '';
-        $id_colaborador.=<<<html
+        $id_colaborador = '';
+        $id_colaborador .= <<<html
                  <div class="form-group">
                       <input type="hidden" class="form-control" id="id_colaborador" name="id_colaborador" value="$id">
                  </div>
@@ -1747,16 +1767,13 @@ html;
         $CuestionarioIngreso = ColaboradoresDao::getIngresoCuestionario($id);
 
         $CuestionarioIngreso_ = "";
-        if(empty($CuestionarioIngreso['id_cuestionario_colaborador']))
-        {
-            $CuestionarioIngreso_.=<<<html
+        if (empty($CuestionarioIngreso['id_cuestionario_colaborador'])) {
+            $CuestionarioIngreso_ .= <<<html
          <label>RESPONDIO EL CUESTIONARIO DE INGRESO A ADG: </label>
         <input id="calificacion_" type="text" class="form-control" value="SIN REGISTRO" disabled>
 html;
-        }
-        else
-        {
-            $CuestionarioIngreso_.=<<<html
+        } else {
+            $CuestionarioIngreso_ .= <<<html
              <label>RESPONDIO EL CUESTIONARIO DE INGRESO A ADG:</label>      
              <div class="col-md-9">  
              <input id="calificacion_" type="text" class="form-control" value="DISPONIBLE" disabled>
@@ -1768,15 +1785,12 @@ html;
 
         $DatoUltimoCurso = "";
 
-        if(empty($UltimoCurso['nombre_curso']))
-        {
-            $DatoUltimoCurso.=<<<html
+        if (empty($UltimoCurso['nombre_curso'])) {
+            $DatoUltimoCurso .= <<<html
                       <input type="text" class="form-control" value="SIN REGISTRO" disabled>
 html;
-        }
-        else
-        {
-            $DatoUltimoCurso.=<<<html
+        } else {
+            $DatoUltimoCurso .= <<<html
             <input type="text" class="form-control" value="{$UltimoCurso['nombre_curso']} - {$UltimoCurso['fecha']} "  disabled>
 html;
         }
@@ -1784,18 +1798,16 @@ html;
         $AscensoUltimo = ColaboradoresDao::getAscensoAllUltimo($id);
         $Prom = ColaboradoresDao::getPromedio($id);
         $Promedio = '';
-        if(!empty($Prom['promedio']))
-        {
-            $Promedio.=<<<html
+        if (!empty($Prom['promedio'])) {
+            $Promedio .= <<<html
                      {$Prom['promedio']} PUNTOS
 html;
         }
 
         $Prom_E = ColaboradoresDao::getPromedioE($id);
         $Promedio_E = '';
-        if(!empty($Prom_E['promedio']))
-        {
-            $Promedio_E.=<<<html
+        if (!empty($Prom_E['promedio'])) {
+            $Promedio_E .= <<<html
                 <div class="form-group col-md-9">
                 <label>PROMEDIO GENERAL DE LAS EVALUACIONES CÓMO CAPACITADOR: </label>
                 {$Prom_E['promedio']} PUNTOS
@@ -1808,21 +1820,18 @@ html;
         $Porcentaje = ColaboradoresDao::getPorcentajeAsistencia($id);
         $DatoPorcentaje = "";
 
-        if(empty($Porcentaje['porcentaje']))
-        {
-            $DatoPorcentaje.=<<<html
+        if (empty($Porcentaje['porcentaje'])) {
+            $DatoPorcentaje .= <<<html
                  <input type="text" class="form-control" value=" - %"disabled>
 html;
-        }
-        else
-        {
-            $DatoPorcentaje.=<<<html
+        } else {
+            $DatoPorcentaje .= <<<html
                  <input type="text" class="form-control" value="{$Porcentaje['porcentaje']} %" disabled>
 html;
         }
 
         foreach (ColaboradoresDao::getPuestosOcupados($id) as $key => $value) {
-            $tabla1.=<<<html
+            $tabla1 .= <<<html
                 <tr>
                     <td><input type="checkbox" name="borrar[]" value="{$value['id_puesto_ocupado']}"/></td>
                     <td> {$value['nombre_puesto']} </td>
@@ -1832,7 +1841,7 @@ html;
         }
         $tablaAccidentes = "";
         foreach (ColaboradoresDao::getAccidentesAll($id) as $key => $value) {
-            $tablaAccidentes.=<<<html
+            $tablaAccidentes .= <<<html
                 <tr>
                     <td><input type="checkbox" name="borrar[]" value="{$value['id_accidente']}"/></td>
                     <td> {$value['detalle_accidente']} </td>
@@ -1847,7 +1856,7 @@ html;
         $tablaCompetencias = "";
         foreach (ColaboradoresDao::getCompetenciasAll($id) as $key => $value) {
             $delete_competencia = $value['id_competencia_colaborador'];
-            $tablaCompetencias.=<<<html
+            $tablaCompetencias .= <<<html
                 <tr>
                     <td><input type="checkbox" name="borrar[]" value="{$value['id_competencia_colaborador']}"/></td>
                     <td> {$value['nombre']} </td>          
@@ -1863,26 +1872,23 @@ html;
         foreach (ColaboradoresDao::getAscensoAll($id) as $key => $value) {
             $delete_ascenso = $value['id_ascenso'];
             $estatus = "";
-            if($value['estatus'] == 1)
-            {
-                $estatus.=<<<html
+            if ($value['estatus'] == 1) {
+                $estatus .= <<<html
                <span class="bi bi-check-circle-fill fa-2x" style="color:#7DE300;"></span>
 html;
             }
-            if($value['estatus'] == 2)
-            {
-                $estatus.=<<<html
+            if ($value['estatus'] == 2) {
+                $estatus .= <<<html
                <span class="fa fa-clock-o fa-2x" style="color:#e28743;"></span>
 html;
             }
-            if($value['estatus'] == 3)
-            {
-                $estatus.=<<<html
+            if ($value['estatus'] == 3) {
+                $estatus .= <<<html
             <button type="button" class="btn btn-warning ver_archivo_personal" value="{$value['url']}"><span class="fa fa-toggle-on" style="color:white"></span></button>
 
 html;
             }
-            $tablaAscenso.=<<<html
+            $tablaAscenso .= <<<html
                 <tr>
                     <td><input type="checkbox" name="borrar[]" value="{$value['id_ascenso']}"/></td>
                     <td> {$value['puesto']} </td> 
@@ -1901,16 +1907,13 @@ html;
 
         foreach (ColaboradoresDao::getSueldos($id) as $key => $value) {
             $sueldo = '';
-            if($value['numero'] == 1)
-            {
-                $sueldo = "$".$value['sal_diario']." ---- Sueldo Inicial por día";
-            }
-            else
-            {
-                $sueldo = "$".$value['sal_diario']." por día";
+            if ($value['numero'] == 1) {
+                $sueldo = "$" . $value['sal_diario'] . " ---- Sueldo Inicial por día";
+            } else {
+                $sueldo = "$" . $value['sal_diario'] . " por día";
             }
 
-            $tablaSueldo.=<<<html
+            $tablaSueldo .= <<<html
                 
                 <tr>
                     <td> $sueldo </td>
@@ -1921,7 +1924,7 @@ html;
 
         foreach (ColaboradoresDao::getDomicilios($id) as $key => $value) {
             $delete_domicilio = $value['id_domicilio'];
-            $tabla2.=<<<html
+            $tabla2 .= <<<html
                 <tr>
                     <td><input type="checkbox" name="borrar[]" value="{$value['id_domicilio']}"/></td>
                     <td> {$value['direccion']} </td>
@@ -1937,9 +1940,9 @@ html;
             $firstDate  = new \DateTime($value['fecha_nacimiento']);
             $secondDate = new \DateTime(date("Y") . "-" . date("m") . "-" . date("d"));
             $intvl = $firstDate->diff($secondDate);
-            $fecha = $intvl->y . " año(s), " . $intvl->m." mes(es) y ".$intvl->d." dia(s)";
+            $fecha = $intvl->y . " año(s), " . $intvl->m . " mes(es) y " . $intvl->d . " dia(s)";
 
-            $tabla3.=<<<html
+            $tabla3 .= <<<html
                 <tr>   
                     <td><input type="checkbox" name="borrar[]" value="{$value['id_numero_hijos']}"/></td>
                     <td> {$value['ocupacion']} </td>
@@ -1956,7 +1959,7 @@ html;
         foreach (ColaboradoresDao::getEstudiosAdicionales($id) as $key => $value) {
             $delete_estudios = $value['id_estudio_adicional'];
 
-            $tabla4.=<<<html
+            $tabla4 .= <<<html
                 <tr>
                     <td><input type="checkbox" name="borrar[]" value="{$value['id_estudio_adicional']}"/></td>
                     <td> {$value['descripcion']} </td>
@@ -1972,69 +1975,49 @@ html;
             $fechamovimiento =  date('Y-m-d');
             $estatus_ = "";
             $asistencia_ = "";
-            if($value['fecha'] >= $fechamovimiento)
-            {
+            if ($value['fecha'] >= $fechamovimiento) {
                 $estatus_ = "POR REALIZAR";
                 $asistencia_ = "-";
-            }
-            else
-            {
-                if($value['fecha'] <= $fechamovimiento)
-                {
-                    if($value['asistencia'] == '1')
-                    {
-                        $asistencia_.=<<<html
+            } else {
+                if ($value['fecha'] <= $fechamovimiento) {
+                    if ($value['asistencia'] == '1') {
+                        $asistencia_ .= <<<html
                ASISTIO <span class="fa fa-check-circle" style="color:darkgreen"></span>
 html;
-                    }
-                    else
-                    {
-                        $asistencia_.=<<<html
+                    } else {
+                        $asistencia_ .= <<<html
                NO ASISTIO (falta) <span class="fa fa-times-circle" style="color:darkred"></span>
 html;
                     }
                     $estatus_ = "FINALIZADA";
                 }
-
             }
             $calificacion_requiere = '';
-            if($value['requierecal'] == '1')
-            {
-                $calificacion_requiere.=<<<html
+            if ($value['requierecal'] == '1') {
+                $calificacion_requiere .= <<<html
                SI
 html;
-            }
-            else
-            {
-                $calificacion_requiere.=<<<html
+            } else {
+                $calificacion_requiere .= <<<html
                NO
 html;
             }
 
             $cal = '';
-            if(!empty($value['calificacion']))
-            {
+            if (!empty($value['calificacion'])) {
                 $cal = $value['calificacion'];
-            }
-            else
-            {
-                if($value['requierecal'] == '0')
-                {
+            } else {
+                if ($value['requierecal'] == '0') {
                     $cal = 'NO APLICA';
-                }
-                else
-                {
-                    if(empty($value['calificacion']))
-                    {
+                } else {
+                    if (empty($value['calificacion'])) {
                         $cal = 'NO SE CARGO';
-                    }
-                    else
-                    {
-                        $cal= $value['calificacion'];
+                    } else {
+                        $cal = $value['calificacion'];
                     }
                 }
             }
-            $TablaCapacitaciones.=<<<html
+            $TablaCapacitaciones .= <<<html
                 <tr>
                     <td><input type="checkbox" name="borrar[]" value="{$value['id_numero_hijos']}"/></td>
                     <td> {$value['nombre_curso']} </td>
@@ -2051,29 +2034,24 @@ html;
         $CapacitadorUltimaEvaluacion = ColaboradoresDao::getUltimaEvaluacion($id);
 
         $ResultadoUltimaEvaluacion = '';
-        if($EsCapacitador['numero'] >= 1)
-        {
-            if($CapacitadorUltimaEvaluacion['calificacion'] = 0)
-            {
-                $ResultadoUltimaEvaluacion.=<<<html
+        if ($EsCapacitador['numero'] >= 1) {
+            if ($CapacitadorUltimaEvaluacion['calificacion'] = 0) {
+                $ResultadoUltimaEvaluacion .= <<<html
             <div class="form-group col-md-6">
             <label>CALIFICACIÓN DE LA ULTIMA EVALUACIÓN CÓMO EXPOSITOR:</label>
             <input type="text" class="form-control" id="resultado" value="ESTA CAPACITACIÓN NO TUVO EVALUACIÓN" disabled>
             </div>
 html;
-            }
-            else
-            {
-                if(empty($CapacitadorUltimaEvaluacion['calificacion_expositor'])){
-                    $ResultadoUltimaEvaluacion.=<<<html
+            } else {
+                if (empty($CapacitadorUltimaEvaluacion['calificacion_expositor'])) {
+                    $ResultadoUltimaEvaluacion .= <<<html
             <div class="form-group col-md-12">
             <label>CALIFICACIÓN DE LA ULTIMA EVALUACIÓN CÓMO EXPOSITOR:</label>
             <input type="text" class="form-control" id="resultado" value="{$CapacitadorUltimaEvaluacion['fecha']} - ({$CapacitadorUltimaEvaluacion['nombre_curso']}) - FALTA CARGAR LA CALIFICACIÓN" disabled>
             </div>
 html;
-                }
-                else{
-                    $ResultadoUltimaEvaluacion.=<<<html
+                } else {
+                    $ResultadoUltimaEvaluacion .= <<<html
             <div class="form-group col-md-6">
             <label>CALIFICACIÓN DE LA ULTIMA EVALUACIÓN CÓMO EXPOSITOR:</label>
             <input type="text" class="form-control" id="resultado" value="{$CapacitadorUltimaEvaluacion['fecha']} - ({$CapacitadorUltimaEvaluacion['nombre_curso']}) - {$CapacitadorUltimaEvaluacion['calificacion_expositor']}" disabled>
@@ -2081,33 +2059,28 @@ html;
 html;
                 }
             }
-
         }
 
         $TieneReportes = ColaboradoresDao::getTieneReportes($id);
         $repo = '';
-        if($TieneReportes['numero'] >= 1)
-        {
+        if ($TieneReportes['numero'] >= 1) {
             $repo = 'SI';
-        }
-        else{
+        } else {
             $repo = 'NO';
         }
 
         $repor =  '';
         $TieneReportesCuando = ColaboradoresDao::getUltimoReporte($id);
-        if(empty($TieneReportesCuando['fecha_alta']))
-        {
+        if (empty($TieneReportesCuando['fecha_alta'])) {
             $repor =  'SIN REGISTRO';
-        }
-        else{
-            $repor =  $TieneReportesCuando['fecha_alta'].' ('.$TieneReportesCuando['descripcion'].')';
+        } else {
+            $repor =  $TieneReportesCuando['fecha_alta'] . ' (' . $TieneReportesCuando['descripcion'] . ')';
         }
 
         $id_colaborador_ = $id;
 
-        View::set('sStatus',$sStatus);
-        View::set('nombrePuesto',$nombrePuesto);
+        View::set('sStatus', $sStatus);
+        View::set('nombrePuesto', $nombrePuesto);
         View::set('nombreEmpresa', $nombreEmpresa);
         View::set('nombreLector', $nombreLector);
         View::set('nombreUbicacion', $nombreUbicacion);
@@ -2138,20 +2111,21 @@ html;
         View::set('TablaCapacitaciones', $TablaCapacitaciones);
         View::set('tablaSueldo', $tablaSueldo);
         View::set('otros_datos', $otros_datos);
-        View::set('sArchivos',$sArchivos);
-        View::set('sDocu',$sDocu);
-        View::set('sOcupacion',$sOcupacion);
-        View::set('sUltimoGradoEstudios',$sUltimoGradoEstudios);
-        View::set('DatoUltimoCurso',$DatoUltimoCurso);
-        View::set('DatoPorcentaje',$DatoPorcentaje);
-        View::set('sGeneros',$sGeneros);
-        View::set('sCompetencia',$sCompetencia);
-        View::set('header',$this->_contenedor->header($extraHeader));
-        View::set('footer',$this->_contenedor->footer($extraFooter));
+        View::set('sArchivos', $sArchivos);
+        View::set('sDocu', $sDocu);
+        View::set('sOcupacion', $sOcupacion);
+        View::set('sUltimoGradoEstudios', $sUltimoGradoEstudios);
+        View::set('DatoUltimoCurso', $DatoUltimoCurso);
+        View::set('DatoPorcentaje', $DatoPorcentaje);
+        View::set('sGeneros', $sGeneros);
+        View::set('sCompetencia', $sCompetencia);
+        View::set('header', $this->_contenedor->header($extraHeader));
+        View::set('footer', $this->_contenedor->footer($extraFooter));
         View::render("colaboradores_view");
     }
 
-    public function DatosPersonalesEdit(){
+    public function DatosPersonalesEdit()
+    {
         $ingreso_proyecto = new \stdClass();
         $ingreso_proyecto->_id_ingreso_proyecto = MasterDom::getData('id_ingreso_proyecto');
 
@@ -2168,31 +2142,30 @@ html;
         $ingreso_proyecto->_nombre = $nombre;
 
         $id = ColaboradoresDao::updateIngresoProyecto($ingreso_proyecto);
-        if($id >= 1){
+        if ($id >= 1) {
             echo 'success';
-
         } else {
             echo 'No se actualizo nada';
         }
-
     }
 
-    public function OtrosDatosPersonalesEdit(){
+    public function OtrosDatosPersonalesEdit()
+    {
         $OtrosDatosPersonales = new \stdClass();
         $OtrosDatosPersonales->_catalogo_colaboradores_id = MasterDom::getData('id_colaborador_datos_personales');
         $OtrosDatosPersonales->_estado_civil = MasterDom::getData('estado_civil');
         $OtrosDatosPersonales->_ultimo_grado = MasterDom::getData('ultimo_grado');
 
         $id = ColaboradoresDao::updateOtrosDatosPersonales($OtrosDatosPersonales);
-        if($id >= 1){
+        if ($id >= 1) {
             echo 'success';
         } else {
             echo 'No se actualizo nada';
         }
-
     }
 
-    public function IncentivoEdit(){
+    public function IncentivoEdit()
+    {
         $incentivo = new \stdClass();
         $incentivo->_id_incentivo = MasterDom::getData('id_incentivo');
 
@@ -2202,16 +2175,15 @@ html;
 
 
         $id = ColaboradoresDao::updateIncentivo($incentivo);
-        if($id >= 1){
+        if ($id >= 1) {
             echo 'success';
-
         } else {
             echo 'No se actualizo nada';
         }
-
     }
 
-    public function EstudiosAdd(){
+    public function EstudiosAdd()
+    {
         $estudios = new \stdClass();
         $estudios->_id_colaborador = MasterDom::getData('id_cola');
 
@@ -2223,32 +2195,30 @@ html;
 
 
         $id = ColaboradoresDao::insertExtraEstudios($estudios);
-        if($id >= 1){
+        if ($id >= 1) {
             echo 'success';
-
         } else {
             echo 'No se actualizo nada';
         }
-
     }
 
-    public function CompetenciasAdd(){
+    public function CompetenciasAdd()
+    {
         $competencias = new \stdClass();
         $competencias->_id_colaborador = MasterDom::getData('id_colaborador_competencia');
 
         $competencias->_competencia = MasterDom::getData('competencia_c');
 
         $id = ColaboradoresDao::insertExtraCompetencia($competencias);
-        if($id >= 1){
+        if ($id >= 1) {
             echo 'success';
-
         } else {
             echo 'No se actualizo nada';
         }
-
     }
 
-    public function DomicilioAdd(){
+    public function DomicilioAdd()
+    {
         $domicilio = new \stdClass();
         $domicilio->_id_colaborador = MasterDom::getData('id_colaborador_domicilio');
 
@@ -2257,16 +2227,15 @@ html;
         $domicilio->_descripcion = $domicilio_descripcion;
 
         $id = ColaboradoresDao::insertExtraDomicilio($domicilio);
-        if($id >= 1){
+        if ($id >= 1) {
             echo 'success';
-
         } else {
             echo 'No se actualizo nada';
         }
-
     }
 
-    public function HijosAdd(){
+    public function HijosAdd()
+    {
         $hijos = new \stdClass();
         $hijos->_id_colaborador = MasterDom::getData('id_colaborador_hijos');
 
@@ -2275,16 +2244,15 @@ html;
         $hijos->_genero = MasterDom::getData('genero');
 
         $id = ColaboradoresDao::insertExtraHijos($hijos);
-        if($id >= 1){
+        if ($id >= 1) {
             echo 'success';
-
         } else {
             echo 'No se actualizo nada';
         }
-
     }
 
-    public function AscensoAdd(){
+    public function AscensoAdd()
+    {
         $ascenso = new \stdClass();
         $ascenso->_id_colaborador = MasterDom::getData('id_colaborador_ascenso');
 
@@ -2294,16 +2262,15 @@ html;
         $ascenso->_detalle = MasterDom::getData('detalle');
 
         $id = ColaboradoresDao::insertAscenso($ascenso);
-        if($id >= 1){
+        if ($id >= 1) {
             echo 'success';
-
         } else {
             echo 'No se actualizo nada';
         }
-
     }
 
-    public function generarPDF(){
+    public function generarPDF()
+    {
 
         $datos = array();
         $datos['e.catalogo_empresa_id'] = MasterDom::getData('catalogo_empresa_id');
@@ -2315,15 +2282,15 @@ html;
 
         $filtro = '';
         foreach ($datos as $key => $value) {
-            if($value!=''){
-                $filtro .= 'AND '.$key.' = '.$value.' ';
+            if ($value != '') {
+                $filtro .= 'AND ' . $key . ' = ' . $value . ' ';
             }
         }
         $ids = MasterDom::getDataAll('borrar');
-        $mpdf=new \mPDF('c');
+        $mpdf = new \mPDF('c');
         $mpdf->defaultPageNumStyle = 'I';
-        $mpdf->h2toc = array('H5'=>0,'H6'=>1);
-        $style =<<<html
+        $mpdf->h2toc = array('H5' => 0, 'H6' => 1);
+        $style = <<<html
       <style>
         .imagen{
           width:100%;
@@ -2359,14 +2326,14 @@ html;
       </style>
 html;
 
-        $tabla =<<<html
+        $tabla = <<<html
 <img class="imagen" src="/img/ag_logo.png"/>
 <br>
 <H1 class="titulo">Colaboradores</H1>
 
 html;
 
-        if($ids!=''){
+        if ($ids != '') {
             foreach ($ids as $key => $value) {
                 $colaborador = ColaboradoresDao::getByIdReporte($value);
 
@@ -2389,7 +2356,7 @@ html;
                 $colaborador['fecha_baja'] = utf8_encode($colaborador['fecha_baja']);
 
 
-                $tabla.=<<<html
+                $tabla .= <<<html
           <div style="page-break-inside: avoid; margin-bottom: 30px;">
             <table border="0" style="width:100%;text-align: center; ">
               <tr>
@@ -2420,11 +2387,11 @@ html;
                 <td colspan="2" style="background-color:#E4E4E4;"><strong>Horario</strong>
 html;
                 foreach (ColaboradoresDao::getHorarioById($colaborador['catalogo_colaboradores_id']) as $key => $horario) {
-                    $tabla .=<<<html
+                    $tabla .= <<<html
                       <span class="badge incentivo">{$horario['nombre']}</span>
 html;
                 }
-                $tabla .=<<<html
+                $tabla .= <<<html
                 </td>
               </tr>
               <tr>
@@ -2434,13 +2401,13 @@ html;
 
                 foreach (ColaboradoresDao::getIncentivoById($colaborador['catalogo_colaboradores_id']) as $key => $incentivo) {
                     $signo = "$";
-                    $tabla .=<<<html
+                    $tabla .= <<<html
                                 <br><span class="badge incentivo" style="background-color: {$incentivo['color']} ;">{$incentivo['nombre']}: {$signo}{$incentivo['cantidad']}</span>
 html;
                 }
 
 
-                $tabla .=<<<html
+                $tabla .= <<<html
 
                 </td>
               </tr>
@@ -2452,7 +2419,7 @@ html;
           </div>
 html;
             }
-        }else{
+        } else {
             foreach (ColaboradoresDao::getAllReporte($filtro) as $key => $colaborador) {
 
                 $colaborador['catalogo_colaboradores_id'] = utf8_encode($colaborador['catalogo_colaboradores_id']);
@@ -2474,7 +2441,7 @@ html;
                 $colaborador['fecha_baja'] = utf8_encode($colaborador['fecha_baja']);
 
 
-                $tabla.=<<<html
+                $tabla .= <<<html
         <div style="page-break-inside: avoid;">
           <table border="0" style="width:100%;text-align: center; margin-bottom: 30px;">
             <tr>
@@ -2506,11 +2473,11 @@ html;
               <td colspan="2" style="background-color:#E4E4E4;"><strong>Horario</strong>
 html;
                 foreach (ColaboradoresDao::getHorarioById($colaborador['catalogo_colaboradores_id']) as $key => $horario) {
-                    $tabla .=<<<html
+                    $tabla .= <<<html
                       <span class="badge incentivo" >{$horario['nombre']}</span>
 html;
                 }
-                $tabla .=<<<html
+                $tabla .= <<<html
               </td>
             </tr>
             <tr>
@@ -2520,13 +2487,13 @@ html;
 
                 foreach (ColaboradoresDao::getIncentivoById($colaborador['catalogo_colaboradores_id']) as $key => $incentivo) {
                     $signo = "$";
-                    $tabla .=<<<html
+                    $tabla .= <<<html
                 <br><span class="badge incentivo" style="background-color: {$incentivo['color']} ;">{$incentivo['nombre']}: {$signo}{$incentivo['cantidad']}</span>
 html;
                 }
 
 
-                $tabla .=<<<html
+                $tabla .= <<<html
               </td>
             </tr>
             <tr>
@@ -2538,13 +2505,14 @@ html;
 html;
             }
         }
-        $mpdf->WriteHTML($style,1);
-        $mpdf->WriteHTML($tabla,2);
+        $mpdf->WriteHTML($style, 1);
+        $mpdf->WriteHTML($tabla, 2);
         print_r($mpdf->Output());
         exit;
     }
 
-    public function generarExcel(){
+    public function generarExcel()
+    {
         $ids = MasterDom::getDataAll("borrar");
         $datos = array();
         $datos['e.catalogo_empresa_id'] = MasterDom::getData('catalogo_empresa_id');
@@ -2555,8 +2523,8 @@ html;
 
         $filtro = '';
         foreach ($datos as $key => $value) {
-            if($value!=''){
-                $filtro .= 'AND '.$key.' = '.$value.' ';
+            if ($value != '') {
+                $filtro .= 'AND ' . $key . ' = ' . $value . ' ';
             }
         }
 
@@ -2573,7 +2541,8 @@ html;
         $gdImage = imagecreatefrompng('http://52.32.114.10:8070/img/ag_logo.png');
         // Add a drawing to the worksheetecho date('H:i:s') . " Add a drawing to the worksheet\n";
         $objDrawing = new \PHPExcel_Worksheet_MemoryDrawing();
-        $objDrawing->setName('Sample image');$objDrawing->setDescription('Sample image');
+        $objDrawing->setName('Sample image');
+        $objDrawing->setDescription('Sample image');
         $objDrawing->setImageResource($gdImage);
         //$objDrawing->setRenderingFunction(\PHPExcel_Worksheet_MemoryDrawing::RENDERING_JPEG);
         $objDrawing->setRenderingFunction(\PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG);
@@ -2584,19 +2553,19 @@ html;
         $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 
         $estilo_titulo = array(
-            'font' => array('bold' => true,'name'=>'Verdana','size'=>12, 'color' => array('rgb' => 'FEAE41')),
+            'font' => array('bold' => true, 'name' => 'Verdana', 'size' => 12, 'color' => array('rgb' => 'FEAE41')),
             'alignment' => array('horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
             'type' => \PHPExcel_Style_Fill::FILL_SOLID
         );
 
         $estilo_encabezado = array(
-            'font' => array('bold' => true,'name'=>'Verdana','size'=>10, 'color' => array('rgb' => 'FEAE41')),
+            'font' => array('bold' => true, 'name' => 'Verdana', 'size' => 10, 'color' => array('rgb' => 'FEAE41')),
             'alignment' => array('horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
             'type' => \PHPExcel_Style_Fill::FILL_SOLID
         );
 
         $estilo_celda = array(
-            'font' => array('bold' => false,'name'=>'Verdana','size'=>8,'color' => array('rgb' => 'B59B68')),
+            'font' => array('bold' => false, 'name' => 'Verdana', 'size' => 8, 'color' => array('rgb' => 'B59B68')),
             'alignment' => array('horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
             'type' => \PHPExcel_Style_Fill::FILL_SOLID
 
@@ -2606,100 +2575,101 @@ html;
         $fila = 9;
         $adaptarTexto = true;
         $controlador = "Colaboradores";
-        $columna = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T');
-        $nombreColumna = array('Id','Nombre','Apellido Paterno','Apellido Materno','Status','Motivo','Sexo','Numero Identificador','RFC','Antiguedad','Ubicación','Economicos','Puesto','Horario','Fecha Alta','Fecha Baja','Pago','Incentivo','Opción','Número Antiguedad');
-        $nombreCampo = array('catalogo_colaboradores_id','nombre','apellido_paterno','apellido_materno','status','motivo','sexo','numero_identificador','rfc','catalogo_empresa_id','catalogo_ubicacion_id','catalogo_departamento_id','catalogo_puesto_id','catalogo_horario_id','fecha_alta','fecha_baja','pago','catalogo_incentivo','opcion','numero_empleado');
+        $columna = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T');
+        $nombreColumna = array('Id', 'Nombre', 'Apellido Paterno', 'Apellido Materno', 'Status', 'Motivo', 'Sexo', 'Numero Identificador', 'RFC', 'Antiguedad', 'Ubicación', 'Economicos', 'Puesto', 'Horario', 'Fecha Alta', 'Fecha Baja', 'Pago', 'Incentivo', 'Opción', 'Número Antiguedad');
+        $nombreCampo = array('catalogo_colaboradores_id', 'nombre', 'apellido_paterno', 'apellido_materno', 'status', 'motivo', 'sexo', 'numero_identificador', 'rfc', 'catalogo_empresa_id', 'catalogo_ubicacion_id', 'catalogo_departamento_id', 'catalogo_puesto_id', 'catalogo_horario_id', 'fecha_alta', 'fecha_baja', 'pago', 'catalogo_incentivo', 'opcion', 'numero_empleado');
 
-        $objPHPExcel->getActiveSheet()->SetCellValue('A'.$fila, 'Reporte de Colaboradores');
-        $objPHPExcel->getActiveSheet()->mergeCells('A'.$fila.':'.$columna[count($nombreColumna)-1].$fila);
-        $objPHPExcel->getActiveSheet()->getStyle('A'.$fila)->applyFromArray($estilo_titulo);
-        $objPHPExcel->getActiveSheet()->getStyle('A'.$fila)->getAlignment()->setWrapText($adaptarTexto);
+        $objPHPExcel->getActiveSheet()->SetCellValue('A' . $fila, 'Reporte de Colaboradores');
+        $objPHPExcel->getActiveSheet()->mergeCells('A' . $fila . ':' . $columna[count($nombreColumna) - 1] . $fila);
+        $objPHPExcel->getActiveSheet()->getStyle('A' . $fila)->applyFromArray($estilo_titulo);
+        $objPHPExcel->getActiveSheet()->getStyle('A' . $fila)->getAlignment()->setWrapText($adaptarTexto);
 
-        $fila +=1;
+        $fila += 1;
 
         /*COLUMNAS DE LOS DATOS DEL ARCHIVO EXCEL*/
         foreach ($nombreColumna as $key => $value) {
-            $objPHPExcel->getActiveSheet()->SetCellValue($columna[$key].$fila, $value);
-            $objPHPExcel->getActiveSheet()->getStyle($columna[$key].$fila)->applyFromArray($estilo_encabezado);
-            $objPHPExcel->getActiveSheet()->getStyle($columna[$key].$fila)->getAlignment()->setWrapText($adaptarTexto);
+            $objPHPExcel->getActiveSheet()->SetCellValue($columna[$key] . $fila, $value);
+            $objPHPExcel->getActiveSheet()->getStyle($columna[$key] . $fila)->applyFromArray($estilo_encabezado);
+            $objPHPExcel->getActiveSheet()->getStyle($columna[$key] . $fila)->getAlignment()->setWrapText($adaptarTexto);
             $objPHPExcel->getActiveSheet()->getColumnDimensionByColumn($key)->setAutoSize(true);
         }
-        $fila +=1; //fila donde comenzaran a escribirse los datos
+        $fila += 1; //fila donde comenzaran a escribirse los datos
 
-        if($ids!=''){
+        if ($ids != '') {
             foreach ($ids as $key => $value) {
                 $colaborador = ColaboradoresDao::getByIdReporte($value);
                 foreach ($nombreCampo as $llave => $campo) {
 
-                    if($campo == 'catalogo_incentivo'){
+                    if ($campo == 'catalogo_incentivo') {
                         $colaborador[$campo] = '';
                         foreach (ColaboradoresDao::getIncentivoById($colaborador['catalogo_colaboradores_id']) as $k => $v) {
-                            $colaborador[$campo] .= '('.$v['nombre'].': $'.$v['cantidad'].'),';
+                            $colaborador[$campo] .= '(' . $v['nombre'] . ': $' . $v['cantidad'] . '),';
                         }
                     }
 
-                    if($campo == 'catalogo_horario_id'){
+                    if ($campo == 'catalogo_horario_id') {
                         $colaborador[$campo] = '';
                         foreach (ColaboradoresDao::getHorarioById($colaborador['catalogo_colaboradores_id']) as $k => $v) {
-                            $colaborador[$campo] .= $v['nombre'].',';
+                            $colaborador[$campo] .= $v['nombre'] . ',';
                         }
                     }
-                    $objPHPExcel->getActiveSheet()->SetCellValue($columna[$llave].$fila, html_entity_decode($colaborador[$campo], ENT_QUOTES, "UTF-8"));
-                    $objPHPExcel->getActiveSheet()->getStyle($columna[$llave].$fila)->applyFromArray($estilo_celda);
-                    $objPHPExcel->getActiveSheet()->getStyle($columna[$llave].$fila)->getAlignment()->setWrapText($adaptarTexto);
+                    $objPHPExcel->getActiveSheet()->SetCellValue($columna[$llave] . $fila, html_entity_decode($colaborador[$campo], ENT_QUOTES, "UTF-8"));
+                    $objPHPExcel->getActiveSheet()->getStyle($columna[$llave] . $fila)->applyFromArray($estilo_celda);
+                    $objPHPExcel->getActiveSheet()->getStyle($columna[$llave] . $fila)->getAlignment()->setWrapText($adaptarTexto);
                 }
-                $fila +=1;
+                $fila += 1;
             }
-        }else{
+        } else {
             foreach (ColaboradoresDao::getAllReporte($filtro) as $key => $value) {
 
                 foreach ($nombreCampo as $llave => $campo) {
 
-                    if($campo == 'catalogo_incentivo'){
+                    if ($campo == 'catalogo_incentivo') {
                         $value[$campo] = '';
                         foreach (ColaboradoresDao::getIncentivoById($value['catalogo_colaboradores_id']) as $k => $v) {
-                            $value[$campo] .= '('.$v['nombre'].': $'.$v['cantidad'].'),';
+                            $value[$campo] .= '(' . $v['nombre'] . ': $' . $v['cantidad'] . '),';
                         }
                     }
 
-                    if($campo == 'catalogo_horario_id'){
+                    if ($campo == 'catalogo_horario_id') {
                         $value[$campo] = 'Horario';
                         foreach (ColaboradoresDao::getHorarioById($value['catalogo_colaboradores_id']) as $k => $v) {
-                            $value[$campo] .= $v['nombre'].',';
+                            $value[$campo] .= $v['nombre'] . ',';
                         }
                     }
 
-                    $objPHPExcel->getActiveSheet()->SetCellValue($columna[$llave].$fila, html_entity_decode($value[$campo], ENT_QUOTES, "UTF-8"));
-                    $objPHPExcel->getActiveSheet()->getStyle($columna[$llave].$fila)->applyFromArray($estilo_celda);
-                    $objPHPExcel->getActiveSheet()->getStyle($columna[$llave].$fila)->getAlignment()->setWrapText($adaptarTexto);
+                    $objPHPExcel->getActiveSheet()->SetCellValue($columna[$llave] . $fila, html_entity_decode($value[$campo], ENT_QUOTES, "UTF-8"));
+                    $objPHPExcel->getActiveSheet()->getStyle($columna[$llave] . $fila)->applyFromArray($estilo_celda);
+                    $objPHPExcel->getActiveSheet()->getStyle($columna[$llave] . $fila)->getAlignment()->setWrapText($adaptarTexto);
                 }
-                $fila +=1;
+                $fila += 1;
             }
         }
 
-        $objPHPExcel->getActiveSheet()->getStyle('A1:'.$columna[count($columna)-1].$fila)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        for ($i=0; $i <$fila ; $i++) {
+        $objPHPExcel->getActiveSheet()->getStyle('A1:' . $columna[count($columna) - 1] . $fila)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        for ($i = 0; $i < $fila; $i++) {
             $objPHPExcel->getActiveSheet()->getRowDimension($i)->setRowHeight(20);
         }
 
         $objPHPExcel->getActiveSheet()->setTitle('Reporte');
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="Reporte AG '.$controlador.'.xlsx"');
+        header('Content-Disposition: attachment;filename="Reporte AG ' . $controlador . '.xlsx"');
         header('Cache-Control: max-age=0');
         header('Cache-Control: max-age=1');
-        header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-        header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
-        header ('Cache-Control: cache, must-revalidate');
-        header ('Pragma: public');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        header('Cache-Control: cache, must-revalidate');
+        header('Pragma: public');
 
         \PHPExcel_Settings::setZipClass(\PHPExcel_Settings::PCLZIP);
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
         $objWriter->save('php://output');
     }
 
-    public function getHeader(){
-        $extraHeader =<<<html
+    public function getHeader()
+    {
+        $extraHeader = <<<html
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
       <style>
         .incentivo{margin: 2px;font: message-box;height:100%;}
@@ -2709,8 +2679,9 @@ html;
         return $extraHeader;
     }
 
-    public function getFooter(){
-        $extraFooter =<<<html
+    public function getFooter()
+    {
+        $extraFooter = <<<html
       <script>
         $(document).ready(function(){
 
@@ -2823,38 +2794,39 @@ html;
         return $extraFooter;
     }
 
-    public function alerta($reporte='', $parametro='add'){
+    public function alerta($reporte = '', $parametro = 'add')
+    {
         $regreso = "/Colaboradores/";
         $accion = '';
 
-        if($parametro == 'add')
+        if ($parametro == 'add')
             $accion = "agregado";
 
-        if($parametro == 'edit')
+        if ($parametro == 'edit')
             $accion = "modificado";
 
-        if($parametro == 'delete')
+        if ($parametro == 'delete')
             $accion = "eliminado";
 
         $mensaje = '';
 
-        if($reporte->_id_colaborador!= '' && intval($reporte->_id_colaborador) > 0){
-            $mensaje .=<<<html
+        if ($reporte->_id_colaborador != '' && intval($reporte->_id_colaborador) > 0) {
+            $mensaje .= <<<html
          <div class="alert alert-success">
           <strong>Success!</strong> Se ha $accion correctamente el colaborador con el Id $reporte->_id_colaborador.
         </div>
 html;
         }
 
-        if($reporte->_numero_empleado!=''){
-            if(intval($reporte->_numero_empleado) >= 0){
-                $mensaje .=<<<html
+        if ($reporte->_numero_empleado != '') {
+            if (intval($reporte->_numero_empleado) >= 0) {
+                $mensaje .= <<<html
            <div class="alert alert-success">
            <strong>Success!</strong> Se ha asigando correctamente el numero de empleado.
            </div>
 html;
-            }else{
-                $mensaje .=<<<html
+            } else {
+                $mensaje .= <<<html
            <div class="alert alert-error">
            <strong>Error!</strong> No se asigno el numero de empleado debido a un error.
            </div>
@@ -2862,16 +2834,16 @@ html;
             }
         }
 
-        if(count($reporte->_horarios)>0){
+        if (count($reporte->_horarios) > 0) {
             foreach ($reporte->_horarios as $key => $value) {
-                if(intval($value) >= 0){
-                    $mensaje .=<<<html
+                if (intval($value) >= 0) {
+                    $mensaje .= <<<html
              <div class="alert alert-success">
              <strong>Success!</strong> Se ha asigando correctamente el horario al colaborador.
              </div>
 html;
-                }else{
-                    $mensaje .=<<<html
+                } else {
+                    $mensaje .= <<<html
              <div class="alert alert-error">
              <strong>Error!</strong> No se asigno el horario debido a un error.
              </div>
@@ -2880,17 +2852,17 @@ html;
             }
         }
 
-        if(count($reporte->_incentivos)>0){
+        if (count($reporte->_incentivos) > 0) {
 
             foreach ($reporte->_incentivos as $key => $value) {
-                if(intval($value) >= 0){
-                    $mensaje .=<<<html
+                if (intval($value) >= 0) {
+                    $mensaje .= <<<html
              <div class="alert alert-success">
              <strong>Success!</strong> Se ha asigando correctamente el incentivo al colaborador.
              </div>
 html;
-                }else{
-                    $mensaje .=<<<html
+                } else {
+                    $mensaje .= <<<html
              <div class="alert alert-error">
              <strong>Error!</strong> No se asigno el incentivo debido a un error.
              </div>
@@ -2899,9 +2871,9 @@ html;
             }
         }
 
-        if($reporte->_ids >= 1){
+        if ($reporte->_ids >= 1) {
             $id = $reporte->_ids;
-            $mensaje .=<<<html
+            $mensaje .= <<<html
              <div class="alert alert-success">
              <strong>Success!</strong> Se ha eliminado el colaborador.
              </div>
@@ -2909,18 +2881,19 @@ html;
         }
 
 
-        View::set('class',$class);
-        View::set('regreso',$regreso);
-        View::set('mensaje',$mensaje);
-        View::set('header',$this->_contenedor->header($extraHeader));
-        View::set('footer',$this->_contenedor->footer($extraFooter));
+        View::set('class', $class);
+        View::set('regreso', $regreso);
+        View::set('mensaje', $mensaje);
+        View::set('header', $this->_contenedor->header($extraHeader));
+        View::set('footer', $this->_contenedor->footer($extraFooter));
         View::render("alertas");
     }
 
-    public function getColaboradorNombre($colab){
+    public function getColaboradorNombre($colab)
+    {
         $colaborador = '';
         foreach (ColaboradoresDao::getColaboradorNombre($colab) as $key => $value) {
-            $colaborador .=<<<html
+            $colaborador .= <<<html
             <h2>
                 <a>
                     <p class="excerpt"><span class="bi bi-file-person" style="color:grey"></span> | {$value['nombre']}</p>                                                     
@@ -2931,7 +2904,8 @@ html;
         return $colaborador;
     }
 
-    public function DocumentoAdd(){
+    public function DocumentoAdd()
+    {
         $documento = new \stdClass();
 
         $fechamovimiento =  date('Y-m-d H:i:s');
@@ -2947,14 +2921,13 @@ html;
 
 
             $fichero = $_FILES["file"];
-            move_uploaded_file($fichero["tmp_name"], "files/".$colaborador.$titulo.'.pdf');
+            move_uploaded_file($fichero["tmp_name"], "files/" . $colaborador . $titulo . '.pdf');
 
-            $documento->_url = $colaborador.$titulo.'.pdf';
+            $documento->_url = $colaborador . $titulo . '.pdf';
             $id = ColaboradoresDao::insert_documento($documento);
 
             if ($id) {
                 echo 'success';
-
             } else {
                 echo 'fail';
             }
@@ -2963,78 +2936,65 @@ html;
         }
     }
 
-    public function Delete(){
+    public function Delete()
+    {
         foreach (ColaboradoresDao::files($_POST['a']) as $key => $value) {
 
             $dato = ColaboradoresDao::delete($_POST['a']);
             $res = $value['filename'];
 
-            if($dato == 1)
-            {
+            if ($dato == 1) {
                 echo "true";
-                unlink("./files/".$res);
-            }
-            else
-            {
+                unlink("./files/" . $res);
+            } else {
                 echo "false";
             }
         }
-
-
     }
 
-    public function Delete_Estudios(){
+    public function Delete_Estudios()
+    {
         $dato = ColaboradoresDao::delete_estudios($_POST['a']);
 
-        if($dato >= 1)
-        {
+        if ($dato >= 1) {
             echo "true";
-        }
-        else
-        {
+        } else {
             echo "fail";
         }
     }
 
-    public function Delete_Hijos(){
+    public function Delete_Hijos()
+    {
         $dato = ColaboradoresDao::delete_hijos($_POST['a']);
 
-        if($dato >= 1)
-        {
+        if ($dato >= 1) {
             echo "true";
-        }
-        else
-        {
+        } else {
             echo "fail";
         }
     }
 
-    public function Delete_Competencia(){
+    public function Delete_Competencia()
+    {
         $dato = ColaboradoresDao::delete_competencia($_POST['a']);
 
-        if($dato >= 1)
-        {
+        if ($dato >= 1) {
             echo "true";
-        }
-        else
-        {
+        } else {
             echo "fail";
         }
     }
 
-    public function Delete_Domicilio(){
+    public function Delete_Domicilio()
+    {
         $dato = ColaboradoresDao::delete_domicilio($_POST['a']);
 
-        if($dato >= 1)
-        {
+        if ($dato >= 1) {
             echo "true";
-        }
-        else
-        {
+        } else {
             echo "fail";
         }
     }
-
 }
 
 
@@ -3043,7 +3003,8 @@ html;
 
 /////CLASS
 
-class PHPQRCode{ // class start
+class PHPQRCode
+{ // class start
 
     /** Configuración predeterminada */
     private $_config = array(
@@ -3058,274 +3019,292 @@ class PHPQRCode{ // class start
         'logo_opacity' => 100,              // opacidad del logo 0-100
         'logo_radius' => 0,                 // ángulo de empalme del logo 0-30
     );
-  
-    
-    public function set_config($config){
-  
+
+
+    public function set_config($config)
+    {
+
         // Permitir configurar la configuración
         $config_keys = array_keys($this->_config);
-  
+
         // Obtenga la configuración entrante y escriba la configuración
-        foreach($config_keys as $k=>$v){
-            if(isset($config[$v])){
+        foreach ($config_keys as $k => $v) {
+            if (isset($config[$v])) {
                 $this->_config[$v] = $config[$v];
             }
         }
-  
     }
-  
+
     /**
-           * Crea un código QR
+     * Crea un código QR
      * @param    Contenido del código QR String $ data
      * @return String
      */
-    public function generate($data){
-  
+    public function generate($data)
+    {
+
         // Crea una imagen de código QR temporal
         $tmp_qrcode_file = $this->create_qrcode($data);
-  
+
         // Combinar la imagen del código QR temporal y la imagen del logotipo
         $this->add_logo($tmp_qrcode_file);
-  
+
         // Eliminar la imagen del código QR temporal
-        if($tmp_qrcode_file!='' && file_exists($tmp_qrcode_file)){
+        if ($tmp_qrcode_file != '' && file_exists($tmp_qrcode_file)) {
             unlink($tmp_qrcode_file);
         }
-  
-        return file_exists($this->_config['dest_file'])? $this->_config['dest_file'] : '';
-  
+
+        return file_exists($this->_config['dest_file']) ? $this->_config['dest_file'] : '';
     }
-  
+
     /**
-           * Crea una imagen de código QR temporal
+     * Crea una imagen de código QR temporal
      * @param    Contenido del código QR String $ data
      * @return String
      */
-    private function create_qrcode($data){
-  
+    private function create_qrcode($data)
+    {
+
         // Imagen de código QR temporal
-        $tmp_qrcode_file = dirname(__FILE__).'/tmp_qrcode_'.time().mt_rand(100,999).'.png';
-  
+        $tmp_qrcode_file = dirname(__FILE__) . '/tmp_qrcode_' . time() . mt_rand(100, 999) . '.png';
+
         // Crea un código QR temporal
         \QRcode::png($data, $tmp_qrcode_file, $this->_config['ecc'], $this->_config['size'], 2);
-  
+
         // Regresar a la ruta temporal del código QR
-        return file_exists($tmp_qrcode_file)? $tmp_qrcode_file : '';
-  
+        return file_exists($tmp_qrcode_file) ? $tmp_qrcode_file : '';
     }
-  
+
     /**
-           * Combinar imágenes de códigos QR temporales e imágenes de logotipos
+     * Combinar imágenes de códigos QR temporales e imágenes de logotipos
      * @param  String $ tmp_qrcode_file Imagen de código QR temporal
      */
-    private function add_logo($tmp_qrcode_file){
-  
+    private function add_logo($tmp_qrcode_file)
+    {
+
         // Crear carpeta de destino
         $this->create_dirs(dirname($this->_config['dest_file']));
-  
+
         // Obtener el tipo de imagen de destino
         $dest_ext = $this->get_file_ext($this->_config['dest_file']);
-  
+
         // Necesito agregar logo
-        if(file_exists($this->_config['logo'])){
-  
+        if (file_exists($this->_config['logo'])) {
+
             // Crear objeto de imagen de código QR temporal
             $tmp_qrcode_img = imagecreatefrompng($tmp_qrcode_file);
-  
+
             // Obtener el tamaño de la imagen del código QR temporal
             list($qrcode_w, $qrcode_h, $qrcode_type) = getimagesize($tmp_qrcode_file);
-  
+
             // Obtener el tamaño y el tipo de la imagen del logotipo
             list($logo_w, $logo_h, $logo_type) = getimagesize($this->_config['logo']);
-  
+
             // Crea un objeto de imagen de logo
-            switch($logo_type){  
-                case 1: $logo_img = imagecreatefromgif($this->_config['logo']); break;  
-                case 2: $logo_img = imagecreatefromjpeg($this->_config['logo']); break;  
-                case 3: $logo_img = imagecreatefrompng($this->_config['logo']); break;  
-                default: return '';  
+            switch ($logo_type) {
+                case 1:
+                    $logo_img = imagecreatefromgif($this->_config['logo']);
+                    break;
+                case 2:
+                    $logo_img = imagecreatefromjpeg($this->_config['logo']);
+                    break;
+                case 3:
+                    $logo_img = imagecreatefrompng($this->_config['logo']);
+                    break;
+                default:
+                    return '';
             }
-  
+
             // Establezca el tamaño combinado de la imagen del logotipo, si no se establece, se calculará automáticamente de acuerdo con la proporción
-            $new_logo_w = isset($this->_config['logo_size'])? $this->_config['logo_size'] : (int)($qrcode_w/5);
-            $new_logo_h = isset($this->_config['logo_size'])? $this->_config['logo_size'] : (int)($qrcode_h/5);
-  
+            $new_logo_w = isset($this->_config['logo_size']) ? $this->_config['logo_size'] : (int)($qrcode_w / 5);
+            $new_logo_h = isset($this->_config['logo_size']) ? $this->_config['logo_size'] : (int)($qrcode_h / 5);
+
             // Ajusta la imagen del logo según el tamaño establecido
             $new_logo_img = imagecreatetruecolor($new_logo_w, $new_logo_h);
             imagecopyresampled($new_logo_img, $logo_img, 0, 0, 0, 0, $new_logo_w, $new_logo_h, $logo_w, $logo_h);
-  
+
             // Determinar si se necesita un golpe
-            if(!isset($this->_config['logo_outline_size']) || $this->_config['logo_outline_size']>0){
+            if (!isset($this->_config['logo_outline_size']) || $this->_config['logo_outline_size'] > 0) {
                 list($new_logo_img, $new_logo_w, $new_logo_h) = $this->image_outline($new_logo_img);
             }
-  
+
             // Determine si se necesitan esquinas redondeadas
-            if($this->_config['logo_radius']>0){
+            if ($this->_config['logo_radius'] > 0) {
                 $new_logo_img = $this->image_fillet($new_logo_img);
             }
-  
+
             // Combinar logotipo y código QR temporal
-            $pos_x = ($qrcode_w-$new_logo_w)/2;
-            $pos_y = ($qrcode_h-$new_logo_h)/2;
-  
+            $pos_x = ($qrcode_w - $new_logo_w) / 2;
+            $pos_y = ($qrcode_h - $new_logo_h) / 2;
+
             imagealphablending($tmp_qrcode_img, true);
-  
+
             // Combinar las imágenes y mantener su transparencia
             $dest_img = $this->imagecopymerge_alpha($tmp_qrcode_img, $new_logo_img, $pos_x, $pos_y, 0, 0, $new_logo_w, $new_logo_h, $this->_config['logo_opacity']);
-  
+
             // Generar imagen
-            switch($dest_ext){
-                case 1: imagegif($dest_img, $this->_config['dest_file'], $this->_config['quality']); break;
-                case 2: imagejpeg($dest_img, $this->_config['dest_file'], $this->_config['quality']); break;
-                case 3: imagepng($dest_img, $this->_config['dest_file'], (int)(($this->_config['quality']-1)/10)); break;
-            } 
-  
-        // No es necesario agregar logo
-        }else{
-  
+            switch ($dest_ext) {
+                case 1:
+                    imagegif($dest_img, $this->_config['dest_file'], $this->_config['quality']);
+                    break;
+                case 2:
+                    imagejpeg($dest_img, $this->_config['dest_file'], $this->_config['quality']);
+                    break;
+                case 3:
+                    imagepng($dest_img, $this->_config['dest_file'], (int)(($this->_config['quality'] - 1) / 10));
+                    break;
+            }
+
+            // No es necesario agregar logo
+        } else {
+
             $dest_img = imagecreatefrompng($tmp_qrcode_file);
-  
+
             // Generar imagen
-            switch($dest_ext){
-                case 1: imagegif($dest_img, $this->_config['dest_file'], $this->_config['quality']); break;
-                case 2: imagejpeg($dest_img, $this->_config['dest_file'], $this->_config['quality']); break;
-                case 3: imagepng($dest_img, $this->_config['dest_file'], (int)(($this->_config['quality']-1)/10)); break;
+            switch ($dest_ext) {
+                case 1:
+                    imagegif($dest_img, $this->_config['dest_file'], $this->_config['quality']);
+                    break;
+                case 2:
+                    imagejpeg($dest_img, $this->_config['dest_file'], $this->_config['quality']);
+                    break;
+                case 3:
+                    imagepng($dest_img, $this->_config['dest_file'], (int)(($this->_config['quality'] - 1) / 10));
+                    break;
             }
         }
-  
     }
-  
+
     /**
-           * Acaricia el objeto de la imagen
+     * Acaricia el objeto de la imagen
      * @param    Objeto de imagen Obj $ img
      * @return Array
      */
-    private function image_outline($img){
-  
+    private function image_outline($img)
+    {
+
         // Obtener ancho y alto de la imagen
         $img_w = imagesx($img);
         $img_h = imagesy($img);
-  
+
         // Calcula el tamaño del trazo, si no está configurado, se calculará automáticamente de acuerdo con la proporción
-        $bg_w = isset($this->_config['logo_outline_size'])? intval($img_w + $this->_config['logo_outline_size']) : $img_w + (int)($img_w/5);
-        $bg_h = isset($this->_config['logo_outline_size'])? intval($img_h + $this->_config['logo_outline_size']) : $img_h + (int)($img_h/5);
-  
+        $bg_w = isset($this->_config['logo_outline_size']) ? intval($img_w + $this->_config['logo_outline_size']) : $img_w + (int)($img_w / 5);
+        $bg_h = isset($this->_config['logo_outline_size']) ? intval($img_h + $this->_config['logo_outline_size']) : $img_h + (int)($img_h / 5);
+
         // Crea un objeto de mapa base
         $bg_img = imagecreatetruecolor($bg_w, $bg_h);
-  
+
         // Establecer el color del mapa base
         $rgb = $this->hex2rgb($this->_config['logo_outline_color']);
         $bgcolor = imagecolorallocate($bg_img, $rgb['r'], $rgb['g'], $rgb['b']);
-  
+
         // Rellena el color del mapa base
         imagefill($bg_img, 0, 0, $bgcolor);
-  
+
         // Combina la imagen y el mapa base para lograr el efecto de trazo
-        imagecopy($bg_img, $img, (int)(($bg_w-$img_w)/2), (int)(($bg_h-$img_h)/2), 0, 0, $img_w, $img_h);
-  
+        imagecopy($bg_img, $img, (int)(($bg_w - $img_w) / 2), (int)(($bg_h - $img_h) / 2), 0, 0, $img_w, $img_h);
+
         $img = $bg_img;
-  
+
         return array($img, $bg_w, $bg_h);
-  
     }
-  
-    
-    private function image_fillet($img){
-  
+
+
+    private function image_fillet($img)
+    {
+
         // Obtener ancho y alto de la imagen
         $img_w = imagesx($img);
         $img_h = imagesy($img);
-  
+
         // Crea un objeto de imagen con esquinas redondeadas
         $new_img = imagecreatetruecolor($img_w, $img_h);
-  
+
         // guarda el canal transparente
         imagesavealpha($new_img, true);
-  
+
         // Rellena la imagen con esquinas redondeadas
         $bg = imagecolorallocatealpha($new_img, 255, 255, 255, 127);
         imagefill($new_img, 0, 0, $bg);
-  
+
         // Radio de redondeo
         $r = $this->_config['logo_radius'];
-  
+
         // Realizar procesamiento de esquinas redondeadas
-        for($x=0; $x<$img_w; $x++){
-            for($y=0; $y<$img_h; $y++){
+        for ($x = 0; $x < $img_w; $x++) {
+            for ($y = 0; $y < $img_h; $y++) {
                 $rgb = imagecolorat($img, $x, $y);
-  
+
                 // No en las cuatro esquinas de la imagen, dibuja directamente
-                if(($x>=$r && $x<=($img_w-$r)) || ($y>=$r && $y<=($img_h-$r))){
+                if (($x >= $r && $x <= ($img_w - $r)) || ($y >= $r && $y <= ($img_h - $r))) {
                     imagesetpixel($new_img, $x, $y, $rgb);
-  
-                // En las cuatro esquinas de la imagen, elige dibujar
-                }else{
+
+                    // En las cuatro esquinas de la imagen, elige dibujar
+                } else {
                     // arriba a la izquierda
                     $ox = $r; // centro x coordenada
                     $oy = $r; // centro coordenada y
-                    if( ( ($x-$ox)*($x-$ox) + ($y-$oy)*($y-$oy) ) <= ($r*$r) ){
+                    if ((($x - $ox) * ($x - $ox) + ($y - $oy) * ($y - $oy)) <= ($r * $r)) {
                         imagesetpixel($new_img, $x, $y, $rgb);
                     }
-  
+
                     // parte superior derecha
-                    $ox = $img_w-$r; // centro x coordenada
+                    $ox = $img_w - $r; // centro x coordenada
                     $oy = $r;        // centro coordenada y
-                    if( ( ($x-$ox)*($x-$ox) + ($y-$oy)*($y-$oy) ) <= ($r*$r) ){
+                    if ((($x - $ox) * ($x - $ox) + ($y - $oy) * ($y - $oy)) <= ($r * $r)) {
                         imagesetpixel($new_img, $x, $y, $rgb);
                     }
-  
+
                     // abajo a la izquierda
                     $ox = $r;        // centro x coordenada
-                    $oy = $img_h-$r; // centro coordenada y
-                    if( ( ($x-$ox)*($x-$ox) + ($y-$oy)*($y-$oy) ) <= ($r*$r) ){
+                    $oy = $img_h - $r; // centro coordenada y
+                    if ((($x - $ox) * ($x - $ox) + ($y - $oy) * ($y - $oy)) <= ($r * $r)) {
                         imagesetpixel($new_img, $x, $y, $rgb);
                     }
-  
+
                     // abajo a la derecha
-                    $ox = $img_w-$r; // centro x coordenada
-                    $oy = $img_h-$r; // centro coordenada y
-                    if( ( ($x-$ox)*($x-$ox) + ($y-$oy)*($y-$oy) ) <= ($r*$r) ){
+                    $ox = $img_w - $r; // centro x coordenada
+                    $oy = $img_h - $r; // centro coordenada y
+                    if ((($x - $ox) * ($x - $ox) + ($y - $oy) * ($y - $oy)) <= ($r * $r)) {
                         imagesetpixel($new_img, $x, $y, $rgb);
                     }
-  
                 }
-  
             }
         }
-  
+
         return $new_img;
-  
     }
-  
+
     // Combinar las imágenes y mantener su transparencia
-    private function imagecopymerge_alpha($dest_img, $src_img, $pos_x, $pos_y, $src_x, $src_y, $src_w, $src_h, $opacity){
-  
+    private function imagecopymerge_alpha($dest_img, $src_img, $pos_x, $pos_y, $src_x, $src_y, $src_w, $src_h, $opacity)
+    {
+
         $w = imagesx($src_img);
         $h = imagesy($src_img);
-  
+
         $tmp_img = imagecreatetruecolor($src_w, $src_h);
-  
+
         imagecopy($tmp_img, $dest_img, 0, 0, $pos_x, $pos_y, $src_w, $src_h);
         imagecopy($tmp_img, $src_img, 0, 0, $src_x, $src_y, $src_w, $src_h);
         imagecopymerge($dest_img, $tmp_img, $pos_x, $pos_y, $src_x, $src_y, $src_w, $src_h, $opacity);
-  
+
         return $dest_img;
-  
     }
-  
-    
-    private function create_dirs($path){
-  
-        if(!is_dir($path)){
+
+
+    private function create_dirs($path)
+    {
+
+        if (!is_dir($path)) {
             return mkdir($path, 0777, true);
         }
-  
+
         return true;
-  
     }
-  
-   
-    private function hex2rgb($hexcolor){
+
+
+    private function hex2rgb($hexcolor)
+    {
         $color = str_replace('#', '', $hexcolor);
         if (strlen($color) > 3) {
             $rgb = array(
@@ -3345,15 +3324,16 @@ class PHPQRCode{ // class start
         }
         return $rgb;
     }
-  
-     
-    private function get_file_ext($file){
+
+
+    private function get_file_ext($file)
+    {
         $filename = basename($file);
-        list($name, $ext)= explode('.', $filename);
-  
+        list($name, $ext) = explode('.', $filename);
+
         $ext_type = 0;
-  
-        switch(strtolower($ext)){
+
+        switch (strtolower($ext)) {
             case 'jpg':
             case 'jpeg':
                 $ext_type = 2;
@@ -3365,9 +3345,7 @@ class PHPQRCode{ // class start
                 $ext_type = 3;
                 break;
         }
-  
+
         return $ext_type;
     }
-  
-  } // class end
-  
+} // class end

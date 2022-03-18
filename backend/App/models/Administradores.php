@@ -13,7 +13,7 @@ class Administradores implements Crud{
             SELECT a.utilerias_administradores_id, a.nombre, a.usuario, a.perfil_id, a.descripcion, a.status, a.code, s.nombre AS nombre_status, p.nombre AS nombre_perfil,
             per.permisos_globales, per.seccion_principal, per.seccion_asistentes, per.seccion_bu, per.seccion_lineas, per.seccion_posiciones,
             per.seccion_restaurantes, per.seccion_gafete, per.seccion_vuelos, per.seccion_pickup, per.seccion_habitaciones, per.seccion_cenas, per.seccion_vacunacion,
-            per.seccion_pruebas_covid, per.seccion_sorteo_prueba_covid, per.seccion_utilerias, per.seccion_configuracion
+            per.seccion_pruebas_covid, per.seccion_asistencias, per.seccion_utilerias, per.seccion_configuracion
             FROM utilerias_administradores AS a
             INNER JOIN utilerias_permisos AS per ON (a.usuario = per.usuario)
             INNER JOIN catalogo_status AS s ON (a.status = s.catalogo_status_id)
@@ -53,6 +53,16 @@ sql;
     return $mysqli->queryOne($query);
     
 }
+
+public static function getAllWithOutLineaByCode($code){
+  $mysqli = Database::getInstance();
+  $query=<<<sql
+  SELECT * from utilerias_administradores WHERE code  = '$code'
+sql;
+  return $mysqli->queryOne($query);
+  
+}
+
     public static function insert($administradores){
 	    $mysqli = Database::getInstance(1);
         $query=<<<sql
@@ -83,7 +93,7 @@ sql;
 
         $mysqli = Database::getInstance(1);
         $query=<<<sql
-        INSERT INTO utilerias_permisos (usuario, permisos_globales, seccion_principal, seccion_asistentes, 	seccion_bu, seccion_lineas, seccion_posiciones, seccion_restaurantes, seccion_gafete, seccion_vuelos, seccion_pickup, seccion_habitaciones, seccion_cenas, seccion_vacunacion, seccion_pruebas_covid, seccion_sorteo_prueba_covid, seccion_utilerias, seccion_configuracion) VALUES (:usuario, :permisos_globales, :seccion_principal, :seccion_asistentes, :seccion_bu, :seccion_lineas, :seccion_posiciones, :seccion_restaurantes, :seccion_gafete, :seccion_vuelos, :seccion_pickup, :seccion_habitaciones, :seccion_cenas, :seccion_vacunacion, :seccion_pruebas_covid, :seccion_sorteo_prueba_covid, :seccion_utilerias, :seccion_configuracion);
+        INSERT INTO utilerias_permisos (usuario, permisos_globales, seccion_principal, seccion_asistentes, 	seccion_bu, seccion_lineas, seccion_posiciones, seccion_restaurantes, seccion_gafete, seccion_vuelos, seccion_pickup, seccion_habitaciones, seccion_cenas, seccion_vacunacion, seccion_pruebas_covid, seccion_asistencias, seccion_utilerias, seccion_configuracion) VALUES (:usuario, :permisos_globales, :seccion_principal, :seccion_asistentes, :seccion_bu, :seccion_lineas, :seccion_posiciones, :seccion_restaurantes, :seccion_gafete, :seccion_vuelos, :seccion_pickup, :seccion_habitaciones, :seccion_cenas, :seccion_vacunacion, :seccion_pruebas_covid, :seccion_asistencias, :seccion_utilerias, :seccion_configuracion);
 sql;
         $parametros = array(
           ':usuario'=>$permisos->_usuario,
@@ -101,7 +111,7 @@ sql;
           ':seccion_cenas'=>$permisos->_seccion_cenas,
           ':seccion_vacunacion'=>$permisos->_seccion_vacunacion,
           ':seccion_pruebas_covid'=>$permisos->_seccion_pruebas_covid,
-          ':seccion_sorteo_prueba_covid'=>$permisos->_seccion_sorteo_prueba_covid,
+          ':seccion_asistencias'=>$permisos->_seccion_sorteo_prueba_covid,
           ':seccion_utilerias'=>$permisos->_seccion_utilerias,
           ':seccion_configuracion'=>$permisos->_seccion_configuracion
         );

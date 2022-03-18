@@ -35,7 +35,9 @@ class RegistroAsistencia{
         <link id="pagestyle" href="/assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
         <link rel="stylesheet" href="/css/alertify/alertify.core.css" />
         <link rel="stylesheet" href="/css/alertify/alertify.default.css" id="toggleCSS" />
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
 
 html;
@@ -69,6 +71,7 @@ html;
 html;
 
         $codigo = RegistroAsistenciaDao::getById($id);
+
         foreach($codigo as $key => $value)
         {
             if($value['id_asistencia'] != '')
@@ -82,41 +85,6 @@ html;
             }
         }
 
-        $info_asist = RegistroAsistenciaDao::getAsistentes();
-        $card_asist = '';
-
-        foreach ($info_asist as $key => $value) {
-            $card_asist .=<<<html
-            <div class="col-5">
-html;
-            if ($value['imagen'] != '') {
-                $card_asist .=<<<html
-                
-                <img class="avatar avatar-xxl me-3" src="/img/{$value['imagen']}">
-html;
-            } else {
-            $card_asist .=<<<html
-                <img class="avatar avatar-xxl me-3" src="/img/user.png">
-html;
-            }
-
-            $card_asist .=<<<html
-                <span>{$value['nombre_completo']}</span>
-            </div>
-
-            <div class="col-7">
-                <div class="card-body text-center">
-                    <span style="font-size: xxx-large;">{$value['clave']}</span>
-                </div>
-                <br>
-                <div class="text-center">
-                    <button class="btn btn-info">Registrar Asistente</button>
-                </div>
-            </div>
-html;
-        }
-
-        
 
         if($flag == true)
         {
@@ -126,23 +94,36 @@ html;
             View::set('fecha_asistencia',$fecha_asistencia);
             View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
             View::set('hora_asistencia_fin',$hora_asistencia_fin);
-            View::set('card_asist',$card_asist);
             View::set('header',$extraHeader);
             View::set('footer',$extraFooter);
             View::render("registro_asistencias_codigo");
-
-            // View::render("asistencias_all");
         }
         else
         {
             View::render("asistencias_panel_registro");
         }
-
-
-
-
-
-
     }
 
+    public function registroAsistencia($clave){
+           
+        $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
+
+        print($user_clave[0].' ');
+
+        if($user_clave){
+            // echo "success";
+             $data = [
+                 'datos'=>$user_clave,
+                 'status'=>'success'
+             ];
+            //header("Location: /Home");
+        }else{
+            $data = [
+                'status'=>'fail'
+            ];
+            // header("Location: /Home/");
+        }
+
+        echo json_encode($data);
+    }
 }

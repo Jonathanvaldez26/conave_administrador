@@ -32,4 +32,20 @@ sql;
         return $mysqli->queryAll($query);
     }
 
+    public static function getInfo($clave){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT * FROM registros_acceso WHERE clave = '$clave'
+sql;
+        return $mysqli->queryAll($query);
+    }
+
+//     public static function addRegister($asistencia){
+//         $mysqli = Database::getInstance();
+//         $query=<<<sql
+//         INSERT INTO `registros_asistencia` (`id_asistencias`, `utilerias_asistentes_id`, `fecha_alta`, `status`) 
+//         VALUES (1,'[value-2]','[value-3]','[value-4]','[value-5]')
+// sql;
+//         return $mysqli->queryAll($query);
+//     }
 }

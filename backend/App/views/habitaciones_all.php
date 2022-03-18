@@ -24,7 +24,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item" <?=$permisoGlobalHidden;?>>
                     <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link" aria-controls="catalogos" role="button" aria-expanded="true">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-sitemap" style="color: #344767"></span>
@@ -69,7 +69,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$asistentesHidden;?>>
                     <a href="/Asistentes/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-users" style="color: #344767"></span>
@@ -77,7 +77,7 @@
                         <span class="nav-link-text ms-1">Asistentes</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$vuelosHidden;?>>
                     <a href="/Vuelos/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-plane" style="color: #344767"></span>
@@ -85,7 +85,7 @@
                         <span class="nav-link-text ms-1">Vuelos</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$pickUpHidden;?>>
                     <a href="/PickUp/" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-bus" style="color: #344767"></span>
@@ -93,7 +93,7 @@
                         <span class="nav-link-text ms-1">PickUp</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$habitacionesHidden;?>>
                     <a href="#authExamples" class="nav-link active" aria-controls="authExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-hotel" style="color: #fff"></span>
@@ -101,7 +101,7 @@
                         <span class="nav-link-text ms-1">Habitaciones</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$cenasHidden;?>>
                     <a href="/Cenas/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-coffee" style="color: #344767"></span>
@@ -109,11 +109,19 @@
                         <span class="nav-link-text ms-1">Cenas</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$aistenciasHidden;?>>
+                    <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <span class="fa fa-bell" style="color: #344767"></span>
+                        </div>
+                        <span class="nav-link-text ms-1">Asistencias</span>
+                    </a>
+                </li>
+                <li class="nav-item" <?=$vacunacionHidden;?>>
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$vacunacionHidden;?>>
                     <a href="/ComprobantesVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-shield-virus" style="color: #344767"></span>
@@ -121,7 +129,7 @@
                         <span class="nav-link-text ms-1">Comprobante Vacunación</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$pruebasHidden;?>>
                     <a href="/PruebasCovidUsuarios/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-virus-slash" style="color: #344767"></span>
@@ -129,19 +137,12 @@
                         <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="/PruebasCovidSitio/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
-                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
-                            <span class="fa fa-viruses" style="color: #344767"></span>
-                        </div>
-                        <span class="nav-link-text ms-1">Pruebas Covid en Sitio</span>
-                    </a>
-                </li>
-                <li class="nav-item">
+               
+                <li class="nav-item" <?=$configuracionHidden;?>>
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$configuracionHidden;?>>
                     <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-tools" style="color: #344767"></span>
@@ -149,7 +150,7 @@
                         <span class="nav-link-text ms-1">Configuración</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" <?=$utileriasHidden;?>>
                     <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-user-circle-o" style="color: #344767"></span>

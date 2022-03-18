@@ -48,8 +48,8 @@ class Contenedor extends Controller{
 
         $pruebas_covid = Controller::getPermisosUsuario($usuario, "seccion_pruebas_covid", 1);
         $pruebas_covidAdd = Controller::getPermisosUsuario($usuario, "seccion_pruebas_covid", 1);
-        $sorteo_prueba_covid = Controller::getPermisosUsuario($usuario, "seccion_sorteo_prueba_covid", 1);
-        $sorteo_prueba_covidAdd = Controller::getPermisosUsuario($usuario, "seccion_sorteo_prueba_covid", 1);
+        $asistencias = Controller::getPermisosUsuario($usuario, "seccion_asistencias", 1);
+        $asistenciasAdd = Controller::getPermisosUsuario($usuario, "seccion_asistencias", 1);
         $utilerias = Controller::getPermisosUsuario($usuario, "seccion_utilerias", 1);
         $utileriasAdd = Controller::getPermisosUsuario($usuario, "seccion_utilerias", 1);
         $configuracion = Controller::getPermisosUsuario($usuario, "seccion_configuracion", 1);
@@ -120,6 +120,7 @@ class Contenedor extends Controller{
            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+           
             <!-- TEMPLATE VIEJO-->
 
             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />

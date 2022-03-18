@@ -3,6 +3,7 @@ namespace App\models;
 defined("APPPATH") OR die("Access denied");
 
 use \Core\Database;
+use \Core\MasterDom;
 use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
 
@@ -10,7 +11,7 @@ class Asistencias implements Crud{
     public static function getAll(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT * FROM asistencias
+      SELECT * FROM asistencias;
 sql;
       return $mysqli->queryAll($query);
         
@@ -18,29 +19,27 @@ sql;
     public static function getById($id){
          
     }
-    public static function insert($asistentes){
+    public static function insert($data){
         $mysqli = Database::getInstance(1);
         $query=<<<sql
-            INSERT INTO asistencias(clave, nombre, descripcion, fecha_asistencia, hora_asistencia_inicio, hora_asistencia_fin, url, utilerias_administrador_id)
-            VALUES(:clave, :nombre, :descripcion, :fecha_asistencia, :hora_asistencia_inicio, :hora_asistencia_fin, :url, :utilerias_administrador_id)
-    sql;
+            INSERT INTO asistencias(id_asistencia, clave, nombre, descripcion, fecha_asistencia, hora_asistencia_inicio, hora_asistencia_fin, url_asistencia)
+            VALUES(null, :clave, :nombre, :descripcion, :fecha_asistencia, :hora_asistencia_inicio, :hora_asistencia_fin, :url_asistencia);
+sql;
             $parametros = array(
-            ':clave'=>$asistentes->_clave,
-            ':nombre'=>$asistentes->_nombre,
-            ':descripcion'=>$asistentes->_descripcion,
-            ':fecha_asistencia'=>$asistentes->_fecha_asistencia,
-            ':hora_asistencia_inicio'=>$asistentes->_hora_asistencia_inicio,
-            ':hora_asistencia_fin'=>$asistentes->_hora_asistencia_fin,
-            ':url'=>$asistentes->_url,
-            ':utilerias_administrador_id'=>$asistentes->_utilerias_administrador_id
+            
+            ':clave'=>$data->_clave,
+            ':nombre'=>$data->_nombre,
+            ':descripcion'=>$data->_descripcion,
+            ':fecha_asistencia'=>$data->_fecha_asistencia,
+            ':hora_asistencia_inicio'=>$data->_hora_asistencia_inicio,
+            ':hora_asistencia_fin'=>$data->_hora_asistencia_fin,
+            ':url_asistencia'=>$data->_url_asistencia
+           
             );
  
             $id = $mysqli->insert($query,$parametros);
 
-            $accion = new \stdClass();
-            $accion->_sql= $query;
-            $accion->_parametros = $parametros;
-            $accion->_id = $id;
+
 
             //UtileriasLog::addAccion($accion);
             return $id;

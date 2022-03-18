@@ -535,68 +535,52 @@
                     </span>
                 </div>
                 <div class="modal-body">
-                    <p style="font-size: 12px">A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p>
-                    <hr>
-                    <form method="POST" enctype="multipart/form-data" id="form_vuelo_uno">
+                    <!--<p style="font-size: 12px">A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p>-->
+                    <!--<hr>-->
+                    <form method="POST" enctype="multipart/form-data"  id="add" action="/Asistencias/asistenciasAdd"> 
                         <div class="form-group row">
 
-                            <div class="form-group col-md-12">
-                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_asistente">Nombre del Invitado al que Cargaran el Pase de Abordar <span class="required">*</span></label>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                    <select class="form-control" name="id_asistente" id="id_asistente" required>
-                                        <option selected disabled>Seleccione una Opción</option>
-                                        <?php echo $idAsistente; ?>
-                                    </select>
-                                </div>
-                                <span id="availability_"></span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_origen">Seleccione el Origen de la Ciudad (¿De Donde Sale?) <span class="required">*</span></label>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                    <select class="form-control" name="id_origen" id="id_origen" required>
-                                        <option selected disabled>Seleccione una Opción</option>
-                                        <?php echo $idAeropuertoOrigen; ?>
-                                    </select>
-                                </div>
-                                <span id="availability_"></span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_destino">Seleccione el Destino de la Ciudad (¿A Donde Llega?) <span class="required">*</span></label>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                    <select class="form-control" name="id_destino" id="id_destino" required>
-                                        <?php echo $idAeropuertoDestino; ?>
-                                    </select>
-                                </div>
-                                <span id="availability_"></span>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <label class="form-label">Número de Vuelo *</label>
-                                <div class="input-group">
-                                    <input id="numero_vuelo" name="numero_vuelo" minlength="6" maxlength="8" class="form-control" type="text" placeholder="OKL018" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <label class="form-label">Hora de Llegada (Local) *</label>
-                                <div class="input-group">
-                                    <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                </div>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label class="control-label col-md-12 col-sm-12 col-xs-12" for="file_">Ticket en Formato .PDF: <span class="required">*</span></label>
-                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <input type="file" accept="application/pdf" class="form-control" id="file_" name="file_" required>
-                                </div>
-                            </div>
+                        <input type="hidden" id="url_asistencia" name="url_asistencia"   class="form-control"  onfocus="focused(this)" onfocusout="defocused(this)">
+                            
                             <div class="col-12 col-lg-12">
-                                <label class="form-label">Notas (Opcional)</label>
+                                <label class="form-label">Nombre *</label>
                                 <div class="input-group">
-                                    <textarea id="notas" name="notas" maxlength="1000" class="form-control" placeholder="Añade Alguna Nota de Importancia"></textarea>
+                                    <input id="nombre" name="nombre"  class="form-control" type="text" placeholder="Nombre" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
-                            <input type="hidden" id="user_" name="user_" value="<?=$_SESSION["utilerias_administradores_id"]?>">
+
+                            <div class="col-12 col-lg-12">
+                                <label class="form-label">Descripción (Opcional)</label>
+                                <div class="input-group">
+                                    <textarea id="descripcion" name="descripcion" maxlength="1000" class="form-control" placeholder="Descripción"></textarea>
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-12 col-lg-12">
+                                <label class="form-label">Fecha *</label>
+                                <div class="input-group">
+                                    <input id="fecha_asistencia" name="fecha_asistencia" maxlength="29" class="form-control" type="date"  required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-12 col-lg-6">
+                                <label class="form-label">Hora Asistencia (Inicio) *</label>
+                                <div class="input-group">
+                                    <input id="hora_asistencia_inicio" name="hora_asistencia_inicio" maxlength="29" class="form-control" type="time"  required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <label class="form-label">Hora Asistencia (Fin) *</label>
+                                <div class="input-group">
+                                    <input id="hora_asistencia_fin" name="hora_asistencia_fin" maxlength="29" class="form-control" type="time"  required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+
+                         <!-- <input type="hidden" id="utilerias_administrador_id" name="utilerias_administrador_id" value="<?=$_SESSION["utilerias_administradores_id"]?>">-->
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>

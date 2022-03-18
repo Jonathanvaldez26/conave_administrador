@@ -156,7 +156,7 @@ foreach ($datos as $key => $value) {
   <td>{$value['fecha_asistencia']}</td>
   <td>{$value['hora_asistencia_inicio']}</td>
   <td><i class='fa-alarm-clock'></i>{$value['hora_asistencia_fin']}</td>
-  <td><a href='{$value['url']}'><i class='fas fa-globe'></i></a></td>
+  <td><a href='{$value['url_asistencia']}'><i class='fas fa-globe'></i></a></td>
  
   </tr>
  
@@ -172,17 +172,19 @@ foreach ($datos as $key => $value) {
 
     public function asistenciasAdd() {
 
-      $asistentes = new \stdClass();
-      $asistentes->_clave = MasterDom::getData('clave');
-      $asistentes->_nombre = MasterDom::getData('nombre');
-      $asistentes->_descripcion = MasterDom::getData('descripcion');
-      $asistentes->_fecha_asistencia = MasterDom::getData('fecha_asistencia');
-      $asistentes->_hora_asistencia_inicio = MasterDom::getData('hora_asistencia_inicio');
-      $asistentes->_hora_asistencia_fin = MasterDom::getData('hora_asistencia_fin');
-      $asistentes->_url = MasterDom::getData('url');
+      $data = new \stdClass();
+      $data->_clave = $this->generateRandomString();
+      $data->_nombre = MasterDom::getData('nombre');
+      $data->_descripcion = MasterDom::getData('descripcion');
+      $data->_fecha_asistencia = MasterDom::getData('fecha_asistencia');
+      $data->_hora_asistencia_inicio = MasterDom::getData('hora_asistencia_inicio');
+      $data->_hora_asistencia_fin = MasterDom::getData('hora_asistencia_fin');
+      $data->_url_asistencia = "http://localhost:8086/registroasistencia/codigo/"."".$data->_clave = $this->generateRandomString();
+      /*$data->_utilerias_administrador_id = MasterDom::getData('utilerias_administrador_id');*/
+
       
 
-      $id = AsistenciasDao::insert($asistentes);
+      $id = AsistenciasDao::insert($data);
       if($id >= 1){
         $this->alerta($id,'add');
       }else{
@@ -191,6 +193,50 @@ foreach ($datos as $key => $value) {
 
 
     }
+
+
+    public function alerta($id, $parametro){
+      $regreso = "/Asistencias/";
+
+      if($parametro == 'add'){
+        $mensaje = "Se ha agregado correctamente";
+        $class = "success";
+      }
+
+      if($parametro == 'edit'){
+        $mensaje = "Se ha modificado correctamente";
+        $class = "success";
+      }
+
+      if($parametro == 'nothing'){
+        $mensaje = "Al parecer no intentaste actualizar ningún campo";
+        $class = "warning";
+      }
+
+      if($parametro == 'union'){
+        $mensaje = "Al parecer este campo de está ha sido enlazada con un campo de Catálogo de Colaboradores, ya que esta usuando esta información";
+        $class = "info";
+      }
+
+      if($parametro == "error"){
+        $mensaje = "Al parecer ha ocurrido un problema";
+        $class = "danger";
+      }
+
+
+      View::set('class',$class);
+      View::set('regreso',$regreso);
+      View::set('mensaje',$mensaje);
+      View::set('header',$this->_contenedor->header($extraHeader));
+      View::set('footer',$this->_contenedor->footer($extraFooter));
+      View::render("alerta");
+    }
+
+
+
+    function generateRandomString($length = 6) { 
+      return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
+  } 
 
       
 

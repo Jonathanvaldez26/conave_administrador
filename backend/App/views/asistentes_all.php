@@ -1,7 +1,7 @@
 <?php echo $header; ?>
 
 <body class="g-sidenav-show  bg-gray-100">
-    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+    <aside class="bg-white-aside sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
@@ -426,7 +426,7 @@
                                                 <thead class="thead-light">
                                                     <tr>
                                                         
-                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
+                                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Usuario</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th>
                                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
@@ -484,3 +484,120 @@
 </body>
 
 <?php echo $footer; ?>
+
+<script>
+
+    $(document).ready(function() {
+        $(".btn_download").on("click", function(event){
+            event.preventDefault();
+            var valueButton = $(this).attr('id');
+            var code = $(this).attr('data-value');
+            var id_constancia = $(this).attr('data-id');
+
+            document.getElementById('a-download'+id_constancia).click();
+
+            
+            $.ajax({
+                url: "/Home/enviarEmail",
+                type: "POST",
+                data: {code:code},
+                cache: false,
+                dataType: "json",
+                // contentType: false,
+                // processData: false,
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+
+                    Swal.fire(
+                            'OK',
+                            'Your certificate has been sent !!!',
+                            'Success'
+                        );
+
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+            
+        });
+
+        // $('table#constanciasAll').on("click","button.btn_status", function(event) {
+        //   event.preventDefault();
+        //     var valueButton = $(this).attr('id');
+        //     var code = $(this).attr('data-value-status');
+        //     var id_constancia = $(this).attr('data-id-status');
+            
+        //     $.ajax({
+        //         url: "/AdminConstancia/updateStatus",
+        //         type: "POST",
+        //         data: {id_constancia:id_constancia},
+        //         cache: false,
+        //         dataType: "json",
+        //         // contentType: false,
+        //         // processData: false,
+        //         beforeSend: function() {
+        //             console.log("Procesando....");
+
+        //         },
+        //         success: function(respuesta) {
+        //             console.log(respuesta);
+
+        //             window.location.reload();
+
+        //         },
+        //         error: function(respuesta) {
+        //             console.log(respuesta);
+        //         }
+
+        //     });
+        
+        // });
+
+        $('table#user-list').on("click","button.btn_qr", function(event) {
+            event.preventDefault();
+
+            var valueButton = $(this).val();
+            $(this).hide();
+           
+            $.ajax({
+                url: "/Asistentes/generaterQr",
+                type: "POST",
+                data: {id_ticket_virtual:valueButton},
+                cache: false,
+                dataType: "json",
+                // contentType: false,
+                // processData: false,
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+                },
+                success: function(respuesta) {
+                    //console.log(respuesta);
+
+                    //boton descargar
+                   $("#btn-download"+valueButton).attr("data-id",respuesta.id_constancia);
+                   $("#btn-download"+valueButton).attr("data-value",respuesta.code);
+                   $("#btn-download"+valueButton).removeClass("d-none");
+                   $("#btn-download"+valueButton).attr("href", respuesta.ruta_constancia);                   
+                   //$("#btn-download"+valueButton).attr("target", "_blank");
+
+                   // a de descargar pdf
+                   $("#a-download"+valueButton).attr("href", respuesta.ruta_constancia); 
+                   $("#a-download"+valueButton).attr("download","");
+                 
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
+        
+    });
+</script>

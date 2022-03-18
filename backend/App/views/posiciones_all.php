@@ -1,6 +1,6 @@
 <?php echo $header; ?>
 <body class="g-sidenav-show  bg-gray-100">
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
+<aside class="bg-white-aside sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
@@ -379,6 +379,8 @@
                         <tr>
                             <!-- <th><input type="checkbox" name="checkAll" id="checkAll" value=""/></th> -->
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre Bussines Unit</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Línea Perteneciente</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Posición</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Alta</th>
                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quién Registró?</th>
                         </tr>

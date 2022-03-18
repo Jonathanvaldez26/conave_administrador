@@ -10,8 +10,12 @@ class Posicion implements Crud{
     public static function getAll(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-    SELECT b.id_posicion, b.clave, b.nombre, b.fecha_alta, ua.nombre as creo FROM posiciones b 
-    INNER JOIN utilerias_administradores ua on ua.utilerias_administradores_id = b.utilerias_administradores_id ORDER BY b.nombre ASC;
+    SELECT p.id_posicion, p.clave, p.nombre, p.fecha_alta, ua.nombre as creo, lp.nombre AS nombre_linea_p, b.nombre AS nombre_bu
+    FROM posiciones p
+    INNER JOIN utilerias_administradores ua on ua.utilerias_administradores_id = p.utilerias_administradores_id
+    INNER JOIN linea_principal lp ON p.id_linea_principal = lp.id_linea_principal
+    INNER JOIN bu b ON b.id_bu = lp.id_bu
+    ORDER BY b.nombre and lp.nombre and p.nombre ASC
 sql;
         return $mysqli->queryAll($query);
     }

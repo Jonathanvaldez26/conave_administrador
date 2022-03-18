@@ -64,11 +64,19 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="card-body pb-0 p-3 mt-4">
+                                            <br>
+                                            <!-- <div class="card-body"> -->
                                                 <div class="row">
+                                                    <div class="col-7">
+                                                        <img class="w-100 h-100" id="img_asistente" src="https://www.muniplibre.gob.pe/assets/img/logos/usuario.jpg" alt="user">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <!-- <div class="row">
                                                     <div class="col-7 text-start">
                                                         <div class="chart">
                                                             <canvas id="chart-pie" class="chart-canvas" height="400" style="display: block; box-sizing: border-box; height: 200px; width: 244.5px;" width="489"></canvas>
+                                                            <img src="https://www.muniplibre.gob.pe/assets/img/logos/usuario.jpg" alt="user">
                                                         </div>
                                                     </div>
                                                     <div class="col-5 my-auto">
@@ -89,18 +97,9 @@
                                                             <span class="text-dark text-xs">Referral</span>
                                                         </span>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer pt-0 pb-0 p-3 d-flex align-items-center">
-                                                <div class="w-60">
-                                                    <p class="text-sm">
-                                                        More than <b>1,200,000</b> sales are made using referral marketing, and <b>700,000</b> are from social media.
-                                                    </p>
-                                                </div>
-                                                <div class="w-40 text-end">
-                                                    <a class="btn bg-light mb-0 text-end" href="javascript:;">Read more</a>
-                                                </div>
-                                            </div>
+                                                </div> -->
+                                            <!-- </div> -->
+                                            
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-sm-6 mt-sm-0 mt-4">
@@ -193,14 +192,17 @@
                             // window.location.replace("/PruebasCovidUsuarios/");
                             let nombre_completo = respuesta.datos.nombre+' '+respuesta.datos.segundo_nombre+' '+respuesta.datos.apellido_paterno +' '+respuesta.datos.apellido_materno;
                             $("#nombre_completo").html(nombre_completo);
+
+                            $("#img_asistente").attr('src','/img/'+respuesta.datos.img);
                             // $("#nombre_completo").html(respuesta.datos.segundo_nombre);
                        
                         console.log(respuesta.status);
                     } else {
-                        swal("¡No se pudo validar correctamente el comprobante!", "", "warning").
-                        then((value) => {
+                        // swal("¡No se pudo validar correctamente el comprobante!", "", "warning").
+                        // then((value) => {
                             // window.location.replace("/PruebasCovidUsuarios/")
-                        });
+                        // });
+                        alert('lo sentimos no se encuentra registrado');
                     }
                     console.log(respuesta);
                 },

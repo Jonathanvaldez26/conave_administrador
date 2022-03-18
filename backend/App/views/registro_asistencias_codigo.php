@@ -25,8 +25,8 @@
     <div class="page-header min-vh-75">
         <div class="container">
             <div class="row">
-                <div class="col-xl-10 col-lg-10 col-md-12 d-flex flex-column mx-auto">
-                    
+                <div class="col-12">
+
                 </div>
             </div>
         </div>

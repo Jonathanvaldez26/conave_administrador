@@ -66,83 +66,6 @@ html;
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
 
-      
-
-        <script>
-
-            
-
-            $(document).ready(function(){
-
-                // var show = $(#eye);
-                // console.log('a'+show);
-
-                $.validator.addMethod("checkUserName",function(value, element) {
-                  var response = false;
-                    $.ajax({
-                        type:"POST",
-                        async: false,
-                        url: "/Login/isUserValidate",
-                        data: {usuario: $("#usuario").val()},
-                        success: function(data) {
-                            if(data=="true"){
-                                $('#btnEntrar').attr("disabled", false);
-                                response = true;
-                            }else{
-                                $('#btnEntrar').attr("disabled", true);
-                            }
-                        }
-                    });
-
-                    return response;
-                },"El usuario no es correcto");
-
-                $("#login").validate({
-                    rules:{
-                        usuario:{
-                            required: true,
-                            checkUserName: true
-                        },
-                        password:{
-                            required: true,
-                        }
-                    },
-                    messages:{
-                        usuario:{
-                            required: "<br>Este campo es requerido",
-                        },
-                        password:{
-                            required: "<br>Este campo es requerido",
-                        }
-                    }
-                });
-
-                $("#btnEntrar").click(function(){
-                    $.ajax({
-                        type: "POST",
-                        url: "/Login/verificarUsuario",
-                        data: $("#login").serialize(),
-                        success: function(response){
-                            if(response!=""){
-                                var usuario = jQuery.parseJSON(response);
-                                if(usuario.nombre!=""){
-                                    $("#login").append('<input type="hidden" name="autentication" id="autentication" value="OK"/>');
-                                    $("#login").append('<input type="hidden" name="nombre" id="nombre" value="'+usuario.nombre+'"/>');
-                                    $("#login").submit();
-                            }else{
-                                alertify.alert("Error de autenticación <br> El usuario o contraseña es incorrecta");
-                            }
-                            }else{
-                                alertify.alert("Error de autenticación <br> El usuario o contraseña es incorrecta");
-                            }
-                        }
-                    });
-                });
-
-
-          
-            });
-        </script>
 html;
 
         $codigo = LoginDao::getById($id);
@@ -175,7 +98,7 @@ html;
         }
         else
         {
-            View::render("asistencias_all_vacia");
+            View::render("asistencias_panel_registro");
         }
 
 

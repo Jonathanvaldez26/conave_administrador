@@ -16,7 +16,7 @@ sql;
         
     }
     public static function getById($id){
-        
+         
     }
     public static function insert($asistentes){
         $mysqli = Database::getInstance(1);
@@ -52,4 +52,4 @@ sql;
     public static function delete($id){
         
     }
-}
+} 

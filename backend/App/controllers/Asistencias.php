@@ -30,6 +30,123 @@ class Asistencias extends Controller{
     public function index() {
      $extraHeader =<<<html
 html;
+
+$extraFooter =<<<html
+      <script>
+        $(document).ready(function(){
+
+          $('#asistencia-list').DataTable({
+              "drawCallback": function( settings ) {
+                $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+                $('.paginate_button').addClass("btn").removeClass("paginate_button");
+                $('.dataTables_length').addClass("m-4");
+                $('.dataTables_info').addClass("mx-4");
+                $('.dataTables_filter').addClass("m-4");
+                $('input').addClass("form-control");
+                $('select').addClass("form-control");
+                $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+                $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+                $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+                $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+                $('a.btn').addClass("btn-rounded");
+              },
+              "language": {
+               
+                   "sProcessing":     "Procesando...",
+                   "sLengthMenu":     "Mostrar _MENU_ registros",
+                   "sZeroRecords":    "No se encontraron resultados",
+                   "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                   "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                   "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                   "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                   "sInfoPostFix":    "",
+                   "sSearch":         "Buscar:",
+                   "sUrl":            "",
+                   "sInfoThousands":  ",",
+                   "sLoadingRecords": "Cargando...",
+                   "oPaginate": {
+                       "sFirst":    "Primero",
+                       "sLast":     "Último",
+                       "sNext":     "Siguiente",
+                       "sPrevious": "Anterior"
+                   },
+                   "oAria": {
+                       "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                       "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                   }
+               
+               }
+            } );
+
+          $("#muestra-cupones").tablesorter();
+          var oTable = $('#muestra-cupones').DataTable({
+                "columnDefs": [{
+                    "orderable": false,
+                    "targets": 0
+                }],
+                 "order": false
+            });
+
+            // Remove accented character from search input as well
+            $('#muestra-cupones input[type=search]').keyup( function () {
+                var table = $('#example').DataTable();
+                table.search(
+                    jQuery.fn.DataTable.ext.type.search.html(this.value)
+                ).draw();
+            });
+
+            var checkAll = 0;
+            $("#checkAll").click(function () {
+              if(checkAll==0){
+                $("input:checkbox").prop('checked', true);
+                checkAll = 1;
+              }else{
+                $("input:checkbox").prop('checked', false);
+                checkAll = 0;
+              }
+
+            });
+
+            $("#export_pdf").click(function(){
+              $('#all').attr('action', '/Empresa/generarPDF/');
+              $('#all').attr('target', '_blank');
+              $("#all").submit();
+            });
+
+            $("#export_excel").click(function(){
+              $('#all').attr('action', '/Empresa/generarExcel/');
+              $('#all').attr('target', '_blank');
+              $("#all").submit();
+            });
+
+            $("#delete").click(function(){
+              var seleccionados = $("input[name='borrar[]']:checked").length;
+              if(seleccionados>0){
+                alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
+                  if(response){
+                    $('#all').attr('target', '');
+                    $('#all').attr('action', '/Empresa/delete');
+                    $("#all").submit();
+                    alertify.success("Se ha eliminado correctamente");
+                  }
+                });
+              }else{
+                alertify.confirm('Selecciona al menos uno para eliminar');
+              }
+            });
+
+        });
+      </script>
+html;
+
+
+
+
+
+
+
+
+
 $datos = AsistenciasDao::getAll();
 foreach ($datos as $key => $value) {
   $tabla=<<<html
@@ -38,7 +155,7 @@ foreach ($datos as $key => $value) {
   <td>{$value['descripcion']}</td>
   <td>{$value['fecha_asistencia']}</td>
   <td>{$value['hora_asistencia_inicio']}</td>
-  <td>{$value['hora_asistencia_fin']}</td>
+  <td><i class='fa-alarm-clock'></i>{$value['hora_asistencia_fin']}</td>
   <td><a href='{$value['url']}'><i class='fas fa-globe'></i></a></td>
  
   </tr>
@@ -51,7 +168,7 @@ foreach ($datos as $key => $value) {
       View::set('footer',$this->_contenedor->footer($extraFooter));
       View::render("asistencias_all");
     }
- 
+  
 
     public function asistenciasAdd() {
 

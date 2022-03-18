@@ -10,7 +10,7 @@
         </a>
     </div>
     <hr class="horizontal dark mt-0">
-
+ 
 
     <div class="collapse navbar-collapse  w-auto h-auto h-100" id="sidenav-collapse-main">
         <ul class="navbar-nav">
@@ -452,16 +452,16 @@
                         <div class="col-12">
                             <div class="card mb-4">
                                 <div class="card-header pb-0">
-                                    <h6>Pases de Abordar para Vuelos de Llegada - Cargados con Éxito</h6>
+                                    <h6>Registro de Asistencia - Cargados con Éxito</h6>
                                     <p style="font-size: 12px">
                                         <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida a la Convención
                                         <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada (Sede Convención)
                                         <span class="fa fa-ticket" style="color: #1a8fdd"> </span> No. de Vuelo
                                     </p>
-                                </div>
+                                </div> 
                                 <div class="card-body px-0 pt-0 pb-2">
                                     <div class="table-responsive p-0">
-                                        <table class="table align-items-center mb-0">
+                                        <table  class="table align-items-center mb-0 table table-striped table-bordered" id="asistencia-list">
                                             <thead>
                                             <tr>
                                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
@@ -527,7 +527,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        Asistente Para Cargar Pases de Abordar (Vuelos) - 1er Vuelo
+                        Generar Lista de Asistencia
                     </h5>
 
                     <span type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">

@@ -32,4 +32,12 @@ sql;
         return $mysqli->queryAll($query);
     }
 
+    public static function getInfo($clave){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT * FROM registros_acceso WHERE clave = '$clave'
+sql;
+        return $mysqli->queryAll($query);
+    }
+
 }

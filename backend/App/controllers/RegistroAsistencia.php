@@ -35,7 +35,9 @@ class RegistroAsistencia{
         <link id="pagestyle" href="/assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
         <link rel="stylesheet" href="/css/alertify/alertify.core.css" />
         <link rel="stylesheet" href="/css/alertify/alertify.default.css" id="toggleCSS" />
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
 
 html;
@@ -69,6 +71,7 @@ html;
 html;
 
         $codigo = RegistroAsistenciaDao::getById($id);
+
         foreach($codigo as $key => $value)
         {
             if($value['id_asistencia'] != '')
@@ -99,12 +102,28 @@ html;
         {
             View::render("asistencias_panel_registro");
         }
-
-
-
-
-
-
     }
 
+    public function registroAsistencia($clave){
+           
+        $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
+
+        print($user_clave[0].' ');
+
+        if($user_clave){
+            // echo "success";
+             $data = [
+                 'datos'=>$user_clave,
+                 'status'=>'success'
+             ];
+            //header("Location: /Home");
+        }else{
+            $data = [
+                'status'=>'fail'
+            ];
+            // header("Location: /Home/");
+        }
+
+        echo json_encode($data);
+    }
 }

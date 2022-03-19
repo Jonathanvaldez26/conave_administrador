@@ -77,6 +77,10 @@
                                                             </div>
                                                         </div>
                                                         <br>
+                                                        <div class="row m-2">
+                                                            <h6>Correo: <span class="text-thin" id="correo_user"> _____</span></h6> 
+                                                            <h6>Teléfono: <span class="text-thin" id="telefono_user"> 00 0000 0000</span></h6> 
+                                                        </div>
                                                         <!-- <div class="row">
                                                             <div class="col-7 text-start">
                                                                 <div class="chart">
@@ -151,6 +155,8 @@
                         <table class="table m-2">
                             <tr>
                                 <th>Nombre</th>
+                                <th>Correo electrónico</th>
+                                <th>Teléfono</th>
                             </tr>
                             <?php echo $tabla;?>
                         </table>
@@ -211,6 +217,8 @@
                             // window.location.replace("/PruebasCovidUsuarios/");
                             let nombre_completo = respuesta.datos.nombre+' '+respuesta.datos.segundo_nombre+' '+respuesta.datos.apellido_paterno +' '+respuesta.datos.apellido_materno;
                             $("#nombre_completo").html(nombre_completo);
+                            $("#correo_user").html(respuesta.datos.email);
+                            $("#telefono_user").html(respuesta.datos.telefono);
 
                             if (respuesta.datos.img != '') {
                                 $("#img_asistente").attr('src','/img/'+respuesta.datos.img);
@@ -245,7 +253,9 @@
                         $("#nombre_completo").html('Nombre');
                         $("#img_asistente").attr('src','/img/user.png');
                         $("#linea_user").html('Ninguna');
-                        
+                        $("#bu_user").html('Ninguna');
+                        $("#correo_user").html('_____');
+                        $("#telefono_user").html('00 0000 0000');
                     }
                     console.log(respuesta);
                 },

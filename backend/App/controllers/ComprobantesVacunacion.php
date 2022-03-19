@@ -35,12 +35,22 @@ class ComprobantesVacunacion extends Controller{
       </style>
 html;
 
+      
+      $btnVacunacionEditarHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 5) == 0) ? "style=\"display:none;\"" : "";
+
       $tabla = '';
       $tabla_no_v = '';
       $tabla_rechazados = '';
 
-      $comprobantes = ComprobantesVacunacionDao::getAll();
+      // $permisos = Controller::getPermisoGlobalUsuario($this->__usuario)[0];
+      // if($permisos['permisos_globales'] == 1){
+      //   $comprobantes = ComprobantesVacunacionDao::getAll();
+      // }else{
 
+      // }
+
+     
+$comprobantes = ComprobantesVacunacionDao::getAll();
       foreach ($comprobantes as $key => $value) {
 
         if ($value['status_comprobante'] == 0) {
@@ -507,7 +517,7 @@ html;
                               <form class="form-horizontal" id="btn_validar" action="" method="POST">
                                 <input type="text" id="id_comprobante" name="id_comprobante" value="{$value['id_c_v']}" readonly style="display:none;" hidden>
                                 
-                                <button type="submit" class="btn bg-gradient-success" >
+                                <button type="submit" class="btn bg-gradient-success" {$btnVacunacionEditarHidden}>
                                   Aceptar
                                 </button>
                               </form>
@@ -515,7 +525,7 @@ html;
                             <div class="col-md-6 col-12">
                               <form class="form" id="btn_rechazar" action="" method="POST">
                                 <input type="text" id="id_comprobante" name="id_comprobante" value="{$value['id_c_v']}" readonly style="display:none;">
-                                <button type="submit" class="btn bg-gradient-secondary" >
+                                <button type="submit" class="btn bg-gradient-secondary" {$btnVacunacionEditarHidden} >
                                   Rechazar
                                 </button>
                               </form>
@@ -779,6 +789,8 @@ html;
      View::set('pruebasHidden', $pruebasHidden);
      View::set('configuracionHidden', $configuracionHidden);
      View::set('utileriasHidden', $utileriasHidden);
+   
+     
 
       View::set('comprobantes',$comprobantes);
       View::set('numero_sin_revisar',$numero_sin_revisar);

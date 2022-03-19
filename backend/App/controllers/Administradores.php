@@ -843,7 +843,7 @@ html;
             // document.getElementById('departamentos').style.display = "block";
             // document.getElementById('add-departamentos').style.display = "block";
             document.getElementById('permiosos-personalizados').style.display = "block";
-            document.getElementById('cont_linea').style.display = "block";
+            //document.getElementById('cont_linea').style.display = "block";
           }
           if(elem.value == '3'){
             // document.getElementById('permiosos-root').style.display = "none";
@@ -854,7 +854,7 @@ html;
             // document.getElementById('departamentos').style.display = "block";
             // document.getElementById('add-departamentos').style.display = "block";
             document.getElementById('permiosos-personalizados').style.display = "block";
-            document.getElementById('cont_linea').style.display = "none";
+            //document.getElementById('cont_linea').style.display = "none";
           }
 
           
@@ -1582,16 +1582,7 @@ html;
 
         $permisos = $permisos_usuario[$seccion];
 
-        // if($seccion == 'seccion_pruebascovid'){
-        //   print_r($permisos);
-        // }
-        echo $seccion;
-        echo "<br>";
-      //   echo $permisos;
-      // echo "<br>";
-
-
-
+ 
         $permisos = preg_replace('/1/', 'checked', $permisos, 1);
         $permisos = preg_replace('/2/', 'checked', $permisos, 1);
         $permisos = preg_replace('/3/', 'checked', $permisos, 1);

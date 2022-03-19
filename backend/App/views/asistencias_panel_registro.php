@@ -41,7 +41,7 @@
                 </ul>
             </div>
         </div>
-    </nav
+    </nav>
 
     <div class="page-header min-vh-75">
         <div class="container">

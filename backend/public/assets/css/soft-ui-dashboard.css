@@ -36896,4 +36896,8 @@ table.dataTable.no-footer {
 .bg-white-aside{
   background: white;
 }
+
+.text-thin{
+  font-weight: 100;
+}
 /*# sourceMappingURL=dashboard-pro.css.map */

@@ -43,7 +43,8 @@
         </div>
     </nav>
 
-    <div class="page-header min-vh-75">
+    <!-- <div class="page-header min-vh-75"> -->
+    <div class=" ">
         <div class="container">
             <div class="row">
                 <div class="col-xl-10 col-lg-10 col-md-12 d-flex flex-column mx-auto">
@@ -53,9 +54,9 @@
                                 <div class="col-12">
                                     <div class="multisteps-form">
                                         <!--form panels-->
-                                        <div class="row">
+                                        <div class="row ">
                                             <div class="col-12 col-lg-10 m-auto">
-                                                <div id="card_one" class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one"data-animation="FadeIn">
+                                                <div id="card_one" class="mt-3 card multisteps-form__panel p-3 border-radius-xl bg-white js-active" id="card_one"data-animation="FadeIn">
                                                     <div class="multisteps-form__content">
                                                         <section class="min-vh-75 d-flex align-items-center">
                                                             <div class="container">
@@ -74,14 +75,11 @@
                                                         </section>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

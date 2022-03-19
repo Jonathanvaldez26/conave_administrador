@@ -7,6 +7,7 @@ use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\ComprobantesVacunacion as ComprobantesVacunacionDao;
+use \App\models\Linea as LineaDao;
 
 class ComprobantesVacunacion extends Controller{
 
@@ -35,22 +36,21 @@ class ComprobantesVacunacion extends Controller{
       </style>
 html;
 
-      
       $btnVacunacionEditarHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 5) == 0) ? "style=\"display:none;\"" : "";
 
       $tabla = '';
       $tabla_no_v = '';
       $tabla_rechazados = '';
 
-      // $permisos = Controller::getPermisoGlobalUsuario($this->__usuario)[0];
-      // if($permisos['permisos_globales'] == 1){
-      //   $comprobantes = ComprobantesVacunacionDao::getAll();
-      // }else{
+      $permisos = Controller::getPermisoGlobalUsuario($this->__usuario)[0];
+      
+      if($permisos['permisos_globales'] == 1){
+        $comprobantes = ComprobantesVacunacionDao::getAll();
+      }else{
+        $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];        ;
+        $comprobantes = ComprobantesVacunacionDao::getComprobatesByLinea($id_linea['id_linea_principal']);
+      }
 
-      // }
-
-     
-$comprobantes = ComprobantesVacunacionDao::getAll();
       foreach ($comprobantes as $key => $value) {
 
         if ($value['status_comprobante'] == 0) {

@@ -113,4 +113,17 @@ sql;
         //   $accion->_id = $hotel->_id_hotel;
           return $mysqli->update($query, $parametros);
       }
+
+      public static function getLineaByAdmin($id){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT ua.nombre, ua.utilerias_administradores_id, al.id_linea_principal
+        FROM utilerias_administradores ua
+        INNER JOIN asigna_linea al ON(ua.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada)
+        WHERE ua.utilerias_administradores_id = $id
+sql;
+
+        return $mysqli->queryAll($query);
+
+      }
 }

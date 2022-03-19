@@ -35,7 +35,7 @@ class Administradores extends Controller
 
           $("#delete").click(function(){
 
-              alert("funciona");
+             
               var seleccionados = $("input[name='borrar[]']:checked").length;
               if(seleccionados>0){
                 alertify.confirm('¿Segúro que desea eliminar lo seleccionado?', function(response){
@@ -385,7 +385,7 @@ html;
                         <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Desactivar Acceso al Administrador">
                           <i class="fas fa-power-off text-secondary fa-1x" aria-hidden="true"></i>
                         </a>
-                        <a href="/Administradores/edit/{$value['code']}/{$value['perfil_id']}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar Administrador">
+                        <a href="/Administradores/edit/{$value['code']}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Editar Administrador">
                           <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
                         </a>
                         <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Borrar Administrador de la Tabla (Se Desactivaran los Accesos)">
@@ -894,13 +894,18 @@ html;
       </script>
 
 html;
-
     $lineas = '';
+
+    
     foreach (LineaDao::getLineasSinEjecutivo() as $key => $value) {
       $lineas .= <<<html
                 <option value="{$value['id_linea_principal']}">{$value['nombre']}</option>
 html;
     }
+    $lineaTodos = LineaDao::getLineaTodos()[0];      
+    $lineas .= <<<html
+        <option value="{$lineaTodos['id_linea_principal']}">{$lineaTodos['nombre']}</option>
+html;
 
     $perfiles = "";
     foreach (AdministradoresDao::getPerfiles() as $key => $value) {
@@ -1059,435 +1064,479 @@ html;
     }
   }
 
-  public function edit($code,$perfil = null)
+  public function edit($code)
   {
     $extraHeader = <<<html
     
 html;
 
     $extraFooter = <<<html
-      <script>
-        $(document).ready(function(){
+    <script>
+    $(document).ready(function(){
 
-          $("#editt").validate({
-            rules:{
-              descripcion:{
-                required: true
-              },
-              perfil_id:{
-                required: true
-              },
-              status:{
-                required: true
-              }
-            },
-            messages:{
-              descripcion:{
-                required: "Este campo es requerido"
-              },
-              perfil_id:{
-                required: "Este campo es requerido"
-              },
-              status:{
-                required: "Este campo es requerido"
-              }
-            }
-          });//fin del jquery validate
-
-          $("#btnCancel").click(function(){
-            window.location.href = "/Administradores/";
-          });//fin del btnAdd
-
-          $('#myCheck1').change(function(){
-            if(this.checked){
-              document.getElementById("pdf1").disabled = false;
-              document.getElementById("excel1").disabled = false;
-              document.getElementById("agregar1").disabled = false;
-              document.getElementById("editar1").disabled = false;
-              document.getElementById("eliminar1").disabled = false;
-            }else{
-              document.getElementById("pdf1").disabled = true;
-              document.getElementById("excel1").disabled = true;
-              document.getElementById("agregar1").disabled = true;
-              document.getElementById("editar1").disabled = true ;
-              document.getElementById("eliminar1").disabled = true ;
-            }
-          });
-          $('#myCheck2').change(function(){
-            if(this.checked){
-              document.getElementById("pdf2").disabled = false;
-              document.getElementById("excel2").disabled = false;
-              document.getElementById("agregar2").disabled = false;
-              document.getElementById("editar2").disabled = false;
-              document.getElementById("eliminar2").disabled = false;
-            }else{
-              document.getElementById("pdf2").disabled = true;
-              document.getElementById("excel2").disabled = true;
-              document.getElementById("agregar2").disabled = true;
-              document.getElementById("editar2").disabled = true ;
-              document.getElementById("eliminar2").disabled = true ;
-            }
-          });
-          $('#myCheck3').change(function(){
-            if(this.checked){
-              document.getElementById("pdf3").disabled = false;
-              document.getElementById("excel3").disabled = false;
-              document.getElementById("agregar3").disabled = false;
-              document.getElementById("editar3").disabled = false;
-              document.getElementById("eliminar3").disabled = false;
-            }else{
-              document.getElementById("pdf3").disabled = true;
-              document.getElementById("excel3").disabled = true;
-              document.getElementById("agregar3").disabled = true;
-              document.getElementById("editar3").disabled = true ;
-              document.getElementById("eliminar3").disabled = true ;
-            }
-          });
-          $('#myCheck4').change(function(){
-            if(this.checked){
-              document.getElementById("pdf4").disabled = false;
-              document.getElementById("excel4").disabled = false;
-              document.getElementById("agregar4").disabled = false;
-              document.getElementById("editar4").disabled = false;
-              document.getElementById("eliminar4").disabled = false;
-            }else{
-              document.getElementById("pdf4").disabled = true;
-              document.getElementById("excel4").disabled = true;
-              document.getElementById("agregar4").disabled = true;
-              document.getElementById("editar4").disabled = true ;
-              document.getElementById("eliminar4").disabled = true ;
-            }
-          });
-          $('#myCheck5').change(function(){
-            if(this.checked){
-              document.getElementById("pdf5").disabled = false;
-              document.getElementById("excel5").disabled = false;
-              document.getElementById("agregar5").disabled = false;
-              document.getElementById("editar5").disabled = false;
-              document.getElementById("eliminar5").disabled = false;
-            }else{
-              document.getElementById("pdf5").disabled = true;
-              document.getElementById("excel5").disabled = true;
-              document.getElementById("agregar5").disabled = true;
-              document.getElementById("editar5").disabled = true ;
-              document.getElementById("eliminar5").disabled = true ;
-            }
-          });
-          $('#myCheck6').change(function(){
-            if(this.checked){
-              document.getElementById("pdf6").disabled = false;
-              document.getElementById("excel6").disabled = false;
-              document.getElementById("agregar6").disabled = false;
-              document.getElementById("editar6").disabled = false;
-              document.getElementById("eliminar6").disabled = false;
-            }else{
-              document.getElementById("pdf6").disabled = true;
-              document.getElementById("excel6").disabled = true;
-              document.getElementById("agregar6").disabled = true;
-              document.getElementById("editar6").disabled = true ;
-              document.getElementById("eliminar6").disabled = true ;
-            }
-          });
-          $('#myCheck7').change(function(){
-            if(this.checked){
-              document.getElementById("pdf7").disabled = false;
-              document.getElementById("excel7").disabled = false;
-              document.getElementById("agregar7").disabled = false;
-              document.getElementById("editar7").disabled = false;
-              document.getElementById("eliminar7").disabled = false;
-            }else{
-              document.getElementById("pdf7").disabled = true;
-              document.getElementById("excel7").disabled = true;
-              document.getElementById("agregar7").disabled = true;
-              document.getElementById("editar7").disabled = true ;
-              document.getElementById("eliminar7").disabled = true ;
-            }
-          });
-          $('#myCheck8').change(function(){
-            if(this.checked){
-              document.getElementById("pdf8").disabled = false;
-              document.getElementById("excel8").disabled = false;
-              document.getElementById("agregar8").disabled = false;
-              document.getElementById("editar8").disabled = false;
-              document.getElementById("eliminar8").disabled = false;
-            }else{
-              document.getElementById("pdf8").disabled = true;
-              document.getElementById("excel8").disabled = true;
-              document.getElementById("agregar8").disabled = true;
-              document.getElementById("editar8").disabled = true ;
-              document.getElementById("eliminar8").disabled = true ;
-            }
-          });
-          $('#myCheck9').change(function(){
-            if(this.checked){
-              document.getElementById("pdf9").disabled = false;
-              document.getElementById("excel9").disabled = false;
-              document.getElementById("agregar9").disabled = false;
-              document.getElementById("editar9").disabled = false;
-              document.getElementById("eliminar9").disabled = false;
-            }else{
-              document.getElementById("pdf9").disabled = true;
-              document.getElementById("excel9").disabled = true;
-              document.getElementById("agregar9").disabled = true;
-              document.getElementById("editar9").disabled = true ;
-              document.getElementById("eliminar9").disabled = true ;
-            }
-          });
-          $('#myCheck10').change(function(){
-            if(this.checked){
-              document.getElementById("pdf10").disabled = false;
-              document.getElementById("excel10").disabled = false;
-              document.getElementById("agregar10").disabled = false;
-              document.getElementById("editar10").disabled = false;
-              document.getElementById("eliminar10").disabled = false;
-            }else{
-              document.getElementById("pdf10").disabled = true;
-              document.getElementById("excel10").disabled = true;
-              document.getElementById("agregar10").disabled = true;
-              document.getElementById("editar10").disabled = true ;
-              document.getElementById("eliminar10").disabled = true ;
-            }
-          });
-          $('#myCheck11').change(function(){
-            if(this.checked){
-              document.getElementById("pdf11").disabled = false;
-              document.getElementById("excel11").disabled = false;
-              document.getElementById("agregar11").disabled = false;
-              document.getElementById("editar11").disabled = false;
-              document.getElementById("eliminar11").disabled = false;
-            }else{
-              document.getElementById("pdf11").disabled = true;
-              document.getElementById("excel11").disabled = true;
-              document.getElementById("agregar11").disabled = true;
-              document.getElementById("editar11").disabled = true ;
-              document.getElementById("eliminar11").disabled = true ;
-            }
-          });
-          $('#myCheck12').change(function(){
-            if(this.checked){
-              document.getElementById("pdf12").disabled = false;
-              document.getElementById("excel12").disabled = false;
-              document.getElementById("agregar12").disabled = false;
-              document.getElementById("editar12").disabled = false;
-              document.getElementById("eliminar12").disabled = false;
-            }else{
-              document.getElementById("pdf12").disabled = true;
-              document.getElementById("excel12").disabled = true;
-              document.getElementById("agregar12").disabled = true;
-              document.getElementById("editar12").disabled = true ;
-              document.getElementById("eliminar12").disabled = true ;
-            }
-          });
-          $('#myCheck13').change(function(){
-            if(this.checked){
-              document.getElementById("pdf13").disabled = false;
-              document.getElementById("excel13").disabled = false;
-              document.getElementById("agregar13").disabled = false;
-              document.getElementById("editar13").disabled = false;
-              document.getElementById("eliminar13").disabled = false;
-            }else{
-              document.getElementById("pdf13").disabled = true;
-              document.getElementById("excel13").disabled = true;
-              document.getElementById("agregar13").disabled = true;
-              document.getElementById("editar13").disabled = true ;
-              document.getElementById("eliminar13").disabled = true ;
-            }
-          });
-          $('#myCheck14').change(function(){
-            if(this.checked){
-              document.getElementById("pdf14").disabled = false;
-              document.getElementById("excel14").disabled = false;
-              document.getElementById("agregar14").disabled = false;
-              document.getElementById("editar14").disabled = false;
-              document.getElementById("eliminar14").disabled = false;
-            }else{
-              document.getElementById("pdf14").disabled = true;
-              document.getElementById("excel14").disabled = true;
-              document.getElementById("agregar14").disabled = true;
-              document.getElementById("editar14").disabled = true ;
-              document.getElementById("eliminar14").disabled = true ;
-            }
-          });
-          $('#myCheck15').change(function(){
-            if(this.checked){
-              document.getElementById("pdf15").disabled = false;
-              document.getElementById("excel15").disabled = false;
-              document.getElementById("agregar15").disabled = false;
-              document.getElementById("editar15").disabled = false;
-              document.getElementById("eliminar15").disabled = false;
-            }else{
-              document.getElementById("pdf15").disabled = true;
-              document.getElementById("excel15").disabled = true;
-              document.getElementById("agregar15").disabled = true;
-              document.getElementById("editar15").disabled = true ;
-              document.getElementById("eliminar15").disabled = true ;
-            }
-          });
-          $('#myCheck16').change(function(){
-            if(this.checked){
-              document.getElementById("pdf16").disabled = false;
-              document.getElementById("excel16").disabled = false;
-              document.getElementById("agregar16").disabled = false;
-              document.getElementById("editar16").disabled = false;
-              document.getElementById("eliminar16").disabled = false;
-            }else{
-              document.getElementById("pdf16").disabled = true;
-              document.getElementById("excel16").disabled = true;
-              document.getElementById("agregar16").disabled = true;
-              document.getElementById("editar16").disabled = true ;
-              document.getElementById("eliminar16").disabled = true ;
-            }
-          });
-          $('#myCheck17').change(function(){
-            if(this.checked){
-              document.getElementById("pdf17").disabled = false;
-              document.getElementById("excel17").disabled = false;
-              document.getElementById("agregar17").disabled = false;
-              document.getElementById("editar17").disabled = false;
-              document.getElementById("eliminar17").disabled = false;
-            }else{
-              document.getElementById("pdf17").disabled = true;
-              document.getElementById("excel17").disabled = true;
-              document.getElementById("agregar17").disabled = true;
-              document.getElementById("editar17").disabled = true ;
-              document.getElementById("eliminar17").disabled = true ;
-            }
-          });
-
-
-          var selects = document.getElementById("perfil_id");
-          var selectedValue = selects.options[selects.selectedIndex].value;
-
-          $("#perfil_id").change(function(){
-
-            
-            if($(this).find(':selected').data('id') == 'Personalizado'){
-              document.getElementById('permiosos-personalizados').style.display = "block";
-            }
-            elseif($(this).find(':selected').data('id') == 'Medico'){
-              document.getElementById('permiosos-personalizados').style.display = "block";
-            }
-            else{
-              document.getElementById('permiosos-personalizados').style.display = "none";
-            }
-
-            //alert($("#perfil_id").val());
-
-
-            if($("#perfil_id").val() == '1'){
-                // document.getElementById('permiosos-root').style.display = "block";
-                // document.getElementById('permiosos-personalizados').style.display = "none";
-                // document.getElementById('permiosos-recursos-humanos').style.display = "none";
-                // document.getElementById('permiosos-prorrateo').style.display = "none";
-                // document.getElementById('permiosos-personales').style.display = "none";
-                // document.getElementById('departamentos').style.display = "none";
-                // document.getElementById('add-departamentos').style.display = "none";
-                // document.getElementById('permiosos-administrador').style.display = "none";
-            }
-
-            if($("#perfil_id").val() == '2'){
-            // document.getElementById('permiosos-root').style.display = "none";
-            // document.getElementById('permiosos-administrador').style.display = "none";
-            // document.getElementById('permiosos-recursos-humanos').style.display = "none";
-            // document.getElementById('permiosos-prorrateo').style.display = "none";
-            // document.getElementById('permiosos-personales').style.display = "block";
-            // document.getElementById('departamentos').style.display = "block";
-            // document.getElementById('add-departamentos').style.display = "block";
-            // document.getElementById('permiosos-personalizados').style.display = "block";
+      $("#editt").validate({
+        rules:{
+          descripcion:{
+            required: true
+          },
+          perfil_id:{
+            required: true
+          },
+          status:{
+            required: true
           }
+        },
+        messages:{
+          descripcion:{
+            required: "Este campo es requerido"
+          },
+          perfil_id:{
+            required: "Este campo es requerido"
+          },
+          status:{
+            required: "Este campo es requerido"
+          }
+        }
+      });//fin del jquery validate
 
-          if($("#perfil_id").val() == '3'){
-            // document.getElementById('permiosos-root').style.display = "none";
+      $("#btnCancel").click(function(){
+        window.location.href = "/Administradores/";
+      });//fin del btnAdd
+
+      $('#myCheck1').change(function(){
+        if(this.checked){
+          document.getElementById("pdf1").disabled = false;
+          document.getElementById("excel1").disabled = false;
+          document.getElementById("agregar1").disabled = false;
+          document.getElementById("editar1").disabled = false;
+          document.getElementById("eliminar1").disabled = false;
+        }else{
+          document.getElementById("pdf1").disabled = true;
+          document.getElementById("excel1").disabled = true;
+          document.getElementById("agregar1").disabled = true;
+          document.getElementById("editar1").disabled = true ;
+          document.getElementById("eliminar1").disabled = true ;
+        }
+      });
+      $('#myCheck2').change(function(){
+        if(this.checked){
+          document.getElementById("pdf2").disabled = false;
+          document.getElementById("excel2").disabled = false;
+          document.getElementById("agregar2").disabled = false;
+          document.getElementById("editar2").disabled = false;
+          document.getElementById("eliminar2").disabled = false;
+        }else{
+          document.getElementById("pdf2").disabled = true;
+          document.getElementById("excel2").disabled = true;
+          document.getElementById("agregar2").disabled = true;
+          document.getElementById("editar2").disabled = true ;
+          document.getElementById("eliminar2").disabled = true ;
+        }
+      });
+      $('#myCheck3').change(function(){
+        if(this.checked){
+          document.getElementById("pdf3").disabled = false;
+          document.getElementById("excel3").disabled = false;
+          document.getElementById("agregar3").disabled = false;
+          document.getElementById("editar3").disabled = false;
+          document.getElementById("eliminar3").disabled = false;
+        }else{
+          document.getElementById("pdf3").disabled = true;
+          document.getElementById("excel3").disabled = true;
+          document.getElementById("agregar3").disabled = true;
+          document.getElementById("editar3").disabled = true ;
+          document.getElementById("eliminar3").disabled = true ;
+        }
+      });
+      $('#myCheck4').change(function(){
+        if(this.checked){
+          document.getElementById("pdf4").disabled = false;
+          document.getElementById("excel4").disabled = false;
+          document.getElementById("agregar4").disabled = false;
+          document.getElementById("editar4").disabled = false;
+          document.getElementById("eliminar4").disabled = false;
+        }else{
+          document.getElementById("pdf4").disabled = true;
+          document.getElementById("excel4").disabled = true;
+          document.getElementById("agregar4").disabled = true;
+          document.getElementById("editar4").disabled = true ;
+          document.getElementById("eliminar4").disabled = true ;
+        }
+      });
+      $('#myCheck5').change(function(){
+        if(this.checked){
+          document.getElementById("pdf5").disabled = false;
+          document.getElementById("excel5").disabled = false;
+          document.getElementById("agregar5").disabled = false;
+          document.getElementById("editar5").disabled = false;
+          document.getElementById("eliminar5").disabled = false;
+        }else{
+          document.getElementById("pdf5").disabled = true;
+          document.getElementById("excel5").disabled = true;
+          document.getElementById("agregar5").disabled = true;
+          document.getElementById("editar5").disabled = true ;
+          document.getElementById("eliminar5").disabled = true ;
+        }
+      });
+      $('#myCheck6').change(function(){
+        if(this.checked){
+          document.getElementById("pdf6").disabled = false;
+          document.getElementById("excel6").disabled = false;
+          document.getElementById("agregar6").disabled = false;
+          document.getElementById("editar6").disabled = false;
+          document.getElementById("eliminar6").disabled = false;
+        }else{
+          document.getElementById("pdf6").disabled = true;
+          document.getElementById("excel6").disabled = true;
+          document.getElementById("agregar6").disabled = true;
+          document.getElementById("editar6").disabled = true ;
+          document.getElementById("eliminar6").disabled = true ;
+        }
+      });
+      $('#myCheck7').change(function(){
+        if(this.checked){
+          document.getElementById("pdf7").disabled = false;
+          document.getElementById("excel7").disabled = false;
+          document.getElementById("agregar7").disabled = false;
+          document.getElementById("editar7").disabled = false;
+          document.getElementById("eliminar7").disabled = false;
+        }else{
+          document.getElementById("pdf7").disabled = true;
+          document.getElementById("excel7").disabled = true;
+          document.getElementById("agregar7").disabled = true;
+          document.getElementById("editar7").disabled = true ;
+          document.getElementById("eliminar7").disabled = true ;
+        }
+      });
+      $('#myCheck8').change(function(){
+        if(this.checked){
+          document.getElementById("pdf8").disabled = false;
+          document.getElementById("excel8").disabled = false;
+          document.getElementById("agregar8").disabled = false;
+          document.getElementById("editar8").disabled = false;
+          document.getElementById("eliminar8").disabled = false;
+        }else{
+          document.getElementById("pdf8").disabled = true;
+          document.getElementById("excel8").disabled = true;
+          document.getElementById("agregar8").disabled = true;
+          document.getElementById("editar8").disabled = true ;
+          document.getElementById("eliminar8").disabled = true ;
+        }
+      });
+      $('#myCheck9').change(function(){
+        if(this.checked){
+          document.getElementById("pdf9").disabled = false;
+          document.getElementById("excel9").disabled = false;
+          document.getElementById("agregar9").disabled = false;
+          document.getElementById("editar9").disabled = false;
+          document.getElementById("eliminar9").disabled = false;
+        }else{
+          document.getElementById("pdf9").disabled = true;
+          document.getElementById("excel9").disabled = true;
+          document.getElementById("agregar9").disabled = true;
+          document.getElementById("editar9").disabled = true ;
+          document.getElementById("eliminar9").disabled = true ;
+        }
+      });
+      $('#myCheck10').change(function(){
+        if(this.checked){
+          document.getElementById("pdf10").disabled = false;
+          document.getElementById("excel10").disabled = false;
+          document.getElementById("agregar10").disabled = false;
+          document.getElementById("editar10").disabled = false;
+          document.getElementById("eliminar10").disabled = false;
+        }else{
+          document.getElementById("pdf10").disabled = true;
+          document.getElementById("excel10").disabled = true;
+          document.getElementById("agregar10").disabled = true;
+          document.getElementById("editar10").disabled = true ;
+          document.getElementById("eliminar10").disabled = true ;
+        }
+      });
+      $('#myCheck11').change(function(){
+        if(this.checked){
+          document.getElementById("pdf11").disabled = false;
+          document.getElementById("excel11").disabled = false;
+          document.getElementById("agregar11").disabled = false;
+          document.getElementById("editar11").disabled = false;
+          document.getElementById("eliminar11").disabled = false;
+        }else{
+          document.getElementById("pdf11").disabled = true;
+          document.getElementById("excel11").disabled = true;
+          document.getElementById("agregar11").disabled = true;
+          document.getElementById("editar11").disabled = true ;
+          document.getElementById("eliminar11").disabled = true ;
+        }
+      });
+      $('#myCheck12').change(function(){
+        if(this.checked){
+          document.getElementById("pdf12").disabled = false;
+          document.getElementById("excel12").disabled = false;
+          document.getElementById("agregar12").disabled = false;
+          document.getElementById("editar12").disabled = false;
+          document.getElementById("eliminar12").disabled = false;
+        }else{
+          document.getElementById("pdf12").disabled = true;
+          document.getElementById("excel12").disabled = true;
+          document.getElementById("agregar12").disabled = true;
+          document.getElementById("editar12").disabled = true ;
+          document.getElementById("eliminar12").disabled = true ;
+        }
+      });
+      $('#myCheck13').change(function(){
+        if(this.checked){
+          document.getElementById("pdf13").disabled = false;
+          document.getElementById("excel13").disabled = false;
+          document.getElementById("agregar13").disabled = false;
+          document.getElementById("editar13").disabled = false;
+          document.getElementById("eliminar13").disabled = false;
+        }else{
+          document.getElementById("pdf13").disabled = true;
+          document.getElementById("excel13").disabled = true;
+          document.getElementById("agregar13").disabled = true;
+          document.getElementById("editar13").disabled = true ;
+          document.getElementById("eliminar13").disabled = true ;
+        }
+      });
+      $('#myCheck14').change(function(){
+        if(this.checked){
+          document.getElementById("pdf14").disabled = false;
+          document.getElementById("excel14").disabled = false;
+          document.getElementById("agregar14").disabled = false;
+          document.getElementById("editar14").disabled = false;
+          document.getElementById("eliminar14").disabled = false;
+        }else{
+          document.getElementById("pdf14").disabled = true;
+          document.getElementById("excel14").disabled = true;
+          document.getElementById("agregar14").disabled = true;
+          document.getElementById("editar14").disabled = true ;
+          document.getElementById("eliminar14").disabled = true ;
+        }
+      });
+      $('#myCheck15').change(function(){
+        if(this.checked){
+          document.getElementById("pdf15").disabled = false;
+          document.getElementById("excel15").disabled = false;
+          document.getElementById("agregar15").disabled = false;
+          document.getElementById("editar15").disabled = false;
+          document.getElementById("eliminar15").disabled = false;
+        }else{
+          document.getElementById("pdf15").disabled = true;
+          document.getElementById("excel15").disabled = true;
+          document.getElementById("agregar15").disabled = true;
+          document.getElementById("editar15").disabled = true ;
+          document.getElementById("eliminar15").disabled = true ;
+        }
+      });
+
+      $('#myCheck16').change(function(){
+        if(this.checked){
+          document.getElementById("pdf16").disabled = false;
+          document.getElementById("excel16").disabled = false;
+          document.getElementById("agregar16").disabled = false;
+          document.getElementById("editar16").disabled = false;
+          document.getElementById("eliminar16").disabled = false;
+        }else{
+          document.getElementById("pdf16").disabled = true;
+          document.getElementById("excel16").disabled = true;
+          document.getElementById("agregar16").disabled = true;
+          document.getElementById("editar16").disabled = true ;
+          document.getElementById("eliminar16").disabled = true ;
+        }
+      });
+
+      $('#myCheck17').change(function(){
+        if(this.checked){
+          document.getElementById("pdf17").disabled = false;
+          document.getElementById("excel17").disabled = false;
+          document.getElementById("agregar17").disabled = false;
+          document.getElementById("editar17").disabled = false;
+          document.getElementById("eliminar17").disabled = false;
+        }else{
+          document.getElementById("pdf17").disabled = true;
+          document.getElementById("excel17").disabled = true;
+          document.getElementById("agregar17").disabled = true;
+          document.getElementById("editar17").disabled = true ;
+          document.getElementById("eliminar17").disabled = true ;
+        }
+      });
+
+    });//fin del document.ready
+
+    function showDiv(elem){
+      // alert("funciona ");
+      if(elem.value == '1'){
+        //document.getElementById('permiosos-root').style.display = "block";
+        document.getElementById('permiosos-personalizados').style.display = "none";
+        
+        //document.getElementById('permiosos-recursos-humanos').style.display = "none";
+        // document.getElementById('permiosos-personales').style.display = "none";
+        // document.getElementById('permiosos-prorrateo').style.display = "none";
+        // document.getElementById('departamentos').style.display = "none";
+        // document.getElementById('add-departamentos').style.display = "none";
+        // document.getElementById('permiosos-administrador').style.display = "none";
+      }
+
+      if(elem.value == '2'){
+        // document.getElementById('permiosos-root').style.display = "none";
+        // document.getElementById('permiosos-administrador').style.display = "none";
+        // document.getElementById('permiosos-recursos-humanos').style.display = "none";
+        // document.getElementById('permiosos-personales').style.display = "block";
+        // document.getElementById('permiosos-prorrateo').style.display = "none";
+        // document.getElementById('departamentos').style.display = "block";
+        // document.getElementById('add-departamentos').style.display = "block";
+        document.getElementById('permiosos-personalizados').style.display = "block";
+        document.getElementById('cont_linea').style.display = "block";
+      }
+      if(elem.value == '3'){
+        // document.getElementById('permiosos-root').style.display = "none";
+        // document.getElementById('permiosos-administrador').style.display = "none";
+        // document.getElementById('permiosos-recursos-humanos').style.display = "none";
+        // document.getElementById('permiosos-personales').style.display = "block";
+        // document.getElementById('permiosos-prorrateo').style.display = "none";
+        // document.getElementById('departamentos').style.display = "block";
+        // document.getElementById('add-departamentos').style.display = "block";
+        document.getElementById('permiosos-personalizados').style.display = "block";
+        document.getElementById('cont_linea').style.display = "none";
+      }
+
+      
+    }
+
+      var selects = document.getElementById("perfil_id");
+      var selectedValue = selects.options[selects.selectedIndex].value;
+
+      $("#perfil_id").change(function(){
+
+        
+        if($(this).find(':selected').data('id') == 'Personalizado'){
+          document.getElementById('permiosos-personalizados').style.display = "block";
+        }
+        else if($(this).find(':selected').data('id') == 'Medico'){
+          document.getElementById('permiosos-personalizados').style.display = "block";
+        }
+        else{
+          document.getElementById('permiosos-personalizados').style.display = "none";
+        }
+
+        //alert($("#perfil_id").val());
+
+
+        if($("#perfil_id").val() == '1'){
+            // document.getElementById('permiosos-root').style.display = "block";
             // document.getElementById('permiosos-personalizados').style.display = "none";
             // document.getElementById('permiosos-recursos-humanos').style.display = "none";
-            // document.getElementById('permiosos-prorrateo').style.display = "block";
+            // document.getElementById('permiosos-prorrateo').style.display = "none";
             // document.getElementById('permiosos-personales').style.display = "none";
             // document.getElementById('departamentos').style.display = "none";
             // document.getElementById('add-departamentos').style.display = "none";
             // document.getElementById('permiosos-administrador').style.display = "none";
+        }
+
+        if($("#perfil_id").val() == '2'){
+        // document.getElementById('permiosos-root').style.display = "none";
+        // document.getElementById('permiosos-administrador').style.display = "none";
+        // document.getElementById('permiosos-recursos-humanos').style.display = "none";
+        // document.getElementById('permiosos-prorrateo').style.display = "none";
+        // document.getElementById('permiosos-personales').style.display = "block";
+        // document.getElementById('departamentos').style.display = "block";
+        // document.getElementById('add-departamentos').style.display = "block";
+        // document.getElementById('permiosos-personalizados').style.display = "block";
+      }
+
+      if($("#perfil_id").val() == '3'){
+        // document.getElementById('permiosos-root').style.display = "none";
+        // document.getElementById('permiosos-personalizados').style.display = "none";
+        // document.getElementById('permiosos-recursos-humanos').style.display = "none";
+        // document.getElementById('permiosos-prorrateo').style.display = "block";
+        // document.getElementById('permiosos-personales').style.display = "none";
+        // document.getElementById('departamentos').style.display = "none";
+        // document.getElementById('add-departamentos').style.display = "none";
+        // document.getElementById('permiosos-administrador').style.display = "none";
+      }
+
+        if($("#perfil_id").val() == '4'){
+          // document.getElementById('permiosos-personalizados').style.display = "none";
+          // document.getElementById('permiosos-administrador').style.display = "block";
+          // document.getElementById('permiosos-prorrateo').style.display = "none";
+          // document.getElementById('permiosos-personales').style.display = "none";
+        }
+
+        if($("#perfil_id").val() == '5'){
+          // document.getElementById('permiosos-administrador').style.display = "none";
+          // document.getElementById('permiosos-personalizados').style.display = "block";
+          // document.getElementById('permiosos-prorrateo').style.display = "none";
+          // document.getElementById('permiosos-personales').style.display = "none";
+        }
+
+        if($("#perfil_id").val() == '6'){
+          // document.getElementById('permiosos-administrador').style.display = "none";
+          // document.getElementById('permiosos-personalizados').style.display = "none";
+          // document.getElementById('permiosos-recursos-humanos').style.display = "block";
+          // document.getElementById('permiosos-prorrateo').style.display = "none";
+          // document.getElementById('permiosos-personales').style.display = "none";
+          //document.getElementById('departamentos').style.display = "none";
+          //document.getElementById('add-departamentos').style.display = "none";
+        }
+      });
+
+      $("#btnDepartamentoAdd").click(function(){
+        var id = $("#departamento").val();
+        if(id!=""){
+          var nombre = $("#departamento option:selected").text();
+          var color = $("#departamento option:selected").attr("color");
+
+          var html = '<div class="col-md-4 col-sm-4 col-xs-4" id="contenedor_'+id+'" style="background-color: #f7f7f7; border-radius:5px; margin:5px; justify-content: center;">'
+          + '<i class="fa fa-times-circle-o cerrar col-md-1 col-sm-1 col-xs-1" id="'+id+'" nombre="'+nombre+'" color="'+color+'" style="font-size: 18px; margin-top:3px; margin-left:5px; color:#C9302C;"></i>'
+          + '<input type="hidden" name="departamento_id[]" value="'+id+'" checked="checked" />'
+          + '<label class="control-label col-md-8 col-sm-8 col-xs-8" style="text-align: center;color:#000000;" >'+nombre+'</label>'
+          + '</div>';
+
+          $("#departamento_asignado").append(html);
+          $("#departamento option:selected").remove();
+
+          if($("#departamento option").length<=1){
+            $("#btnDepartamentoAdd").hide();
           }
+        }
+      });
 
-            if($("#perfil_id").val() == '4'){
-              // document.getElementById('permiosos-personalizados').style.display = "none";
-              // document.getElementById('permiosos-administrador').style.display = "block";
-              // document.getElementById('permiosos-prorrateo').style.display = "none";
-              // document.getElementById('permiosos-personales').style.display = "none";
-            }
+      $(document).on("click","i.cerrar",function(event){
 
-            if($("#perfil_id").val() == '5'){
-              // document.getElementById('permiosos-administrador').style.display = "none";
-              // document.getElementById('permiosos-personalizados').style.display = "block";
-              // document.getElementById('permiosos-prorrateo').style.display = "none";
-              // document.getElementById('permiosos-personales').style.display = "none";
-            }
+        var id = $(this).attr("id");
+        $("#contenedor_"+id).remove();
+        var nombre = $(this).attr("nombre");
 
-            if($("#perfil_id").val() == '6'){
-              // document.getElementById('permiosos-administrador').style.display = "none";
-              // document.getElementById('permiosos-personalizados').style.display = "none";
-              // document.getElementById('permiosos-recursos-humanos').style.display = "block";
-              // document.getElementById('permiosos-prorrateo').style.display = "none";
-              // document.getElementById('permiosos-personales').style.display = "none";
-              //document.getElementById('departamentos').style.display = "none";
-              //document.getElementById('add-departamentos').style.display = "none";
-            }
-          });
+        $("#departamento").append('<option value="'+id+'" >'+nombre+'</option>');
 
-          $("#btnDepartamentoAdd").click(function(){
-            var id = $("#departamento").val();
-            if(id!=""){
-              var nombre = $("#departamento option:selected").text();
-              var color = $("#departamento option:selected").attr("color");
+        if($("#departamento option").length>1){
+          $("#btnDepartamentoAdd").show();
+        }
 
-              var html = '<div class="col-md-4 col-sm-4 col-xs-4" id="contenedor_'+id+'" style="background-color: #f7f7f7; border-radius:5px; margin:5px; justify-content: center;">'
-              + '<i class="fa fa-times-circle-o cerrar col-md-1 col-sm-1 col-xs-1" id="'+id+'" nombre="'+nombre+'" color="'+color+'" style="font-size: 18px; margin-top:3px; margin-left:5px; color:#C9302C;"></i>'
-              + '<input type="hidden" name="departamento_id[]" value="'+id+'" checked="checked" />'
-              + '<label class="control-label col-md-8 col-sm-8 col-xs-8" style="text-align: center;color:#000000;" >'+nombre+'</label>'
-              + '</div>';
+      });
 
-              $("#departamento_asignado").append(html);
-              $("#departamento option:selected").remove();
+      $("#perfil_id").change();
 
-              if($("#departamento option").length<=1){
-                $("#btnDepartamentoAdd").hide();
-              }
-            }
-          });
+   
 
-          $(document).on("click","i.cerrar",function(event){
-
-            var id = $(this).attr("id");
-            $("#contenedor_"+id).remove();
-            var nombre = $(this).attr("nombre");
-
-            $("#departamento").append('<option value="'+id+'" >'+nombre+'</option>');
-
-            if($("#departamento option").length>1){
-              $("#btnDepartamentoAdd").show();
-            }
-
-          });
-
-          $("#perfil_id").change();
-
-        });//fin del document.ready
-
-      </script>
+  </script>
 html;
     
 
-    if($perfil == 3){
-      $administrador = AdministradoresDao::getAllWithOutLineaByCode($code);
-      $hiddenLinea = "style=\"display:none;\"";
-      $lineas = '';
-    }
-    else{
-      $hiddenLinea = '';
+    
+      
       $administrador = AdministradoresDao::getAllByCode($code);
       $linea_ejecutivo = LineaDao::getById($administrador['id_linea_principal'])[0];
       $lineas = '';
       $lineas .= <<<html
           <option selected value="{$linea_ejecutivo['id_linea_principal']}">{$linea_ejecutivo['nombre']}</option>
   html;
+      $lineaTodos = LineaDao::getLineaTodos()[0];
+      if($administrador['id_linea_principal'] != $lineaTodos['id_linea_principal']){
+        $lineas .= <<<html
+        <option value="{$lineaTodos['id_linea_principal']}">{$lineaTodos['nombre']}</option>
+html;
+      }
       foreach (LineaDao::getLineasSinEjecutivo() as $key => $value) {
         $selected = ($administrador['id_linea_principal'] == $value['id_linea_principal']) ? 'selected' : '';
         $lineas .= <<<html
@@ -1495,9 +1544,6 @@ html;
            
   html;
       }
-    }
-
-   
 
 
     $status = "";
@@ -1526,6 +1572,9 @@ html;
     // exit;
     foreach (AdministradoresDao::getSeccionesMenu() as $key => $value) {
 
+      // echo $value['nombre_seccion'];
+      // echo "<br>";
+
       if ($permisos_usuario['permisos_globales'] == 0) {
         $seccion = 'seccion_' . strtolower($value['nombre_seccion']);
         $seccion = str_replace(' de ', '_', $seccion);
@@ -1533,9 +1582,13 @@ html;
 
         $permisos = $permisos_usuario[$seccion];
 
-        // if($seccion == 'seccion_pruebas_covid'){
+        // if($seccion == 'seccion_pruebascovid'){
         //   print_r($permisos);
         // }
+        echo $seccion;
+        echo "<br>";
+      //   echo $permisos;
+      // echo "<br>";
 
 
 
@@ -1549,7 +1602,7 @@ html;
         $permisos = explode('-', $permisos);
 
         $permisos = ($permisos[0] == '') ? array('', '', '', '', '', '') : $permisos; /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
-        $check_habilitado = ($permisos[0] == '') ? array('', 'disabled', 'disabled', 'disabled', 'disabled') : array('', '', '', '', '', ''); /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
+        //$check_habilitado = ($permisos[0] == '') ? array('', 'disabled', 'disabled', 'disabled', 'disabled') : array('', '', '', '', '', ''); /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
       } else {
         $permisos = array('checked', 'checked', 'checked', 'checked', 'checked', 'checked');
       }
@@ -1581,14 +1634,14 @@ html;
     }
 
     
-    View::set('hiddenLinea',$hiddenLinea);
+    
     View::set('lineas', $lineas);
     View::set('perfiles', $perfiles);
     View::set('status', $status);
     View::set('permisos', $tabla1);
     View::set('administrador', $administrador);
     View::set('header', $this->_contenedor->header($extraHeader));
-    View::set('footer', $this->_contenedor->footer($extraFooter));
+    View::set('footer', $extraFooter);
     View::render("administrador_edit");
   }
 
@@ -1616,6 +1669,7 @@ html;
     $permisos = new \stdClass();
     $administrador->_usuario = MasterDom::getData('usuario');
     $administrador->_perfil_id = MasterDom::getData('perfil_id');
+    $administrador->_linea_id = MasterDom::getData('linea_id');
     $administrador->_descripcion = MasterDom::getData('descripcion');
     $administrador->_tipo = 0;
     $administrador->_status = MasterDom::getData('status');
@@ -1627,17 +1681,17 @@ html;
     if (MasterDom::getData('perfil_id') == 1) {
       $permisos->_usuario = MasterDom::getData('usuario');
       $permisos->_permisos_globales = 1;
-      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "sorteo_prueba_covid", 15 => "utilerias", 16 => "configuracion");
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "asistencias", 15 => "utilerias", 16 => "configuracion");
       //$permisos->_seccion_empresas = "1-2-3-4-5-6";
       for ($i = 1; $i <= 16; $i++) {
         $sec = "_seccion_" . $arrSecciones[$i];
         $permisos->$sec = "1-2-3-4-5-6";
       }
     }
-    if (MasterDom::getData('perfil_id') == 2) {
+    if (MasterDom::getData('perfil_id') == 2 || MasterDom::getData('perfil_id') == 3) {
       $permisos->_usuario = MasterDom::getData('usuario');
       $permisos->_permisos_globales = 0;
-      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "sorteo_prueba_covid", 15 => "utilerias", 16 => "configuracion");
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "asistencias", 15 => "utilerias", 16 => "configuracion");
       for ($i = 1; $i <= 16; $i++) {
         $seccion = "seccion" . $i;
         $pdf = "pdf" . $i;
@@ -1662,12 +1716,22 @@ html;
       }
     }
 
+    $idPermisos = AdministradoresDao::updatePermisosUsuario($permisos);
+
     // print_r($permisos);
     // exit;
 
-    $idPermisos = AdministradoresDao::updatePermisosUsuario($permisos);
+    $asignaLinea = new \stdClass();
+    $asignaLinea->_usuario_id = MasterDom::getData('usuario_id');
+    $asignaLinea->_linea_id = MasterDom::getData('linea_id');    
+    $asignaLinea->_utilerias_administradores = $_SESSION['utilerias_administradores_id'];
 
-    if (($idAdministrador >= 1 && $idPermisos >= 1) || $idPermisos > 0) {
+    $idAsignaLinea = LineaDao::updateAsignaLinea($asignaLinea);
+
+    
+
+    if (($idAdministrador >= 1 || $idAsignaLinea >= 1 || $idPermisos)) {
+     
       $this->alerta($id, 'edit');
     } else {
       $this->alerta($id, 'nothing');

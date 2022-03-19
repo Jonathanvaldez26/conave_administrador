@@ -231,7 +231,7 @@ sql;
 
 
         $query=<<<sql
-        UPDATE utilerias_permisos SET permisos_globales = :permisos_globales, seccion_principal = :seccion_principal, seccion_asistentes = :seccion_asistentes, seccion_bu = :seccion_bu, seccion_lineas = :seccion_lineas, seccion_posiciones = :seccion_posiciones, seccion_restaurantes = :seccion_restaurantes, seccion_gafete = :seccion_gafete, seccion_vuelos = :seccion_vuelos, seccion_pickup = :seccion_pickup, seccion_habitaciones = :seccion_habitaciones, seccion_cenas = :seccion_cenas, seccion_vacunacion = :seccion_vacunacion, seccion_pruebas_covid = :seccion_pruebas_covid, seccion_sorteo_prueba_covid = :seccion_sorteo_prueba_covid, seccion_utilerias = :seccion_utilerias, seccion_configuracion = :seccion_configuracion WHERE usuario = :usuario;
+        UPDATE utilerias_permisos SET permisos_globales = :permisos_globales, seccion_principal = :seccion_principal, seccion_asistentes = :seccion_asistentes, seccion_bu = :seccion_bu, seccion_lineas = :seccion_lineas, seccion_posiciones = :seccion_posiciones, seccion_restaurantes = :seccion_restaurantes, seccion_gafete = :seccion_gafete, seccion_vuelos = :seccion_vuelos, seccion_pickup = :seccion_pickup, seccion_habitaciones = :seccion_habitaciones, seccion_cenas = :seccion_cenas, seccion_vacunacion = :seccion_vacunacion, seccion_pruebas_covid = :seccion_pruebas_covid, seccion_asistencias = :seccion_asistencias, seccion_utilerias = :seccion_utilerias, seccion_configuracion = :seccion_configuracion WHERE usuario = :usuario;
 sql;
         $parametros = array(
           ':usuario'=>$permisos->_usuario,
@@ -249,7 +249,7 @@ sql;
           ':seccion_cenas'=>$permisos->_seccion_cenas,
           ':seccion_vacunacion'=>$permisos->_seccion_vacunacion,
           ':seccion_pruebas_covid'=>$permisos->_seccion_pruebas_covid,
-          ':seccion_sorteo_prueba_covid'=>$permisos->_seccion_sorteo_prueba_covid,
+          ':seccion_asistencias'=>$permisos->_seccion_asistencias,
           ':seccion_utilerias'=>$permisos->_seccion_utilerias,
           ':seccion_configuracion'=>$permisos->_seccion_configuracion
           

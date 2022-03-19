@@ -59,6 +59,15 @@ sql;
         return $mysqli->queryAll($query);
     }
 
+    public static function getLineaTodos(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM `linea_principal` WHERE nombre = 'todos'
+sql;
+
+        return $mysqli->queryAll($query);
+    }
+
     public static function getLineaEjecutivo(){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
@@ -86,4 +95,22 @@ sql;
 
             return $id;
     }
+
+    public static function updateAsignaLinea($user){
+        $mysqli = Database::getInstance(true);
+        $query=<<<sql
+        UPDATE asigna_linea SET id_linea_principal = :id_linea_principal, utilerias_administradores = :utilerias_administradores WHERE utilerias_administradores_id_linea_asignada = :utilerias_administradores_id_linea_asignada;
+sql;
+        $parametros = array(
+          ':id_linea_principal'=>$user->_linea_id,
+          ':utilerias_administradores'=>$user->_utilerias_administradores,
+          ':utilerias_administradores_id_linea_asignada'=>$user->_usuario_id
+         
+        );
+        //   $accion = new \stdClass();
+        //   $accion->_sql= $query;
+        //   $accion->_parametros = $parametros;
+        //   $accion->_id = $hotel->_id_hotel;
+          return $mysqli->update($query, $parametros);
+      }
 }

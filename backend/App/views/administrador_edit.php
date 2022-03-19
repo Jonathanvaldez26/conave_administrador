@@ -350,6 +350,8 @@
                                     </div>
 
                                     <input type="hidden" name="usuario" id="usuario" value="<?php echo $administrador['usuario']; ?>">
+                                    <input type="hidden" name="usuario_id" id="usuario_id" value="<?php echo $administrador['utilerias_administradores_id']; ?>">
+                                    
 
                                     <div class="card-body pt-0">
                                         <div class="row">
@@ -363,7 +365,7 @@
                                             <div class="form-group col-12 col-md-6">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="usuario">Usuario </label>
                                                 <div class="input-group">
-                                                    <label type="text" name="nombre" id="nombre" class="form-control col-md-7 "><?php echo $administrador['usuario']; ?></label>
+                                                    <label type="text" name="usuario" id="usuario" class="form-control col-md-7 "><?php echo $administrador['usuario']; ?></label>
                                                 </div>
                                                 <span id="availability"></span>
                                             </div>
@@ -373,7 +375,7 @@
 
                                                 <label class="form-label" for="perfil_id">Perfil del Administrador<span class="required">*</span></label>
 
-                                                <select class="form-control" id="perfil_id" name="perfil_id">
+                                                <select class="form-control" id="perfil_id" name="perfil_id" onchange="showDiv(this)">
                                                     <option value="" disabled selected>Selecciona un perfil para el este administrador</option>
                                                     <?php echo $perfiles; ?>
                                                 </select>
@@ -433,7 +435,27 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group" id="permiosos-personalizados" style="display: none;">
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Descripci&oacute;n <span class="required">*</span></label>
+                                                <div class="input-group">
+                                                    <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n del administrador"><?php echo $administrador['descripcion']; ?></textarea>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus<span class="required">*</span></label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select class="form-control" name="status" id="status">
+                                                        <option value="" disabled selected>Selecciona un estatus</option>
+                                                        <?php echo $status; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            
+                                            <div class="form-group" id="permiosos-personalizados" style="">
                                                 <label class="col-md-3 col-sm-3 col-xs-12 control-label">Secciones a visualizar
                                                     <br>
                                                     <small class="text-navy">Selecciona dentro de la <br> tabla que secciones deseas <br> que este perfil quieres <br> que visualice. <br> También asigna si deseas <br> que pueda realizar:
@@ -464,24 +486,6 @@
                                                         </tbody>
                                                     </table>
 
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">Descripci&oacute;n <span class="required">*</span></label>
-                                                <div class="input-group">
-                                                    <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n del administrador"><?php echo $administrador['descripcion']; ?></textarea>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus<span class="required">*</span></label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select class="form-control" name="status" id="status">
-                                                        <option value="" disabled selected>Selecciona un estatus</option>
-                                                        <?php echo $status; ?>
-                                                    </select>
                                                 </div>
                                             </div>
                                             <br>
@@ -517,3 +521,4 @@
 </body>
 
 <?php echo $footer; ?>
+

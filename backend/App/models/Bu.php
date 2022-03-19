@@ -32,8 +32,7 @@ sql;
         $accion->_sql= $query;
         $accion->_parametros = $parametros;
         $accion->_id = $id;
-
-        // UtileriasLog::addAccion($accion);
+        
         return $id;
     }
 

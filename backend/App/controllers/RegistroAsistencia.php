@@ -79,7 +79,9 @@ html;
         foreach ($lista_registrados as $key => $value) {
             $tabla.=<<<html
             <tr>
-                <td>{$value['utilerias_asistentes_id']}</td>
+                <td>{$value['nombre_completo']}</td>
+                <td>{$value['email']}</td>
+                <td>{$value['telefono']}</td>
             </tr>
 html;
 
@@ -124,15 +126,17 @@ html;
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
         $bu = RegistroAsistenciaDao::getBu();
-
         if($user_clave){
             // echo "success";
-             $data = [
-                 'datos'=>$user_clave,
-                 'linea_principal'=>$linea_principal,
-                 'bu'=>$bu,
-                 'status'=>'success'
-             ];
+            
+            $data = [
+                'datos'=>$user_clave,
+                'linea_principal'=>$linea_principal,
+                'bu'=>$bu,
+                'status'=>'success'
+            ];
+            
+            
             //header("Location: /Home");
         }else{
             $data = [
@@ -140,6 +144,20 @@ html;
             ];
             // header("Location: /Home/");
         }
+        
+        $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($clave)[0];
+        
+        $insertar = RegistroAsistenciaDao::addRegister(1,5);
+        if ($insertar) {
+            $data_i = [
+                'status'=>'success insert'
+            ];
+        } else {
+            $data_i = [
+                'status'=>'fail insert'
+            ];
+        }
+
 
         echo json_encode($data);
     }

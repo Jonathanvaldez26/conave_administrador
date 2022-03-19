@@ -48,7 +48,6 @@ html;
     $configuracionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_configuracion", 1) == 0) ? "style=\"display:none;\"" : "";
     $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1) == 0) ? "style=\"display:none;\"" : "";
 
-<<<<<<< HEAD
 $extraFooter =<<<html
       <script>
         $(document).ready(function(){
@@ -157,14 +156,6 @@ $extraFooter =<<<html
       </script>
 html;
 
-
-
-
-
-
-
-
-
 $datos = AsistenciasDao::getAll();
 foreach ($datos as $key => $value) {
   $tabla=<<<html
@@ -256,23 +247,19 @@ foreach ($datos as $key => $value) {
       return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length); 
   } 
 
-      
+  // View::set('permisoGlobalHidden', $permisoGlobalHidden);
+  // View::set('asistentesHidden', $asistentesHidden);
+  // View::set('vuelosHidden', $vuelosHidden);
+  // View::set('pickUpHidden', $pickUpHidden);
+  // View::set('habitacionesHidden', $habitacionesHidden);
+  // View::set('cenasHidden', $cenasHidden);
+  // View::set('aistenciasHidden', $aistenciasHidden);
+  // View::set('vacunacionHidden', $vacunacionHidden);
+  // View::set('pruebasHidden', $pruebasHidden);
+  // View::set('configuracionHidden', $configuracionHidden);
+  // View::set('utileriasHidden', $utileriasHidden);
+  // View::set('header', $this->_contenedor->header($extraHeader));
+  // View::set('footer', $this->_contenedor->footer($extraFooter));
+  // View::render("asistencias_all");
 
-=======
-    View::set('permisoGlobalHidden', $permisoGlobalHidden);
-    View::set('asistentesHidden', $asistentesHidden);
-    View::set('vuelosHidden', $vuelosHidden);
-    View::set('pickUpHidden', $pickUpHidden);
-    View::set('habitacionesHidden', $habitacionesHidden);
-    View::set('cenasHidden', $cenasHidden);
-    View::set('aistenciasHidden', $aistenciasHidden);
-    View::set('vacunacionHidden', $vacunacionHidden);
-    View::set('pruebasHidden', $pruebasHidden);
-    View::set('configuracionHidden', $configuracionHidden);
-    View::set('utileriasHidden', $utileriasHidden);
-    View::set('header', $this->_contenedor->header($extraHeader));
-    View::set('footer', $this->_contenedor->footer($extraFooter));
-    View::render("asistencias_all");
-  }
->>>>>>> f1790e5a761e0cfed1d73f133abd8e3d820d297d
 }

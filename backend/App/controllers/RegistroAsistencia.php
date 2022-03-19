@@ -67,11 +67,24 @@ html;
         <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 html;
 
         $codigo = RegistroAsistenciaDao::getById($id);
 
+        $lista_registrados = RegistroAsistenciaDao::getRegistrosAsistenciasByCode($id);
+
+        $tabla='';
+        foreach ($lista_registrados as $key => $value) {
+            $tabla.=<<<html
+            <tr>
+                <td>{$value['utilerias_asistentes_id']}</td>
+            </tr>
+html;
+
+        }
+        
         foreach($codigo as $key => $value)
         {
             if($value['id_asistencia'] != '')
@@ -88,6 +101,7 @@ html;
 
         if($flag == true)
         {
+            View::set('tabla',$tabla);
             View::set('nombre',$nombre);
             View::set('descripcion',$descripcion);
             View::set('nombre',$nombre);
@@ -100,20 +114,23 @@ html;
         }
         else
         {
-            View::render("asistencias_panel_registro");
+            // View::render("asistencias_panel_registro");
+            View::render("asistencias_all_vacia");
         }
     }
 
     public function registroAsistencia($clave){
            
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
-
-        print($user_clave[0].' ');
+        $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
+        $bu = RegistroAsistenciaDao::getBu();
 
         if($user_clave){
             // echo "success";
              $data = [
                  'datos'=>$user_clave,
+                 'linea_principal'=>$linea_principal,
+                 'bu'=>$bu,
                  'status'=>'success'
              ];
             //header("Location: /Home");

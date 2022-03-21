@@ -1043,9 +1043,16 @@ html;
 
 
     if ($idAdministrador >= 1 && $idPermisos >= 1 && $idAsignaLinea >= 1) {
-      $this->alerta($id, 'add');
+      // $this->alerta($id, 'add');
+      echo "<script>
+        alert('Se agrego el usuario correctamente');
+      </script>";
+      header('Location: /Administradores/');
     } else {
-      $this->alerta($id, 'error');
+      echo "<script>
+        alert('Error, no se pudo guardar el usuario');
+      </script>";
+      header('Location: /Administradores/');
     }
   }
 

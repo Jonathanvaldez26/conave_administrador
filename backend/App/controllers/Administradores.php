@@ -982,6 +982,9 @@ html;
     $administrador->_tipo = 0;
     $administrador->_code = $this->generateRandomString();
 
+    var_dump($administrador);
+    exit;
+
     $permisos = new \stdClass();
 
     if (MasterDom::getData('contrasena_1') == MasterDom::getData('contrasena_2')) {
@@ -1031,8 +1034,7 @@ html;
 
 
     $idAdministrador = AdministradoresDao::insert($administrador);
-    var_dump($administrador);
-    exit;
+    
     if ($idAdministrador) {
       $asignaLinea = new \stdClass();
       $asignaLinea->_linea_id = MasterDom::getData('linea_id');

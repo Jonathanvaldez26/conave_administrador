@@ -111,7 +111,7 @@ sql;
           ':seccion_cenas'=>$permisos->_seccion_cenas,
           ':seccion_vacunacion'=>$permisos->_seccion_vacunacion,
           ':seccion_pruebas_covid'=>$permisos->_seccion_pruebas_covid,
-          ':seccion_asistencias'=>$permisos->_seccion_sorteo_prueba_covid,
+          ':seccion_asistencias'=>$permisos->_seccion_asistencias,
           ':seccion_utilerias'=>$permisos->_seccion_utilerias,
           ':seccion_configuracion'=>$permisos->_seccion_configuracion
         );

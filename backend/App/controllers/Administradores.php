@@ -994,7 +994,7 @@ html;
       $permisos->_usuario = MasterDom::getData('usuario');
       $permisos->_permisos_globales = 1;
 
-      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "sorteo_prueba_covid", 15 => "utilerias", 16 => "configuracion");
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "asistencias", 15 => "utilerias", 16 => "configuracion");
       $permisos->_seccion_empresas = "1-2-3-4-5-6";
       for ($i = 1; $i <= 16; $i++) {
         $sec = "_seccion_" . $arrSecciones[$i];
@@ -1004,7 +1004,7 @@ html;
 
       $permisos->_usuario = MasterDom::getData('usuario');
       $permisos->_permisos_globales = 0;
-      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "sorteo_prueba_covid", 15 => "utilerias", 16 => "configuracion");
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "asistencias", 15 => "utilerias", 16 => "configuracion");
       for ($i = 1; $i <= 16; $i++) {
         $seccion = "seccion" . $i;
         $pdf = "pdf" . $i;
@@ -1041,21 +1041,6 @@ html;
       $idPermisos = AdministradoresDao::insertPermisos($permisos);
     }
 
-
-    //if(MasterDom::getData('perfil_id') != 6){
-
-    //$departamento = MasterDom::getDataAll('departamento');
-    //if($departamento >= 1){
-    //    foreach ($departamento as $key => $value) {
-    /*if($secciones >= 0){  echo "ok";
-                }else{echo "no";}*/
-    //    }
-    //}else{
-    //    $this->alerta($id,'sin_departamento');
-    //}
-    //}
-
-    // if($idAdministrador){
 
     if ($idAdministrador >= 1 && $idPermisos >= 1 && $idAsignaLinea >= 1) {
       $this->alerta($id, 'add');

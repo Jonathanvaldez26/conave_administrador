@@ -736,9 +736,10 @@ html;
           $(".btn_iframe").on("click",function(){
             var documento = $(this).attr('data-document');
             var modal_id = $(this).attr('data-target');
-            
-            $(modal_id+" .iframe").append('<iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/'+documento+'" style="width:100%; height:700px;" frameborder="0" ></iframe>')
-            
+          
+            if($(modal_id+" iframe").length == 0){
+                $(modal_id+" .iframe").append('<iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/'+documento+'" style="width:100%; height:700px;" frameborder="0" ></iframe>');
+            }          
           });
         });
       </script>

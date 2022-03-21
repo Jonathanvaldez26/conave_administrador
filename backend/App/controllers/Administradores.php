@@ -1046,13 +1046,15 @@ html;
       // $this->alerta($id, 'add');
       echo "<script>
         alert('Se agrego el usuario correctamente');
+        window.location.href = '/Administradores/';
       </script>";
-      header('Location: /Administradores/');
+      //header('Location: /Administradores/');
     } else {
       echo "<script>
         alert('Error, no se pudo guardar el usuario');
+        window.location.href = '/Administradores/';
       </script>";
-      header('Location: /Administradores/');
+      //header('Location: /Administradores/');
     }
   }
 

@@ -169,7 +169,7 @@ foreach ($datos as $key => $value) {
  
   </tr>
  
- html;
+html;
 }
 
       View::set('tabla',$tabla);

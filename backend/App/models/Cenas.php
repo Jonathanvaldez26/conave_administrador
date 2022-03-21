@@ -6,7 +6,7 @@ use \Core\Database;
 use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
 
-class Habitaciones implements Crud{
+class Cenas implements Crud{
     public static function getAll(){
         
     }

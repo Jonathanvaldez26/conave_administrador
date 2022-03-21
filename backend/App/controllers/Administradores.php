@@ -1029,12 +1029,6 @@ html;
       }
     }
 
-    
-    var_dump($administrador);
-    var_dump($permisos);
-    exit;
-
-
     $idAdministrador = AdministradoresDao::insert($administrador);
     
     if ($idAdministrador) {

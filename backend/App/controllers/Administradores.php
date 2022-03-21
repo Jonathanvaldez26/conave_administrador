@@ -982,9 +982,6 @@ html;
     $administrador->_tipo = 0;
     $administrador->_code = $this->generateRandomString();
 
-    var_dump($administrador);
-    exit;
-
     $permisos = new \stdClass();
 
     if (MasterDom::getData('contrasena_1') == MasterDom::getData('contrasena_2')) {
@@ -1031,6 +1028,11 @@ html;
         $permisos->$sec = $resultSeccion . "-" . $resultPdf . "-" . $resultExcel . "-" . $resultAgregar . "-" . $resultEditar . "-" . $resultEliminar;
       }
     }
+
+    
+    var_dump($administrador);
+    var_dump($permisos);
+    exit;
 
 
     $idAdministrador = AdministradoresDao::insert($administrador);

@@ -1031,6 +1031,8 @@ html;
 
 
     $idAdministrador = AdministradoresDao::insert($administrador);
+    var_dump($administrador);
+    exit;
     if ($idAdministrador) {
       $asignaLinea = new \stdClass();
       $asignaLinea->_linea_id = MasterDom::getData('linea_id');

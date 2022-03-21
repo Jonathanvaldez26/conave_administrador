@@ -619,7 +619,7 @@
 
                           <div class="form-group row">
                               <div class="col-12">
-                                  <label class="control-label col-md-2 col-sm-3 col-xs-12" for="domicilio_fiscal">Descripción<span class="required"> *</span></label>
+                                  <label class="control-label col-md-2 col-sm-3 col-xs-12" for="descripcion">Descripción<span class="required"> *</span></label>
                                   <div class="input-group">
                                     <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n del administrador"></textarea>
                                   </div>

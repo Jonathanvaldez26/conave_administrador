@@ -1530,7 +1530,7 @@ html;
       $lineas = '';
       $lineas .= <<<html
           <option selected value="{$linea_ejecutivo['id_linea_principal']}">{$linea_ejecutivo['nombre']}</option>
-  html;
+html;
       $lineaTodos = LineaDao::getLineaTodos()[0];
       if($administrador['id_linea_principal'] != $lineaTodos['id_linea_principal']){
         $lineas .= <<<html
@@ -1542,7 +1542,7 @@ html;
         $lineas .= <<<html
           <option {$selected} value="{$value['id_linea_principal']}">{$value['nombre']}</option>
            
-  html;
+html;
       }
 
 

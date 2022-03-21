@@ -68,7 +68,7 @@ sql;
         $query=<<<sql
             INSERT INTO utilerias_administradores(nombre, usuario, contrasena, perfil_id, descripcion, fecha_alta, code,status) 
             VALUES (:nombre, :usuario, :contrasena, :perfil_id, :descripcion, NOW(),:code ,1)
-    sql;
+sql;
             $parametros = array(
             ':nombre'=>$administradores->_nombre,
             ':usuario'=>$administradores->_usuario,

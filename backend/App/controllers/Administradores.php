@@ -35,6 +35,8 @@ class Administradores extends Controller
 
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+
+
     
       <script>
         $(document).ready(function(){
@@ -525,14 +527,14 @@ html;
     $extraFooter = <<<html
       <script>
         $(document).ready(function(){
-
+          
           $.validator.addMethod("checkUserName",
             function(value, element) {
               var result = false;
               $.ajax({
                 type:"POST",
                 async: false,
-                url: "/Administradores/isValidateUser", // script to validate in server side
+                url: "/Administradores/isValidateUserAdmin", // script to validate in server side
                 data: {
                     usuario: function() {
                       return $("#usuario").val();
@@ -1042,11 +1044,11 @@ html;
     View::set('perfiles', $perfiles);
     View::set('status', $status);
     View::set('header', $this->_contenedor->header(''));
-    View::set('footer', $this->_contenedor->footer($extraFooter));
+    View::set('footer', $extraFooter);
     View::render("administrador_add");
   }
 
-  public function isValidateUser()
+  public function isValidateUserAdmin()
   {
     $dato = AdministradoresDao::getUser($_POST['usuario']);
     if ($dato == 1) {

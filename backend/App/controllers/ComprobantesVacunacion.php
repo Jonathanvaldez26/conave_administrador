@@ -946,11 +946,11 @@ html;
 
       //----------------------------//
 
-      if($permisos['permisos_globales'] == 1){
+      // if($permisos['permisos_globales'] == 1){
         $asistentes_total = ComprobantesVacunacionDao::contarAsistentes();
-      }else{
-        $asistentes_total = ComprobantesVacunacionDao::contarAsistentesByLine($id_linea['id_linea_ejecutivo']);
-      }
+      // }else{
+      //   $asistentes_total = ComprobantesVacunacionDao::contarAsistentesByLine($id_linea['id_linea_ejecutivo']);
+      // }
 
       
       foreach ($asistentes_total[0] as $key => $value) {

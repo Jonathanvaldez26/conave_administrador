@@ -48,7 +48,7 @@
         </section>
     </main>
     <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
-    <footer class="footer py-4">
+    <footer class="footer py-7">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center mb-0 mt-0">

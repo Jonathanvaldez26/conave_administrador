@@ -10,7 +10,8 @@
                         <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
                             <div class="card card-plain mt-8">
                                 <div class="card-header pb-0 text-start">
-                                    <h3 class="font-weight-bolder text-primary text-gradient">GRUPO LAHE</h3>
+                                    <h3 class="font-weight-bolder text-danger text-gradient">GRUPO LAHE</h3>
+                                    <h5 class="font-weight-bolder text-danger text-gradient">Administrador CONAVE 2022</h5>
                                     <p class="mb-0">Introduce tus credenciales para iniciar sesión.</p>
                                 </div>
                                 <div class="card-body">
@@ -31,7 +32,7 @@
                                             </div> -->
                                         </div>
                                         <div class="text-center">
-                                            <button type="button" id="btnEntrar" class="btn bg-gradient-primary w-100 mt-4 mb-0">ENTRAR</button>
+                                            <button type="button" id="btnEntrar" class="btn bg-gradient-danger w-100 mt-4 mb-0">ENTRAR</button>
                                         </div>
                                     </form>
                                 </div>

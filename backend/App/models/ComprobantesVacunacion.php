@@ -55,6 +55,33 @@ sql;
         return $mysqli->queryAll($query);        
     }
 
+    public static function contarComprobantesValidosByLine($id){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(*) FROM (SELECT cv.id_comprobante_vacuna AS id_c_v, cv.utilerias_asistentes_id, cv.nota, cv.status AS status_comprobante, cv.validado,
+            email, telefono, fecha_carga_documento, numero_empleado, numero_dosis, marca_dosis, documento,
+            b.nombre AS nombre_bu, 
+            p.nombre as nombre_posicion,
+            lp.nombre AS nombre_linea,  
+            CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo 
+            FROM comprobante_vacuna cv
+            JOIN utilerias_asistentes u
+            JOIN registros_acceso ra
+            JOIN bu b
+            JOIN linea_principal lp
+            JOIN posiciones p        
+            ON cv.utilerias_asistentes_id = u.utilerias_asistentes_id
+            and u.id_registro_acceso = ra.id_registro_acceso
+            and b.id_bu = ra.id_bu
+            and lp.id_linea_principal = ra.id_linea_principal
+            and p.id_posicion = ra.id_posicion
+            where lp.id_linea_ejecutivo = $id and cv.validado = 1) AS total
+        
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
     public static function contarComprobantesTotales(){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
@@ -64,10 +91,62 @@ sql;
         return $mysqli->queryAll($query);        
     }
 
+    public static function contarComprobantesTotalesByLine($id){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(*) FROM (SELECT cv.id_comprobante_vacuna AS id_c_v, cv.utilerias_asistentes_id, cv.nota, cv.status AS status_comprobante, cv.validado,
+            email, telefono, fecha_carga_documento, numero_empleado, numero_dosis, marca_dosis, documento,
+            b.nombre AS nombre_bu, 
+            p.nombre as nombre_posicion,
+            lp.nombre AS nombre_linea,  
+            CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo 
+            FROM comprobante_vacuna cv
+            JOIN utilerias_asistentes u
+            JOIN registros_acceso ra
+            JOIN bu b
+            JOIN linea_principal lp
+            JOIN posiciones p        
+            ON cv.utilerias_asistentes_id = u.utilerias_asistentes_id
+            and u.id_registro_acceso = ra.id_registro_acceso
+            and b.id_bu = ra.id_bu
+            and lp.id_linea_principal = ra.id_linea_principal
+            and p.id_posicion = ra.id_posicion
+            where lp.id_linea_ejecutivo = $id) AS total
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
     public static function contarComprobantesPorRevisar(){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
         SELECT COUNT(id_comprobante_vacuna) FROM comprobante_vacuna WHERE validado = 0
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
+    public static function contarComprobantesPorRevisarByLine($id){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(*) FROM (SELECT cv.id_comprobante_vacuna AS id_c_v, cv.utilerias_asistentes_id, cv.nota, cv.status AS status_comprobante, cv.validado,
+            email, telefono, fecha_carga_documento, numero_empleado, numero_dosis, marca_dosis, documento,
+            b.nombre AS nombre_bu, 
+            p.nombre as nombre_posicion,
+            lp.nombre AS nombre_linea,  
+            CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo 
+            FROM comprobante_vacuna cv
+            JOIN utilerias_asistentes u
+            JOIN registros_acceso ra
+            JOIN bu b
+            JOIN linea_principal lp
+            JOIN posiciones p        
+            ON cv.utilerias_asistentes_id = u.utilerias_asistentes_id
+            and u.id_registro_acceso = ra.id_registro_acceso
+            and b.id_bu = ra.id_bu
+            and lp.id_linea_principal = ra.id_linea_principal
+            and p.id_posicion = ra.id_posicion
+            where lp.id_linea_ejecutivo = $id and cv.validado = 0) AS total
 sql;
 
         return $mysqli->queryAll($query);        

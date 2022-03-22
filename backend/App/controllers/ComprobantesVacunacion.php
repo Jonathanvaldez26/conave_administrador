@@ -931,6 +931,8 @@ html;
       </script>
   
 html;
+      $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
+
 
       //-----------------------------//
       if($permisos['permisos_globales'] == 1){

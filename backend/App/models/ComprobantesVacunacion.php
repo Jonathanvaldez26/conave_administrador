@@ -64,7 +64,6 @@ sql;
             p.nombre as nombre_posicion,
             lp.nombre AS nombre_linea,
             lp.id_linea_principal AS id_linea_p
-            CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo 
             FROM comprobante_vacuna cv
             JOIN utilerias_asistentes u
             JOIN registros_acceso ra
@@ -99,8 +98,7 @@ sql;
             email, telefono, fecha_carga_documento, numero_empleado, numero_dosis, marca_dosis, documento,
             b.nombre AS nombre_bu, 
             p.nombre as nombre_posicion,
-            lp.nombre AS nombre_linea,  
-            CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo 
+            lp.nombre AS nombre_linea
             FROM comprobante_vacuna cv
             JOIN utilerias_asistentes u
             JOIN registros_acceso ra
@@ -134,8 +132,7 @@ sql;
             email, telefono, fecha_carga_documento, numero_empleado, numero_dosis, marca_dosis, documento,
             b.nombre AS nombre_bu, 
             p.nombre as nombre_posicion,
-            lp.nombre AS nombre_linea,  
-            CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo 
+            lp.nombre AS nombre_linea 
             FROM comprobante_vacuna cv
             JOIN utilerias_asistentes u
             JOIN registros_acceso ra

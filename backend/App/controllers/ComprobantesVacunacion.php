@@ -547,7 +547,9 @@ html;
       <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
       <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 
-
+      <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+      
       <script>
         $(document).ready(function() {
     

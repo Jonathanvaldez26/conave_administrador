@@ -37,7 +37,6 @@ class RegistroAsistencia{
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        
 
 html;
         $extraFooter =<<<html
@@ -127,7 +126,7 @@ html;
         $bu = RegistroAsistenciaDao::getBu();
         
         $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
-        
+        $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id']);
 
         if($user_clave){
             // echo "success";
@@ -139,6 +138,19 @@ html;
                 'id_asistencia'=>$id_asistencia['id_asistencia'],
                 'status'=>'success'
             ];
+
+            if ($hay_asistente) {
+                array_push($data,'success find assistant');
+                // $data_i = [
+                //     'status'=>'success find assisstant'
+                // ];
+            } else {
+                // $insertar = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
+                // $data_i = [
+                //     'status'=>'fail not found assisstant'
+                // ];
+                array_push($data,'fail not found assistant');
+            }
             
             //header("Location: /Home");
         }else{
@@ -148,19 +160,6 @@ html;
             // header("Location: /Home/");
         }
 
-            
-        if ($id_asistencia) {
-            $data_i = [
-                'status'=>'success find assisstant'
-            ];
-        } else {
-            // $insertar = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
-            $data_i = [
-                'status'=>'fail not found assisstant'
-            ];
-        }
-
         echo json_encode($data);
-        // echo json_encode($data_i);
     }
 }

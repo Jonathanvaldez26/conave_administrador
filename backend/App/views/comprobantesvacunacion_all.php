@@ -474,7 +474,7 @@
                                 </div>
                                 <div class="card-body px-0 pt-0 pb-2">
                                     <div class="table-responsive p-0">
-                                        <table class="table align-items-center mb-0">
+                                        <table id="table_aprobado" class="table align-items-center mb-0">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
@@ -523,7 +523,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="staff" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="staff" role="tabpanel" aria-labelledby="cam2">
                         <div class="row mt-4">
                             <div class="card mb-4">
                                 <div class="card-header pb-0">
@@ -531,7 +531,7 @@
                                 </div>
                                 <div class="card-body px-0 pt-0 pb-2">
                                     <div class="table-responsive p-0">
-                                        <table class="table align-items-center mb-0">
+                                        <table id="table_pendientes" class="table align-items-center mb-0">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
@@ -580,7 +580,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="vip" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="vip" role="tabpanel" aria-labelledby="cam2">
                         <div class="row mt-4">
                             <div class="card mb-4">
                                 <div class="card-header pb-0">
@@ -588,7 +588,7 @@
                                 </div>
                                 <div class="card-body px-0 pt-0 pb-2">
                                     <div class="table-responsive p-0">
-                                        <table class="table align-items-center mb-0">
+                                        <table id="table_rechazado" class="table align-items-center mb-0">
                                             <thead>
                                                 <tr>
                                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
@@ -611,7 +611,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="hotel" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
+                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="hotel" role="tabpanel" aria-labelledby="cam2">
                         <div class="row">
                             <div class="col-lg-12 mx-auto">
                                 <div class="card mb-4">

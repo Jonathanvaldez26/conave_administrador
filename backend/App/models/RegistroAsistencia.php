@@ -117,9 +117,14 @@ sql;
         return $mysqli->queryAll($query);
     }
 
-    // public static function findAsistantById($id){
-    //     $mysqli = Data
-    // }
+    public static function findAsistantById($id){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT * FROM `registros_asistencia` WHERE utilerias_asistentes_id = '$id'
+sql;
+
+        return $mysqli->queryAll($query);
+    }
 
 //     public static function addRegister($asistencia){
 //         $mysqli = Database::getInstance();

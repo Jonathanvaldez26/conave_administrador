@@ -1959,6 +1959,17 @@ html;
       $regreso = "/Administradores/add";
     }
 
+    $extraFooter =<<<html
+    <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+    
+    <script>
+      $(document).ready(function() {
+        $('#table_admin').DataTable();
+      });
+    </script>
+
+html;
 
     View::set('class', $class);
     View::set('regreso', $regreso);

@@ -192,15 +192,19 @@
     $(document).ready(function() {
         // $("#codigo_registro").focus();+
         let codigo = '';
+        var link_a = $(location).attr('href');
+        var clave_a = link_a.substr(link_a.indexOf('codigo/')+7,link_a.length);
+        
         $("#codigo_registro").on('change',function(){
 
             codigo = $('#codigo_registro').val();
             $('#codigo_registro').val('');
 
             console.log(codigo);
+            console.log(clave_a);
         
             $.ajax({
-                url: "/RegistroAsistencia/registroAsistencia/"+codigo,
+                url: "/RegistroAsistencia/registroAsistencia/"+codigo+'/'+clave_a,
                 type: "POST",
                 // data: formData,
                 cache: false,
@@ -221,7 +225,7 @@
                             $("#telefono_user").html(respuesta.datos.telefono);
 
                             if (respuesta.datos.img != '') {
-                                $("#img_asistente").attr('src','/img/'+respuesta.datos.img);
+                                $("#img_asistente").attr('src','http://localhost:8090/img/users_conave/'+respuesta.datos.img);
                             } else {
                                 $("#img_asistente").attr('src','/img/user.png');
                             }

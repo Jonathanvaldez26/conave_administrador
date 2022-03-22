@@ -13,7 +13,6 @@ class RegistroAsistencia{
 
     private $_contenedor;
 
-
     public function codigo($id) {
         $extraHeader =<<<html
         <meta charset="utf-8" />
@@ -38,7 +37,6 @@ class RegistroAsistencia{
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        
 
 html;
         $extraFooter =<<<html
@@ -121,11 +119,15 @@ html;
         }
     }
 
-    public function registroAsistencia($clave){
+    public function registroAsistencia($clave, $code){
            
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
         $bu = RegistroAsistenciaDao::getBu();
+        
+        $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
+        $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id']);
+
         if($user_clave){
             // echo "success";
             
@@ -133,9 +135,22 @@ html;
                 'datos'=>$user_clave,
                 'linea_principal'=>$linea_principal,
                 'bu'=>$bu,
+                'id_asistencia'=>$id_asistencia['id_asistencia'],
                 'status'=>'success'
             ];
-            
+
+            if ($hay_asistente) {
+                array_push($data,'success find assistant');
+                // $data_i = [
+                //     'status'=>'success find assisstant'
+                // ];
+            } else {
+                // $insertar = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
+                // $data_i = [
+                //     'status'=>'fail not found assisstant'
+                // ];
+                array_push($data,'fail not found assistant');
+            }
             
             //header("Location: /Home");
         }else{
@@ -144,20 +159,6 @@ html;
             ];
             // header("Location: /Home/");
         }
-        
-        $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($clave)[0];
-        
-        $insertar = RegistroAsistenciaDao::addRegister(1,5);
-        if ($insertar) {
-            $data_i = [
-                'status'=>'success insert'
-            ];
-        } else {
-            $data_i = [
-                'status'=>'fail insert'
-            ];
-        }
-
 
         echo json_encode($data);
     }

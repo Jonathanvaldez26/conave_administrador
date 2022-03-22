@@ -37,8 +37,10 @@ sql;
         $mysqli = Database::getInstance();
         $query=<<<sql
         SELECT *
-        FROM registros_acceso
-        WHERE clave = '$clave'
+        FROM registros_acceso ra
+        INNER JOIN utilerias_asistentes ua
+        ON ua.id_registro_acceso = ra.id_registro_acceso
+        WHERE ra.clave = '$clave'
 sql;
         return $mysqli->queryAll($query);
     }
@@ -100,7 +102,7 @@ sql;
         $id = $mysqli->insert($query);
         $accion = new \stdClass();
         $accion->_sql= $query;
-        $accion->_parametros = $parametros;
+        // $accion->_parametros = $parametros;
         $accion->_id = $id;
         return $id_user;
     }
@@ -112,6 +114,15 @@ sql;
         FROM asistencias
         WHERE clave = '$code'
 sql;
+        return $mysqli->queryAll($query);
+    }
+
+    public static function findAsistantById($id){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT * FROM `registros_asistencia` WHERE utilerias_asistentes_id = '$id'
+sql;
+
         return $mysqli->queryAll($query);
     }
 

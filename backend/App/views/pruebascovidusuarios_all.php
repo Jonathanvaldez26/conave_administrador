@@ -474,7 +474,7 @@
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
-                                    <table class="table align-items-center mb-0">
+                                    <table id="table_aprobado" class="table align-items-center mb-0">
                                         <thead>
                                             <tr>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
@@ -484,38 +484,11 @@
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Resultado</th>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documento</th>
                                             </tr>
-                                            </thead>
+                                        </thead>
                                         <tbody>
-                                            <tr>
+
                                                 <?php echo $tabla;?>
-                                                <!-- <td>
-                                                    <div class="d-flex px-3 py-1">
-                                                        <div>
-                                                            <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
-                                                            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
-                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-sm font-weight-bold mb-0 text-dark">Jonathan Valdez Martinez</p>
-                                                </td>
-                                                <td class="align-middle text-end">
-                                                    <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                        <p class="text-sm font-weight-bold mb-0">13</p>
-                                                        <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
-                                                        <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Descargo el archivo el día 23/02/2022 18:00:14">
-                                                            <i class="fas fa-info" aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
-                                                </td> -->
-                                            </tr>
+                                                
                                         </tbody>
                                     </table>
                                 </div>
@@ -531,7 +504,7 @@
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
-                                    <table class="table align-items-center mb-0">
+                                    <table id="table_pendiente" class="table align-items-center mb-0">
                                         <thead>
                                             <tr>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
@@ -588,7 +561,7 @@
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
-                                    <table class="table align-items-center mb-0">
+                                    <table id="table_rechazado" class="table align-items-center mb-0">
                                         <thead>
                                             <tr>
                                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>

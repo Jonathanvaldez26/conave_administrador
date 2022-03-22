@@ -529,6 +529,10 @@ html;
       }
 
       $extraFooter = <<<html
+
+      <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+      <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+
       <script>
       $(document).ready(function() {
   
@@ -716,6 +720,135 @@ html;
             $('#editar_section_textarea').addClass('hide-section').removeClass('show-section');
             $('#editar_section').addClass('show-section').removeClass('hide-section');
             console.log('Holaa');
+        });
+
+        $('#table_pendiente').DataTable({
+          "drawCallback": function( settings ) {
+          $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+          $('.paginate_button').addClass("btn").removeClass("paginate_button");
+          $('.dataTables_length').addClass("m-4");
+          $('.dataTables_info').addClass("mx-4");
+          $('.dataTables_filter').addClass("m-4");
+          $('input').addClass("form-control");
+          $('select').addClass("form-control");
+          $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+          $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+          $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+          $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+          $('a.btn').addClass("btn-rounded");
+          },
+          "language": {
+          
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+          
+          }
+        });
+
+        $('#table_rechazado').DataTable({
+          "drawCallback": function( settings ) {
+          $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+          $('.paginate_button').addClass("btn").removeClass("paginate_button");
+          $('.dataTables_length').addClass("m-4");
+          $('.dataTables_info').addClass("mx-4");
+          $('.dataTables_filter').addClass("m-4");
+          $('input').addClass("form-control");
+          $('select').addClass("form-control");
+          $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+          $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+          $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+          $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+          $('a.btn').addClass("btn-rounded");
+          },
+          "language": {
+          
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+          
+          }
+        });
+
+        $('#table_aprobado').DataTable({
+          "drawCallback": function( settings ) {
+          $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+          $('.paginate_button').addClass("btn").removeClass("paginate_button");
+          $('.dataTables_length').addClass("m-4");
+          $('.dataTables_info').addClass("mx-4");
+          $('.dataTables_filter').addClass("m-4");
+          $('input').addClass("form-control");
+          $('select').addClass("form-control");
+          $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+          $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+          $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+          $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+          $('a.btn').addClass("btn-rounded");
+          },
+          "language": {
+          
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+          
+          }
         });
       });
     </script>

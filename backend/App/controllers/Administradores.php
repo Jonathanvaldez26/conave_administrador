@@ -825,6 +825,7 @@ html;
           if(elem.value == '1'){
             //document.getElementById('permiosos-root').style.display = "block";
             document.getElementById('permiosos-personalizados').style.display = "none";
+            document.getElementById('cont_linea').style.display = "none";
             
             //document.getElementById('permiosos-recursos-humanos').style.display = "none";
             // document.getElementById('permiosos-personales').style.display = "none";
@@ -843,7 +844,7 @@ html;
             // document.getElementById('departamentos').style.display = "block";
             // document.getElementById('add-departamentos').style.display = "block";
             document.getElementById('permiosos-personalizados').style.display = "block";
-            //document.getElementById('cont_linea').style.display = "block";
+            document.getElementById('cont_linea').style.display = "block";
           }
           if(elem.value == '3'){
             // document.getElementById('permiosos-root').style.display = "none";
@@ -854,7 +855,7 @@ html;
             // document.getElementById('departamentos').style.display = "block";
             // document.getElementById('add-departamentos').style.display = "block";
             document.getElementById('permiosos-personalizados').style.display = "block";
-            //document.getElementById('cont_linea').style.display = "none";
+            document.getElementById('cont_linea').style.display = "none";
           }
 
           
@@ -971,6 +972,11 @@ html;
   public function administradorAdd()
   {
 
+    // if(isset($_POST['linea_id'])){
+    //     $linea_id  = $_POST['linea_id'];
+    // }else{
+
+    // }
     $administrador = new \stdClass();
 
     $administrador->_nombre = MasterDom::getData('nombre');

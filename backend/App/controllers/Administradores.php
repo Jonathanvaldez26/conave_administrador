@@ -1095,7 +1095,20 @@ html;
         $sec = "_seccion_" . $arrSecciones[$i];
         $permisos->$sec = "1-2-3-4-5-6";
       }
-    } elseif (MasterDom::getData('perfil_id') == 2 || MasterDom::getData('perfil_id') == 3) {
+    }
+    
+    if (MasterDom::getData('perfil_id') == 3) {
+      $permisos->_usuario = MasterDom::getData('usuario');
+      $permisos->_permisos_globales = 2;
+
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "asistencias", 15 => "utilerias", 16 => "configuracion");
+      $permisos->_seccion_empresas = "1-2-3-4-5-6";
+      for ($i = 1; $i <= 16; $i++) {
+        $sec = "_seccion_" . $arrSecciones[$i];
+        $permisos->$sec = "1-2-3-4-5-6";
+      }
+    }
+     elseif (MasterDom::getData('perfil_id') == 2 || MasterDom::getData('perfil_id') == 3) {
 
       $permisos->_usuario = MasterDom::getData('usuario');
       $permisos->_permisos_globales = 0;

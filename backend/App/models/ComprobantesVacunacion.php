@@ -160,6 +160,21 @@ sql;
 
         return $mysqli->queryAll($query);        
     }
+
+    public static function contarAsistentesByLine($id){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(*) FROM (SELECT uas.utilerias_asistentes_id, ra.id_registro_acceso, lp.id_linea_principal, cv.id_comprobante_vacuna
+        FROM utilerias_asistentes uas
+        INNER JOIN registros_acceso ra ON(uas.id_registro_acceso = ra.id_registro_acceso)
+        INNER JOIN linea_principal lp ON(lp.id_linea_principal = ra.id_linea_principal)
+        INNER JOIN linea_ejecutivo le ON (le.id_linea_ejecutivo = lp.id_linea_ejecutivo)
+        INNER JOIN comprobante_vacuna cv ON(cv.utilerias_asistentes_id = uas.utilerias_asistentes_id)
+        WHERE le.id_linea_ejecutivo = $id) as total 
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
     
     public static function validar($id){
         $mysqli = Database::getInstance(true);

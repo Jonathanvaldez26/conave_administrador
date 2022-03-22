@@ -32,6 +32,44 @@ class Administradores extends Controller
     $extraFooter = <<<html
       <script>
         $(document).ready(function(){
+          
+
+          $.validator.addMethod("checkUserName",
+          function(value, element) {
+            var result = false;
+            $.ajax({
+              type:"POST",
+              async: false,
+              url: "/Administradores/isValidateUser", // script to validate in server side
+              data: {
+                  usuario: function() {
+                    return $("#usuario").val();
+                  }},
+              success: function(data) {
+                  console.log("success::: " + data);
+                  result = (data == "true") ? false : true;
+
+                  if(result == true){
+                    $('#availability').html('<span class="text-success glyphicon glyphicon-ok"></span><span> Usuario valido</span>');
+                    $('#register').attr("disabled", true);
+                  }else{
+                    $('#availability').html('<span class="text-danger glyphicon glyphicon-remove"></span>');
+                    $('#register').attr("disabled", false);
+                  }
+              }
+            });
+            // return true if username is exist in database
+            return result;
+            },
+            "¡Este nombre de usuario ya está en uso! Prueba otro."
+        );
+
+        $.validator.addMethod("noSpace",
+          function(value, element) {
+            return value.indexOf(" ") < 0 && value != "";
+            },
+            "No se permite que tenga espacios este campo de usuario"
+        );
 
           $("#delete").click(function(){
 
@@ -429,7 +467,7 @@ html;
 
     View::set('tabla', $tabla);
     View::set('header', $this->_contenedor->header($header));
-    View::set('footer', $this->_contenedor->footer($extraFooter));
+    View::set('footer', $extraFooter);
     View::render("administradores_all");
   }
 

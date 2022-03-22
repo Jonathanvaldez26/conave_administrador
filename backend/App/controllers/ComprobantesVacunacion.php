@@ -895,7 +895,13 @@ html;
 
       //----------------------------//
 
-      $asistentes_total = ComprobantesVacunacionDao::contarAsistentes();
+      if($permisos['permisos_globales'] == 1){
+        $asistentes_total = ComprobantesVacunacionDao::contarAsistentes();
+      }else{
+        $asistentes_total = ComprobantesVacunacionDao::contarAsistentesByLine($id_linea['id_linea_ejecutivo']);
+      }
+
+      
       foreach ($asistentes_total[0] as $key => $value) {
         $numero_asistentes = $value;
       }
@@ -936,6 +942,7 @@ html;
      $pruebasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_pruebas_covid", 1) == 0) ? "style=\"display:none;\"" : "";
      $configuracionHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_configuracion", 1) == 0) ? "style=\"display:none;\"" : "";
      $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1) == 0) ? "style=\"display:none;\"" : "";
+
 
      View::set('permisoGlobalHidden', $permisoGlobalHidden);
      View::set('asistentesHidden', $asistentesHidden);

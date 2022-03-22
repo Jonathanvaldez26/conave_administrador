@@ -513,7 +513,7 @@
                               <div class="col-6">
                                   <label class="form-label">Contraseña *</label>
                                   <div class="input-group">
-                                      <input id="contrasena_1" name="contrasena_1" id="contrasena_1" class="form-control" value="" type="password" value="" placeholder="Ingresa Contraseña" onfocus="focused(this)" onfocusout="defocused(this)">
+                                      <input id="contrasena_1" name="contrasena_1" id="contrasena_1" class="form-control" value="" type="password" value="" placeholder="Ingresa Contraseña" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
                                   </div>
                               </div>
                               <div class="form-group col-12 col-md-6">
@@ -661,3 +661,4 @@
 </body>
 
 <?php echo $footer; ?>
+

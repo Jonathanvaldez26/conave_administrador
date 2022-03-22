@@ -13,7 +13,6 @@ class RegistroAsistencia{
 
     private $_contenedor;
 
-
     public function codigo($id) {
         $extraHeader =<<<html
         <meta charset="utf-8" />
@@ -121,11 +120,15 @@ html;
         }
     }
 
-    public function registroAsistencia($clave){
+    public function registroAsistencia($clave, $code){
            
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
         $bu = RegistroAsistenciaDao::getBu();
+        
+        $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
+        
+
         if($user_clave){
             // echo "success";
             
@@ -133,9 +136,9 @@ html;
                 'datos'=>$user_clave,
                 'linea_principal'=>$linea_principal,
                 'bu'=>$bu,
+                'id_asistencia'=>$id_asistencia['id_asistencia'],
                 'status'=>'success'
             ];
-            
             
             //header("Location: /Home");
         }else{
@@ -144,21 +147,20 @@ html;
             ];
             // header("Location: /Home/");
         }
-        
-        $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($clave)[0];
-        
-        $insertar = RegistroAsistenciaDao::addRegister(1,5);
-        if ($insertar) {
+
+            
+        if ($id_asistencia) {
             $data_i = [
-                'status'=>'success insert'
+                'status'=>'success find assisstant'
             ];
         } else {
+            // $insertar = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
             $data_i = [
-                'status'=>'fail insert'
+                'status'=>'fail not found assisstant'
             ];
         }
 
-
         echo json_encode($data);
+        // echo json_encode($data_i);
     }
 }

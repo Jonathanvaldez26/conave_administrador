@@ -245,11 +245,20 @@
                                     $("#bu_user").html(element.nombre);
                                 }
                             }
+
+                            console.log(respuesta.datos);
+                            // if(respuesta.datos[0][0] == 'success_find_assistant'){
+                            //     swal("¡Lo sentimos, esta persona ya tiene su asistencia registrada!", "", "warning").
+                            //     then((value) => {
+                            //         // window.location.replace("/PruebasCovidUsuarios/")
+                            //         $("#codigo_registro").focus();
+                            //     });
+                            // }
                             
                             // console.log(respuesta.linea_principal[respuesta.datos.id_linea_principal]);
                         // console.log(respuesta.datos);
                     } else {
-                        swal("¡Lo sentimos esta persona, no se encuentra registrada en nuestra base de datos!", "", "warning").
+                        swal("¡Lo sentimos, esta persona no se encuentra registrada en nuestra base de datos!", "", "warning").
                         then((value) => {
                             // window.location.replace("/PruebasCovidUsuarios/")
                             $("#codigo_registro").focus();

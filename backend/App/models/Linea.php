@@ -79,14 +79,23 @@ sql;
         return $mysqli->queryAll($query);
     }
 
+    public static function getLineasEjecutivo(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM linea_ejecutivo
+sql;
+
+        return $mysqli->queryAll($query);
+    }
+
     public static function insertAsignaLinea($asigaLinea){
 	    $mysqli = Database::getInstance(1);
         $query=<<<sql
-            INSERT INTO asigna_linea(id_linea_principal, utilerias_administradores_id_linea_asignada, fecha_alta, status, utilerias_administradores) 
-            VALUES (:id_linea_principal, :utilerias_administradores_id_linea_asignada, NOW(), 1, :utilerias_administradores)
+            INSERT INTO asigna_linea(id_linea_ejecutivo, utilerias_administradores_id_linea_asignada, fecha_alta, status, utilerias_administradores) 
+            VALUES (:id_linea_ejecutivo, :utilerias_administradores_id_linea_asignada, NOW(), 1, :utilerias_administradores)
 sql;
             $parametros = array(
-            ':id_linea_principal'=>$asigaLinea->_linea_id,
+            ':id_linea_ejecutivo'=>$asigaLinea->_linea_id,
             ':utilerias_administradores_id_linea_asignada'=>$asigaLinea->_utilerias_administradores_linea_asignada,
             ':utilerias_administradores'=>$asigaLinea->_utilerias_administradores
             );
@@ -117,9 +126,10 @@ sql;
       public static function getLineaByAdmin($id){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT ua.nombre, ua.utilerias_administradores_id, al.id_linea_principal
+        SELECT ua.nombre, ua.utilerias_administradores_id, al.id_linea_ejecutivo, le.nombre as nombre_linea
         FROM utilerias_administradores ua
         INNER JOIN asigna_linea al ON(ua.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada)
+        INNER JOIN linea_ejecutivo le ON(le.id_linea_ejecutivo = al.id_linea_ejecutivo)
         WHERE ua.utilerias_administradores_id = $id
 sql;
 

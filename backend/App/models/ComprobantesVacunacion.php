@@ -139,19 +139,19 @@ sql;
             b.nombre AS nombre_bu, 
             p.nombre as nombre_posicion,
             lp.nombre AS nombre_linea,  
-            CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo 
-        FROM comprobante_vacuna cv
-        JOIN utilerias_asistentes u
-        JOIN registros_acceso ra
-        JOIN bu b
-        JOIN linea_principal lp
-        JOIN posiciones p        
-        ON cv.utilerias_asistentes_id = u.utilerias_asistentes_id
-        and u.id_registro_acceso = ra.id_registro_acceso
-        and b.id_bu = ra.id_bu
-        and lp.id_linea_principal = ra.id_linea_principal
-        and p.id_posicion = ra.id_posicion
-        where ra.id_linea_principal = $id_linea
+                CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo 
+            FROM comprobante_vacuna cv
+            JOIN utilerias_asistentes u
+            JOIN registros_acceso ra
+            JOIN bu b
+            JOIN linea_principal lp
+            JOIN posiciones p        
+            ON cv.utilerias_asistentes_id = u.utilerias_asistentes_id
+            and u.id_registro_acceso = ra.id_registro_acceso
+            and b.id_bu = ra.id_bu
+            and lp.id_linea_principal = ra.id_linea_principal
+            and p.id_posicion = ra.id_posicion
+            where lp.id_linea_ejecutivo = $id_linea
 sql;
 
         return $mysqli->queryAll($query);

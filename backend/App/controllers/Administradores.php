@@ -897,15 +897,15 @@ html;
     $lineas = '';
 
     
-    foreach (LineaDao::getLineasSinEjecutivo() as $key => $value) {
+    foreach (LineaDao::getLineasEjecutivo() as $key => $value) {
       $lineas .= <<<html
-                <option value="{$value['id_linea_principal']}">{$value['nombre']}</option>
+                <option value="{$value['id_linea_ejecutivo']}">{$value['nombre']}</option>
 html;
     }
-    $lineaTodos = LineaDao::getLineaTodos()[0];      
-    $lineas .= <<<html
-        <option value="{$lineaTodos['id_linea_principal']}">{$lineaTodos['nombre']}</option>
-html;
+//     $lineaTodos = LineaDao::getLineaTodos()[0];      
+//     $lineas .= <<<html
+//         <option value="{$lineaTodos['id_linea_principal']}">{$lineaTodos['nombre']}</option>
+// html;
 
     $perfiles = "";
     foreach (AdministradoresDao::getPerfiles() as $key => $value) {

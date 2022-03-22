@@ -1098,14 +1098,31 @@ html;
     }
     
     if (MasterDom::getData('perfil_id') == 3) {
+     
       $permisos->_usuario = MasterDom::getData('usuario');
-      $permisos->_permisos_globales = 2;
-
+      $permisos->_permisos_globales = 5;
       $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "asistencias", 15 => "utilerias", 16 => "configuracion");
-      $permisos->_seccion_empresas = "1-2-3-4-5-6";
       for ($i = 1; $i <= 16; $i++) {
+        $seccion = "seccion" . $i;
+        $pdf = "pdf" . $i;
+        $excel = "excel" . $i;
+        $agregar = "agregar" . $i;
+        $editar = "editar" . $i;
+        $eliminar = "eliminar" . $i;
+        $varSeccion = "_" . $seccion;
+        $varPdf = "_" . $pdf;
+        $varExcel = "_" . $excel;
+        $varAgregar = "_" . $agregar;
+        $varEditar = "_" . $editar;
+        $varEliminar = "_" . $eliminar;
+        $resultSeccion = (MasterDom::getData($seccion) == "on") ? "1" : "0";
+        $resultPdf = (MasterDom::getData($pdf) == "on") ? "2" : "0";
+        $resultExcel = (MasterDom::getData($excel) == "on") ? "3" : "0";
+        $resultAgregar = (MasterDom::getData($agregar) == "on") ? "4" : "0";
+        $resultEditar = (MasterDom::getData($editar) == "on") ? "5" : "0";
+        $resultEliminar = (MasterDom::getData($eliminar) == "on") ? "6" : "0";
         $sec = "_seccion_" . $arrSecciones[$i];
-        $permisos->$sec = "1-2-3-4-5-6";
+        $permisos->$sec = $resultSeccion . "-" . $resultPdf . "-" . $resultExcel . "-" . $resultAgregar . "-" . $resultEditar . "-" . $resultEliminar;
       }
     }
      elseif (MasterDom::getData('perfil_id') == 2 || MasterDom::getData('perfil_id') == 3) {

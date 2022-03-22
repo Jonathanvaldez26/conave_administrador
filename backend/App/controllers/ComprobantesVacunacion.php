@@ -45,7 +45,7 @@ html;
 
       $permisos = Controller::getPermisoGlobalUsuario($this->__usuario)[0];
       
-      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
         $comprobantes = ComprobantesVacunacionDao::getAll();
       }else{
         $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];        ;
@@ -935,7 +935,7 @@ html;
 
 
       //-----------------------------//
-      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
         $comprobantes_validos = ComprobantesVacunacionDao::contarComprobantesValidos();
       }
       else{
@@ -948,7 +948,7 @@ html;
 
       //----------------------------//
 
-      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
         $asistentes_total = ComprobantesVacunacionDao::contarAsistentes();
       }else{
         $asistentes_total = ComprobantesVacunacionDao::contarAsistentesByLine($id_linea['id_linea_ejecutivo']);
@@ -960,7 +960,7 @@ html;
       }
 
        //-----------------------------//
-      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
         $comprobantes_total = ComprobantesVacunacionDao::contarComprobantesTotales();
       }else{
         $comprobantes_total = ComprobantesVacunacionDao::contarComprobantesTotalesByLine($id_linea['id_linea_ejecutivo']);
@@ -972,7 +972,7 @@ html;
 
       //-----------------------------//
 
-      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
         $comprobantes_sin_revisar = ComprobantesVacunacionDao::contarComprobantesPorRevisar();
       }else{
         $comprobantes_sin_revisar = ComprobantesVacunacionDao::contarComprobantesPorRevisarByLine($id_linea['id_linea_ejecutivo']);

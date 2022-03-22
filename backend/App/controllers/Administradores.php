@@ -1061,17 +1061,17 @@ html;
   public function administradorAdd()
   {
 
-    // if(isset($_POST['linea_id'])){
-    //     $linea_id  = $_POST['linea_id'];
-    // }else{
-
-    // }
+    if(isset($_POST['linea_id'])){
+        $linea_id  = $_POST['linea_id'];
+    }else{
+        $linea_id  = 0;
+    }
     $administrador = new \stdClass();
 
     $administrador->_nombre = MasterDom::getData('nombre');
     $administrador->_usuario = MasterDom::getData('usuario');
     $administrador->_perfil_id = MasterDom::getData('perfil_id');
-    $administrador->_linea_id = MasterDom::getData('linea_id');
+    $administrador->_linea_id = $linea_id;
     $administrador->_descripcion = MasterDom::getData('descripcion');
     $administrador->_status = MasterDom::getData('status');
     $administrador->_tipo = 0;

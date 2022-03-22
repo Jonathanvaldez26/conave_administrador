@@ -45,12 +45,14 @@ html;
 
       $permisos = Controller::getPermisoGlobalUsuario($this->__usuario)[0];
       
-      if($permisos['permisos_globales'] == 1){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
         $comprobantes = ComprobantesVacunacionDao::getAll();
       }else{
         $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];        ;
         $comprobantes = ComprobantesVacunacionDao::getComprobatesByLinea($id_linea['id_linea_ejecutivo']);
       }
+
+      $comprobantes = ComprobantesVacunacionDao::getAll();
 
       foreach ($comprobantes as $key => $value) {
 
@@ -563,7 +565,7 @@ html;
                         <div class="pt-4 modal-footer">
                           <div class="row text-center">
                             <div class="col-md-6 col-12">
-                              <form class="form-horizontal" id="btn_validar" action="" method="POST">
+                              <form class="form-horizontal btn_validar" id="" action="" method="POST">
                                 <input type="text" id="id_comprobante" name="id_comprobante" value="{$value['id_c_v']}" readonly style="display:none;" hidden>
                                 
                                 <button type="submit" class="btn bg-gradient-success" {$btnVacunacionEditarHidden}>
@@ -602,21 +604,19 @@ html;
       <script>
         $(document).ready(function() {
     
-            $("#btn_validar").on("submit", function(event) {
+            $(".btn_validar").on("submit", function(event) {
                 event.preventDefault();
     
-                var formData = new FormData(document.getElementById("btn_validar"));
-                for (var value of formData.values()) {
-                    console.log(value);
-                }
+                var formData = $(this).serialize();
+                console.log(formData);
+                // for (var value of formData.values()) {
+                //     console.log(value);
+                // }
     
                 $.ajax({
                     url: "/ComprobantesVacunacion/Validar",
                     type: "POST",
                     data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
                     beforeSend: function() {
                         console.log("Procesando....");
                     },
@@ -935,7 +935,7 @@ html;
 
 
       //-----------------------------//
-      if($permisos['permisos_globales'] == 1){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
         $comprobantes_validos = ComprobantesVacunacionDao::contarComprobantesValidos();
       }
       else{
@@ -948,7 +948,7 @@ html;
 
       //----------------------------//
 
-      if($permisos['permisos_globales'] == 1){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
         $asistentes_total = ComprobantesVacunacionDao::contarAsistentes();
       }else{
         $asistentes_total = ComprobantesVacunacionDao::contarAsistentesByLine($id_linea['id_linea_ejecutivo']);
@@ -960,7 +960,7 @@ html;
       }
 
        //-----------------------------//
-      if($permisos['permisos_globales'] == 1){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
         $comprobantes_total = ComprobantesVacunacionDao::contarComprobantesTotales();
       }else{
         $comprobantes_total = ComprobantesVacunacionDao::contarComprobantesTotalesByLine($id_linea['id_linea_ejecutivo']);
@@ -972,7 +972,7 @@ html;
 
       //-----------------------------//
 
-      if($permisos['permisos_globales'] == 1){
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 2){
         $comprobantes_sin_revisar = ComprobantesVacunacionDao::contarComprobantesPorRevisar();
       }else{
         $comprobantes_sin_revisar = ComprobantesVacunacionDao::contarComprobantesPorRevisarByLine($id_linea['id_linea_ejecutivo']);

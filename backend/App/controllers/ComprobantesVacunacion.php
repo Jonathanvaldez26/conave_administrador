@@ -8,6 +8,7 @@ use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\ComprobantesVacunacion as ComprobantesVacunacionDao;
 use \App\models\Linea as LineaDao;
+use \App\models\Asistentes as AsistentesDao;
 
 class ComprobantesVacunacion extends Controller{
 
@@ -208,6 +209,9 @@ html;
 html;
         } else {
 
+          $id_linea = $value['id_linea_principal'];
+          // $encargado = AsistentesDao::getEncargadoLinea($id_linea);
+
           if ($value['validado'] == 1) {
             $tabla .= <<<html
               <tr>
@@ -215,7 +219,22 @@ html;
                   <span class="badge badge-success"><i class="fas fa-check"> </i> Aprobado</span>
                 </td>
                 <td>
-                  <p class="text-center" style="font-size: small;">{$value['nombre_completo']}</p>
+                  <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
+
+                  <hr>
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br></p-->
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fa-whatsapp" style="font-size: 13px;"></span><b> </b>{$value['telefono']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-envelope" style="font-size: 13px;"></span><b>  </b><a "mailto:{$value['email']}">{$value['email']}</a></p-->
+
+                    <div class="d-flex flex-column justify-content-center">
+                        <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['email']}</h6></a></u>
+                        <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+                    </div>
                 </td>
                 <td>
                   <p class="text-center" style="font-size: small;">{$value['fecha_carga_documento']}</p>
@@ -841,7 +860,7 @@ html;
             $('.dataTables_length').addClass("m-4");
             $('.dataTables_info').addClass("mx-4");
             $('.dataTables_filter').addClass("m-4");
-            $('input').addClass("form-control");
+            $('input').addClass("form-control").css('border-radius: 10px;');
             $('select').addClass("form-control");
             $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
             $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");

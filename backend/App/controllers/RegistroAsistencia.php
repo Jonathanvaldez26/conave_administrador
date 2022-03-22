@@ -140,7 +140,7 @@ html;
             ];
 
             if ($hay_asistente) {
-                array_push($data,'success find assistant');
+                array_push($data,'success_find_assistant');
                 // $data_i = [
                 //     'status'=>'success find assisstant'
                 // ];
@@ -149,7 +149,9 @@ html;
                 // $data_i = [
                 //     'status'=>'fail not found assisstant'
                 // ];
-                array_push($data,'fail not found assistant');
+                array_push($data,'fail_not_found_assistant');
+
+                $insertar = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
             }
             
             //header("Location: /Home");

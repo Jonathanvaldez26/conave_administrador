@@ -52,7 +52,6 @@ html;
         $comprobantes = ComprobantesVacunacionDao::getComprobatesByLinea($id_linea['id_linea_ejecutivo']);
       }
 
-      $comprobantes = ComprobantesVacunacionDao::getAll();
 
       foreach ($comprobantes as $key => $value) {
 

@@ -179,7 +179,7 @@ html;
 html;
         } else {
             $img_asistente = <<<html
-            <img src="/img/users_conave/{$detalles_registro[0]['img']}" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
+            <img src="https://convencionasofarma2022.mx/img/users_conave/{$detalles_registro[0]['img']}" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
 html;
         }
 

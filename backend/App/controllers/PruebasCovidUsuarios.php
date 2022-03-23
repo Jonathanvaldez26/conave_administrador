@@ -562,7 +562,7 @@ html;
                       } else {
                           swal("¡No se pudo validar correctamente el comprobante!", "", "warning").
                           then((value) => {
-                              window.location.replace("/PruebasCovidUsuarios/")
+                              //window.location.replace("/PruebasCovidUsuarios/")
                           });
                       }
                   },
@@ -596,7 +596,7 @@ html;
                       } else {
                           swal("¡No se pudo rechazar correctamente el comprobante!", "", "warning").
                           then((value) => {
-                              window.location.replace("/PruebasCovidUsuarios/")
+                              //window.location.replace("/PruebasCovidUsuarios/")
                           });
                       }
                   },
@@ -634,7 +634,11 @@ html;
 
                         $('.cancelar_editar_nota').attr('hidden');
 
+                        $('.cancelar_editar_nota').attr('disabled');
+
                         $('.guardar_editar_nota').attr('hidden');
+
+                        $('.guardar_editar_nota').attr('disabled');
 
                     } else {
                         swal("¡No se pudo guardar correctamente la nota!", "", "warning").
@@ -666,19 +670,33 @@ html;
               success: function(respuesta) {
                   console.log(respuesta);
                   if (respuesta == 'success') {
-                      swal("¡Se guardó correctamente la nota!", "", "success").
-                      then((value) => {
-                          // window.location.replace("/PruebasCovidUsuarios/");
-                      });
+                      
                       // var ta = document.getElementById("nota");
                       // ta.setAttribute('disabled','');
 
-                      $('.nota').attr('disabled');
+                      // var ta = document.getElementById("guardar_editar_nota");
+                      // ta.setAttribute('disabled','');
 
-                      $('.cancelar_editar_nota').attr('hidden');
+                      // console.log(ta);
 
-                      $('.guardar_editar_nota').attr('hidden');
+                      let ta = $('.nota');
 
+                      // $('.cancelar_editar_nota').attr('hidden');
+
+                      // $('.cancelar_editar_nota').attr('disabled');
+
+                      // $('.guardar_editar_nota').attr('hidden');
+
+                      // $('.guardar_editar_nota').attr('disabled');
+                      
+                      console.log('Guardar');
+
+                      swal("¡Se guardó correctamente la nota!", "", "success").
+                      then((value) => {
+                          //window.location.replace("/PruebasCovidUsuarios/");
+                      });
+                      
+                      console.log(ta);
                   } else {
                       swal("¡No se pudo guardar correctamente la nota!", "", "warning").
                       then((value) => {
@@ -696,13 +714,13 @@ html;
         $(".editar_nota").on("click", function(event) {
             $('.editar_section').addClass('hide-section').removeClass('show-section');
             $('.editar_section_textarea').addClass('show-section').removeClass('hide-section');
-            console.log('Holaa');
+            console.log('Editar');
         });
 
         $(".cancelar_editar_nota").on("click", function(event) {
             $('.editar_section_textarea').addClass('hide-section').removeClass('show-section');
             $('.editar_section').addClass('show-section').removeClass('hide-section');
-            console.log('Holaa');
+            console.log('Cancelar');
         });
 
         $('#table_pendiente').DataTable({

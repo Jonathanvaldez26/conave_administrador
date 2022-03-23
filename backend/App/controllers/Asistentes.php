@@ -59,11 +59,7 @@ class Asistentes extends Controller
             Detalles
         </title>
 
-        <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
         
-        <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="Content/jquery.Jcrop.css" rel="stylesheet" />
@@ -999,8 +995,12 @@ html;
 html;
 
         $extraFooter1 = <<<html
-      <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-      <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+        
+        <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
       <script>
         $(document).ready(function(){
 
@@ -1298,8 +1298,12 @@ html;
       </style>
 html;
         $extraFooter = <<<html
-      <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-      <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+        
+        <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
       <script>
         $(document).ready(function(){
 

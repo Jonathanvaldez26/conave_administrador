@@ -380,7 +380,7 @@
                     <div class="card-body p-3 position-relative">
                         <div class="row">
                             <div class="col-8 text-start">
-                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Pruebas Pendientes por Cargar</p>
+                                <p class="text-sm mb-1 text-capitalize font-weight-bold">Pruebas Pendientes por Validar</p>
                                 <h5 class="font-weight-bolder mb-0" style="color:#02b7b7;">
                                     <?php echo $numero_sin_revisar;?> de <?php echo $numero_pruebas;?> Pruebas
                                 </h5>
@@ -516,36 +516,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
                                             <?php echo $tabla_no_v;?>
-                                            <!-- <tr>
-                                                <td>
-                                                    <div class="d-flex px-3 py-1">
-                                                        <div>
-                                                            <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
-                                                            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <h6 class="mb-0 text-sm">Jonathan Valdez Martinez</h6>
-                                                    <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> Habitacion Sencilla</p>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-sm font-weight-bold mb-0 text-dark">Jonathan Valdez Martinez</p>
-                                                </td>
-                                                <td class="align-middle text-end">
-                                                    <div class="d-flex px-3 py-1 justify-content-center align-items-center">
-                                                        <p class="text-sm font-weight-bold mb-0">13</p>
-                                                        <i class="ni ni-bold-down text-sm ms-1 mt-1 text-success"></i>
-                                                        <button type="button" class="btn btn-sm btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center ms-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Descargo el archivo el día 23/02/2022 18:00:14">
-                                                            <i class="fas fa-info" aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr> -->
+                                            
                                         </tbody>
                                     </table>
                                 </div>

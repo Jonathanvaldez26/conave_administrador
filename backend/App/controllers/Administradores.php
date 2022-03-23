@@ -1645,6 +1645,9 @@ html;
     
       
       $administrador = AdministradoresDao::getAllByCode($code);
+
+      // var_dump($administrador);
+      // exit;
       $linea_ejecutivo = LineaDao::getById($administrador['id_linea_principal'])[0];
       $lineas = '';
       $lineas .= <<<html

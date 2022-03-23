@@ -609,7 +609,7 @@ html;
             if (empty($value['img']) || $value['img'] == null) {
                 $img_user = "/img/user.png";
             } else {
-                $img_user = "/img/users_conave/{$value['img']}";
+                $img_user = "https://convencionasofarma2022.mx/img/users_conave/{$value['img']}";
             }
 
             $pases = PasesDao::getByIdUser($value['utilerias_asistentes_id']);

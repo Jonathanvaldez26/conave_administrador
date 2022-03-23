@@ -50,6 +50,18 @@ sql;
     
 }
 
+
+  public static function getAsignaLine($id_admin){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    SELECT * FROM asigna_linea WHERE utilerias_administradores_id_linea_asignada = $id_admin
+sql;
+    return $mysqli->queryOne($query);
+  
+}
+
+
+
 public static function getAllWithOutLineaByCode($code){
   $mysqli = Database::getInstance();
   $query=<<<sql

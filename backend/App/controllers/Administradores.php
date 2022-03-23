@@ -1097,7 +1097,7 @@ html;
       }
     }
     
-    if (MasterDom::getData('perfil_id') == 3) {
+    else if (MasterDom::getData('perfil_id') == 3) {
      
       $permisos->_usuario = MasterDom::getData('usuario');
       $permisos->_permisos_globales = 5;
@@ -1125,7 +1125,7 @@ html;
         $permisos->$sec = $resultSeccion . "-" . $resultPdf . "-" . $resultExcel . "-" . $resultAgregar . "-" . $resultEditar . "-" . $resultEliminar;
       }
     }
-     elseif (MasterDom::getData('perfil_id') == 2 || MasterDom::getData('perfil_id') == 3) {
+     elseif (MasterDom::getData('perfil_id') == 2) {
 
       $permisos->_usuario = MasterDom::getData('usuario');
       $permisos->_permisos_globales = 0;
@@ -1645,24 +1645,35 @@ html;
     
       
       $administrador = AdministradoresDao::getAllByCode($code);
+      
+      $asigna_line = AdministradoresDao::getAsignaLine($administrador['utilerias_administradores_id']);
 
-      // var_dump($administrador);
-      // exit;
-      $linea_ejecutivo = LineaDao::getById($administrador['id_linea_principal'])[0];
       $lineas = '';
-      $lineas .= <<<html
-          <option selected value="{$linea_ejecutivo['id_linea_principal']}">{$linea_ejecutivo['nombre']}</option>
-html;
-      $lineaTodos = LineaDao::getLineaTodos()[0];
-      if($administrador['id_linea_principal'] != $lineaTodos['id_linea_principal']){
+
+      //var_dump($administrador);
+      // var_dump($asigna_line);
+      // echo $asigna_line['id_linea_ejecutivo'];
+
+      // // echo "<br>";
+      // // echo "lalalalala";
+      
+      // exit;
+      
+//       $linea_ejecutivo = LineaDao::getById($asigna_line['id_linea_ejecutivo'])[0];
+//       $lineas = '';
+//       $lineas .= <<<html
+//           <option selected value="{$linea_ejecutivo['id_linea_principal']}">{$linea_ejecutivo['nombre']}</option>
+// html;
+//       $lineaTodos = LineaDao::getLineaTodos()[0];
+//       if($administrador['id_linea_principal'] != $lineaTodos['id_linea_principal']){
+//         $lineas .= <<<html
+//         <option value="{$lineaTodos['id_linea_principal']}">{$lineaTodos['nombre']}</option>
+// html;
+//       }
+      foreach (LineaDao::getLineas() as $key => $value) {
+        $selected = ($asigna_line['id_linea_ejecutivo'] == $value['id_linea_ejecutivo']) ? 'selected' : '';
         $lineas .= <<<html
-        <option value="{$lineaTodos['id_linea_principal']}">{$lineaTodos['nombre']}</option>
-html;
-      }
-      foreach (LineaDao::getLineasSinEjecutivo() as $key => $value) {
-        $selected = ($administrador['id_linea_principal'] == $value['id_linea_principal']) ? 'selected' : '';
-        $lineas .= <<<html
-          <option {$selected} value="{$value['id_linea_principal']}">{$value['nombre']}</option>
+          <option {$selected} value="{$value['id_linea_ejecutivo']}">{$value['nombre']}</option>
            
 html;
       }
@@ -1801,7 +1812,37 @@ html;
         $permisos->$sec = "1-2-3-4-5-6";
       }
     }
-    if (MasterDom::getData('perfil_id') == 2 || MasterDom::getData('perfil_id') == 3) {
+
+    else if (MasterDom::getData('perfil_id') == 3) {
+      $permisos->_usuario = MasterDom::getData('usuario');
+      $permisos->_permisos_globales = 5;
+      $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "asistencias", 15 => "utilerias", 16 => "configuracion");
+      for ($i = 1; $i <= 16; $i++) {
+        $seccion = "seccion" . $i;
+        $pdf = "pdf" . $i;
+        $excel = "excel" . $i;
+        $agregar = "agregar" . $i;
+        $editar = "editar" . $i;
+        $eliminar = "eliminar" . $i;
+        $varSeccion = "_" . $seccion;
+        $varPdf = "_" . $pdf;
+        $varExcel = "_" . $excel;
+        $varAgregar = "_" . $agregar;
+        $varEditar = "_" . $editar;
+        $varEliminar = "_" . $eliminar;
+        $resultSeccion = (MasterDom::getData($seccion) == "on") ? "1" : "0";
+        $resultPdf = (MasterDom::getData($pdf) == "on") ? "2" : "0";
+        $resultExcel = (MasterDom::getData($excel) == "on") ? "3" : "0";
+        $resultAgregar = (MasterDom::getData($agregar) == "on") ? "4" : "0";
+        $resultEditar = (MasterDom::getData($editar) == "on") ? "5" : "0";
+        $resultEliminar = (MasterDom::getData($eliminar) == "on") ? "6" : "0";
+        $sec = "_seccion_" . $arrSecciones[$i];
+        $permisos->$sec = $resultSeccion . "-" . $resultPdf . "-" . $resultExcel . "-" . $resultAgregar . "-" . $resultEditar . "-" . $resultEliminar;
+      }
+    }
+
+
+    if (MasterDom::getData('perfil_id') == 2) {
       $permisos->_usuario = MasterDom::getData('usuario');
       $permisos->_permisos_globales = 0;
       $arrSecciones = array(1 => "principal", 2 => "asistentes", 3 => "bu", 4 => "lineas", 5 => "posiciones", 6 => "restaurantes", 7 => "gafete", 8 => "vuelos", 9 => "pickup", 10 => "habitaciones", 11 => "cenas", 12 => "vacunacion", 13 => "pruebas_covid", 14 => "asistencias", 15 => "utilerias", 16 => "configuracion");

@@ -23,7 +23,7 @@ sql;
     public static function getById($id){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT * FROM linea_principal WHERE id_linea_principal = $id
+        SELECT * FROM linea_ejecutivo WHERE id_linea_ejecutivo = $id
 sql;
 
         return $mysqli->queryAll($query);
@@ -54,6 +54,15 @@ sql;
         SELECT lp.*
         FROM linea_principal lp
         WHERE lp.id_linea_principal NOT IN (select id_linea_principal from asigna_linea)
+sql;
+
+        return $mysqli->queryAll($query);
+    }
+
+    public static function getLineas(){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM linea_ejecutivo
 sql;
 
         return $mysqli->queryAll($query);
@@ -108,10 +117,10 @@ sql;
     public static function updateAsignaLinea($user){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
-        UPDATE asigna_linea SET id_linea_principal = :id_linea_principal, utilerias_administradores = :utilerias_administradores WHERE utilerias_administradores_id_linea_asignada = :utilerias_administradores_id_linea_asignada;
+        UPDATE asigna_linea SET id_linea_ejecutivo = :id_linea_ejecutivo, utilerias_administradores = :utilerias_administradores WHERE utilerias_administradores_id_linea_asignada = :utilerias_administradores_id_linea_asignada;
 sql;
         $parametros = array(
-          ':id_linea_principal'=>$user->_linea_id,
+          ':id_linea_ejecutivo'=>$user->_linea_id,
           ':utilerias_administradores'=>$user->_utilerias_administradores,
           ':utilerias_administradores_id_linea_asignada'=>$user->_usuario_id
          

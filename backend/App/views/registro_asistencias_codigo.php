@@ -258,23 +258,23 @@
                     console.log(respuesta);
                     $.each(respuesta,function(index, el) {
            
-                    //     $('#lista_registrados > tbody:last-child').append(
-                    //             '<tr>'+
-                    //             '<td>'+el.nombre_completo+'</td>'+
-                    //             '<td>'+el.email+'</td>'+
-                    //             '<td>'+el.telefono+'</td>'+                    
-                    //             '</tr>');
-                    // });
-
-                    var tables = $('#lista_registrados').DataTable();
-
-                        tables.row.add( {
-                            "Nombre": el.nombre_completo,
-                            "Correo Electrónico":  el.email,
-                            "Teléfono": el.telefono
-                        }).draw();
-
+                        $('#lista_registrados > tbody:last-child').append(
+                                '<tr>'+
+                                '<td>'+el.nombre_completo+'</td>'+
+                                '<td>'+el.email+'</td>'+
+                                '<td>'+el.telefono+'</td>'+                    
+                                '</tr>');
                     });
+
+                    // var tables = $('#lista_registrados').DataTable();
+
+                    //     tables.row.add( {
+                    //         "Nombre": el.nombre_completo,
+                    //         "Correo Electrónico":  el.email,
+                    //         "Teléfono": el.telefono
+                    //     }).draw();
+
+                    // });
                 },
                 error: function(respuesta) {
                     console.log(respuesta);

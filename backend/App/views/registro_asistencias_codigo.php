@@ -152,13 +152,19 @@
             <div class="row">
                 <div class="col-10 m-auto">
                     <div class="card">
-                        <table class="table m-2">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Correo electrónico</th>
-                                <th>Teléfono</th>
-                            </tr>
-                            <?php echo $tabla;?>
+                        <table id="lista_registrados" class="table m-2" >
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Correo electrónico</th>
+                                    <th>Teléfono</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php echo $tabla;?>
+                            </tbody>
+                            
                         </table>
                     </div>
                 </div>
@@ -183,17 +189,98 @@
 <script src="../../assets/js/plugins/threejs.js"></script>
 <script src="../../assets/js/plugins/orbit-controls.js"></script>
 
-
-
 <script>
-    // function focus_input{
-    //     $("#codigo_registro").focus();
-    // }
     $(document).ready(function() {
-        // $("#codigo_registro").focus();+
+
         let codigo = '';
         var link_a = $(location).attr('href');
         var clave_a = link_a.substr(link_a.indexOf('codigo/')+7,link_a.length);
+
+        // mostrarDatos(clave_a);
+
+        var table = $('#lista_registrados').DataTable({
+            "drawCallback": function( settings ) {
+            $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+            $('.paginate_button').addClass("btn").removeClass("paginate_button");
+            $('.dataTables_length').addClass("m-4");
+            $('.dataTables_info').addClass("mx-4");
+            $('.dataTables_filter').addClass("m-4");
+            $('input').addClass("form-control");
+            $('select').addClass("form-control");
+            $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+            $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+            $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+            $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+            $('a.btn').addClass("btn-rounded");
+            },
+            "language": {
+            
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            
+            }
+        });
+
+        
+
+        function mostrarDatos(clave){
+            $.ajax({
+                url: "/RegistroAsistencia/mostrarLista/"+clave,
+                type: "POST",
+                dataType: 'json',
+                beforeSend: function() {
+                    console.log("Procesando....");
+                    $('#lista_registrados > tbody').empty();
+
+                    
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+                    $.each(respuesta,function(index, el) {
+           
+                    //     $('#lista_registrados > tbody:last-child').append(
+                    //             '<tr>'+
+                    //             '<td>'+el.nombre_completo+'</td>'+
+                    //             '<td>'+el.email+'</td>'+
+                    //             '<td>'+el.telefono+'</td>'+                    
+                    //             '</tr>');
+                    // });
+
+                    var tables = $('#lista_registrados').DataTable();
+
+                        tables.row.add( {
+                            "Nombre": el.nombre_completo,
+                            "Correo Electrónico":  el.email,
+                            "Teléfono": el.telefono
+                        }).draw();
+
+                    });
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+            })
+        }
         
         $("#codigo_registro").on('change',function(){
 
@@ -207,18 +294,15 @@
                 url: "/RegistroAsistencia/registroAsistencia/"+codigo+'/'+clave_a,
                 type: "POST",
                 // data: formData,
-                cache: false,
                 dataType: 'json',
-                contentType: false,
-                processData: false,
                 beforeSend: function() {
                     console.log("Procesando....");
                 },
                 success: function(respuesta) {
-                    console.log(respuesta.status);
+                    // console.log(respuesta.status);
                     if (respuesta.status == 'success') {
                         
-                            // window.location.replace("/PruebasCovidUsuarios/");
+
                             let nombre_completo = respuesta.datos.nombre+' '+respuesta.datos.segundo_nombre+' '+respuesta.datos.apellido_paterno +' '+respuesta.datos.apellido_materno;
                             $("#nombre_completo").html(nombre_completo);
                             $("#correo_user").html(respuesta.datos.email);
@@ -233,7 +317,6 @@
                             for (let index = 0; index < respuesta.linea_principal.length; index++) {
                                 const element = respuesta.linea_principal[index];
                                 if (element.id_linea_principal == respuesta.datos.id_linea_principal) {
-                                    // console.log(element);
                                     $("#linea_user").html(element.nombre);
                                 }
                             }
@@ -241,26 +324,28 @@
                             for (let index = 0; index < respuesta.bu.length; index++) {
                                 const element = respuesta.bu[index];
                                 if (element.id_bu == respuesta.datos.id_bu) {
-                                    // console.log(element);
                                     $("#bu_user").html(element.nombre);
                                 }
                             }
 
-                            console.log(respuesta.datos);
-                            // if(respuesta.datos[0][0] == 'success_find_assistant'){
-                            //     swal("¡Lo sentimos, esta persona ya tiene su asistencia registrada!", "", "warning").
-                            //     then((value) => {
-                            //         // window.location.replace("/PruebasCovidUsuarios/")
-                            //         $("#codigo_registro").focus();
-                            //     });
-                            // }
-                            
-                            // console.log(respuesta.linea_principal[respuesta.datos.id_linea_principal]);
-                        // console.log(respuesta.datos);
+                            // console.log(respuesta.datos);
+                            if(respuesta.msg_insert == 'success_find_assistant'){
+                                swal("¡Lo sentimos, esta persona ya tiene su asistencia registrada!", "", "warning").
+                                then((value) => {
+                                    $("#codigo_registro").focus();
+                                });
+                            } else {
+                                mostrarDatos(clave_a);
+
+                                
+                                
+
+                            }
+
+                            let tabla_registrados = $("#lista_registrados");
                     } else {
                         swal("¡Lo sentimos, esta persona no se encuentra registrada en nuestra base de datos!", "", "warning").
                         then((value) => {
-                            // window.location.replace("/PruebasCovidUsuarios/")
                             $("#codigo_registro").focus();
                         });
                         $("#nombre_completo").html('Nombre');
@@ -279,12 +364,9 @@
             });
         });
         
+        
     });
 
-    // input.oninput = function() {
-    //     resultado.innerHTML = input.value;
-    //     console.log(input.value);
-    // };
 </script>
 
 </body>

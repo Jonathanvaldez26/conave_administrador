@@ -67,6 +67,12 @@ html;
         <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+        <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+        
+        <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+
 html;
 
         $codigo = RegistroAsistenciaDao::getById($id);
@@ -119,6 +125,12 @@ html;
         }
     }
 
+    public function mostrarLista($clave){
+        $lista_registrados = RegistroAsistenciaDao::getRegistrosAsistenciasByCode($clave);
+
+        echo json_encode($lista_registrados);
+    }
+
     public function registroAsistencia($clave, $code){
            
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
@@ -129,37 +141,26 @@ html;
         $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id']);
 
         if($user_clave){
-            // echo "success";
-            
+
+            if ($hay_asistente) {
+                $msg_insert = 'success_find_assistant';
+            } else {
+                $msg_insert = 'fail_not_found_assistant';
+                RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
+            }
+
             $data = [
                 'datos'=>$user_clave,
                 'linea_principal'=>$linea_principal,
                 'bu'=>$bu,
                 'id_asistencia'=>$id_asistencia['id_asistencia'],
-                'status'=>'success'
+                'status'=>'success',
+                'msg_insert'=>$msg_insert
             ];
-
-            if ($hay_asistente) {
-                array_push($data,'success_find_assistant');
-                // $data_i = [
-                //     'status'=>'success find assisstant'
-                // ];
-            } else {
-                // $insertar = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
-                // $data_i = [
-                //     'status'=>'fail not found assisstant'
-                // ];
-                array_push($data,'fail_not_found_assistant');
-
-                $insertar = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
-            }
-            
-            //header("Location: /Home");
         }else{
             $data = [
                 'status'=>'fail'
             ];
-            // header("Location: /Home/");
         }
 
         echo json_encode($data);

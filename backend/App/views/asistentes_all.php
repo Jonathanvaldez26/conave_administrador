@@ -422,7 +422,7 @@
                                     <div class="table-responsive p-0" >
                                         
                                         <form name="all" id="all" action="/Colaboradores/delete" method="POST">
-                                            <table class="table align-items-center mb-0 table table-borderless" id="user-list">
+                                            <table class="align-items-center mb-0 table table-borderless" id="user_list_table">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         
@@ -559,23 +559,24 @@
         
         // });
 
-        $('table#user-list').DataTable({
+        $('#user_list_table').DataTable({
           "drawCallback": function( settings ) {
-          $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
-          $('.paginate_button').addClass("btn").removeClass("paginate_button");
-          $('.dataTables_length').addClass("m-4");
-          $('.dataTables_info').addClass("mx-4");
-          $('.dataTables_filter').addClass("m-4");
-          $('input').addClass("form-control");
-          $('select').addClass("form-control");
-          $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
-          $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
-          $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
-          $('.next').addClass("btn-outline-danger btn-rounded mx-2");
-          $('a.btn').addClass("btn-rounded");
-          });
+            $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+            $('.paginate_button').addClass("btn").removeClass("paginate_button");
+            $('.dataTables_length').addClass("m-4");
+            $('.dataTables_info').addClass("mx-4");
+            $('.dataTables_filter').addClass("m-4");
+            $('input').addClass("form-control");
+            $('select').addClass("form-control");
+            $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+            $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+            $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+            $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+            $('a.btn').addClass("btn-rounded");
+          }
+        });
 
-        $('table#user-list').on("click","button.btn_qr", function(event) {
+        $('table#user_list_table').on("click","button.btn_qr", function(event) {
             event.preventDefault();
 
             var valueButton = $(this).val();

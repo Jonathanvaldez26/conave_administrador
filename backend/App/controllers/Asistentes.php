@@ -59,8 +59,6 @@ class Asistentes extends Controller
             Detalles
         </title>
 
-        
-
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="Content/jquery.Jcrop.css" rel="stylesheet" />
         <style>
@@ -172,8 +170,8 @@ html;
             <script src="/js/login.js"></script>
             <!-- VIEJO FIN -->
 
-            <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-            <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+            <!--script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" /-->
             
             <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
             <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
@@ -918,23 +916,6 @@ html;
             }
     
         }
-          
-          $("#muestra-cupones").tablesorter();
-          var oTable = $('#muestra-cupones').DataTable({
-                "columnDefs": [{
-                    "orderable": false,
-                    "targets": 0
-                }],
-                 "order": false
-            });
-
-            // Remove accented character from search input as well
-            // $('#muestra-cupones input[type=search]').keyup( function () {
-            //     var table = $('#example').DataTable();
-            //     table.search(
-            //         jQuery.fn.DataTable.ext.type.search.html(this.value)
-            //     ).draw();
-            // } );
 
             var checkAll = 0;
             $("#checkAll").click(function () {
@@ -996,8 +977,8 @@ html;
 
         $extraFooter1 = <<<html
         <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-        <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+        <!--script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" /-->
         
         <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
@@ -1299,12 +1280,12 @@ html;
 html;
         $extraFooter = <<<html
         <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-        <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+        <!--script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" /-->
         
         <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
-      <script>
+        <script>
         $(document).ready(function(){
 
           var checkAll = 0;
@@ -2701,7 +2682,7 @@ html;
       <script>
         $(document).ready(function(){
 
-            $('#user-list').DataTable({
+            $('#user_list_table').DataTable({
                 "drawCallback": function( settings ) {
                     $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
                     $('.paginate_button').addClass("btn").removeClass("paginate_button");

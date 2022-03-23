@@ -143,29 +143,29 @@ html;
 
                         if ($value['nota'] != '') {
                           $tabla_rechazados .=<<<html
-                            <div id="editar_section">
+                            <div class="editar_section" id="editar_section">
                               <p id="">
                                 {$value['nota']}
                               </p>
-                              <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50" >
+                              <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50 editar_nota" >
                                 Editar
                               </button>
                             </div>
 
-                            <div class="hide-section" id="editar_section_textarea">
-                              <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                            <div class="hide-section editar_section_textarea" id="editar_section_textarea">
+                              <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
                                 <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
                                 <p>
-                                  <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
+                                  <textarea class="form-control nota" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
                                 </p>
                                 <div class="row">
                                   <div class="col-md-6 col-12">
-                                  <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark " >
+                                  <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark guardar_editar_nota" >
                                     Guardar
                                   </button>
                                   </div>
                                   <div class="col-md-6 col-12">
-                                    <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger" >
+                                    <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger cancelar_editar_nota" >
                                       Cancelar
                                     </button>
                                   </div>
@@ -178,10 +178,10 @@ html;
                             <p>
                               {$value['nota']}
                             </p>
-                            <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                            <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
                               <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
                               <p>
-                                <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
+                                <textarea class="form-control nota" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
                               </p>
                               <button type="submit" class="btn bg-gradient-dark w-50" >
                                 Guardar
@@ -296,29 +296,29 @@ html;
 html;
                             if ($value['nota'] != '') {
                               $tabla .=<<<html
-                                <div id="editar_section">
+                                <div class="editar_section" id="editar_section">
                                   <p id="">
                                     {$value['nota']}
                                   </p>
-                                  <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50" >
+                                  <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50 editar_nota" >
                                     Editar
                                   </button>
                                 </div>
 
-                                <div class="hide-section" id="editar_section_textarea">
-                                  <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                                <div class="hide-section editar_section_textarea" id="editar_section_textarea">
+                                  <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
                                     <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
                                     <p>
-                                      <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
+                                      <textarea class="form-control nota" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
                                     </p>
                                     <div class="row">
                                       <div class="col-md-6 col-12">
-                                      <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark " >
+                                      <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark guardar_editar_nota" >
                                         Guardar
                                       </button>
                                       </div>
                                       <div class="col-md-6 col-12">
-                                        <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger" >
+                                        <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger cancelar_editar_nota" >
                                           Cancelar
                                         </button>
                                       </div>
@@ -331,10 +331,10 @@ html;
                                 <p>
                                   {$value['nota']}
                                 </p>
-                                <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                                <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
                                   <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
                                   <p>
-                                    <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
+                                    <textarea class="form-control nota" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
                                   </p>
                                   <button type="submit" class="btn bg-gradient-dark w-50" >
                                     Guardar
@@ -448,29 +448,29 @@ html;
 html;
                             if ($value['nota'] != '') {
                               $tabla_no_v .=<<<html
-                                <div id="editar_section">
+                                <div class="editar_section" id="editar_section">
                                   <p id="">
                                     {$value['nota']}
                                   </p>
-                                  <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50" >
+                                  <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50 editar_nota" >
                                     Editar
                                   </button>
                                 </div>
 
-                                <div class="hide-section" id="editar_section_textarea">
-                                  <form class="form-horizontal" id="guardar_nota_pendiente" action="" method="POST">
+                                <div class="hide-section editar_section_textarea" id="editar_section_textarea">
+                                  <form class="form-horizontal guardar_nota_pendiente" id="guardar_nota_pendiente" action="" method="POST">
                                     <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
                                     <p>
-                                      <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
+                                      <textarea class="form-control nota" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
                                     </p>
                                     <div class="row">
                                       <div class="col-md-6 col-12">
-                                      <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark " >
+                                      <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark guardar_editar_nota" >
                                         Guardar
                                       </button>
                                       </div>
                                       <div class="col-md-6 col-12">
-                                        <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger" >
+                                        <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger cancelar_editar_nota" >
                                           Cancelar
                                         </button>
                                       </div>
@@ -483,12 +483,12 @@ html;
                                 <p>
                                   {$value['nota']}
                                 </p>
-                                <form class="form-horizontal" id="guardar_nota" action="" method="POST">
+                                <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
                                   <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
                                   <p>
-                                    <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
+                                    <textarea class="form-control nota" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
                                   </p>
-                                  <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark w-50" >
+                                  <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark w-50 guardar_editar_nota"  >
                                     Guardar
                                   </button>
                                 </form>
@@ -502,7 +502,7 @@ html;
                         <div class="pt-4 modal-footer">
                           <div class="row text-center">
                             <div class="col-md-6 col-12">
-                              <form class="form-horizontal" id="btn_validar" action="" method="POST">
+                              <form class="form-horizontal btn_validar" id="btn_validar" action="" method="POST">
                                 <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;" hidden>
                                 
                                 <button type="submit" class="btn bg-gradient-success" >
@@ -539,21 +539,16 @@ html;
       <script>
       $(document).ready(function() {
   
-          $("#btn_validar").on("submit", function(event) {
+          $(".btn_validar").on("submit", function(event) {
               event.preventDefault();
   
-              var formData = new FormData(document.getElementById("btn_validar"));
-              for (var value of formData.values()) {
-                  console.log(value);
-              }
+              var formData = $(this).serialize();
+              console.log(formData);
   
               $.ajax({
                   url: "/PruebasCovidUsuarios/Validar",
                   type: "POST",
                   data: formData,
-                  cache: false,
-                  contentType: false,
-                  processData: false,
                   beforeSend: function() {
                       console.log("Procesando....");
                   },
@@ -578,21 +573,16 @@ html;
               });
           });
   
-          $("#btn_rechazar").on("submit", function(event) {
+          $(".btn_rechazar").on("submit", function(event) {
               event.preventDefault();
   
-              var formData = new FormData(document.getElementById("btn_rechazar"));
-              for (var value of formData.values()) {
-                  console.log(value);
-              }
+              var formData = $(this).serialize();
+              console.log(formData);
   
               $.ajax({
                   url: "/PruebasCovidUsuarios/Rechazar",
                   type: "POST",
                   data: formData,
-                  cache: false,
-                  contentType: false,
-                  processData: false,
                   beforeSend: function() {
                       console.log("Procesando....");
                   },
@@ -617,21 +607,16 @@ html;
               });
           });
 
-          $("#guardar_nota").on("submit", function(event) {
+          $(".guardar_nota").on("submit", function(event) {
             event.preventDefault();
 
-            var formData = new FormData(document.getElementById("guardar_nota"));
-            for (var value of formData.values()) {
-                console.log(value);
-            }
+            var formData = $(this).serialize();
+            console.log(formData);
 
             $.ajax({
                 url: "/PruebasCovidUsuarios/GuardarNota",
                 type: "POST",
                 data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
                 beforeSend: function() {
                     console.log("Procesando....");
                 },
@@ -642,14 +627,14 @@ html;
                         then((value) => {
                             window.location.replace("/PruebasCovidUsuarios/");
                         });
-                        var ta = document.getElementById("nota");
-                        ta.setAttribute('disabled','');
+                        // var ta = document.getElementById("nota");
+                        // ta.setAttribute('disabled','');
 
-                        var btn_cancelar = document.getElementById('cancelar_editar_nota');
-                        btn_cancelar.setAttribute('hidden','');
+                        $('.nota').attr('disabled');
 
-                        var btn_guardar = document.getElementById('guardar_editar_nota');
-                        btn_guardar.setAttribute('hidden','');
+                        $('.cancelar_editar_nota').attr('hidden');
+
+                        $('.guardar_editar_nota').attr('hidden');
 
                     } else {
                         swal("¡No se pudo guardar correctamente la nota!", "", "warning").
@@ -665,21 +650,16 @@ html;
             });
         });
 
-        $("#guardar_nota_pendiente").on("submit", function(event) {
+        $(".guardar_nota_pendiente").on("submit", function(event) {
           event.preventDefault();
 
-          var formData = new FormData(document.getElementById("guardar_nota_pendiente"));
-          for (var value of formData.values()) {
-              console.log(value);
-          }
+          var formData = $(this).serialize();
+          console.log(formData);
 
           $.ajax({
               url: "/PruebasCovidUsuarios/GuardarNota",
               type: "POST",
               data: formData,
-              cache: false,
-              contentType: false,
-              processData: false,
               beforeSend: function() {
                   console.log("Procesando....");
               },
@@ -690,14 +670,14 @@ html;
                       then((value) => {
                           // window.location.replace("/PruebasCovidUsuarios/");
                       });
-                      var ta = document.getElementById("nota");
-                      ta.setAttribute('disabled','');
+                      // var ta = document.getElementById("nota");
+                      // ta.setAttribute('disabled','');
 
-                      var btn_cancelar = document.getElementById('cancelar_editar_nota');
-                      btn_cancelar.setAttribute('hidden','');
+                      $('.nota').attr('disabled');
 
-                      var btn_guardar = document.getElementById('guardar_editar_nota');
-                      btn_guardar.setAttribute('hidden','');
+                      $('.cancelar_editar_nota').attr('hidden');
+
+                      $('.guardar_editar_nota').attr('hidden');
 
                   } else {
                       swal("¡No se pudo guardar correctamente la nota!", "", "warning").
@@ -713,15 +693,15 @@ html;
           });
       });
 
-        $("#editar_nota").on("click", function(event) {
-            $('#editar_section').addClass('hide-section').removeClass('show-section');
-            $('#editar_section_textarea').addClass('show-section').removeClass('hide-section');
+        $(".editar_nota").on("click", function(event) {
+            $('.editar_section').addClass('hide-section').removeClass('show-section');
+            $('.editar_section_textarea').addClass('show-section').removeClass('hide-section');
             console.log('Holaa');
         });
 
-        $("#cancelar_editar_nota").on("click", function(event) {
-            $('#editar_section_textarea').addClass('hide-section').removeClass('show-section');
-            $('#editar_section').addClass('show-section').removeClass('hide-section');
+        $(".cancelar_editar_nota").on("click", function(event) {
+            $('.editar_section_textarea').addClass('hide-section').removeClass('show-section');
+            $('.editar_section').addClass('show-section').removeClass('hide-section');
             console.log('Holaa');
         });
 

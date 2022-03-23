@@ -559,6 +559,8 @@
         
         // });
 
+        $('table#user-list').DataTable();
+
         $('table#user-list').on("click","button.btn_qr", function(event) {
             event.preventDefault();
 

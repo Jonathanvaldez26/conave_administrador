@@ -59,6 +59,12 @@ class Asistentes extends Controller
             Detalles
         </title>
 
+        <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+        
+        <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="Content/jquery.Jcrop.css" rel="stylesheet" />
         <style>
@@ -169,6 +175,12 @@ html;
             <script src="/js/alertify/alertify.min.js"></script>
             <script src="/js/login.js"></script>
             <!-- VIEJO FIN -->
+
+            <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+            
+            <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 html;
         $detalles = AsistentesDao::getById($id);
         $detalles_registro = AsistentesDao::getTotalById($id);
@@ -179,7 +191,7 @@ html;
 html;
         } else {
             $img_asistente = <<<html
-            <img src="/img/users_conave/{$detalles_registro[0]['img']}" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
+            <img src="https://convencionasofarma2022.mx/img/users_conave/{$detalles_registro[0]['img']}" class="avatar avatar-xxl me-3" title="{$detalles_registro[0]['usuario']}" alt="{$detalles_registro[0]['usuario']}">
 html;
         }
 
@@ -603,7 +615,7 @@ html;
             if (empty($value['img']) || $value['img'] == null) {
                 $img_user = "/img/user.png";
             } else {
-                $img_user = "/img/users_conave/{$value['img']}";
+                $img_user = "https://convencionasofarma2022.mx/img/img/users_conave/{$value['img']}";
             }
 
             $pases = PasesDao::getByIdUser($value['utilerias_asistentes_id']);

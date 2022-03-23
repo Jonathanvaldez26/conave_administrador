@@ -45,7 +45,7 @@ class Asistentes extends Controller
             ///////////////////////////////////////////////////////
             // var_dump($user);
             // var_dump($asistentes);
-            View::set('tabla', $this->getAllColaboradoresAsignados());
+        View::set('tabla', $this->getAllColaboradoresAsignados());
         View::set('header', $this->_contenedor->header($this->getHeader()));
         View::set('footer', $this->_contenedor->footer($this->getFooter()));
         View::render("asistentes_all");
@@ -675,8 +675,8 @@ html;
             }
 
             $id_linea = $value['id_linea_principal'];
-            $encargado = AsistentesDao::getEncargadoLinea($id_linea);
-            // var_dump($encargado);
+            $encargado = AsistentesDao::getEncargadoLinea($id_linea)[0];
+           
 
             $ticket_virtual = GeneralDao::getTicketByIdTicket($value['id_ticket_virtual']);
 
@@ -693,7 +693,7 @@ html;
                             <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-envelope" style="font-size: 13px"></span> {$value['usuario']}</p>
                             <p class="text-sm mb-0"><span class="fa fa-solid fa-id-card" style="font-size: 13px;"></span>Numero de empleado:  <span style="text-decoration: underline;">{$value['numero_empleado']}</span></p>
                             <hr>
-                            <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br>{$encargado['nombre']}</p>
+                            <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br>{$encargado['nombre_encargado']}</p>
                             
                         </div>
                     </div>

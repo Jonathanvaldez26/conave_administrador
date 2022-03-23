@@ -170,11 +170,11 @@ sql;
       
       $mysqli = Database::getInstance();
       $query =<<<sql
-      SELECT ua.nombre as nombre_encargado, lp.clave, lp.nombre as nombre_linea, al.id_linea_principal
+      SELECT ua.nombre as nombre_encargado, lp.clave, lp.nombre as nombre_linea, al.id_linea_ejecutivo 
         FROM asigna_linea al
-        INNER JOIN linea_principal lp ON (lp.id_linea_principal = al.id_linea_principal) 
+        INNER JOIN linea_principal lp ON (lp.id_linea_ejecutivo = al.id_linea_ejecutivo) 
         INNER JOIN utilerias_administradores ua ON (al.utilerias_administradores_id_linea_asignada = ua.utilerias_administradores_id) 
-        WHERE al.id_linea_principal = $id_linea;
+        WHERE al.id_linea_ejecutivo = $id_linea;
 sql;
   
       return $mysqli->queryAll($query);

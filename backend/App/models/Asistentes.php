@@ -44,6 +44,17 @@ sql;
         
     }
 
+    public static function getAllRegisterSinHabitacionSelect($id_user){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno, ' - ',ra.email,'') as nombre
+      FROM registros_acceso ra
+      WHERE ra.id_registro_acceso NOT IN (SELECT id_registro_acceso FROM asigna_habitacion) and ra.politica = 1 and ra.id_registro_acceso != $id_user ORDER BY nombre ASC
+sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
     public static function getAllRegisterConHabitacion(){
       $mysqli = Database::getInstance();
       $query=<<<sql

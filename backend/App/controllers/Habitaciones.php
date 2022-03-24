@@ -51,7 +51,6 @@ class Habitaciones extends Controller
     $fecha_fin_evento_str = strtotime("2022/04/09");
     $fecha_fin_evento = date('Y-m-d', $fecha_fin_evento_str);
 
-    echo $fecha_inicio_evento;
 
     $hoteles = HabitacionesDao::getAll();
     foreach ($hoteles as $key => $value) {
@@ -678,17 +677,21 @@ html;
     $id_asis = $_POST['id_asis'];
     $registro_acceso = AsistentesDao::getIdRegistroAcceso($id_asis)[0];
     $pase_abordar = PasesDao::getByIdUser($registro_acceso['utilerias_asistentes_id'])[0];
+    $asistentes = AsistentesDao::getAllRegisterSinHabitacionSelect($registro_acceso['id_registro_acceso']);
+
 
     if (!empty($pase_abordar) || !is_null($pase_abordar)) {
       $respuesta = [
         'pase' => $pase_abordar,
         'msg' => 'Se encontro tu pase de abordar',
+        'asistentes' => $asistentes,
         'status' => 'success'
       ];
     } else {
       $respuesta = [
         'pase' => $pase_abordar,
         'msg' => 'No se ha cargado el vuelo',
+        'asistentes' => $asistentes,
         'status' => 'error'
       ];
     }

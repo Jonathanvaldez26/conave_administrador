@@ -1212,8 +1212,8 @@
                                 
 
                         for (var j = 0; j < respuesta.asistentes.length; j++) {
-                            console.log(respuesta.asistentes[j].id_registro_acceso);
-                            console.log(respuesta.asistentes[j].nombre);
+                            // console.log(respuesta.asistentes[j].id_registro_acceso);
+                            // console.log(respuesta.asistentes[j].nombre);
                             // console.log(respuesta.asistentes[j].apellido_paterno);
                             // console.log(respuesta.asistentes[j].apellido_materno);
                             $("#asistente_name" + i).append('<option value="' + respuesta.asistentes[j].id_registro_acceso + '">' + respuesta.asistentes[j].nombre + '</option>');
@@ -1254,7 +1254,19 @@
                     }else{
                         $('#vuelo'+data_item).val(respuesta.msg);
                     }
-                    
+              
+                    var next_select = (parseInt(data_item)+1);
+                    console.log($("#asistente_name"+next_select));
+                    $("#asistente_name"+next_select).empty();
+                    $("#asistente_name"+next_select).append('<option value="" disabled selected>Selecciona una opción</option>');
+
+                    for (var j = 0; j < respuesta.asistentes.length; j++) {
+                        // console.log(respuesta.asistentes[j].id_registro_acceso);
+                        // console.log(respuesta.asistentes[j].nombre);
+                        // console.log(respuesta.asistentes[j].apellido_paterno);
+                        // console.log(respuesta.asistentes[j].apellido_materno);
+                        $("#asistente_name"+next_select).append('<option value="' + respuesta.asistentes[j].id_registro_acceso + '">' + respuesta.asistentes[j].nombre + '</option>');
+                    }
                 },error: function(respuesta) {
                     console.log(respuesta);
                 }

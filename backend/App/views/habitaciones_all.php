@@ -906,6 +906,7 @@
     $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();   
         $('.select_2').select2();
+        $('.select_2_add_user').select2();
 
         $(".save_habitacion_").on("click", function() {
             console.log("funciona");
@@ -1262,13 +1263,35 @@
 
         });
 
-        // $(".select_2").on("change",function(){
-        //     alert($(this)).val();
-        // });
+        $(".select_2_add_user").on("change",function(){
+            console.log($(this).val());
+            var id_asis = $(this).val();
+            $.ajax({
+                url: "/Habitaciones/getAsistenteId",
+                type: "POST",
+                data: {
+                    id_asis
+                },
+                dataType: "json",
+                beforeSend: function() {
+                    console.log("Procesando....");
 
-        
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+                    if(respuesta.status == 'success'){
+                        $('#vuelo').val(respuesta.pase.hora_llegada_destino);
+                    }else{
+                        $('#vuelo').val(respuesta.msg);
+                    }
+                    
+                },error: function(respuesta) {
+                    console.log(respuesta);
+                }
 
-        //$(".select_2").select2();
+            });
+        });
+
 
 
         $("#form_asignar_habitacion").on('submit', function(event) {

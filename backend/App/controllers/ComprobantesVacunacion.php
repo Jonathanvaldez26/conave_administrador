@@ -141,7 +141,7 @@ html;
                               </div>
                               <div class="mb-2">
                                 <h6 class="fas fa-envelope"> </h6>
-                                <span> <b>Correo Electrónico:</b> <a href="mailto:{$value['email']}">{$value['email']}</a></span>
+                                <span> <b>Correo Electrónico:</b> <u><a href="mailto:{$value['email']}">{$value['email']}</a></u></span>
                               </div>
                               <div class="mb-2">
                                 <h6 class="fa fa-whatsapp"> </h6>
@@ -313,7 +313,7 @@ html;
                             </div>
                             <div class="mb-2">
                               <h6 class="fas fa-envelope"> </h6>
-                              <span> <b>Correo Electrónico:</b> <a href="mailto:{$value['email']}">{$value['email']}</a></span>
+                              <span> <b>Correo Electrónico:</b> <u><a href="mailto:{$value['email']}">{$value['email']}</a></u></span>
                             </div>
                             <div class="mb-2">
                             <h6 class="fa fa-whatsapp"> </h6>
@@ -482,11 +482,11 @@ html;
                                 </div>
                                 <div class="mb-2">
                                   <h6 class="fas fa-envelope"> </h6>
-                                  <span> <b>Correo Electrónico:</b> <a href="mailto:{$value['email']}">{$value['email']}</a></span>
+                                  <span> <b>Correo Electrónico:</b> <u><a href="mailto:{$value['email']}">{$value['email']}</a></u></span>
                                 </div>
                                 <div class="mb-2">
-                                <h6 class="fa fa-whatsapp"> </h6>
-                                <span> <b></b> <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">{$value['telefono']}</a></u></span>
+                                  <h6 class="fa fa-whatsapp"> </h6>
+                                  <span> <b></b> <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">{$value['telefono']}</a></u></span>
                                 </div>
                               </div>
                               <div class="card card-body mb-4">

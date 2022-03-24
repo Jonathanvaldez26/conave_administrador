@@ -738,10 +738,10 @@ html;
                         <div class="d-flex flex-column justify-content-center">
                     
                             <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']} $estatus</h6>
-                            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-envelope" style="font-size: 13px"></span> {$value['usuario']}</p>
+                            <p class="text-sm font-weight-bold text-secondary mb-0"> {$value['usuario']}</p>
                             <p class="text-sm mb-0"><span class="fa fa-solid fa-id-card" style="font-size: 13px;"></span>Numero de empleado:  <span style="text-decoration: underline;">{$value['numero_empleado']}</span></p>
                             <hr>
-                            <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']}</p>
+                            <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nom']}</strong></span></p>
                             
                         </div>
                     </div>

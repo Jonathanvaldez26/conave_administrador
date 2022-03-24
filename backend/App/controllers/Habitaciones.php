@@ -228,6 +228,41 @@ html;
 
     }
 
+    //tab habitaciones
+    $habitaciones = HabitacionesDao::getHabitaciones();
+    $tabla_habitaciones = '';
+    $optionsCategoriaHotelHabitaciones = '';
+
+    $CategoriasHabitacionSelect = HabitacionesDao::getCategoriasHabitacionesDistict();
+    
+    foreach ($CategoriasHabitacionSelect as $key => $value) {
+      $optionsCategoriaHotelHabitaciones .= <<<html
+            <option value="{$value['id_categoria_habitacion']}">{$value['nombre_categoria']}</option>
+html;
+    }
+
+   // var_dump($optionsCategoriaHotelHabitaciones);
+
+    foreach ($habitaciones as $key => $value) {
+      
+
+
+      $tabla_habitaciones .= <<<html
+      <tr>
+        <td class="align-middle text-center text-sm">
+          {$value['nombre_categoria']}
+        </td>
+        <td class="align-middle text-center text-sm">
+          {$value['cant_habitaciones']}
+        </td>
+        <td class="align-middle text-center text-sm">
+          
+        </td>
+      </tr>
+html;
+    }
+     
+
 
 
     //tab hoteles
@@ -425,6 +460,7 @@ html;
 
     View::set('optionsCategoriaHotel', $optionsCategoriaHotel);
     View::set('optionsHotel', $optionsHotel);
+    View::set('optionsCategoriaHotelHabitaciones', $optionsCategoriaHotelHabitaciones);
     View::set('tabla_asistentes', $tabla_asistentes);
     View::set('modal_asigna_habitacion', $modal_asigna_habitacion);
     View::set('modal_habitaciones', $modal_habitaciones);
@@ -447,14 +483,14 @@ html;
 
     $hotel = $_POST['hotel'];
     $categoria_habitacion = $_POST['cat_habitacion'];
-    $administrador = $_SESSION['id_administrador'];
-    $numero_habitacion = $_POST['no_habitacion'];
+    $administrador = $_SESSION['utilerias_administradores_id'];
+    $cant_habitaciones = $_POST['cant_habitaciones'];
 
 
     $data->_hotel = $hotel;
     $data->_categoria_habitacion = $categoria_habitacion;
     $data->_administrador = $administrador;
-    $data->_numero_habitacion = $numero_habitacion;
+    $data->_cant_habitaciones = $cant_habitaciones;
 
     $id = HabitacionesDao::insert($data);
     if ($id) {

@@ -550,10 +550,23 @@
                             <div class="col-12">
                                 <div class="card mb-4">
                                     <div class="card-header pb-0">
-                                        <h6>Habitaciones Asignadas para los Asistentes Asofarma</h6>
+                                        <h6>Habitaciones</h6>
                                     </div>
                                     <div class="card-body px-0 pt-0 pb-2">
-
+                                        <div class="table-responsive p-0">
+                                            <table class="table align-items-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Categoria</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cantidad de Habitaciones</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php echo $tabla_habitaciones; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -721,7 +734,7 @@
         <div class="modal-content">
             <form class="form-horizontal" id="crear_habitacion_form" action="" method="POST">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addHabitacionLabel">Modal title</h5>
+                    <h5 class="modal-title" id="addHabitacionLabel">Agrega Habitaciones</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -743,14 +756,14 @@
                                 <label class="form-label mt-4">Categoria Habitación *</label>
                                 <select class="form-control" style="cursor: pointer;" name="cat_habitacion" id="cat_habitacion" tabindex="-1" required>
                                     <option value="" disabled selected>Selecciona una opción</option>
-                                    <?php echo $optionsCategoriaHotel; ?>
+                                    <?php echo $optionsCategoriaHotelHabitaciones; ?>
                                 </select>
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label">Numero Habitacion</label>
+                                <label class="form-label">Cantidad de Habitaciones</label>
                                 <div class="input-group">
-                                    <input id="no_habitacion" name="no_habitacion" maxlength="29" class="form-control" type="number" placeholder="No de habitación" required="">
+                                    <input id="cant_habitaciones" name="cant_habitaciones" maxlength="29" class="form-control" type="number" placeholder="No de habitación" required="">
                                 </div>
                                 <span id="msg_encontrado" style="font-size: 12px;color:#EC2F1E;"></span>
                             </div>

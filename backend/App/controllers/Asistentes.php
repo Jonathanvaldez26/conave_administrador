@@ -643,6 +643,19 @@ html;
                 $img_user = "https://convencionasofarma2022.mx/img/users_conave/{$value['img']}";
             }
 
+            $estatus = '';
+            if($value['status'] == 1)
+            {
+                $estatus .= <<<html
+                <span class="badge badge-success">Activo</span>
+html;
+            }
+            else
+            {
+                $estatus .= <<<html
+                <span class="badge badge-success">Inactivo</span>
+html;
+            }
             $pases = PasesDao::getByIdUser($value['utilerias_asistentes_id']);
             $cont_pase_ida = 0;
             $cont_pase_regreso = 0;
@@ -726,7 +739,7 @@ html;
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                     
-                            <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']}</h6>
+                            <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']} $estatus</h6>
                             <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-envelope" style="font-size: 13px"></span> {$value['usuario']}</p>
                             <p class="text-sm mb-0"><span class="fa fa-solid fa-id-card" style="font-size: 13px;"></span>Numero de empleado:  <span style="text-decoration: underline;">{$value['numero_empleado']}</span></p>
                             <hr>

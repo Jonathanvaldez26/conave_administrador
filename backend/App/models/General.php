@@ -160,7 +160,7 @@ sql;
 
 	$mysqli = Database::getInstance();
         $query=<<<sql
-DELETE FROM `catalogo_dia_festivo` WHERE `catalogo_dia_festivo`.`catalogo_dia_festivo_id` = $id
+        DELETE FROM `catalogo_dia_festivo` WHERE `catalogo_dia_festivo`.`catalogo_dia_festivo_id` = $id
 sql;
         $parametros = array(':id'=>$id);
         $accion = new \stdClass();

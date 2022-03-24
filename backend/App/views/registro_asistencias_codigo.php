@@ -4,41 +4,45 @@
 <body class="g-sidenav-show  bg-gray-100">
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
-    <div class="mt-7">
-        <div class="card card-body mt-n6 overflow-hidden m-5">
-            <div class="row mb-3" >
-                <div class="col-auto">
-                    <div class="bg-gradient-red avatar avatar-xl position-relative">
-                        <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
-                        <span class="fa fa-bell" style="font-size: xx-large;"></span>
-                    </div>
-                </div>
-                <div class="col-auto my-auto">
-                    <div class="h-100">
-                        <h5 class="mb-1">
-                            Listas de Asistencias
-                        </h5>
-                        <p class="mb-0 font-weight-bold text-sm">
-                        </p>
-                    </div>
-                </div>
+    <div class="row">
+        <div class="col-11 m-auto">
+            <div class="mt-7 m-auto">
+                <div class="card card-body mt-n6 overflow-hidden m-5">
+                    <div class="row mb-3" >
+                        <div class="col-auto">
+                            <div class="bg-gradient-red avatar avatar-xl position-relative">
+                                <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
+                                <span class="fa fa-bell" style="font-size: xx-large;"></span>
+                            </div>
+                        </div>
+                        <div class="col-auto my-auto">
+                            <div class="h-100">
+                                <h5 class="mb-1">
+                                    Listas de Asistencias
+                                </h5>
+                                <p class="mb-0 font-weight-bold text-sm">
+                                </p>
+                            </div>
+                        </div>
 
-                <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
-                    <div class="nav-wrapper position-relative end-0">
-                        <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
-                                    <span class="fa fa-clock-o"></span>
-                                    <span class="ms-1">Registro</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
-                                    <span class="fa fa-check-circle-o"></span>
-                                    <span class="ms-1">Lista</span>
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                            <div class="nav-wrapper position-relative end-0">
+                                <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                            <span class="fa fa-clock-o"></span>
+                                            <span class="ms-1">Registro</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                            <span class="fa fa-check-circle-o"></span>
+                                            <span class="ms-1">Lista</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -151,8 +155,8 @@
         <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
             <div class="row">
                 <div class="col-10 m-auto">
-                    <div class="card">
-                        <table id="lista_registrados" class="table m-2" >
+                    <div class="card p-4">
+                        <table id="lista-reg" class="table" >
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -198,7 +202,7 @@
 
         // mostrarDatos(clave_a);
 
-        var table = $('#lista_registrados').DataTable({
+        var table = $('#lista-reg').DataTable({
             "drawCallback": function( settings ) {
             $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
             $('.paginate_button').addClass("btn").removeClass("paginate_button");
@@ -250,7 +254,7 @@
                 dataType: 'json',
                 beforeSend: function() {
                     console.log("Procesando....");
-                    $('#lista_registrados > tbody').empty();
+                    $('#lista-reg > tbody').empty();
 
                     
                 },
@@ -258,7 +262,7 @@
                     console.log(respuesta);
                     $.each(respuesta,function(index, el) {
            
-                        $('#lista_registrados > tbody:last-child').append(
+                        $('#lista-reg > tbody:last-child').append(
                                 '<tr>'+
                                 '<td>'+el.nombre_completo+'</td>'+
                                 '<td>'+el.email+'</td>'+
@@ -266,7 +270,7 @@
                                 '</tr>');
                     });
 
-                    // var tables = $('#lista_registrados').DataTable();
+                    // var tables = $('#lista-reg').DataTable();
 
                     //     tables.row.add( {
                     //         "Nombre": el.nombre_completo,
@@ -342,7 +346,7 @@
 
                             }
 
-                            let tabla_registrados = $("#lista_registrados");
+                            let tabla_registrados = $("#lista-reg");
                     } else {
                         swal("¡Lo sentimos, esta persona no se encuentra registrada en nuestra base de datos!", "", "warning").
                         then((value) => {

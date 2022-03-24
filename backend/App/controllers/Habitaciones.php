@@ -46,6 +46,12 @@ class Habitaciones extends Controller
     $btnAddUser = '';
     $modal_asigna_habitacion = '';
     $jsModal = '';
+    $fecha_inicio_evento_str = strtotime("2022/04/06");
+    $fecha_inicio_evento = date('Y-m-d', $fecha_inicio_evento_str);
+    $fecha_fin_evento_str = strtotime("2022/04/09");
+    $fecha_fin_evento = date('Y-m-d', $fecha_fin_evento_str);
+
+    echo $fecha_inicio_evento;
 
     $hoteles = HabitacionesDao::getAll();
     foreach ($hoteles as $key => $value) {
@@ -64,6 +70,7 @@ html;
     $asistentes = AsistentesDao::getAllRegisterConHabitacion();
     foreach ($asistentes as $key => $value) {
       $habitacionCompartida = AsistentesDao::getUsuariosByClaveHabitacion($value['clave']);
+
 
       $tabla_asistentes .= <<<html
       <tr>
@@ -85,7 +92,7 @@ html;
 
       $tabla_asistentes .= <<<html
             <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-hotel"></span> {$value['nombre_categoria']}</p>
-            <!--<p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> {$value['numero_habitacion']} </p>-->
+            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-hotel"></span> No. habitación {$value['id_habitacion']} </p>
             </div>
           </div>
       </td>
@@ -110,7 +117,7 @@ html;
       $con_lugares_disponibles = $countAsistentes['total_asignados'] % $cant_huespedes_permitida;
       $total_lugares_disponibles = $cant_huespedes_permitida - $countAsistentes['total_asignados'];
 
-      $status_disponible = $con_lugares_disponibles > 0 ? "<span class='badge bg-success'>Hay ".$total_lugares_disponibles." lugares disponible</span>" : "<span class='badge bg-warning text-dark'>Habitación llena</span>";
+      $status_disponible = $con_lugares_disponibles > 0 ? "<span class='badge bg-warning text-dark'>Hay ".$total_lugares_disponibles." lugares disponible</span>" : "<span class='badge bg-success '>Habitación llena</span>";
 
       $btnAddUser = $con_lugares_disponibles > 0 ? "<a href='javascript:;' data-bs-toggle='tooltip' data-bs-original-title='Asignar usuario' class='btn_asignar_usuario' data-value='{$value['clave']}' data-toggle='modal' data-target='#asignaUsuario{$value['clave']}'><i class='fa fa-hotel' aria-hidden='true'></i></a>" : "";
 
@@ -155,7 +162,7 @@ html;
                   <div class="col-12 align-self-center">
                   <input type="hidden" id="clave_ah" name="clave_ah" value="{$value['clave']}">
                   <label class="form-label mt-4">Nombre del Asistente *</label><br>
-                          <select class="select_2_add_user" name="id_asistente" >
+                          <select class="select_2_add_user" name="id_asistente" data-clave="{$value['clave']}" >
                                  <option value="" disabled selected>Selecciona una opción</option>
 html;
               foreach($selectUsersinHabitacion as $key => $v)
@@ -175,11 +182,11 @@ html;
                               <div class="row mb-3">
                                 <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
                                     <label class="form-label">IN *</label><br>
-                                    <input type="date" class="form-control" id="date_in" name="date_in">
+                                    <input type="date" class="form-control" id="date_in" name="date_in" min="{$fecha_inicio_evento}" max="{$fecha_fin_evento}">
                                 </div>
                                 <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
                                     <label class="form-label">OUT *</label><br>
-                                    <input type="date" class="form-control" id="date_out" name="date_out">
+                                    <input type="date" class="form-control" id="date_out" name="date_out"  min="{$fecha_inicio_evento}" max="{$fecha_fin_evento}">
                                 </div>
                               </div>
 
@@ -187,13 +194,13 @@ html;
                                   <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
                                       <label class="form-label">Hora de Vuelo</label><br>
                                       <div class="input-group">
-                                          <input type="text" class="form-control" placeholder="vuelo" aria-label="vuelo" aria-describedby="basic-addon1" id="vuelo" name="vuelo" readonly>
+                                          <input type="text" class="form-control" placeholder="vuelo" aria-label="vuelo" aria-describedby="basic-addon1" id="vuelo{$value['clave']}" name="vuelo" readonly>
                                           <span class="input-group-text" id="svuelo"><i class="fa fa-info-circle"></i></span>
                                       </div>
                                   </div>
                                   <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
                                       <label class="form-label">Numero de habitación (opcional)</label><br>
-                                      <input type="number" class="form-control" id="numero_habitacion" name="numero_habitacion">
+                                      <input type="number" class="form-control" id="numero_habitacion" name="numero_habitacion" value="{$value['id_habitacion']}">
                                   </div>
                               </div>
 
@@ -428,6 +435,8 @@ html;
     View::set('fecha_al', $fecha_al);
     View::set('tabla_categorias', $tabla_categorias);
     View::set('th_table_fechas', $th_table_fechas);
+    View::set('fecha_inicio_evento', $fecha_inicio_evento);
+    View::set('fecha_fin_evento', $fecha_fin_evento);
     View::set('header', $this->_contenedor->header());
     View::set('footer', $this->_contenedor->footer());
     View::render("habitaciones_all");

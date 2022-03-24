@@ -10,6 +10,7 @@ use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\Habitaciones as HabitacionesDao;
 use \App\models\Asistentes as AsistentesDao;
+use \App\models\Pases as PasesDao;
 
 class Habitaciones extends Controller
 {
@@ -132,7 +133,7 @@ html;
 
     $modal_asigna_habitacion .= <<<html
     <div class="modal fade" id="asignaUsuario{$value['clave']}" role="dialog" aria-labelledby="asignaUsuarioLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <form class="form-horizontal form_asig_habitacion"  action="" method="POST" id="">
                 <div class="modal-header">
@@ -153,8 +154,8 @@ html;
               $modal_asigna_habitacion .= <<<html
                   <div class="col-12 align-self-center">
                   <input type="hidden" id="clave_ah" name="clave_ah" value="{$value['clave']}">
-                  <label class="form-label mt-4">Asistentes *</label><br>
-                          <select class="select_2" name="id_asistente" >
+                  <label class="form-label mt-4">Nombre del Asistente *</label><br>
+                          <select class="select_2_add_user" name="id_asistente" >
                                  <option value="" disabled selected>Selecciona una opción</option>
 html;
               foreach($selectUsersinHabitacion as $key => $v)
@@ -169,6 +170,41 @@ html;
                                 </div>
 
                               </div>
+
+
+                              <div class="row mb-3">
+                                <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
+                                    <label class="form-label">IN *</label><br>
+                                    <input type="date" class="form-control" id="date_in" name="date_in">
+                                </div>
+                                <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
+                                    <label class="form-label">OUT *</label><br>
+                                    <input type="date" class="form-control" id="date_out" name="date_out">
+                                </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                  <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
+                                      <label class="form-label">Hora de Vuelo</label><br>
+                                      <div class="input-group">
+                                          <input type="text" class="form-control" placeholder="vuelo" aria-label="vuelo" aria-describedby="basic-addon1" id="vuelo" name="vuelo" readonly>
+                                          <span class="input-group-text" id="svuelo"><i class="fa fa-info-circle"></i></span>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
+                                      <label class="form-label">Numero de habitación (opcional)</label><br>
+                                      <input type="number" class="form-control" id="numero_habitacion" name="numero_habitacion">
+                                  </div>
+                              </div>
+
+
+                              <div class="row mb-3">
+                                  <div class="col-md-12 align-self-center asign_huesped">
+                                    <label class="form-label">Comentarios (opcional)</label><br>
+                                    <textarea name="comentarios" id="comentarios" class="form-control" cols="30" rows="5"></textarea>
+                                  </div>
+                              </div>
+
                           </div>
 
                       </div>
@@ -553,6 +589,10 @@ html;
     $asistente_name = $_POST['asistente_name'];
     $id_administrador = $_SESSION['utilerias_administradores_id'];
     $clave = $this->generateRandomString();
+    $fecha_in = $_POST['date_in'];
+    $fecha_out = $_POST['date_out'];
+    $comentarios = $_POST['comentarios'];
+    $numero_habitacion = $_POST['numero_habitacion'];
 
 
     $documento->_id_categoria_habitacion = $id_categoria_habitacion;
@@ -564,54 +604,87 @@ html;
     foreach ($asistente_name as $key => $value) {
 
       $documento->_id_registro_acceso = $value;
+      $documento->_fecha_in = $fecha_in[$key];
+      $documento->_fecha_out = $fecha_out[$key];
+      $documento->_comentarios = $comentarios[$key];
+      $documento->_numero_habitacion = $numero_habitacion[$key];
       $id = HabitacionesDao::insertAsignaHabitacion($documento);
       $cont++;
 
       // echo $value;
     }
-    if($cont > 0){
+    if ($cont > 0) {
       echo 'success';
     }
   }
 
-  public function quitarUsuarioHabitacion(){
+  public function quitarUsuarioHabitacion()
+  {
     $id_ah = $_POST['id_ah'];
-   
+
     $delete = HabitacionesDao::deleteAsignaHabitacion($id_ah);
-    if($delete){
+    if ($delete) {
       echo "success";
-    }else{
+    } else {
       echo "fail";
     }
   }
 
-  public function agregarUsusarioHabitacion(){
+  public function agregarUsusarioHabitacion()
+  {
     $documento = new \stdClass();
-    // $clave_ah = $_POST['clave_ah'];
-    // $id_asistente = $_POST['id_asistente'];
-
+    
     $clave_ah = $_POST['clave_ah'];
-    //$id_asistente = $_POST['id_asistente'];
-
     $asigna_habitacion = HabitacionesDao::getAsignaHabitacionByClave($clave_ah)[0];
 
-    
+
     $id_categoria_habitacion = $asigna_habitacion['id_categoria_habitacion'];
     $id_asistente = $_POST['id_asistente'];
+    $fecha_in = $_POST['date_in'];
+    $fecha_out = $_POST['date_out'];
+    $numero_habitacion = $_POST['numero_habitacion'];
+    $comentarios = $_POST['comentarios'];
     $id_administrador = $_SESSION['utilerias_administradores_id'];
 
     $documento->_id_categoria_habitacion = $id_categoria_habitacion;
     $documento->_id_administrador = $id_administrador;
     $documento->_clave = $clave_ah;
     $documento->_id_registro_acceso = $id_asistente;
+    $documento->_fecha_in = $fecha_in;
+    $documento->_fecha_out = $fecha_out;
+    $documento->_numero_habitacion = $numero_habitacion;
+    $documento->_comentarios = $comentarios;
 
     $id = HabitacionesDao::insertAsignaHabitacion($documento);
 
-    if($id){
+    if ($id) {
       echo "success";
-    }else{
+    } else {
       "fail";
     }
+  }
+
+  public function getAsistenteId()
+  {
+    $id_asis = $_POST['id_asis'];
+    $registro_acceso = AsistentesDao::getIdRegistroAcceso($id_asis)[0];
+    $pase_abordar = PasesDao::getByIdUser($registro_acceso['utilerias_asistentes_id'])[0];
+
+    if (!empty($pase_abordar) || !is_null($pase_abordar)) {
+      $respuesta = [
+        'pase' => $pase_abordar,
+        'msg' => 'Se encontro tu pase de abordar',
+        'status' => 'success'
+      ];
+    } else {
+      $respuesta = [
+        'pase' => $pase_abordar,
+        'msg' => 'No se ha cargado el vuelo',
+        'status' => 'error'
+      ];
+    }
+
+    echo json_encode($respuesta);
   }
 
   function generateRandomString($length = 6)

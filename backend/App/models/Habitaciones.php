@@ -139,13 +139,17 @@ sql;
     public static function insertAsignaHabitacion($data){
       $mysqli = Database::getInstance(1);
       $query=<<<sql
-      INSERT INTO asigna_habitacion (id_categoria_habitacion, id_habitacion, id_registro_acceso, clave, status, utilerias_administradores_id) VALUES  (:id_categoria_habitacion, 0 , :id_registro_acceso, :clave, 1, :utilerias_administradores_id);
+      INSERT INTO asigna_habitacion (id_categoria_habitacion, id_habitacion, id_registro_acceso, clave, date_in, date_out, comentarios, status, utilerias_administradores_id) VALUES  (:id_categoria_habitacion, :id_habitacion , :id_registro_acceso, :clave, :date_in, :date_out, :comentarios, 1, :utilerias_administradores_id);
 sql;
 
     $parametros = array(
       ':id_categoria_habitacion'=>$data->_id_categoria_habitacion,
       ':id_registro_acceso'=>$data->_id_registro_acceso,
       ':clave'=>$data->_clave,
+      ':date_in'=>$data->_fecha_in,
+      ':date_out'=>$data->_fecha_out,
+      ':comentarios'=>$data->_comentarios,
+      ':id_habitacion'=>$data->_numero_habitacion,
       ':utilerias_administradores_id'=>$data->_id_administrador
           
     );

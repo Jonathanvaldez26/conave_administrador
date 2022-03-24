@@ -136,6 +136,14 @@ sql;
 sql;
         return $mysqli->queryAll($query);
     }
+
+    public static function getIdRegistroAcceso($id){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM utilerias_asistentes WHERE id_registro_acceso = $id;
+sql;
+      return $mysqli->queryAll($query);
+  }
     
     public static function insert($data){
         

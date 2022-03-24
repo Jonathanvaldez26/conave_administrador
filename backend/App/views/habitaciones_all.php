@@ -24,7 +24,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item" <?=$permisoGlobalHidden;?>>
+                <li class="nav-item" <?= $permisoGlobalHidden; ?>>
                     <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link" aria-controls="catalogos" role="button" aria-expanded="true">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-sitemap" style="color: #344767"></span>
@@ -69,7 +69,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item" <?=$asistentesHidden;?>>
+                <li class="nav-item" <?= $asistentesHidden; ?>>
                     <a href="/Asistentes/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-users" style="color: #344767"></span>
@@ -77,7 +77,7 @@
                         <span class="nav-link-text ms-1">Asistentes</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$vuelosHidden;?>>
+                <li class="nav-item" <?= $vuelosHidden; ?>>
                     <a href="/Vuelos/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-plane" style="color: #344767"></span>
@@ -85,7 +85,7 @@
                         <span class="nav-link-text ms-1">Vuelos</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$pickUpHidden;?>>
+                <li class="nav-item" <?= $pickUpHidden; ?>>
                     <a href="/PickUp/" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-bus" style="color: #344767"></span>
@@ -93,7 +93,7 @@
                         <span class="nav-link-text ms-1">PickUp</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$habitacionesHidden;?>>
+                <li class="nav-item" <?= $habitacionesHidden; ?>>
                     <a href="#authExamples" class="nav-link active" aria-controls="authExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-hotel" style="color: #fff"></span>
@@ -101,7 +101,7 @@
                         <span class="nav-link-text ms-1">Habitaciones</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$cenasHidden;?>>
+                <li class="nav-item" <?= $cenasHidden; ?>>
                     <a href="/Cenas/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-coffee" style="color: #344767"></span>
@@ -109,7 +109,7 @@
                         <span class="nav-link-text ms-1">Cenas</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$aistenciasHidden;?>>
+                <li class="nav-item" <?= $aistenciasHidden; ?>>
                     <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-bell" style="color: #344767"></span>
@@ -117,11 +117,11 @@
                         <span class="nav-link-text ms-1">Asistencias</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$vacunacionHidden;?>>
+                <li class="nav-item" <?= $vacunacionHidden; ?>>
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
                 </li>
-                <li class="nav-item" <?=$vacunacionHidden;?>>
+                <li class="nav-item" <?= $vacunacionHidden; ?>>
                     <a href="/ComprobantesVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-shield-virus" style="color: #344767"></span>
@@ -129,7 +129,7 @@
                         <span class="nav-link-text ms-1">Comprobante Vacunación</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$pruebasHidden;?>>
+                <li class="nav-item" <?= $pruebasHidden; ?>>
                     <a href="/PruebasCovidUsuarios/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-virus-slash" style="color: #344767"></span>
@@ -137,12 +137,12 @@
                         <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
                     </a>
                 </li>
-               
-                <li class="nav-item" <?=$configuracionHidden;?>>
+
+                <li class="nav-item" <?= $configuracionHidden; ?>>
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
                 </li>
-                <li class="nav-item" <?=$configuracionHidden;?>>
+                <li class="nav-item" <?= $configuracionHidden; ?>>
                     <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-tools" style="color: #344767"></span>
@@ -150,7 +150,7 @@
                         <span class="nav-link-text ms-1">Configuración</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$utileriasHidden;?>>
+                <li class="nav-item" <?= $utileriasHidden; ?>>
                     <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-user-circle-o" style="color: #344767"></span>
@@ -481,9 +481,9 @@
                                 <div class="card mb-4">
                                     <div class="card-header pb-0">
                                         <h6>Habitaciones Asignadas para los Asistentes Asofarma</h6>
-                                        
+
                                     </div>
-                                    
+
                                     <div class="card-body px-0 pt-0 pb-2">
                                         <div class="table-responsive p-0">
                                             <table class="table align-items-center mb-0">
@@ -507,7 +507,7 @@
                     </div>
 
                     <div class="tab-pane fade position-relative height-350 border-radius-lg" id="staff" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
-                    <div class="d-flex m-1">
+                        <div class="d-flex m-1">
                             <div class="ms-auto d-flex">
                                 <div class="pe-4 mt-1 position-relative">
                                     <hr class="vertical dark mt-0">
@@ -754,7 +754,7 @@
                                 </div>
                                 <span id="msg_encontrado" style="font-size: 12px;color:#EC2F1E;"></span>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -771,7 +771,7 @@
 
 <!-- Modal asignar habitacion-->
 <div class="modal fade" id="asignar_habitacion" role="dialog" aria-labelledby="asignar_habitacionLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <form class="form-horizontal" id="form_asignar_habitacion" action="" method="POST">
                 <div class="modal-header">
@@ -784,29 +784,24 @@
 
                     <div class="card-body pt-0">
 
-                        <div class="row">
+                        <div class="row mb-3">
 
-                            <div class="col-12 align-self-center">
+                            <div class="col-12 align-self-center mb-3">
                                 <label class="form-label mt-4">Habitacion *</label>
                                 <select class="form-control" style="cursor: pointer;" name="asigna_cat_habitacion" id="asigna_cat_habitacion" tabindex="-1" required>
                                     <option value="" disabled selected>Selecciona una opción</option>
                                     <?php echo $optionsCategoriaHotel; ?>
                                 </select>
                             </div>
-                           
-                            <div id="cont_asigna_huespedes">
 
+                            <div id="cont_asigna_huespedes">
+                            
+                                
                             </div>
 
-                            <!--div class="col-12">
-                                <label class="form-label">Numero Habitacion</label>
-                                <div class="input-group">
-                                    <input id="no_habitacion" name="no_habitacion" maxlength="29" class="form-control" type="number" placeholder="No de habitación" required="">
-                                </div>
-                                <span id="msg_encontrado" style="font-size: 12px;color:#EC2F1E;"></span>
-                            </div> -->
+
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -908,72 +903,70 @@
 
 
 <script>
-
-    
     $(document).ready(function() {
-
+        $('[data-toggle="tooltip"]').tooltip();   
         $('.select_2').select2();
 
-        $(".save_habitacion_").on("click", function (){
-           console.log("funciona");
+        $(".save_habitacion_").on("click", function() {
+            console.log("funciona");
         });
 
 
-        $(".form_asig_habitacion").on("submit",function(event){
+        $(".form_asig_habitacion").on("submit", function(event) {
             event.preventDefault();
 
             var formData = $(this).serialize();
             console.log(formData);
-               
+
             swal({
-                title: "Quieres agregar este usuario a la habitacion?",
-                text: "",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
+                    title: "Quieres agregar este usuario a la habitacion?",
+                    text: "",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
                 })
                 .then((willDelete) => {
-                if (willDelete) {
-                    
-                    $.ajax({
-                        url: "/Habitaciones/agregarUsusarioHabitacion",
-                        type: "POST",
-                        data: formData,
-                        beforeSend: function() {
-                            console.log("Procesando....");
+                    if (willDelete) {
 
-                        },
-                        success: function(respuesta) {
+                        $.ajax({
+                            url: "/Habitaciones/agregarUsusarioHabitacion",
+                            type: "POST",
+                            data: formData,
+                            beforeSend: function() {
+                                console.log("Procesando....");
 
-                            console.log(respuesta);
+                            },
+                            success: function(respuesta) {
 
-                            if(respuesta == 'success'){
-                                swal("¡Se agrego el usuario correctamente!!", "", "success").
-                                then((value) => {
-                                    window.location.replace("/Habitaciones/");
-                                });
-                            }else{
-                                swal("Hubo un error!!", "", "warning")
+                                console.log(respuesta);
+
+                                if (respuesta == 'success') {
+                                    swal("¡Se agrego el usuario correctamente!!", "", "success").
+                                    then((value) => {
+                                        window.location.replace("/Habitaciones/");
+                                    });
+                                } else {
+                                    swal("Hubo un error!!", "", "warning")
+                                }
+                            },
+                            error: function(respuesta) {
+                                console.log(respuesta);
                             }
-                        },
-                        error: function(respuesta) {
-                            console.log(respuesta);
-                        }
 
-                    });
+                        });
 
-                    // swal("Se quito al usuario de la habitación correctamente!!", {
-                    // icon: "success",
-                    // });
+                        // swal("Se quito al usuario de la habitación correctamente!!", {
+                        // icon: "success",
+                        // });
 
 
-                } else {
-                    swal("Se cancelo la acción");
-                }
-            });
-            
+                    } else {
+                        swal("Se cancelo la acción");
+                    }
+                });
 
-            
+
+
         });
 
 
@@ -1140,7 +1133,7 @@
             });
         });
 
-    
+
 
         $("#asigna_cat_habitacion").on("change", function() {
             var cat_habitacion = $(this).val();
@@ -1155,34 +1148,79 @@
                     console.log("Procesando....");
 
                     $('#cont_asigna_huespedes .asign_huesped').remove();
-                    
+                    $('#cont_asigna_huespedes .card').remove();
+
 
                 },
                 success: function(respuesta) {
-                    console.log(respuesta);
-                    console.log(respuesta.asistentes.length);
+                    // console.log(respuesta);
+                    // console.log(respuesta.asistentes.length);
 
                     for (var i = 1; i <= respuesta.categoria_habitacion.huespedes; i++) {
 
-                        $("#cont_asigna_huespedes").append('<div class="col-12 align-self-center asign_huesped">'+
-                                    '<label class="form-label mt-4">Asistentes *</label><br>'+
-                                    '<select class="form-control select_2" style="cursor: pointer;" name="asistente_name[]" id="asistente_name'+i+'" tabindex="-1" required>'+
-                                    '<option value="" disabled selected>Selecciona una opción</option>'+
-                                    '</select>'+
-                                '</div>');
+                        // $("#cont_asigna_huespedes").append('<div class="col-12 align-self-center asign_huesped">' +
+                        //     '<label class="form-label mt-4">Asistentes *</label><br>' +
+                        //     '<select class="form-control select_2" style="cursor: pointer;" name="asistente_name[]" id="asistente_name' + i + '" tabindex="-1" required>' +
+                        //     '<option value="" disabled selected>Selecciona una opción</option>' +
+                        //     '</select>' +
+                        //     '</div>');
 
-                                for (var j = 0; j < respuesta.asistentes.length; j++) {
-                                    console.log(respuesta.asistentes[j].id_registro_acceso);
-                                    console.log(respuesta.asistentes[j].nombre_usuario);
-                                    console.log(respuesta.asistentes[j].apellido_paterno);
-                                    console.log(respuesta.asistentes[j].apellido_materno);
-                                    $("#asistente_name"+i).append('<option value="'+respuesta.asistentes[j].id_registro_acceso+'">'+respuesta.asistentes[j].nombre+'</option>');
-                                }
-                        
+                        $("#cont_asigna_huespedes").append('<div class="card"><div class="card-body">'+
+                                        '<div class="row mb-3">'+
+                                            '<div class="col-12 align-self-center asign_huesped">'+
+                                                '<label class="form-label">Nombre del Asistente '+i+' *</label><br>'+
+                                                '<select class="form-control select_2" style="cursor: pointer;" name="asistente_name[]" id="asistente_name'+i+'" data-item="'+i+'" tabindex="-1" required>'+
+                                                    '<option value="" disabled selected>Selecciona una opción</option>'+
+                                                '</select>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="row mb-3">'+
+                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
+                                                '<label class="form-label">IN *</label><br>'+
+                                                '<input type="date" class="form-control" id="date_in'+i+'" name="date_in[]">'+
+                                            '</div>'+
+                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
+                                                '<label class="form-label">OUT *</label><br>'+
+                                                '<input type="date" class="form-control" id="date_out'+i+'" name="date_out[]">'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="row mb-3">'+
+                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
+                                                '<label class="form-label">Hora de Vuelo</label><br>'+
+                                                '<div class="input-group">'+
+                                                    '<input type="text" class="form-control" placeholder="vuelo" aria-label="vuelo" aria-describedby="basic-addon1" id="vuelo'+i+'" name="vuelo[]" readonly>'+
+                                                    '<span class="input-group-text" id="svuelo'+i+'"><i class="fa fa-info-circle"></i></span>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
+                                                '<label class="form-label">Numero de habitación (opcional)</label><br>'+
+                                                '<input type="number" class="form-control" id="numero_habitacion'+i+'" name="numero_habitacion[]">'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="row mb-3">'+
+                                            '<div class="col-md-12 align-self-center asign_huesped">'+
+                                               '<label class="form-label">Comentarios (opcional)</label><br>'+
+                                               '<textarea name="comentarios[]" id="comentarios'+i+'" class="form-control" cols="30" rows="5"></textarea>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div><div class="asign_huesped"><br></div>');
+
+                                $("#svuelo"+i).attr('data-toggle','tooltip');
+                                $("#svuelo"+i).attr('data-original-title','Si usted desea modificar la hora consulte a la ejecutiva de linea');
+                                
+
+                        for (var j = 0; j < respuesta.asistentes.length; j++) {
+                            console.log(respuesta.asistentes[j].id_registro_acceso);
+                            console.log(respuesta.asistentes[j].nombre);
+                            // console.log(respuesta.asistentes[j].apellido_paterno);
+                            // console.log(respuesta.asistentes[j].apellido_materno);
+                            $("#asistente_name" + i).append('<option value="' + respuesta.asistentes[j].id_registro_acceso + '">' + respuesta.asistentes[j].nombre + '</option>');
+                        }
+
                     }
 
                     $(".select_2").select2();
-                    
 
                 },
                 error: function(respuesta) {
@@ -1192,8 +1230,46 @@
             });
         });
 
+        $('#cont_asigna_huespedes').on("change","select.select_2", function(event) {
+            console.log($(this).val());
+            var id_asis = $(this).val();
+            var data_item = $(this).attr('data-item');
+            console.log(data_item);
+            $.ajax({
+                url: "/Habitaciones/getAsistenteId",
+                type: "POST",
+                data: {
+                    id_asis
+                },
+                dataType: "json",
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+                    if(respuesta.status == 'success'){
+                        $('#vuelo'+data_item).val(respuesta.pase.hora_llegada_destino);
+                    }else{
+                        $('#vuelo'+data_item).val(respuesta.msg);
+                    }
+                    
+                },error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+
+        });
+
+        // $(".select_2").on("change",function(){
+        //     alert($(this)).val();
+        // });
+
+        
+
         //$(".select_2").select2();
-     
+
 
         $("#form_asignar_habitacion").on('submit', function(event) {
             event.preventDefault();
@@ -1214,8 +1290,8 @@
                 },
                 success: function(respuesta) {
 
-                    if(respuesta == 'success'){
-                         swal("Se asigno la habitación correctamente!", "", "success").
+                    if (respuesta == 'success') {
+                        swal("Se asigno la habitación correctamente!", "", "success").
                         then((value) => {
                             window.location.replace("/Habitaciones/");
                         });
@@ -1232,54 +1308,56 @@
 
         });
 
-        $(".btn_quitar_huesped").on("click",function(){
+        $(".btn_quitar_huesped").on("click", function() {
             var id_ah = $(this).attr("data-value");
-            
+
             //console.log(id_ah);
             swal({
-                title: "Estas seguro quitar al usuario de la habitación?",
-                text: "",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
+                    title: "Estas seguro quitar al usuario de la habitación?",
+                    text: "",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
                 })
                 .then((willDelete) => {
-                if (willDelete) {
-                    
-                    $.ajax({
-                        url: "/Habitaciones/quitarUsuarioHabitacion",
-                        type: "POST",
-                        data: {id_ah},
-                        beforeSend: function() {
-                            console.log("Procesando....");
+                    if (willDelete) {
 
-                        },
-                        success: function(respuesta) {
+                        $.ajax({
+                            url: "/Habitaciones/quitarUsuarioHabitacion",
+                            type: "POST",
+                            data: {
+                                id_ah
+                            },
+                            beforeSend: function() {
+                                console.log("Procesando....");
 
-                            console.log(respuesta);
+                            },
+                            success: function(respuesta) {
 
-                            if(respuesta == 'success'){
-                                swal("Se quito al usuario de la habitación correctamente!!", "", "success").
-                                then((value) => {
-                                    window.location.replace("/Habitaciones/");
-                                });
+                                console.log(respuesta);
+
+                                if (respuesta == 'success') {
+                                    swal("Se quito al usuario de la habitación correctamente!!", "", "success").
+                                    then((value) => {
+                                        window.location.replace("/Habitaciones/");
+                                    });
+                                }
+                            },
+                            error: function(respuesta) {
+                                console.log(respuesta);
                             }
-                        },
-                        error: function(respuesta) {
-                            console.log(respuesta);
-                        }
 
-                    });
+                        });
 
-                    // swal("Se quito al usuario de la habitación correctamente!!", {
-                    // icon: "success",
-                    // });
+                        // swal("Se quito al usuario de la habitación correctamente!!", {
+                        // icon: "success",
+                        // });
 
 
-                } else {
-                    swal("Se cancelo la acción");
-                }
-            });
+                    } else {
+                        swal("Se cancelo la acción");
+                    }
+                });
         });
 
 

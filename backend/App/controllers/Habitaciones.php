@@ -10,6 +10,7 @@ use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\Habitaciones as HabitacionesDao;
 use \App\models\Asistentes as AsistentesDao;
+use \App\models\Pases as PasesDao;
 
 class Habitaciones extends Controller
 {
@@ -553,6 +554,10 @@ html;
     $asistente_name = $_POST['asistente_name'];
     $id_administrador = $_SESSION['utilerias_administradores_id'];
     $clave = $this->generateRandomString();
+    $fecha_in = $_POST['date_in'];
+    $fecha_out = $_POST['date_out'];
+    $comentarios = $_POST['comentarios'];
+    $numero_habitacion = $_POST['numero_habitacion'];
 
 
     $documento->_id_categoria_habitacion = $id_categoria_habitacion;
@@ -564,28 +569,34 @@ html;
     foreach ($asistente_name as $key => $value) {
 
       $documento->_id_registro_acceso = $value;
+      $documento->_fecha_in = $fecha_in[$key];
+      $documento->_fecha_out = $fecha_out[$key];
+      $documento->_comentarios = $comentarios[$key];
+      $documento->_numero_habitacion = $numero_habitacion[$key];
       $id = HabitacionesDao::insertAsignaHabitacion($documento);
       $cont++;
 
       // echo $value;
     }
-    if($cont > 0){
+    if ($cont > 0) {
       echo 'success';
     }
   }
 
-  public function quitarUsuarioHabitacion(){
+  public function quitarUsuarioHabitacion()
+  {
     $id_ah = $_POST['id_ah'];
-   
+
     $delete = HabitacionesDao::deleteAsignaHabitacion($id_ah);
-    if($delete){
+    if ($delete) {
       echo "success";
-    }else{
+    } else {
       echo "fail";
     }
   }
 
-  public function agregarUsusarioHabitacion(){
+  public function agregarUsusarioHabitacion()
+  {
     $documento = new \stdClass();
     // $clave_ah = $_POST['clave_ah'];
     // $id_asistente = $_POST['id_asistente'];
@@ -595,7 +606,7 @@ html;
 
     $asigna_habitacion = HabitacionesDao::getAsignaHabitacionByClave($clave_ah)[0];
 
-    
+
     $id_categoria_habitacion = $asigna_habitacion['id_categoria_habitacion'];
     $id_asistente = $_POST['id_asistente'];
     $id_administrador = $_SESSION['utilerias_administradores_id'];
@@ -604,14 +615,39 @@ html;
     $documento->_id_administrador = $id_administrador;
     $documento->_clave = $clave_ah;
     $documento->_id_registro_acceso = $id_asistente;
+    $documento->_numero_habitacion = 0;
+    $documento->_comentarios = 'ww';
 
     $id = HabitacionesDao::insertAsignaHabitacion($documento);
 
-    if($id){
+    if ($id) {
       echo "success";
-    }else{
+    } else {
       "fail";
     }
+  }
+
+  public function getAsistenteId()
+  {
+    $id_asis = $_POST['id_asis'];
+    $registro_acceso = AsistentesDao::getIdRegistroAcceso($id_asis)[0];
+    $pase_abordar = PasesDao::getByIdUser($registro_acceso['utilerias_asistentes_id'])[0];
+
+    if (!empty($pase_abordar) || !is_null($pase_abordar)) {
+      $respuesta = [
+        'pase' => $pase_abordar,
+        'msg' => 'Se encontro tu pase de abordar',
+        'status' => 'success'
+      ];
+    } else {
+      $respuesta = [
+        'pase' => $pase_abordar,
+        'msg' => 'No se ha cargado el vuelo',
+        'status' => 'error'
+      ];
+    }
+
+    echo json_encode($respuesta);
   }
 
   function generateRandomString($length = 6)

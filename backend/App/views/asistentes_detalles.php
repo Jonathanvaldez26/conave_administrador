@@ -423,7 +423,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-12 my-auto text-end">
-                                                <button class="btn bg-gradient-primary mb-0" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
+                                                
+                                                <form class="form-horizontal"  action="" method="POST">
+                                                    <button class="btn bg-gradient-primary mb-0" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
+                                                    <input type="text" class="form-control" value="<?php echo $email; ?>" readonly hidden>
+                                                    <button type="button" id="generar_clave" title="Generar Ticket Virtual" class="btn bg-gradient-dark mb-0"><i class="fas fa-qrcode"></i></button>
+                                                </form>
                                                 <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
                                             </div>
                                         </div>
@@ -431,7 +436,7 @@
                                         <div class="row">
                                             
                                             <div class="col-lg-12 col-md-12 col-12 mt-4 mt-md-0">
-                                                <h6 class="mb-3">Sections</h6>
+                                                <h6 class="mb-3">Secciones</h6>
                                                 <!-- <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
                                                     <img class="w-10 me-3 mb-0" src="/img/users_conave/8mVMLa56xh.png" alt="logo">
                                                     <img class="w-10 me-3 mb-0" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/1200px-Mastercard_2019_logo.svg.png" alt="logo">
@@ -471,20 +476,21 @@
                                                 </div>
 
                                                 <div class="tab-content" id="v-pills-tabContent">
-                                                    <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
-                                                        <ul class="list-group">
-                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                                <div class="d-flex flex-column">
-                                                                    <h6 class="mb-3 text-sm">Oliver Liam</h6>
-                                                                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                    <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam1">
+                                                        
+                                                        <ul class="list-group ">
+                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg ">
+                                                                <div class="d-flex flex-column ">
+                                                                    <h3 class="mb-3 text-sm">Su Código es: </h3> <h3><?php echo $clave_user;?> </h3>
+                                                                    <!-- <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
                                                                     <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span> -->
                                                                 </div>
                                                             </li>
                                                         </ul>
                                                     </div>
 
-                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
+                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam2">
                                                         <ul class="list-group">
                                                             <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                                                                 <div class="d-flex flex-column">
@@ -654,7 +660,63 @@
 
 <script>
     $(document).ready(function() {
-        $('#alergias').select2();
+
+        $('#generar_clave').on('click', function(event){ 
+
+            // Obtener id de utilerias asistentes del link
+            var link_a = $(location).attr('href');
+            var clave_a = link_a.substr(link_a.indexOf('Detalles/')+9,link_a.length);
+
+            let email_user = '';
+
+            var formData = new FormData(document.getElementById("update_detalles"));
+            for (var value of formData) {
+                if (value.includes('email')) {
+                    email_user = value[1];
+                }
+            }
+
+            $.ajax({
+                url: "/Asistentes/generarClave/"+email_user,
+                type: "POST",
+                // data: formData,
+                dataType: 'json',
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+
+                },
+                success: function(respuesta) {
+                    // console.log(respuesta.status);
+
+                    if (respuesta.status == 'success') {
+                        if (respuesta.clave == 'ya_tiene') {
+                            swal("!Ya tiene una clave generada!", "", "warning").
+                            then((value) => {
+                                //window.location.replace("/Asistentes")
+                            });
+                        } else {
+                            swal("!Se generó la clave correctamente!", "", "success").
+                            then((value) => {
+                                window.location.replace("/Asistentes/Detalles/"+clave_a);
+                            });
+                        }
+                    } else {
+                        swal("!No se pudo generar una clave para este usuario!", "", "warning").
+                        then((value) => {
+                            //window.location.replace("/Asistentes")
+                        });
+                    }
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+
+
+        });
+
         $("#update_detalles").on("submit", function(event) {
             event.preventDefault();
 
@@ -686,7 +748,7 @@
                             window.location.replace("/Asistentes");
                         });
                     } else {
-                        swal("!Usted No Actualizo Nada!", "", "warning").
+                        swal("!Usted No Actualizó Nada!", "", "warning").
                         then((value) => {
                             //window.location.replace("/Asistentes")
                         });
@@ -698,6 +760,55 @@
 
             });
         });
+
+        
+
+        // $("#generar_clave").on("click", function(event) {
+        //     // event.preventDefault();
+
+        //     alert("Hola");
+
+            // var formData = new FormData(document.getElementById("generar_clave"));
+            // for (var value of formData.values()) {
+            //     console.log(value);
+            // }
+
+            // console.log(formData);
+
+            // $.ajax({
+            //     url: "/Asistentes/Actualizar",
+            //     type: "POST",
+            //     data: formData,
+            //     cache: false,
+            //     contentType: false,
+            //     processData: false,
+            //     beforeSend: function() {
+            //         console.log("Procesando....");
+
+
+            //     },
+            //     success: function(respuesta) {
+            //         // alert("Successs");
+
+            //         if (respuesta == 'success') {
+            //             swal("!Se actualizaron tus datos correctamente!", "", "success").
+            //             then((value) => {
+            //                 window.location.replace("/Asistentes");
+            //             });
+            //         } else {
+            //             swal("!Usted No Actualizó Nada!", "", "warning").
+            //             then((value) => {
+            //                 //window.location.replace("/Asistentes")
+            //             });
+            //         }
+            //     },
+            //     error: function(respuesta) {
+            //         console.log(respuesta);
+            //     }
+
+            // });
+        // });
+
 
         $('input:radio[name="confirm_alergia"]').change(function() {
             if ($("#confirm_alergia_no").is(':checked')) {
@@ -719,7 +830,6 @@
             } else {
                 $(".restricciones_alimenticias").css("display", "none");
                 $('#restricciones_alimenticias_cual').removeAttr('required');
-                // $('#restricciones_alimenticias_cual').val('')
             }
         
         });

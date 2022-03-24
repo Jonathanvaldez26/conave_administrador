@@ -51,10 +51,26 @@ html;
           $tabla_rechazados .= <<<html
             <tr>
               <td class="text-center">
-                <span class="badge badge-danger"><i class="fas fa-times"></i> Rechazado</span>
+                <span class="badge badge-danger"><i class="fas fa-times"></i> Rechazado</span> <br>
+                <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
               </td>
               <td>
-                <p class="text-center" style="font-size: small;">{$value['nombre_completo']} </p>
+                <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
+                <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
+
+                <hr>
+
+                  <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br></p-->
+
+                  <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fa-whatsapp" style="font-size: 13px;"></span><b> </b>{$value['telefono']}</p>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-envelope" style="font-size: 13px;"></span><b>  </b><a "mailto:{$value['email']}">{$value['email']}</a></p-->
+
+                  <div class="d-flex flex-column justify-content-center">
+                      <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['email']}</h6></a></u>
+                      <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+                  </div>
               </td>
               <td>
                 <p class="text-center" style="font-size: small;">{$value['fecha_carga_documento']}</p>
@@ -115,12 +131,12 @@ html;
                             </div>
                             <div class="mb-2">
                               <h6 class="fas fa-envelope"> </h6>
-                              <span> <b>Correo Electrónico:</b> {$value['email']}</span>
+                              <span> <b>Correo Electrónico:</b> <u><a href="mailto:{$value['email']}">{$value['email']}</a></u></span>
                             </div>
                             <div class="mb-2">
-                              <h6 class="fas fa-phone"> </h6>
-                              <span> <b>Teléfono:</b> {$value['telefono']}</span>
-                            </div>
+                                  <h6 class="fa fa-whatsapp"> </h6>
+                                  <span> <b></b> <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">{$value['telefono']}</a></u></span>
+                                </div>
                           </div>
                           <div class="card card-body mb-4">
                             <h5>Datos de la Prueba</h5>
@@ -204,10 +220,26 @@ html;
             $tabla .= <<<html
               <tr>
                 <td class="text-center">
-                  <span class="badge badge-success"><i class="fas fa-check"></i> Aprobada</span>
+                  <span class="badge badge-success"><i class="fas fa-check"></i> Aprobada</span> <br>
+                  <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
                 </td>
                 <td>
-                  <p class="text-center" style="font-size: small;">{$value['nombre_completo']}</p>
+                  <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
+
+                  <hr>
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br></p-->
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fa-whatsapp" style="font-size: 13px;"></span><b> </b>{$value['telefono']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-envelope" style="font-size: 13px;"></span><b>  </b><a "mailto:{$value['email']}">{$value['email']}</a></p-->
+
+                    <div class="d-flex flex-column justify-content-center">
+                        <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['email']}</h6></a></u>
+                        <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+                    </div>
                 </td>
                 <td>
                   <p class="text-center" style="font-size: small;">{$value['fecha_carga_documento']}</p>
@@ -268,11 +300,11 @@ html;
                                 </div>
                                 <div class="mb-2">
                                   <h6 class="fas fa-envelope"> </h6>
-                                  <span> <b>Correo Electrónico:</b> {$value['email']}</span>
+                                  <span> <b>Correo Electrónico:</b> <u><a href="mailto:{$value['email']}">{$value['email']}</a></u></span>
                                 </div>
                                 <div class="mb-2">
-                                  <h6 class="fas fa-phone"> </h6>
-                                  <span> <b>Teléfono:</b> {$value['telefono']}</span>
+                                  <h6 class="fa fa-whatsapp"> </h6>
+                                  <span> <b></b> <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">{$value['telefono']}</a></u></span>
                                 </div>
                               </div>
                               <div class="card card-body mb-4">
@@ -357,10 +389,26 @@ html;
             $tabla_no_v .= <<<html
               <tr>
                 <td class="text-center">
-                  <span class="badge badge-warning text-dark"><i class="fas fa-clock"></i> Pendiente</span>
+                  <span class="badge badge-warning text-dark"><i class="fas fa-clock"></i> Pendiente</span> <br>
+                  <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
                 </td>
                 <td>
-                  <p class="text-center" style="font-size: small;">{$value['nombre_completo']}</p>
+                  <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
+
+                  <hr>
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br></p-->
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fa-whatsapp" style="font-size: 13px;"></span><b> </b>{$value['telefono']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-envelope" style="font-size: 13px;"></span><b>  </b><a "mailto:{$value['email']}">{$value['email']}</a></p-->
+
+                    <div class="d-flex flex-column justify-content-center">
+                        <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['email']}</h6></a></u>
+                        <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+                    </div>
                 </td>
                 <td>
                   <p class="text-center" style="font-size: small;">{$value['fecha_carga_documento']}</p>
@@ -421,11 +469,11 @@ html;
                                 </div>
                                 <div class="mb-2">
                                   <h6 class="fas fa-envelope"> </h6>
-                                  <span> <b>Correo Electrónico:</b> {$value['email']}</span>
+                                  <span> <b>Correo Electrónico:</b> <u><a href="mailto:{$value['email']}">{$value['email']}</a></u></span>
                                 </div>
                                 <div class="mb-2">
-                                  <h6 class="fas fa-phone"> </h6>
-                                  <span> <b>Teléfono:</b> {$value['telefono']}</span>
+                                  <h6 class="fa fa-whatsapp"> </h6>
+                                  <span> <b></b> <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">{$value['telefono']}</a></u></span>
                                 </div>
                               </div>
                               <div class="card card-body mb-4">
@@ -511,7 +559,7 @@ html;
                               </form>
                             </div>
                             <div class="col-md-6 col-12">
-                              <form class="form" id="btn_rechazar" action="" method="POST">
+                              <form class="form btn_rechazar" id="btn_rechazar" action="" method="POST">
                                 <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;">
                                 <button type="submit" class="btn bg-gradient-secondary" >
                                   Rechazar

@@ -172,9 +172,9 @@ html;
 
             <!--script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
             <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" /-->
-            
-            <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+
+            <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 html;
         $detalles = AsistentesDao::getById($id);
         $detalles_registro = AsistentesDao::getTotalById($id);

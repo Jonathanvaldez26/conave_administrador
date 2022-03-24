@@ -557,8 +557,6 @@
         </div> -->
 
 
-        <div class="container-fluid py-4" style="height: 700px;">
-        <!-- <h2 class="font-weight-bolder mb-0">¡Bienvenido a tu administrador! <br> Convención Nacional de Ventas 2022 </h2> -->
         <div class="row">
             <div class="col-lg-6 position-relative z-index-2">
                 <div class="card card-plain">
@@ -575,8 +573,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
-            </div>
+        </div>
+
+        <div class="row">
             <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
                 <div class="card card-plain">
                     <div class="card-body p-3">
@@ -609,8 +608,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
-            </div>
+        </div>
+        <div class="row">
             <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
                 <div class="card card-plain">
                     <div class="card-body p-3">
@@ -626,6 +625,8 @@
                                                     </h5>
                                                     <p class="mb-0 font-weight-bold text-sm">
                                                         Línea de Soporte
+                                                        <br> <br>
+                                                        <a href="mailto:jvaldez_2610@hotmail.com"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> jvaldez_2610@hotmail.com</h6></a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -672,7 +673,7 @@
         <div class="fixed-bottom space-wa" >
             <div class="m-5">
                 <a href="https://api.whatsapp.com/send?phone=525573107925&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80">
-                    <span class="fa fa-whatsapp px-3 py-2-5 icon-wa"></span>
+                    <span class="fa fa-whatsapp px-3 py-2-5 icon-wa bg-gradient-success"></span>
                 </a>
             </div>
         </div>

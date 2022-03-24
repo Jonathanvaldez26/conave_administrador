@@ -11,7 +11,7 @@ class Asistentes{
     public static function getAll(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ra.nombre as nombre_usuario, ra.apellido_paterno, ra.apellido_materno, ra.id_registro_acceso, ua.status as status_user, ch.nombre_categoria, uad.nombre as nombre_administrador
+      SELECT ra.nombre as nombre_usuario, ra.apellido_paterno, ra.apellido_materno, ra.id_registro_acceso, ua.status as status_user, ra.email AS correo_electronico, ch.nombre_categoria, uad.nombre as nombre_administrador
       FROM registros_acceso ra
       INNER JOIN utilerias_asistentes ua ON (ra.id_registro_acceso = ua.id_registro_acceso) 
       INNER JOIN habitaciones_hotel hh ON (ra.id_habitacion = hh.id_habitacion) 
@@ -103,6 +103,17 @@ sql;
         return $mysqli->queryAll($query);
     }
 
+    public static function getRegistroAccesoById($id){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM registros_acceso ra
+      INNER JOIN utilerias_asistentes ua
+      ON ra.id_registro_acceso = ua.id_registro_acceso
+      WHERE utilerias_asistentes_id = $id
+sql;
+      return $mysqli->queryAll($query);
+  }
+
     public static function getHabitacionByNumber($numero_habitacion){
       $mysqli = Database::getInstance();
       $query=<<<sql
@@ -161,13 +172,29 @@ sql;
         
       );
 
-
       $accion = new \stdClass();
       $accion->_sql= $query;
       $accion->_parametros = $parametros;
       $accion->_id = $data->_administrador_id;
       // UtileriasLog::addAccion($accion);
       return $mysqli->update($query, $parametros);
+  }
+
+    public static function generateCodeOnTable($code,$email){
+      $mysqli = Database::getInstance(true);
+      $query=<<<sql
+      UPDATE registros_acceso SET clave = '$code' WHERE email = '$email'
+sql;
+
+      return $mysqli->update($query);
+    }
+
+    public static function getClaveByEmail($email){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM registros_acceso WHERE email = '$email';
+sql;
+      return $mysqli->queryAll($query);
   }
 
     public static function delete($id){

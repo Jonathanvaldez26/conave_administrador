@@ -422,7 +422,7 @@
                                     <div class="table-responsive p-0" >
                                         
                                         <form name="all" id="all" action="/Colaboradores/delete" method="POST">
-                                            <table class="table align-items-center mb-0 table table-borderless" id="user-list">
+                                            <table class="align-items-center mb-0 table table-borderless" id="user_list_table">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         
@@ -559,9 +559,9 @@
         
         // });
 
-        $('table#user-list').DataTable();
+        
 
-        $('table#user-list').on("click","button.btn_qr", function(event) {
+        $('table#user_list_table').on("click","button.btn_qr", function(event) {
             event.preventDefault();
 
             var valueButton = $(this).val();

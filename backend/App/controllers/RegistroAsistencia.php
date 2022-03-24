@@ -148,7 +148,7 @@ html;
                 $msg_insert = 'fail_not_found_assistant';
                 RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
             }
-
+ 
             $data = [
                 'datos'=>$user_clave,
                 'linea_principal'=>$linea_principal,

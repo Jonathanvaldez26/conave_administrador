@@ -56,14 +56,8 @@ class Asistentes extends Controller
 
         $extraHeader = <<<html
         <title>
-            Detalles
+            Detalles Asistentes - GRUPO LAHE
         </title>
-
-        <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
-        
-        <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link href="Content/jquery.Jcrop.css" rel="stylesheet" />
@@ -176,8 +170,8 @@ html;
             <script src="/js/login.js"></script>
             <!-- VIEJO FIN -->
 
-            <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-            <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+            <!--script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" /-->
             
             <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
             <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
@@ -473,6 +467,9 @@ html;
             }
         }
 
+        $email = AsistentesDao::getById($id)[0]['usuario'];
+        $clave_user = AsistentesDao::getRegistroAccesoById($id)[0]['clave'];
+
         $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";
         $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
         $vuelosHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vuelos", 1) == 0) ? "style=\"display:none;\"" : "";
@@ -501,6 +498,8 @@ html;
         View::set('id_asistente', $id);
         View::set('detalles', $detalles[0]);
         View::set('img_asistente', $img_asistente);
+        View::set('email', $email);
+        View::set('clave_user', $clave_user);
         View::set('alergias_a', $alergias_a);
         View::set('res_alimenticias', $res_alimenticias);
         View::set('alergia_medicamento_cual', $alergia_medicamento_cual);
@@ -510,9 +509,7 @@ html;
         View::render("asistentes_detalles");
     }
 
-    public function Actualizar()
-    {
-
+    public function Actualizar() {
 
         $documento = new \stdClass();
 
@@ -557,7 +554,7 @@ html;
 
             if ($id) {
                 echo "success";
-                //header("Location: /Home");
+                
             } else {
                 echo "fail";
                 // header("Location: /Home/");
@@ -567,8 +564,36 @@ html;
         }
     }
 
-    public function getAllColaboradoresAsignados()
-    {
+    public function generarClave($email){
+        
+        $clave_user = AsistentesDao::getClaveByEmail($email)[0]['clave'];
+        $tiene_clave = '';
+        $clave_random = $this->generateRandomString(6);
+        
+        if ($clave_user == '') {
+            $tiene_clave = 'no_tiene';
+            $asignar_clave = AsistentesDao::generateCodeOnTable($clave_random, $email);
+        } else {
+            $tiene_clave = 'ya_tiene';
+            $asignar_clave = 1;
+        }
+
+        
+        if ($asignar_clave) {
+            $data = [
+                'status'=>'success',
+                'clave'=>$tiene_clave
+            ];
+        } else {
+            $data = [
+                'status'=>'fail'
+            ];
+        }
+
+        echo json_encode($data);
+    }
+
+    public function getAllColaboradoresAsignados() {
 
         $html = "";
         $personal = '';
@@ -615,7 +640,7 @@ html;
             if (empty($value['img']) || $value['img'] == null) {
                 $img_user = "/img/user.png";
             } else {
-                $img_user = "https://convencionasofarma2022.mx/img/img/users_conave/{$value['img']}";
+                $img_user = "https://convencionasofarma2022.mx/img/users_conave/{$value['img']}";
             }
 
             $pases = PasesDao::getByIdUser($value['utilerias_asistentes_id']);
@@ -754,102 +779,7 @@ html;
         return $html;
     }
 
-    public function generaterQr()
-    {
-
-        $id_constancia = $_POST['id_constancia'];
-        $user_id = $_SESSION['administrador_id'];
-
-        //Eliminar los archivos del servidor
-        //$this->deleteFiles($id_constancia);
-
-
-        $codigo_rand = $this->generateRandomString();
-
-        $config = array(
-            'ecc' => 'H',    // L-smallest, M, Q, H-best
-            'size' => 12,    // 1-50
-            'dest_file' => '../public/qrs/' . $codigo_rand . '.png',
-            'quality' => 90,
-            'logo' => 'logo.jpg',
-            'logo_size' => 100,
-            'logo_outline_size' => 20,
-            'logo_outline_color' => '#FFFF00',
-            'logo_radius' => 15,
-            'logo_opacity' => 100,
-        );
-
-        // Contenido del código QR
-        //   $data = 'https://bbeltcertificate.sas-lahe.com/DatosConstancia/datos/'.$codigo_rand;
-        $data = '/' . $codigo_rand;
-
-        // Crea una clase de código QR
-        $oPHPQRCode = new PHPQRCode();
-
-        // establecer configuración
-        $oPHPQRCode->set_config($config);
-
-        // Crea un código QR
-        $qrcode = $oPHPQRCode->generate($data);
-
-        $url = explode('/', $qrcode);
-        $src = $url['0'] . '/' . $url['2'] . '/' . $url['3'];
-
-        $documento = new \stdClass();
-
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            $documento->_ruta_qr = $src;
-            $documento->_ruta_constancia = '../PDF/' . $codigo_rand . '.pdf';
-            $documento->_id_constancia = $id_constancia;
-            $documento->_code = $codigo_rand;
-
-
-            $id = ConstanciaDao::updateQrRute($documento);
-
-            if ($id) {
-                $constancia = ConstanciaDao::getByCode($codigo_rand);
-
-                $this->generarPDF($constancia[0]);
-
-                $data = [
-                    'status' => 'success',
-                    'src' => $src,
-                    'nombre_constancia' => $constancia[0]['nombre_constancia'],
-                    'ruta_constancia' => $constancia[0]['ruta_constancia'],
-                    'code' => $constancia[0]['code'],
-                    'id_constancia' => $constancia[0]['id_constancia'],
-                    'url_qr' => 'https://bbeltcertificate.sas-lahe.com/DatosConstancia/datos/' . $codigo_rand,
-                    'status_generada' => 1
-
-                ];
-                //echo 'success';
-
-            } else {
-                $data = [
-                    'status' => 'fail'
-
-                ];
-                //echo 'fail';
-            }
-        } else {
-            $data = [
-                'status' => 'fail REQUEST'
-
-            ];
-            //echo 'fail REQUEST';
-        }
-
-
-        // Mostrar código QR
-        //$imagen = '<img src="'.$src.'">';
-        //echo $src;
-        echo json_encode($data);
-    }
-
-    function generateRandomString($length = 10)
-    {
+    function generateRandomString($length = 6) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
@@ -922,23 +852,6 @@ html;
             }
     
         }
-          
-          $("#muestra-cupones").tablesorter();
-          var oTable = $('#muestra-cupones').DataTable({
-                "columnDefs": [{
-                    "orderable": false,
-                    "targets": 0
-                }],
-                 "order": false
-            });
-
-            // Remove accented character from search input as well
-            // $('#muestra-cupones input[type=search]').keyup( function () {
-            //     var table = $('#example').DataTable();
-            //     table.search(
-            //         jQuery.fn.DataTable.ext.type.search.html(this.value)
-            //     ).draw();
-            // } );
 
             var checkAll = 0;
             $("#checkAll").click(function () {
@@ -999,8 +912,12 @@ html;
 html;
 
         $extraFooter1 = <<<html
-      <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-      <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <!--script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" /-->
+        
+        <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
       <script>
         $(document).ready(function(){
 
@@ -1298,9 +1215,13 @@ html;
       </style>
 html;
         $extraFooter = <<<html
-      <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-      <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-      <script>
+        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+        <!--script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" /-->
+        
+        <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+        <script>
         $(document).ready(function(){
 
           var checkAll = 0;
@@ -2697,7 +2618,7 @@ html;
       <script>
         $(document).ready(function(){
 
-            $('#user-list').DataTable({
+            $('#user_list_table').DataTable({
                 "drawCallback": function( settings ) {
                     $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
                     $('.paginate_button').addClass("btn").removeClass("paginate_button");

@@ -323,7 +323,7 @@
     <!-- End Navbar -->
     <div class="container-fluid py-4">
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body p-3 position-relative">
@@ -554,9 +554,119 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+
+        <div class="container-fluid py-4" style="height: 700px;">
+        <!-- <h2 class="font-weight-bolder mb-0">¡Bienvenido a tu administrador! <br> Convención Nacional de Ventas 2022 </h2> -->
+        <div class="row">
+            <div class="col-lg-6 position-relative z-index-2">
+                <div class="card card-plain">
+                    <div class="card-body p-3 text-center">
+                        <div class="row text-center ">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="d-flex flex-column h-100">
+                                        <h5 class="m-4" >¡Bienvenido a tu administrador!<br>Convención Nacional de Ventas 2022</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 position-relative z-index-2">
+                <div class="card card-plain">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="/ComprobantesVacunacion">
+                                    <div class="card">
+                                        <div class="row m-4">
+                                            <div class="col-3">
+                                                <div class="bg-gradient-red avatar avatar-l position-relative" >
+                                                    <span class="fas fa-syringe m-3" style="font-size: x-large;"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-9 m-auto">
+                                                <div class="col-auto my-auto">
+                                                    <div class="h-100">
+                                                        <h6 class="mb-1">
+                                                            Comprobantes de Vacunación
+                                                        </h6>
+                                                        <p class="mb-0 font-weight-bold text-sm">
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 position-relative z-index-2">
+                <div class="card card-plain">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="row m-4">
+                                        <div class="col-9">
+                                            <div class="col-auto my-auto">
+                                                <div class="h-100">
+                                                    <h5 class="mb-1">
+                                                        Soporte
+                                                    </h5>
+                                                    <p class="mb-0 font-weight-bold text-sm">
+                                                        Línea de Soporte
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="row mt-4">
+            <div class="col-lg-5 mb-lg-0 mb-4">
+                <div class="card z-index-2">
+                    <div class="card-body p-3" hidden>
+                        <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+                            <div class="chart">
+                                <canvas id="chart-bars" class="chart-canvas" height="170" hidden></canvas>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="card z-index-2">
+                    <div class="" hidden>
+                        <div class="chart">
+                            <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="globe" class="position-absolute end-0 top-10 mt-sm-3 mt-7 me-lg-7">
+                    <canvas width="700" height="600" class="w-lg-100 h-lg-100 w-75 h-75 me-lg-0 me-n10 mt-lg-5"></canvas>
+                </div>
+            </div>
+        </div>
+
         <br>
-        <footer class="footer pt-3  ">
+        <!-- <footer class="footer pt-3  ">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-lg-between">
                     <div class="col-lg-6 mb-lg-0 mb-4">
@@ -570,7 +680,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </div>
 </main>
 </body>

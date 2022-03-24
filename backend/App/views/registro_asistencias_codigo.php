@@ -309,7 +309,7 @@
                             $("#telefono_user").html(respuesta.datos.telefono);
 
                             if (respuesta.datos.img != '') {
-                                $("#img_asistente").attr('src','http://localhost:8090/img/users_conave/'+respuesta.datos.img);
+                                $("#img_asistente").attr('src','http://convencionasofarma2022.mx/img/users_conave/'+respuesta.datos.img);
                             } else {
                                 $("#img_asistente").attr('src','/img/user.png');
                             }

@@ -1178,11 +1178,11 @@
                                         '<div class="row mb-3">'+
                                             '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
                                                 '<label class="form-label">IN *</label><br>'+
-                                                '<input type="date" class="form-control" id="date_in'+i+'" name="date_in[]">'+
+                                                '<input type="date" class="form-control" id="date_in'+i+'" name="date_in[]" min="2022-04-06" max="2022-04-09">'+
                                             '</div>'+
                                             '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
                                                 '<label class="form-label">OUT *</label><br>'+
-                                                '<input type="date" class="form-control" id="date_out'+i+'" name="date_out[]">'+
+                                                '<input type="date" class="form-control" id="date_out'+i+'" name="date_out[]" min="2022-04-06" max="2022-04-09">'+
                                             '</div>'+
                                         '</div>'+
                                         '<div class="row mb-3">'+
@@ -1266,6 +1266,8 @@
         $(".select_2_add_user").on("change",function(){
             console.log($(this).val());
             var id_asis = $(this).val();
+            var clave_ah = $(this).attr('data-clave');
+            //alert(clave_ah);
             $.ajax({
                 url: "/Habitaciones/getAsistenteId",
                 type: "POST",
@@ -1280,9 +1282,9 @@
                 success: function(respuesta) {
                     console.log(respuesta);
                     if(respuesta.status == 'success'){
-                        $('#vuelo').val(respuesta.pase.hora_llegada_destino);
+                        $('#vuelo'+clave_ah).val(respuesta.pase.hora_llegada_destino);
                     }else{
-                        $('#vuelo').val(respuesta.msg);
+                        $('#vuelo'+clave_ah).val(respuesta.msg);
                     }
                     
                 },error: function(respuesta) {

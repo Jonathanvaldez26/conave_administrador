@@ -16,6 +16,17 @@ sql;
       return $mysqli->queryAll($query);
         
     }
+
+    public static function getHabitaciones(){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT ah.cant_habitaciones, ch.id_categoria_habitacion,ch.id_hotel,ch.nombre_categoria, ch.huespedes
+      FROM habitaciones_hotel ah
+      INNER JOIN categorias_habitaciones ch ON (ah.id_categoria_habitacion = ch.id_categoria_habitacion)
+sql;
+    return $mysqli->queryAll($query);
+      
+  }
     public static function getById($id){
         
     }
@@ -23,14 +34,14 @@ sql;
 
       $mysqli = Database::getInstance();
       $query = <<<sql
-      INSERT INTO habitaciones_hotel VALUES(null,:id_hotel,:id_categoria_habitacion,:utilerias_administradores_id,:numero_habitacion)                        
+      INSERT INTO habitaciones_hotel VALUES(null,:id_hotel,:id_categoria_habitacion, :cant_habitaciones,:utilerias_administradores_id, NOW(), 1)                        
 sql;
 
       $parametros = array(
           ':id_hotel' => $data->_hotel,
           ':id_categoria_habitacion' => $data->_categoria_habitacion,
           ':utilerias_administradores_id' => $data->_administrador,
-          ':numero_habitacion' => $data->_numero_habitacion
+          ':cant_habitaciones' => $data->_cant_habitaciones
       );
 
       $id = $mysqli->insert($query, $parametros);
@@ -102,6 +113,16 @@ sql;
       $mysqli = Database::getInstance(true);
       $query =<<<sql
       SELECT * FROM categorias_habitaciones
+sql;
+
+      return $mysqli->queryAll($query);
+ 
+    }
+
+    public static function getCategoriasHabitacionesDistict(){
+      $mysqli = Database::getInstance(true);
+      $query =<<<sql
+      SELECT * FROM categorias_habitaciones 
 sql;
 
       return $mysqli->queryAll($query);

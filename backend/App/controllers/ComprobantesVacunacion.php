@@ -61,7 +61,8 @@ html;
           $tabla_rechazados .= <<<html
             <tr>
               <td class="text-center">
-                <span class="badge badge-danger"> <i class="fas fa-times"> </i> Rechazado</span>
+                <span class="badge badge-danger"> <i class="fas fa-times"> </i> Rechazado</span> <br>
+                <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
               </td>
               <td>
                   <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
@@ -80,7 +81,7 @@ html;
                         <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['email']}</h6></a></u>
                         <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
                     </div>
-                </td>
+                </td> 
               <td>
                 <p class="text-center" style="font-size: small;">{$value['fecha_carga_documento']}</p>
               </td>
@@ -232,7 +233,8 @@ html;
             $tabla .= <<<html
               <tr>
                 <td class="text-center">
-                  <span class="badge badge-success"><i class="fas fa-check"> </i> Aprobado</span>
+                  <span class="badge badge-success"><i class="fas fa-check"> </i> Aprobado</span> <br>
+                  <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
                 </td>
                 <td>
                   <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
@@ -401,7 +403,8 @@ html;
             
               <tr>
                 <td class="text-center">
-                  <span class="badge badge-warning text-dark"><i class="fas fa-clock"></i> Pendiente</span>
+                  <span class="badge badge-warning text-dark"><i class="fas fa-clock"></i> Pendiente</span><br>
+                  <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
                 </td>
                 <td>
                   <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>

@@ -567,7 +567,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="d-flex flex-column h-100">
-                                        <h5 class="m-4" >¡Bienvenido a tu administrador!<br>Convención Nacional de Ventas 2022</h5>
+                                        <h4 class="m-4" >¡Bienvenido a tu administrador!<br>Convención Nacional de Ventas 2022</h4>
                                     </div>
                                 </div>
                             </div>
@@ -575,13 +575,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 position-relative z-index-2">
+            <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
+            </div>
+            <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
                 <div class="card card-plain">
                     <div class="card-body p-3">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-12">
                                 <a href="/ComprobantesVacunacion">
-                                    <div class="card">
+                                    <div class="card up-card">
                                         <div class="row m-4">
                                             <div class="col-3">
                                                 <div class="bg-gradient-red avatar avatar-l position-relative" >
@@ -591,9 +593,9 @@
                                             <div class="col-9 m-auto">
                                                 <div class="col-auto my-auto">
                                                     <div class="h-100">
-                                                        <h6 class="mb-1">
+                                                        <h5 class="mb-1">
                                                             Comprobantes de Vacunación
-                                                        </h6>
+                                                        </h5>
                                                         <p class="mb-0 font-weight-bold text-sm">
                                                         </p>
                                                     </div>
@@ -607,14 +609,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 position-relative z-index-2">
+            <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
+            </div>
+            <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
                 <div class="card card-plain">
                     <div class="card-body p-3">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-12">
                                 <div class="card">
                                     <div class="row m-4">
-                                        <div class="col-9">
+                                        <div class="col-12">
                                             <div class="col-auto my-auto">
                                                 <div class="h-100">
                                                     <h5 class="mb-1">
@@ -659,9 +663,17 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div id="globe" class="position-absolute end-0 top-10 mt-sm-3 mt-7 me-lg-7">
+                <div id="globe" class="position-absolute end-0 top-10 mt-sm-3 mt-7 me-lg-7" style="margin-left: 30%;">
                     <canvas width="700" height="600" class="w-lg-100 h-lg-100 w-75 h-75 me-lg-0 me-n10 mt-lg-5"></canvas>
                 </div>
+            </div>
+        </div>
+
+        <div class="fixed-bottom space-wa" >
+            <div class="m-5">
+                <a href="https://api.whatsapp.com/send?phone=525573107925&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80">
+                    <span class="fa fa-whatsapp px-3 py-2-5 icon-wa"></span>
+                </a>
             </div>
         </div>
 

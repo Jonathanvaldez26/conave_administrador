@@ -36900,4 +36900,33 @@ table.dataTable.no-footer {
 .text-thin{
   font-weight: 100;
 }
+
+.up-card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 20px #0000005F;
+}
+
+.px-2-5 {
+  padding-right: 0.7rem !important;
+  padding-left: 0.7rem !important;
+}
+
+.py-2-5 {
+  padding-top: 0.7rem !important;
+  padding-bottom: 0.7rem !important;
+}
+
+.icon-wa{
+  font-size: xx-large;
+  background-color: green;
+  border-radius: 50px;
+  box-shadow: 0px 0px 15px 0px #000000af;
+  color: white;
+}
+
+.space-wa{
+  z-index: 200;
+  color: white;
+  left: auto;
+}
 /*# sourceMappingURL=dashboard-pro.css.map */

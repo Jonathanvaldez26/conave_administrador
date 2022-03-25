@@ -667,6 +667,28 @@ html;
     echo json_encode($data);
   }
 
+
+  public function BuscaHabitacion()
+  {
+    $no_habitacion = $_POST['no_habitacion'];
+
+    $search = HabitacionesDao::BuscaHabitacion($no_habitacion)[0];
+
+    if ($search) {
+
+      $data = [
+        'status' => 'success',
+        'msg' => 'Este numero de habitacion ya esta registrado'
+      ];
+    } else {
+      $data = [
+        'status' => 'error'
+      ];
+    }
+
+    echo json_encode($data);
+  }
+
   public function searchAsistentes()
   {
     $asistente = $_POST['asistente'];

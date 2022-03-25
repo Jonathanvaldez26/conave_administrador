@@ -643,6 +643,19 @@ html;
                 $img_user = "https://convencionasofarma2022.mx/img/users_conave/{$value['img']}";
             }
 
+            $estatus = '';
+            if($value['status'] == 1)
+            {
+                $estatus .= <<<html
+                <span class="badge badge-success">Activo</span>
+html;
+            }
+            else
+            {
+                $estatus .= <<<html
+                <span class="badge badge-success">Inactivo</span>
+html;
+            }
             $pases = PasesDao::getByIdUser($value['utilerias_asistentes_id']);
             $cont_pase_ida = 0;
             $cont_pase_regreso = 0;
@@ -711,9 +724,7 @@ html;
                 $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Comprobante Covid  (<i class="fas fa-times" style="color: #7B241C;" ></i>)</p>';
             }
 
-            $id_linea = $value['id_linea_principal'];
-            $encargado = AsistentesDao::getEncargadoLinea($id_linea)[0];
-           
+            // $id_linea = $value['id_linea_principal'];           
 
             $ticket_virtual = GeneralDao::getTicketByIdTicket($value['id_ticket_virtual']);
 
@@ -726,11 +737,11 @@ html;
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                     
-                            <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']}</h6>
-                            <p class="text-sm font-weight-bold text-secondary mb-0"><span class="fas fa-envelope" style="font-size: 13px"></span> {$value['usuario']}</p>
+                            <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']} $estatus</h6>
+                            <p class="text-sm font-weight-bold text-secondary mb-0"> {$value['usuario']}</p>
                             <p class="text-sm mb-0"><span class="fa fa-solid fa-id-card" style="font-size: 13px;"></span>Numero de empleado:  <span style="text-decoration: underline;">{$value['numero_empleado']}</span></p>
                             <hr>
-                            <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br>{$encargado['nombre_encargado']}</p>
+                            <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nom']}</strong></span></p>
                             
                         </div>
                     </div>

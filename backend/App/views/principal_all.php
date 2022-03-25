@@ -672,7 +672,7 @@
 
         <div class="fixed-bottom space-wa" >
             <div class="m-5">
-                <a href="https://api.whatsapp.com/send?phone=5255 8010 4181&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">
+                <a href="https://api.whatsapp.com/send?phone=5255 8010 4181&text=Buen%20d%C3%ADa" target="_blank">
                     <span class="fa fa-whatsapp px-3 py-2-5 icon-wa bg-gradient-success"></span>
                 </a>
             </div>

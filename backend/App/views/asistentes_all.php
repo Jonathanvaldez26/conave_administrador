@@ -471,12 +471,10 @@
                                     document.write(new Date().getFullYear())
                                 </script>,
                                 made with <i class="fa fa-heart"></i> by
-                                <a href="https://www.grupolahe.com" class="font-weight-bold" target="_blank">Grupo LAHE</a>
-                                
+                                <a href="https://www.grupolahe.com" class="font-weight-bold" target="_blank">Grupo LAHE</a>  
                             </div>
                         </div>
-                        
-                    </div>
+                    </div> 
                 </div>
             </footer>
 
@@ -526,39 +524,6 @@
             });
             
         });
-
-        // $('table#constanciasAll').on("click","button.btn_status", function(event) {
-        //   event.preventDefault();
-        //     var valueButton = $(this).attr('id');
-        //     var code = $(this).attr('data-value-status');
-        //     var id_constancia = $(this).attr('data-id-status');
-            
-        //     $.ajax({
-        //         url: "/AdminConstancia/updateStatus",
-        //         type: "POST",
-        //         data: {id_constancia:id_constancia},
-        //         cache: false,
-        //         dataType: "json",
-        //         // contentType: false,
-        //         // processData: false,
-        //         beforeSend: function() {
-        //             console.log("Procesando....");
-
-        //         },
-        //         success: function(respuesta) {
-        //             console.log(respuesta);
-
-        //             window.location.reload();
-
-        //         },
-        //         error: function(respuesta) {
-        //             console.log(respuesta);
-        //         }
-
-        //     });
-        
-        // });
-
         
 
         $('table#user_list_table').on("click","button.btn_qr", function(event) {

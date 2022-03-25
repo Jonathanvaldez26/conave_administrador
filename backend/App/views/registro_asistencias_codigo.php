@@ -308,6 +308,7 @@
                 },
                 success: function(respuesta) {
                     // console.log(respuesta.status);
+                    console.log(respuesta.msg_insert);
                     if (respuesta.status == 'success') {
                         
 
@@ -336,7 +337,6 @@
                                 }
                             }
 
-                            // console.log(respuesta.datos);
                             if(respuesta.msg_insert == 'success_find_assistant'){
                                 swal("¡Lo sentimos, esta persona ya tiene su asistencia registrada!", "", "warning").
                                 then((value) => {

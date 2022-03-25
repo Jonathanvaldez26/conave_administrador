@@ -143,7 +143,7 @@ html;
         $bu = RegistroAsistenciaDao::getBu();
         
         $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
-        $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id']);
+        $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id'],$id_asistencia)[0];
 
         if($user_clave){
 
@@ -162,7 +162,8 @@ html;
                 'status'=>'success',
                 'msg_insert'=>$msg_insert,
                 'clave'=>$clave,
-                'code'=>$code
+                'code'=>$code,
+                'utilerias_asistentes_id'=>$user_clave['utilerias_asistentes_id']
             ];
         }else{
             $data = [

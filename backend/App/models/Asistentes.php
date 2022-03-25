@@ -70,6 +70,21 @@ sql;
         
     }
 
+    public static function getAllRegisterConHabitacionByCategoria($id_habitacion){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT ra.nombre,ah.id_asigna_habitacion, ch.id_categoria_habitacion, ua.nombre as nombre_administrador
+      FROM registros_acceso ra
+      INNER JOIN asigna_habitacion ah ON (ra.id_registro_acceso = ah.id_registro_acceso)
+      INNER JOIN categorias_habitaciones ch ON (ch.id_categoria_habitacion = ah.id_categoria_habitacion)
+      INNER JOIN utilerias_administradores ua ON(ua.utilerias_administradores_id = ah.utilerias_administradores_id)
+      WHERE ra.politica = 1 and ch.id_categoria_habitacion = $id_habitacion
+      GROUP BY ah.clave
+sql;
+      return $mysqli->queryAll($query);
+        
+    }
+
     public static function getUsuariosByClaveHabitacion($clave){
       $mysqli = Database::getInstance();
       $query=<<<sql

@@ -123,10 +123,10 @@ sql;
         return $mysqli->queryAll($query);
     }
 
-    public static function findAsistantById($id){
+    public static function findAsistantById($id,$id_asist){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT * FROM `registros_asistencia` WHERE utilerias_asistentes_id = '$id'
+        SELECT * FROM `registros_asistencia` WHERE utilerias_asistentes_id = '$id' and id_asistencias = '$id_asist'
 sql;
 
         return $mysqli->queryAll($query);

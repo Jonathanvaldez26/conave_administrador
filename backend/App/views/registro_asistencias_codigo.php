@@ -8,7 +8,7 @@
         <div class="col-11 m-auto">
             <div class="mt-7 m-auto">
                 <div class="card card-body mt-n6 overflow-hidden m-5">
-                    <div class="row mb-3" >
+                    <div class="row mb-0" >
                         <div class="col-auto">
                             <div class="bg-gradient-red avatar avatar-xl position-relative">
                                 <!-- <img src="../../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm"> -->
@@ -17,9 +17,10 @@
                         </div>
                         <div class="col-auto my-auto">
                             <div class="h-100">
-                                <h5 class="mb-1">
-                                    Listas de Asistencias
+                                <h5 class="mb-0">
+                                    Listas de Asistencias:
                                 </h5>
+                                <h6><b><?php echo $nombre;?></b></h6>
                                 <p class="mb-0 font-weight-bold text-sm">
                                 </p>
                             </div>
@@ -159,9 +160,12 @@
                         <table id="lista-reg" class="table" >
                             <thead>
                                 <tr>
+                                    <!-- <th>Id</th> -->
                                     <th>Nombre</th>
                                     <th>Correo electrónico</th>
                                     <th>Teléfono</th>
+                                    <th>Línea Principal</th>
+                                    <th>Bussiness Unity</th>
                                 </tr>
                             </thead>
 
@@ -340,9 +344,6 @@
                                 });
                             } else {
                                 mostrarDatos(clave_a);
-
-                                
-                                
 
                             }
 

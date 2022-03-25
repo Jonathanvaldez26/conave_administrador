@@ -433,6 +433,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    
                                                     <?php echo $tabla; ?>
 
                                                 </tbody>

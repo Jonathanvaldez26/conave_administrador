@@ -155,19 +155,19 @@ $extraFooter =<<<html
         });
       </script>
 html;
-
-$datos = AsistenciasDao::getAll();
-foreach ($datos as $key => $value) {
-  $tabla=<<<html
-  <tr>
-  <td>{$value['nombre']}</td>
-  <td>{$value['descripcion']}</td>
-  <td class="text-center">{$value['fecha_asistencia']}</td>
-  <td class="text-center">{$value['hora_asistencia_inicio']}</td>
-  <td class="text-center"><i class='fa-alarm-clock'></i>{$value['hora_asistencia_fin']}</td>
-  <td class="text-center"><a href='{$value['url']}'><i class='fas fa-globe'></i></a></td>
- 
-  </tr>
+    $tabla = '';
+    $datos = AsistenciasDao::getAll();
+    // var_dump($datos);
+    foreach ($datos as $key => $value) {
+      $tabla.=<<<html
+      <tr>
+        <td>{$value['nombre']}</td>
+        <td>{$value['descripcion']}</td>
+        <td class="text-center">{$value['fecha_asistencia']}</td>
+        <td class="text-center">{$value['hora_asistencia_inicio']}</td>
+        <td class="text-center"><i class='fa-alarm-clock'></i>{$value['hora_asistencia_fin']}</td>
+        <td class="text-center"><a href='{$value['url']}'><i class='fas fa-globe'></i></a></td>
+      </tr>
  
 html;
 }
@@ -188,7 +188,7 @@ html;
       $data->_fecha_asistencia = MasterDom::getData('fecha_asistencia');
       $data->_hora_asistencia_inicio = MasterDom::getData('hora_asistencia_inicio');
       $data->_hora_asistencia_fin = MasterDom::getData('hora_asistencia_fin');
-      $data->_url_asistencia = "http://localhost:8086/registroasistencia/codigo/"."".$data->_clave = $this->generateRandomString();
+      $data->_url_asistencia = "/RegistroAsistencia/codigo/"."".$data->_clave = $this->generateRandomString();
       /*$data->_utilerias_administrador_id = MasterDom::getData('utilerias_administrador_id');*/
 
       

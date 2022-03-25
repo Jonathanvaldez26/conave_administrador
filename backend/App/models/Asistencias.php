@@ -11,7 +11,7 @@ class Asistencias implements Crud{
     public static function getAll(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT * FROM asistencias;
+      SELECT * FROM asistencias
 sql;
       return $mysqli->queryAll($query);
         
@@ -22,7 +22,7 @@ sql;
     public static function insert($data){
         $mysqli = Database::getInstance(1);
         $query=<<<sql
-            INSERT INTO asistencias(id_asistencia, clave, nombre, descripcion, fecha_asistencia, hora_asistencia_inicio, hora_asistencia_fin, url_asistencia)
+            INSERT INTO asistencias(id_asistencia, clave, nombre, descripcion, fecha_asistencia, hora_asistencia_inicio, hora_asistencia_fin, url)
             VALUES(null, :clave, :nombre, :descripcion, :fecha_asistencia, :hora_asistencia_inicio, :hora_asistencia_fin, :url_asistencia);
 sql;
             $parametros = array(

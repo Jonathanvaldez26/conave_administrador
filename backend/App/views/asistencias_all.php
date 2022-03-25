@@ -453,11 +453,11 @@
                             <div class="card mb-4">
                                 <div class="card-header pb-0">
                                     <h6>Registro de Asistencia - Cargados con Éxito</h6>
-                                    <p style="font-size: 12px">
+                                    <!-- <p style="font-size: 12px">
                                         <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida a la Convención
                                         <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada (Sede Convención)
                                         <span class="fa fa-ticket" style="color: #1a8fdd"> </span> No. de Vuelo
-                                    </p>
+                                    </p> -->
                                 </div> 
                                 <div class="card-body px-0 pt-0 pb-2">
                                     <div class="table-responsive p-0">

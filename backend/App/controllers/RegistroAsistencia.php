@@ -17,8 +17,8 @@ class RegistroAsistencia{
         $extraHeader =<<<html
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-        <link rel="icon" type="image/vnd.microsoft.icon" href="/assets/img/angel.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon.png">
+        <link rel="icon" type="image/png" href="/assets/img/favicon.png">
         <title>
             Asistencia CONAVE Convención 2022 ASOFARMA
         </title>
@@ -79,13 +79,18 @@ html;
 
         $lista_registrados = RegistroAsistenciaDao::getRegistrosAsistenciasByCode($id);
 
+        $nombre_asistencia = RegistroAsistenciaDao::getRegistrosAsistenciasByCode($id)[0]['nombre_asistencia'];
+
         $tabla='';
         foreach ($lista_registrados as $key => $value) {
             $tabla.=<<<html
             <tr>
+                <!--td>{$value['id_registro_asistencia']}</td-->
                 <td>{$value['nombre_completo']}</td>
-                <td>{$value['email']}</td>
-                <td>{$value['telefono']}</td>
+                <td><u><a href="mailto:{$value['email']}">{$value['email']}</a></u></td>
+                <td><u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">{$value['telefono']}</a></u></td>
+                <td>{$value['nombre_linea']}</td>
+                <td>{$value['nombre_bu']}</td>
             </tr>
 html;
 
@@ -110,7 +115,7 @@ html;
             View::set('tabla',$tabla);
             View::set('nombre',$nombre);
             View::set('descripcion',$descripcion);
-            View::set('nombre',$nombre);
+            View::set('nombre_asistencia',$nombre_asistencia);
             View::set('fecha_asistencia',$fecha_asistencia);
             View::set('hora_asistencia_inicio',$hora_asistencia_inicio);
             View::set('hora_asistencia_fin',$hora_asistencia_fin);
@@ -132,7 +137,7 @@ html;
     }
 
     public function registroAsistencia($clave, $code){
-           
+
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
         $bu = RegistroAsistenciaDao::getBu();
@@ -155,7 +160,9 @@ html;
                 'bu'=>$bu,
                 'id_asistencia'=>$id_asistencia['id_asistencia'],
                 'status'=>'success',
-                'msg_insert'=>$msg_insert
+                'msg_insert'=>$msg_insert,
+                'clave'=>$clave,
+                'code'=>$code
             ];
         }else{
             $data = [

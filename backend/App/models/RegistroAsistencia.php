@@ -66,16 +66,22 @@ sql;
     public static function getRegistrosAsistenciasByCode($code){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT a.nombre AS nombre_asistencia, ras.utilerias_asistentes_id, ua.usuario,
+        SELECT a.nombre AS nombre_asistencia, ras.utilerias_asistentes_id, ua.usuario, ras.id_registro_asistencia,
         ra.telefono, ra.email,
+        lp.nombre AS nombre_linea,
+        b.nombre AS nombre_bu,
         CONCAT (ra.nombre,' ',ra.segundo_nombre,' ',apellido_paterno,' ',apellido_materno) AS nombre_completo
         FROM registros_asistencia ras
         INNER JOIN asistencias a
         INNER JOIN utilerias_asistentes ua
         INNER JOIN registros_acceso ra
+        INNER JOIN linea_principal lp
+        INNER JOIN bu b
         ON a.id_asistencia = id_asistencias
         and ua.utilerias_asistentes_id = ras.utilerias_asistentes_id
         and ra.id_registro_acceso = ua.id_registro_acceso
+        and lp.id_linea_principal = ra.id_linea_principal
+        and b.id_bu = ra.id_bu
         
         WHERE a.clave = '$code'
 sql;
@@ -124,6 +130,10 @@ sql;
 sql;
 
         return $mysqli->queryAll($query);
+    }
+
+    public static function delete($id_asistente){
+
     }
 
 //     public static function addRegister($asistencia){

@@ -120,6 +120,15 @@ sql;
 
         return $mysqli->queryAll($query);
     }
+
+    public static function BuscaHabitacion($no_habitacion){
+      $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT DISTINCT id_habitacion FROM asigna_habitacion WHERE id_habitacion LIKE '$no_habitacion'
+sql;
+
+        return $mysqli->queryAll($query);
+    }
     
     public static function delete($id){
         

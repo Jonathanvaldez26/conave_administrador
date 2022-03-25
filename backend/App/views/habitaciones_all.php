@@ -559,6 +559,8 @@
                                                     <tr>
                                                         <th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">Categoria</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cantidad de Habitaciones</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habitaciones Disponibles</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Habitaciones Ocupadas</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
                                                     </tr>
                                                 </thead>
@@ -724,7 +726,7 @@
 </body>
 
 <?php echo $modal_asigna_habitacion; ?>
-
+<?php echo $modal_edit_habitacion; ?>
 
 
 
@@ -735,7 +737,7 @@
             <form class="form-horizontal" id="crear_habitacion_form" action="" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addHabitacionLabel">Agrega Habitaciones</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -773,8 +775,11 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button>
+                    <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
+                    <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev" >Cancelar</a>
+
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button> -->
                 </div>
             </form>
         </div>
@@ -789,7 +794,7 @@
             <form class="form-horizontal" id="form_asignar_habitacion" action="" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="asignar_habitacionLabel">Asignar Habitacion</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -819,8 +824,10 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button>
+                    <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
+                    <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev" >Cancelar</a>
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button> -->
                 </div>
             </form>
         </div>
@@ -1208,7 +1215,7 @@
                                             '</div>'+
                                             '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
                                                 '<label class="form-label">Numero de habitación (opcional)</label><br>'+
-                                                '<input type="number" class="form-control" id="numero_habitacion'+i+'" name="numero_habitacion[]">'+
+                                                '<input type="number" class="form-control numero_habitacion" data-item="'+i+'" id="numero_habitacion'+i+'" name="numero_habitacion[]">'+
                                             '</div>'+
                                         '</div>'+
                                         '<div class="row mb-3">'+
@@ -1408,6 +1415,70 @@
                         swal("Se cancelo la acción");
                     }
                 });
+        });
+
+        $(".form_edit_habitacion").on("submit", function(event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+            console.log(formData);
+
+            swal({
+                    title: "Quieres actualizar el numero de habitaciones?",
+                    text: "",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+
+                        $.ajax({
+                            url: "/Habitaciones/editarHabitacion",
+                            type: "POST",
+                            dataType: 'json',
+                            data: formData,
+                            beforeSend: function() {
+                                console.log("Procesando....");
+
+                            },
+                            success: function(respuesta) {
+
+                                console.log(respuesta);
+
+                                if (respuesta.status == 'success') {
+                                    swal(respuesta.msg, "", "success").
+                                    then((value) => {
+                                        window.location.replace("/Habitaciones/");
+                                    });
+                                } else if(respuesta.status == 'error'){
+                                    swal(respuesta.msg, "", "warning")
+                                }
+                            },
+                            error: function(respuesta) {
+                                console.log(respuesta);
+                            }
+
+                        });
+
+
+                    } else {
+                        swal("Se cancelo la acción");
+                    }
+                });
+
+
+
+        });
+
+        $('#cont_asigna_huespedes').on("keyup","input#numero_habitacion2", function(event) {
+        
+            var habitacion_2 = $(this).val();
+            var habitacion_1 = $("#numero_habitacion1").val();
+
+           if(habitacion_2 != habitacion_1){
+               alert("el numero de la habitacion no coincide");
+           }
         });
 
 

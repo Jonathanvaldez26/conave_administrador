@@ -14,7 +14,7 @@ class General implements Crud{
   public static function getAllColaboradores(){
     $mysqli = Database::getInstance();
     $query =<<<sql
-    SELECT ua.utilerias_asistentes_id, ua.status, ua.usuario, ra.numero_empleado, ra.id_ticket_virtual, ra.nombre, ra.segundo_nombre, ra.apellido_paterno, ra.apellido_materno, ra.img, ra.genero, ra.alergias, ra.alergias_otro, ra.alergia_medicamento_cual, ra.alergia_medicamento, ra.restricciones_alimenticias, ra.restricciones_alimenticias_cual, ra.id_linea_principal, lp.nombre as nombre_linea, bu.nombre as nombre_bu, ps.nombre as nombre_posicion, uad.nombre AS nombre_ejecutivo, uad.usuario AS usuarios_admin
+    SELECT ua.utilerias_asistentes_id, ua.status, ua.usuario, ra.numero_empleado, ra.id_ticket_virtual, ra.nombre, ra.segundo_nombre, ra.apellido_paterno, ra.apellido_materno, ra.img, ra.genero, ra.alergias, ra.alergias_otro, ra.alergia_medicamento_cual, ra.alergia_medicamento, ra.restricciones_alimenticias, ra.restricciones_alimenticias_cual, ra.id_linea_principal, lp.nombre as nombre_linea, bu.nombre as nombre_bu, ps.nombre as nombre_posicion, uad.nombre AS nombre_ejecutivo, uad.usuario AS usuarios_admin, le.color, le.nombre as nom
     FROM utilerias_asistentes ua 
     INNER JOIN registros_acceso ra ON (ra.id_registro_acceso = ua.id_registro_acceso) 
     INNER JOIN bu ON (bu.id_bu = ra.id_bu) 

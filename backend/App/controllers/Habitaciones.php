@@ -67,6 +67,7 @@ html;
     }
 
     $asistentes = AsistentesDao::getAllRegisterConHabitacion();
+   
     foreach ($asistentes as $key => $value) {
       $habitacionCompartida = AsistentesDao::getUsuariosByClaveHabitacion($value['clave']);
 
@@ -144,7 +145,7 @@ html;
             <form class="form-horizontal form_asig_habitacion"  action="" method="POST" id="">
                 <div class="modal-header">
                     <h5 class="modal-title" id="asignaUsuarioLabel">Asignar Habitacion</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -215,8 +216,11 @@ html;
 
                       </div>
                       <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button>
+                          <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
+                          <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev" >Cancelar</a>
+                      
+                          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button>-->
                       </div>
                   </form>
               </div>
@@ -232,6 +236,7 @@ html;
     $habitaciones = HabitacionesDao::getHabitaciones();
     $tabla_habitaciones = '';
     $optionsCategoriaHotelHabitaciones = '';
+    $modal_edit_habitacion = '';
 
     $CategoriasHabitacionSelect = HabitacionesDao::getCategoriasHabitacionesDistict();
     
@@ -241,11 +246,18 @@ html;
 html;
     }
 
+    $total_habitaciones_ocupadas = AsistentesDao::getAllRegisterConHabitacionByCategoria(1);
+
    // var_dump($optionsCategoriaHotelHabitaciones);
 
     foreach ($habitaciones as $key => $value) {
-      
 
+    //habitaciones opupadas
+     $total_habitaciones_ocupadas = AsistentesDao::getAllRegisterConHabitacionByCategoria($value['id_categoria_habitacion']);
+     $total_ocupadas = count($total_habitaciones_ocupadas);
+     
+     //habitaciones disponibles
+     $habitaciones_disponibles = $value['cant_habitaciones'] - $total_ocupadas;
 
       $tabla_habitaciones .= <<<html
       <tr>
@@ -256,9 +268,70 @@ html;
           {$value['cant_habitaciones']}
         </td>
         <td class="align-middle text-center text-sm">
-          
+          {$habitaciones_disponibles}
+        </td>
+        <td class="align-middle text-center text-sm">
+        {$total_ocupadas}
+        </td>
+        <td class="align-middle text-center text-sm">
+        <a href='javascript:;' data-bs-toggle='tooltip' data-bs-original-title='Actualizar habitación' class='btn_asignar_usuario' data-value='{$value['id_categoria_habitacion']}' data-toggle='modal' data-target='#edit-habitacion{$value['id_categoria_habitacion']}'><i class='fa fa-hotel' aria-hidden='true'></i></a>
         </td>
       </tr>
+html;
+
+$modal_edit_habitacion .= <<<html
+    <div class="modal fade" id="edit-habitacion{$value['id_categoria_habitacion']}" role="dialog" aria-labelledby="edit-habitacionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal form_edit_habitacion"  action="" method="POST" id="">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit-habitacionLabel">Editar habitación</h5>
+                        <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body pt-0">
+                            <div class="row">
+html;
+      
+
+              $modal_edit_habitacion .= <<<html
+                
+
+                              </div>
+
+
+                              <div class="row mb-3">
+                              <input type="hidden" id="total_habitaciones" name="total_habitaciones" value="{$value['cant_habitaciones']}" /> 
+                              <input type="hidden" id="habitaciones_disponibles" name="habitaciones_disponibles" value="{$habitaciones_disponibles}" /> 
+                              <input type="hidden" id="habitaciones_ocupadas" name="habitaciones_ocupadas" value="{$total_ocupadas}" /> 
+                                <input type="hidden" id="id_categoria_habitacion" name="id_categoria_habitacion" value="{$value['id_categoria_habitacion']}" /> 
+                                <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
+                                    <label class="form-label">Categoria Habitación</label><br>
+                                    <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" readonly value="{$value['nombre_categoria']}">
+                                </div>
+                                <div class="col-md-6 col-sm-12 align-self-center asign_huesped">
+                                    <label class="form-label">Cantidad de Habitaciones</label><br>
+                                    <input type="numbre" class="form-control" id="cant_habitaciones" name="cant_habitaciones" value="" >
+                                </div>
+                              </div>
+
+                          </div>
+
+                      </div>
+                      <div class="modal-footer">
+
+                          <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
+                          <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev" >Cancelar</a>
+
+                          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary" id="edit_habitacion">Save changes</button>-->
+                      </div>
+                  </form>
+                </div>
+          </div>
+      </div>
 html;
     }
      
@@ -345,7 +418,7 @@ html;
                         <div class="modal-header">
                             <h5 class="modal-title" id="edit-habitacionLabel">Editar Categoria</h5>
                             <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                              <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
             
@@ -464,10 +537,12 @@ html;
     View::set('tabla_asistentes', $tabla_asistentes);
     View::set('modal_asigna_habitacion', $modal_asigna_habitacion);
     View::set('modal_habitaciones', $modal_habitaciones);
+    View::set('modal_edit_habitacion', $modal_edit_habitacion);
     View::set('hotel', $hotel);
     View::set('dates', $dates);
     View::set('fecha_de', $fecha_de);
     View::set('fecha_al', $fecha_al);
+    View::set('tabla_habitaciones', $tabla_habitaciones);
     View::set('tabla_categorias', $tabla_categorias);
     View::set('th_table_fechas', $th_table_fechas);
     View::set('fecha_inicio_evento', $fecha_inicio_evento);
@@ -733,6 +808,53 @@ html;
     }
 
     echo json_encode($respuesta);
+  }
+
+
+  public function editarHabitacion(){
+
+    //total de habitaciones ocupadas
+    $id_categoria_habitacion = $_POST['id_categoria_habitacion'];
+    $cant_habitaciones = $_POST['cant_habitaciones'];
+
+    $total_habitaciones = $_POST['total_habitaciones'];
+    $habitaciones_disponibles = $_POST['habitaciones_disponibles'];
+    $habitaciones_ocupadas = $_POST['habitaciones_ocupadas'];
+
+
+    if($cant_habitaciones < $habitaciones_ocupadas){
+      $data = [
+        'status' => 'error',
+        'msg' => 'Tienes '.$habitaciones_ocupadas.' habitaciones ocupadas, no puedes reducir la cantidad'
+      ];
+
+      echo json_encode($data);
+      
+    }else{
+      $documento = new \stdClass();
+    
+      $documento->_id_categoria_habitacion = $id_categoria_habitacion;
+      $documento->_cant_habitaciones = $cant_habitaciones;
+
+      $update = HabitacionesDao::updateHabitacionesHotel($documento);
+
+      if($update){
+        $data = [
+          'status' => 'success',
+          'msg' => '¡Se actualizo la información correctamente!!'
+        ];
+        echo json_encode($data);
+        //echo 'success';
+      }else{
+        $data = [
+          'status' => 'fail',
+          'msg' => '¡Ocurrio un error, contactar a Soporte técnico!!'
+        ];
+        echo json_encode($data);
+        //echo 'fail';
+      }
+      
+    }
   }
 
   function generateRandomString($length = 6)

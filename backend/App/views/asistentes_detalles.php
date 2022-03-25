@@ -425,7 +425,7 @@
                                             <div class="col-lg-6 col-md-6 col-12 my-auto text-end">
                                                 
                                                 <form class="form-horizontal"  action="" method="POST">
-                                                    <button class="btn bg-gradient-primary mb-0" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
+                                                    <button class="btn bg-gradient-primary mb-0" type="button" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
                                                     <input type="text" class="form-control" value="<?php echo $email; ?>" readonly hidden>
                                                     <button type="button" id="generar_clave" title="Generar Ticket Virtual" class="btn bg-gradient-dark mb-0"><i class="fas fa-qrcode"></i></button>
                                                 </form>

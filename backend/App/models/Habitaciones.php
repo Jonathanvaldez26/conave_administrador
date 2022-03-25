@@ -96,6 +96,22 @@ sql;
         return $mysqli->update($query, $parametros);
     }
 
+    public static function updateHabitacionesHotel($hotel){
+      $mysqli = Database::getInstance(true);
+      $query=<<<sql
+      UPDATE habitaciones_hotel SET cant_habitaciones = :cant_habitaciones WHERE id_categoria_habitacion = :id_categoria_habitacion;
+sql;
+      $parametros = array(
+        ':cant_habitaciones'=>$hotel->_cant_habitaciones,
+        ':id_categoria_habitacion'=>$hotel->_id_categoria_habitacion
+      );
+        $accion = new \stdClass();
+        $accion->_sql= $query;
+        $accion->_parametros = $parametros;
+        $accion->_id = $hotel->_id_hotel;
+        return $mysqli->update($query, $parametros);
+    }
+
     public static function BuscarHabitacion($no_habitacion){
       $mysqli = Database::getInstance(true);
         $query =<<<sql
@@ -122,7 +138,7 @@ sql;
     public static function getCategoriasHabitacionesDistict(){
       $mysqli = Database::getInstance(true);
       $query =<<<sql
-      SELECT * FROM categorias_habitaciones 
+      SELECT * FROM categorias_habitaciones WHERE id_categoria_habitacion NOT IN (SELECT id_categoria_habitacion FROM habitaciones_hotel) ORDER BY nombre_categoria ASC
 sql;
 
       return $mysqli->queryAll($query);

@@ -2,6 +2,8 @@
 
 namespace App\controllers;
 //defined("APPPATH") OR die("Access denied");
+require_once dirname(__DIR__).'/../public/librerias/phpqrcode/qrlib.php';
+
 
 use \Core\View;
 use \Core\MasterDom;
@@ -469,6 +471,13 @@ html;
 
         $email = AsistentesDao::getById($id)[0]['usuario'];
         $clave_user = AsistentesDao::getRegistroAccesoById($id)[0]['clave'];
+        if ($clave_user == '' || $clave_user == NULL || $clave_user == 'NULL') {
+            $clave_user = 'No posee ningún código';
+        } else {
+            $this->generaterQr($clave_user);
+        }
+
+        
 
         $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";
         $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
@@ -507,6 +516,100 @@ html;
         View::set('header', $this->_contenedor->header($extraHeader));
         View::set('footer', $this->_contenedor->footer($extraFooter));
         View::render("asistentes_detalles");
+    }
+
+    public function generaterQr($clave_ticket){
+       
+        $id_constancia = $_POST['id_constancia'];
+        $user_id = $_SESSION['utilerias_asistentes_id'];
+
+        // var_dump($user_id);
+        //Eliminar los archivos del servidor
+        //$this->deleteFiles($id_constancia);
+      
+
+        // $codigo_rand = $this->generateRandomString();
+        $codigo_rand = $clave_ticket;
+
+        $config = array(
+            'ecc' => 'H',    // L-smallest, M, Q, H-best
+            'size' => 12,    // 1-50
+            'dest_file' => '../public/qrs/'.$codigo_rand.'.png',
+            'quality' => 90,
+            'logo' => 'logo.jpg',
+            'logo_size' => 100,
+            'logo_outline_size' => 20,
+            'logo_outline_color' => '#FFFF00',
+            'logo_radius' => 15,
+            'logo_opacity' => 100,
+          );
+    
+          // Contenido del código QR
+          $data = $codigo_rand;
+    
+          // Crea una clase de código QR
+          $oPHPQRCode = new PHPQRCode();
+    
+          // establecer configuración
+          $oPHPQRCode->set_config($config);
+    
+          // Crea un código QR
+          $qrcode = $oPHPQRCode->generate($data);
+    
+          $url = explode('/', $qrcode );
+          $src = $url['0'].'/'.$url['2'].'/'.$url['3'];
+
+          $documento = new \stdClass();
+      
+
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        //     $documento->_ruta_qr = $src;
+        //     $documento->_ruta_constancia = '../PDF/'.$codigo_rand.'.pdf';
+        //     $documento->_id_constancia = $id_constancia;
+        //     $documento->_code = $codigo_rand;
+            
+            
+        //     $id = ConstanciaDao::updateQrRute($documento);
+
+        //     if ($id) {
+        //       $constancia = ConstanciaDao::getByCode($codigo_rand);
+
+        //       $this->generarPDF($constancia[0]);
+              
+        //         $data = [
+        //             'status' => 'success',
+        //             'src' => $src,
+        //             'nombre_constancia' => $constancia[0]['nombre_constancia'],
+        //             'ruta_constancia' => $constancia[0]['ruta_constancia'],
+        //             'code' => $constancia[0]['code'],
+        //             'id_constancia' => $constancia[0]['id_constancia'],
+        //             'url_qr' => 'https://bbeltcertificate.sas-lahe.com/DatosConstancia/datos/'.$codigo_rand,
+        //             'status_generada' => 1
+
+        //         ];
+        //         //echo 'success';
+
+        //     } else {
+        //         $data = [
+        //             'status' => 'fail'
+                    
+        //         ];
+        //         //echo 'fail';
+        //     }
+        // } else {
+        //     $data = [
+        //         'status' => 'fail REQUEST'
+                
+        //     ];
+        //     //echo 'fail REQUEST';
+        // }
+     
+          
+          // Mostrar código QR
+          //$imagen = '<img src="'.$src.'">';
+         //echo $src;
+        //  echo json_encode($data);
     }
 
     public function Actualizar() {
@@ -569,20 +672,25 @@ html;
         $clave_user = AsistentesDao::getClaveByEmail($email)[0]['clave'];
         $tiene_clave = '';
         $clave_random = $this->generateRandomString(6);
+        $id_registros_acceso = AsistentesDao::getRegistroByEmail($email)[0]['id_registro_acceso'];
+        
         
         if ($clave_user == '') {
             $tiene_clave = 'no_tiene';
-            $asignar_clave = AsistentesDao::generateCodeOnTable($clave_random, $email);
+            AsistentesDao::insertTicket($clave_random);
+            $id_tv = AsistentesDao::getIdTicket($clave_random)[0]['id_ticket_virtual'];
+            $asignar_clave = AsistentesDao::generateCodeOnTable($clave_random, $email, $id_tv);
+
         } else {
             $tiene_clave = 'ya_tiene';
             $asignar_clave = 1;
         }
-
         
         if ($asignar_clave) {
             $data = [
                 'status'=>'success',
-                'clave'=>$tiene_clave
+                'clave'=>$tiene_clave,
+                'id_registros_acceso'=>$id_registros_acceso
             ];
         } else {
             $data = [

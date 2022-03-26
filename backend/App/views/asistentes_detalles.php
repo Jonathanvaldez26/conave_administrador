@@ -426,7 +426,8 @@
                                                 
                                                 <form class="form-horizontal"  action="" method="POST">
                                                     <button class="btn bg-gradient-primary mb-0" type="button" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
-                                                    <input type="text" class="form-control" value="<?php echo $email; ?>" readonly hidden>
+                                                    
+                                                    <input id="input-email" type="text" class="form-control" value="<?php echo $email; ?>" readonly hidden>
                                                     <button type="button" id="generar_clave" title="Generar Ticket Virtual" class="btn bg-gradient-dark mb-0"><i class="fas fa-qrcode"></i></button>
                                                 </form>
                                                 <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
@@ -482,6 +483,7 @@
                                                             <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg ">
                                                                 <div class="d-flex flex-column ">
                                                                     <h3 class="mb-3 text-sm">Su Código es: </h3> <h3><?php echo $clave_user;?> </h3>
+                                                                    <img src="/qrs/<?php echo $clave_user;?>.png" alt="">
                                                                     <!-- <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
                                                                     <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
                                                                     <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span> -->
@@ -621,7 +623,7 @@
 
                                     <?php echo $alergia_medicamento_cual;?>
 
-                                    <?php echo $alergias_a;?>
+                                    <!-- <?php echo $alergias_a;?> -->
 
                                     <!-- <div class="col-md-4">
                                         <label class="form-label mt-4">Alergias *</label>

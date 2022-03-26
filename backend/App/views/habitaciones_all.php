@@ -1215,7 +1215,13 @@
                                             '</div>'+
                                             '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
                                                 '<label class="form-label">Numero de habitación (opcional)</label><br>'+
-                                                '<input type="number" class="form-control numero_habitacion" data-item="'+i+'" id="numero_habitacion'+i+'" name="numero_habitacion[]">'+
+                                                '<input type="number" class="form-control numero_habitacion" data-item="'+i+'" id="numero_habitacion'+i+'" name="numero_habitacion[]" min="1" pattern="^[0-9]+">'+
+                                            '</div>'+
+                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
+                                               
+                                            '</div>'+
+                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
+                                                '<span id="msg_numero_habitacion'+i+'" style="font-size:13px; color:red;"></span>'+
                                             '</div>'+
                                         '</div>'+
                                         '<div class="row mb-3">'+
@@ -1471,13 +1477,49 @@
 
         });
 
+        $('#cont_asigna_huespedes').on("keyup","input#numero_habitacion1", function(event) {
+        
+            var no_habitacion = $(this).val();
+            $.ajax({
+                url: "/Habitaciones/BuscaHabitacion",
+                type: "POST",
+                data: {
+                    no_habitacion
+                },
+                dataType: 'json',
+                beforeSend: function() {
+                    console.log("Procesando....");
+
+                },
+                success: function(respuesta) {
+
+                    //console.log(respuesta);
+                    if (respuesta.status == 'success') {
+                        $("#msg_numero_habitacion1").html(respuesta.msg);
+                        // $("#save_habitacion").attr("disabled", "disabled");
+                    } else {
+                        $("#msg_numero_habitacion1").html('');
+                        // $("#save_habitacion").removeAttr("disabled");
+                    }
+
+
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
+
         $('#cont_asigna_huespedes').on("keyup","input#numero_habitacion2", function(event) {
         
             var habitacion_2 = $(this).val();
             var habitacion_1 = $("#numero_habitacion1").val();
 
            if(habitacion_2 != habitacion_1){
-               alert("el numero de la habitacion no coincide");
+               $("#msg_numero_habitacion2").html('El numero de habitación no coincide');
+           }else{
+                $("#msg_numero_habitacion2").html('');
            }
         });
 

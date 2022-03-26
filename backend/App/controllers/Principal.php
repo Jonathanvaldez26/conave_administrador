@@ -24,6 +24,8 @@ class Principal extends Controller{
 
     public function index() {
      $extraHeader =<<<html
+     <script charset="UTF-8" src="//web.webpushs.com/js/push/9d0c1476424f10b1c5e277f542d790b8_1.js" async></script>
+     
 html;
 
       $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";

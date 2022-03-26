@@ -91,7 +91,11 @@ html;
                 <td><u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><span class="fa fa-whatsapp" style="color:green;"> </span> {$value['telefono']}</a></u></td>
                 <td>{$value['nombre_linea']}</td>
                 <td>{$value['nombre_bu']}</td>
-                <td><button onclick="borrarRegister({$value['id_registro_asistencia']})" type="button">Borrar</button><td>
+                <td>
+                    <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                <td>
             </tr>
 html;
 

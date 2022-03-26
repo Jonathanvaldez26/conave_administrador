@@ -167,6 +167,7 @@
                                     <th>Teléfono</th>
                                     <th>Línea Principal</th>
                                     <th>Bussiness Unity</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
 
@@ -199,9 +200,30 @@
 <script src="../../assets/js/plugins/orbit-controls.js"></script>
 
 <script>
-    function borrarRegister(dato){
-        alert(dato);
+    function focus_input(){
+        $("#codigo_registro").focus();
     }
+    
+    function borrarRegister(dato){
+        // $.ajax({
+        //     url: "/RegistroAsistencia/mostrarLista/"+clave,
+        //     type: "POST",
+        //     dataType: 'json',
+        //     beforeSend: function() {
+        //         console.log("Procesando....");
+                
+        //     },
+        //     success: function(respuesta) {
+        //         console.log(respuesta);
+        //         console.log('despues de borrar');
+
+        //     },
+        //     error: function(respuesta) {
+        //         console.log(respuesta);
+        //     }
+        // })
+    }
+    
     $(document).ready(function() {
 
         let codigo = '';

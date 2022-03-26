@@ -31,7 +31,7 @@ sql;
     public static function insert($log){
 	    $mysqli = Database::getInstance(1);
       $query =<<<sql
-      INSERT INTO notif VALUES(null,'$log->_titulo', '$log->_descripcion', NOW(), $log->_id_asistente, 1)
+      INSERT INTO notif VALUES(null,'$log->_titulo', '$log->_descripcion', NOW(), $log->_id_asistente, 0)
 sql;
 
 

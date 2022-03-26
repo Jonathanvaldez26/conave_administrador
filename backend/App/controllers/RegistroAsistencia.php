@@ -73,6 +73,9 @@ html;
         <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 
+        <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+        <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+
 html;
 
         $codigo = RegistroAsistenciaDao::getById($id);
@@ -85,8 +88,7 @@ html;
         foreach ($lista_registrados as $key => $value) {
             $tabla.=<<<html
             <tr>
-                <!--td id="id_registro_asistencia" >{$value['id_registro_asistencia']}</td-->
-                <td>{$value['nombre_completo']}</td>
+                <td>{$value['nombre_completo']} <span class="badge badge-info" style="color: white; background: {$value['color_linea']};">{$value['nombre_linea_ejecutivo']} </span></td>
                 <td><u><a href="mailto:{$value['email']}"><span class="fa fa-mail-bulk"> </span> {$value['email']}</a></u></td>
                 <td><u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><span class="fa fa-whatsapp" style="color:green;"> </span> {$value['telefono']}</a></u></td>
                 <td>{$value['nombre_linea']}</td>
@@ -95,7 +97,7 @@ html;
                     <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button">
                         <i class="fas fa-trash"></i>
                     </button>
-                <td>
+                </td>
             </tr>
 html;
 

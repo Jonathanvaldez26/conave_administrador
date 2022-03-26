@@ -477,22 +477,34 @@
                                                 </div>
 
                                                 <div class="tab-content" id="v-pills-tabContent">
-                                                    <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam1">
-                                                        
+                                                    <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
+                                                    <style>
+                                                        #main_ticket {
+                                                            margin-top: 100px;
+                                                            text-align: center;
+                                                        }
+                                                        #canvas_ticket {
+                                                            background-color: #000;
+                                                            height: 250px;
+                                                            width: 425px;
+                                                        }
+                                                    </style>
                                                         <ul class="list-group ">
                                                             <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg ">
+                                                            <button id="show_ticket" type="button" class="btn btn-primary"><i class="fas fa-eye"></i></button>
                                                                 <div class="d-flex flex-column ">
                                                                     <h3 class="mb-3 text-sm">Su Código es: </h3> <h3><?php echo $clave_user;?> </h3>
-                                                                    <img src="/qrs/<?php echo $clave_user;?>.png" alt="">
-                                                                    <!-- <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span> -->
+                                                                    <div id="main_ticket" hidden>
+                                                                        <canvas id="canvas_ticket" width="425" height="250" style="background: crimson; background-image: url('/img/ticket.jpg');"></canvas>
+                                                                    </div>
+                                                                    <img src="/qrs/<?php echo $clave_user;?>.png" alt="" hidden>
+                                                                    <input id="codigo-qr" type="text" value="/qrs/<?php echo $clave_user;?>.png" hidden readonly>                                                            
                                                                 </div>
                                                             </li>
                                                         </ul>
                                                     </div>
 
-                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam2">
+                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
                                                         <ul class="list-group">
                                                             <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
                                                                 <div class="d-flex flex-column">
@@ -663,6 +675,35 @@
 <script>
     $(document).ready(function() {
 
+        var app = ( function () {
+            var canvas = document.getElementById( 'canvas_ticket' ),
+                context = canvas.getContext( '2d' ),
+
+                // API
+                public = {};
+
+                // Public methods goes here...
+
+                public.loadPicture = function () {
+                    var imageObj = new Image();
+                    imageObj.src = $('#codigo-qr').val();
+                    imageObj.css = 'width: 50px;';
+                
+                    imageObj.onload = function () {
+                        context.drawImage( imageObj, 0, 0 );
+                    }
+                };
+
+                return public;
+        } () );
+
+        $('#show_ticket').on('click', function(event){ 
+            // alert('Mostrar Ticket');
+            // console.log('asdasdasdas');
+            document.getElementById('main_ticket').removeAttribute('hidden');
+            app.loadPicture();
+        })
+
         $('#generar_clave').on('click', function(event){ 
 
             // Obtener id de utilerias asistentes del link
@@ -703,6 +744,8 @@
                                 window.location.replace("/Asistentes/Detalles/"+clave_a);
                             });
                         }
+
+                        app.loadPicture();
                     } else {
                         swal("!No se pudo generar una clave para este usuario!", "", "warning").
                         then((value) => {

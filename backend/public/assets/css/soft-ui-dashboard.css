@@ -36868,6 +36868,9 @@ table.dataTable.no-footer {
 .bg-gray-conave{
   background-color: #f8f9fa !important;
 }
+.bg-gray-conave-100{
+  background: #efefef !important;
+}
 
 .hide-section{
   display: none;

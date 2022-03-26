@@ -5,6 +5,7 @@ defined("APPPATH") OR die("Access denied");
 use \Core\Database;
 use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
+use \App\controllers\UtileriasNotificacionesLog;
 
 class PruebasCovidUsuarios implements Crud{
     public static function getAll(){
@@ -43,21 +44,45 @@ sql;
         
     }
 
-    public static function validar($id){
+    public static function validar($data){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
-        UPDATE prueba_covid SET status = 2 WHERE id_prueba_covid = $id;
+        UPDATE prueba_covid SET status = 2 WHERE id_prueba_covid = :id_prueba_covid;
 sql;
-        return $mysqli->update($query);
+        $parametros = array(
+            ':id_prueba_covid'=>$data->_id_prueba_covid
+            
+        );
+        $accion = new \stdClass();
+        $accion->_sql= $query;
+        // $accion->_id = $id;
+        $accion->_id_asistente = $data->_id_asistente;
+        $accion->_titulo = "Prueba covid";
+        $accion->_descripcion = 'Un ejecutivo ha validado su '.$accion->_titulo. ' exitosamente';
+        UtileriasNotificacionesLog::addAccion($accion);
 
+        return $mysqli->update($query,$parametros);
     }
 
-    public static function rechazar($id){
+    public static function rechazar($data){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
-        UPDATE prueba_covid SET status = 1 WHERE id_prueba_covid = $id;
+        UPDATE prueba_covid SET status = 1 WHERE id_prueba_covid = :id_prueba_covid;
 sql;
-        return $mysqli->update($query);
+        $parametros = array(
+            ':id_prueba_covid'=>$data->_id_prueba_covid
+            
+        );
+
+        $accion = new \stdClass();
+        $accion->_sql= $query;
+        // $accion->_id = $id;
+        $accion->_id_asistente = $data->_id_asistente;
+        $accion->_titulo = "Prueba covid";
+        $accion->_descripcion = 'Un ejecutivo ha rechazado su '.$accion->_titulo;
+        UtileriasNotificacionesLog::addAccion($accion);
+
+        return $mysqli->update($query,$parametros);
 
     }
 

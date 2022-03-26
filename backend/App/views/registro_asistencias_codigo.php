@@ -361,10 +361,11 @@
                     console.log("Procesando....");
                 },
                 success: function(respuesta) {
-                    console.log(respuesta);
-                    console.log(respuesta.msg_insert);
+                    // console.log(respuesta);
+                    console.log(respuesta.status);
                     if (respuesta.status == 'success') {
-
+                        console.log(respuesta);
+                        console.log(respuesta.msg_insert);
                         let nombre_completo = respuesta.datos.nombre+' '+respuesta.datos.segundo_nombre+' '+respuesta.datos.apellido_paterno +' '+respuesta.datos.apellido_materno;
                         $("#nombre_completo").html(nombre_completo);
                         $("#correo_user").html(respuesta.datos.email);
@@ -412,8 +413,8 @@
                         $("#bu_user").html('Ninguna');
                         $("#correo_user").html('_____');
                         $("#telefono_user").html('00 0000 0000');
+                        console.log(respuesta);
                     }
-                    console.log(respuesta);
                    
                 },
                 error: function(respuesta) {

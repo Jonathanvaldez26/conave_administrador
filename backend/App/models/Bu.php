@@ -101,7 +101,7 @@ sql;
       $mysqli = Database::getInstance();
       $query=<<<sql
       SELECT catalogo_empresa_id, clave, rfc, razon_social, email, telefono_uno, telefono_dos, domicilio_fiscal, sitio_web, fecha_alta, status FROM catalogo_empresa WHERE catalogo_empresa_id = 5;
-      sql;
+sql;
       return $mysqli->queryOne($query);
     }
 

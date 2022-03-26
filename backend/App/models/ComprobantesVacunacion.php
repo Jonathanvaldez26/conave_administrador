@@ -5,6 +5,7 @@ defined("APPPATH") OR die("Access denied");
 use \Core\Database;
 use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
+use \App\controllers\UtileriasNotificacionesLog;
 
 class ComprobantesVacunacion implements Crud{
     public static function getAll(){
@@ -174,21 +175,45 @@ sql;
         return $mysqli->queryAll($query);        
     }
     
-    public static function validar($id){
+    public static function validar($data){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
-        UPDATE comprobante_vacuna SET validado = 1 WHERE id_comprobante_vacuna = $id;
+        UPDATE comprobante_vacuna SET validado = 1 WHERE id_comprobante_vacuna = :id_comprobante_vacuna
 sql;
-        return $mysqli->update($query);
+        $parametros = array(
+            ':id_comprobante_vacuna'=>$data->_id_comprobante_vacuna
+            
+        );
+        $accion = new \stdClass();
+        $accion->_sql= $query;
+        // $accion->_id = $id;
+        $accion->_id_asistente = $data->_id_asistente;
+        $accion->_titulo = "Comprobante de vacunación";
+        $accion->_descripcion = 'Un ejecutivo ha validado su '.$accion->_titulo. ' exitosamente';
+        UtileriasNotificacionesLog::addAccion($accion);
+
+        return $mysqli->update($query,$parametros);
 
     }
 
-    public static function rechazar($id){
+    public static function rechazar($data){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
-        UPDATE comprobante_vacuna SET status = 0 WHERE id_comprobante_vacuna = $id;
+        UPDATE comprobante_vacuna SET status = 0 WHERE id_comprobante_vacuna = :id_comprobante_vacuna
 sql;
-        return $mysqli->update($query);
+
+        $parametros = array(
+            ':id_comprobante_vacuna'=>$data->_id_comprobante_vacuna
+            
+        );
+        $accion = new \stdClass();
+        $accion->_sql= $query;
+        // $accion->_id = $id;
+        $accion->_id_asistente = $data->_id_asistente;
+        $accion->_titulo = "Comprobante de vacunación";
+        $accion->_descripcion = 'Un ejecutivo ha rechazado su '.$accion->_titulo;
+        UtileriasNotificacionesLog::addAccion($accion);
+        return $mysqli->update($query,$parametros);
 
     }
 

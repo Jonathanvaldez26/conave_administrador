@@ -569,7 +569,7 @@ html;
                             <div class="col-md-6 col-12">
                               <form class="form-horizontal btn_validar" id="" action="" method="POST">
                                 <input type="text" id="id_comprobante" name="id_comprobante" value="{$value['id_c_v']}" readonly style="display:none;" hidden>
-                                
+                                <input type="text" id="id_asistente" name="id_asistente" value="{$value['utilerias_asistentes_id']}" readonly style="display:none;" hidden>
                                 <button type="submit" class="btn bg-gradient-success" {$btnVacunacionEditarHidden}>
                                   Aceptar
                                 </button>
@@ -578,6 +578,7 @@ html;
                             <div class="col-md-6 col-12">
                               <form class="form btn_rechazar" id="btn_rechazar" action="" method="POST">
                                 <input type="text" id="id_comprobante" name="id_comprobante" value="{$value['id_c_v']}" readonly style="display:none;">
+                                <input type="text" id="id_asistente" name="id_asistente" value="{$value['utilerias_asistentes_id']}" readonly style="display:none;" hidden>
                                 <button type="submit" class="btn bg-gradient-secondary" {$btnVacunacionEditarHidden} >
                                   Rechazar
                                 </button>
@@ -1022,10 +1023,15 @@ html;
     public function Validar(){
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          $documento = new \stdClass();
 
             $id_comprobante = $_POST['id_comprobante'];
+            $id_asistente = $_POST['id_asistente'];
 
-            $id = ComprobantesVacunacionDao::validar($id_comprobante);
+            $documento->_id_comprobante_vacuna = $id_comprobante;
+            $documento->_id_asistente = $id_asistente;
+
+            $id = ComprobantesVacunacionDao::validar($documento);
 
             if($id){
                 echo "success";
@@ -1043,18 +1049,22 @@ html;
     public function Rechazar(){
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $documento = new \stdClass();
+        $id_comprobante = $_POST['id_comprobante'];
+        $id_asistente = $_POST['id_asistente'];
+        
+        $documento->_id_comprobante_vacuna = $id_comprobante;
+        $documento->_id_asistente = $id_asistente;
 
-          $id_comprobante = $_POST['id_comprobante'];
+        $id = ComprobantesVacunacionDao::rechazar($documento);
 
-          $id = ComprobantesVacunacionDao::rechazar($id_comprobante);
-
-          if($id){
-              echo "success";
-            //header("Location: /Home");
-          }else{
-              echo "fail";
-           // header("Location: /Home/");
-          }
+        if($id){
+            echo "success";
+          //header("Location: /Home");
+        }else{
+            echo "fail";
+          // header("Location: /Home/");
+        }
 
       } else {
           echo 'fail REQUEST';

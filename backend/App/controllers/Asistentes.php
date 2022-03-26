@@ -533,7 +533,7 @@ html;
 
         $config = array(
             'ecc' => 'H',    // L-smallest, M, Q, H-best
-            'size' => 12,    // 1-50
+            'size' => 5,    // 1-50
             'dest_file' => '../public/qrs/'.$codigo_rand.'.png',
             'quality' => 90,
             'logo' => 'logo.jpg',

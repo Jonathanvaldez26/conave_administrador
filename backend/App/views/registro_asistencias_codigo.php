@@ -158,7 +158,7 @@
             <div class="row">
                 <div class="col-10 m-auto">
                     <div class="card p-4" style="overflow-y: auto;">
-                        <table id="lista-reg" class="table" >
+                        <table id="lista-reg" class="align-items-center mb-0 table table-borderless dataTable no-footer">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -258,6 +258,7 @@
                 $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
                 $('.next').addClass("btn-outline-danger btn-rounded mx-2");
                 $('a.btn').addClass("btn-rounded");
+                $('.odd').addClass("bg-gray-conave-100");
             },
             "language": {
             

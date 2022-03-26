@@ -155,30 +155,18 @@ html;
 
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
 
-        // if ($user_clave) {
-            
-        // } else {
-        //     $user_clave = 'Es nulo';
-        // }
-        
-        // var_dump($clave);
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
         $bu = RegistroAsistenciaDao::getBu();
         
         $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
-        // // echo 'prueba';
-        
 
-        
         if($user_clave){
             $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id'],$id_asistencia['id_asistencia'])[0];
             if ($hay_asistente) {
                 $msg_insert = 'success_find_assistant';
             } else {
                 $msg_insert = 'fail_not_found_assistant';
-                
                 $insert = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
-                
             }
 
             $data = [
@@ -188,8 +176,6 @@ html;
                 'status'=>'success',
                 'insert'=>$insert,
                 'msg_insert'=>$msg_insert,
-        //         'clave'=>$clave,
-        //         'code'=>$code,
                 'hay_asistente'=> $hay_asistente,
             ];
         }else{

@@ -551,8 +551,8 @@ html;
                           <div class="row text-center">
                             <div class="col-md-6 col-12">
                               <form class="form-horizontal btn_validar" id="btn_validar" action="" method="POST">
-                                <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;" hidden>
-                                
+                                <input type="hidden" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly >
+                                <input type="hidden" id="id_asistente" name="id_asistente" value="{$value['utilerias_asistentes_id']}" readonly >
                                 <button type="submit" class="btn bg-gradient-success" >
                                   Aceptar
                                 </button>
@@ -560,7 +560,8 @@ html;
                             </div>
                             <div class="col-md-6 col-12">
                               <form class="form btn_rechazar" id="btn_rechazar" action="" method="POST">
-                                <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;">
+                                <input type="hidden" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly >
+                                <input type="hidden" id="id_asistente" name="id_asistente" value="{$value['utilerias_asistentes_id']}" readonly >
                                 <button type="submit" class="btn bg-gradient-secondary" >
                                   Rechazar
                                 </button>
@@ -964,10 +965,16 @@ html;
     public function Validar(){
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $documento = new \stdClass();
 
           $id_prueba_covid = $_POST['id_prueba_covid'];
+          $id_asistente = $_POST['id_asistente'];
 
-          $id = PruebasCovidUsuariosDao::validar($id_prueba_covid);
+          $documento->_id_prueba_covid = $id_prueba_covid;
+          $documento->_id_asistente = $id_asistente;
+          
+
+          $id = PruebasCovidUsuariosDao::validar($documento);
 
           if($id){
               echo "success";
@@ -986,9 +993,15 @@ html;
 
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-          $id_prueba_covid = $_POST['id_prueba_covid'];
+        $documento = new \stdClass();
 
-          $id = PruebasCovidUsuariosDao::rechazar($id_prueba_covid);
+        $id_prueba_covid = $_POST['id_prueba_covid'];
+        $id_asistente = $_POST['id_asistente'];
+
+        $documento->_id_prueba_covid = $id_prueba_covid;
+        $documento->_id_asistente = $id_asistente;
+
+          $id = PruebasCovidUsuariosDao::rechazar($documento);
 
           if($id){
               echo "success";

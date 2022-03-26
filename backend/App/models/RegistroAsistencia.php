@@ -36,7 +36,7 @@ sql;
     public static function getInfo($clave){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT *
+        SELECT ra.*, ua.*
         FROM registros_acceso ra
         INNER JOIN utilerias_asistentes ua
         ON ua.id_registro_acceso = ra.id_registro_acceso
@@ -126,13 +126,18 @@ sql;
     public static function findAsistantById($id,$id_asist){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT * FROM `registros_asistencia` WHERE utilerias_asistentes_id = '$id' and id_asistencias = '$id_asist'
+        SELECT * FROM `registros_asistencia` 
+        WHERE utilerias_asistentes_id = $id and id_asistencias = $id_asist
 sql;
-
         return $mysqli->queryAll($query);
     }
 
-    public static function delete($id_asistente){
+    public static function delete($id_registro_acceso){
+        $mysqli = Database::getInstance(true);
+        $query=<<<sql
+        DELETE FROM `registros_asistencia` WHERE id_registro_acceso = $id_registro_acceso 
+sql;
+        return $mysqli->delete($query);
 
     }
 

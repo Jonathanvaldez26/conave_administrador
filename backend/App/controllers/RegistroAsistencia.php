@@ -85,12 +85,13 @@ html;
         foreach ($lista_registrados as $key => $value) {
             $tabla.=<<<html
             <tr>
-                <!--td>{$value['id_registro_asistencia']}</td-->
+                <!--td id="id_registro_asistencia" >{$value['id_registro_asistencia']}</td-->
                 <td>{$value['nombre_completo']}</td>
-                <td><u><a href="mailto:{$value['email']}">{$value['email']}</a></u></td>
-                <td><u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">{$value['telefono']}</a></u></td>
+                <td><u><a href="mailto:{$value['email']}"><span class="fa fa-mail-bulk"> </span> {$value['email']}</a></u></td>
+                <td><u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><span class="fa fa-whatsapp" style="color:green;"> </span> {$value['telefono']}</a></u></td>
                 <td>{$value['nombre_linea']}</td>
                 <td>{$value['nombre_bu']}</td>
+                <td><button onclick="borrarRegister({$value['id_registro_asistencia']})" type="button">Borrar</button><td>
             </tr>
 html;
 
@@ -136,15 +137,27 @@ html;
         echo json_encode($lista_registrados);
     }
 
+    public function borrarRegistrado($id_user){
+
+        $id_asistencia = '';
+        $delete_registrado = RegistroAsistenciaDao::delete($id_user);
+
+        echo json_encode($delete_registrado);
+    }
+
     public function registroAsistencia($clave, $code){
 
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
+        
+        // var_dump($clave);
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
         $bu = RegistroAsistenciaDao::getBu();
         
         $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
-        $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id'],$id_asistencia)[0];
+        // echo 'prueba';
+        $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id'],$id_asistencia['id_asistencia'])[0];
 
+        
         if($user_clave){
 
             if ($hay_asistente) {
@@ -163,7 +176,7 @@ html;
                 'msg_insert'=>$msg_insert,
                 'clave'=>$clave,
                 'code'=>$code,
-                'utilerias_asistentes_id'=>$user_clave['utilerias_asistentes_id']
+                'hay_asistente'=> $hay_asistente
             ];
         }else{
             $data = [

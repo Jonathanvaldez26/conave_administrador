@@ -36,7 +36,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                        <a class="nav-link mb-0 px-0 py-1" id="lista-tab" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
                                             <span class="fa fa-check-circle-o"></span>
                                             <span class="ms-1">Lista</span>
                                         </a>
@@ -152,6 +152,7 @@
             </div>
         </div>
 
+        
     
         <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
             <div class="row">
@@ -160,7 +161,7 @@
                         <table id="lista-reg" class="table" >
                             <thead>
                                 <tr>
-                                    <!-- <th>Id</th> -->
+                                    <!-- <th >Id</th> -->
                                     <th>Nombre</th>
                                     <th>Correo electrónico</th>
                                     <th>Teléfono</th>
@@ -198,6 +199,9 @@
 <script src="../../assets/js/plugins/orbit-controls.js"></script>
 
 <script>
+    function borrarRegister(dato){
+        alert(dato);
+    }
     $(document).ready(function() {
 
         let codigo = '';
@@ -250,6 +254,7 @@
         });
 
         
+        
 
         function mostrarDatos(clave){
             $.ajax({
@@ -257,43 +262,83 @@
                 type: "POST",
                 dataType: 'json',
                 beforeSend: function() {
+                    // $('#lista-reg > tbody').empty();
                     console.log("Procesando....");
-                    $('#lista-reg > tbody').empty();
-
                     
                 },
                 success: function(respuesta) {
                     console.log(respuesta);
+                    // $('#lista-reg > tbody').empty();
+                    console.log('despues de borrar');
+                    
                     $.each(respuesta,function(index, el) {
            
-                        $('#lista-reg > tbody:last-child').append(
-                                '<tr>'+
-                                '<td>'+el.nombre_completo+'</td>'+
-                                '<td>'+el.email+'</td>'+
-                                '<td>'+el.telefono+'</td>'+                    
-                                '</tr>');
-                    });
+                        // $('#lista-reg > tbody:last-child').append(
+                        //         '<tr>'+
+                        //             '<td>'+el.nombre_completo+'</td>'+
+                        //             '<td><u><a href="mailto:'+el.email+'"><span class="fa fa-mail-bulk"> </span> '+el.email+'</a></u></td>'+
+                        //             '<td><u><a href="https://api.whatsapp.com/send?phone=52'+el.nombre_linea+'&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><span class="fa fa-whatsapp" style="color:green;"> </span> '+el.nombre_linea+'</a></u></td>'+
+                        //             '<td>'+el.nombre_linea+'</td>'+
+                        //             '<td>'+el.nombre_bu+'</td>'+                
+                        //         '</tr>');
 
+                        // $('#lista-reg').empty();
+                        // table.row.add([
+                        //     // el.nombre_completo,
+                        //     // el.email,
+                        //     // el.telefono,
+                        //     // el.nombre_linea,
+                        //     // el.nombre_bu
+                        //     '<td>'+el.nombre_completo+'</td>',
+                        //     '<td><u><a href="mailto:'+el.email+'"><span class="fa fa-mail-bulk"> </span> '+el.email+'</a></u></td>',
+                        //     '<td><u><a href="https://api.whatsapp.com/send?phone=52'+el.nombre_linea+'&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><span class="fa fa-whatsapp" style="color:green;"> </span> '+el.nombre_linea+'</a></u></td>',
+                        //     '<td>'+el.nombre_linea+'</td>',
+                        //     '<td>'+el.nombre_bu+'</td>'
+                        // ]).draw();
+                    });
+                    
                     // var tables = $('#lista-reg').DataTable();
 
-                    //     tables.row.add( {
-                    //         "Nombre": el.nombre_completo,
-                    //         "Correo Electrónico":  el.email,
-                    //         "Teléfono": el.telefono
-                    //     }).draw();
+                        
 
-                    // });
                 },
                 error: function(respuesta) {
                     console.log(respuesta);
                 }
             })
         }
+
+        $('#btn_borrar_reg').on('click', function(){
+            $.ajax({
+                url: "/RegistroAsistencia/registroAsistencia/"+codigo+'/'+clave_a,
+                type: "POST",
+                dataType: 'json',
+                beforeSend: function() {
+                    console.log("Procesando....");
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+                    swal("¡Se borró correctamente!", "", "success").
+                    then((value) => {
+                        $("#codigo_registro").focus();
+                    });
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                    swal("¡Hubo un error al borrar!", "", "warning").
+                    then((value) => {
+                        $("#codigo_registro").focus();
+                    });
+                }
+    
+            });
+        })
         
         $("#codigo_registro").on('change',function(){
 
             codigo = $('#codigo_registro').val();
             $('#codigo_registro').val('');
+            // $('#lista-reg > tbody').empty();
 
             console.log(codigo);
             console.log(clave_a);
@@ -307,47 +352,53 @@
                     console.log("Procesando....");
                 },
                 success: function(respuesta) {
-                    // console.log(respuesta.status);
+                    console.log(respuesta);
                     console.log(respuesta.msg_insert);
                     if (respuesta.status == 'success') {
+
+                        let nombre_completo = respuesta.datos.nombre+' '+respuesta.datos.segundo_nombre+' '+respuesta.datos.apellido_paterno +' '+respuesta.datos.apellido_materno;
+                        $("#nombre_completo").html(nombre_completo);
+                        $("#correo_user").html(respuesta.datos.email);
+                        $("#telefono_user").html(respuesta.datos.telefono);
+
+                        if (respuesta.datos.img != '') {
+                            $("#img_asistente").attr('src','http://convencionasofarma2022.mx/img/users_conave/'+respuesta.datos.img);
+                        } else {
+                            $("#img_asistente").attr('src','/img/user.png');
+                        }
+
+                        for (let index = 0; index < respuesta.linea_principal.length; index++) {
+                            const element = respuesta.linea_principal[index];
+                            if (element.id_linea_principal == respuesta.datos.id_linea_principal) {
+                                $("#linea_user").html(element.nombre);
+                            }
+                        }
+
+                        for (let index = 0; index < respuesta.bu.length; index++) {
+                            const element = respuesta.bu[index];
+                            if (element.id_bu == respuesta.datos.id_bu) {
+                                $("#bu_user").html(element.nombre);
+                            }
+                        }
+
+                        if(respuesta.msg_insert == 'success_find_assistant'){
+                            swal("¡Lo sentimos, esta persona ya tiene su asistencia registrada!", "", "warning").
+                            then((value) => {
+                                $("#codigo_registro").focus();
+                            });
+                        } else {
+                            // window.location.replace("/RegistroAsistencia/codigo/"+clave_a);
+                        }
                         
-
-                            let nombre_completo = respuesta.datos.nombre+' '+respuesta.datos.segundo_nombre+' '+respuesta.datos.apellido_paterno +' '+respuesta.datos.apellido_materno;
-                            $("#nombre_completo").html(nombre_completo);
-                            $("#correo_user").html(respuesta.datos.email);
-                            $("#telefono_user").html(respuesta.datos.telefono);
-
-                            if (respuesta.datos.img != '') {
-                                $("#img_asistente").attr('src','http://convencionasofarma2022.mx/img/users_conave/'+respuesta.datos.img);
-                            } else {
-                                $("#img_asistente").attr('src','/img/user.png');
-                            }
-
-                            for (let index = 0; index < respuesta.linea_principal.length; index++) {
-                                const element = respuesta.linea_principal[index];
-                                if (element.id_linea_principal == respuesta.datos.id_linea_principal) {
-                                    $("#linea_user").html(element.nombre);
-                                }
-                            }
-
-                            for (let index = 0; index < respuesta.bu.length; index++) {
-                                const element = respuesta.bu[index];
-                                if (element.id_bu == respuesta.datos.id_bu) {
-                                    $("#bu_user").html(element.nombre);
-                                }
-                            }
-
-                            if(respuesta.msg_insert == 'success_find_assistant'){
-                                swal("¡Lo sentimos, esta persona ya tiene su asistencia registrada!", "", "warning").
-                                then((value) => {
-                                    $("#codigo_registro").focus();
-                                });
-                            } else {
-                                mostrarDatos(clave_a);
-
-                            }
-
-                            let tabla_registrados = $("#lista-reg");
+                        // mostrarDatos(clave_a);
+                        table.row.add([
+                            '<td>'+el.nombre_completo+'</td>',
+                            '<td><u><a href="mailto:'+el.email+'"><span class="fa fa-mail-bulk"> </span> '+el.email+'</a></u></td>',
+                            '<td><u><a href="https://api.whatsapp.com/send?phone=52'+el.nombre_linea+'&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><span class="fa fa-whatsapp" style="color:green;"> </span> '+el.nombre_linea+'</a></u></td>',
+                            '<td>'+el.nombre_linea+'</td>',
+                            '<td>'+el.nombre_bu+'</td>'
+                        ]).draw();
+                        let tabla_registrados = $("#lista-reg");
                     } else {
                         swal("¡Lo sentimos, esta persona no se encuentra registrada en nuestra base de datos!", "", "warning").
                         then((value) => {
@@ -361,9 +412,20 @@
                         $("#telefono_user").html('00 0000 0000');
                     }
                     console.log(respuesta);
+                   
                 },
                 error: function(respuesta) {
                     console.log(respuesta);
+                    swal("¡Lo sentimos, esta persona no se encuentra registrada en nuestra base de datos!", "", "warning").
+                    then((value) => {
+                        $("#codigo_registro").focus();
+                    });
+                    $("#nombre_completo").html('Nombre');
+                    $("#img_asistente").attr('src','/img/user.png');
+                    $("#linea_user").html('Ninguna');
+                    $("#bu_user").html('Ninguna');
+                    $("#correo_user").html('_____');
+                    $("#telefono_user").html('00 0000 0000');
                 }
     
             });

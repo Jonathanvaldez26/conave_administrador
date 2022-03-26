@@ -175,6 +175,16 @@ sql;
         
     }
 
+    public static function insertTicket($clave){
+      $mysqli = Database::getInstance(true);
+      $qr_code = $clave.'.png';
+      $query=<<<sql
+      INSERT INTO ticket_virtual (`clave`, `qr`) VALUES('$clave', '$qr_code')
+sql;
+
+      return $mysqli->insert($query);
+    }
+
     public static function update($data){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
@@ -206,13 +216,29 @@ sql;
       return $mysqli->update($query, $parametros);
   }
 
-    public static function generateCodeOnTable($code,$email){
+    public static function generateCodeOnTable($code,$email,$id_tv){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE registros_acceso SET clave = '$code' WHERE email = '$email'
+      UPDATE registros_acceso SET clave = '$code', id_ticket_virtual = $id_tv WHERE email = '$email'
 sql;
 
       return $mysqli->update($query);
+    }
+
+    public static function getIdTicket($clave){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM ticket_virtual WHERE clave = '$clave'
+sql;
+      return $mysqli->queryAll($query);
+    }
+
+    public static function getRegistroByEmail($email){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM registros_acceso WHERE email = '$email'
+sql;
+      return $mysqli->queryAll($query);
     }
 
     public static function getClaveByEmail($email){

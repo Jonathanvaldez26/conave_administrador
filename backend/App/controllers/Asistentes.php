@@ -853,10 +853,8 @@ html;
                             
                         </div>
                     </div>
-                </td>s
+                </td>
          
-          
-
                 <td style="text-align:left; vertical-align:middle;"> 
                     
                     <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>

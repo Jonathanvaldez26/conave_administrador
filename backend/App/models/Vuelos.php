@@ -44,7 +44,7 @@ sql;
         $mysqli = Database::getInstance(1);
         $query=<<<sql
         INSERT INTO pases_abordar (id_pase_abordar, utilerias_asistentes_id, utilerias_administradores_id, clave, id_aeropuerto_origen, id_aeropuerto_destino, numero_vuelo, hora_llegada_destino, fecha_alta, url, status, nota, tipo) 
-        VALUES ('', :utilerias_asistentes_id, :utilerias_administradores_id, :clave, :id_aeropuerto_origen, :id_aeropuerto_destino, :numero_vuelo, :hora_llegada_destino, current_timestamp(), :url, 1, :nota, 1);
+        VALUES (null, :utilerias_asistentes_id, :utilerias_administradores_id, :clave, :id_aeropuerto_origen, :id_aeropuerto_destino, :numero_vuelo, :hora_llegada_destino, NOW(), :url, 1, :nota, 1);
 sql;
         $parametros = array(
             ':utilerias_asistentes_id'=>$data->_utilerias_asistentes_id,

@@ -85,10 +85,10 @@ html;
                         <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
                     </div>
                 </td> 
-                <td>
-                      <p class="text-center" style="font-size: small;">Fecha Carga: {$value['fecha_carga_documento']}</p>
-                      <p class="text-center" style="font-size: small;"># Dosis: {$value['numero_dosis']}</p>
-                      <p class="text-center" style="font-size: small;">Marca: {$value['marca_dosis']}</p>
+               <td>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-calendar-check-o" style="font-size: 13px;"></span> Fecha Carga: {$value['fecha_carga_documento']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-syringe" style="font-size: 13px;"></span> # Dosis: {$value['numero_dosis']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-cubes" style="font-size: 13px;"></span> <strong>Marca: {$value['marca_dosis']}</strong></p>
                 </td>
               <td class="text-center">
                 <button type="button" class="btn bg-gradient-primary btn_iframe" data-document="{$value['documento']}" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">
@@ -264,7 +264,7 @@ html;
                 <td class="text-center">
                   <button type="button" class="btn bg-gradient-primary btn_iframe" data-document="{$value['documento']}" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">
                     <i class="fas fa-eye"></i>
-                  </button>s
+                  </button>
                 </td>
               </tr>
   
@@ -426,9 +426,9 @@ html;
                     </div>
                 </td>
                 <td>
-                  <p class="text-center" style="font-size: small;">Fecha Carga: {$value['fecha_carga_documento']}</p>
-                  <p class="text-center" style="font-size: small;"># Dosis: {$value['numero_dosis']}</p>
-                  <p class="text-center" style="font-size: small;">Marca: {$value['marca_dosis']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-calendar-check-o" style="font-size: 13px;"></span> Fecha Carga: {$value['fecha_carga_documento']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-syringe" style="font-size: 13px;"></span> # Dosis: {$value['numero_dosis']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-cubes" style="font-size: 13px;"></span> <strong>Marca: {$value['marca_dosis']}</strong></p>
                 </td>
                 <td class="text-center">
                   <button type="button" class="btn bg-gradient-primary btn_iframe" data-document="{$value['documento']}" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">

@@ -63,6 +63,9 @@ html;
               <td class="text-center">
                 <span class="badge badge-danger"> <i class="fas fa-times"> </i> Rechazado</span> <br>
                 <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
+                 <hr>
+                 <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
+                    
               </td>
               <td>
                   <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
@@ -82,15 +85,11 @@ html;
                         <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
                     </div>
                 </td> 
-              <td>
-                <p class="text-center" style="font-size: small;">{$value['fecha_carga_documento']}</p>
-              </td>
-              <td>
-                <p class="text-center" style="font-size: small;">{$value['numero_dosis']}</p>
-              </td>
-              <td>
-                <p class="text-center" style="font-size: small;">{$value['marca_dosis']}</p>
-              </td>
+               <td>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-calendar-check-o" style="font-size: 13px;"></span> Fecha Carga: {$value['fecha_carga_documento']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-syringe" style="font-size: 13px;"></span> # Dosis: {$value['numero_dosis']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-cubes" style="font-size: 13px;"></span> <strong>Marca: {$value['marca_dosis']}</strong></p>
+                </td>
               <td class="text-center">
                 <button type="button" class="btn bg-gradient-primary btn_iframe" data-document="{$value['documento']}" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">
                   <i class="fas fa-eye"></i>
@@ -235,6 +234,9 @@ html;
                 <td class="text-center">
                   <span class="badge badge-success"><i class="fas fa-check"> </i> Aprobado</span> <br>
                   <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
+                   <hr>
+                   <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
+                            
                 </td>
                 <td>
                   <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
@@ -255,13 +257,9 @@ html;
                     </div>
                 </td>
                 <td>
-                  <p class="text-center" style="font-size: small;">{$value['fecha_carga_documento']}</p>
-                </td>
-                <td>
-                  <p class="text-center" style="font-size: small;">{$value['numero_dosis']}</p>
-                </td>
-                <td>
-                  <p class="text-center" style="font-size: small;">{$value['marca_dosis']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-calendar-check-o" style="font-size: 13px;"></span> Fecha Carga: {$value['fecha_carga_documento']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-syringe" style="font-size: 13px;"></span> # Dosis: {$value['numero_dosis']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-cubes" style="font-size: 13px;"></span> <strong>Marca: {$value['marca_dosis']}</strong></p>
                 </td>
                 <td class="text-center">
                   <button type="button" class="btn bg-gradient-primary btn_iframe" data-document="{$value['documento']}" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">
@@ -405,6 +403,9 @@ html;
                 <td class="text-center">
                   <span class="badge badge-warning text-dark"><i class="fas fa-clock"></i> Pendiente</span><br>
                   <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
+                   <hr>
+                   <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
+                    
                 </td>
                 <td>
                   <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
@@ -425,13 +426,9 @@ html;
                     </div>
                 </td>
                 <td>
-                  <p class="text-center" style="font-size: small;">{$value['fecha_carga_documento']}</p>
-                </td>
-                <td>
-                  <p class="text-center" style="font-size: small;">{$value['numero_dosis']}</p>
-                </td>
-                <td>
-                  <p class="text-center" style="font-size: small;">{$value['marca_dosis']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-calendar-check-o" style="font-size: 13px;"></span> Fecha Carga: {$value['fecha_carga_documento']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-syringe" style="font-size: 13px;"></span> # Dosis: {$value['numero_dosis']}</p>
+                  <p class="text-center" style="font-size: small;"><span class="fa fa-cubes" style="font-size: 13px;"></span> <strong>Marca: {$value['marca_dosis']}</strong></p>
                 </td>
                 <td class="text-center">
                   <button type="button" class="btn bg-gradient-primary btn_iframe" data-document="{$value['documento']}" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">

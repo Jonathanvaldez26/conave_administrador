@@ -40,8 +40,19 @@ sql;
         FROM registros_acceso ra
         INNER JOIN utilerias_asistentes ua
         ON ua.id_registro_acceso = ra.id_registro_acceso
+        
         WHERE ra.clave = '$clave'
 sql;
+
+// SELECT ra.*, ua.*, lp.*, le.nombre AS nombre_linea_ejecutivo, le.color AS color_linea
+//         FROM registros_acceso ra
+//         INNER JOIN utilerias_asistentes ua
+//         ON ua.id_registro_acceso = ra.id_registro_acceso
+//         INNER JOIN linea_principal lp
+//         ON ra.id_linea_principal = lp.id_linea_principal
+//         INNER JOIN linea_ejecutivo le
+//         ON lp.id_linea_ejecutivo = le.id_linea_ejecutivo
+//         WHERE ra.clave = '$clave'
         return $mysqli->queryAll($query);
     }
 
@@ -70,6 +81,7 @@ sql;
         ra.telefono, ra.email,
         lp.nombre AS nombre_linea,
         b.nombre AS nombre_bu,
+        le.nombre AS nombre_linea_ejecutivo, le.color AS color_linea,
         CONCAT (ra.nombre,' ',ra.segundo_nombre,' ',apellido_paterno,' ',apellido_materno) AS nombre_completo
         FROM registros_asistencia ras
         INNER JOIN asistencias a
@@ -82,6 +94,8 @@ sql;
         and ra.id_registro_acceso = ua.id_registro_acceso
         and lp.id_linea_principal = ra.id_linea_principal
         and b.id_bu = ra.id_bu
+        INNER JOIN linea_ejecutivo le
+        ON lp.id_linea_ejecutivo = le.id_linea_ejecutivo
         
         WHERE a.clave = '$code'
 sql;
@@ -132,10 +146,10 @@ sql;
         return $mysqli->queryAll($query);
     }
 
-    public static function delete($id_registro_acceso){
+    public static function delete($id_registro_asistencia){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
-        DELETE FROM `registros_asistencia` WHERE id_registro_acceso = $id_registro_acceso 
+        DELETE FROM `registros_asistencia` WHERE id_registro_asistencia = $id_registro_asistencia 
 sql;
         return $mysqli->delete($query);
 

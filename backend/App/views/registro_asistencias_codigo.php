@@ -157,21 +157,22 @@
         <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
             <div class="row">
                 <div class="col-10 m-auto">
-                    <div class="card p-4">
+                    <div class="card p-4" style="overflow-y: auto;">
                         <table id="lista-reg" class="table" >
                             <thead>
                                 <tr>
-                                    <!-- <th >Id</th> -->
                                     <th>Nombre</th>
                                     <th>Correo electrónico</th>
                                     <th>Teléfono</th>
                                     <th>Línea Principal</th>
                                     <th>Bussiness Unity</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <?php echo $tabla;?>
+                                
                             </tbody>
                             
                         </table>
@@ -199,9 +200,42 @@
 <script src="../../assets/js/plugins/orbit-controls.js"></script>
 
 <script>
-    function borrarRegister(dato){
-        alert(dato);
+    function focus_input(){
+        $("#codigo_registro").focus();
     }
+
+    function borrarRegister(dato){
+        // alert(dato);
+        $.ajax({
+            url: "/RegistroAsistencia/borrarRegistrado/"+dato,
+            type: "POST",
+            dataType: 'json',
+            beforeSend: function() {
+                console.log("Procesando....");
+                // alert('Se está borrando');
+                
+            },
+            success: function(respuesta) {
+                console.log(respuesta);
+                console.log('despues de borrar');
+                // alert('Bien borrado');
+                swal("¡Se borró correctamente!", "", "success").
+                then((value) => {
+                    $("#codigo_registro").focus();
+                    window.location.reload();
+                });
+            },
+            error: function(respuesta) {
+                console.log(respuesta);
+                // alert('Error');
+                swal("¡Ha ocurrido un error al intentar borrar el registro!", "", "warning").
+                then((value) => {
+                    $("#codigo_registro").focus();
+                });
+            }
+        })
+    }
+    
     $(document).ready(function() {
 
         let codigo = '';
@@ -212,18 +246,18 @@
 
         var table = $('#lista-reg').DataTable({
             "drawCallback": function( settings ) {
-            $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
-            $('.paginate_button').addClass("btn").removeClass("paginate_button");
-            $('.dataTables_length').addClass("m-4");
-            $('.dataTables_info').addClass("mx-4");
-            $('.dataTables_filter').addClass("m-4");
-            $('input').addClass("form-control");
-            $('select').addClass("form-control");
-            $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
-            $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
-            $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
-            $('.next').addClass("btn-outline-danger btn-rounded mx-2");
-            $('a.btn').addClass("btn-rounded");
+                $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+                $('.paginate_button').addClass("btn").removeClass("paginate_button");
+                $('.dataTables_length').addClass("m-4");
+                $('.dataTables_info').addClass("mx-4");
+                $('.dataTables_filter').addClass("m-4");
+                $('input').addClass("form-control");
+                $('select').addClass("form-control");
+                $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+                $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+                $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+                $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+                $('a.btn').addClass("btn-rounded");
             },
             "language": {
             
@@ -255,7 +289,6 @@
 
         
         
-
         function mostrarDatos(clave){
             $.ajax({
                 url: "/RegistroAsistencia/mostrarLista/"+clave,
@@ -308,31 +341,7 @@
             })
         }
 
-        $('#btn_borrar_reg').on('click', function(){
-            $.ajax({
-                url: "/RegistroAsistencia/registroAsistencia/"+codigo+'/'+clave_a,
-                type: "POST",
-                dataType: 'json',
-                beforeSend: function() {
-                    console.log("Procesando....");
-                },
-                success: function(respuesta) {
-                    console.log(respuesta);
-                    swal("¡Se borró correctamente!", "", "success").
-                    then((value) => {
-                        $("#codigo_registro").focus();
-                    });
-                },
-                error: function(respuesta) {
-                    console.log(respuesta);
-                    swal("¡Hubo un error al borrar!", "", "warning").
-                    then((value) => {
-                        $("#codigo_registro").focus();
-                    });
-                }
-    
-            });
-        })
+        
         
         $("#codigo_registro").on('change',function(){
 
@@ -391,14 +400,7 @@
                         }
                         
                         // mostrarDatos(clave_a);
-                        table.row.add([
-                            '<td>'+el.nombre_completo+'</td>',
-                            '<td><u><a href="mailto:'+el.email+'"><span class="fa fa-mail-bulk"> </span> '+el.email+'</a></u></td>',
-                            '<td><u><a href="https://api.whatsapp.com/send?phone=52'+el.nombre_linea+'&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><span class="fa fa-whatsapp" style="color:green;"> </span> '+el.nombre_linea+'</a></u></td>',
-                            '<td>'+el.nombre_linea+'</td>',
-                            '<td>'+el.nombre_bu+'</td>'
-                        ]).draw();
-                        let tabla_registrados = $("#lista-reg");
+                        // let tabla_registrados = $("#lista-reg");
                     } else {
                         swal("¡Lo sentimos, esta persona no se encuentra registrada en nuestra base de datos!", "", "warning").
                         then((value) => {
@@ -416,16 +418,16 @@
                 },
                 error: function(respuesta) {
                     console.log(respuesta);
-                    swal("¡Lo sentimos, esta persona no se encuentra registrada en nuestra base de datos!", "", "warning").
+                    swal("¡Lo sentimos, ocurrió un error!", "", "warning").
                     then((value) => {
                         $("#codigo_registro").focus();
                     });
-                    $("#nombre_completo").html('Nombre');
-                    $("#img_asistente").attr('src','/img/user.png');
-                    $("#linea_user").html('Ninguna');
-                    $("#bu_user").html('Ninguna');
-                    $("#correo_user").html('_____');
-                    $("#telefono_user").html('00 0000 0000');
+                    // $("#nombre_completo").html('Nombre');
+                    // $("#img_asistente").attr('src','/img/user.png');
+                    // $("#linea_user").html('Ninguna');
+                    // $("#bu_user").html('Ninguna');
+                    // $("#correo_user").html('_____');
+                    // $("#telefono_user").html('00 0000 0000');
                 }
     
             });

@@ -143,7 +143,8 @@ html;
         $log->_titulo = $accion->_titulo;
         $log->_id_asistente = $accion->_id_asistente;
         // $log->_descripcion = 'El usuario '.$log->_usuario.' ha actualizado el registro '.$accion->_id.' en '.$log->_tabla;
-        $log->_descripcion = 'Un ejecutivo ha actualizado el status de su '.$log->_titulo;
+        //$log->_descripcion = 'Un ejecutivo ha actualizado el status de su '.$log->_titulo;
+        $log->_descripcion = $accion->_descripcion;
 
         foreach ($parametros as $key => $value) {
           $sql = str_replace($key,$value,$sql);

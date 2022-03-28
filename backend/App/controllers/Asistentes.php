@@ -819,7 +819,8 @@ html;
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                     
-                            <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']} $estatus</h6>
+                            <a href="/Asistentes/Detalles/{$value['utilerias_asistentes_id']}">
+                            <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']} $estatus</h6></a>
                             <p class="text-sm font-weight-bold text-secondary mb-0"> {$value['usuario']}</p>
                             <p class="text-sm mb-0"><span class="fa fa-solid fa-id-card" style="font-size: 13px;"></span> Número de empleado:  <span style="text-decoration: underline;">{$value['numero_empleado']}</span></p>
                             <hr>

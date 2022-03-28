@@ -362,7 +362,7 @@
                                     <li class="nav-item">
                                     <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
                                         <span class="fa fa-user-check"></span>
-                                        <span class="ms-1">Acceso a Registro</span>
+                                        <span class="ms-1">Faltantes de Registro</span>
                                     </a>
                                     </li>
                                 </ul>

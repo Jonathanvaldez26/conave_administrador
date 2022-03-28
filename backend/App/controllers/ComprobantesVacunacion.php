@@ -1053,12 +1053,19 @@ html;
         $documento->_id_comprobante_vacuna = $id_comprobante;
         $documento->_id_asistente = $id_asistente;
 
-        $ua_id = ComprobantesVacunacionDao::getComprobanteById($id_comprobante)[0]['utilerias_asistentes_id'];
+        $comprobante = ComprobantesVacunacionDao::getComprobanteById($id_comprobante)[0];
+
+        $ua_id = $comprobante['utilerias_asistentes_id'];
+        $fecha_carga_doc = $comprobante['fecha_carga_documento'];
+        $numero_dosis = $comprobante['numero_dosis'];
+        $marca_dosis = $comprobante['marca_dosis'];
+        $nota = $comprobante['nota'];
+        $documento_prueba = $comprobante['doc'];
 
         $id = ComprobantesVacunacionDao::rechazar($documento);
+        ComprobantesVacunacionDao::insertLog($ua_id,$fecha_carga_doc,$numero_dosis,$marca_dosis,$documento_prueba,$nota);
 
         if($id){
-            echo $ua_id;
             echo "success";
           //header("Location: /Home");
         }else{

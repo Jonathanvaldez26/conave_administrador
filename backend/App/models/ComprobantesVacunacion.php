@@ -78,9 +78,10 @@ sql;
     }
 
     public static function getComprobanteById($id){
-        $mysqli = Database::getInstance(true);
+        $mysqli = Database::getInstance();
         $query =<<<sql
-        SELECT * FROM comprobante_vacuna 
+        SELECT *, documento AS doc 
+		FROM comprobante_vacuna
         WHERE id_comprobante_vacuna = '$id'
 sql;
 

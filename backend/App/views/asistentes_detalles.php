@@ -451,15 +451,9 @@
                                                 <div class="mt-2 nav-wrapper position-relative end-0">
                                                     <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                                                         <li class="nav-item">
-                                                            <a class="nav-link mb-0 px-0 py-1 active" href="#cam2" data-bs-toggle="tab" role="tab" aria-selected="true">
-                                                                <span class="fa fa-ticket"></span>
-                                                                <span class="ms-1">Ticket Virtual</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                                <span class="fa fa-plane"></span>
-                                                                <span class="ms-1">Vuelos</span>
+                                                            <a class="nav-link mb-0 px-0 py-1 active" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="true">
+                                                                <span class="fa fa-syringe"></span>
+                                                                <span class="ms-1">Vacunación</span>
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
@@ -469,9 +463,15 @@
                                                             </a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                                <span class="fa fa-syringe"></span>
-                                                                <span class="ms-1">Vacunación</span>
+                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                                <span class="fa fa-plane"></span>
+                                                                <span class="ms-1">Vuelos</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                                <span class="fa fa-ticket"></span>
+                                                                <span class="ms-1">Ticket Virtual</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -807,7 +807,7 @@
                     if (respuesta == 'success') {
                         swal("!Se actualizaron tus datos correctamente!", "", "success").
                         then((value) => {
-                            window.location.replace("/Asistentes");
+                            window.location.reload();
                         });
                     } else {
                         swal("!Usted No Actualizó Nada!", "", "warning").
@@ -855,7 +855,7 @@
             //         if (respuesta == 'success') {
             //             swal("!Se actualizaron tus datos correctamente!", "", "success").
             //             then((value) => {
-            //                 window.location.replace("/Asistentes");
+            //                 window.location.reload();
             //             });
             //         } else {
             //             swal("!Usted No Actualizó Nada!", "", "warning").

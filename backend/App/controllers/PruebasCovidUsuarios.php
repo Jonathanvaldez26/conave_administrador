@@ -674,7 +674,7 @@ html;
                     if (respuesta == 'success') {
                         swal("¡Se guardó correctamente la nota!", "", "success").
                         then((value) => {
-                            window.location.replace("/PruebasCovidUsuarios/");
+                            //window.location.replace("/PruebasCovidUsuarios/");
                         });
                         // var ta = document.getElementById("nota");
                         // ta.setAttribute('disabled','');
@@ -1001,15 +1001,24 @@ html;
         $documento->_id_prueba_covid = $id_prueba_covid;
         $documento->_id_asistente = $id_asistente;
 
-          $id = PruebasCovidUsuariosDao::rechazar($documento);
+        $prueba = PruebasCovidUsuariosDao::getPruebaById($id_prueba_covid)[0];
+        $ua_id = $prueba['utilerias_asistentes_id'];
+        $fecha_carga_doc = $prueba['fecha_carga_documento'];
+        $fecha_prueba_covid = $prueba['fecha_prueba_covid'];
+        $tipo_prueba = $prueba['tipo_prueba'];
+        $documento_prueba = $prueba['doc'];
+        $nota = $prueba['nota'];
 
-          if($id){
-              echo "success";
-            //header("Location: /Home");
-          }else{
-              echo "fail";
-          // header("Location: /Home/");
-          }
+        $id = PruebasCovidUsuariosDao::rechazar($documento);
+        PruebasCovidUsuariosDao::insertLog($ua_id,$fecha_carga_doc,$fecha_prueba_covid,$tipo_prueba,$documento_prueba,$nota);
+
+        if($id){
+            echo "success";
+          //header("Location: /Home");
+        }else{
+            echo "fail";
+        // header("Location: /Home/");
+        }
 
       } else {
           echo 'fail REQUEST';

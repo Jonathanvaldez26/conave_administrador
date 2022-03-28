@@ -44,6 +44,19 @@ sql;
         
     }
 
+    public static function insertLog($ua_id,$fecha_doc,$fecha_prueba,$tipo_prueba,$doc,$nota){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        INSERT INTO log_prueba_covid
+        (utilerias_asistentes_id, fecha_carga_documento, fecha_prueba_covid, 
+        tipo_prueba, documento, nota, hora_rechazo) 
+        
+        VALUES('$ua_id','$fecha_doc','$fecha_prueba','$tipo_prueba','$doc','$nota',NOW())
+sql;
+  
+        return $mysqli->insert($query);
+    }
+
     public static function validar($data){
         $mysqli = Database::getInstance(true);
         $query=<<<sql
@@ -63,6 +76,8 @@ sql;
 
         return $mysqli->update($query,$parametros);
     }
+
+    
 
     public static function rechazar($data){
         $mysqli = Database::getInstance(true);
@@ -115,6 +130,17 @@ sql;
 
         return $mysqli->queryAll($query);
    
+    }
+
+    public static function getPruebaById($id){
+        $mysqli = Database::getInstance();
+        $query =<<<sql
+        SELECT *, documento AS doc
+		FROM prueba_covid
+        WHERE id_prueba_covid = '$id'
+sql;
+
+        return $mysqli->queryAll($query);        
     }
 
     public static function contarPruebasValidos(){

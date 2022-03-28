@@ -5,6 +5,7 @@ defined("APPPATH") OR die("Access denied");
 use \Core\Database;
 use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
+use \App\controllers\UtileriasNotificacionesLog;
 
 class Vuelos{
     public static function getAllLlegada(){
@@ -60,9 +61,14 @@ sql;
         $id = $mysqli->insert($query,$parametros);
         $accion = new \stdClass();
         $accion->_sql= $query;
-        $accion->_parametros = $parametros;
+        $accion->_id_asistente = $data->_utilerias_asistentes_id;
+        $accion->_titulo = "Pase de abordar";
+        $accion->_descripcion = 'Un ejecutivo cargado su '.$accion->_titulo;
         $accion->_id = $id;
+        UtileriasNotificacionesLog::addAccion($accion);
+        
         return $id;
+
     }
     public static function update($data){
         

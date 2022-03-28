@@ -47,6 +47,17 @@ class Asistentes extends Controller
             ///////////////////////////////////////////////////////
             // var_dump($user);
             // var_dump($asistentes);
+        
+        $all_ra = AsistentesDao::getAllRegistrosAcceso();
+
+        foreach ($all_ra as $key => $value) {
+            if($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL'){
+                $clave_10 = $this->generateRandomString(10);
+                AsistentesDao::updateClaveRA($value['id_registro_acceso'],$clave_10);
+            }
+        }
+
+
         View::set('tabla', $this->getAllColaboradoresAsignados());
         View::set('header', $this->_contenedor->header($this->getHeader()));
         View::set('footer', $this->_contenedor->footer($this->getFooter()));

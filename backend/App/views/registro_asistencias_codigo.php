@@ -263,7 +263,7 @@
     $(document).ready(function() {
 
         
-        
+        bloquearRegistro();
 
         // mostrarDatos(clave_a);
 

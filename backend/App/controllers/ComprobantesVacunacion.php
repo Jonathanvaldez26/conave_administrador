@@ -1056,7 +1056,8 @@ html;
         $id = ComprobantesVacunacionDao::rechazar($documento);
 
         if($id){
-            echo "success";
+            echo "success".'\n';
+            echo $id_asistente;
           //header("Location: /Home");
         }else{
             echo "fail";

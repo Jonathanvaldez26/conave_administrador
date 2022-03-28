@@ -873,7 +873,7 @@ html;
           </td>
           
           <td style="text-align:center; vertical-align:middle;">
-            <a href="/Asistentes/Detalles/{$value['utilerias_asistentes_id']}"><i class="fa fa-eye"></i></a>
+            <a href="/Asistentes/Detalles/{$value['clave']}"><i class="fa fa-eye"></i></a>
             <!--button type="button" class="btn btn-outline-primary btn_qr" value="{$value['id_ticket_virtual']}"><span class="fa fa-qrcode" style="padding: 0px;"> {$ticket_virtual[0]['clave']}</span></button-->
           </td>
         </tr>

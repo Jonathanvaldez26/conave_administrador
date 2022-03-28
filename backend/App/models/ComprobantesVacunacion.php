@@ -48,14 +48,14 @@ sql;
         
     }
 
-    public static function insertLog(){
+    public static function insertLog($ua_id,$fecha_doc,$n_dosis,$m_dosis,$doc,$nota){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        INSERT INTO `log_comprobante_vacuna`
-        (`utilerias_asistentes_id`, `fecha_carga_documento`, `numero_dosis`, `marca_dosis`, 
-        `documento`, `nota`, `hora_rechazo`) 
+        INSERT INTO log_comprobante_vacuna
+        (utilerias_asistentes_id, fecha_carga_documento, numero_dosis, marca_dosis, 
+        documento, nota, hora_rechazo) 
         
-        VALUES()
+        VALUES('$ua_id','$fecha_doc','$n_dosis','$m_dosis','$doc','$nota',NOW())
 sql;
   
         return $mysqli->insert($query);

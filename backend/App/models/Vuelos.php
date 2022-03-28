@@ -63,7 +63,7 @@ sql;
         $accion->_sql= $query;
         $accion->_id_asistente = $data->_utilerias_asistentes_id;
         $accion->_titulo = "Pase de abordar";
-        $accion->_descripcion = 'Un ejecutivo cargado su '.$accion->_titulo;
+        $accion->_descripcion = 'Un ejecutivo ha cargado su '.$accion->_titulo;
         $accion->_id = $id;
         UtileriasNotificacionesLog::addAccion($accion);
         
@@ -80,7 +80,7 @@ sql;
     public static function getAsistenteNombre(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre 
+        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id 
         from utilerias_asistentes ua 
         INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
         INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id

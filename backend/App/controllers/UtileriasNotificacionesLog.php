@@ -129,8 +129,10 @@ html;
         $tabla = str_replace('INSERT INTO','',$tabla[0]);
         $log->_tabla = $tabla[0];
         $log->_accion = 'INSERT';
+        $log->_titulo = $accion->_titulo;
+        $log->_id_asistente = $accion->_id_asistente;
         //$log->_descripcion = 'El usuario '.$log->_usuario.' ha insertado el registro '.$accion->_id.' en '.$log->_tabla;
-        $log->_descripcion = 'Un ejecutivo libero su comprobante';
+        $log->_descripcion = $accion->_descripcion;
 
         foreach ($parametros as $key => $value) {
           $sql = str_replace($key,$value,$sql);

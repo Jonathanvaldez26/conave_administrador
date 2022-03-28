@@ -78,7 +78,7 @@
                 </a>
             </li>
             <li class="nav-item" <?=$vuelosHidden;?>>
-                <a href="" class="nav-link"  aria-controls="applicationsExamples" role="button" aria-expanded="false">
+                <a href="/Vuelos/" class="nav-link"  aria-controls="applicationsExamples" role="button" aria-expanded="false">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                         <span class="fa fa-plane" style="color: #344767"></span>
                     </div>

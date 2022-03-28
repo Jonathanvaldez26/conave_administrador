@@ -47,6 +47,20 @@ sql;
     public static function insert($data){
         
     }
+
+    public static function insertLog(){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        INSERT INTO `log_comprobante_vacuna`
+        (`utilerias_asistentes_id`, `fecha_carga_documento`, `numero_dosis`, `marca_dosis`, 
+        `documento`, `nota`, `hora_rechazo`) 
+        
+        VALUES()
+sql;
+  
+        return $mysqli->insert($query);
+    }
+
     public static function update($data){
         
     }

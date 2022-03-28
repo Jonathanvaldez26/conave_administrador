@@ -304,7 +304,7 @@ html;
         $asistentes = '';
         foreach (VuelosDao::getAsistenteNombre() as $key => $value) {
             $asistentes .=<<<html
-      <option value="{$value['id_registro_acceso']}"> {$value['nombre']}</option>
+      <option value="{$value['utilerias_asistentes_id']}"> {$value['nombre']}</option>
 html;
         }
         return $asistentes;

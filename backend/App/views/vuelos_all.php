@@ -598,7 +598,7 @@
                             <div class="col-12 col-lg-6">
                                 <label class="form-label">Hora de Llegada (Local) *</label>
                                 <div class="input-group">
-                                    <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="hora llegada" required="" style="text-transform:uppercase;" >
                                 </div>
                             </div>
                             <div class="form-group col-md-12">

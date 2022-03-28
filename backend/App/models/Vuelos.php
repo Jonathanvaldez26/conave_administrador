@@ -5,6 +5,7 @@ defined("APPPATH") OR die("Access denied");
 use \Core\Database;
 use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
+use \App\controllers\UtileriasNotificacionesLog;
 
 class Vuelos{
     public static function getAllLlegada(){
@@ -60,9 +61,14 @@ sql;
         $id = $mysqli->insert($query,$parametros);
         $accion = new \stdClass();
         $accion->_sql= $query;
-        $accion->_parametros = $parametros;
+        $accion->_id_asistente = $data->_utilerias_asistentes_id;
+        $accion->_titulo = "Pase de abordar";
+        $accion->_descripcion = 'Un ejecutivo ha cargado su '.$accion->_titulo;
         $accion->_id = $id;
+        UtileriasNotificacionesLog::addAccion($accion);
+        
         return $id;
+
     }
     public static function update($data){
         
@@ -74,11 +80,11 @@ sql;
     public static function getAsistenteNombre(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre 
+        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id 
         from utilerias_asistentes ua 
         INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
-        INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.id_registro_acceso
-        INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.id_registro_acceso 
+        INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id
+        INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.utilerias_asistentes_id 
         WHERE ua.utilerias_asistentes_id NOT IN (SELECT utilerias_asistentes_id FROM pases_abordar) AND cv.status = 1 and pc.status = 2;
 sql;
         return $mysqli->queryAll($query);

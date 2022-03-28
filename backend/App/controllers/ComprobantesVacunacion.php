@@ -1053,11 +1053,13 @@ html;
         $documento->_id_comprobante_vacuna = $id_comprobante;
         $documento->_id_asistente = $id_asistente;
 
+        $ua_id = ComprobantesVacunacionDao::getComprobanteById($id_comprobante)[0]['utilerias_asistentes_id'];
+
         $id = ComprobantesVacunacionDao::rechazar($documento);
 
         if($id){
-            echo "success".'\n';
-            echo $id_asistente;
+            echo $ua_id;
+            echo "success";
           //header("Location: /Home");
         }else{
             echo "fail";

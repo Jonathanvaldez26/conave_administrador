@@ -77,6 +77,16 @@ sql;
         return $mysqli->queryAll($query);        
     }
 
+    public static function getComprobanteById($id){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT * FROM comprobante_vacuna 
+        WHERE id_comprobante_vacuna = '$id'
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
     public static function contarComprobantesValidosByLine($id){
         $mysqli = Database::getInstance(true);
         $query =<<<sql

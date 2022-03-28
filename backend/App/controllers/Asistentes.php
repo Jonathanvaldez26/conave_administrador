@@ -533,7 +533,7 @@ html;
 
         $config = array(
             'ecc' => 'H',    // L-smallest, M, Q, H-best
-            'size' => 5,    // 1-50
+            'size' => 12,    // 1-50
             'dest_file' => '../public/qrs/'.$codigo_rand.'.png',
             'quality' => 90,
             'logo' => 'logo.jpg',
@@ -557,59 +557,6 @@ html;
           $qrcode = $oPHPQRCode->generate($data);
     
           $url = explode('/', $qrcode );
-          $src = $url['0'].'/'.$url['2'].'/'.$url['3'];
-
-          $documento = new \stdClass();
-      
-
-        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        //     $documento->_ruta_qr = $src;
-        //     $documento->_ruta_constancia = '../PDF/'.$codigo_rand.'.pdf';
-        //     $documento->_id_constancia = $id_constancia;
-        //     $documento->_code = $codigo_rand;
-            
-            
-        //     $id = ConstanciaDao::updateQrRute($documento);
-
-        //     if ($id) {
-        //       $constancia = ConstanciaDao::getByCode($codigo_rand);
-
-        //       $this->generarPDF($constancia[0]);
-              
-        //         $data = [
-        //             'status' => 'success',
-        //             'src' => $src,
-        //             'nombre_constancia' => $constancia[0]['nombre_constancia'],
-        //             'ruta_constancia' => $constancia[0]['ruta_constancia'],
-        //             'code' => $constancia[0]['code'],
-        //             'id_constancia' => $constancia[0]['id_constancia'],
-        //             'url_qr' => 'https://bbeltcertificate.sas-lahe.com/DatosConstancia/datos/'.$codigo_rand,
-        //             'status_generada' => 1
-
-        //         ];
-        //         //echo 'success';
-
-        //     } else {
-        //         $data = [
-        //             'status' => 'fail'
-                    
-        //         ];
-        //         //echo 'fail';
-        //     }
-        // } else {
-        //     $data = [
-        //         'status' => 'fail REQUEST'
-                
-        //     ];
-        //     //echo 'fail REQUEST';
-        // }
-     
-          
-          // Mostrar código QR
-          //$imagen = '<img src="'.$src.'">';
-         //echo $src;
-        //  echo json_encode($data);
     }
 
     public function Actualizar() {

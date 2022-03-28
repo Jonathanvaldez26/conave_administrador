@@ -478,27 +478,30 @@
 
                                                 <div class="tab-content" id="v-pills-tabContent">
                                                     <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
-                                                    <style>
-                                                        #main_ticket {
-                                                            margin-top: 100px;
-                                                            text-align: center;
-                                                        }
-                                                        #canvas_ticket {
-                                                            background-color: #000;
-                                                            height: 250px;
-                                                            width: 425px;
-                                                        }
-                                                    </style>
+                                                        <style>
+                                                            #main_ticket {
+                                                                /* margin-top: 20px; */
+                                                                text-align: center;
+                                                            }
+                                                        </style>
                                                         <ul class="list-group ">
-                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg ">
-                                                            <button id="show_ticket" type="button" class="btn btn-primary"><i class="fas fa-eye"></i></button>
-                                                                <div class="d-flex flex-column ">
-                                                                    <h3 class="mb-3 text-sm">Su Código es: </h3> <h3><?php echo $clave_user;?> </h3>
-                                                                    <div id="main_ticket" hidden>
-                                                                        <canvas id="canvas_ticket" width="425" height="250" style="background: crimson; background-image: url('/img/ticket.jpg');"></canvas>
+                                                            <li class="list-group-item border-0 p-4 mb-2 bg-gray-100 border-radius-lg ">
+                                                                <div class="row">
+                                                                    <div class="col-10">
+                                                                        <!-- <div class="d-flex flex-column "> -->
+                                                                            <h3 class="mb-3 text-sm">Su Código es: </h3> <h3><?php echo $clave_user;?> </h3>
+                                                                            
+                                                                            <img src="/qrs/<?php echo $clave_user;?>.png" alt="" hidden>
+                                                                            <input id="codigo-qr" type="text" value="/qrs/<?php echo $clave_user;?>.png" hidden readonly>                                                            
+                                                                        <!-- </div> -->
                                                                     </div>
-                                                                    <img src="/qrs/<?php echo $clave_user;?>.png" alt="" hidden>
-                                                                    <input id="codigo-qr" type="text" value="/qrs/<?php echo $clave_user;?>.png" hidden readonly>                                                            
+                                                                    <div class="col-2 text-center">
+                                                                        <br>
+                                                                        <button id="show_ticket" type="button" class="btn btn-primary" title="Ver ticket"><i class="fas fa-eye"></i></button>
+                                                                    </div>
+                                                                    <div id="main_ticket" hidden>
+                                                                        <canvas id="canvas_ticket" width="1220" height="457" name="ticket-<?php echo $clave_user;?>" style="background: white; width: -webkit-fill-available;"></canvas> <!--  background-image: url('/img/ticket.jpg'); -->
+                                                                    </div>
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -676,8 +679,8 @@
     $(document).ready(function() {
 
         var app = ( function () {
-            var canvas = document.getElementById( 'canvas_ticket' ),
-                context = canvas.getContext( '2d' ),
+            var canvas = document.getElementById( 'canvas_ticket' );
+            context = canvas.getContext( '2d' );
 
                 // API
                 public = {};
@@ -685,13 +688,24 @@
                 // Public methods goes here...
 
                 public.loadPicture = function () {
-                    var imageObj = new Image();
-                    imageObj.src = $('#codigo-qr').val();
-                    imageObj.css = 'width: 50px;';
+
+                    var imgTicketFondo = new Image(1220,475);
+                    imgTicketFondo.src = '/img/boleto.png';
                 
-                    imageObj.onload = function () {
-                        context.drawImage( imageObj, 0, 0 );
+                    imgTicketFondo.onload = function () {
+                        context.drawImage( imgTicketFondo, 0, 0 );
                     }
+
+                    var canvas_qr = document.getElementById( 'canvas_ticket' );
+                    context = canvas_qr.getContext( '2d' );
+                    
+                    var imgCodeQr = new Image();
+                    imgCodeQr.src = $('#codigo-qr').val();
+                
+                    imgCodeQr.onload = function () {
+                        context.drawImage( imgCodeQr, 855, 80);
+                    }
+                    
                 };
 
                 return public;

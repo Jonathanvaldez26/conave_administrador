@@ -428,7 +428,8 @@
                                                     <button class="btn bg-gradient-primary mb-0" type="button" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
                                                     
                                                     <input id="input-email" type="text" class="form-control" value="<?php echo $email; ?>" readonly hidden>
-                                                    <button type="button" id="generar_clave" title="Generar Ticket Virtual" class="btn bg-gradient-dark mb-0"><i class="fas fa-qrcode"></i></button>
+                                                    <?php echo $btn_genQr;?>
+                                                    <?php echo $btn_clave;?>
                                                 </form>
                                                 <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
                                             </div>
@@ -486,22 +487,21 @@
                                                         </style>
                                                         <ul class="list-group ">
                                                             <li class="list-group-item border-0 p-4 mb-2 bg-gray-100 border-radius-lg ">
+                                                                <h3><?php echo $msg_clave;?></h3>
                                                                 <div class="row">
-                                                                    <div class="col-10">
+                                                                    <!-- <div class="col-md-2 col-12 text-center"> -->
                                                                         <!-- <div class="d-flex flex-column "> -->
-                                                                            <h3 class="mb-3 text-sm">Su Código es: </h3> <h3><?php echo $clave_user;?> </h3>
-                                                                            
+                                                                            <!-- <h3 class="mb-3 text-sm">Su Código es: </h3> -->
                                                                             <img src="/qrs/<?php echo $clave_user;?>.png" alt="" hidden>
                                                                             <input id="codigo-qr" type="text" value="/qrs/<?php echo $clave_user;?>.png" hidden readonly>                                                            
                                                                         <!-- </div> -->
+                                                                    <!-- </div> -->
+                                                                    <div class="col-md-12 col-12 text-center">
+                                                                        <div id="main_ticket" hidden>
+                                                                            <canvas id="canvas_ticket" width="1220" height="457" name="ticket-<?php echo $clave_user;?>" alt="ticket-<?php echo $clave_user;?>" style="background: white; width: -webkit-fill-available;"></canvas> <!--  background-image: url('/img/ticket.jpg'); -->
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-2 text-center">
-                                                                        <br>
-                                                                        <button id="show_ticket" type="button" class="btn btn-primary" title="Ver ticket"><i class="fas fa-eye"></i></button>
-                                                                    </div>
-                                                                    <div id="main_ticket" hidden>
-                                                                        <canvas id="canvas_ticket" width="1220" height="457" name="ticket-<?php echo $clave_user;?>" style="background: white; width: -webkit-fill-available;"></canvas> <!--  background-image: url('/img/ticket.jpg'); -->
-                                                                    </div>
+                                                                    
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -676,11 +676,15 @@
 </body>
 
 <script>
+    
+
     $(document).ready(function() {
+        // document.getElementById('main_ticket').removeAttribute('hidden');
+        // app.loadPicture();
 
         var app = ( function () {
             var canvas = document.getElementById( 'canvas_ticket' );
-            context = canvas.getContext( '2d' );
+            context = canvas.getContext('2d');
 
                 // API
                 public = {};
@@ -689,21 +693,20 @@
 
                 public.loadPicture = function () {
 
-                    var imgTicketFondo = new Image(1220,475);
+                    var imgTicketFondo = new Image();
                     imgTicketFondo.src = '/img/boleto.png';
                 
                     imgTicketFondo.onload = function () {
-                        context.drawImage( imgTicketFondo, 0, 0 );
+                        context.drawImage(imgTicketFondo, 0, 0 );
                     }
 
-                    var canvas_qr = document.getElementById( 'canvas_ticket' );
-                    context = canvas_qr.getContext( '2d' );
+                    context = canvas.getContext('2d');
                     
                     var imgCodeQr = new Image();
                     imgCodeQr.src = $('#codigo-qr').val();
                 
                     imgCodeQr.onload = function () {
-                        context.drawImage( imgCodeQr, 855, 80);
+                        context.drawImage( imgCodeQr, 870, 90);
                     }
                     
                 };
@@ -758,7 +761,7 @@
                                 window.location.replace("/Asistentes/Detalles/"+clave_a);
                             });
                         }
-
+                        console.log(respuesta);
                         app.loadPicture();
                     } else {
                         swal("!No se pudo generar una clave para este usuario!", "", "warning").

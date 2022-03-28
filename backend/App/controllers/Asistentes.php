@@ -112,7 +112,7 @@ html;
             <!-- Github buttons -->
             <script async defer src="https://buttons.github.io/buttons.js"></script>
             <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-            <script src="../../../assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
+            <!--script src="../../../assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script-->
             <script src="../../../assets/js/plugins/choices.min.js"></script>
             <script type="text/javascript" wfd-invisible="true">
                 if (document.getElementById('choices-button')) {
@@ -154,7 +154,7 @@ html;
         <!-- Github buttons -->
             <script async defer src="https://buttons.github.io/buttons.js"></script>
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-            <script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
+            <!--script src="/assets/js/soft-ui-dashboard.min.js?v=1.0.5"--></script>
 
             <script>
                 $(document).ready(function() {
@@ -178,8 +178,8 @@ html;
             <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
             <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 html;
-        $detalles = AsistentesDao::getById($id);
-        $detalles_registro = AsistentesDao::getTotalById($id);
+        $detalles = AsistentesDao::getByClaveRA($id);
+        $detalles_registro = AsistentesDao::getTotalByClaveRA($id);
 
         if ($detalles_registro[0]['img'] == '') {
             $img_asistente = <<<html
@@ -469,12 +469,30 @@ html;
             }
         }
 
-        $email = AsistentesDao::getById($id)[0]['usuario'];
-        $clave_user = AsistentesDao::getRegistroAccesoById($id)[0]['clave'];
+        $all_ra = AsistentesDao::getAllRegistrosAcceso();
+
+        foreach ($all_ra as $key => $value) {
+            if($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL'){
+                $clave_10 = $this->generateRandomString(10);
+                AsistentesDao::updateClaveRA($value['id_registro_acceso'],$clave_10);
+            }
+        }
+
+        $email = AsistentesDao::getByClaveRA($id)[0]['usuario'];
+        $clave_user = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['clave_ticket'];
         if ($clave_user == '' || $clave_user == NULL || $clave_user == 'NULL') {
-            $clave_user = 'No posee ningún código';
+            $msg_clave = 'No posee ningún código';
+            $btn_clave = '';
+            $btn_genQr =<<<html
+            <button type="button" id="generar_clave" title="Generar Ticket Virtual" class="btn bg-gradient-dark mb-0"><i class="fas fa-qrcode"></i></button>
+html;
         } else {
             $this->generaterQr($clave_user);
+            $msg_clave ='';
+            $btn_genQr = '';
+            $btn_clave = <<<html
+                <button id="show_ticket" type="button" class="btn bg-gradient-info mb-0" title="Ver Ticket Virtual"><i class="fas fa-eye"></i></button>
+html;
         }
 
         
@@ -509,6 +527,9 @@ html;
         View::set('img_asistente', $img_asistente);
         View::set('email', $email);
         View::set('clave_user', $clave_user);
+        View::set('msg_clave', $msg_clave);
+        View::set('btn_clave', $btn_clave);
+        View::set('btn_genQr', $btn_genQr);
         View::set('alergias_a', $alergias_a);
         View::set('res_alimenticias', $res_alimenticias);
         View::set('alergia_medicamento_cual', $alergia_medicamento_cual);
@@ -520,8 +541,8 @@ html;
 
     public function generaterQr($clave_ticket){
        
-        $id_constancia = $_POST['id_constancia'];
-        $user_id = $_SESSION['utilerias_asistentes_id'];
+        // $id_constancia = $_POST['id_constancia'];
+        // $user_id = $_SESSION['utilerias_asistentes_id'];
 
         // var_dump($user_id);
         //Eliminar los archivos del servidor
@@ -533,7 +554,7 @@ html;
 
         $config = array(
             'ecc' => 'H',    // L-smallest, M, Q, H-best
-            'size' => 12,    // 1-50
+            'size' => 11,    // 1-50
             'dest_file' => '../public/qrs/'.$codigo_rand.'.png',
             'quality' => 90,
             'logo' => 'logo.jpg',
@@ -556,7 +577,7 @@ html;
           // Crea un código QR
           $qrcode = $oPHPQRCode->generate($data);
     
-          $url = explode('/', $qrcode );
+        //   $url = explode('/', $qrcode );
     }
 
     public function Actualizar() {
@@ -614,19 +635,24 @@ html;
         }
     }
 
+    public function darClaveRegistrosAcceso($id,$clave){
+        AsistentesDao::updateClaveRA($id, $clave);
+    }
+
     public function generarClave($email){
         
         $clave_user = AsistentesDao::getClaveByEmail($email)[0]['clave'];
+        $tiene_ticket = AsistentesDao::getClaveByEmail($email)[0]['clave_ticket'];
         $tiene_clave = '';
         $clave_random = $this->generateRandomString(6);
         $id_registros_acceso = AsistentesDao::getRegistroByEmail($email)[0]['id_registro_acceso'];
         
         
-        if ($clave_user == '') {
+        if ($tiene_ticket == NULL || $tiene_ticket == 'NULL' || $tiene_ticket == 0) {
             $tiene_clave = 'no_tiene';
             AsistentesDao::insertTicket($clave_random);
             $id_tv = AsistentesDao::getIdTicket($clave_random)[0]['id_ticket_virtual'];
-            $asignar_clave = AsistentesDao::generateCodeOnTable($clave_random, $email, $id_tv);
+            $asignar_clave = AsistentesDao::generateCodeOnTable($email, $id_tv);
 
         } else {
             $tiene_clave = 'ya_tiene';
@@ -636,8 +662,9 @@ html;
         if ($asignar_clave) {
             $data = [
                 'status'=>'success',
+                'tiene_ticket'=>$tiene_ticket,
                 'clave'=>$tiene_clave,
-                'id_registros_acceso'=>$id_registros_acceso
+                // 'id_registros_acceso'=>$id_registros_acceso
             ];
         } else {
             $data = [

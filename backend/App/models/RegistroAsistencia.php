@@ -40,8 +40,10 @@ sql;
         FROM registros_acceso ra
         INNER JOIN utilerias_asistentes ua
         ON ua.id_registro_acceso = ra.id_registro_acceso
-        
-        WHERE ra.clave = '$clave'
+        INNER JOIN ticket_virtual tv
+        ON tv.id_ticket_virtual = ra.id_ticket_virtual
+
+        WHERE tv.clave = '$clave'
 sql;
 
 // SELECT ra.*, ua.*, lp.*, le.nombre AS nombre_linea_ejecutivo, le.color AS color_linea

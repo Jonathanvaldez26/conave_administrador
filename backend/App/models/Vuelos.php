@@ -83,8 +83,8 @@ sql;
         select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre 
         from utilerias_asistentes ua 
         INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
-        INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.id_registro_acceso
-        INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.id_registro_acceso 
+        INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id
+        INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.utilerias_asistentes_id 
         WHERE ua.utilerias_asistentes_id NOT IN (SELECT utilerias_asistentes_id FROM pases_abordar) AND cv.status = 1 and pc.status = 2;
 sql;
         return $mysqli->queryAll($query);

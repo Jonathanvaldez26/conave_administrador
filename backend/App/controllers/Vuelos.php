@@ -186,6 +186,77 @@ html;
 html;
         }
 
+    $itienerarios = VuelosDao::getItinerarios();
+    $tabla_itinerarios = '';
+
+    foreach ($itienerarios as $key => $value) {
+        if ($value['aerolinea_escala_origen'] != NULL || $value['aerolinea_escala_destino'] != NULL || $value['aeropuerto_escala_salida'] != NULL) {
+            $tabla_itinerarios .=<<<html
+        <tr>
+            <td><br><br><span class="badge badge-info">Escala</span></td>
+            <td>
+                {$value['aerolinea_origen']}
+                <br><br>
+                {$value['aerolinea_escala_origen']}
+            </td>
+            <td>
+                {$value['aerolinea_destino']}
+                <br><br>
+                {$value['aerolinea_escala_destino']}
+            </td>
+            <td>
+                {$value['fecha_salida']}
+                <br><br>
+                {$value['fecha_escala_salida']}
+            </td>
+            <td>
+                {$value['fecha_regreso']}
+                <br><br>
+                {$value['fecha_escala_regreso']}
+            </td>
+            <td>
+                {$value['aeropuerto_salida']}
+                <br><br>
+                {$value['aeropuerto_escala_salida']}
+            </td>
+        </tr>
+        
+html;
+        } else {
+            $tabla_itinerarios .=<<<html
+        <tr>
+            <td></td>
+            <td>
+                {$value['aerolinea_origen']}
+            </td>
+            <td>
+                {$value['aerolinea_destino']}
+            </td>
+            <td>
+                {$value['fecha_salida']}
+            </td>
+            <td>
+                {$value['fecha_regreso']}
+            </td>
+            <td>
+                {$value['aeropuerto_salida']}
+            </td>
+        </tr>
+        
+html;
+        }
+
+        
+    }
+
+    // <tr>
+    //         <td><span class="badge badge-info">Escala</span></td>
+    //         <td>{$value['aerolinea_escala_origen']}</td>
+    //         <td>{$value['aerolinea_escala_destino']}</td>
+    //         <td>{$value['fecha_escala_salida']}</td>
+    //         <td>{$value['fecha_escala_regreso']}</td>
+    //         <td></td>
+    //     </tr>
      $totalvuelos = '';
      foreach (VuelosDao::getCountVuelos() as $key => $value)
      {
@@ -239,6 +310,7 @@ html;
      View::set('idAeropuertoDestino',$this->getAeropuertosDestino());
      View::set('tabla',$tabla);
      View::set('tabla1',$tabla1);
+     View::set('tabla_itinerarios',$tabla_itinerarios);
      View::set('totalvuelos',$totalvuelos);
      View::set('totalvueloscargadossalida',$totalvueloscargadossalida);
      View::set('totalvueloscargadosllegada',$totalvueloscargadosllegada);

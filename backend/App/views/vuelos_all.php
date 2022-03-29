@@ -575,7 +575,8 @@
                                             <table class="table align-items-center mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLÍNEA ORIGEN</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">TIPO</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLÍNEA ORIGEN</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLIÍEA DESTINO</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FECHA SALIDA</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FECHA REGRESO</th>
@@ -583,7 +584,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php echo $tabla1; ?>
+                                                    <?php echo $tabla_itinerarios; ?>
                                                 </tbody>
                                             </table>
                                         </div>

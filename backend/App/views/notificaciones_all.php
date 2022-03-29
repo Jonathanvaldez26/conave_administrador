@@ -566,7 +566,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="h-100" style="box-shadow: 0 15px 15px 0 rgb(0 0 0 / 30%); border-radius: 15px;">
-                                        <h2 class="m-4" >Configuración</h2>
+                                        <h2 class="m-4" >Notificaciones</h2>
                                     </div>
                                 </div>
                             </div>
@@ -582,7 +582,7 @@
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-12 col-md-8 col-lg-8 m-auto">
-                                <a href="/Reportes">
+                                <a href="#">
                                     <div class="card up-card">
                                         <div class="row m-4 text-center">
                                             <div class="col-12 m-auto mb-3">
@@ -594,7 +594,7 @@
                                                 <div class="col-auto my-auto">
                                                     <div class="h-100">
                                                         <h5 class="mb-1">
-                                                            Reportes
+                                                            PDF
                                                         </h5>
                                                         <p class="mb-0 font-weight-bold text-sm">
                                                         </p>
@@ -614,7 +614,7 @@
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-12 col-md-8 col-lg-8 m-auto">
-                                <a href="/Notificaciones">
+                                <a href="#">
                                     <div class="card up-card">
                                         <div class="row m-4 text-center">
                                             <div class="col-12 m-auto mb-3">
@@ -626,7 +626,7 @@
                                                 <div class="col-auto my-auto">
                                                     <div class="h-100">
                                                         <h5 class="mb-1">
-                                                            Notificaciones
+                                                            Excel
                                                         </h5>
                                                         <p class="mb-0 font-weight-bold text-sm">
                                                         </p>

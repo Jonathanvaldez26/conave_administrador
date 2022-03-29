@@ -36937,4 +36937,9 @@ table.dataTable.no-footer {
   color: white;
   left: auto;
 }
+
+.scroll-notif{
+  overflow-y: auto;
+  max-height: 25rem;
+}
 /*# sourceMappingURL=dashboard-pro.css.map */

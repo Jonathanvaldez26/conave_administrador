@@ -48,7 +48,8 @@ html;
       if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
         $comprobantes = ComprobantesVacunacionDao::getAll();
       }else{
-        $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];        ;
+        $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
+        var_dump($id_linea.'asdasdasd');
         $comprobantes = ComprobantesVacunacionDao::getComprobatesByLinea($id_linea['id_linea_ejecutivo']);
       }
 

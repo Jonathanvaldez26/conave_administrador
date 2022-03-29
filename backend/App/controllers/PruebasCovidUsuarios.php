@@ -6,6 +6,7 @@ use \Core\View;
 use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
+use \App\models\Linea as LineaDao;
 use \App\models\PruebasCovidUsuarios as PruebasCovidUsuariosDao;
 
 class PruebasCovidUsuarios extends Controller{
@@ -36,12 +37,23 @@ class PruebasCovidUsuarios extends Controller{
         }
       </style>
 html;
+    $btnVacunacionEditarHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_vacunacion", 5) == 0) ? "style=\"display:none;\"" : "";
 
     $tabla = '';
     $tabla_no_v = '';
     $tabla_rechazados = '';
 
-      $pruebas = PruebasCovidUsuariosDao::getAll();
+    $permisos = Controller::getPermisoGlobalUsuario($this->__usuario)[0];
+      
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
+        $pruebas = PruebasCovidUsuariosDao::getAll();
+      }else{
+        $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
+        $pruebas = PruebasCovidUsuariosDao::getComprobatesByLinea($id_linea['id_linea_ejecutivo']);
+      }
+      // $pruebas = PruebasCovidUsuariosDao::getAll();
+      //$id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
+      //var_dump( $id_linea);
 
       foreach ($pruebas as $key => $value) {
 
@@ -53,6 +65,8 @@ html;
               <td class="text-center">
                 <span class="badge badge-danger"><i class="fas fa-times"></i> Rechazado</span> <br>
                 <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
+                <hr>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
               </td>
               <td>
                 <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
@@ -222,6 +236,8 @@ html;
                 <td class="text-center">
                   <span class="badge badge-success"><i class="fas fa-check"></i> Aprobada</span> <br>
                   <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
+                  <hr>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
                 </td>
                 <td>
                   <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
@@ -391,6 +407,8 @@ html;
                 <td class="text-center">
                   <span class="badge badge-warning text-dark"><i class="fas fa-clock"></i> Pendiente</span> <br>
                   <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v'] }</span>
+                  <hr>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
                 </td>
                 <td>
                   <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
@@ -505,6 +523,28 @@ html;
                                   </button>
                                 </div>
 
+                                <script>
+                                    $(document).ready(function(){
+                                        console.log($('#ver-documento-{$value['id_c_v']} p textarea').val());
+                                        $('#ver-documento-{$value['id_c_v']} #nota_en_base_v').val($('#ver-documento-{$value['id_c_v']} p textarea').val());
+                                        $('#ver-documento-{$value['id_c_v']} #nota_en_base_r').val($('#ver-documento-{$value['id_c_v']} p textarea').val());
+
+                                        $('#ver-documento-{$value['id_c_v']} p textarea').on('keyup',function(){
+                                          $('#ver-documento-{$value['id_c_v']} #nota_en_base_v').val($('#ver-documento-{$value['id_c_v']} p textarea').val());
+                                          $('#ver-documento-{$value['id_c_v']} #nota_en_base_r').val($('#ver-documento-{$value['id_c_v']} p textarea').val());
+                                          console.log($('#ver-documento-{$value['id_c_v']} #nota_en_base_v').val());
+                                          console.log($('#ver-documento-{$value['id_c_v']} #nota_en_base_r').val());
+                                          if($('#ver-documento-{$value['id_c_v']} #nota_en_base_r').val() == ''){
+                                            $('#ver-documento-{$value['id_c_v']} #btn-aceptar').prop('disabled',true);
+                                            $('#ver-documento-{$value['id_c_v']} #btn-rechazar').prop('disabled',true);
+                                          } else {
+                                            
+                                          }
+                                        });
+                                        
+                                    });
+                                </script>
+
                                 <div class="hide-section editar_section_textarea" id="editar_section_textarea">
                                   <form class="form-horizontal guardar_nota_pendiente" id="guardar_nota_pendiente" action="" method="POST">
                                     <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
@@ -528,18 +568,48 @@ html;
 html;
                             }else{
                               $tabla_no_v .=<<<html
-                                <p>
-                                  {$value['nota']}
-                                </p>
-                                <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
+                                <script>
+                                    $(document).ready(function(){
+                                        console.log($('#ver-documento-{$value['id_c_v']} p textarea').val());
+                                        
+                                        $('#ver-documento-{$value['id_c_v']} #btn-aceptar').prop('disabled',true);
+                                        $('#ver-documento-{$value['id_c_v']} #btn-rechazar').prop('disabled',true);
+                                        $('#ver-documento-{$value['id_c_v']} #nota_en_base_v').val($('#ver-documento-{$value['id_c_v']} p textarea').val());
+                                        $('#ver-documento-{$value['id_c_v']} #nota_en_base_r').val($('#ver-documento-{$value['id_c_v']} p textarea').val());
+
+                                        $('#ver-documento-{$value['id_c_v']} p textarea').on('keyup',function(){
+                                          $('#ver-documento-{$value['id_c_v']} #nota_en_base_v').val($('#ver-documento-{$value['id_c_v']} p textarea').val());
+                                          $('#ver-documento-{$value['id_c_v']} #nota_en_base_r').val($('#ver-documento-{$value['id_c_v']} p textarea').val());
+                                          console.log($('#ver-documento-{$value['id_c_v']} #nota_en_base_v').val());
+                                          console.log($('#ver-documento-{$value['id_c_v']} #nota_en_base_r').val());
+                                          if($('#ver-documento-{$value['id_c_v']} #nota_en_base_r').val() == ''){
+                                            $('#ver-documento-{$value['id_c_v']} #btn-aceptar').prop('disabled',true);
+                                            $('#ver-documento-{$value['id_c_v']} #btn-rechazar').prop('disabled',true);
+                                          } else {
+                                            $('#ver-documento-{$value['id_c_v']} #btn-aceptar').prop('disabled',false);
+                                            $('#ver-documento-{$value['id_c_v']} #btn-rechazar').prop('disabled',false);
+                                          }
+                                        });
+                                        
+                                    });
+                                </script>
+                              <div>
+
+                                <form class="form-horizontal guardar_nota_pendiente" id="guardar_nota_pendiente" action="" method="POST">
                                   <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
                                   <p>
                                     <textarea class="form-control nota" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
                                   </p>
-                                  <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark w-50 guardar_editar_nota"  >
-                                    Guardar
-                                  </button>
+                                  <div class="row">
+                                    <div class="col-md-6 col-12">
+                                    <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark guardar_editar_nota" >
+                                      Guardar
+                                    </button>
+                                    </div>
+                                  </div>
                                 </form>
+                              
+                              </div>
 html;
                             }
               $tabla_no_v .=<<<html
@@ -553,7 +623,8 @@ html;
                               <form class="form-horizontal btn_validar" id="btn_validar" action="" method="POST">
                                 <input type="hidden" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly >
                                 <input type="hidden" id="id_asistente" name="id_asistente" value="{$value['utilerias_asistentes_id']}" readonly >
-                                <button type="submit" class="btn bg-gradient-success" >
+                                <input type="hidden" id="nota_en_base_v" name="nota_en_base_v" required="true" value="" readonly>
+                                <button type="submit" id="btn-aceptar" class="btn bg-gradient-success" >
                                   Aceptar
                                 </button>
                               </form>
@@ -562,7 +633,8 @@ html;
                               <form class="form btn_rechazar" id="btn_rechazar" action="" method="POST">
                                 <input type="hidden" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly >
                                 <input type="hidden" id="id_asistente" name="id_asistente" value="{$value['utilerias_asistentes_id']}" readonly >
-                                <button type="submit" class="btn bg-gradient-secondary" >
+                                <input type="hidden" id="nota_en_base_r" name="nota_en_base_r" required="true" value="" readonly>
+                                <button type="submit" id="btn-rechazar" class="btn bg-gradient-secondary" >
                                   Rechazar
                                 </button>
                               </form>

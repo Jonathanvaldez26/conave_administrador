@@ -7,6 +7,7 @@ use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\RegistroAsistencia AS RegistroAsistenciaDao;
+use DateTime;
 
 class RegistroAsistencia{
    
@@ -153,11 +154,12 @@ html;
 
     public function registroAsistencia($clave, $code){
 
-        $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
+        $hora_actual = new DateTime();
+        // $hora_actual->setTimezone(new DateTimeZone('Europe/Amsterdam'));
 
+        $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
         $bu = RegistroAsistenciaDao::getBu();
-        
         $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
 
         if($user_clave){
@@ -177,6 +179,7 @@ html;
                 'insert'=>$insert,
                 'msg_insert'=>$msg_insert,
                 'hay_asistente'=> $hay_asistente,
+                'hora_actual'=>$hora_actual,
             ];
         }else{
             $data = [

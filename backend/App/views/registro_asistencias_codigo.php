@@ -252,16 +252,20 @@
 
         let mes_asist = parseInt($('#fecha').html().substr(5,2));
         let dia_asist = parseInt($('#fecha').html().substr(8,2));
+        let anio_asist = parseInt($('#fecha').html().substr(0,4));
 
-        console.log(dia_asist);
+        // console.log(anio_asist);
 
-        if (mes != mes_asist || dia != dia_asist) {
+        if (mes != mes_asist || dia != dia_asist || anio != anio_asist) {
             document.getElementById('codigo_registro').setAttribute('disabled','');
         }
     }
     
     $(document).ready(function() {
 
+        let codigo = '';
+        var link_a = $(location).attr('href');
+        var clave_a = link_a.substr(link_a.indexOf('codigo/')+7,link_a.length);
         
         bloquearRegistro();
 

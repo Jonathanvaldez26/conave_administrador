@@ -558,14 +558,14 @@
         </div> -->
 
 
-        <div class="row">
+        <div class="row mb-6">
             <div class="col-lg-12 position-relative z-index-2">
                 <div class="card card-plain">
                     <div class="card-body p-3 text-center">
                         <div class="row text-center ">
                             <div class="col-lg-12">
-                                <div class="">
-                                    <div class="d-flex flex-column h-100">
+                                <div class="card">
+                                    <div class="h-100" style="box-shadow: 0 15px 15px 0 rgb(0 0 0 / 30%); border-radius: 15px;">
                                         <h2 class="m-4" >Configuración</h2>
                                     </div>
                                 </div>
@@ -581,16 +581,16 @@
                 <div class="card card-plain">
                     <div class="card-body p-3">
                         <div class="row">
-                            <div class="col-6 m-auto">
+                            <div class="col-12 col-md-8 col-lg-8 m-auto">
                                 <a href="#">
                                     <div class="card up-card">
-                                        <div class="row m-4">
-                                            <div class="col-3">
-                                                <div class="bg-gradient-red avatar avatar-l position-relative" >
-                                                    <span class="fas fa-syringe m-3" style="font-size: x-large;"></span>
+                                        <div class="row m-4 text-center">
+                                            <div class="col-12 m-auto mb-3">
+                                                <div class="bg-gradient-red avatar avatar-xxl position-relative" >
+                                                    <span class="fas fa-file-pdf m-3" style="font-size: xxx-large;"></span>
                                                 </div>
                                             </div>
-                                            <div class="col-9 m-auto">
+                                            <div class="col-12 m-auto">
                                                 <div class="col-auto my-auto">
                                                     <div class="h-100">
                                                         <h5 class="mb-1">
@@ -613,16 +613,16 @@
                 <div class="card card-plain">
                     <div class="card-body p-3">
                         <div class="row">
-                            <div class="col-6 m-auto">
+                            <div class="col-12 col-md-8 col-lg-8 m-auto">
                                 <a href="#">
                                     <div class="card up-card">
-                                        <div class="row m-4">
-                                            <div class="col-3">
-                                                <div class="bg-gradient-red avatar avatar-l position-relative" >
-                                                    <span class="fas fa-syringe m-3" style="font-size: x-large;"></span>
+                                        <div class="row m-4 text-center">
+                                            <div class="col-12 m-auto mb-3">
+                                                <div class="bg-gradient-red avatar avatar-xxl position-relative" >
+                                                    <span class="fas fa-bell m-3" style="font-size: xxx-large;"></span>
                                                 </div>
                                             </div>
-                                            <div class="col-9 m-auto">
+                                            <div class="col-12 m-auto">
                                                 <div class="col-auto my-auto">
                                                     <div class="h-100">
                                                         <h5 class="mb-1">
@@ -642,7 +642,35 @@
                 </div>
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
+                <div class="card card-plain">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="">
+                                    <div class="row m-4">
+                                        <div class="col-12">
+                                            <div class="col-auto my-auto">
+                                                <div class="h-100">
+                                                    <h5 class="mb-1">
+                                                        
+                                                    </h5>
+                                                    <p class="mb-0 font-weight-bold text-sm">
+                                                        <br> <br>
+                                                        <a href="mailto:jvaldez_2610@hotmail.com"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulka" style="font-size: 13px"></span> </h6></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row mt-4">
             <div class="col-lg-5 mb-lg-0 mb-4">
                 <div class="card z-index-2">
@@ -674,7 +702,7 @@
             </div>
         </div>
 
-        <div class="fixed-bottom space-wa" >
+        <div class="fixed-bottom space-wa" hidden>
             <div class="m-5">
                 <a href="https://api.whatsapp.com/send?phone=5255 8010 4181&text=Buen%20d%C3%ADa" target="_blank">
                     <span class="fa fa-whatsapp px-3 py-2-5 icon-wa bg-gradient-success"></span>

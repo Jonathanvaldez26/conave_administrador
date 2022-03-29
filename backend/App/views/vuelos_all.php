@@ -1128,7 +1128,8 @@
                 $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
                 $('.next').addClass("btn-outline-danger btn-rounded mx-2");
                 $('a.btn').addClass("btn-rounded");
-                $('.odd').addClass("bg-gray-conave-100");
+                $('.odd').addClass("bg-gray-conave");
+                $('.even').addClass("bg-white").removeClass("bg-gray-conave-100");
             },
             "language": {
             

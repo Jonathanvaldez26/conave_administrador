@@ -5,6 +5,7 @@ defined("APPPATH") OR die("Access denied");
 use \Core\View;
 use \Core\Controller;
 use \App\models\Vuelos as VuelosDao;
+use \App\controllers\Mailer;
 
 class Vuelos extends Controller{
 
@@ -458,6 +459,11 @@ html;
             $asistente_name = VuelosDao::getAsistenteNombreItinerarioById($utilerias_asistentes_id)[0];
             $documento->_nombre_asistente = $asistente_name['nombre'];
 
+            $msg = [
+                'name' => $asistente_name['nombre'],
+                'email' => $asistente_name['usuario']
+            ];
+
             $utilerias_administradores_id = $_POST["user_"];
             $documento->_utilerias_administradores_id = $utilerias_administradores_id;
 
@@ -564,6 +570,9 @@ html;
             $id = VuelosDao::insertItinerario($documento);
 
             if ($id) {
+               
+                // $mailer = new Mailer();
+                // $mailer->mailer($msg);
                 echo 'success';
 
             } else {

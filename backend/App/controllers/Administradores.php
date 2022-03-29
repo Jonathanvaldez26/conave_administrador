@@ -1726,7 +1726,7 @@ html;
         $permisos = explode('-', $permisos);
 
         $permisos = ($permisos[0] == '') ? array('', '', '', '', '', '') : $permisos; /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
-        //$check_habilitado = ($permisos[0] == '') ? array('', 'disabled', 'disabled', 'disabled', 'disabled') : array('', '', '', '', '', ''); /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
+        $check_habilitado = ($permisos[0] == '') ? array('', 'disabled', 'disabled', 'disabled', 'disabled') : array('', '', '', '', '', ''); /*si no tiene el permiso de "ver" se quitan todos los demas permisos */
       } else {
         $permisos = array('checked', 'checked', 'checked', 'checked', 'checked', 'checked');
       }

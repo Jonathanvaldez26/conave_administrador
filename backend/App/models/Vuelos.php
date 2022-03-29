@@ -70,6 +70,40 @@ sql;
         return $id;
 
     }
+
+    public static function insertItinerario($data){
+        $mysqli = Database::getInstance(1);
+        $query=<<<sql
+        INSERT INTO itinerario (id_itinerario, aerolinea_origen, aerolinea_destino, fecha_salida, hora_salida, fecha_regreso, hora_regreso, aeropuerto_salida, aeropuerto_regreso, nota, utilerias_asistentes_id, utilerias_administradores_id, status, fecha_alta) 
+        VALUES (null, :aerolinea_origen, :aerolinea_destino, :fecha_salida, :hora_salida, :fecha_regreso, :hora_regreso, :aeropuerto_salida, :aeropuerto_regreso,:nota, :utilerias_asistentes_id, :utilerias_administradores_id, 1, NOW());
+sql;
+        $parametros = array(
+            ':aerolinea_origen'=>$data->_aerolinea_origen,
+            ':aerolinea_destino'=>$data->_aerolinea_destino,
+            ':fecha_salida'=>$data->_fecha_salida,
+            ':hora_salida'=>$data->_hora_salida,
+            ':fecha_regreso'=>$data->_fecha_regreso,
+            ':hora_regreso'=>$data->_hora_regreso,
+            ':aeropuerto_salida'=>$data->_aeropuerto_salida,
+            ':aeropuerto_regreso'=>$data->_aeropuerto_regreso,
+            ':nota'=>$data->_nota_itinerario,
+            ':utilerias_asistentes_id'=>$data->_utilerias_asistentes_id,
+            ':utilerias_administradores_id'=>$data->_utilerias_administradores_id
+        );
+        $id = $mysqli->insert($query,$parametros);
+        $accion = new \stdClass();
+        $accion->_sql= $query;
+        $accion->_id_asistente = $data->_utilerias_asistentes_id;
+        $accion->_titulo = "Itinerario";
+        //$accion->_descripcion = 'Un ejecutivo ha cargado su '.$accion->_titulo;
+        $accion->_descripcion = 'Hola '.$data->_nombre_asistente.', Tu itinerario de viaje ha sido cargado con exito <button class="btn btn-sm btn-info btn-itinerario" data-toggle="modal" data-target="#ver-itinerario" >Ver aquí</button>,';
+        $accion->_id = $id;
+        UtileriasNotificacionesLog::addAccion($accion);
+        
+        return $id;
+
+    }
+
     public static function update($data){
         
     }
@@ -90,6 +124,32 @@ sql;
         return $mysqli->queryAll($query);
     }
 
+    public static function getAsistenteNombreItinerario(){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id 
+        from utilerias_asistentes ua 
+        INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
+        INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id
+        INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.utilerias_asistentes_id 
+        WHERE cv.status = 1 and pc.status = 2;
+sql;
+        return $mysqli->queryAll($query);
+    }
+
+    public static function getAsistenteNombreItinerarioById($id){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id 
+        from utilerias_asistentes ua 
+        INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
+        INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id
+        INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.utilerias_asistentes_id 
+        WHERE cv.status = 1 and pc.status = 2 AND ua.utilerias_asistentes_id = $id;
+sql;
+        return $mysqli->queryAll($query);
+    }
+
     public static function getAeropuertoOrigen(){
         $mysqli = Database::getInstance();
         $query=<<<sql
@@ -102,6 +162,14 @@ sql;
         $mysqli = Database::getInstance();
         $query=<<<sql
         SELECT * FROM `aeropuertos` where id_aeropuerto = 40;
+sql;
+        return $mysqli->queryAll($query);
+    }
+
+    public static function getAeropuertosAll(){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT * FROM `aeropuertos`
 sql;
         return $mysqli->queryAll($query);
     }
@@ -126,6 +194,14 @@ sql;
         $mysqli = Database::getInstance();
         $query=<<<sql
         SELECT COUNT(*) as total FROM `pases_abordar` where status = 1 and tipo = 2;
+sql;
+        return $mysqli->queryAll($query);
+    }
+
+    public static function getAerolineas(){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+            SELECT * FROM catalogo_aerolinea
 sql;
         return $mysqli->queryAll($query);
     }

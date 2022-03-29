@@ -102,6 +102,14 @@ html;
 
 html;
 
+    //tab Itinerario
+    
+
+
+
+
+    //end tab itinerartio
+
      $vuelos = VuelosDao::getAllLlegada();
      $tabla= '';
      foreach ($vuelos as $key => $value) {
@@ -221,6 +229,11 @@ html;
      View::set('configuracionHidden', $configuracionHidden);
      View::set('utileriasHidden', $utileriasHidden);
 
+     View::set('aerolineas', $this->getAerolineas());
+     View::set('aeropuertos', $this->getAeropuertosAll());
+     View::set('asistentesItinerartio', $this->getAsistentesItinerario());     
+     
+
      View::set('idAsistente',$this->getAsistentes());
      View::set('idAeropuertoOrigen',$this->getAeropuertosOrigen());
      View::set('idAeropuertoDestino',$this->getAeropuertosDestino());
@@ -310,6 +323,16 @@ html;
         return $asistentes;
     }
 
+    public function getAsistentesItinerario(){
+        $asistentes = '';
+        foreach (VuelosDao::getAsistenteNombreItinerario() as $key => $value) {
+            $asistentes .=<<<html
+      <option value="{$value['utilerias_asistentes_id']}"> {$value['nombre']}</option>
+html;
+        }
+        return $asistentes;
+    }
+
     public function getAeropuertosOrigen(){
         $aeropuertos = '';
         foreach (VuelosDao::getAeropuertoOrigen() as $key => $value) {
@@ -328,6 +351,96 @@ html;
 html;
         }
         return $aeropuertos;
+    }
+
+    public function getAeropuertosAll(){
+        $aeropuertos = '';
+        foreach (VuelosDao::getAeropuertosAll() as $key => $value) {
+            $aeropuertos .=<<<html
+      <option value="{$value['id_aeropuerto']}"> {$value['iata']} - {$value['aeropuerto']}</option>
+html;
+        }
+        return $aeropuertos;
+    }
+
+    public function getAerolineas(){
+        $aerolineas = '';
+        foreach (VuelosDao::getAerolineas() as $key => $value) {
+            $aerolineas .=<<<html
+      <option value="{$value['id_aerolinea']}"> {$value['nombre']} </option>
+html;
+        }
+        return $aerolineas;
+    }
+
+    public function itinerario(){
+
+        $documento = new \stdClass();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $utilerias_asistentes_id = $_POST['id_asistente'];
+            $documento->_utilerias_asistentes_id = $utilerias_asistentes_id;
+
+            $asistente_name = VuelosDao::getAsistenteNombreItinerarioById($utilerias_asistentes_id)[0];
+            $documento->_nombre_asistente = $asistente_name['nombre'];
+
+            $utilerias_administradores_id = $_POST["user_"];
+            $documento->_utilerias_administradores_id = $utilerias_administradores_id;
+
+
+
+            $aerolinea_origen = $_POST['aerolinea_origen'];
+            $documento->_aerolinea_origen = $aerolinea_origen;
+
+            $aerolinea_destino = $_POST['aerolinea_destino'];
+            $documento->_aerolinea_destino = $aerolinea_destino;
+
+            $fecha_salida = $_POST['fecha_salida'];
+            $documento->_fecha_salida = $fecha_salida;
+
+            $hora_salida = $_POST['hora_salida'];
+            $documento->_hora_salida = $hora_salida;
+
+            $fecha_regreso = $_POST['fecha_regreso'];
+            $documento->_fecha_regreso = $fecha_regreso;
+
+            $hora_regreso = $_POST['hora_regreso'];
+            $documento->_hora_regreso = $hora_regreso;
+
+            $aeropuerto_salida = $_POST['aeropuerto_salida'];
+            $documento->_aeropuerto_salida = $aeropuerto_salida;
+
+            $aeropuerto_regreso = $_POST['aeropuerto_regreso'];
+            $documento->_aeropuerto_regreso = $aeropuerto_regreso;
+
+            $nota_itinerario = $_POST['nota_itinerario'];
+            $documento->_nota_itinerario = $nota_itinerario;
+
+            
+            if($nota_itinerario == '')
+            {
+                $nota_itinerario = 'Sin Notas';
+                $documento->_nota_itinerario = $nota_itinerario;
+            }
+            else
+            {
+                $nota_itinerario = $_POST['nota_itinerario'];
+                $documento->_nota_itinerario = $nota_itinerario;
+            }
+
+            $id = VuelosDao::insertItinerario($documento);
+
+            if ($id) {
+                echo 'success';
+
+            } else {
+                echo 'fail';
+            }
+        } else {
+            echo 'fail REQUEST';
+        }
+
     }
 
 }

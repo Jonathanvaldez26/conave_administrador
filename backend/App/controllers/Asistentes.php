@@ -687,8 +687,6 @@ html;
     public function getAllColaboradoresAsignados() {
 
         $html = "";
-        $personal = '';
-        $pase = '';
         foreach (GeneralDao::getAllColaboradores() as $key => $value) {
             if ($value['alergias'] == '' && $value['alergias_otro'] == '') {
                 $alergia = 'No registro alergias';
@@ -710,8 +708,6 @@ html;
                 $alergia_medicamento = 'No posee ninguna alergia';
             }
 
-
-
             if ($value['restricciones_alimenticias'] == 'ninguna' || $value['restricciones_alimenticias'] == '') {
                 $restricciones_alimenticias = 'No registro restricciones alimenticias';
             } else {
@@ -721,8 +717,6 @@ html;
                     $restricciones_alimenticias = $value['restricciones_alimenticias'];
                 }
             }
-
-
 
             $value['apellido_paterno'] = utf8_encode($value['apellido_paterno']);
             $value['apellido_materno'] = utf8_encode($value['apellido_materno']);
@@ -784,10 +778,7 @@ html;
                 $pase_ida = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;"  data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fa-plane-departure" style="font-size: 13px;"></span> Regreso (<i class="fas fa-times" style="color: #7B241C;"></i>)</p>';
             }
 
-
-
             $pruebacovid = PruebasCovidUsuariosDao::getByIdUser($value['utilerias_asistentes_id'])[0];
-
 
             if ($pruebacovid) {
 
@@ -828,7 +819,7 @@ html;
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                     
-                            <a href="/Asistentes/Detalles/{$value['utilerias_asistentes_id']}">
+                            <a href="/Asistentes/Detalles/{$value['clave']}">
                             <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']} $estatus</h6></a>
                             <div class="d-flex flex-column justify-content-center">
                                 <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['usuario']}</h6></a></u>

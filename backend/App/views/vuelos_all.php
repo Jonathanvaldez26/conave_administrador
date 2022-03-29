@@ -575,8 +575,8 @@
                                             <table class="table align-items-center mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLINEA ORIGEN</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLINEA DESTINO</th>
+                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLÍNEA ORIGEN</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLIÍEA DESTINO</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FECHA SALIDA</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FECHA REGRESO</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROPUERTO DE SALIDA</th>
@@ -812,8 +812,10 @@
                                 <div class="card-body">
                                     <!-- <div class="form-group row"> -->
                                     <div class="row form-group">
+                                        <h6 class="text-center">Itinerario Vuelo Rumbo a la Convención 2022</h6>
+                                        <hr>
                                         <div class="form-group col-md-6">
-                                            <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_origen">Seleccione el origen de la aerolinea (Ida)<span class="required">*</span></label>
+                                            <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_origen">Seleccione el origen de la aerolínea (Ida)<span class="required">*</span></label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
                                                 <select class="form-control" name="aerolinea_origen" id="aerolinea_origen" required>
@@ -822,6 +824,16 @@
                                                 </select>
                                             </div>
                                             <span id="availability_"></span>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <label class="form-label" style="color: green">Si el vuelo tiene escalas, seleccione una opción *</label>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                                <select class="form-control" name="escala_ida" id="escala_ida" required>
+                                                    <option value="1000" selected>Sin Escalas</option>
+                                                    <?php echo $aeropuertos; ?>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Fecha de salida del vuelo *</label>
@@ -840,6 +852,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
                                                 <select class="form-control" name="aeropuerto_salida" id="aeropuerto_salida" required>
+                                                    <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $aeropuertos; ?>
                                                 </select>
                                             </div>
@@ -853,10 +866,11 @@
                                 <div class="card-body">
                                     <!-- <div class="form-group row"> -->
                                     <div class="row form-group">
-
+                                        <h6 class="text-center">Itinerario Vuelo Rumbo a Casa</h6>
+                                        <hr>
 
                                         <div class="form-group col-md-6">
-                                            <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_destino">Seleccione el origen de la aerolinea (Regreso) <span class="required">*</span></label>
+                                            <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_destino">Seleccione el origen de la aerolínea (Regreso) <span class="required">*</span></label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
                                                 <select class="form-control" name="aerolinea_destino" id="aerolinea_destino" required>
@@ -867,7 +881,16 @@
                                             <span id="availability_"></span>
                                         </div>
 
-
+                                        <div class="col-12 col-lg-6">
+                                            <label class="form-label" style="color: green">Si el vuelo tiene escalas, seleccione una opción *</label>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                                <select class="form-control" name="escala_regreso" id="escala_regreso" required>
+                                                    <option value="1000" selected>Sin Escalas</option>
+                                                    <?php echo $aeropuertos; ?>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Fecha de regreso del vuelo*</label>
                                             <div class="input-group">

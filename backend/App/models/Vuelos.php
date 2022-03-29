@@ -158,7 +158,7 @@ sql;
         ae.aeropuerto as aeropuerto_escala_salida, 
         aa.aeropuerto as aeropuerto_regreso,
         
-        concat(ra.nombre, " ", ra.segundo_nombre, " ", ra.apellido_paterno, " ", ra.apellido_materno) as nombre 
+        concat(ra.nombre, " ", ra.segundo_nombre, " ", ra.apellido_paterno, " ", ra.apellido_materno) as nombre_completo
       FROM itinerario i 
       INNER JOIN catalogo_aerolinea cao on cao.id_aerolinea = i.aerolinea_origen 
       LEFT JOIN catalogo_aerolinea caeo on caeo.id_aerolinea = i.aerolinea_escala_origen

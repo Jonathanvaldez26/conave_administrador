@@ -11,7 +11,9 @@ class Asistentes{
     public static function getAll(){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ra.nombre as nombre_usuario, ra.apellido_paterno, ra.apellido_materno, ra.id_registro_acceso, ua.status as status_user, ra.email AS correo_electronico, ch.nombre_categoria, uad.nombre as nombre_administrador
+      SELECT ra.nombre as nombre_usuario, ra.apellido_paterno, ra.apellido_materno, 
+      ra.id_registro_acceso, ra.clave, ua.status as status_user, ra.email AS correo_electronico, 
+      ch.nombre_categoria, uad.nombre as nombre_administrador
       FROM registros_acceso ra
       INNER JOIN utilerias_asistentes ua ON (ra.id_registro_acceso = ua.id_registro_acceso) 
       INNER JOIN habitaciones_hotel hh ON (ra.id_habitacion = hh.id_habitacion) 
@@ -109,8 +111,6 @@ sql;
         
     }
 
-
-
     public static function getUsuarioByName($nombre){
       $mysqli = Database::getInstance();
       $query=<<<sql
@@ -120,6 +120,14 @@ sql;
         
     }
 
+    public static function getAllRegistrosAcceso(){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM registros_acceso
+sql;
+      return $mysqli->queryAll($query);
+        
+    }
 
     public static function getById($id){
         $mysqli = Database::getInstance();
@@ -129,16 +137,42 @@ sql;
         return $mysqli->queryAll($query);
     }
 
+    public static function getByClaveRA($clave){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT ua.utilerias_asistentes_id, ra.id_registro_acceso, ua.usuario, ua.contrasena, ua.politica, ua.status FROM utilerias_asistentes ua
+      INNER JOIN registros_acceso ra
+      ON ra.id_registro_acceso = ua.id_registro_acceso
+      WHERE ra.clave = '$clave'
+sql;
+      return $mysqli->queryAll($query);
+  }
+
     public static function getRegistroAccesoById($id){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT * FROM registros_acceso ra
+      SELECT ra.*, tv.clave AS clave_ticket, tv.qr FROM registros_acceso ra
       INNER JOIN utilerias_asistentes ua
       ON ra.id_registro_acceso = ua.id_registro_acceso
+      INNER JOIN ticket_virtual tv
+      ON tv.id_ticket_virtual = ra.id_ticket_virtual
       WHERE utilerias_asistentes_id = $id
 sql;
       return $mysqli->queryAll($query);
   }
+
+  public static function getRegistroAccesoByClaveRA($clave){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    SELECT ra.*, tv.clave AS clave_ticket, tv.qr FROM registros_acceso ra
+    INNER JOIN utilerias_asistentes ua
+    ON ra.id_registro_acceso = ua.id_registro_acceso
+    INNER JOIN ticket_virtual tv
+    ON tv.id_ticket_virtual = ra.id_ticket_virtual
+    WHERE ra.clave = '$clave'
+sql;
+    return $mysqli->queryAll($query);
+}
 
     public static function getHabitacionByNumber($numero_habitacion){
       $mysqli = Database::getInstance();
@@ -162,6 +196,17 @@ sql;
 sql;
         return $mysqli->queryAll($query);
     }
+
+    public static function getTotalByClaveRA($clave){
+      $mysqli = Database::getInstance();
+      $query=<<<sql
+      SELECT * FROM utilerias_asistentes ua 
+      INNER JOIN registros_acceso ra 
+      ON ua.id_registro_acceso = ra.id_registro_acceso 
+      WHERE ra.clave = '$clave'
+sql;
+      return $mysqli->queryAll($query);
+  }
 
     public static function getIdRegistroAcceso($id){
       $mysqli = Database::getInstance();
@@ -216,10 +261,20 @@ sql;
       return $mysqli->update($query, $parametros);
   }
 
-    public static function generateCodeOnTable($code,$email,$id_tv){
+    public static function generateCodeOnTable($email,$id_tv){
+      $mysqli = Database::getInstance(true);
+      // UPDATE registros_acceso SET clave = '$code', id_ticket_virtual = $id_tv WHERE email = '$email'
+      $query=<<<sql
+      UPDATE registros_acceso SET id_ticket_virtual = $id_tv WHERE email = '$email'
+sql;
+
+      return $mysqli->update($query);
+    }
+
+    public static function updateClaveRA($id,$clave){
       $mysqli = Database::getInstance(true);
       $query=<<<sql
-      UPDATE registros_acceso SET clave = '$code', id_ticket_virtual = $id_tv WHERE email = '$email'
+      UPDATE registros_acceso SET clave = '$clave' WHERE id_registro_acceso = '$id'
 sql;
 
       return $mysqli->update($query);
@@ -244,7 +299,10 @@ sql;
     public static function getClaveByEmail($email){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT * FROM registros_acceso WHERE email = '$email';
+      SELECT ra.*, tv.clave AS clave_ticket FROM registros_acceso ra
+      INNER JOIN ticket_virtual tv
+      ON tv.id_ticket_virtual = ra.id_ticket_virtual
+      WHERE email = '$email';
 sql;
       return $mysqli->queryAll($query);
   }

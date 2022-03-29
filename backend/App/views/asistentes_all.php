@@ -354,15 +354,15 @@
                             <div class="nav-wrapper position-relative end-0">
                                 <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                                     <li class="nav-item">
-                                    <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                    <a class="nav-link mb-0 px-0 py-1 active" href="#Invitados" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
                                         <span class="fa fa-door-open"></span>
                                         <span class="ms-1">Acceso Invitados</span>
                                     </a>
                                     </li>
                                     <li class="nav-item">
-                                    <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                    <a class="nav-link mb-0 px-0 py-1" href="#Faltantes" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
                                         <span class="fa fa-user-check"></span>
-                                        <span class="ms-1">Acceso a Registro</span>
+                                        <span class="ms-1">Faltantes de Registro</span>
                                     </a>
                                     </li>
                                 </ul>
@@ -418,10 +418,8 @@
                         </div>
                         <div class="card-body px-0 pb-0">
                             <div class="tab-content" id="v-pills-tabContent">
-                                <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
+                                <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="Invitados" role="tabpanel" aria-labelledby="Invitados">
                                     <div class="table-responsive p-0" >
-                                        
-                                        <form name="all" id="all" action="/Colaboradores/delete" method="POST">
                                             <table class="align-items-center mb-0 table table-borderless" id="user_list_table">
                                                 <thead class="thead-light">
                                                     <tr>
@@ -433,29 +431,29 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    
                                                     <?php echo $tabla; ?>
-
                                                 </tbody>
-
                                             </table>
-                                        </form>
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
-                                    
-                                    <ul class="list-group">
-                                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                            <div class="d-flex flex-column">
-                                                <h6 class="mb-3 text-sm">Peter Parker</h6>
-                                                <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="Faltantes" role="tabpanel" aria-labelledby="Faltantes">
+                                    <div class="table-responsive p-0" >
+                                        <table class="align-items-center mb-0 table table-borderless" id="user_list_table">
+                                            <thead class="thead-light">
+                                            <tr>
 
+                                                <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Usuario</th>
+                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php echo $tabla; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -484,9 +482,55 @@
 
 <?php echo $footer; ?>
 
+<script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+<link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+
 <script>
 
     $(document).ready(function() {
+        $('#user_list_table').DataTable({
+            "drawCallback": function( settings ) {
+            $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+            $('.paginate_button').addClass("btn").removeClass("paginate_button");
+            $('.dataTables_length').addClass("m-4");
+            $('.dataTables_info').addClass("mx-4");
+            $('.dataTables_filter').addClass("m-4");
+            $('input').addClass("form-control");
+            $('select').addClass("form-control");
+            $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+            $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+            $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+            $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+            $('a.btn').addClass("btn-rounded");
+            },
+            "language": {
+            
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            
+            }
+        });
+        
         $(".btn_download").on("click", function(event){
             event.preventDefault();
             var valueButton = $(this).attr('id');

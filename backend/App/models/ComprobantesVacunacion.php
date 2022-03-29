@@ -47,6 +47,20 @@ sql;
     public static function insert($data){
         
     }
+
+    public static function insertLog($ua_id,$fecha_doc,$n_dosis,$m_dosis,$doc,$nota){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        INSERT INTO log_comprobante_vacuna
+        (utilerias_asistentes_id, fecha_carga_documento, numero_dosis, marca_dosis, 
+        documento, nota, hora_rechazo) 
+        
+        VALUES('$ua_id','$fecha_doc','$n_dosis','$m_dosis','$doc','$nota',NOW())
+sql;
+  
+        return $mysqli->insert($query);
+    }
+
     public static function update($data){
         
     }
@@ -58,6 +72,17 @@ sql;
         $mysqli = Database::getInstance(true);
         $query =<<<sql
         SELECT COUNT(id_comprobante_vacuna) FROM comprobante_vacuna WHERE validado = 1
+sql;
+
+        return $mysqli->queryAll($query);        
+    }
+
+    public static function getComprobanteById($id){
+        $mysqli = Database::getInstance();
+        $query =<<<sql
+        SELECT *, documento AS doc 
+		FROM comprobante_vacuna
+        WHERE id_comprobante_vacuna = '$id'
 sql;
 
         return $mysqli->queryAll($query);        

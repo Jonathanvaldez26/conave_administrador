@@ -121,12 +121,12 @@
                                                     <div class="card-header pb-0 p-3">
                                                         <div class="d-flex justify-content-between">
                                                             <h6 class="mb-0"><span class="fa fa-list-alt"></span> <?php echo $nombre;?></h6>
-                                                            <button type="button" class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Aqui va la descripcion de la asistencia">
+                                                            <button type="button" class="btn btn-icon-only btn-rounded btn-outline-secondary mb-0 ms-2 btn-sm d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="<?php echo $descripcion; ?>">
                                                                 <i class="fas fa-info" aria-hidden="true"></i>
                                                             </button>
                                                         </div>
                                                         <hr>
-                                                        <h7 class="mb-0"><span class="fa fa-calendar-alt"></span> <?php echo $fecha_asistencia; ?> | Asistencia abierta de <span class="fa fa-clock-o"></span> <?php echo $hora_asistencia_inicio; ?> a <span class="fa fa-clock-o"></span> <?php echo $hora_asistencia_fin; ?> <strong> Hora Local Cancún</strong></h7>
+                                                        <h7 class="mb-0"><span class="fa fa-calendar-alt"></span> <span id="fecha"><?php echo $fecha_asistencia; ?></span> | Asistencia abierta de <span class="fa fa-clock-o"></span> <span id="hora-inicio"><?php echo $hora_asistencia_inicio; ?></span> a <span class="fa fa-clock-o"></span> <span id="hora-fin"><?php echo $hora_asistencia_fin; ?></span> <strong> Hora Local Cancún</strong></h7>
                                                         <hr>
                                                         <br>
                                                         <div class="row gx-2 gx-sm-3">
@@ -235,12 +235,35 @@
             }
         })
     }
-    
-    $(document).ready(function() {
 
+    function bloquearRegistro(){
         let codigo = '';
         var link_a = $(location).attr('href');
         var clave_a = link_a.substr(link_a.indexOf('codigo/')+7,link_a.length);
+
+        let date = new Date();
+
+        let anio = date.getFullYear();
+        let mes = (parseInt(date.getMonth())+1);
+        let dia = date.getDate();
+
+        console.log(date);
+        console.log(anio+' '+mes+' '+dia);
+
+        let mes_asist = parseInt($('#fecha').html().substr(5,2));
+        let dia_asist = parseInt($('#fecha').html().substr(8,2));
+
+        console.log(dia_asist);
+
+        if (mes != mes_asist || dia != dia_asist) {
+            document.getElementById('codigo_registro').setAttribute('disabled','');
+        }
+    }
+    
+    $(document).ready(function() {
+
+        
+        bloquearRegistro();
 
         // mostrarDatos(clave_a);
 
@@ -288,7 +311,6 @@
             }
         });
 
-        
         
         function mostrarDatos(clave){
             $.ajax({

@@ -94,7 +94,7 @@ html;
                 <td>{$value['nombre_linea']}</td>
                 <td>{$value['nombre_bu']}</td>
                 <td>
-                    <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button">
+                    <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Eliminar Registro de {$value['nombre_completo']}">
                         <i class="fas fa-trash"></i>
                     </button>
                 </td>

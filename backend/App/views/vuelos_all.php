@@ -867,16 +867,12 @@
                                         <div class="col-md-6 col-sm-12">
                                             <label class="form-label mt-4">¿Tiene escala ida?</label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="confirm_escala_ida" id="confirm_escala_ida_si" value="si">
-                                                <label class="form-check-label" for="confirm_escala_ida_si">
-                                                    Si
-                                                </label>
+                                                <input class="form-check-input" type="radio" name="confirm_escala_ida" id="confirm_escala_ida_si" value="si" style="padding: 6px;">
+                                                <label class="form-check-label" for="confirm_escala_ida_si">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="confirm_escala_ida" id="confirm_escala_ida_no" value="no" checked>
-                                                <label class="form-check-label" for="confirm_escala_ida_no">
-                                                    No
-                                                </label>
+                                                <input class="form-check-input" type="radio" name="confirm_escala_ida" id="confirm_escala_ida_no" value="no" style="padding: 6px;" checked>
+                                                <label class="form-check-label" for="confirm_escala_ida_no">No</label>
                                             </div>
 
                                         </div>
@@ -994,16 +990,12 @@
                                         <div class="col-md-6 col-sm-12">
                                             <label class="form-label mt-4">¿Tiene escala regreso?</label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="confirm_escala_regreso" id="confirm_escala_regreso_si" value="si">
-                                                <label class="form-check-label" for="confirm_escala_regreso_si">
-                                                    Si
-                                                </label>
+                                                <input class="form-check-input" type="radio" name="confirm_escala_regreso" id="confirm_escala_regreso_si" value="si" style="padding: 6px;">
+                                                <label class="form-check-label" for="confirm_escala_regreso_si">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="confirm_escala_regreso" id="confirm_escala_regreso_no" value="no" checked>
-                                                <label class="form-check-label" for="confirm_escala_regreso_no">
-                                                    No
-                                                </label>
+                                                <input class="form-check-input" type="radio" name="confirm_escala_regreso" id="confirm_escala_regreso_no" value="no" style="padding: 6px;"checked>
+                                                <label class="form-check-label" for="confirm_escala_regreso_no">No</label>
                                             </div>
 
                                         </div>

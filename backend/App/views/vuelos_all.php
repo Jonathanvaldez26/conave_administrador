@@ -653,13 +653,13 @@
                                 <div class="col-12 col-lg-6">
                                     <label class="form-label">Número de Vuelo *</label>
                                     <div class="input-group">
-                                        <input id="numero_vuelo" name="numero_vuelo" minlength="6" maxlength="8" class="form-control" type="text" placeholder="OKL018" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        <input id="numero_vuelo" name="numero_vuelo" minlength="6" maxlength="8" class="form-control" type="text" placeholder="OKL018" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <label class="form-label">Hora de Llegada (Local) *</label>
                                     <div class="input-group">
-                                        <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="hora llegada" required="" style="text-transform:uppercase;">
+                                        <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="hora llegada" required="" style="text-transform:uppercase;" >
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -739,13 +739,13 @@
                                 <div class="col-12 col-lg-6">
                                     <label class="form-label">Número de Vuelo *</label>
                                     <div class="input-group">
-                                        <input id="numero_vuelo" name="numero_vuelo" minlength="6" maxlength="8" class="form-control" type="text" placeholder="OKL018" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        <input id="numero_vuelo" name="numero_vuelo" minlength="6" maxlength="8" class="form-control" type="text" placeholder="OKL018" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <label class="form-label">Hora de Llegada (Local) *</label>
                                     <div class="input-group">
-                                        <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" onfocus="focused(this)" onfocusout="defocused(this)"" style=" text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" style=" text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" >
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -788,17 +788,17 @@
                     <div class="modal-body">
                         <!-- <p style="font-size: 12px">A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p> 
                         <hr>-->
-                        <form method="POST" enctype="multipart/form-data" id="form_itinerario">
+                        <form method="POST" enctype="multipart/form-data" id="form_itinerario" >
 
                             <div class="card">
                                 <div class="card-body">
-                                    <!-- <div class="form-group row"> -->
+                                    
                                     <div class="row form-group">
                                         <div class="form-group col-md-12">
                                             <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_asistente">Seleccione el nombre del invitado al que cargaran el itinerario <span class="required">*</span></label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                                <select class="form-control" name="id_asistente" id="id_asistente_itinerario" required>
+                                                <select class="form-control select_2" name="id_asistente" id="id_asistente_itinerario" required>
                                                     <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $asistentesItinerartio; ?>
                                                 </select>
@@ -809,59 +809,134 @@
                                 </div>
                             </div>
 
+                           
+
                             <div class="card mt-3">
                                 <div class="card-body">
-                                    <!-- <div class="form-group row"> -->
+                                    
                                     <div class="row form-group">
                                         <h6 class="text-center">Itinerario Vuelo Rumbo a la Convención 2022</h6>
                                         <hr>
                                         <div class="form-group col-md-6">
-                                            <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_origen">Seleccione el origen de la aerolínea (Ida)<span class="required">*</span></label>
+                                            <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_origen">Seleccione el nombre de la aerolínea (Ida)<span class="required">*</span></label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                                <select class="form-control" name="aerolinea_origen" id="aerolinea_origen" required>
+                                                <select class="form-control select_2" name="aerolinea_origen" id="aerolinea_origen" required>
                                                     <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $aerolineas; ?>
                                                 </select>
                                             </div>
                                             <span id="availability_"></span>
                                         </div>
-                                        <div class="col-12 col-lg-6">
+                                        <!-- <div class="col-12 col-lg-6">
                                             <label class="form-label" style="color: green">Si el vuelo tiene escalas, seleccione una opción *</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                                <select class="form-control" name="escala_ida" id="escala_ida" required>
-                                                    <option value="1000" selected>Sin Escalas</option>
-                                                    <?php echo $aeropuertos; ?>
+                                                
+                                                <select class="form-control" name="aeropuerto_salida" id="aeropuerto_salida" required>
+                                                    
+                                                    
+                                                    <?php //echo $aeropuertos; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Fecha de salida del vuelo *</label>
                                             <div class="input-group">
-                                                <input id="fecha_salida" name="fecha_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;">
+                                                <input id="fecha_salida" name="fecha_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;"  min="2022-04-05" max="2022-04-09">
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Hora de salida del vuelo *</label>
                                             <div class="input-group">
-                                                <input id="hora_salida" name="hora_salida" maxlength="29" class="form-control" type="time" placeholder="hora llegada" required="" style="text-transform:uppercase;">
+                                                <input id="hora_salida" name="hora_salida" maxlength="29" class="form-control" type="time" placeholder="hora llegada" required="" style="text-transform:uppercase;" >
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-12">
                                             <label class="form-label">Aeropuerto de Salida *</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                                <select class="form-control" name="aeropuerto_salida" id="aeropuerto_salida" required>
+                                                <select class="form-control select_2" name="aeropuerto_salida" id="aeropuerto_salida" required>
                                                     <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $aeropuertos; ?>
                                                 </select>
                                             </div>
                                         </div>
 
+                                      
+                                        <div class="col-md-6 col-sm-12">
+                                            <label class="form-label mt-4">¿Tiene escala ida?</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="confirm_escala_ida" id="confirm_escala_ida_si" value="si">
+                                                <label class="form-check-label" for="confirm_escala_ida_si">
+                                                    Si
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="confirm_escala_ida" id="confirm_escala_ida_no" value="no" checked>
+                                                <label class="form-check-label" for="confirm_escala_ida_no">
+                                                    No
+                                                </label>
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Escala ida -->
+                            <div class="card mt-3" id="cont-escala-ida">
+                                <div class="card-body">
+                                    
+                                    <div class="row form-group">
+                                        <div class="button-hide" style="display: flex; justify-content: end; ">
+                                            <button id="btn_acordion_escala_down1" style="border:none; background-color:white;"><i class="fa fa-solid fa-arrow-down"></i></button>
+                                            <button id="btn_acordion_escala_up1" style="border:none; background-color:white; display:none;"><i class="fa fa-solid fa-arrow-up" ></i></button>
+                                        </div>
+                                        <h6 class="text-center">Itinerario Vuelo Rumbo a la Convención 2022 (Escala 1)</h6>
+                                        <hr>
+                                        <div id="content-itinerario-escala-ida" class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_escala_origen">Seleccione el nombre de la aerolínea (Ida)<span class="required">*</span></label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                                    <select class="form-control select_2" name="aerolinea_escala_origen" id="aerolinea_escala_origen" required>
+                                                        <option selected disabled>Seleccione una Opción</option>
+                                                        <?php echo $aerolineas; ?>
+                                                    </select>
+                                                </div>
+                                                <span id="availability_"></span>
+                                            </div>
+                                        
+                                            <div class="col-12 col-lg-6">
+                                                <label class="form-label">Fecha de salida del vuelo *</label>
+                                                <div class="input-group">
+                                                    <input id="fecha_escala_salida" name="fecha_escala_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-09">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <label class="form-label">Hora de salida del vuelo *</label>
+                                                <div class="input-group">
+                                                    <input id="hora_escala_salida" name="hora_escala_salida" maxlength="29" class="form-control" type="time" placeholder="hora llegada" >
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12">
+                                                <label class="form-label">Aeropuerto de Salida *</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                                    <select class="form-control select_2" name="aeropuerto_escala_salida" id="aeropuerto_escala_salida" required>
+                                                        <option selected disabled>Seleccione una Opción</option>
+                                                        <?php echo $aeropuertos; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="card mt-3">
                                 <div class="card-body">
@@ -874,7 +949,7 @@
                                             <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_destino">Seleccione el origen de la aerolínea (Regreso) <span class="required">*</span></label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                                <select class="form-control" name="aerolinea_destino" id="aerolinea_destino" required>
+                                                <select class="form-control select_2" name="aerolinea_destino" id="aerolinea_destino" required>
                                                     <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $aerolineas; ?>
                                                 </select>
@@ -882,35 +957,115 @@
                                             <span id="availability_"></span>
                                         </div>
 
-                                        <div class="col-12 col-lg-6">
+                                        <!-- <div class="col-12 col-lg-6">
                                             <label class="form-label" style="color: green">Si el vuelo tiene escalas, seleccione una opción *</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                                <select class="form-control" name="escala_regreso" id="escala_regreso" required>
-                                                    <option value="1000" selected>Sin Escalas</option>
-                                                    <?php echo $aeropuertos; ?>
+                                                
+                                                <select class="form-control" name="aeropuerto_regreso" id="aeropuerto_regreso" required>
+                                                    <option selected disabled>Seleccione una Opción</option>
+                                                    
+                                                    <?php //echo $aeropuertos; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Fecha de regreso del vuelo*</label>
                                             <div class="input-group">
-                                                <input id="fecha_regreso" name="fecha_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;">
+                                                <input id="fecha_regreso" name="fecha_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-09">
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Hora de regreso del vuelo*</label>
                                             <div class="input-group">
-                                                <input id="hora_regreso" name="hora_regreso" maxlength="29" class="form-control" type="time" placeholder="hora regreso" required="" style="text-transform:uppercase;">
+                                                <input id="hora_regreso" name="hora_regreso" maxlength="29" class="form-control" type="time" placeholder="hora regreso" required="" style="text-transform:uppercase;" >
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-12">
                                             <label class="form-label">Aeropuerto de Regreso *</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                                <select class="form-control" name="aeropuerto_regreso" id="aeropuerto_regreso" required>
+                                                <select class="form-control select_2" name="aeropuerto_regreso" id="aeropuerto_regreso" required>
                                                     <?php echo $aeropuertos; ?>
                                                 </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+                                            <label class="form-label mt-4">¿Tiene escala regreso?</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="confirm_escala_regreso" id="confirm_escala_regreso_si" value="si">
+                                                <label class="form-check-label" for="confirm_escala_regreso_si">
+                                                    Si
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="confirm_escala_regreso" id="confirm_escala_regreso_no" value="no" checked>
+                                                <label class="form-check-label" for="confirm_escala_regreso_no">
+                                                    No
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Escala regreso -->
+                            <div class="card mt-3" id="cont-escala-regreso">
+                                <div class="card-body">
+                                    <!-- <div class="form-group row"> -->
+                                    <div class="row form-group">
+                                        <div class="button-hide" style="display: flex; justify-content: end; ">
+                                            <button id="btn_acordion_escala_down2" style="border:none; background-color:white;"><i class="fa fa-solid fa-arrow-down"></i></button>
+                                            <button id="btn_acordion_escala_up2" style="border:none; background-color:white; display:none;"><i class="fa fa-solid fa-arrow-up" ></i></button>
+                                        </div>
+                                        <h6 class="text-center">Itinerario Rumbo casa (Escala 2)</h6>
+                                        <hr>
+                                        <div id="content-itinerario-escala-regreso" class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_escala_destino">Seleccione el nombre de la aerolínea (Ida)<span class="required">*</span></label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                                    <select class="form-control select_2" name="aerolinea_escala_destino" id="aerolinea_escala_destino" required>
+                                                        <option selected disabled>Seleccione una Opción</option>
+                                                        <?php echo $aerolineas; ?>
+                                                    </select>
+                                                </div>
+                                                <span id="availability_"></span>
+                                            </div>
+                                            <!-- <div class="col-12 col-lg-6">
+                                                <label class="form-label" style="color: green">Si el vuelo tiene escalas, seleccione una opción *</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                
+                                                    <select class="form-control" name="aeropuerto_escala_salida" id="aeropuerto_escala_salida" required>
+                                                        <option selected disabled>Seleccione una Opción</option>
+                                                        
+                                                        <?php //echo $aeropuertos; ?>
+                                                    </select>
+                                                </div>
+                                            </div> -->
+                                            <div class="col-12 col-lg-6">
+                                                <label class="form-label">Fecha de salida del vuelo *</label>
+                                                <div class="input-group">
+                                                    <input id="fecha_escala_regreso" name="fecha_escala_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-09">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-6">
+                                                <label class="form-label">Hora de salida del vuelo *</label>
+                                                <div class="input-group">
+                                                    <input id="hora_escala_regreso" name="hora_escala_regreso" maxlength="29" class="form-control" type="time" placeholder="hora llegada" style="text-transform:uppercase;" >
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-12">
+                                                <label class="form-label">Aeropuerto de Salida *</label>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
+                                                    <select class="form-control select_2" name="aeropuerto_escala_regreso" id="aeropuerto_escala_regreso" required>
+                                                        <option selected disabled>Seleccione una Opción</option>
+                                                        <?php echo $aeropuertos; ?>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -918,6 +1073,7 @@
                                 </div>
                             </div>
 
+      
                             <div class="card mt-3">
                                 <div class="card-body">
                                     <!-- <div class="form-group row"> -->
@@ -931,7 +1087,7 @@
                                             </div>
                                         </div>
                                         <input type="hidden" id="user_" name="user_" value="<?= $_SESSION["utilerias_administradores_id"] ?>">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -956,7 +1112,52 @@
 <script>
     $(document).ready(function() {
 
+       // $('.select_2').select2();
+        
 
+        $("#cont-escala-ida").css("display", "none");
+        $("#cont-escala-regreso").css("display", "none");
+
+        
+
+        $("#btn_acordion_escala_down1").on("click",function(event){
+            event.preventDefault();
+            $(this).hide();
+            $("#btn_acordion_escala_up1").css("display","block");
+            $("#hora_escala_salida").removeAttr('required');
+            $("#content-itinerario-escala-ida").hide('slow');
+           
+        });
+
+        $("#btn_acordion_escala_up1").on("click",function(event){
+            event.preventDefault();
+            $(this).hide();
+            $("#btn_acordion_escala_down1").css("display","block");
+            $("#hora_escala_salida").attr('required','required');
+            $("#content-itinerario-escala-ida").show('slow');
+           
+        });
+
+
+        $("#btn_acordion_escala_down2").on("click",function(event){
+            event.preventDefault();
+            $(this).hide();
+            $("#btn_acordion_escala_up2").css("display","block");
+            $("#hora_escala_regreso").removeAttr('required');
+            $("#content-itinerario-escala-regreso").hide('slow');
+            
+        });
+
+        $("#btn_acordion_escala_up2").on("click",function(event){
+            event.preventDefault();
+            $(this).hide();
+            $("#btn_acordion_escala_down2").css("display","block");
+            $("#hora_escala_regreso").attr('required','required');
+            $("#content-itinerario-escala-regreso").show('slow');
+            
+        });
+
+        
 
         $("#form_itinerario").on("submit", function(event) {
             event.preventDefault();
@@ -992,5 +1193,29 @@
             });
         });
 
+    });
+
+    $('input:radio[name="confirm_escala_ida"]').change(function() {
+        if ($("#confirm_escala_ida_no").is(':checked')) {
+            $("#cont-escala-ida").css("display", "none");
+
+        }
+
+        if ($("#confirm_escala_ida_si").is(':checked')) {
+            $("#cont-escala-ida").css("display", "block");
+
+        }
+    });
+
+    $('input:radio[name="confirm_escala_regreso"]').change(function() {
+        if ($("#confirm_escala_regreso_no").is(':checked')) {
+            $("#cont-escala-regreso").css("display", "none");
+
+        }
+
+        if ($("#confirm_escala_regreso_si").is(':checked')) {
+            $("#cont-escala-regreso").css("display", "block");
+
+        }
     });
 </script>

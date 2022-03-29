@@ -25,6 +25,7 @@ class Vuelos extends Controller{
 
     public function index() {
      $extraHeader =<<<html
+     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 html;
 
      $extraFooter =<<<html
@@ -58,6 +59,7 @@ html;
             <script src="/js/login.js"></script>
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
           <!-- VIEJO FIN -->
+          <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
    <script>
     $( document ).ready(function() {
 
@@ -389,9 +391,24 @@ html;
             $documento->_utilerias_administradores_id = $utilerias_administradores_id;
 
 
-
             $aerolinea_origen = $_POST['aerolinea_origen'];
             $documento->_aerolinea_origen = $aerolinea_origen;
+
+            if(isset($_POST['aerolinea_escala_origen'])){
+                $aerolinea_escala_origen = $_POST['aerolinea_escala_origen'];
+            }else{
+                $aerolinea_escala_origen = '';
+            }           
+            $documento->_aerolinea_escala_origen = $aerolinea_escala_origen;
+
+            if(isset($_POST['aerolinea_escala_destino'])){
+                $aerolinea_escala_destino = $_POST['aerolinea_escala_destino'];
+            }else{
+                $aerolinea_escala_destino = '';
+            }
+
+            
+            $documento->_aerolinea_escala_destino = $aerolinea_escala_destino;
 
             $aerolinea_destino = $_POST['aerolinea_destino'];
             $documento->_aerolinea_destino = $aerolinea_destino;
@@ -399,8 +416,37 @@ html;
             $fecha_salida = $_POST['fecha_salida'];
             $documento->_fecha_salida = $fecha_salida;
 
+            if(isset($_POST['fecha_escala_salida'])){
+                $fecha_escala_salida = $_POST['fecha_escala_salida'];
+            }else{
+                $fecha_escala_salida = '';
+            }            
+            $documento->_fecha_escala_salida = $fecha_escala_salida;
+
+            if(isset($_POST['fecha_escala_regreso'])){
+                $fecha_escala_regreso = $_POST['fecha_escala_regreso'];
+            }else{
+                $fecha_escala_regreso = '';
+            }            
+            $documento->_fecha_escala_regreso = $fecha_escala_regreso;
+
             $hora_salida = $_POST['hora_salida'];
             $documento->_hora_salida = $hora_salida;
+
+
+            if(isset($_POST['hora_escala_salida'])){
+                $hora_escala_salida = $_POST['hora_escala_salida'];
+            }else{
+                $hora_escala_salida = '';
+            }            
+            $documento->_hora_escala_salida = $hora_escala_salida;
+
+            if(isset($_POST['hora_escala_regreso'])){
+                $hora_escala_regreso = $_POST['hora_escala_regreso'];
+            }else{
+                $hora_escala_regreso = '';
+            }            
+            $documento->_hora_escala_regreso = $hora_escala_regreso;
 
             $fecha_regreso = $_POST['fecha_regreso'];
             $documento->_fecha_regreso = $fecha_regreso;
@@ -410,6 +456,21 @@ html;
 
             $aeropuerto_salida = $_POST['aeropuerto_salida'];
             $documento->_aeropuerto_salida = $aeropuerto_salida;
+
+
+            if(isset($_POST['aeropuerto_escala_salida'])){
+                $aeropuerto_escala_salida = $_POST['aeropuerto_escala_salida'];
+            }else{
+                $aeropuerto_escala_salida = '';
+            }            
+            $documento->_aeropuerto_escala_salida = $aeropuerto_escala_salida;
+
+            if(isset($_POST['aeropuerto_escala_regreso'])){
+                $aeropuerto_escala_regreso = $_POST['aeropuerto_escala_regreso'];
+            }else{
+                $aeropuerto_escala_regreso = '';
+            }            
+            $documento->_aeropuerto_escala_regreso = $aeropuerto_escala_regreso;
 
             $aeropuerto_regreso = $_POST['aeropuerto_regreso'];
             $documento->_aeropuerto_regreso = $aeropuerto_regreso;

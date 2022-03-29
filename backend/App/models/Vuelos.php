@@ -74,18 +74,26 @@ sql;
     public static function insertItinerario($data){
         $mysqli = Database::getInstance(1);
         $query=<<<sql
-        INSERT INTO itinerario (id_itinerario, aerolinea_origen, aerolinea_destino, fecha_salida, hora_salida, fecha_regreso, hora_regreso, aeropuerto_salida, aeropuerto_regreso, nota, utilerias_asistentes_id, utilerias_administradores_id, status, fecha_alta) 
-        VALUES (null, :aerolinea_origen, :aerolinea_destino, :fecha_salida, :hora_salida, :fecha_regreso, :hora_regreso, :aeropuerto_salida, :aeropuerto_regreso,:nota, :utilerias_asistentes_id, :utilerias_administradores_id, 1, NOW());
+        INSERT INTO itinerario (id_itinerario, aerolinea_origen, aerolinea_escala_origen, aerolinea_destino, aerolinea_escala_destino, fecha_salida, fecha_escala_salida, hora_salida, hora_escala_salida, fecha_regreso, fecha_escala_regreso, hora_regreso, hora_escala_regreso, aeropuerto_salida, aeropuerto_escala_salida, aeropuerto_regreso, aeropuerto_escala_regreso, nota, utilerias_asistentes_id, utilerias_administradores_id, status, fecha_alta) 
+        VALUES (null, :aerolinea_origen, :aerolinea_escala_origen,:aerolinea_destino, :aerolinea_escala_destino,:fecha_salida, :fecha_escala_salida,:hora_salida, :hora_escala_salida,:fecha_regreso, :fecha_escala_regreso,:hora_regreso, :hora_escala_regreso,:aeropuerto_salida, :aeropuerto_escala_salida, :aeropuerto_regreso, :aeropuerto_escala_regreso,:nota, :utilerias_asistentes_id, :utilerias_administradores_id, 1, NOW());
 sql;
         $parametros = array(
             ':aerolinea_origen'=>$data->_aerolinea_origen,
+            ':aerolinea_escala_origen'=>$data->_aerolinea_escala_origen,            
             ':aerolinea_destino'=>$data->_aerolinea_destino,
+            ':aerolinea_escala_destino'=>$data->_aerolinea_escala_destino,
             ':fecha_salida'=>$data->_fecha_salida,
+            ':fecha_escala_salida'=>$data->_fecha_escala_salida,
             ':hora_salida'=>$data->_hora_salida,
+            ':hora_escala_salida'=>$data->_hora_escala_salida,
             ':fecha_regreso'=>$data->_fecha_regreso,
+            ':fecha_escala_regreso'=>$data->_fecha_escala_regreso,
             ':hora_regreso'=>$data->_hora_regreso,
+            ':hora_escala_regreso'=>$data->_hora_escala_regreso,
             ':aeropuerto_salida'=>$data->_aeropuerto_salida,
+            ':aeropuerto_escala_salida'=>$data->_aeropuerto_escala_salida,
             ':aeropuerto_regreso'=>$data->_aeropuerto_regreso,
+            ':aeropuerto_escala_regreso'=>$data->_aeropuerto_escala_regreso,
             ':nota'=>$data->_nota_itinerario,
             ':utilerias_asistentes_id'=>$data->_utilerias_asistentes_id,
             ':utilerias_administradores_id'=>$data->_utilerias_administradores_id
@@ -132,7 +140,7 @@ sql;
         INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
         INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id
         INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.utilerias_asistentes_id 
-        WHERE cv.status = 1 and pc.status = 2;
+        WHERE cv.validado = 1
 sql;
         return $mysqli->queryAll($query);
     }

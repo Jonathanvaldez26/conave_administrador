@@ -7,7 +7,8 @@ use \Core\MasterDom;
 use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\RegistroAsistencia AS RegistroAsistenciaDao;
-use DateTime;
+use \DateTime;
+use \DatetimeZone;
 
 class RegistroAsistencia{
    
@@ -89,11 +90,24 @@ html;
         foreach ($lista_registrados as $key => $value) {
             $tabla.=<<<html
             <tr>
-                <td>{$value['nombre_completo']} <span class="badge badge-info" style="color: white; background: {$value['color_linea']};">{$value['nombre_linea_ejecutivo']} </span></td>
-                <td><u><a href="mailto:{$value['email']}"><span class="fa fa-mail-bulk"> </span> {$value['email']}</a></u></td>
-                <td><u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><span class="fa fa-whatsapp" style="color:green;"> </span> {$value['telefono']}</a></u></td>
-                <td>{$value['nombre_linea']}</td>
-                <td>{$value['nombre_bu']}</td>
+                <td><b>{$value['nombre_completo']} </b> <span class="badge badge-info" style="color: white; background: {$value['color_linea']};"> {$value['nombre_linea_ejecutivo']} </span></td>
+                <td>
+                    <u><a href="mailto:{$value['email']}"><span class="fa fa-mail-bulk"> </span> {$value['email']}</a></u>
+                    <br><br>
+                    <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><span class="fa fa-whatsapp" style="color:green;"> </span> {$value['telefono']}</a></u>
+                </td>
+                <td>
+                    <b>Línea: </b>{$value['nombre_linea']}
+                    <br>
+                    <b>BU: </b>{$value['nombre_bu']}
+                    <br>
+                    <b>Posición: </b>{$value['nombre_posicion']} 
+                </td>
+                
+html;
+            if ($value['status'] == 1) {
+                $tabla.=<<<html
+                <td class="text-center"><span class="badge badge-success">En Tiempo</span><td>
                 <td>
                     <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Eliminar Registro de {$value['nombre_completo']}">
                         <i class="fas fa-trash"></i>
@@ -101,6 +115,18 @@ html;
                 </td>
             </tr>
 html;
+            } else if ($value['status'] == 2){
+                $tabla.=<<<html
+                <td class="text-center"><span class="badge badge-danger">Fuera del Horario</span><td>
+                <td>
+                    <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Eliminar Registro de {$value['nombre_completo']}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+html;
+            }
+           
 
         }
         
@@ -154,8 +180,8 @@ html;
 
     public function registroAsistencia($clave, $code){
 
-        $hora_actual = new DateTime();
-        // $hora_actual->setTimezone(new DateTimeZone('Europe/Amsterdam'));
+        $fecha = new DateTime('now', new DateTimeZone('America/Cancun'));
+        $now = $fecha->format(DATE_RFC822);
 
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
@@ -168,7 +194,7 @@ html;
                 $msg_insert = 'success_find_assistant';
             } else {
                 $msg_insert = 'fail_not_found_assistant';
-                $insert = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id']);
+                $insert = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id'],1);
             }
 
             $data = [
@@ -179,7 +205,7 @@ html;
                 'insert'=>$insert,
                 'msg_insert'=>$msg_insert,
                 'hay_asistente'=> $hay_asistente,
-                'hora_actual'=>$hora_actual,
+                'now'=>substr($now,12),
             ];
         }else{
             $data = [

@@ -162,10 +162,9 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Correo electrónico</th>
-                                    <th>Teléfono</th>
-                                    <th>Línea Principal</th>
-                                    <th>Bussiness Unity</th>
+                                    <th>Información Personal</th>
+                                    <th>Información de Trabajo</th>
+                                    <th>Status<th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>

@@ -79,10 +79,11 @@ sql;
     public static function getRegistrosAsistenciasByCode($code){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT a.nombre AS nombre_asistencia, ras.utilerias_asistentes_id, ua.usuario, ras.id_registro_asistencia,
+        SELECT a.nombre AS nombre_asistencia, ras.utilerias_asistentes_id, ua.usuario, ras.id_registro_asistencia, ras.status,
         ra.telefono, ra.email,
         lp.nombre AS nombre_linea,
         b.nombre AS nombre_bu,
+        p.nombre AS nombre_posicion,
         le.nombre AS nombre_linea_ejecutivo, le.color AS color_linea,
         CONCAT (ra.nombre,' ',ra.segundo_nombre,' ',apellido_paterno,' ',apellido_materno) AS nombre_completo
         FROM registros_asistencia ras
@@ -90,12 +91,14 @@ sql;
         INNER JOIN utilerias_asistentes ua
         INNER JOIN registros_acceso ra
         INNER JOIN linea_principal lp
+        INNER JOIN posiciones p
         INNER JOIN bu b
         ON a.id_asistencia = id_asistencias
         and ua.utilerias_asistentes_id = ras.utilerias_asistentes_id
         and ra.id_registro_acceso = ua.id_registro_acceso
         and lp.id_linea_principal = ra.id_linea_principal
         and b.id_bu = ra.id_bu
+        and p.id_posicion = ra.id_posicion
         INNER JOIN linea_ejecutivo le
         ON lp.id_linea_ejecutivo = le.id_linea_ejecutivo
         
@@ -115,11 +118,11 @@ sql;
         return $mysqli->queryAll($query);
     }
 
-    public static function addRegister($id_asistencia,$id_user){
+    public static function addRegister($id_asistencia,$id_user,$status){
         $mysqli = Database::getInstance();
         $query=<<<sql
         INSERT INTO registros_asistencia ( `id_asistencias`, `utilerias_asistentes_id`, `fecha_alta`, `status`) 
-        VALUES ($id_asistencia,$id_user,NOW(),1)
+        VALUES ($id_asistencia,$id_user,NOW(),$status)
 sql;
         $id = $mysqli->insert($query);
         $accion = new \stdClass();

@@ -571,8 +571,8 @@ html;
 
             if ($id) {
                
-                // $mailer = new Mailer();
-                // $mailer->mailer($msg);
+                $mailer = new Mailer();
+                $mailer->mailer($msg);
                 echo 'success';
 
             } else {

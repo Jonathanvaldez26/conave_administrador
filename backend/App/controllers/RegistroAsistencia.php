@@ -180,21 +180,27 @@ html;
 
     public function registroAsistencia($clave, $code){
 
-        $fecha = new DateTime('now', new DateTimeZone('America/Cancun'));
-        $now = $fecha->format(DATE_RFC822);
-
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
         $bu = RegistroAsistenciaDao::getBu();
-        $id_asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
+        $asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
+
+        $fecha = new DateTime('now', new DateTimeZone('America/Cancun'));
+        $hora_actual = substr($fecha->format(DATE_RFC822),15,5);
+        $a_tiempo = '';
+
+        if (substr($hora_actual,0,2) < substr($asistencia['hora_asistencia_incio'],0,2) || substr($hora_actual,0,2) > substr($asistencia['hora_asistencia_fin'],0,2)) {
+            $a_tiempo = 'Fuera del Horario';
+        }
+
 
         if($user_clave){
-            $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id'],$id_asistencia['id_asistencia'])[0];
+            $hay_asistente = RegistroAsistenciaDao::findAsistantById($user_clave['utilerias_asistentes_id'],$asistencia['id_asistencia'])[0];
             if ($hay_asistente) {
                 $msg_insert = 'success_find_assistant';
             } else {
                 $msg_insert = 'fail_not_found_assistant';
-                $insert = RegistroAsistenciaDao::addRegister($id_asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id'],1);
+                $insert = RegistroAsistenciaDao::addRegister($asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id'],1);
             }
 
             $data = [
@@ -205,7 +211,8 @@ html;
                 'insert'=>$insert,
                 'msg_insert'=>$msg_insert,
                 'hay_asistente'=> $hay_asistente,
-                'now'=>substr($now,12),
+                'hora_actual'=>$hora_actual,
+                'a_tiempo'=>$a_tiempo,
             ];
         }else{
             $data = [

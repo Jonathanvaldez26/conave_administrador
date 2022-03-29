@@ -201,6 +201,7 @@ html;
                 <!--span style="color: #f5f5f5;">.</span-->
                 <span class="badge badge-info">Escala <i class="fas fa-arrow-alt-circle-right"> </i></span>
             </td>
+            <td>{$value['nombre_completo']}</td>
             <td>
                 {$value['aerolinea_origen']}<br><br>
                 {$value['aerolinea_escala_origen']}
@@ -228,6 +229,7 @@ html;
             $tabla_itinerarios .=<<<html
         <tr>
             <td class="text-center"><span class="badge badge-secondary">Sin escala</span></td>
+            <td>{$value['nombre_completo']}</td>
             <td>
                 {$value['aerolinea_origen']}
             </td>

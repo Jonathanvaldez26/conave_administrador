@@ -195,30 +195,30 @@ html;
         if ($value['aerolinea_escala_origen'] != NULL || $value['aerolinea_escala_destino'] != NULL || $value['aeropuerto_escala_salida'] != NULL) {
             $tabla_itinerarios .=<<<html
         <tr>
-            <td><br><br><span class="badge badge-info">Escala</span></td>
+            <td><br><hr><span class="badge badge-info">Escala</span></td>
             <td>
                 {$value['aerolinea_origen']}
-                <br><br>
+                <hr>
                 {$value['aerolinea_escala_origen']}
             </td>
             <td>
                 {$value['aerolinea_destino']}
-                <br><br>
+                <hr>
                 {$value['aerolinea_escala_destino']}
             </td>
             <td>
                 {$value['fecha_salida']}
-                <br><br>
+                <hr>
                 {$value['fecha_escala_salida']}
             </td>
             <td>
                 {$value['fecha_regreso']}
-                <br><br>
+                <hr>
                 {$value['fecha_escala_regreso']}
             </td>
             <td>
                 {$value['aeropuerto_salida']}
-                <br><br>
+                <hr>
                 {$value['aeropuerto_escala_salida']}
             </td>
         </tr>

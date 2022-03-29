@@ -135,12 +135,7 @@ sql;
     public static function getAsistenteNombreItinerario(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id 
-        from utilerias_asistentes ua 
-        INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
-        INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id
-        INNER JOIN prueba_covid pc on pc.utilerias_asistentes_id = ua.utilerias_asistentes_id 
-        WHERE cv.validado = 1
+        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id from utilerias_asistentes ua INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id WHERE cv.validado = 1 AND ua.utilerias_asistentes_id NOT IN (SELECT utilerias_asistentes_id FROM itinerario);
 sql;
         return $mysqli->queryAll($query);
     }
@@ -148,7 +143,7 @@ sql;
     public static function getAsistenteNombreItinerarioById($id){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id 
+        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id, ua.usuario 
         from utilerias_asistentes ua 
         INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
         INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id

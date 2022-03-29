@@ -195,30 +195,29 @@ html;
         if ($value['aerolinea_escala_origen'] != NULL || $value['aerolinea_escala_destino'] != NULL || $value['aeropuerto_escala_salida'] != NULL) {
             $tabla_itinerarios .=<<<html
         <tr>
-            <td><br><hr><span class="badge badge-info">Escala</span></td>
+            <td class="text-center">
+                <span class="badge badge-success">Con escala</span><br><br>
+                <!--span style="color: #f5f5f5;">.</span-->
+                <span class="badge badge-info">Escala <i class="fas fa-arrow-alt-circle-right"> </i></span>
+            </td>
             <td>
-                {$value['aerolinea_origen']}
-                <hr>
+                {$value['aerolinea_origen']}<br><br>
                 {$value['aerolinea_escala_origen']}
             </td>
             <td>
-                {$value['aerolinea_destino']}
-                <hr>
+                {$value['aerolinea_destino']}<br><br>
                 {$value['aerolinea_escala_destino']}
             </td>
             <td>
-                {$value['fecha_salida']}
-                <hr>
+                {$value['fecha_salida']}<br><br>
                 {$value['fecha_escala_salida']}
             </td>
             <td>
-                {$value['fecha_regreso']}
-                <hr>
+                {$value['fecha_regreso']}<br><br>
                 {$value['fecha_escala_regreso']}
             </td>
             <td>
-                {$value['aeropuerto_salida']}
-                <hr>
+                {$value['aeropuerto_salida']}<br><br>
                 {$value['aeropuerto_escala_salida']}
             </td>
         </tr>
@@ -227,7 +226,7 @@ html;
         } else {
             $tabla_itinerarios .=<<<html
         <tr>
-            <td></td>
+            <td class="text-center"><span class="badge badge-secondary">Sin escala</span></td>
             <td>
                 {$value['aerolinea_origen']}
             </td>

@@ -575,7 +575,7 @@
                                             <table class="table align-items-center mb-0 table table-striped table-bordered" id="itinerario-tabla">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">TIPO</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLÍNEA ORIGEN</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLIÍEA DESTINO</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FECHA SALIDA</th>

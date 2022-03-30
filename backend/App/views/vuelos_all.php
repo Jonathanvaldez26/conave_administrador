@@ -576,12 +576,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NOMBRE</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLÍNEA ORIGEN</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLIÍEA DESTINO</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FECHA SALIDA</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FECHA REGRESO</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROPUERTO DE SALIDA</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Itinerario Rumbo a CONAVE</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Itinerario Regreso a Casa</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Alta</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -774,7 +772,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="Modal_Add_Itinerario" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal fade" id="Modal_Add_Itinerario" role="dialog" aria-labelledby="" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -843,7 +841,7 @@
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Fecha de salida del vuelo *</label>
                                             <div class="input-group">
-                                                <input id="fecha_salida" name="fecha_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;"  min="2022-04-05" max="2022-04-09">
+                                                <input id="fecha_salida" name="fecha_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;"  min="2022-04-05" max="2022-04-17">
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
@@ -908,7 +906,7 @@
                                             <div class="col-12 col-lg-6">
                                                 <label class="form-label">Fecha de salida del vuelo *</label>
                                                 <div class="input-group">
-                                                    <input id="fecha_escala_salida" name="fecha_escala_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-09">
+                                                    <input id="fecha_escala_salida" name="fecha_escala_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-17">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6">
@@ -968,7 +966,7 @@
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Fecha de regreso del vuelo*</label>
                                             <div class="input-group">
-                                                <input id="fecha_regreso" name="fecha_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-09">
+                                                <input id="fecha_regreso" name="fecha_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-17">
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
@@ -982,6 +980,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
                                                 <select class="form-control select_2" name="aeropuerto_regreso" id="aeropuerto_regreso" required>
+                                                <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $aeropuertos; ?>
                                                 </select>
                                             </div>
@@ -1041,7 +1040,7 @@
                                             <div class="col-12 col-lg-6">
                                                 <label class="form-label">Fecha de salida del vuelo *</label>
                                                 <div class="input-group">
-                                                    <input id="fecha_escala_regreso" name="fecha_escala_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-09">
+                                                    <input id="fecha_escala_regreso" name="fecha_escala_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-17">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6">
@@ -1105,7 +1104,11 @@
 <script>
     $(document).ready(function() {
 
+<<<<<<< HEAD
     //    $('.select_2').select2();
+=======
+       $('.select_2').select2();
+>>>>>>> 31a2be49eec2833ae75e358e454e33cbf0f664f7
 
        $('#itinerario-tabla').DataTable({
         "drawCallback": function( settings ) {

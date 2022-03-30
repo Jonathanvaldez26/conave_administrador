@@ -197,30 +197,62 @@ html;
             $tabla_itinerarios .=<<<html
         <tr>
             <td class="text-center">
-                <span class="badge badge-success">Con escala</span><br><br>
-                <!--span style="color: #f5f5f5;">.</span-->
-                <span class="badge badge-info">Escala <i class="fas fa-arrow-alt-circle-right"> </i></span>
-            </td>
-            <td>{$value['nombre_completo']}</td>
-            <td>
-                {$value['aerolinea_origen']}<br><br>
-                {$value['aerolinea_escala_origen']}
+                <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_itinerario'] }</span>
+                  <span class="badge badge-success">CON escala</span>
+                 <hr>
+                 <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
+                 
             </td>
             <td>
-                {$value['aerolinea_destino']}<br><br>
-                {$value['aerolinea_escala_destino']}
-            </td>
+                  <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
+
+                  <hr>
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br></p-->
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span><b> </b>{$value['telefono']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-mail-bulk" style="font-size: 13px;"></span><b>  </b><a "mailto:{$value['email']}">{$value['email']}</a></p-->
+
+                    <div class="d-flex flex-column justify-content-center">
+                        <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['email']}</h6></a></u>
+                        <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+                    </div>
+            </td> 
             <td>
-                {$value['fecha_salida']}<br><br>
-                {$value['fecha_escala_salida']}
-            </td>
-            <td>
-                {$value['fecha_regreso']}<br><br>
-                {$value['fecha_escala_regreso']}
-            </td>
-            <td>
-                {$value['aeropuerto_salida']}<br><br>
-                {$value['aeropuerto_escala_salida']}
+                  
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_salida']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_origen']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_salida']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_salida']}</h6>
+                  <hr>
+                  <span class="badge badge-success">Escala</span><br>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_escala_salida']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_escala_origen']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_escala_salida']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_escala_salida']}</h6>
+         
+                  </div>
+            </td> 
+             <td>
+                  
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_regreso']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_destino']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_regreso']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_regreso']}</h6>
+                  <hr>
+                  <span class="badge badge-success">Escala</span><br>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_escala_regreso']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_escala_destino']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_escala_regreso']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_escala_regreso']}</h6>
+         
+                  </div>
+            </td> 
+             <td>
+                {$value['fecha_registro']}
             </td>
         </tr>
         
@@ -228,22 +260,46 @@ html;
         } else {
             $tabla_itinerarios .=<<<html
         <tr>
-            <td class="text-center"><span class="badge badge-secondary">Sin escala</span></td>
-            <td>{$value['nombre_completo']}</td>
-            <td>
-                {$value['aerolinea_origen']}
+            <td class="text-center">
+                <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_itinerario'] }</span>
+                <span class="badge badge-primary">Sin escala</span>
+                 <hr>
+                 <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
+                 
             </td>
             <td>
-                {$value['aerolinea_destino']}
-            </td>
+                  <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
+                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
+
+                  <hr>
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br></p-->
+
+                    <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span><b> </b>{$value['telefono']}</p>
+                    <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-mail-bulk" style="font-size: 13px;"></span><b>  </b><a "mailto:{$value['email']}">{$value['email']}</a></p-->
+
+                    <div class="d-flex flex-column justify-content-center">
+                        <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['email']}</h6></a></u>
+                        <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+                    </div>
+            </td> 
             <td>
-                {$value['fecha_salida']}
-            </td>
-            <td>
-                {$value['fecha_regreso']}
-            </td>
-            <td>
-                {$value['aeropuerto_salida']}
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_salida']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_origen']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_salida']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_salida']} - Formato 24 horas</h6>
+            </td> 
+             <td>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_regreso']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_destino']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_regreso']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_regreso']} - Formato 24 horas</h6>
+             
+            </td> 
+             <td>
+                {$value['fecha_registro']}
             </td>
         </tr>
         

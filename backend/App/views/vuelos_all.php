@@ -982,6 +982,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
                                                 <select class="form-control select_2" name="aeropuerto_regreso" id="aeropuerto_regreso" required>
+                                                <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $aeropuertos; ?>
                                                 </select>
                                             </div>

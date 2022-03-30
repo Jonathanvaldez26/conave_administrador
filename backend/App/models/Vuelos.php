@@ -135,7 +135,8 @@ sql;
     public static function getItinerarios(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-SELECT 
+        
+        SELECT 
         i.id_itinerario, 
         i.fecha_alta as fecha_registro,
         b.nombre as nombre_bu,
@@ -162,6 +163,7 @@ SELECT
         a.aeropuerto as aeropuerto_salida, 
         ae.aeropuerto as aeropuerto_escala_salida, 
         aa.aeropuerto as aeropuerto_regreso,
+        aea.aeropuerto as aeropuerto_escala_regreso,
         concat(ra.nombre, " ", ra.segundo_nombre, " ", ra.apellido_paterno, " ", ra.apellido_materno) as nombre_completo
       FROM itinerario i 
       INNER JOIN catalogo_aerolinea cao on cao.id_aerolinea = i.aerolinea_origen 
@@ -171,6 +173,7 @@ SELECT
       INNER JOIN aeropuertos a on a.id_aeropuerto = i.aeropuerto_salida 
       LEFT JOIN aeropuertos ae on ae.id_aeropuerto = i.aeropuerto_escala_salida
       INNER JOIN aeropuertos aa on aa.id_aeropuerto = i.aeropuerto_regreso 
+      LEFT JOIN aeropuertos aea on aea.id_aeropuerto = i.aeropuerto_escala_regreso
       INNER JOIN utilerias_asistentes ua on ua.utilerias_asistentes_id = i.utilerias_asistentes_id 
       INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso
       INNER JOIN utilerias_asistentes u ON u.id_registro_acceso = ra.id_registro_acceso
@@ -180,6 +183,7 @@ SELECT
       INNER JOIN linea_ejecutivo le ON le.id_linea_ejecutivo = lp.id_linea_ejecutivo
       INNER JOIN asigna_linea al ON al.id_linea_ejecutivo = le.id_linea_ejecutivo
       INNER JOIN utilerias_administradores uad ON uad.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada;
+        
 sql;
         return $mysqli->queryAll($query);
     }

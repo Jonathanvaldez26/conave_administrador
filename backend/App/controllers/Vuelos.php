@@ -225,13 +225,13 @@ html;
                   <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_salida']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_origen']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_salida']}</h6>
-                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_salida']} - Formato 24 horas</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_salida']}</h6>
                   <hr>
-                  <span class="badge badge-success">Con escala</span><br>
-                  <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_regreso']}</h6>
+                  <span class="badge badge-success">Escala</span><br>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_escala_salida']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_escala_origen']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_escala_salida']}</h6>
-                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_escala_salida']} - Formato 24 horas</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_escala_salida']}</h6>
          
                   </div>
             </td> 
@@ -240,13 +240,13 @@ html;
                   <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_regreso']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_destino']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_regreso']}</h6>
-                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_regreso']} - Formato 24 horas</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_regreso']}</h6>
                   <hr>
-                  <span class="badge badge-success">Con escala</span><br>
-                  <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_destino']}</h6>
-                  <h6 class="mb-0 text-sm"> <span class="fa fa-user-md"> </span> AEROLÍNEA: {$value['aerolinea_escala_destino']}</h6>
+                  <span class="badge badge-success">Escala</span><br>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_escala_regreso']}</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_escala_destino']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_escala_regreso']}</h6>
-                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_escala_regreso']} - Formato 24 horas</h6>
+                  <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_escala_regreso']}</h6>
          
                   </div>
             </td> 

@@ -198,6 +198,7 @@ html;
         <tr>
             <td class="text-center">
                 <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_itinerario'] }</span>
+                  <span class="badge badge-primary">CON escala</span>
                  <hr>
                  <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
                  

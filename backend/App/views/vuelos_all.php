@@ -1255,4 +1255,41 @@
 
         }
     });
+
+    $("#aerolinea_origen").on('change',function(){
+        var id = $(this).val();
+        
+        if(id == 0){
+
+            $("#fecha_salida").prop('required',false);
+            $("#fecha_salida").prop('readonly',true);
+            $("#hora_salida").prop('required',false);
+            $("#hora_salida").prop('readonly',true);
+           
+        }else{
+            $("#fecha_salida").prop('required',true);
+            $("#fecha_salida").prop('readonly',false);
+            $("#hora_salida").prop('required',true);
+            $("#hora_salida").prop('readonly',false);
+        }
+    });
+
+    $("#aerolinea_destino").on('change',function(){
+        var id = $(this).val();
+        
+        if(id == 0){
+
+            $("#fecha_regreso").prop('required',false);
+            $("#fecha_regreso").prop('readonly',true);
+            $("#hora_regreso").prop('required',false);
+            $("#hora_regreso").prop('readonly',true);
+           
+        }else{
+            $("#fecha_regreso").prop('required',true);
+            $("#fecha_regreso").prop('readonly',false);
+            $("#hora_regreso").prop('required',true);
+            $("#hora_regreso").prop('readonly',false);
+        }
+    });
+    
 </script>

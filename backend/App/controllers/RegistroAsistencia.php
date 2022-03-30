@@ -183,15 +183,19 @@ html;
         $user_clave = RegistroAsistenciaDao::getInfo($clave)[0];
         $linea_principal = RegistroAsistenciaDao::getLineaPrincipial();
         $bu = RegistroAsistenciaDao::getBu();
+        $posiciones = RegistroAsistenciaDao::getPosiciones();
         $asistencia = RegistroAsistenciaDao::getIdRegistrosAsistenciasByCode($code)[0];
 
         $fecha = new DateTime('now', new DateTimeZone('America/Cancun'));
         $hora_actual = substr($fecha->format(DATE_RFC822),15,5);
-        $a_tiempo = '';
+        // $a_tiempo = '';
 
-        if (substr($hora_actual,0,2) < substr($asistencia['hora_asistencia_incio'],0,2) || substr($hora_actual,0,2) > substr($asistencia['hora_asistencia_fin'],0,2)) {
-            $a_tiempo = 'Fuera del Horario';
+        if ( intval(substr($hora_actual,0,2)) < intval(substr($asistencia['hora_asistencia_inicio'],0,2)) || intval(substr($hora_actual,0,2)) > intval(substr($asistencia['hora_asistencia_fin'],0,2)) ) {
+            $a_tiempo = 2;
+        } else if(intval(substr($hora_actual,0,2)) == intval(substr($asistencia['hora_asistencia_fin'],0,2))) {
+            $a_tiempo = 1;
         }
+        // || substr($hora_actual,0,2) > substr($asistencia['hora_asistencia_fin'],0,2)
 
 
         if($user_clave){
@@ -200,19 +204,20 @@ html;
                 $msg_insert = 'success_find_assistant';
             } else {
                 $msg_insert = 'fail_not_found_assistant';
-                $insert = RegistroAsistenciaDao::addRegister($asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id'],1);
+                $insert = RegistroAsistenciaDao::addRegister($asistencia['id_asistencia'],$user_clave['utilerias_asistentes_id'],$a_tiempo);
             }
 
             $data = [
                 'datos'=>$user_clave,
                 'linea_principal'=>$linea_principal,
                 'bu'=>$bu,
+                'posiciones'=>$posiciones,
                 'status'=>'success',
-                'insert'=>$insert,
                 'msg_insert'=>$msg_insert,
                 'hay_asistente'=> $hay_asistente,
                 'hora_actual'=>$hora_actual,
                 'a_tiempo'=>$a_tiempo,
+                'mins'=>intval(substr($hora_actual,3,6)),
             ];
         }else{
             $data = [

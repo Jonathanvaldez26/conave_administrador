@@ -173,13 +173,45 @@ sql;
         return $mysqli->queryAll($query);
     }
 
-    public static function getAsistenteNombreItinerario(){
+    public static function getAsistenteNombreItinerario($id){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id from utilerias_asistentes ua INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id WHERE cv.validado = 1 AND ua.utilerias_asistentes_id NOT IN (SELECT utilerias_asistentes_id FROM itinerario);
+        select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id 
+        from utilerias_asistentes ua 
+		JOIN comprobante_vacuna cv
+        JOIN registros_acceso ra
+        JOIN bu b
+        JOIN linea_principal lp
+        JOIN posiciones p
+        JOIN linea_ejecutivo le
+        JOIN asigna_linea al
+        JOIN utilerias_administradores uad    
+        ON cv.utilerias_asistentes_id = ua.utilerias_asistentes_id
+        and ua.id_registro_acceso = ra.id_registro_acceso
+        and b.id_bu = ra.id_bu
+        and lp.id_linea_principal = ra.id_linea_principal
+        and p.id_posicion = ra.id_posicion
+        and le.id_linea_ejecutivo = lp.id_linea_ejecutivo
+        and al.id_linea_ejecutivo = le.id_linea_ejecutivo
+        and uad.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada
+        WHERE lp.id_linea_ejecutivo = $id and
+        cv.validado = 1 AND ua.utilerias_asistentes_id
+        NOT IN (SELECT utilerias_asistentes_id FROM itinerario);
 sql;
         return $mysqli->queryAll($query);
     }
+
+//     public static function getAsistenteNombreItinerario($id_utilerias_administradores){
+//         $mysqli = Database::getInstance();
+//         $query=<<<sql
+//         select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id from utilerias_asistentes ua 
+//         INNER JOIN registros_acceso ra on ra.id_registro_acceso = ua.id_registro_acceso 
+//         INNER JOIN comprobante_vacuna cv on cv.utilerias_asistentes_id = ua.utilerias_asistentes_id 
+//         WHERE cv.validado = 1 AND ua.utilerias_asistentes_id 
+//         NOT IN (SELECT utilerias_asistentes_id FROM itinerario)
+// sql;
+//         return $mysqli->queryAll($query);
+//     }
 
     public static function getAsistenteNombreItinerarioById($id){
         $mysqli = Database::getInstance();

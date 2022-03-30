@@ -76,6 +76,15 @@ sql;
         return $mysqli->queryAll($query);
     }
 
+    public static function getPosiciones(){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        SELECT *
+        FROM posiciones
+sql;
+        return $mysqli->queryAll($query);
+    }
+
     public static function getRegistrosAsistenciasByCode($code){
         $mysqli = Database::getInstance();
         $query=<<<sql

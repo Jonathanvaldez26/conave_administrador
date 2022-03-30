@@ -1105,7 +1105,7 @@
 <script>
     $(document).ready(function() {
 
-       // $('.select_2').select2();
+    //    $('.select_2').select2();
 
        $('#itinerario-tabla').DataTable({
         "drawCallback": function( settings ) {

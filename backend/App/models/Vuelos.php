@@ -244,7 +244,7 @@ sql;
         return $mysqli->queryAll($query);
     }
 
-    public static function getAsistenteNombreItinerario(){
+    public static function getAsistenteNombreItinerario($id){
         $mysqli = Database::getInstance();
         $query=<<<sql
         select ra.id_registro_acceso, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ', ra.apellido_materno) as nombre, ua.utilerias_asistentes_id 

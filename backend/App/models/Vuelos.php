@@ -265,8 +265,7 @@ sql;
         and le.id_linea_ejecutivo = lp.id_linea_ejecutivo
         and al.id_linea_ejecutivo = le.id_linea_ejecutivo
         and uad.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada
-        WHERE lp.id_linea_ejecutivo = $id and
-        cv.validado = 1 AND ua.utilerias_asistentes_id
+        WHERE cv.validado = 1 AND ua.utilerias_asistentes_id
         NOT IN (SELECT utilerias_asistentes_id FROM itinerario);
 sql;
         return $mysqli->queryAll($query);

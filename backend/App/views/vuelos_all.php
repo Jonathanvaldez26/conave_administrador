@@ -944,7 +944,7 @@
                                             <label class="control-label col-md-12 col-sm-1 col-xs-12" for="aerolinea_destino">Seleccione el origen de la aerolínea (Regreso) <span class="required">*</span></label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                                <select class="form-control select_2" name="aerolinea_destino" id="aerolinea_destino" required>
+                                                <select class="form-control select_2" name="aerolinea_destino" id="aerolinea_destino">
                                                     <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $aerolineas; ?>
                                                 </select>
@@ -972,14 +972,14 @@
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Hora de regreso del vuelo*</label>
                                             <div class="input-group">
-                                                <input id="hora_regreso" name="hora_regreso" maxlength="29" class="form-control" type="time" placeholder="hora regreso" required="" style="text-transform:uppercase;" >
+                                                <input id="hora_regreso" name="hora_regreso" maxlength="29" class="form-control" type="time" placeholder="hora regreso" style="text-transform:uppercase;" >
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-12">
                                             <label class="form-label">Aeropuerto de Regreso *</label>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
-                                                <select class="form-control select_2" name="aeropuerto_regreso" id="aeropuerto_regreso" required>
+                                                <select class="form-control select_2" name="aeropuerto_regreso" id="aeropuerto_regreso">
                                                 <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $aeropuertos; ?>
                                                 </select>

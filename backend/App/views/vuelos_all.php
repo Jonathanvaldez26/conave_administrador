@@ -843,7 +843,7 @@
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Fecha de salida del vuelo *</label>
                                             <div class="input-group">
-                                                <input id="fecha_salida" name="fecha_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;"  min="2022-04-05" max="2022-04-09">
+                                                <input id="fecha_salida" name="fecha_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;"  min="2022-04-05" max="2022-04-17">
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
@@ -908,7 +908,7 @@
                                             <div class="col-12 col-lg-6">
                                                 <label class="form-label">Fecha de salida del vuelo *</label>
                                                 <div class="input-group">
-                                                    <input id="fecha_escala_salida" name="fecha_escala_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-09">
+                                                    <input id="fecha_escala_salida" name="fecha_escala_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-17">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6">
@@ -968,7 +968,7 @@
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Fecha de regreso del vuelo*</label>
                                             <div class="input-group">
-                                                <input id="fecha_regreso" name="fecha_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-09">
+                                                <input id="fecha_regreso" name="fecha_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-17">
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
@@ -1041,7 +1041,7 @@
                                             <div class="col-12 col-lg-6">
                                                 <label class="form-label">Fecha de salida del vuelo *</label>
                                                 <div class="input-group">
-                                                    <input id="fecha_escala_regreso" name="fecha_escala_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-09">
+                                                    <input id="fecha_escala_regreso" name="fecha_escala_regreso" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-17">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6">

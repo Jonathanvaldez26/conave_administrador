@@ -10,6 +10,8 @@ use \App\controllers\Contenedor;
 use \Core\Controller;
 use \App\models\PruebasCovidSitio as PruebasCovidSitioDao;
 use \App\models\Asistencias as AsistenciasDao;
+use \DateTime;
+use \DatetimeZone;
 
 class Asistencias extends Controller
 {
@@ -171,7 +173,6 @@ html;
  
 html;
 }
-
       View::set('tabla',$tabla);
       View::set('header',$this->_contenedor->header($extraHeader));
       View::set('footer',$this->_contenedor->footer($extraFooter));

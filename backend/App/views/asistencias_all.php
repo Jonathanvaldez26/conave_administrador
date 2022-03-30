@@ -560,7 +560,7 @@
                             <div class="col-12 col-lg-12">
                                 <label class="form-label">Fecha *</label>
                                 <div class="input-group">
-                                    <input id="fecha_asistencia" name="fecha_asistencia" maxlength="29" class="form-control" type="date"  required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                    <input id="fecha_asistencia" name="fecha_asistencia" maxlength="29" class="form-control" type="date" min required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
 
@@ -681,5 +681,21 @@
 
 </main>
 </body>
+
+<script>
+    $(document).ready(function() {
+        let fecha = new Date();
+
+        let anio = fecha.getFullYear().toString();
+        let mes = (fecha.getMonth()+1);
+        let dia = fecha.getDate().toString();
+        
+        if(mes <= 9){
+            $('#fecha_asistencia').prop('min', anio+'-0'+mes.toString()+'-'+dia);
+        } else {
+            $('#fecha_asistencia').prop('min', anio+'-'+mes.toString()+'-'+dia);
+        }
+    })
+</script>
 
 <?php echo $footer; ?>

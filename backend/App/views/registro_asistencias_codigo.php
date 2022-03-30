@@ -258,6 +258,24 @@
 
         if (mes != mes_asist || dia != dia_asist || anio != anio_asist) {
             document.getElementById('codigo_registro').setAttribute('disabled','');
+                if(mes_asist < 9){
+                    if (dia < dia_asist || mes < mes_asist || anio < anio_asist) {
+                        Swal.fire('¡El evento que registro su administrador ocurrirá el <br>'+dia_asist+'-0'+mes_asist+'-'+anio_asist+'!', 'Contacte a su administrador', "warning").
+                        then((value) => {
+                            $("#codigo_registro").focus();
+                        });
+                    } else if (dia > dia_asist || mes > mes_asist || anio > anio_asist) {
+                        Swal.fire('¡El evento que registro su administrador ya ocurrió el <br>'+dia_asist+'-0'+mes_asist+'-'+anio_asist+'!', 'Contacte a su administrador', "warning").
+                        then((value) => {
+                            $("#codigo_registro").focus();
+                        });
+                    }
+                } else{
+                    Swal.fire('¡El evento que registro su administrador ya ocurrió el '+dia_asist+'-'+mes_asist+'-'+anio_asist+'! Contacte a su administrador', "", "warning").
+                    then((value) => {
+                        $("#codigo_registro").focus();
+                    });
+                }
         }
     }
     
@@ -388,7 +406,6 @@
                     console.log("Procesando....");
                 },
                 success: function(respuesta) {
-                    // console.log(respuesta);
                     console.log(respuesta.status);
                     if (respuesta.status == 'success') {
                         console.log(respuesta);
@@ -398,8 +415,13 @@
                         $("#correo_user").html(respuesta.datos.email);
                         $("#telefono_user").html(respuesta.datos.telefono);
 
-                        if (respuesta.datos.img != '') {
-                            $("#img_asistente").attr('src','http://convencionasofarma2022.mx/img/users_conave/'+respuesta.datos.img);
+                        if (respuesta.datos.img != '' || respuesta.datos.img != null || respuesta.datos.img != NULL || respuesta.datos.img != 'null' ) {
+                            
+                            if (respuesta.datos.img == null) {
+                                $("#img_asistente").attr('src','/img/user.png')
+                            }else{
+                                $("#img_asistente").attr('src','http://convencionasofarma2022.mx/img/users_conave/'+respuesta.datos.img);
+                            }
                         } else {
                             $("#img_asistente").attr('src','/img/user.png');
                         }
@@ -426,10 +448,25 @@
                         }
 
                         if(respuesta.msg_insert == 'success_find_assistant'){
-                            swal("¡Lo sentimos, esta persona ya tiene su asistencia registrada!", "", "warning").
-                            then((value) => {
+                            Swal.fire({
+                                title: '¡Lo sentimos, esta persona ya tiene su asistencia registrada!',
+                                // html: 'I will close in <b></b> milliseconds.',
+                                icon: 'warning',
+                                timer: 1000,
+                                // timerProgressBar: true,
+                                didOpen: () => {
+                                    // Swal.showLoading()
+                                    const b = Swal.getHtmlContainer().querySelector('b')
+                                    timerInterval = setInterval(() => {
+                                        // b.textContent = Swal.getTimerLeft()
+                                    }, 100)
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval)
+                                }
+                                }).then((result) => {
                                 $("#codigo_registro").focus();
-                            });
+                            })
                         } else {
                             // window.location.replace("/RegistroAsistencia/codigo/"+clave_a);
                         }
@@ -437,10 +474,25 @@
                         // mostrarDatos(clave_a);
                         // let tabla_registrados = $("#lista-reg");
                     } else {
-                        swal("¡Lo sentimos, esta persona no se encuentra registrada en nuestra base de datos!", "", "warning").
-                        then((value) => {
+                        Swal.fire({
+                            title: '¡Lo sentimos, esta persona no se encuentra registrada en nuestra base de datos!',
+                            // html: 'I will close in <b></b> milliseconds.',
+                            icon: 'warning',
+                            timer: 1000,
+                            // timerProgressBar: true,
+                            didOpen: () => {
+                                // Swal.showLoading()
+                                const b = Swal.getHtmlContainer().querySelector('b')
+                                timerInterval = setInterval(() => {
+                                    // b.textContent = Swal.getTimerLeft()
+                                }, 100)
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval)
+                            }
+                            }).then((result) => {
                             $("#codigo_registro").focus();
-                        });
+                        })
                         $("#nombre_completo").html('Nombre');
                         $("#img_asistente").attr('src','/img/user.png');
                         $("#linea_user").html('Ninguna');
@@ -454,10 +506,29 @@
                 },
                 error: function(respuesta) {
                     console.log(respuesta);
-                    swal("¡Lo sentimos, ocurrió un error!", "", "warning").
-                    then((value) => {
+                    // swal("¡Lo sentimos, ocurrió un error!", "", "warning").
+                    // then((value) => {
+                    //     $("#codigo_registro").focus();
+                    // });
+                    Swal.fire({
+                        title: '¡Lo sentimos, ocurrió un error!',
+                        // html: 'I will close in <b></b> milliseconds.',
+                        icon: 'warning',
+                        timer: 2000,
+                        // timerProgressBar: true,
+                        didOpen: () => {
+                            // Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                // b.textContent = Swal.getTimerLeft()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                        }).then((result) => {
                         $("#codigo_registro").focus();
-                    });
+                    })
                     // $("#nombre_completo").html('Nombre');
                     // $("#img_asistente").attr('src','/img/user.png');
                     // $("#linea_user").html('Ninguna');

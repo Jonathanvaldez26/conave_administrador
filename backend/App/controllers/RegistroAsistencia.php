@@ -226,6 +226,7 @@ html;
                 'status'=>'success',
                 'msg_insert'=>$msg_insert,
                 'hay_asistente'=> $hay_asistente,
+                'asistencia'=> $asistencia,
                 'hora_actual'=>$hora_actual,
                 'a_tiempo'=>$a_tiempo,
                 'aqui'=>$aqui,

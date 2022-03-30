@@ -976,6 +976,8 @@ html;
     </script>
 html;
 
+      $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
+
       $pruebas_validos = PruebasCovidUsuariosDao::contarPruebasValidos();
       foreach ($pruebas_validos[0] as $key => $value) {
         $numero_validos = $value;
@@ -985,6 +987,12 @@ html;
       foreach ($asistentes_total[0] as $key => $value) {
         $numero_asistentes = $value;
       }
+
+      // if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
+      //   $pruebas_total = PruebasCovidUsuariosDao::contarPruebasTotales();
+      // }else{
+      //   $pruebas_total = PruebasCovidUsuariosDao::contarPruebasTotalesByLine($id_linea['id_linea_ejecutivo']);
+      // }
 
       $pruebas_total = PruebasCovidUsuariosDao::contarPruebasTotales();
       foreach ($pruebas_total[0] as $key => $value) {

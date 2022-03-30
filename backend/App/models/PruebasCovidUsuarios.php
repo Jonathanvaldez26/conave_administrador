@@ -161,6 +161,29 @@ sql;
         return $mysqli->queryAll($query);        
     }
 
+    public static function contarPruebasTotalesByLine($id){
+        $mysqli = Database::getInstance(true);
+        $query =<<<sql
+        SELECT COUNT(*) FROM (SELECT pc.id_prueba_covid AS id_c_v, pc.utilerias_asistentes_id, pc.nota, pc.status AS status_comprobante,
+        email, telefono, fecha_carga_documento, numero_empleado, documento,
+        b.nombre AS nombre_bu, 
+        p.nombre as nombre_posicion,
+        lp.nombre AS nombre_linea
+        FROM prueba_covid pc
+        JOIN utilerias_asistentes u
+        JOIN registros_acceso ra
+        JOIN bu b
+        JOIN linea_principal lp
+        JOIN posiciones p        
+        ON pc.utilerias_asistentes_id = u.utilerias_asistentes_id
+        and u.id_registro_acceso = ra.id_registro_acceso
+        and b.id_bu = ra.id_bu
+        and lp.id_linea_principal = ra.id_linea_principal
+        and p.id_posicion = ra.id_posicion 
+        where lp.id_linea_ejecutivo = $id) AS total
+sql;
+    }
+
     public static function contarPruebasTotales(){
         $mysqli = Database::getInstance(true);
         $query =<<<sql

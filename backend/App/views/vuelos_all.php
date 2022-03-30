@@ -1287,8 +1287,8 @@
         }else{
             $("#fecha_regreso").prop('required',true);
             $("#fecha_regreso").prop('readonly',false);
-            $("#hora_salida").prop('required',true);
-            $("#hora_salida").prop('readonly',false);
+            $("#hora_regreso").prop('required',true);
+            $("#hora_regreso").prop('readonly',false);
         }
     });
     

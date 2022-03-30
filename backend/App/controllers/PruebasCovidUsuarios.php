@@ -978,31 +978,55 @@ html;
 
       $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
 
-      $pruebas_validos = PruebasCovidUsuariosDao::contarPruebasValidos();
+      //-----------------------------//
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
+        $pruebas_validos = PruebasCovidUsuariosDao::contarPruebasValidos();
+      }
+      else{
+        $pruebas_validos = PruebasCovidUsuariosDao::contarPruebasValidosByLine($id_linea['id_linea_ejecutivo']);
+      }
       foreach ($pruebas_validos[0] as $key => $value) {
         $numero_validos = $value;
       }
+      //-----------------------------//
 
-      $asistentes_total = PruebasCovidUsuariosDao::contarAsistentes();
+
+      //-----------------------------//
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
+        $asistentes_total = PruebasCovidUsuariosDao::contarAsistentes();
+      }else{
+        $asistentes_total = PruebasCovidUsuariosDao::contarAsistentesByLine($id_linea['id_linea_ejecutivo']);
+      }
+
       foreach ($asistentes_total[0] as $key => $value) {
         $numero_asistentes = $value;
       }
+      //-----------------------------//
 
-      // if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
-      //   $pruebas_total = PruebasCovidUsuariosDao::contarPruebasTotales();
-      // }else{
-      //   $pruebas_total = PruebasCovidUsuariosDao::contarPruebasTotalesByLine($id_linea['id_linea_ejecutivo']);
-      // }
 
-      $pruebas_total = PruebasCovidUsuariosDao::contarPruebasTotales();
+      //-----------------------------//
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
+        $pruebas_total = PruebasCovidUsuariosDao::contarPruebasTotales();
+      }else{
+        $pruebas_total = PruebasCovidUsuariosDao::contarPruebasTotalesByLine($id_linea['id_linea_ejecutivo']);
+      }
+
       foreach ($pruebas_total[0] as $key => $value) {
         $numero_pruebas = $value;
       }
+      //-----------------------------//
 
-      $pruebas_sin_revisar = PruebasCovidUsuariosDao::contarPruebasPorRevisar();
+
+      //-----------------------------//
+      if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
+        $pruebas_sin_revisar = PruebasCovidUsuariosDao::contarPruebasPorRevisar();
+      }else{
+        $pruebas_sin_revisar = PruebasCovidUsuariosDao::contarPruebasPorRevisarByLine($id_linea['id_linea_ejecutivo']);
+      }
       foreach ($pruebas_sin_revisar[0] as $key => $value) {
         $numero_sin_revisar = $value;
       }
+      //-----------------------------//
 
       $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";
       $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";

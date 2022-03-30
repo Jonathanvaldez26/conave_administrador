@@ -461,9 +461,9 @@ html;
 
     public function getAsistentesItinerario(){
         $asistentes = '';
-        foreach (VuelosDao::getAsistenteNombreItinerario() as $key => $value) {
+        foreach (VuelosDao::getAsistenteNombreItinerario($_SESSION['utilerias_administradores_id']) as $key => $value) {
             $asistentes .=<<<html
-      <option value="{$value['utilerias_asistentes_id']}"> {$value['nombre']}</option>
+            <option value="{$value['utilerias_asistentes_id']}">{$value['nombre']}</option>
 html;
         }
         return $asistentes;

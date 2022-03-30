@@ -78,7 +78,8 @@
                                                             </div>
                                                             <div class="col-6">
                                                                 <h6>Linea: <span class="text-thin" id="linea_user"> Ninguna</span></h6> 
-                                                                <h6>Bu: <span class="text-thin" id="bu_user"> Ninguna</span></h6> 
+                                                                <h6>Bu: <span class="text-thin" id="bu_user"> Ninguna</span></h6>
+                                                                <h6>Posicion: <span class="text-thin" id="posicion_user"> Ninguna</span></h6> 
                                                             </div>
                                                         </div>
                                                         <br>
@@ -417,6 +418,13 @@
                             }
                         }
 
+                        for (let index = 0; index < respuesta.posiciones.length; index++) {
+                            const element = respuesta.posiciones[index];
+                            if (element.id_posicion == respuesta.datos.id_posicion) {
+                                $("#posicion_user").html(element.nombre);
+                            }
+                        }
+
                         if(respuesta.msg_insert == 'success_find_assistant'){
                             swal("¡Lo sentimos, esta persona ya tiene su asistencia registrada!", "", "warning").
                             then((value) => {
@@ -437,6 +445,7 @@
                         $("#img_asistente").attr('src','/img/user.png');
                         $("#linea_user").html('Ninguna');
                         $("#bu_user").html('Ninguna');
+                        $("#posicion_user").html('Ninguna');
                         $("#correo_user").html('_____');
                         $("#telefono_user").html('00 0000 0000');
                         console.log(respuesta);

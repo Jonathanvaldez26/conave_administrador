@@ -576,12 +576,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NOMBRE</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLÍNEA ORIGEN</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROLIÍEA DESTINO</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FECHA SALIDA</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">FECHA REGRESO</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">AEROPUERTO DE SALIDA</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Itinerario Rumbo a CONAVE</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Itinerario Regreso a Casa</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Alta</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

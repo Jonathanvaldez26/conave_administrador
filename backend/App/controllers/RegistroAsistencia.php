@@ -190,10 +190,21 @@ html;
         $hora_actual = substr($fecha->format(DATE_RFC822),15,5);
         // $a_tiempo = '';
 
-        if ( intval(substr($hora_actual,0,2)) < intval(substr($asistencia['hora_asistencia_inicio'],0,2)) || intval(substr($hora_actual,0,2)) > intval(substr($asistencia['hora_asistencia_fin'],0,2)) ) {
-            $a_tiempo = 2;
-        } else if(intval(substr($hora_actual,0,2)) == intval(substr($asistencia['hora_asistencia_fin'],0,2))) {
+        if ( intval(substr($hora_actual,0,2)) > intval(substr($asistencia['hora_asistencia_inicio'],0,2)) 
+            && intval(substr($hora_actual,0,2)) < intval(substr($asistencia['hora_asistencia_fin'],0,2)) ) {
             $a_tiempo = 1;
+            $aqui = 1;
+        } else if(intval(substr($hora_actual,0,2)) == intval(substr($asistencia['hora_asistencia_fin'],0,2))
+                && intval(substr($hora_actual,3,6)) <= intval(substr($asistencia['hora_asistencia_fin'],3,6))) {
+            $a_tiempo = 1;
+            $aqui = 2;
+        } else if(intval(substr($hora_actual,0,2)) == intval(substr($asistencia['hora_asistencia_inicio'],0,2))
+                && intval(substr($hora_actual,3,6)) >= intval(substr($asistencia['hora_asistencia_inicio'],3,6))) {
+            $a_tiempo = 1;
+            $aqui = 3;
+        } else {
+            $a_tiempo = 2;
+            $aqui = 4;
         }
         // || substr($hora_actual,0,2) > substr($asistencia['hora_asistencia_fin'],0,2)
 
@@ -217,7 +228,9 @@ html;
                 'hay_asistente'=> $hay_asistente,
                 'hora_actual'=>$hora_actual,
                 'a_tiempo'=>$a_tiempo,
-                'mins'=>intval(substr($hora_actual,3,6)),
+                'aqui'=>$aqui,
+                'hora_actual'=>intval(substr($hora_actual,0,2)),
+                'hora_fin'=>intval(substr($asistencia['hora_asistencia_fin'],0,2)),
             ];
         }else{
             $data = [

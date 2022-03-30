@@ -1104,11 +1104,7 @@
 <script>
     $(document).ready(function() {
 
-<<<<<<< HEAD
-    //    $('.select_2').select2();
-=======
        $('.select_2').select2();
->>>>>>> 31a2be49eec2833ae75e358e454e33cbf0f664f7
 
        $('#itinerario-tabla').DataTable({
         "drawCallback": function( settings ) {

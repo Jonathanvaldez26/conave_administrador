@@ -5,6 +5,7 @@ defined("APPPATH") OR die("Access denied");
 use \Core\View;
 use \Core\Controller;
 use \App\models\Vuelos as VuelosDao;
+use \App\models\Linea as LineaDao;
 use \App\controllers\Mailer;
 
 class Vuelos extends Controller{
@@ -105,13 +106,6 @@ html;
 
 html;
 
-    //tab Itinerario
-    
-
-
-
-
-    //end tab itinerartio
 
      $vuelos = VuelosDao::getAllLlegada();
      $tabla= '';
@@ -189,7 +183,17 @@ html;
 html;
         }
 
-    $itienerarios = VuelosDao::getItinerarios();
+    
+    $permisos = Controller::getPermisoGlobalUsuario($this->__usuario)[0];
+    
+    if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
+        $itienerarios = VuelosDao::getItinerarios();
+    }else{
+        $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
+        $itienerarios = VuelosDao::getItinerariosByLinea($id_linea['id_linea_ejecutivo']);
+    }
+
+    //$itienerarios = VuelosDao::getItinerarios();
     $tabla_itinerarios = '';
 
     foreach ($itienerarios as $key => $value) {

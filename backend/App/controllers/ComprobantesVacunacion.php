@@ -49,7 +49,6 @@ html;
         $comprobantes = ComprobantesVacunacionDao::getAll();
       }else{
         $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
-        var_dump($id_linea.'asdasdasd');
         $comprobantes = ComprobantesVacunacionDao::getComprobatesByLinea($id_linea['id_linea_ejecutivo']);
       }
 

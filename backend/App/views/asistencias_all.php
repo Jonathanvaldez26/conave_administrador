@@ -412,19 +412,13 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                        <div class="col-lg-3 col-md-3 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
                             <div class="nav-wrapper position-relative end-0">
                                 <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                                     <li class="nav-item">
                                         <a class="nav-link mb-0 px-0 py-1 active" href="#cam1" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
                                             <span class="fa fa-clock-o"></span>
                                             <span class="ms-1">En Espera</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
-                                            <span class="fa fa-check-circle-o"></span>
-                                            <span class="ms-1">Concluidas</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -486,47 +480,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2" style="background-image: url('../../assets/img/jueves.jpeg'); background-size:cover;">
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <div class="card mb-4">
-                                    <div class="card-header pb-0">
-                                        <h6>Pases de Abordar para Vuelos de Salida Evento - Cargados con Éxito</h6>
-                                        <p style="font-size: 12px">
-                                            <span class="fa fa-plane" style="color: #125a16"> </span> Aeropuerto de Salida de la Convención
-                                            <span class="fa fa-flag" style="color: #353535"> </span> Aeropuerto de Llegada
-                                            <span class="fa fa-ticket" style="color: #1a8fdd"> </span> No. de Vuelo
-                                        </p>
-                                    </div>
-                                    <div class="card-body px-0 pt-0 pb-2">
-                                        <div class="table-responsive p-0">
-                                            <table class="table align-items-center mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">DATOS DE CONTACTO</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">¿Quien lo cargo LAHE?</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php echo $tabla1; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <!-- Fin barrita -->
-
-
         </div>
-<<<<<<< HEAD
-        <!-- Fin barrita -->
+
     </div>
 
     <!-- Modal asignar habitacion-->
@@ -575,18 +532,44 @@
                                 </div>
                             </div>
 
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Default radio
-                                </label>
+                            <div class="row mb-3">
+                                <label class="form-label">Es CheckIn *</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        No
+                                    </label>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Default checked radio
-                                </label>
+                            <div class="row mb-3">
+                                <label class="form-label">¿Es Plenaria Individual?*</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        No
+                                    </label>
+                                </div>
                             </div>
+
+                            <div class="row mb-3">
+                                <label class="form-label">¿De que línea es la plenaria? *</label>
+                                <div class="input-group">
+                                    <input id="nombre_plenaria" name="nombre_plenaria"  class="form-control" type="text" placeholder="U" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -600,138 +583,7 @@
         </div>
     </div>
     <!--End Modal-->
-
-
-    <div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        Generar Lista de Asistencia
-                    </h5>
-=======
-
-        <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            Generar Lista de Asistencia
-                        </h5>
-
-                        <span type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
-                            X
-                        </span>
-                    </div>
-                    <div class="modal-body">
-                        <!--<p style="font-size: 12px">A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p>-->
-                        <!--<hr>-->
-                        <form method="POST" enctype="multipart/form-data" id="add" action="/Asistencias/asistenciasAdd">
-                            <div class="form-group row">
-
-                                <input type="hidden" id="url_asistencia" name="url_asistencia" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
-
-                                <div class="col-12 col-lg-12">
-                                    <label class="form-label">Nombre *</label>
-                                    <div class="input-group">
-                                        <input id="nombre" name="nombre" class="form-control" type="text" placeholder="Nombre" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-lg-12">
-                                    <label class="form-label">Descripción (Opcional)</label>
-                                    <div class="input-group">
-                                        <textarea id="descripcion" name="descripcion" maxlength="1000" class="form-control" placeholder="Descripción"></textarea>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-12 col-lg-12">
-                                    <label class="form-label">Fecha *</label>
-                                    <div class="input-group">
-                                        <input id="fecha_asistencia" name="fecha_asistencia" maxlength="29" class="form-control" type="date" min required="" onfocus="focused(this)" onfocusout="defocused(this)"" style=" text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                    </div>
-                                </div>
-
->>>>>>> 322afc254726ad19de234de152176f6afc097c7a
-
-
-                                <div class="col-12 col-lg-6">
-                                    <label class="form-label">Hora Asistencia (Inicio) *</label>
-                                    <div class="input-group">
-                                        <input id="hora_asistencia_inicio" name="hora_asistencia_inicio" maxlength="29" class="form-control" type="time" required="" onfocus="focused(this)" onfocusout="defocused(this)"" style=" text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <label class="form-label">Hora Asistencia (Fin) *</label>
-                                    <div class="input-group">
-                                        <input id="hora_asistencia_fin" name="hora_asistencia_fin" maxlength="29" class="form-control" type="time" required="" onfocus="focused(this)" onfocusout="defocused(this)"" style=" text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                    </div>
-                                </div>
-
-
-                                <!-- <input type="hidden" id="utilerias_administrador_id" name="utilerias_administrador_id" value="<?= $_SESSION["utilerias_administradores_id"] ?>">-->
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
-                                <button type="button" class="btn bg-gradient-secondary" data-dismiss="modal">Cancelar</button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-<<<<<<< HEAD
-                <div class="modal-body">
-                    <!--<p style="font-size: 12px">A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p>-->
-                    <!--<hr>-->
-                    <form method="POST" enctype="multipart/form-data"  id="add" action="/Asistencias/asistenciasAdd"> 
-                        <div class="form-group row">
-
-                        <input type="hidden" id="url_asistencia" name="url_asistencia"   class="form-control"  onfocus="focused(this)" onfocusout="defocused(this)">
-                            
-                            <div class="col-12 col-lg-12">
-
-                            </div>
-
-                            <div class="col-12 col-lg-12">
-
-                            </div>
-
-                            
-                            <div class="col-12 col-lg-12">
-
-                            </div>
-
-                            <div class="col-12 col-lg-6">
-
-                            </div>
-                            <div class="col-12 col-lg-6">
-
-                            </div>
-
-                            <br>
-                            <div class="form-check">
-
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Default checked radio
-                                </label>
-                            </div>
-
-
-                         <!-- <input type="hidden" id="utilerias_administrador_id" name="utilerias_administrador_id" value="<?=$_SESSION["utilerias_administradores_id"]?>">-->
-                        </div>
-
-                    </form>
-                </div>
-
-=======
->>>>>>> 322afc254726ad19de234de152176f6afc097c7a
-            </div>
-        </div>
-        <div class="modal fade" id="Modal_Add_Salidas" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal fade" id="Modal_Add_Salidas" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

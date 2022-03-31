@@ -11,15 +11,17 @@ class Vuelos{
     public static function getAllLlegada(){
         $mysqli = Database::getInstance();
         $query=<<<sql
-            SELECT pa.id_pase_abordar, pa.clave, CONCAT(ra.nombre," ", ra.segundo_nombre," ", ra.apellido_paterno," ", ra.apellido_materno) as nombre, pa.fecha_alta, CONCAT(ae.iata, " - ",ae.aeropuerto) as aeropuerto_salida, CONCAT(aeo.iata, " - ",aeo.aeropuerto) as aeropuerto_llegada , pa.numero_vuelo, pa.hora_llegada_destino, 
-            pa.nota , ua.nombre as nombre_registro, ra.email, ra.telefono 
+            SELECT pa.id_pase_abordar, pa.clave, CONCAT(ra.nombre," ", ra.segundo_nombre," ", ra.apellido_paterno," ", ra.apellido_materno) as nombre, pa.fecha_alta, CONCAT(ae.iata, " - ",ae.aeropuerto) as aeropuerto_salida, CONCAT(aeo.iata, " - ",aeo.aeropuerto) as aeropuerto_llegada , pa.numero_vuelo, pa.hora_llegada_destino, le.nombre AS nombre_linea_ejecutivo,
+            pa.nota , ua.nombre as nombre_registro, ra.email, ra.telefono, le.color
             FROM pases_abordar pa
             INNER JOIN aeropuertos ae on ae.id_aeropuerto = pa.id_aeropuerto_origen
             INNER JOIN aeropuertos aeo on aeo.id_aeropuerto = pa.id_aeropuerto_destino
             INNER JOIN utilerias_administradores ua on ua.utilerias_administradores_id = pa.utilerias_administradores_id
             INNER JOIN utilerias_asistentes uaa on uaa.utilerias_asistentes_id = pa.utilerias_asistentes_id
             INNER JOIN registros_acceso ra on ra.id_registro_acceso = uaa.id_registro_acceso
-            WHERE tipo = 1 ORDER BY pa.fecha_alta DESC;
+            INNER JOIN asigna_linea al on al.utilerias_administradores_id_linea_asignada = ua.utilerias_administradores_id
+            INNER JOIN linea_ejecutivo le on le.id_linea_ejecutivo = al.id_linea_ejecutivo
+            WHERE tipo = 1 ORDER BY pa.fecha_alta DESC
 sql;
         return $mysqli->queryAll($query);
     }
@@ -27,35 +29,50 @@ sql;
     public static function getLlegadaByLinea($id_linea){
         $mysqli = Database::getInstance(true);
         $query =<<<sql
-        SELECT pb.id_pase_abordar AS id_pb, pb.utilerias_asistentes_id, pb.nota, pb.status AS status_comprobante, 
-            email, telefono, numero_empleado, 
-            b.nombre AS nombre_bu, 
-            p.nombre as nombre_posicion,
-            lp.nombre AS nombre_linea,  
-            CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo,
-            le.nombre as nombre_linea_ejecutivo, le.color, al.utilerias_administradores_id_linea_asignada as id_ejecutivo_administrador, uad.nombre as nombre_ejecutivo
-        FROM pases_abordar pb
-        JOIN utilerias_asistentes u
-        JOIN registros_acceso ra
-        JOIN bu b
-        JOIN linea_principal lp
-        JOIN posiciones p
-        JOIN linea_ejecutivo le
-        JOIN asigna_linea al
-        JOIN utilerias_administradores uad    
-        ON pb.utilerias_asistentes_id = u.utilerias_asistentes_id
-        and u.id_registro_acceso = ra.id_registro_acceso
-        and b.id_bu = ra.id_bu
-        and lp.id_linea_principal = ra.id_linea_principal
-        and p.id_posicion = ra.id_posicion
-        and le.id_linea_ejecutivo = lp.id_linea_ejecutivo
-        and al.id_linea_ejecutivo = le.id_linea_ejecutivo
-        and uad.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada
-        where lp.id_linea_ejecutivo = '$id_linea'
+        
+
+            SELECT pa.id_pase_abordar, pa.clave, CONCAT(ra.nombre," ", ra.segundo_nombre," ", ra.apellido_paterno," ", ra.apellido_materno) as nombre, pa.fecha_alta, CONCAT(ae.iata, " - ",ae.aeropuerto) as aeropuerto_salida, CONCAT(aeo.iata, " - ",aeo.aeropuerto) as aeropuerto_llegada , pa.numero_vuelo, pa.hora_llegada_destino, le.nombre AS nombre_linea_ejecutivo,
+            pa.nota , ua.nombre as nombre_registro, ra.email, ra.telefono, le.color
+            FROM pases_abordar pa
+            INNER JOIN aeropuertos ae on ae.id_aeropuerto = pa.id_aeropuerto_origen
+            INNER JOIN aeropuertos aeo on aeo.id_aeropuerto = pa.id_aeropuerto_destino
+            INNER JOIN utilerias_administradores ua on ua.utilerias_administradores_id = pa.utilerias_administradores_id
+            INNER JOIN utilerias_asistentes uaa on uaa.utilerias_asistentes_id = pa.utilerias_asistentes_id
+            INNER JOIN registros_acceso ra on ra.id_registro_acceso = uaa.id_registro_acceso
+            INNER JOIN asigna_linea al on al.utilerias_administradores_id_linea_asignada = ua.utilerias_administradores_id
+            INNER JOIN linea_ejecutivo le on le.id_linea_ejecutivo = al.id_linea_ejecutivo
+            WHERE tipo = 1 and le.id_linea_ejecutivo = $id_linea
+            ORDER BY pa.fecha_alta DESC
 sql;
 
         return $mysqli->queryAll($query);
     }
+
+    // SELECT pb.id_pase_abordar AS id_pb, pb.utilerias_asistentes_id, pb.nota, pb.status AS status_comprobante, 
+    //         email, telefono, numero_empleado, 
+    //         b.nombre AS nombre_bu, 
+    //         p.nombre as nombre_posicion,
+    //         lp.nombre AS nombre_linea,  
+    //         CONCAT(ra.nombre, ' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo,
+    //         le.nombre as nombre_linea_ejecutivo, le.color, al.utilerias_administradores_id_linea_asignada as id_ejecutivo_administrador, uad.nombre as nombre_ejecutivo
+    //     FROM pases_abordar pb
+    //     JOIN utilerias_asistentes u
+    //     JOIN registros_acceso ra
+    //     JOIN bu b
+    //     JOIN linea_principal lp
+    //     JOIN posiciones p
+    //     JOIN linea_ejecutivo le
+    //     JOIN asigna_linea al
+    //     JOIN utilerias_administradores uad    
+    //     ON pb.utilerias_asistentes_id = u.utilerias_asistentes_id
+    //     and u.id_registro_acceso = ra.id_registro_acceso
+    //     and b.id_bu = ra.id_bu
+    //     and lp.id_linea_principal = ra.id_linea_principal
+    //     and p.id_posicion = ra.id_posicion
+    //     and le.id_linea_ejecutivo = lp.id_linea_ejecutivo
+    //     and al.id_linea_ejecutivo = le.id_linea_ejecutivo
+    //     and uad.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada
+    //     where lp.id_linea_ejecutivo = '$id_linea'
 
     public static function getAllSalida(){
         $mysqli = Database::getInstance();

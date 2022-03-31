@@ -2,13 +2,16 @@
 
 <body class="g-sidenav-show  bg-gray-100">
     <aside class="bg-white-aside sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-        <div class="sidenav-header">
+        <div class="sidenav-header" style="margin-bottom: 30px;">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
             <a class="navbar-brand m-0" href="/Principal/" target="_blank">
                 <img src="/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">ADMIN CONVENCIÓN</span>
+                <p style="margin-top: 15px;"><?php echo $_SESSION['nombre']; ?></p>
             </a>
+
+
         </div>
         <hr class="horizontal dark mt-0">
 
@@ -244,7 +247,7 @@
                         <li class="nav-item px-2 d-flex align-items-center">
 
                         </li>
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-bell cursor-pointer"></i>
                             </a>
@@ -316,7 +319,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -658,7 +661,7 @@
                                 <div class="col-12 col-lg-6">
                                     <label class="form-label">Hora de Llegada (Local) *</label>
                                     <div class="input-group">
-                                        <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="hora llegada" required="" style="text-transform:uppercase;" >
+                                        <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="hora llegada" required="" style="text-transform:uppercase;">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -744,7 +747,7 @@
                                 <div class="col-12 col-lg-6">
                                     <label class="form-label">Hora de Llegada (Local) *</label>
                                     <div class="input-group">
-                                        <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" style=" text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();" >
+                                        <input id="hora_llegada" name="hora_llegada" maxlength="29" class="form-control" type="time" placeholder="Cliente" required="" style=" text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -787,11 +790,11 @@
                     <div class="modal-body">
                         <!-- <p style="font-size: 12px">A continuación seleccione el nombre del Asistente y cargue unicamente un archivo PDF que contenga los datos de Vuelo del Asistente para llegar a la convención Asofarma 2022.</p> 
                         <hr>-->
-                        <form method="POST" enctype="multipart/form-data" id="form_itinerario" >
+                        <form method="POST" enctype="multipart/form-data" id="form_itinerario">
 
                             <div class="card">
                                 <div class="card-body">
-                                    
+
                                     <div class="row form-group">
                                         <div class="form-group col-md-12">
                                             <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_asistente">Seleccione el nombre del invitado al que cargaran el itinerario <span class="required">*</span></label>
@@ -808,11 +811,11 @@
                                 </div>
                             </div>
 
-                           
+
 
                             <div class="card mt-3">
                                 <div class="card-body">
-                                    
+
                                     <div class="row form-group">
                                         <h6 class="text-center">Itinerario Vuelo Rumbo a la Convención 2022</h6>
                                         <hr>
@@ -834,20 +837,21 @@
                                                 <select class="form-control" name="aeropuerto_salida" id="aeropuerto_salida" required>
                                                     
                                                     
-                                                    <?php //echo $aeropuertos; ?>
+                                                    <?php //echo $aeropuertos; 
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div> -->
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Fecha de salida del vuelo *</label>
                                             <div class="input-group">
-                                                <input id="fecha_salida" name="fecha_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;"  min="2022-04-05" max="2022-04-17">
+                                                <input id="fecha_salida" name="fecha_salida" minlength="6" maxlength="8" class="form-control" type="date" placeholder="00/00/0000" style="text-transform:uppercase;" min="2022-04-05" max="2022-04-17">
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Hora de salida del vuelo *</label>
                                             <div class="input-group">
-                                                <input id="hora_salida" name="hora_salida" maxlength="29" class="form-control" type="time" placeholder="hora llegada" required="" style="text-transform:uppercase;" >
+                                                <input id="hora_salida" name="hora_salida" maxlength="29" class="form-control" type="time" placeholder="hora llegada" required="" style="text-transform:uppercase;">
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-12">
@@ -861,7 +865,7 @@
                                             </div>
                                         </div>
 
-                                      
+
                                         <div class="col-md-6 col-sm-12">
                                             <label class="form-label mt-4">¿Tiene escala ida?</label>
                                             <div class="form-check">
@@ -882,11 +886,11 @@
                             <!-- Escala ida -->
                             <div class="card mt-3" id="cont-escala-ida">
                                 <div class="card-body">
-                                    
+
                                     <div class="row form-group">
                                         <div class="button-hide" style="display: flex; justify-content: end; ">
                                             <button id="btn_acordion_escala_down1" style="border:none; background-color:white;"><i class="fa fa-solid fa-arrow-down"></i></button>
-                                            <button id="btn_acordion_escala_up1" style="border:none; background-color:white; display:none;"><i class="fa fa-solid fa-arrow-up" ></i></button>
+                                            <button id="btn_acordion_escala_up1" style="border:none; background-color:white; display:none;"><i class="fa fa-solid fa-arrow-up"></i></button>
                                         </div>
                                         <h6 class="text-center">Itinerario Vuelo Rumbo a la Convención 2022 (Escala 1)</h6>
                                         <hr>
@@ -902,7 +906,7 @@
                                                 </div>
                                                 <span id="availability_"></span>
                                             </div>
-                                        
+
                                             <div class="col-12 col-lg-6">
                                                 <label class="form-label">Fecha de salida del vuelo *</label>
                                                 <div class="input-group">
@@ -912,7 +916,7 @@
                                             <div class="col-12 col-lg-6">
                                                 <label class="form-label">Hora de salida del vuelo *</label>
                                                 <div class="input-group">
-                                                    <input id="hora_escala_salida" name="hora_escala_salida" maxlength="29" class="form-control" type="time" placeholder="hora llegada" >
+                                                    <input id="hora_escala_salida" name="hora_escala_salida" maxlength="29" class="form-control" type="time" placeholder="hora llegada">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-12">
@@ -926,7 +930,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                            
+
 
                                     </div>
                                 </div>
@@ -959,7 +963,8 @@
                                                 <select class="form-control" name="aeropuerto_regreso" id="aeropuerto_regreso" required>
                                                     <option selected disabled>Seleccione una Opción</option>
                                                     
-                                                    <?php //echo $aeropuertos; ?>
+                                                    <?php //echo $aeropuertos; 
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div> -->
@@ -972,7 +977,7 @@
                                         <div class="col-12 col-lg-6">
                                             <label class="form-label">Hora de regreso del vuelo*</label>
                                             <div class="input-group">
-                                                <input id="hora_regreso" name="hora_regreso" maxlength="29" class="form-control" type="time" placeholder="hora regreso" required="" style="text-transform:uppercase;" >
+                                                <input id="hora_regreso" name="hora_regreso" maxlength="29" class="form-control" type="time" placeholder="hora regreso" required="" style="text-transform:uppercase;">
                                             </div>
                                         </div>
                                         <div class="col-12 col-lg-12">
@@ -980,7 +985,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <!-- <input type="date" name="fecha_" id="fecha_" class="form-control col-md-7 col-xs-12"> -->
                                                 <select class="form-control select_2" name="aeropuerto_regreso" id="aeropuerto_regreso" required>
-                                                <option selected disabled>Seleccione una Opción</option>
+                                                    <option selected disabled>Seleccione una Opción</option>
                                                     <?php echo $aeropuertos; ?>
                                                 </select>
                                             </div>
@@ -993,7 +998,7 @@
                                                 <label class="form-check-label" for="confirm_escala_regreso_si">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="confirm_escala_regreso" id="confirm_escala_regreso_no" value="no" style="padding: 6px;"checked>
+                                                <input class="form-check-input" type="radio" name="confirm_escala_regreso" id="confirm_escala_regreso_no" value="no" style="padding: 6px;" checked>
                                                 <label class="form-check-label" for="confirm_escala_regreso_no">No</label>
                                             </div>
 
@@ -1010,7 +1015,7 @@
                                     <div class="row form-group">
                                         <div class="button-hide" style="display: flex; justify-content: end; ">
                                             <button id="btn_acordion_escala_down2" style="border:none; background-color:white;"><i class="fa fa-solid fa-arrow-down"></i></button>
-                                            <button id="btn_acordion_escala_up2" style="border:none; background-color:white; display:none;"><i class="fa fa-solid fa-arrow-up" ></i></button>
+                                            <button id="btn_acordion_escala_up2" style="border:none; background-color:white; display:none;"><i class="fa fa-solid fa-arrow-up"></i></button>
                                         </div>
                                         <h6 class="text-center">Itinerario Rumbo casa (Escala 2)</h6>
                                         <hr>
@@ -1033,7 +1038,8 @@
                                                     <select class="form-control" name="aeropuerto_escala_salida" id="aeropuerto_escala_salida" required>
                                                         <option selected disabled>Seleccione una Opción</option>
                                                         
-                                                        <?php //echo $aeropuertos; ?>
+                                                        <?php //echo $aeropuertos; 
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div> -->
@@ -1046,7 +1052,7 @@
                                             <div class="col-12 col-lg-6">
                                                 <label class="form-label">Hora de salida del vuelo *</label>
                                                 <div class="input-group">
-                                                    <input id="hora_escala_regreso" name="hora_escala_regreso" maxlength="29" class="form-control" type="time" placeholder="hora llegada" style="text-transform:uppercase;" >
+                                                    <input id="hora_escala_regreso" name="hora_escala_regreso" maxlength="29" class="form-control" type="time" placeholder="hora llegada" style="text-transform:uppercase;">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-12">
@@ -1065,7 +1071,7 @@
                                 </div>
                             </div>
 
-      
+
                             <div class="card mt-3">
                                 <div class="card-body">
                                     <!-- <div class="form-group row"> -->
@@ -1104,10 +1110,10 @@
 <script>
     $(document).ready(function() {
 
-       $('.select_2').select2();
+        $('.select_2').select2();
 
-       $('#itinerario-tabla').DataTable({
-        "drawCallback": function( settings ) {
+        $('#itinerario-tabla').DataTable({
+            "drawCallback": function(settings) {
                 $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
                 $('.paginate_button').addClass("btn").removeClass("paginate_button");
                 $('.dataTables_length').addClass("m-4");
@@ -1124,77 +1130,77 @@
                 $('.even').addClass("bg-white").removeClass("bg-gray-conave-100");
             },
             "language": {
-            
-                "sProcessing":     "Procesando...",
-                "sLengthMenu":     "Mostrar _MENU_ registros",
-                "sZeroRecords":    "No se encontraron resultados",
-                "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix":    "",
-                "sSearch":         "Buscar:",
-                "sUrl":            "",
-                "sInfoThousands":  ",",
+
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
                 "sLoadingRecords": "Cargando...",
                 "oPaginate": {
-                    "sFirst":    "Primero",
-                    "sLast":     "Último",
-                    "sNext":     "Siguiente",
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
                     "sPrevious": "Anterior"
                 },
                 "oAria": {
-                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
                     "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                 }
-            
+
             }
-       });
-        
+        });
+
 
         $("#cont-escala-ida").css("display", "none");
         $("#cont-escala-regreso").css("display", "none");
 
-        
 
-        $("#btn_acordion_escala_down1").on("click",function(event){
+
+        $("#btn_acordion_escala_down1").on("click", function(event) {
             event.preventDefault();
             $(this).hide();
-            $("#btn_acordion_escala_up1").css("display","block");
+            $("#btn_acordion_escala_up1").css("display", "block");
             $("#hora_escala_salida").removeAttr('required');
             $("#content-itinerario-escala-ida").hide('slow');
-           
+
         });
 
-        $("#btn_acordion_escala_up1").on("click",function(event){
+        $("#btn_acordion_escala_up1").on("click", function(event) {
             event.preventDefault();
             $(this).hide();
-            $("#btn_acordion_escala_down1").css("display","block");
-            $("#hora_escala_salida").attr('required','required');
+            $("#btn_acordion_escala_down1").css("display", "block");
+            $("#hora_escala_salida").attr('required', 'required');
             $("#content-itinerario-escala-ida").show('slow');
-           
+
         });
 
 
-        $("#btn_acordion_escala_down2").on("click",function(event){
+        $("#btn_acordion_escala_down2").on("click", function(event) {
             event.preventDefault();
             $(this).hide();
-            $("#btn_acordion_escala_up2").css("display","block");
+            $("#btn_acordion_escala_up2").css("display", "block");
             $("#hora_escala_regreso").removeAttr('required');
             $("#content-itinerario-escala-regreso").hide('slow');
-            
+
         });
 
-        $("#btn_acordion_escala_up2").on("click",function(event){
+        $("#btn_acordion_escala_up2").on("click", function(event) {
             event.preventDefault();
             $(this).hide();
-            $("#btn_acordion_escala_down2").css("display","block");
-            $("#hora_escala_regreso").attr('required','required');
+            $("#btn_acordion_escala_down2").css("display", "block");
+            $("#hora_escala_regreso").attr('required', 'required');
             $("#content-itinerario-escala-regreso").show('slow');
-            
+
         });
 
-        
+
 
         $("#form_itinerario").on("submit", function(event) {
             event.preventDefault();
@@ -1256,40 +1262,39 @@
         }
     });
 
-    $("#aerolinea_origen").on('change',function(){
+    $("#aerolinea_origen").on('change', function() {
         var id = $(this).val();
-        
-        if(id == 0){
 
-            $("#fecha_salida").prop('required',false);
-            $("#fecha_salida").prop('readonly',true);
-            $("#hora_salida").prop('required',false);
-            $("#hora_salida").prop('readonly',true);
-           
-        }else{
-            $("#fecha_salida").prop('required',true);
-            $("#fecha_salida").prop('readonly',false);
-            $("#hora_salida").prop('required',true);
-            $("#hora_salida").prop('readonly',false);
+        if (id == 0) {
+
+            $("#fecha_salida").prop('required', false);
+            $("#fecha_salida").prop('readonly', true);
+            $("#hora_salida").prop('required', false);
+            $("#hora_salida").prop('readonly', true);
+
+        } else {
+            $("#fecha_salida").prop('required', true);
+            $("#fecha_salida").prop('readonly', false);
+            $("#hora_salida").prop('required', true);
+            $("#hora_salida").prop('readonly', false);
         }
     });
 
-    $("#aerolinea_destino").on('change',function(){
+    $("#aerolinea_destino").on('change', function() {
         var id = $(this).val();
-        
-        if(id == 0){
 
-            $("#fecha_regreso").prop('required',false);
-            $("#fecha_regreso").prop('readonly',true);
-            $("#hora_regreso").prop('required',false);
-            $("#hora_regreso").prop('readonly',true);
-           
-        }else{
-            $("#fecha_regreso").prop('required',true);
-            $("#fecha_regreso").prop('readonly',false);
-            $("#hora_regreso").prop('required',true);
-            $("#hora_regreso").prop('readonly',false);
+        if (id == 0) {
+
+            $("#fecha_regreso").prop('required', false);
+            $("#fecha_regreso").prop('readonly', true);
+            $("#hora_regreso").prop('required', false);
+            $("#hora_regreso").prop('readonly', true);
+
+        } else {
+            $("#fecha_regreso").prop('required', true);
+            $("#fecha_regreso").prop('readonly', false);
+            $("#hora_regreso").prop('required', true);
+            $("#hora_regreso").prop('readonly', false);
         }
     });
-    
 </script>

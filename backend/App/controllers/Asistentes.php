@@ -57,7 +57,10 @@ class Asistentes extends Controller
             }
         }
 
+        //tab faltantes
 
+
+        View::set('tabla_faltantes',$this->getAsistentesFaltantes());
         View::set('tabla', $this->getAllColaboradoresAsignados());
         View::render("asistentes_all");
     }
@@ -796,18 +799,38 @@ html;
 
                 if ($comprobantecovid['validado'] == 1) {
 
-                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Comprobante Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
+                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento validado"><span class="fa fa-file-text-o" style="font-size: 13px;"></span> Comprobante Covid (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
                 } else {
 
-                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Comprobante Covid (<i class="fa fa-solid fa-hourglass-end" style="color:#1a8fdd;"></i>)</p>';
+                    $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Documento pendiente de validar"><span class="fa fa-file-text-o" style="font-size: 13px;"></span> Comprobante Covid (<i class="fa fa-solid fa-hourglass-end" style="color:#1a8fdd;"></i>)</p>';
                 }
             } else {
-                $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fas fa-virus" style="font-size: 13px;"></span> Comprobante Covid  (<i class="fas fa-times" style="color: #7B241C;" ></i>)</p>';
+                $compro_covid = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Aún no se sube el documento"><span class="fa fa-file-text-o" style="font-size: 13px;"></span> Comprobante Covid  (<i class="fas fa-times" style="color: #7B241C;" ></i>)</p>';
             }
 
             // $id_linea = $value['id_linea_principal'];           
 
-            $ticket_virtual = GeneralDao::getTicketByIdTicket($value['id_ticket_virtual']);
+            $ticket_virtual = GeneralDao::searchAsistentesTicketbyId($value['utilerias_asistentes_id'])[0];
+           
+
+            if ($ticket_virtual['clave'] != null) {
+
+                $ticket_v = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Ticket Virtual generado"><span class="fa fa-ticket" style="font-size: 13px;"></span> Ticket Virtual (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
+            } else {
+
+                $ticket_v = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="No se ha generado su ticket virtual"><span class="fa fa-ticket" style="font-size: 13px;"></span> Ticket Virtual (<i class="fas fa-times" style="color: #7B241C;" ></i>)</p>';
+            }
+
+            $itinerario = GeneralDao::searchItinerarioByAistenteId($value['utilerias_asistentes_id'])[0];
+
+            if ($itinerario['id_uasis_it'] != null) {
+
+                $itinerario_asis = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Itinerario Cargado"><span class="fa fa-calendar-check-o" style="font-size: 13px;"></span> Itinerario (<i class="fa fa-solid fa-check" style="color: green;"></i>)</p>';
+            } else {
+
+                $itinerario_asis = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="No se ha cargado el itinerario"><span class="fa fa-calendar-check-o" style="font-size: 13px;"></span> Itinerario (<i class="fas fa-times" style="color: #7B241C;" ></i>)</p>';
+            }
+        
 
             $html .= <<<html
             <tr>
@@ -858,9 +881,10 @@ html;
           <td style="text-align:left; vertical-align:middle;"> 
             {$pase_ida}
             {$pase_regreso}
-            <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-solid fa-ticket" style="font-size: 13px;"></span> Ticket Virtual</p>
+            {$ticket_v}
             {$pru_covid}
-            {$compro_covid}  
+            {$compro_covid}
+            {$itinerario_asis}  
           </td>
           
           <td style="text-align:center; vertical-align:middle;">
@@ -873,28 +897,42 @@ html;
         return $html;
     }
 
+    public function getAsistentesFaltantes() {
+
+        $html = "";
+        foreach (GeneralDao::getAsistentesFaltantes() as $key => $value) {
+          
+
+            $img_user = "/img/user.png";
+
+            $value['apellido_paterno'] = utf8_encode($value['apellido_paterno']);
+            $value['apellido_materno'] = utf8_encode($value['apellido_materno']);
+            $value['nombre'] = utf8_encode($value['nombre']);
+
+ 
+
+            $html .= <<<html
+            <tr>
+                <td>                    
+                    <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']}</h6>
+                </td>
+                <td>
+                    <h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px" aria-hidden="true"></span> {$value['email']}</h6>
+                </td>
+                <td>
+                    <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+                </td>
+        </tr>
+html;
+        }
+        return $html;
+    }
+
     function generateRandomString($length = 6) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
-    public function getFiltro($post)
-    {
-        $datos = array();
-        $datos['c.catalogo_empresa_id'] = MasterDom::getData('catalogo_empresa_id');
-        $datos['c.catalogo_ubicacion_id'] = MasterDom::getData('catalogo_ubicacion_id');
-        $datos['c.catalogo_departamento_id'] = MasterDom::getData('catalogo_departamento_id');
-        $datos['c.catalogo_puesto_id'] = MasterDom::getData('catalogo_puesto_id');
-        $datos['c.identificador_noi'] = (!empty(MasterDom::getData('status'))) ? MasterDom::getData('status') : "";
-
-        $filtro = '';
-        foreach ($datos as $key => $value) {
-            if ($value != '') {
-                if ($key == 'c.pago') $filtro .= "AND {$key} = '$value' ";
-                else $filtro .= "AND {$key} = '$value' ";
-            }
-        }
-        return $datos;
-    }
+ 
 
 }
 

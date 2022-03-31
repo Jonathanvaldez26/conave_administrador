@@ -206,7 +206,7 @@ html;
     $tabla_itinerarios = '';
 
     foreach ($itienerarios as $key => $value) {
-        if ($value['aerolinea_escala_origen'] != NULL || $value['aerolinea_escala_destino'] != NULL || $value['aeropuerto_escala_salida'] != NULL) {
+        if ($value['aerolinea_escala_origen'] != NULL || $value['aerolinea_escala_destino'] != NULL || $value['aeropuerto_escala_salida'] != NULL || $value['aeropuerto_escala_regreso'] != NULL) {
             $tabla_itinerarios .=<<<html
         <tr>
             <td class="text-center">
@@ -240,14 +240,19 @@ html;
                   <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_origen']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_salida']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_salida']}</h6>
+html;                  
+                  if($value['aeropuerto_escala_salida'] != NULL){
+                    $tabla_itinerarios .=<<<html
                   <hr>
                   <span class="badge badge-success">Escala</span><br>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_escala_salida']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_escala_origen']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_escala_salida']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_escala_salida']}</h6>
-         
-                  </div>
+html;
+                }
+                $tabla_itinerarios .=<<<html
+                </div>
             </td> 
              <td>
                   
@@ -255,13 +260,20 @@ html;
                   <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_destino']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_regreso']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_regreso']}</h6>
+html;
+                if($value['aeropuerto_escala_regreso'] != NULL){
+                $tabla_itinerarios .=<<<html
                   <hr>
                   <span class="badge badge-success">Escala</span><br>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-plane"> </span> {$value['aeropuerto_escala_regreso']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-paper-plane"> </span> AEROLÍNEA: {$value['aerolinea_escala_destino']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-calendar"> </span>: {$value['fecha_escala_regreso']}</h6>
                   <h6 class="mb-0 text-sm"> <span class="fa fa-clock"> </span>: {$value['hora_escala_regreso']}</h6>
+                    
+html;
+                }
          
+                $tabla_itinerarios .=<<<html
                   </div>
             </td> 
              <td>

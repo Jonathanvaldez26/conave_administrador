@@ -2,7 +2,7 @@
 
 namespace App\controllers;
 //defined("APPPATH") OR die("Access denied");
-require_once dirname(__DIR__).'/../public/librerias/phpqrcode/qrlib.php';
+require_once dirname(__DIR__) . '/../public/librerias/phpqrcode/qrlib.php';
 
 
 use \Core\View;
@@ -47,20 +47,20 @@ class Asistentes extends Controller
             ///////////////////////////////////////////////////////
             // var_dump($user);
             // var_dump($asistentes);
-        
-        $all_ra = AsistentesDao::getAllRegistrosAcceso();
+
+            $all_ra = AsistentesDao::getAllRegistrosAcceso();
 
         foreach ($all_ra as $key => $value) {
-            if($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL'){
+            if ($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL') {
                 $clave_10 = $this->generateRandomString(10);
-                AsistentesDao::updateClaveRA($value['id_registro_acceso'],$clave_10);
+                AsistentesDao::updateClaveRA($value['id_registro_acceso'], $clave_10);
             }
         }
 
         //tab faltantes
 
 
-        View::set('tabla_faltantes',$this->getAsistentesFaltantes());
+        View::set('tabla_faltantes', $this->getAsistentesFaltantes());
         View::set('tabla', $this->getAllColaboradoresAsignados());
         View::render("asistentes_all");
     }
@@ -172,6 +172,27 @@ html;
                 $(document).ready(function() {
                     // $('#select_alergico').select2();
                 });
+
+                $(".btn_iframe").on("click",function(){
+                    var documento = $(this).attr('data-document');
+                    var modal_id = $(this).attr('data-target');
+                  
+                    if($(modal_id+" iframe").length == 0){
+                        $(modal_id+" .iframe").append('<iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/'+documento+'" style="width:100%; height:700px;" frameborder="0" ></iframe>');
+                    }          
+                  });
+
+                  $(".btn_iframe_pruebas_covid").on("click",function(){
+                    var documento = $(this).attr('data-document');
+                    var modal_id = $(this).attr('data-target');
+                  
+                    if($(modal_id+" iframe").length == 0){
+                        $(modal_id+" .iframe").append('<iframe src="https://www.convencionasofarma2022.mx/pruebas_covid/'+documento+'" style="width:100%; height:700px;" frameborder="0" ></iframe>');
+                    }          
+                  });
+
+
+                  
             </script>
 
             <!-- VIEJO INICIO -->
@@ -484,9 +505,9 @@ html;
         $all_ra = AsistentesDao::getAllRegistrosAcceso();
 
         foreach ($all_ra as $key => $value) {
-            if($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL'){
+            if ($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL') {
                 $clave_10 = $this->generateRandomString(10);
-                AsistentesDao::updateClaveRA($value['id_registro_acceso'],$clave_10);
+                AsistentesDao::updateClaveRA($value['id_registro_acceso'], $clave_10);
             }
         }
 
@@ -495,19 +516,19 @@ html;
         if ($clave_user == '' || $clave_user == NULL || $clave_user == 'NULL') {
             $msg_clave = 'No posee ningún código';
             $btn_clave = '';
-            $btn_genQr =<<<html
+            $btn_genQr = <<<html
             <button type="button" id="generar_clave" title="Generar Ticket Virtual" class="btn bg-gradient-dark mb-0"><i class="fas fa-qrcode"></i></button>
 html;
         } else {
             $this->generaterQr($clave_user);
-            $msg_clave ='';
+            $msg_clave = '';
             $btn_genQr = '';
             $btn_clave = <<<html
                 <button id="show_ticket" type="button" class="btn bg-gradient-info mb-0" title="Ver Ticket Virtual"><i class="fas fa-eye"></i></button>
 html;
         }
 
-        
+
 
         $permisoGlobalHidden = (Controller::getPermisoGlobalUsuario($this->__usuario)[0]['permisos_globales']) != 1 ? "style=\"display:none;\"" : "";
         $asistentesHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_asistentes", 1) == 0) ? "style=\"display:none;\"" : "";
@@ -548,18 +569,21 @@ html;
         View::set('detalles_registro', $detalles_registro[0]);
         View::set('header', $this->_contenedor->header($extraHeader));
         View::set('footer', $this->_contenedor->footer($extraFooter));
+        View::set('tabla_vacunacion', $this->getComprobanteVacunacionById($id));
+        View::set('tabla_prueba_covid', $this->getPruebasCovidById($id));
         View::render("asistentes_detalles");
     }
 
-    public function generaterQr($clave_ticket){
-       
+    public function generaterQr($clave_ticket)
+    {
+
         // $id_constancia = $_POST['id_constancia'];
         // $user_id = $_SESSION['utilerias_asistentes_id'];
 
         // var_dump($user_id);
         //Eliminar los archivos del servidor
         //$this->deleteFiles($id_constancia);
-      
+
 
         // $codigo_rand = $this->generateRandomString();
         $codigo_rand = $clave_ticket;
@@ -567,7 +591,7 @@ html;
         $config = array(
             'ecc' => 'H',    // L-smallest, M, Q, H-best
             'size' => 11,    // 1-50
-            'dest_file' => '../public/qrs/'.$codigo_rand.'.png',
+            'dest_file' => '../public/qrs/' . $codigo_rand . '.png',
             'quality' => 90,
             'logo' => 'logo.jpg',
             'logo_size' => 100,
@@ -575,24 +599,25 @@ html;
             'logo_outline_color' => '#FFFF00',
             'logo_radius' => 15,
             'logo_opacity' => 100,
-          );
-    
-          // Contenido del código QR
-          $data = $codigo_rand;
-    
-          // Crea una clase de código QR
-          $oPHPQRCode = new PHPQRCode();
-    
-          // establecer configuración
-          $oPHPQRCode->set_config($config);
-    
-          // Crea un código QR
-          $qrcode = $oPHPQRCode->generate($data);
-    
+        );
+
+        // Contenido del código QR
+        $data = $codigo_rand;
+
+        // Crea una clase de código QR
+        $oPHPQRCode = new PHPQRCode();
+
+        // establecer configuración
+        $oPHPQRCode->set_config($config);
+
+        // Crea un código QR
+        $qrcode = $oPHPQRCode->generate($data);
+
         //   $url = explode('/', $qrcode );
     }
 
-    public function Actualizar() {
+    public function Actualizar()
+    {
 
         $documento = new \stdClass();
 
@@ -637,7 +662,6 @@ html;
 
             if ($id) {
                 echo "success";
-                
             } else {
                 echo "fail";
                 // header("Location: /Home/");
@@ -647,47 +671,49 @@ html;
         }
     }
 
-    public function darClaveRegistrosAcceso($id,$clave){
+    public function darClaveRegistrosAcceso($id, $clave)
+    {
         AsistentesDao::updateClaveRA($id, $clave);
     }
 
-    public function generarClave($email){
-        
+    public function generarClave($email)
+    {
+
         $clave_user = AsistentesDao::getClaveByEmail($email)[0]['clave'];
         $tiene_ticket = AsistentesDao::getClaveByEmail($email)[0]['clave_ticket'];
         $tiene_clave = '';
         $clave_random = $this->generateRandomString(6);
         $id_registros_acceso = AsistentesDao::getRegistroByEmail($email)[0]['id_registro_acceso'];
-        
-        
+
+
         if ($tiene_ticket == NULL || $tiene_ticket == 'NULL' || $tiene_ticket == 0) {
             $tiene_clave = 'no_tiene';
             AsistentesDao::insertTicket($clave_random);
             $id_tv = AsistentesDao::getIdTicket($clave_random)[0]['id_ticket_virtual'];
             $asignar_clave = AsistentesDao::generateCodeOnTable($email, $id_tv);
-
         } else {
             $tiene_clave = 'ya_tiene';
             $asignar_clave = 1;
         }
-        
+
         if ($asignar_clave) {
             $data = [
-                'status'=>'success',
-                'tiene_ticket'=>$tiene_ticket,
-                'clave'=>$tiene_clave,
+                'status' => 'success',
+                'tiene_ticket' => $tiene_ticket,
+                'clave' => $tiene_clave,
                 // 'id_registros_acceso'=>$id_registros_acceso
             ];
         } else {
             $data = [
-                'status'=>'fail'
+                'status' => 'fail'
             ];
         }
 
         echo json_encode($data);
     }
 
-    public function getAllColaboradoresAsignados() {
+    public function getAllColaboradoresAsignados()
+    {
 
         $html = "";
         foreach (GeneralDao::getAllColaboradores() as $key => $value) {
@@ -732,14 +758,11 @@ html;
             }
 
             $estatus = '';
-            if($value['status'] == 1)
-            {
+            if ($value['status'] == 1) {
                 $estatus .= <<<html
                 <span class="badge badge-success">Activo</span>
 html;
-            }
-            else
-            {
+            } else {
                 $estatus .= <<<html
                 <span class="badge badge-success">Inactivo</span>
 html;
@@ -812,7 +835,7 @@ html;
             // $id_linea = $value['id_linea_principal'];           
 
             $ticket_virtual = GeneralDao::searchAsistentesTicketbyId($value['utilerias_asistentes_id'])[0];
-           
+
 
             if ($ticket_virtual['clave'] != null) {
 
@@ -831,7 +854,7 @@ html;
 
                 $itinerario_asis = '<p class="text-sm font-weight-bold mb-0 " style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="No se ha cargado el itinerario"><span class="fa fa-calendar-check-o" style="font-size: 13px;"></span> Itinerario (<i class="fas fa-times" style="color: #7B241C;" ></i>)</p>';
             }
-        
+
 
             $html .= <<<html
             <tr>
@@ -898,11 +921,369 @@ html;
         return $html;
     }
 
-    public function getAsistentesFaltantes() {
+    public function getComprobanteVacunacionById($id)
+    {
+
+        $comprobantes = ComprobantesVacunacionDao::getComprobateByClaveUser($id);
+        $tabla = '';
+        foreach ($comprobantes as $key => $value) {
+
+            $tabla .= <<<html
+        <tr>
+          <td class="text-center">
+            <span class="badge badge-success"><i class="fas fa-check"> </i> Aprobado</span> <br>
+            <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v']}</span>
+             <hr>
+             <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
+                      
+          </td>
+          <td>
+            <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
+            <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
+              <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
+              <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
+
+            <hr>
+
+              <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br></p-->
+
+              <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span><b> </b>{$value['telefono']}</p>
+              <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-mail-bulk" style="font-size: 13px;"></span><b>  </b><a "mailto:{$value['email']}">{$value['email']}</a></p-->
+
+              <div class="d-flex flex-column justify-content-center">
+                  <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['email']}</h6></a></u>
+                  <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+              </div>
+          </td>
+          <td>
+            <p class="text-center" style="font-size: small;"><span class="fa fa-calendar-check-o" style="font-size: 13px;"></span> Fecha Carga: {$value['fecha_carga_documento']}</p>
+            <p class="text-center" style="font-size: small;"><span class="fa fa-syringe" style="font-size: 13px;"></span> # Dosis: {$value['numero_dosis']}</p>
+            <p class="text-center" style="font-size: small;"><span class="fa fa-cubes" style="font-size: 13px;"></span> <strong>Marca: {$value['marca_dosis']}</strong></p>
+          </td>
+          <td class="text-center">
+            <button type="button" class="btn bg-gradient-primary btn_iframe" data-document="{$value['documento']}" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">
+              <i class="fas fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+
+        <div class="modal fade" id="ver-documento-{$value['id_c_v']}" tabindex="-1" role="dialog" aria-labelledby="ver-documento-{$value['id_c_v']}" aria-hidden="true">
+          <div class="modal-dialog" role="document" style="max-width: 1000px;">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Comprobante de Vacunación</h5>
+                  <span type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+                      X
+                  </span>
+              </div>
+              <div class="modal-body bg-gray-200">
+                <div class="row">
+                  <div class="col-md-8 col-12">
+                    <div class="card card-body mb-4 iframe">
+                      <!--<iframe src="https://www.convencionasofarma2022.mx/comprobante_vacunacion/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
+                      </iframe>-->
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                    <div class="card card-body mb-4">
+                      <h5>Datos Personales</h5>
+                      <div class="mb-2">
+                        <h6 class="fas fa-user"> </h6>
+                        <span> <b>Nombre:</b> {$value['nombre_completo']}</span>
+                        <span class="badge badge-success">Aprobado</span>
+                      </div>
+                      <div class="mb-2">
+                        <h6 class="fas fa-address-card"> </h6>
+                        <span> <b>Número de empleado:</b> {$value['numero_empleado']}</span>
+                      </div>
+                      <div class="mb-2">
+                        <h6 class="fas fa-business-time"> </h6>
+                        <span> <b>Bu:</b> {$value['nombre_bu']}</span>
+                      </div>
+                      <div class="mb-2">
+                        <h6 class="fas fa-pills"> </h6>
+                        <span> <b>Línea:</b> {$value['nombre_linea']}</span>
+                      </div>
+                      <div class="mb-2">
+                        <h6 class="fas fa-hospital"> </h6>
+                        <span> <b>Posición:</b> {$value['nombre_posicion']}</span>
+                      </div>
+                      <div class="mb-2">
+                        <h6 class="fa fa-mail-bulk"> </h6>
+                        <span> <b>Correo Electrónico:</b> <u><a href="mailto:{$value['email']}">{$value['email']}</a></u></span>
+                      </div>
+                      <div class="mb-2">
+                      <h6 class="fa fa-whatsapp" style="font-size: 13px; color:green;"> </h6>
+                      <span> <b></b> <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">{$value['telefono']}</a></u></span>
+                      </div>
+                    </div>
+                    <div class="card card-body mb-4">
+                      <h5>Datos del Comprobante</h5>
+                      <div class="mb-2">
+                        <h6 class="fas fa-calendar"> </h6>
+                        <span> <b>Fecha de alta:</b> {$value['fecha_carga_documento']}</span>
+                      </div>
+                      <div class="mb-2">
+                        <h6 class="fas fa-hashtag"> </h6>
+                        <span> <b>Número de Dósis:</b> {$value['numero_dosis']}</span>
+                      </div>
+                      <div class="mb-2">
+                        <h6 class="fas fa-syringe"> </h6>
+                        <span> <b>Marca:</b> {$value['marca_dosis']}</span>
+                      </div>
+                    </div>
+                    <div class="card card-body">
+                      <h5>Notas</h5>
+html;
+
+            if ($value['nota'] != '') {
+                $tabla .= <<<html
+                      <div class="editar_section" id="editar_section">
+                        <p id="">
+                          {$value['nota']}
+                        </p>
+                        <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50 editar_nota" >
+                          Editar
+                        </button>
+                      </div>
+
+                      <div class="hide-section editar_section_textarea" id="editar_section_textarea">
+                        <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
+                          <input type="text" id="id_comprobante_vacuna" name="id_comprobante_vacuna" value="{$value['id_c_v']}" readonly style="display:none;"> 
+                          <p>
+                            <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
+                          </p>
+                          <div class="row">
+                            <div class="col-md-6 col-12">
+                            <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark guardar_editar_nota" >
+                              Guardar
+                            </button>
+                            </div>
+                            <div class="col-md-6 col-12">
+                              <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger cancelar_editar_nota" >
+                                Cancelar
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+html;
+            } else {
+                $tabla .= <<<html
+                      <p>
+                        {$value['nota']}
+                      </p>
+                      <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
+                        <input type="text" id="id_comprobante_vacuna" name="id_comprobante_vacuna" value="{$value['id_c_v']}" readonly style="display:none;"> 
+                        <p>
+                          <textarea class="form-control" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
+                        </p>
+                        <button type="submit" class="btn bg-gradient-dark w-50" >
+                          Guardar
+                        </button>
+                      </form>
+html;
+            }
+            $tabla .= <<<html
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+html;
+        }
+
+
+        return $tabla;
+    }
+
+    public function getPruebasCovidById($id)
+    {
+        $pruebas = PruebasCovidUsuariosDao::getComprobateByIdUser($id);
+        $tabla = '';
+        foreach ($pruebas as $key => $value) {
+            $tabla .= <<<html
+        <tr>
+          <td class="text-center">
+            <span class="badge badge-success"><i class="fas fa-check"></i> Aprobada</span> <br>
+            <span class="badge badge-secondary">Folio <i class="fas fa-hashtag"> </i> {$value['id_c_v']}</span>
+            <hr>
+            <p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br><span class="fas fa-suitcase"> </span> {$value['nombre_ejecutivo']} <span class="badge badge-success" style="background-color:  {$value['color']}; color:white "><strong>{$value['nombre_linea_ejecutivo']}</strong></span></p>
+          </td>
+          <td>
+            <h6 class="mb-0 text-sm"> <span class="fas fa-user-md"> </span>  {$value['nombre_completo']}</h6>
+            <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-business-time" style="font-size: 13px;"></span><b> Bu: </b>{$value['nombre_bu']}</p>
+              <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-pills" style="font-size: 13px;"></span><b> Linea Principal: </b>{$value['nombre_linea']}</p>
+              <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-hospital" style="font-size: 13px;"></span><b> Posición: </b>{$value['nombre_posicion']}</p>
+
+            <hr>
+
+              <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fas fa-user-tie" style="font-size: 13px;"></span><b> Ejecutivo Asignado a Línea: </b><br></p-->
+
+              <!--p class="text-sm font-weight-bold mb-0 "><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span><b> </b>{$value['telefono']}</p>
+              <p class="text-sm font-weight-bold mb-0 "><span class="fa fa-mail-bulk" style="font-size: 13px;"></span><b>  </b><a "mailto:{$value['email']}">{$value['email']}</a></p-->
+
+              <div class="d-flex flex-column justify-content-center">
+                  <u><a href="mailto:{$value['email']}"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> {$value['email']}</h6></a></u>
+                  <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+              </div>
+          </td>
+          <td>
+            <p class="text-center" style="font-size: small;">{$value['fecha_carga_documento']}</p>
+          </td>
+          <td>
+            <p class="text-center" style="font-size: small;">{$value['tipo_prueba']}</p>
+          </td>
+          <td>
+            <p class="text-center" style="font-size: small;">{$value['resultado']}</p>
+          </td>
+          <td class="text-center">
+            <button type="button" class="btn bg-gradient-primary btn_iframe_pruebas_covid" data-document="{$value['documento']}" data-toggle="modal" data-target="#ver-documento-{$value['id_c_v']}">
+              <i class="fas fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+
+        <div class="modal fade" id="ver-documento-{$value['id_c_v']}" tabindex="-1" role="dialog" aria-labelledby="ver-documento-{$value['id_c_v']}" aria-hidden="true">
+          <div class="modal-dialog" role="document" style="max-width: 1000px;">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Documento Prueba SARS-CoV-2</h5>
+                      <span type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+                          X
+                      </span>
+                  </div>
+                  <div class="modal-body bg-gray-200">
+                    <div class="row">
+                      <div class="col-md-8 col-12">
+                        <div class="card card-body mb-4 iframe">
+                          <!--<iframe src="/PDF/{$value['documento']}" style="width:100%; height:700px;" frameborder="0" >
+                          </iframe>-->
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-12">
+                        <div class="card card-body mb-4">
+                          <h5>Datos Personales</h5>
+                          <div class="mb-2">
+                            <h6 class="fas fa-user"> </h6>
+                            <span> <b>Nombre:</b> {$value['nombre_completo']}</span>
+                            <span class="badge badge-success">Aprobado</span>
+                          </div>
+                          <div class="mb-2">
+                            <h6 class="fas fa-address-card"> </h6>
+                            <span> <b>Número de empleado:</b> {$value['numero_empleado']}</span>
+                          </div>
+                          <div class="mb-2">
+                            <h6 class="fas fa-business-time"> </h6>
+                            <span> <b>Bu:</b> {$value['nombre_bu']}</span>
+                          </div>
+                          <div class="mb-2">
+                            <h6 class="fas fa-pills"> </h6>
+                            <span> <b>Línea:</b> {$value['nombre_linea']}</span>
+                          </div>
+                          <div class="mb-2">
+                            <h6 class="fas fa-hospital"> </h6>
+                            <span> <b>Posición:</b> {$value['nombre_posicion']}</span>
+                          </div>
+                          <div class="mb-2">
+                            <h6 class="fa fa-mail-bulk"> </h6>
+                            <span> <b>Correo Electrónico:</b> <u><a href="mailto:{$value['email']}">{$value['email']}</a></u></span>
+                          </div>
+                          <div class="mb-2">
+                            <h6 class="fa fa-whatsapp" style="font-size: 13px; color:green;"> </h6>
+                            <span> <b></b> <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank">{$value['telefono']}</a></u></span>
+                          </div>
+                        </div>
+                        <div class="card card-body mb-4">
+                          <h5>Datos de la Prueba</h5>
+                          <div class="mb-2">
+                            <h6 class="fas fa-calendar"> </h6>
+                            <span> <b>Fecha de alta:</b> {$value['fecha_carga_documento']}</span>
+                          </div>
+                          <div class="mb-2">
+                            <h6 class="fas fa-hashtag"> </h6>
+                            <span> <b>Resultado:</b> {$value['resultado']}</span>
+                          </div>
+                          <div class="mb-2">
+                            <h6 class="fas fa-syringe"> </h6>
+                            <span> <b>Tipo de prueba:</b> {$value['tipo_prueba']}</span>
+                          </div>
+                        </div>
+                        <div class="card card-body">
+                          <h5>Notas</h5>
+                          
+html;
+            if ($value['nota'] != '') {
+                $tabla .= <<<html
+                          <div class="editar_section" id="editar_section">
+                            <p id="">
+                              {$value['nota']}
+                            </p>
+                            <button id="editar_nota" type="button" class="btn bg-gradient-primary w-50 editar_nota" >
+                              Editar
+                            </button>
+                          </div>
+
+                          <div class="hide-section editar_section_textarea" id="editar_section_textarea">
+                            <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
+                              <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
+                              <p>
+                                <textarea class="form-control nota" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required> {$value['nota']} </textarea>
+                              </p>
+                              <div class="row">
+                                <div class="col-md-6 col-12">
+                                <button type="submit" id="guardar_editar_nota" class="btn bg-gradient-dark guardar_editar_nota" >
+                                  Guardar
+                                </button>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                  <button type="button" id="cancelar_editar_nota" class="btn bg-gradient-danger cancelar_editar_nota" >
+                                    Cancelar
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+html;
+            } else {
+                $tabla .= <<<html
+                          <p>
+                            {$value['nota']}
+                          </p>
+                          <form class="form-horizontal guardar_nota" id="guardar_nota" action="" method="POST">
+                            <input type="text" id="id_prueba_covid" name="id_prueba_covid" value="{$value['id_c_v']}" readonly style="display:none;"> 
+                            <p>
+                              <textarea class="form-control nota" name="nota" id="nota" placeholder="Agregar notas sobre la respuesta de la validación del documento" required></textarea>
+                            </p>
+                            <button type="submit" class="btn bg-gradient-dark w-50" >
+                              Guardar
+                            </button>
+                          </form>
+html;
+            }
+            $tabla .= <<<html
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+html;
+        }
+
+
+        return $tabla;
+    }
+
+    public function getAsistentesFaltantes()
+    {
 
         $html = "";
         foreach (GeneralDao::getAsistentesFaltantes() as $key => $value) {
-          
+
 
             $img_user = "/img/user.png";
 
@@ -910,7 +1291,7 @@ html;
             $value['apellido_materno'] = utf8_encode($value['apellido_materno']);
             $value['nombre'] = utf8_encode($value['nombre']);
 
- 
+
 
             $html .= <<<html
             <tr>
@@ -929,12 +1310,12 @@ html;
         return $html;
     }
 
-    function generateRandomString($length = 6) {
+
+
+    function generateRandomString($length = 6)
+    {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
-
- 
-
 }
 
 class PHPQRCode

@@ -424,7 +424,7 @@
                                                                                                         echo $detalles_registro['apellido_paterno'] . ' ';
                                                                                                         echo $detalles_registro['apellido_materno']; ?></span>&nbsp;&nbsp;&nbsp;<span class="badge badge-sm bg-gradient-success"> Activo</span>
                                                     <br> <br>
-                                                    <p class="text-sm mb-3">Línea ASOFARMA: <strong>ADIUM</strong></p>
+                                                    <p class="text-sm mb-3"></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -434,8 +434,7 @@
                                                 <button class="btn bg-gradient-primary mb-0" type="button" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
 
                                                 <input id="input-email" type="text" class="form-control" value="<?php echo $email; ?>" readonly hidden>
-                                                <?php echo $btn_genQr; ?>
-                                                <?php echo $btn_clave; ?>
+                                                
                                             </form>
                                             <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
                                         </div>
@@ -454,10 +453,10 @@
                                                     </button>
                                                 </div> -->
                                             <!-- <h6 class="mb-3 mt-4">Billing Information</h6> -->
-                                            <div class="mt-2 nav-wrapper position-relative end-0">
+                                            <div class="mt-2 nav-wrapper active position-relative end-0">
                                                 <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                                                     <li class="nav-item">
-                                                        <a class="nav-link mb-0 px-0 py-1 active" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="true">
+                                                        <a class="nav-link mb-0 px-0 py-1  active" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="true">
                                                             <span class="fa fa-syringe"></span>
                                                             <span class="ms-1">Vacunación</span>
                                                         </a>
@@ -484,14 +483,18 @@
                                             </div>
 
                                             <div class="tab-content" id="v-pills-tabContent">
-                                                <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
+                                                <div class="tab-pane fade show position-relative height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
                                                     <style>
                                                         #main_ticket {
                                                             /* margin-top: 20px; */
                                                             text-align: center;
                                                         }
                                                     </style>
-                                                    <ul class="list-group ">
+                                                    <div>
+                                                    <?php echo $btn_genQr; ?>
+                                                    <?php echo $btn_clave; ?>
+                                                    </div>
+                                                    <ul class="list-group mt-3">
                                                         <li class="list-group-item border-0 p-4 mb-2 bg-gray-100 border-radius-lg ">
                                                             <h3><?php echo $msg_clave; ?></h3>
                                                             <div class="row">
@@ -514,42 +517,93 @@
                                                 </div>
 
                                                 <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                            <div class="d-flex flex-column">
-                                                                <h6 class="mb-3 text-sm">Peter Parker</h6>
-                                                                <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                                <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                                <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                <div class="row mt-4">
+                                                        <div class="card mb-4">
+                                                            <div class="card-header pb-0">
+                                                                <h6></h6>
                                                             </div>
-                                                        </li>
-                                                    </ul>
+                                                            <div class="card-body px-0 pt-0 pb-2">
+                                                                <div class="table-responsive p-0">
+                                                                    <table id="table_aprobado" class="table align-items-center mb-0 table_rechazado">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos Comprobante</th>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documento</th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                            <!-- tabla ticket -->
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam3" role="tabpanel" aria-labelledby="cam3">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                            <div class="d-flex flex-column">
-                                                                <h6 class="mb-3 text-sm">Eddie Brook</h6>
-                                                                <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                                <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                                <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                <div class="row mt-4">
+                                                        <div class="card mb-4">
+                                                            <div class="card-header pb-0">
+                                                                <h6></h6>
                                                             </div>
-                                                        </li>
-                                                    </ul>
+                                                            <div class="card-body px-0 pt-0 pb-2">
+                                                                <div class="table-responsive p-0">
+                                                                    <table id="table_aprobado" class="table align-items-center mb-0 table_rechazado">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos Comprobante</th>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documento</th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                            <?php echo $tabla_prueba_covid; ?>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-                                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam4" role="tabpanel" aria-labelledby="cam4">
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                            <div class="d-flex flex-column">
-                                                                <h6 class="mb-3 text-sm">Mary Jane</h6>
-                                                                <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                                <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                                <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                <div class="tab-pane fade position-relative height-350 border-radius-lg active show" id="cam4" role="tabpanel" aria-labelledby="cam4">
+                                                    <div class="row mt-4">
+                                                        <div class="card mb-4">
+                                                            <div class="card-header pb-0">
+                                                                <h6></h6>
                                                             </div>
-                                                        </li>
-                                                    </ul>
+                                                            <div class="card-body px-0 pt-0 pb-2">
+                                                                <div class="table-responsive p-0">
+                                                                    <table id="table_aprobado" class="table align-items-center mb-0 table_rechazado">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre del Asistente</th>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Datos Comprobante</th>
+                                                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Documento</th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                            <?php echo $tabla_vacunacion; ?>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </div>

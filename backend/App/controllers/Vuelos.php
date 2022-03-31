@@ -106,8 +106,17 @@ html;
 
 html;
 
+    $permisos = Controller::getPermisoGlobalUsuario($this->__usuario)[0];
 
-     $vuelos = VuelosDao::getAllLlegada();
+    //  $vuelos = VuelosDao::getAllLlegada();
+     if($permisos['permisos_globales'] == 1 || $permisos['permisos_globales'] == 5){
+        $vuelos = VuelosDao::getAllLlegada();
+      }else{
+        $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
+        // var_dump($id_linea['id_linea_ejecutivo']);
+        $vuelos = VuelosDao::getLlegadaByLinea($id_linea['id_linea_ejecutivo']);
+      }
+     
      $tabla= '';
      foreach ($vuelos as $key => $value) {
             $tabla.= <<<html
@@ -313,14 +322,10 @@ html;
         
     }
 
-    // <tr>
-    //         <td><span class="badge badge-info">Escala</span></td>
-    //         <td>{$value['aerolinea_escala_origen']}</td>
-    //         <td>{$value['aerolinea_escala_destino']}</td>
-    //         <td>{$value['fecha_escala_salida']}</td>
-    //         <td>{$value['fecha_escala_regreso']}</td>
-    //         <td></td>
-    //     </tr>
+    $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
+
+    // var_dump($id_linea);
+
      $totalvuelos = '';
      foreach (VuelosDao::getCountVuelos() as $key => $value)
      {

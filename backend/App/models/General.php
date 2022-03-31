@@ -56,6 +56,21 @@ sql;
     return $mysqli->queryAll($query);
   }
 
+  public static function searchItinerarioByAistenteId($id){
+    $mysqli = Database::getInstance();
+    $query =<<<sql
+    SELECT ra.nombre, uasis.id_registro_acceso, uasis.utilerias_asistentes_id, it.utilerias_asistentes_id as id_uasis_it
+    FROM registros_acceso ra
+    INNER JOIN utilerias_asistentes uasis ON(ra.id_registro_acceso = uasis.id_registro_acceso)
+    LEFT JOIN itinerario it ON(uasis.utilerias_asistentes_id = it.utilerias_asistentes_id)
+    WHERE uasis.utilerias_asistentes_id = $id
+sql;
+
+    return $mysqli->queryAll($query);
+  }
+
+
+
   public static function getPeriodo($data){
     $mysqli = Database::getInstance();
     if($data->_tipo_busqueda == 0){ /* CUANDO SE BUSCA UN UNICO PERIODO ABIERTO*/

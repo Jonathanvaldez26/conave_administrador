@@ -2,13 +2,16 @@
 
 <body class="g-sidenav-show  bg-gray-100">
     <aside class="bg-white-aside sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-        <div class="sidenav-header">
+        <div class="sidenav-header" style="margin-bottom: 30px;">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
             <a class="navbar-brand m-0" href="/Principal/" target="_blank">
                 <img src="/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">ADMIN CONVENCIÓN</span>
+                <p style="margin-top: 15px;"><?php echo $_SESSION['nombre']; ?></p>
             </a>
+
+
         </div>
         <hr class="horizontal dark mt-0">
 
@@ -351,7 +354,7 @@
 
                                     <input type="hidden" name="usuario" id="usuario" value="<?php echo $administrador['usuario']; ?>">
                                     <input type="hidden" name="usuario_id" id="usuario_id" value="<?php echo $administrador['utilerias_administradores_id']; ?>">
-                                    
+
 
                                     <div class="card-body pt-0">
                                         <div class="row">
@@ -454,7 +457,7 @@
                                                 </div>
                                             </div>
 
-                                            
+
                                             <div class="form-group" id="permiosos-personalizados" style="">
                                                 <label class="col-md-3 col-sm-3 col-xs-12 control-label">Secciones a visualizar
                                                     <br>
@@ -521,4 +524,3 @@
 </body>
 
 <?php echo $footer; ?>
-

@@ -2,13 +2,16 @@
 
 <body class="g-sidenav-show  bg-gray-100">
   <aside class=" bg-white-aside sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-    <div class="sidenav-header">
+    <div class="sidenav-header" style="margin-bottom: 30px;">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
       <a class="navbar-brand m-0" href="/Principal/" target="_blank">
         <img src="/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">ADMIN CONVENCIÓN</span>
+        <p style="margin-top: 15px;"><?php echo $_SESSION['nombre']; ?></p>
       </a>
+
+
     </div>
     <hr class="horizontal dark mt-0">
 
@@ -334,7 +337,7 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    
+
     <div class="d-flex justify-content-center ">
       <div class="right_col">
         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
@@ -378,7 +381,8 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <select class="form-control" name="perfil_id" onchange="showDiv(this)">
                         <option value="" disabled selected>Selecciona un perfil para el este administrador</option>
-                        <?php //echo $perfiles; ?>
+                        <?php //echo $perfiles; 
+                        ?>
                       </select>
                     </div>
                   </div>
@@ -450,7 +454,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <?php //echo $permisos; ?>
+                          <?php //echo $permisos; 
+                          ?>
                         </tbody>
                       </table>
 
@@ -469,7 +474,8 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <select class="form-control" name="status" id="status">
                         <option value="" disabled selected>Selecciona un estatus</option>
-                        <?php //echo $status; ?>
+                        <?php //echo $status; 
+                        ?>
                       </select>
                     </div>
                   </div>
@@ -488,166 +494,166 @@
 
             <div class="container-fluid col-md-12 card mt-4" id="basic-info">
               <form autocomplete="off" method="POST" class="form-horizontal" id="add" action="/Administradores/administradorAdd">
-                  <div class="form-group ">
-                      <div class="card-header text-center">
-                          <h3>Datos Generales para Agregar un Administrador</h3>
-                          
-                      </div>
-                      <div class="card-body pt-0">
-                          <div class="row">
-                              <div class="form-group col-12 col-md-6 ">
-                                  <label class="form-label">Nombre del Administrador *</label>
-                                  <div class="input-group">
-                                      <input id="nombre" name="nombre"  id="nombre" class="form-control" type="text" placeholder="Ej. Jonathan Valdez Martinez" required="required" onfocus="focused(this)" onfocusout="defocused(this)">
-                                  </div>
-                              </div>
-                              <div class="form-group  col-12 col-md-6">
-                                <label class="form-label">Correo Electrónico *</label>
-                                  <div class="input-group">
-                                      <input id="usuario" autocomplete="off" name="usuario"  id="usuario" class="form-control" type="email" placeholder="ejemplo@grupolahe.com" required onfocus="focused(this)" onfocusout="defocused(this)">
-                                  </div>
-                                  <span id="availability"></span>
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <div class="col-6">
-                                  <label class="form-label">Contraseña *</label>
-                                  <div class="input-group">
-                                      <input id="contrasena_1" name="contrasena_1" id="contrasena_1" class="form-control" value="" type="password" value="" placeholder="Ingresa Contraseña" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
-                                  </div>
-                              </div>
-                              <div class="form-group col-12 col-md-6">
-                                  <label class="form-label">Confirmar Contraseña *</label>
-                                  <div class="input-group">
-                                      <input id="contrasena_2" name="contrasena_2" id="contrasena_2" class="form-control" value="" type="password" value="" placeholder="Confirma Contraseña" onfocus="focused(this)" onfocusout="defocused(this)">
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="form-group row">
-                              <div class="col-sm-12 col-md-6">
-                                <label class="form-label">Perfil del Administrador *</label>
-                                <select class="form-control col-12 col-md-6" name="perfil_id" onchange="showDiv(this)">
-                                  <option value="" disabled selected>Selecciona un perfil para el este administrador</option>
-                                  <?php echo $perfiles; ?>
-                                </select>
-                              </div>
-                         
-                              <div class="col-sm-12 col-md-6" id="cont_linea">
-                                <label class="form-label">Linea *</label>
-                                <select class="form-control col-12 col-md-6" name="linea_id">
-                                  <option value="" disabled selected>Selecciona una linea para este administrador</option>
-                                  <?php echo $lineas; ?>
-                                </select>
-                              </div>
-                          </div>
+                <div class="form-group ">
+                  <div class="card-header text-center">
+                    <h3>Datos Generales para Agregar un Administrador</h3>
 
-                          <div>
-                            <div class="form-group" id="permiosos-root" style="display: none;">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos Root</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario es root del sistema</label>
-                                <input type="hidden" name="admin" id="admin" value="1" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group" id="permiosos-administrador" style="display: none;">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario tiene todos los privilegios: ver, crear, editar y eliminar </label>
-                                <input type="hidden" name="admin" id="admin" value="1" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group" id="permiosos-recursos-humanos" style="display: none;">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario tiene todos los privilegios </label>
-                                <input type="hidden" name="admin" id="admin" value="2" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group" id="permiosos-prorrateo" style="display: none;">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos Prorrateo</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario solo la opcion de ver prorrateo </label>
-                                <input type="hidden" name="admin" id="admin" value="2" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group" id="permiosos-personales" style="display: none;">
-                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos personales</label>
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario ve todas las seccion de todas las plantas</label>
-                                <input type="hidden" name="admin" id="admin" value="2" class="form-control col-md-7 col-xs-12">
-                              </div>
-                            </div>
-
-                            <div class="form-group" id="permiosos-personalizados" style="display:none;">
-                              <label class="col-md-3 col-sm-3 col-xs-12 control-label">Secciones a visualizar
-                                <br>
-                                <small class="text-navy">Selecciona dentro de la <br> tabla que secciones deseas <br> que este perfil quieres <br> que visualice. <br> También asigna si deseas <br> que pueda realizar:
-                                  <ul>
-                                    <li>Ver PDF</li>
-                                    <li>Ver Excel</li>
-                                    <li>Agregar</li>
-                                    <li>Editar</li>
-                                    <li>Eliminar</li>
-                                  </ul>
-                                </small>
-                              </label>
-
-                              <div class="col-md-6 col-sm-6 col-xs-6">
-                                <table class="table table-striped table-hover" id="muestra-cupones">
-                                  <thead>
-                                    <tr>
-                                      <th>Sección</th>
-                                      <th>Ver PDF</th>
-                                      <th>Ver Excel</th>
-                                      <th>&nbsp;&nbsp;&nbsp;&nbsp;Crear</th>
-                                      <th>&nbsp;&nbsp;&nbsp;&nbsp;Editar</th>
-                                      <th>&nbsp;&nbsp;&nbsp;&nbsp;Eliminar</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <?php echo $permisos; ?>
-                                  </tbody>
-                                </table>
-
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                              <div class="col-12">
-                                  <label class="control-label col-md-2 col-sm-3 col-xs-12" for="descripcion">Descripción<span class="required"> *</span></label>
-                                  <div class="input-group">
-                                    <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n del administrador"></textarea>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="form-group" hidden>
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus<span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <select class="form-control" name="status" id="status">
-                                <option value="1" disabled selected>Selecciona un estatus</option>
-                                <?php echo $status; ?>
-                              </select>
-                            </div>
-                          </div>
-                          <br>
-                          <div class="form-group text-center">
-                            <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-2 col-xs-offset-3">
-                              <button class="btn bg-gradient-success col-md-3 col-sm-3 col-xs-5" id="btnAdd" type="submit">Agregar</button>
-                              <a href="/Administradores/" class="btn bg-gradient-danger col-md-3 col-sm-3 col-xs-5"  id="btnCancel">Cancelar</a>
-                              <button class="btn bg-gradient-primary col-md-3 col-sm-3 col-xs-5" type="reset">Resetear</button>
-                            </div>
-                          </div>
-                        </div>
                   </div>
+                  <div class="card-body pt-0">
+                    <div class="row">
+                      <div class="form-group col-12 col-md-6 ">
+                        <label class="form-label">Nombre del Administrador *</label>
+                        <div class="input-group">
+                          <input id="nombre" name="nombre" id="nombre" class="form-control" type="text" placeholder="Ej. Jonathan Valdez Martinez" required="required" onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
+                      </div>
+                      <div class="form-group  col-12 col-md-6">
+                        <label class="form-label">Correo Electrónico *</label>
+                        <div class="input-group">
+                          <input id="usuario" autocomplete="off" name="usuario" id="usuario" class="form-control" type="email" placeholder="ejemplo@grupolahe.com" required onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
+                        <span id="availability"></span>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-6">
+                        <label class="form-label">Contraseña *</label>
+                        <div class="input-group">
+                          <input id="contrasena_1" name="contrasena_1" id="contrasena_1" class="form-control" value="" type="password" value="" placeholder="Ingresa Contraseña" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
+                        </div>
+                      </div>
+                      <div class="form-group col-12 col-md-6">
+                        <label class="form-label">Confirmar Contraseña *</label>
+                        <div class="input-group">
+                          <input id="contrasena_2" name="contrasena_2" id="contrasena_2" class="form-control" value="" type="password" value="" placeholder="Confirma Contraseña" onfocus="focused(this)" onfocusout="defocused(this)">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-12 col-md-6">
+                        <label class="form-label">Perfil del Administrador *</label>
+                        <select class="form-control col-12 col-md-6" name="perfil_id" onchange="showDiv(this)">
+                          <option value="" disabled selected>Selecciona un perfil para el este administrador</option>
+                          <?php echo $perfiles; ?>
+                        </select>
+                      </div>
+
+                      <div class="col-sm-12 col-md-6" id="cont_linea">
+                        <label class="form-label">Linea *</label>
+                        <select class="form-control col-12 col-md-6" name="linea_id">
+                          <option value="" disabled selected>Selecciona una linea para este administrador</option>
+                          <?php echo $lineas; ?>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div class="form-group" id="permiosos-root" style="display: none;">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos Root</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario es root del sistema</label>
+                          <input type="hidden" name="admin" id="admin" value="1" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+                      <div class="form-group" id="permiosos-administrador" style="display: none;">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario tiene todos los privilegios: ver, crear, editar y eliminar </label>
+                          <input type="hidden" name="admin" id="admin" value="1" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+                      <div class="form-group" id="permiosos-recursos-humanos" style="display: none;">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario tiene todos los privilegios </label>
+                          <input type="hidden" name="admin" id="admin" value="2" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+                      <div class="form-group" id="permiosos-prorrateo" style="display: none;">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos Prorrateo</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario solo la opcion de ver prorrateo </label>
+                          <input type="hidden" name="admin" id="admin" value="2" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+                      <div class="form-group" id="permiosos-personales" style="display: none;">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Permisos personales</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <label class="col-md-12 col-sm-12 col-xs-12 form-control">Este usuario ve todas las seccion de todas las plantas</label>
+                          <input type="hidden" name="admin" id="admin" value="2" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+
+                      <div class="form-group" id="permiosos-personalizados" style="display:none;">
+                        <label class="col-md-3 col-sm-3 col-xs-12 control-label">Secciones a visualizar
+                          <br>
+                          <small class="text-navy">Selecciona dentro de la <br> tabla que secciones deseas <br> que este perfil quieres <br> que visualice. <br> También asigna si deseas <br> que pueda realizar:
+                            <ul>
+                              <li>Ver PDF</li>
+                              <li>Ver Excel</li>
+                              <li>Agregar</li>
+                              <li>Editar</li>
+                              <li>Eliminar</li>
+                            </ul>
+                          </small>
+                        </label>
+
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                          <table class="table table-striped table-hover" id="muestra-cupones">
+                            <thead>
+                              <tr>
+                                <th>Sección</th>
+                                <th>Ver PDF</th>
+                                <th>Ver Excel</th>
+                                <th>&nbsp;&nbsp;&nbsp;&nbsp;Crear</th>
+                                <th>&nbsp;&nbsp;&nbsp;&nbsp;Editar</th>
+                                <th>&nbsp;&nbsp;&nbsp;&nbsp;Eliminar</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <?php echo $permisos; ?>
+                            </tbody>
+                          </table>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-12">
+                        <label class="control-label col-md-2 col-sm-3 col-xs-12" for="descripcion">Descripción<span class="required"> *</span></label>
+                        <div class="input-group">
+                          <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripci&oacute;n del administrador"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group" hidden>
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Estatus<span class="required">*</span></label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select class="form-control" name="status" id="status">
+                          <option value="1" disabled selected>Selecciona un estatus</option>
+                          <?php echo $status; ?>
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="form-group text-center">
+                      <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-2 col-xs-offset-3">
+                        <button class="btn bg-gradient-success col-md-3 col-sm-3 col-xs-5" id="btnAdd" type="submit">Agregar</button>
+                        <a href="/Administradores/" class="btn bg-gradient-danger col-md-3 col-sm-3 col-xs-5" id="btnCancel">Cancelar</a>
+                        <button class="btn bg-gradient-primary col-md-3 col-sm-3 col-xs-5" type="reset">Resetear</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </form>
             </div>
 
-          <div class="x_title">
+            <div class="x_title">
               <br><br>
               <h1 style="color: #0000;">Agregar un nuevo Administrador</h1>
               <div class="clearfix"></div>
@@ -661,4 +667,3 @@
 </body>
 
 <?php echo $footer; ?>
-

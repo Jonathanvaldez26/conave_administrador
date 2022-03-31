@@ -71,13 +71,25 @@ html;
     foreach ($asistentes as $key => $value) {
       $habitacionCompartida = AsistentesDao::getUsuariosByClaveHabitacion($value['clave']);
 
+      if (empty($habitacionCompartida['img']) || $habitacionCompartida['img'] == null) {
+        $img_user = "/img/user.png";
+      } else {
+        $img_user = "https://convencionasofarma2022.mx/img/users_conave/{$value['img']}";
+      }
+
 
       $tabla_asistentes .= <<<html
       <tr>
       <td>
       <div class="d-flex px-3 py-1">
           <div>
-              <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
+html;          
+          foreach ($habitacionCompartida as $key => $val) {
+            $tabla_asistentes.= <<<html
+            <img src="{$img_user}" class="avatar me-3 mb-2" alt="image" ><br>
+html;
+         }
+         $tabla_asistentes .= <<<html
           </div>
           <div class="d-flex flex-column justify-content-center">
 html;

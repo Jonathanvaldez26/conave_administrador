@@ -2,13 +2,16 @@
 
 <body class="g-sidenav-show  bg-gray-100">
     <aside class="bg-white-aside sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-        <div class="sidenav-header">
+        <div class="sidenav-header" style="margin-bottom: 30px;">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
             <a class="navbar-brand m-0" href="/Principal/" target="_blank">
                 <img src="/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">ADMIN CONVENCIÓN</span>
+                <p style="margin-top: 15px;"><?php echo $_SESSION['nombre']; ?></p>
             </a>
+
+
         </div>
         <hr class="horizontal dark mt-0">
 
@@ -251,7 +254,7 @@
                         <li class="nav-item px-2 d-flex align-items-center">
 
                         </li>
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-bell cursor-pointer"></i>
                             </a>
@@ -323,7 +326,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -776,7 +779,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
-                    <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev" >Cancelar</a>
+                    <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
 
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button> -->
@@ -813,8 +816,8 @@
                             </div>
 
                             <div id="cont_asigna_huespedes">
-                            
-                                
+
+
                             </div>
 
 
@@ -825,7 +828,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
-                    <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev" >Cancelar</a>
+                    <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" id="save_habitacion">Save changes</button> -->
                 </div>
@@ -924,7 +927,7 @@
 
 <script>
     $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();   
+        $('[data-toggle="tooltip"]').tooltip();
         $('.select_2').select2();
         $('.select_2_add_user').select2();
 
@@ -1186,56 +1189,56 @@
                         //     '</select>' +
                         //     '</div>');
 
-                        $("#cont_asigna_huespedes").append('<div class="card"><div class="card-body">'+
-                                        '<div class="row mb-3">'+
-                                            '<div class="col-12 align-self-center asign_huesped">'+
-                                                '<label class="form-label">Nombre del Asistente '+i+' *</label><br>'+
-                                                '<select class="form-control select_2" style="cursor: pointer;" name="asistente_name[]" id="asistente_name'+i+'" data-item="'+i+'" tabindex="-1" required>'+
-                                                    '<option value="" disabled selected>Selecciona una opción</option>'+
-                                                '</select>'+
-                                            '</div>'+
-                                        '</div>'+
-                                        '<div class="row mb-3">'+
-                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
-                                                '<label class="form-label">IN *</label><br>'+
-                                                '<input type="date" class="form-control" id="date_in'+i+'" name="date_in[]" min="2022-04-06" max="2022-04-09">'+
-                                            '</div>'+
-                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
-                                                '<label class="form-label">OUT *</label><br>'+
-                                                '<input type="date" class="form-control" id="date_out'+i+'" name="date_out[]" min="2022-04-06" max="2022-04-09">'+
-                                            '</div>'+
-                                        '</div>'+
-                                        '<div class="row mb-3">'+
-                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
-                                                '<label class="form-label">Hora de Vuelo</label><br>'+
-                                                '<div class="input-group">'+
-                                                    '<input type="text" class="form-control" placeholder="vuelo" aria-label="vuelo" aria-describedby="basic-addon1" id="vuelo'+i+'" name="vuelo[]" readonly>'+
-                                                    '<span class="input-group-text" id="svuelo'+i+'"><i class="fa fa-info-circle"></i></span>'+
-                                                '</div>'+
-                                            '</div>'+
-                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
-                                                '<label class="form-label">Numero de habitación (opcional)</label><br>'+
-                                                '<input type="number" class="form-control numero_habitacion" data-item="'+i+'" id="numero_habitacion'+i+'" name="numero_habitacion[]" min="1" pattern="^[0-9]+">'+
-                                            '</div>'+
-                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
-                                               
-                                            '</div>'+
-                                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">'+
-                                                '<span id="msg_numero_habitacion'+i+'" style="font-size:13px; color:red;"></span>'+
-                                            '</div>'+
-                                        '</div>'+
-                                        '<div class="row mb-3">'+
-                                            '<div class="col-md-12 align-self-center asign_huesped">'+
-                                               '<label class="form-label">Comentarios (opcional)</label><br>'+
-                                               '<textarea name="comentarios[]" id="comentarios'+i+'" class="form-control" cols="30" rows="5"></textarea>'+
-                                            '</div>'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div><div class="asign_huesped"><br></div>');
+                        $("#cont_asigna_huespedes").append('<div class="card"><div class="card-body">' +
+                            '<div class="row mb-3">' +
+                            '<div class="col-12 align-self-center asign_huesped">' +
+                            '<label class="form-label">Nombre del Asistente ' + i + ' *</label><br>' +
+                            '<select class="form-control select_2" style="cursor: pointer;" name="asistente_name[]" id="asistente_name' + i + '" data-item="' + i + '" tabindex="-1" required>' +
+                            '<option value="" disabled selected>Selecciona una opción</option>' +
+                            '</select>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="row mb-3">' +
+                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">' +
+                            '<label class="form-label">IN *</label><br>' +
+                            '<input type="date" class="form-control" id="date_in' + i + '" name="date_in[]" min="2022-04-06" max="2022-04-09">' +
+                            '</div>' +
+                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">' +
+                            '<label class="form-label">OUT *</label><br>' +
+                            '<input type="date" class="form-control" id="date_out' + i + '" name="date_out[]" min="2022-04-06" max="2022-04-09">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="row mb-3">' +
+                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">' +
+                            '<label class="form-label">Hora de Vuelo</label><br>' +
+                            '<div class="input-group">' +
+                            '<input type="text" class="form-control" placeholder="vuelo" aria-label="vuelo" aria-describedby="basic-addon1" id="vuelo' + i + '" name="vuelo[]" readonly>' +
+                            '<span class="input-group-text" id="svuelo' + i + '"><i class="fa fa-info-circle"></i></span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">' +
+                            '<label class="form-label">Numero de habitación (opcional)</label><br>' +
+                            '<input type="number" class="form-control numero_habitacion" data-item="' + i + '" id="numero_habitacion' + i + '" name="numero_habitacion[]" min="1" pattern="^[0-9]+">' +
+                            '</div>' +
+                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">' +
 
-                                $("#svuelo"+i).attr('data-toggle','tooltip');
-                                $("#svuelo"+i).attr('data-original-title','Si usted desea modificar la hora consulte a la ejecutiva de linea');
-                                
+                            '</div>' +
+                            '<div class="col-md-6 col-sm-12 align-self-center asign_huesped">' +
+                            '<span id="msg_numero_habitacion' + i + '" style="font-size:13px; color:red;"></span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="row mb-3">' +
+                            '<div class="col-md-12 align-self-center asign_huesped">' +
+                            '<label class="form-label">Comentarios (opcional)</label><br>' +
+                            '<textarea name="comentarios[]" id="comentarios' + i + '" class="form-control" cols="30" rows="5"></textarea>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div><div class="asign_huesped"><br></div>');
+
+                        $("#svuelo" + i).attr('data-toggle', 'tooltip');
+                        $("#svuelo" + i).attr('data-original-title', 'Si usted desea modificar la hora consulte a la ejecutiva de linea');
+
 
                         for (var j = 0; j < respuesta.asistentes.length; j++) {
                             // console.log(respuesta.asistentes[j].id_registro_acceso);
@@ -1257,7 +1260,7 @@
             });
         });
 
-        $('#cont_asigna_huespedes').on("change","select.select_2", function(event) {
+        $('#cont_asigna_huespedes').on("change", "select.select_2", function(event) {
             console.log($(this).val());
             var id_asis = $(this).val();
             var data_item = $(this).attr('data-item');
@@ -1275,25 +1278,26 @@
                 },
                 success: function(respuesta) {
                     console.log(respuesta);
-                    if(respuesta.status == 'success'){
-                        $('#vuelo'+data_item).val(respuesta.pase.hora_llegada_destino);
-                    }else{
-                        $('#vuelo'+data_item).val(respuesta.msg);
+                    if (respuesta.status == 'success') {
+                        $('#vuelo' + data_item).val(respuesta.pase.hora_llegada_destino);
+                    } else {
+                        $('#vuelo' + data_item).val(respuesta.msg);
                     }
-              
-                    var next_select = (parseInt(data_item)+1);
-                    console.log($("#asistente_name"+next_select));
-                    $("#asistente_name"+next_select).empty();
-                    $("#asistente_name"+next_select).append('<option value="" disabled selected>Selecciona una opción</option>');
+
+                    var next_select = (parseInt(data_item) + 1);
+                    console.log($("#asistente_name" + next_select));
+                    $("#asistente_name" + next_select).empty();
+                    $("#asistente_name" + next_select).append('<option value="" disabled selected>Selecciona una opción</option>');
 
                     for (var j = 0; j < respuesta.asistentes.length; j++) {
                         // console.log(respuesta.asistentes[j].id_registro_acceso);
                         // console.log(respuesta.asistentes[j].nombre);
                         // console.log(respuesta.asistentes[j].apellido_paterno);
                         // console.log(respuesta.asistentes[j].apellido_materno);
-                        $("#asistente_name"+next_select).append('<option value="' + respuesta.asistentes[j].id_registro_acceso + '">' + respuesta.asistentes[j].nombre + '</option>');
+                        $("#asistente_name" + next_select).append('<option value="' + respuesta.asistentes[j].id_registro_acceso + '">' + respuesta.asistentes[j].nombre + '</option>');
                     }
-                },error: function(respuesta) {
+                },
+                error: function(respuesta) {
                     console.log(respuesta);
                 }
 
@@ -1301,7 +1305,7 @@
 
         });
 
-        $(".select_2_add_user").on("change",function(){
+        $(".select_2_add_user").on("change", function() {
             console.log($(this).val());
             var id_asis = $(this).val();
             var clave_ah = $(this).attr('data-clave');
@@ -1319,13 +1323,14 @@
                 },
                 success: function(respuesta) {
                     console.log(respuesta);
-                    if(respuesta.status == 'success'){
-                        $('#vuelo'+clave_ah).val(respuesta.pase.hora_llegada_destino);
-                    }else{
-                        $('#vuelo'+clave_ah).val(respuesta.msg);
+                    if (respuesta.status == 'success') {
+                        $('#vuelo' + clave_ah).val(respuesta.pase.hora_llegada_destino);
+                    } else {
+                        $('#vuelo' + clave_ah).val(respuesta.msg);
                     }
-                    
-                },error: function(respuesta) {
+
+                },
+                error: function(respuesta) {
                     console.log(respuesta);
                 }
 
@@ -1457,7 +1462,7 @@
                                     then((value) => {
                                         window.location.replace("/Habitaciones/");
                                     });
-                                } else if(respuesta.status == 'error'){
+                                } else if (respuesta.status == 'error') {
                                     swal(respuesta.msg, "", "warning")
                                 }
                             },
@@ -1477,8 +1482,8 @@
 
         });
 
-        $('#cont_asigna_huespedes').on("keyup","input#numero_habitacion1", function(event) {
-        
+        $('#cont_asigna_huespedes').on("keyup", "input#numero_habitacion1", function(event) {
+
             var no_habitacion = $(this).val();
             $.ajax({
                 url: "/Habitaciones/BuscaHabitacion",
@@ -1511,16 +1516,16 @@
             });
         });
 
-        $('#cont_asigna_huespedes').on("keyup","input#numero_habitacion2", function(event) {
-        
+        $('#cont_asigna_huespedes').on("keyup", "input#numero_habitacion2", function(event) {
+
             var habitacion_2 = $(this).val();
             var habitacion_1 = $("#numero_habitacion1").val();
 
-           if(habitacion_2 != habitacion_1){
-               $("#msg_numero_habitacion2").html('El numero de habitación no coincide');
-           }else{
+            if (habitacion_2 != habitacion_1) {
+                $("#msg_numero_habitacion2").html('El numero de habitación no coincide');
+            } else {
                 $("#msg_numero_habitacion2").html('');
-           }
+            }
         });
 
 

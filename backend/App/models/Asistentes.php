@@ -90,10 +90,10 @@ sql;
     public static function getUsuariosByClaveHabitacion($clave){
       $mysqli = Database::getInstance();
       $query=<<<sql
-      SELECT ah.id_registro_acceso, ah.clave, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno) as nombre, ra.email, ra.telefono, ah.id_asigna_habitacion
+      SELECT ah.id_registro_acceso, ah.clave, CONCAT(ra.nombre, ' ', ra.segundo_nombre, ' ', ra.apellido_paterno, ' ',ra.apellido_materno) as nombre, ra.email, ra.telefono, ra.img,ah.id_asigna_habitacion
       FROM asigna_habitacion ah
       INNER JOIN registros_acceso ra ON (ah.id_registro_acceso = ra.id_registro_acceso)
-      WHERE clave = '$clave'
+      WHERE ah.clave = '$clave'
 sql;
       return $mysqli->queryAll($query);
         
@@ -105,7 +105,7 @@ sql;
       SELECT count(*) as total_asignados
       FROM asigna_habitacion ah
       INNER JOIN registros_acceso ra ON (ah.id_registro_acceso = ra.id_registro_acceso)
-      WHERE clave = '$clave'
+      WHERE ah.clave = '$clave'
 sql;
       return $mysqli->queryAll($query);
         

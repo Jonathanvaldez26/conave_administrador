@@ -49,6 +49,7 @@ html;
         $comprobantes = ComprobantesVacunacionDao::getAll();
       }else{
         $id_linea = LineaDao::getLineaByAdmin($_SESSION['utilerias_administradores_id'])[0];
+        // var_dump($id_linea['utilerias_administradores_id']);
         $comprobantes = ComprobantesVacunacionDao::getComprobatesByLinea($id_linea['id_linea_ejecutivo']);
       }
 
@@ -1004,18 +1005,18 @@ html;
    
      
 
-      View::set('comprobantes',$comprobantes);
-      View::set('numero_sin_revisar',$numero_sin_revisar);
-      View::set('numero_comprobantes',$numero_comprobantes);
-      View::set('numero_asistentes',$numero_asistentes);
-      View::set('numero_validos',$numero_validos);
-      View::set('tabla',$tabla);
-      View::set('tabla_no_v',$tabla_no_v);
-      View::set('tabla_rechazados',$tabla_rechazados);
-      View::set('header',$this->_contenedor->header($extraHeader));
-      View::set('footer',$this->_contenedor->footer($extraFooter));
-      View::render("comprobantesvacunacion_all");
-    }
+    View::set('comprobantes',$comprobantes);
+    View::set('numero_sin_revisar',$numero_sin_revisar);
+    View::set('numero_comprobantes',$numero_comprobantes);
+    View::set('numero_asistentes',$numero_asistentes);
+    View::set('numero_validos',$numero_validos);
+    View::set('tabla',$tabla);
+    View::set('tabla_no_v',$tabla_no_v);
+    View::set('tabla_rechazados',$tabla_rechazados);
+    View::set('header',$this->_contenedor->header($extraHeader));
+    View::set('footer',$this->_contenedor->footer($extraFooter));
+    View::render("comprobantesvacunacion_all");
+  }
 
     public function Validar(){
 

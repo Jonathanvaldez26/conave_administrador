@@ -2,13 +2,16 @@
 
 <body class="g-sidenav-show  bg-gray-100">
     <aside class="bg-white-aside sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-        <div class="sidenav-header">
+        <div class="sidenav-header" style="margin-bottom: 30px;">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
             <a class="navbar-brand m-0" href="/Principal/" target="_blank">
                 <img src="/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">ADMIN CONVENCIÓN</span>
+                <p style="margin-top: 15px;"><?php echo $_SESSION['nombre']; ?></p>
             </a>
+
+
         </div>
         <hr class="horizontal dark mt-0">
 
@@ -25,7 +28,7 @@
 
                 </li>
 
-                <li class="nav-item" <?=$permisoGlobalHidden;?>>
+                <li class="nav-item" <?= $permisoGlobalHidden; ?>>
                     <a data-bs-toggle="collapse" onclick="catalogos()" href="#catalogos" class="nav-link " aria-controls="catalogos" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-sitemap" style="color: #344767"></span>
@@ -70,7 +73,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item" <?=$asistentesHidden;?>>
+                <li class="nav-item" <?= $asistentesHidden; ?>>
                     <a href="/Asistentes/" class="nav-link active" aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-users" style="color: white"></span>
@@ -78,7 +81,7 @@
                         <span class="nav-link-text ms-1">Asistentes</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$vuelosHidden;?>>
+                <li class="nav-item" <?= $vuelosHidden; ?>>
                     <a href="/Vuelos/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-plane" style="color: #344767"></span>
@@ -86,7 +89,7 @@
                         <span class="nav-link-text ms-1">Vuelos</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$pickUpHidden;?>>
+                <li class="nav-item" <?= $pickUpHidden; ?>>
                     <a href="/PickUp/" class="nav-link " aria-controls="ecommerceExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-bus" style="color: #344767"></span>
@@ -94,7 +97,7 @@
                         <span class="nav-link-text ms-1">PickUp</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$habitacionesHidden;?>>
+                <li class="nav-item" <?= $habitacionesHidden; ?>>
                     <a href="/Habitaciones/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-shield-virus" style="color: #344767"></span>
@@ -102,7 +105,7 @@
                         <span class="nav-link-text ms-1">Habitaciones</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$cenasHidden;?>>
+                <li class="nav-item" <?= $cenasHidden; ?>>
                     <a href="/Cenas/" class="nav-link " aria-controls="authExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-coffee" style="color: #344767"></span>
@@ -110,11 +113,11 @@
                         <span class="nav-link-text ms-1">Cenas</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$vacunacionHidden;?>>
+                <li class="nav-item" <?= $vacunacionHidden; ?>>
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">SALUD</h6>
                 </li>
-                <li class="nav-item" <?=$vacunacionHidden;?>>
+                <li class="nav-item" <?= $vacunacionHidden; ?>>
                     <a href="/ComprobantesVacunacion/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-shield-virus" style="color: #344767"></span>
@@ -122,7 +125,7 @@
                         <span class="nav-link-text ms-1">Comprobante Vacunación</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$pruebasHidden;?>>
+                <li class="nav-item" <?= $pruebasHidden; ?>>
                     <a href="/PruebasCovidUsuarios/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-virus-slash" style="color: #344767"></span>
@@ -130,7 +133,7 @@
                         <span class="nav-link-text ms-1">Pruebas Covid Usuarios</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$aistenciasHidden;?>>
+                <li class="nav-item" <?= $aistenciasHidden; ?>>
                     <a href="/Asistencias/" class="nav-link " aria-controls="basicExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-bell" style="color: #344767"></span>
@@ -138,11 +141,11 @@
                         <span class="nav-link-text ms-1">Asistencias</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$configuracionHidden;?>>
+                <li class="nav-item" <?= $configuracionHidden; ?>>
                     <hr class="horizontal dark" />
                     <h6 class="ps-4  ms-2 text-uppercase text-xs font-weight-bolder opacity-6">OTROS</h6>
                 </li>
-                <li class="nav-item" <?=$configuracionHidden;?>>
+                <li class="nav-item" <?= $configuracionHidden; ?>>
                     <a href="/Configuracion/" class="nav-link " aria-controls="applicationsExamples" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-tools" style="color: #344767"></span>
@@ -150,7 +153,7 @@
                         <span class="nav-link-text ms-1">Configuración</span>
                     </a>
                 </li>
-                <li class="nav-item" <?=$utileriasHidden;?>>
+                <li class="nav-item" <?= $utileriasHidden; ?>>
                     <a data-bs-toggle="collapse" onclick="utilerias()" href="#utilerias" class="nav-link " aria-controls="utilerias" role="button" aria-expanded="false">
                         <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <span class="fa fa-user-circle-o" style="color: #344767"></span>
@@ -252,7 +255,7 @@
                         <li class="nav-item px-2 d-flex align-items-center">
 
                         </li>
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-bell cursor-pointer"></i>
                             </a>
@@ -324,7 +327,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -409,37 +412,40 @@
                                 </div>
                                 <div class="col-md-9 col-12">
                                     <hr class="horizontal dark mt-0 mb-4">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-12">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <?php echo $img_asistente;?>
-                                                    </div>
-                                                    <div>
-                                                        <span class="text-lg font-weight-bold mb-0 mt-2"><?php echo $detalles_registro['nombre'].' '; echo $detalles_registro['segundo_nombre'].' '; echo $detalles_registro['apellido_paterno'].' '; echo $detalles_registro['apellido_materno']; ?></span>&nbsp;&nbsp;&nbsp;<span class="badge badge-sm bg-gradient-success"> Activo</span>
-                                                        <br> <br>
-                                                        <p class="text-sm mb-3">Línea ASOFARMA: <strong>ADIUM</strong></p>
-                                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <?php echo $img_asistente; ?>
+                                                </div>
+                                                <div>
+                                                    <span class="text-lg font-weight-bold mb-0 mt-2"><?php echo $detalles_registro['nombre'] . ' ';
+                                                                                                        echo $detalles_registro['segundo_nombre'] . ' ';
+                                                                                                        echo $detalles_registro['apellido_paterno'] . ' ';
+                                                                                                        echo $detalles_registro['apellido_materno']; ?></span>&nbsp;&nbsp;&nbsp;<span class="badge badge-sm bg-gradient-success"> Activo</span>
+                                                    <br> <br>
+                                                    <p class="text-sm mb-3">Línea ASOFARMA: <strong>ADIUM</strong></p>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-12 my-auto text-end">
-                                                
-                                                <form class="form-horizontal"  action="" method="POST">
-                                                    <button class="btn bg-gradient-primary mb-0" type="button" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
-                                                    
-                                                    <input id="input-email" type="text" class="form-control" value="<?php echo $email; ?>" readonly hidden>
-                                                    <?php echo $btn_genQr;?>
-                                                    <?php echo $btn_clave;?>
-                                                </form>
-                                                <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
-                                            </div>
                                         </div>
-                                        <hr class="horizontal dark mt-4 mb-4">
-                                        <div class="row">
-                                            
-                                            <div class="col-lg-12 col-md-12 col-12 mt-4 mt-md-0">
-                                                <h6 class="mb-3">Secciones</h6>
-                                                <!-- <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
+                                        <div class="col-lg-6 col-md-6 col-12 my-auto text-end">
+
+                                            <form class="form-horizontal" action="" method="POST">
+                                                <button class="btn bg-gradient-primary mb-0" type="button" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fa fa-edit"></i></button>
+
+                                                <input id="input-email" type="text" class="form-control" value="<?php echo $email; ?>" readonly hidden>
+                                                <?php echo $btn_genQr; ?>
+                                                <?php echo $btn_clave; ?>
+                                            </form>
+                                            <!-- <p class="text-sm mt-2 mb-0">Do you like the product? Leave us a review <a href="javascript:;">here</a>.</p> -->
+                                        </div>
+                                    </div>
+                                    <hr class="horizontal dark mt-4 mb-4">
+                                    <div class="row">
+
+                                        <div class="col-lg-12 col-md-12 col-12 mt-4 mt-md-0">
+                                            <h6 class="mb-3">Secciones</h6>
+                                            <!-- <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
                                                     <img class="w-10 me-3 mb-0" src="/img/users_conave/8mVMLa56xh.png" alt="logo">
                                                     <img class="w-10 me-3 mb-0" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/1200px-Mastercard_2019_logo.svg.png" alt="logo">
                                                     <h6 class="mb-0">****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;7852</h6>
@@ -447,128 +453,128 @@
                                                     <i class="fas fa-info" aria-hidden="true"></i>
                                                     </button>
                                                 </div> -->
-                                                <!-- <h6 class="mb-3 mt-4">Billing Information</h6> -->
-                                                <div class="mt-2 nav-wrapper position-relative end-0">
-                                                    <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link mb-0 px-0 py-1 active" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="true">
-                                                                <span class="fa fa-syringe"></span>
-                                                                <span class="ms-1">Vacunación</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam3" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                                <span class="fa fa-virus"></span>
-                                                                <span class="ms-1">Covid</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                                <span class="fa fa-plane"></span>
-                                                                <span class="ms-1">Vuelos</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" role="tab" aria-selected="false">
-                                                                <span class="fa fa-ticket"></span>
-                                                                <span class="ms-1">Ticket Virtual</span>
-                                                            </a>
+                                            <!-- <h6 class="mb-3 mt-4">Billing Information</h6> -->
+                                            <div class="mt-2 nav-wrapper position-relative end-0">
+                                                <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link mb-0 px-0 py-1 active" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="true">
+                                                            <span class="fa fa-syringe"></span>
+                                                            <span class="ms-1">Vacunación</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam3" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                            <span class="fa fa-virus"></span>
+                                                            <span class="ms-1">Covid</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                            <span class="fa fa-plane"></span>
+                                                            <span class="ms-1">Vuelos</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam2" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                            <span class="fa fa-ticket"></span>
+                                                            <span class="ms-1">Ticket Virtual</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="tab-content" id="v-pills-tabContent">
+                                                <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
+                                                    <style>
+                                                        #main_ticket {
+                                                            /* margin-top: 20px; */
+                                                            text-align: center;
+                                                        }
+                                                    </style>
+                                                    <ul class="list-group ">
+                                                        <li class="list-group-item border-0 p-4 mb-2 bg-gray-100 border-radius-lg ">
+                                                            <h3><?php echo $msg_clave; ?></h3>
+                                                            <div class="row">
+                                                                <!-- <div class="col-md-2 col-12 text-center"> -->
+                                                                <!-- <div class="d-flex flex-column "> -->
+                                                                <!-- <h3 class="mb-3 text-sm">Su Código es: </h3> -->
+                                                                <img src="/qrs/<?php echo $clave_user; ?>.png" alt="" hidden>
+                                                                <input id="codigo-qr" type="text" value="/qrs/<?php echo $clave_user; ?>.png" hidden readonly>
+                                                                <!-- </div> -->
+                                                                <!-- </div> -->
+                                                                <div class="col-md-12 col-12 text-center">
+                                                                    <div id="main_ticket" hidden>
+                                                                        <canvas id="canvas_ticket" width="1220" height="457" name="ticket-<?php echo $clave_user; ?>" alt="ticket-<?php echo $clave_user; ?>" style="background: white; width: -webkit-fill-available;"></canvas> <!--  background-image: url('/img/ticket.jpg'); -->
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
                                                         </li>
                                                     </ul>
                                                 </div>
 
-                                                <div class="tab-content" id="v-pills-tabContent">
-                                                    <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="cam2" role="tabpanel" aria-labelledby="cam2">
-                                                        <style>
-                                                            #main_ticket {
-                                                                /* margin-top: 20px; */
-                                                                text-align: center;
-                                                            }
-                                                        </style>
-                                                        <ul class="list-group ">
-                                                            <li class="list-group-item border-0 p-4 mb-2 bg-gray-100 border-radius-lg ">
-                                                                <h3><?php echo $msg_clave;?></h3>
-                                                                <div class="row">
-                                                                    <!-- <div class="col-md-2 col-12 text-center"> -->
-                                                                        <!-- <div class="d-flex flex-column "> -->
-                                                                            <!-- <h3 class="mb-3 text-sm">Su Código es: </h3> -->
-                                                                            <img src="/qrs/<?php echo $clave_user;?>.png" alt="" hidden>
-                                                                            <input id="codigo-qr" type="text" value="/qrs/<?php echo $clave_user;?>.png" hidden readonly>                                                            
-                                                                        <!-- </div> -->
-                                                                    <!-- </div> -->
-                                                                    <div class="col-md-12 col-12 text-center">
-                                                                        <div id="main_ticket" hidden>
-                                                                            <canvas id="canvas_ticket" width="1220" height="457" name="ticket-<?php echo $clave_user;?>" alt="ticket-<?php echo $clave_user;?>" style="background: white; width: -webkit-fill-available;"></canvas> <!--  background-image: url('/img/ticket.jpg'); -->
-                                                                        </div>
-                                                                    </div>
-                                                                    
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
-                                                        <ul class="list-group">
-                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                                <div class="d-flex flex-column">
-                                                                    <h6 class="mb-3 text-sm">Peter Parker</h6>
-                                                                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam3" role="tabpanel" aria-labelledby="cam3">
-                                                        <ul class="list-group">
-                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                                <div class="d-flex flex-column">
-                                                                    <h6 class="mb-3 text-sm">Eddie Brook</h6>
-                                                                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                    <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam4" role="tabpanel" aria-labelledby="cam4">
-                                                        <ul class="list-group">
-                                                            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                                                                <div class="d-flex flex-column">
-                                                                    <h6 class="mb-3 text-sm">Mary Jane</h6>
-                                                                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
-                                                                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
-                                                                    <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
+                                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam1" role="tabpanel" aria-labelledby="cam1">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                                            <div class="d-flex flex-column">
+                                                                <h6 class="mb-3 text-sm">Peter Parker</h6>
+                                                                <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                                <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
+                                                                <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
 
-                                            </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   <!-- <div class="d-flex justify-conts-2 font-weight-bold">Mediana</span> -->
-                                            </div> 
-                                        </div>
+                                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam3" role="tabpanel" aria-labelledby="cam3">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                                            <div class="d-flex flex-column">
+                                                                <h6 class="mb-3 text-sm">Eddie Brook</h6>
+                                                                <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                                <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
+                                                                <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam4" role="tabpanel" aria-labelledby="cam4">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                                                            <div class="d-flex flex-column">
+                                                                <h6 class="mb-3 text-sm">Mary Jane</h6>
+                                                                <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-2">Viking Burrito</span></span>
+                                                                <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-2 font-weight-bold">oliver@burrito.com</span></span>
+                                                                <span class="text-xs">VAT Number: <span class="text-dark ms-2 font-weight-bold">FRB1235476</span></span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+
+                                        </div> <!-- <div class="d-flex justify-conts-2 font-weight-bold">Mediana</span> -->
+                                    </div>
                                 </div>
                             </div>
-                            
                         </div>
+
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
 
         <!-- Modal -->
         <div class="modal fade" id="editar-asistente" tabindex="-1" role="dialog" aria-labelledby="editar-asistenteLabel" aria-hidden="true">
             <div class="modal-dialog" role="document" style="max-width: 800px;">
-                <div class="modal-content" >
+                <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editar-asistenteLabel">Editar Asistente</h5>
                         <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -592,7 +598,7 @@
                                 </div>
 
                                 <div class="row">
-                                    
+
                                     <div class="col-12 col-lg-6">
                                         <label class="form-label">Apellido Paterno *</label>
                                         <div class="input-group">
@@ -634,11 +640,11 @@
 
                                 <div class="row">
 
-                                    <?php echo $res_alimenticias;?>
+                                    <?php echo $res_alimenticias; ?>
 
-                                    <?php echo $alergia_medicamento_cual;?>
+                                    <?php echo $alergia_medicamento_cual; ?>
 
-                                    <!-- <?php echo $alergias_a;?> -->
+                                    <!-- <?php echo $alergias_a; ?> -->
 
                                     <!-- <div class="col-md-4">
                                         <label class="form-label mt-4">Alergias *</label>
@@ -662,7 +668,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                     </div>
                     <!-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -676,56 +682,54 @@
 </body>
 
 <script>
-    
-
     $(document).ready(function() {
         // document.getElementById('main_ticket').removeAttribute('hidden');
         // app.loadPicture();
 
-        var app = ( function () {
-            var canvas = document.getElementById( 'canvas_ticket' );
+        var app = (function() {
+            var canvas = document.getElementById('canvas_ticket');
             context = canvas.getContext('2d');
 
-                // API
-                public = {};
+            // API
+            public = {};
 
-                // Public methods goes here...
+            // Public methods goes here...
 
-                public.loadPicture = function () {
+            public.loadPicture = function() {
 
-                    var imgTicketFondo = new Image();
-                    imgTicketFondo.src = '/img/boleto.png';
-                
-                    imgTicketFondo.onload = function () {
-                        context.drawImage(imgTicketFondo, 0, 0 );
-                    }
+                var imgTicketFondo = new Image();
+                imgTicketFondo.src = '/img/boleto.png';
 
-                    context = canvas.getContext('2d');
-                    
-                    var imgCodeQr = new Image();
-                    imgCodeQr.src = $('#codigo-qr').val();
-                
-                    imgCodeQr.onload = function () {
-                        context.drawImage( imgCodeQr, 870, 90);
-                    }
-                    
-                };
+                imgTicketFondo.onload = function() {
+                    context.drawImage(imgTicketFondo, 0, 0);
+                }
 
-                return public;
-        } () );
+                context = canvas.getContext('2d');
 
-        $('#show_ticket').on('click', function(event){ 
+                var imgCodeQr = new Image();
+                imgCodeQr.src = $('#codigo-qr').val();
+
+                imgCodeQr.onload = function() {
+                    context.drawImage(imgCodeQr, 870, 90);
+                }
+
+            };
+
+            return public;
+        }());
+
+        $('#show_ticket').on('click', function(event) {
             // alert('Mostrar Ticket');
             // console.log('asdasdasdas');
             document.getElementById('main_ticket').removeAttribute('hidden');
             app.loadPicture();
         })
 
-        $('#generar_clave').on('click', function(event){ 
+        $('#generar_clave').on('click', function(event) {
 
             // Obtener id de utilerias asistentes del link
             var link_a = $(location).attr('href');
-            var clave_a = link_a.substr(link_a.indexOf('Detalles/')+9,link_a.length);
+            var clave_a = link_a.substr(link_a.indexOf('Detalles/') + 9, link_a.length);
 
             let email_user = '';
 
@@ -737,7 +741,7 @@
             }
 
             $.ajax({
-                url: "/Asistentes/generarClave/"+email_user,
+                url: "/Asistentes/generarClave/" + email_user,
                 type: "POST",
                 // data: formData,
                 dataType: 'json',
@@ -758,7 +762,7 @@
                         } else {
                             swal("!Se generó la clave correctamente!", "", "success").
                             then((value) => {
-                                window.location.replace("/Asistentes/Detalles/"+clave_a);
+                                window.location.replace("/Asistentes/Detalles/" + clave_a);
                             });
                         }
                         console.log(respuesta);
@@ -823,52 +827,52 @@
             });
         });
 
-        
+
 
         // $("#generar_clave").on("click", function(event) {
         //     // event.preventDefault();
 
         //     alert("Hola");
 
-            // var formData = new FormData(document.getElementById("generar_clave"));
-            // for (var value of formData.values()) {
-            //     console.log(value);
-            // }
+        // var formData = new FormData(document.getElementById("generar_clave"));
+        // for (var value of formData.values()) {
+        //     console.log(value);
+        // }
 
-            // console.log(formData);
+        // console.log(formData);
 
-            // $.ajax({
-            //     url: "/Asistentes/Actualizar",
-            //     type: "POST",
-            //     data: formData,
-            //     cache: false,
-            //     contentType: false,
-            //     processData: false,
-            //     beforeSend: function() {
-            //         console.log("Procesando....");
+        // $.ajax({
+        //     url: "/Asistentes/Actualizar",
+        //     type: "POST",
+        //     data: formData,
+        //     cache: false,
+        //     contentType: false,
+        //     processData: false,
+        //     beforeSend: function() {
+        //         console.log("Procesando....");
 
 
-            //     },
-            //     success: function(respuesta) {
-            //         // alert("Successs");
+        //     },
+        //     success: function(respuesta) {
+        //         // alert("Successs");
 
-            //         if (respuesta == 'success') {
-            //             swal("!Se actualizaron tus datos correctamente!", "", "success").
-            //             then((value) => {
-            //                 window.location.reload();
-            //             });
-            //         } else {
-            //             swal("!Usted No Actualizó Nada!", "", "warning").
-            //             then((value) => {
-            //                 //window.location.replace("/Asistentes")
-            //             });
-            //         }
-            //     },
-            //     error: function(respuesta) {
-            //         console.log(respuesta);
-            //     }
+        //         if (respuesta == 'success') {
+        //             swal("!Se actualizaron tus datos correctamente!", "", "success").
+        //             then((value) => {
+        //                 window.location.reload();
+        //             });
+        //         } else {
+        //             swal("!Usted No Actualizó Nada!", "", "warning").
+        //             then((value) => {
+        //                 //window.location.replace("/Asistentes")
+        //             });
+        //         }
+        //     },
+        //     error: function(respuesta) {
+        //         console.log(respuesta);
+        //     }
 
-            // });
+        // });
         // });
 
 
@@ -878,13 +882,13 @@
                 // $("#alergia_medicamento_cual").val("");
                 $('#alergia_medicamento_cual').removeAttr('required');
             }
-        
+
             if ($("#confirm_alergia_si").is(':checked')) {
                 $(".medicamento_cual").css("display", "block");
                 $("#alergia_medicamento_cual").attr('required', 'required');
             }
         });
-        
+
         $('input:radio[name="restricciones_alimenticias"]').change(function() {
             if ($("#res_ali_5").is(':checked')) {
                 $(".restricciones_alimenticias").css("display", "block");
@@ -893,7 +897,7 @@
                 $(".restricciones_alimenticias").css("display", "none");
                 $('#restricciones_alimenticias_cual').removeAttr('required');
             }
-        
+
         });
     });
 </script>

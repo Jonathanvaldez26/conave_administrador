@@ -28,6 +28,15 @@ sql;
     return $mysqli->queryAll($query);
   }
 
+  public static function getAsistentesFaltantes(){
+    $mysqli = Database::getInstance();
+    $query =<<<sql
+    SELECT * FROM registros_acceso WHERE id_registro_acceso NOT IN (SELECT id_registro_acceso FROM utilerias_asistentes);
+sql;
+
+    return $mysqli->queryAll($query);
+  }
+
   public static function getTicketByIdTicket($id){
     $mysqli = Database::getInstance();
     $query =<<<sql

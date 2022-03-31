@@ -57,7 +57,10 @@ class Asistentes extends Controller
             }
         }
 
+        //tab faltantes
 
+
+        View::set('tabla_faltantes',$this->getAsistentesFaltantes());
         View::set('tabla', $this->getAllColaboradoresAsignados());
         View::render("asistentes_all");
     }
@@ -874,28 +877,42 @@ html;
         return $html;
     }
 
+    public function getAsistentesFaltantes() {
+
+        $html = "";
+        foreach (GeneralDao::getAsistentesFaltantes() as $key => $value) {
+          
+
+            $img_user = "/img/user.png";
+
+            $value['apellido_paterno'] = utf8_encode($value['apellido_paterno']);
+            $value['apellido_materno'] = utf8_encode($value['apellido_materno']);
+            $value['nombre'] = utf8_encode($value['nombre']);
+
+ 
+
+            $html .= <<<html
+            <tr>
+                <td>                    
+                    <h6 class="mb-0 text-sm"><span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']}</h6>
+                </td>
+                <td>
+                    <h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px" aria-hidden="true"></span> {$value['email']}</h6>
+                </td>
+                <td>
+                    <u><a href="https://api.whatsapp.com/send?phone=52{$value['telefono']}&text=Buen%20d%C3%ADa,%20te%20contacto%20de%20parte%20del%20Equipo%20Grupo%20LAHE%20%F0%9F%98%80" target="_blank"><p class="text-sm font-weight-bold text-secondary mb-0"><span class="fa fa-whatsapp" style="font-size: 13px; color:green;"></span> {$value['telefono']}</p></a></u>
+                </td>
+        </tr>
+html;
+        }
+        return $html;
+    }
+
     function generateRandomString($length = 6) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
-    public function getFiltro($post)
-    {
-        $datos = array();
-        $datos['c.catalogo_empresa_id'] = MasterDom::getData('catalogo_empresa_id');
-        $datos['c.catalogo_ubicacion_id'] = MasterDom::getData('catalogo_ubicacion_id');
-        $datos['c.catalogo_departamento_id'] = MasterDom::getData('catalogo_departamento_id');
-        $datos['c.catalogo_puesto_id'] = MasterDom::getData('catalogo_puesto_id');
-        $datos['c.identificador_noi'] = (!empty(MasterDom::getData('status'))) ? MasterDom::getData('status') : "";
-
-        $filtro = '';
-        foreach ($datos as $key => $value) {
-            if ($value != '') {
-                if ($key == 'c.pago') $filtro .= "AND {$key} = '$value' ";
-                else $filtro .= "AND {$key} = '$value' ";
-            }
-        }
-        return $datos;
-    }
+ 
 
 }
 

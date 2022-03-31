@@ -2,13 +2,16 @@
 
 <body class="g-sidenav-show  bg-gray-100">
     <aside class="bg-white-aside sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
-        <div class="sidenav-header">
+        <div class="sidenav-header" style="margin-bottom: 30px;">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
 
             <a class="navbar-brand m-0" href="/Principal/" target="_blank">
                 <img src="/assets/img/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">ADMIN CONVENCIÓN</span>
+                <p style="margin-top: 15px;"><?php echo $_SESSION['nombre']; ?></p>
             </a>
+
+
         </div>
         <hr class="horizontal dark mt-0">
 
@@ -184,10 +187,10 @@
             </ul>
         </div>
 
-</aside>
-<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-    <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
+    </aside>
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -252,7 +255,7 @@
                         <li class="nav-item px-2 d-flex align-items-center">
 
                         </li>
-                        <li class="nav-item dropdown pe-2 d-flex align-items-center">
+                        <!-- <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-bell cursor-pointer"></i>
                             </a>
@@ -324,7 +327,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -343,27 +346,27 @@
                         </div>
                         <div class="col-auto my-auto">
                             <div class="h-100">
-                            <h5 class="mb-1">
-                                Asistentes ASOFARMA (Invitados)
-                            </h5>
-                            <p class="mb-0 font-weight-bold text-sm">
-                            </p>
+                                <h5 class="mb-1">
+                                    Asistentes ASOFARMA (Invitados)
+                                </h5>
+                                <p class="mb-0 font-weight-bold text-sm">
+                                </p>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
                             <div class="nav-wrapper position-relative end-0">
                                 <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
                                     <li class="nav-item">
-                                    <a class="nav-link mb-0 px-0 py-1 active" href="#Invitados" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
-                                        <span class="fa fa-door-open"></span>
-                                        <span class="ms-1">Acceso Invitados</span>
-                                    </a>
+                                        <a class="nav-link mb-0 px-0 py-1 active" href="#Invitados" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
+                                            <span class="fa fa-door-open"></span>
+                                            <span class="ms-1">Acceso Invitados</span>
+                                        </a>
                                     </li>
                                     <li class="nav-item">
-                                    <a class="nav-link mb-0 px-0 py-1" href="#Faltantes" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
-                                        <span class="fa fa-user-check"></span>
-                                        <span class="ms-1">Faltantes de Registro</span>
-                                    </a>
+                                        <a class="nav-link mb-0 px-0 py-1" href="#Faltantes" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                                            <span class="fa fa-user-check"></span>
+                                            <span class="ms-1">Faltantes de Registro</span>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -379,7 +382,7 @@
                             <div class="d-lg-flex">
                                 <div>
                                     <p class="text-sm mb-0">
-                                        En esta sección se podran visualizar todos los usuarios que han finalizado su registro, si usted desea ver quienes no han terminado el registro dirijasé a la pestaña nuevos accesos 
+                                        En esta sección se podran visualizar todos los usuarios que han finalizado su registro, si usted desea ver quienes no han terminado el registro dirijasé a la pestaña nuevos accesos
                                     </p>
                                 </div>
                                 <div class="ms-auto my-auto mt-lg-0 mt-4">
@@ -419,44 +422,44 @@
                         <div class="card-body px-0 pb-0">
                             <div class="tab-content" id="v-pills-tabContent">
                                 <div class="tab-pane fade show position-relative active height-350 border-radius-lg" id="Invitados" role="tabpanel" aria-labelledby="Invitados">
-                                    <div class="table-responsive p-0" >
-                                            <table class="align-items-center mb-0 table table-borderless" id="user_list_table">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        
-                                                        <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Usuario</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th>
-                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php echo $tabla; ?>
-                                                </tbody>
-                                            </table>
+                                    <div class="table-responsive p-0">
+                                        <table class="align-items-center mb-0 table table-borderless" id="user_list_table">
+                                            <thead class="thead-light">
+                                                <tr>
+
+                                                    <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Usuario</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php echo $tabla; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
 
                                 <div class="tab-pane fade position-relative height-350 border-radius-lg" id="Faltantes" role="tabpanel" aria-labelledby="Faltantes">
-                                    <div class="table-responsive p-0" >
-                                        <table class="align-items-center mb-0 table table-borderless" id="user_list_table">
+                                    <div class="table-responsive p-0">
+                                        <table class="align-items-center mb-0 table table-borderless" id="user_list_table_faltante">
                                             <thead class="thead-light">
-                                            <tr>
+                                                <tr>
 
-                                                <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Usuario</th>
-                                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Otros Datos</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
-                                            </tr>
+                                                    <th class="text-uppercase text-secondary text-center text-xxs font-weight-bolder opacity-7">Usuario</th>
+                                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Teléfono</th>
+                                                    <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th> -->
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <?php echo $tabla1; ?>
+                                                <?php echo $tabla_faltantes; ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -470,10 +473,10 @@
                                     document.write(new Date().getFullYear())
                                 </script>,
                                 made with <i class="fa fa-heart"></i> by
-                                <a href="https://www.grupolahe.com" class="font-weight-bold" target="_blank">Grupo LAHE</a>  
+                                <a href="https://www.grupolahe.com" class="font-weight-bold" target="_blank">Grupo LAHE</a>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </footer>
 
@@ -486,64 +489,108 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 
 <script>
-
     $(document).ready(function() {
         $('#user_list_table').DataTable({
-            "drawCallback": function( settings ) {
-            $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
-            $('.paginate_button').addClass("btn").removeClass("paginate_button");
-            $('.dataTables_length').addClass("m-4");
-            $('.dataTables_info').addClass("mx-4");
-            $('.dataTables_filter').addClass("m-4");
-            $('input').addClass("form-control");
-            $('select').addClass("form-control");
-            $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
-            $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
-            $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
-            $('.next').addClass("btn-outline-danger btn-rounded mx-2");
-            $('a.btn').addClass("btn-rounded");
+            "drawCallback": function(settings) {
+                $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+                $('.paginate_button').addClass("btn").removeClass("paginate_button");
+                $('.dataTables_length').addClass("m-4");
+                $('.dataTables_info').addClass("mx-4");
+                $('.dataTables_filter').addClass("m-4");
+                $('input').addClass("form-control");
+                $('select').addClass("form-control");
+                $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+                $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+                $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+                $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+                $('a.btn').addClass("btn-rounded");
             },
             "language": {
-            
-                "sProcessing":     "Procesando...",
-                "sLengthMenu":     "Mostrar _MENU_ registros",
-                "sZeroRecords":    "No se encontraron resultados",
-                "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix":    "",
-                "sSearch":         "Buscar:",
-                "sUrl":            "",
-                "sInfoThousands":  ",",
+
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
                 "sLoadingRecords": "Cargando...",
                 "oPaginate": {
-                    "sFirst":    "Primero",
-                    "sLast":     "Último",
-                    "sNext":     "Siguiente",
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
                     "sPrevious": "Anterior"
                 },
                 "oAria": {
-                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
                     "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                 }
-            
+
             }
         });
-        
-        $(".btn_download").on("click", function(event){
+
+        $('#user_list_table_faltante').DataTable({
+            "drawCallback": function(settings) {
+                $('.current').addClass("btn bg-gradient-danger btn-rounded").removeClass("paginate_button");
+                $('.paginate_button').addClass("btn").removeClass("paginate_button");
+                $('.dataTables_length').addClass("m-4");
+                $('.dataTables_info').addClass("mx-4");
+                $('.dataTables_filter').addClass("m-4");
+                $('input').addClass("form-control");
+                $('select').addClass("form-control");
+                $('.previous.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+                $('.next.disabled').addClass("btn-outline-danger opacity-5 btn-rounded mx-2");
+                $('.previous').addClass("btn-outline-danger btn-rounded mx-2");
+                $('.next').addClass("btn-outline-danger btn-rounded mx-2");
+                $('a.btn').addClass("btn-rounded");
+            },
+            "language": {
+
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+
+            }
+        });
+
+        $(".btn_download").on("click", function(event) {
             event.preventDefault();
             var valueButton = $(this).attr('id');
             var code = $(this).attr('data-value');
             var id_constancia = $(this).attr('data-id');
 
-            document.getElementById('a-download'+id_constancia).click();
+            document.getElementById('a-download' + id_constancia).click();
 
-            
+
             $.ajax({
                 url: "/Home/enviarEmail",
                 type: "POST",
-                data: {code:code},
+                data: {
+                    code: code
+                },
                 cache: false,
                 dataType: "json",
                 // contentType: false,
@@ -556,10 +603,10 @@
                     console.log(respuesta);
 
                     Swal.fire(
-                            'OK',
-                            'Your certificate has been sent !!!',
-                            'Success'
-                        );
+                        'OK',
+                        'Your certificate has been sent !!!',
+                        'Success'
+                    );
 
                 },
                 error: function(respuesta) {
@@ -567,20 +614,22 @@
                 }
 
             });
-            
-        });
-        
 
-        $('table#user_list_table').on("click","button.btn_qr", function(event) {
+        });
+
+
+        $('table#user_list_table').on("click", "button.btn_qr", function(event) {
             event.preventDefault();
 
             var valueButton = $(this).val();
             $(this).hide();
-           
+
             $.ajax({
                 url: "/Asistentes/generaterQr",
                 type: "POST",
-                data: {id_ticket_virtual:valueButton},
+                data: {
+                    id_ticket_virtual: valueButton
+                },
                 cache: false,
                 dataType: "json",
                 // contentType: false,
@@ -593,16 +642,16 @@
                     //console.log(respuesta);
 
                     //boton descargar
-                   $("#btn-download"+valueButton).attr("data-id",respuesta.id_constancia);
-                   $("#btn-download"+valueButton).attr("data-value",respuesta.code);
-                   $("#btn-download"+valueButton).removeClass("d-none");
-                   $("#btn-download"+valueButton).attr("href", respuesta.ruta_constancia);                   
-                   //$("#btn-download"+valueButton).attr("target", "_blank");
+                    $("#btn-download" + valueButton).attr("data-id", respuesta.id_constancia);
+                    $("#btn-download" + valueButton).attr("data-value", respuesta.code);
+                    $("#btn-download" + valueButton).removeClass("d-none");
+                    $("#btn-download" + valueButton).attr("href", respuesta.ruta_constancia);
+                    //$("#btn-download"+valueButton).attr("target", "_blank");
 
-                   // a de descargar pdf
-                   $("#a-download"+valueButton).attr("href", respuesta.ruta_constancia); 
-                   $("#a-download"+valueButton).attr("download","");
-                 
+                    // a de descargar pdf
+                    $("#a-download" + valueButton).attr("href", respuesta.ruta_constancia);
+                    $("#a-download" + valueButton).attr("download", "");
+
                 },
                 error: function(respuesta) {
                     console.log(respuesta);
@@ -610,6 +659,6 @@
 
             });
         });
-        
+
     });
 </script>

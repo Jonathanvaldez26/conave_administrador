@@ -1,13 +1,10 @@
 <?php
 namespace App\models;
 defined("APPPATH") OR die("Access denied");
-
 use \Core\Database;
 use \App\interfaces\Crud;
 use \App\controllers\UtileriasLog;
-
 class General implements Crud{
-
   // perfil_id -> 1.- ROOT 4.- Admin 5.- Personalizado 6. Recursos humanos
   // identificador_noi -> "" | "GATSA -> Pam liquidos" | "UNIDESH -> Pan deshidratados" | "VALLEJO" | "XOCHIMILCO"
   // planta_id -> "" | "GATSA -> Pam liquidos" | "UNIDESH -> Pan deshidratados" | "VALLEJO" | "XOCHIMILCO"
@@ -24,7 +21,6 @@ class General implements Crud{
     INNER JOIN asigna_linea al ON (al.id_linea_ejecutivo = le.id_linea_ejecutivo)
     INNER JOIN utilerias_administradores uad ON (uad.utilerias_administradores_id = al.utilerias_administradores_id_linea_asignada);
 sql;
-
     return $mysqli->queryAll($query);
   }
 
@@ -44,6 +40,18 @@ sql;
     FROM ticket_virtual
     WHERE id_ticket_virtual = $id
 sql;
+    return $mysqli->queryAll($query);
+  }
+
+  public static function searchAsistentesTicketbyId($id){
+    $mysqli = Database::getInstance();
+    $query =<<<sql
+    SELECT ra.nombre, uasis.usuario, tv.clave
+    FROM registros_acceso ra
+    INNER JOIN utilerias_asistentes uasis ON (ra.id_registro_acceso = uasis.id_registro_acceso)
+    LEFT JOIN ticket_virtual tv ON(ra.id_ticket_virtual = tv.id_ticket_virtual)
+    WHERE uasis.utilerias_asistentes_id = $id
+sql;
 
     return $mysqli->queryAll($query);
   }
@@ -55,22 +63,18 @@ sql;
 SELECT * FROM prorrateo_periodo WHERE status = 0 AND tipo = "$data->_tipo" ORDER BY prorrateo_periodo_id ASC 
 sql;
     }
-
     if($data->_tipo_busqueda == 1){ /* CUANDO SE BUSCA POR SEMANALES O QUINCENALES HISTORICOS */
       $query =<<<sql
 SELECT * FROM prorrateo_periodo WHERE status != 0 AND tipo = "$data->_tipo" ORDER BY fecha_inicio DESC
 sql;
     }
-
     if($data->_tipo_busqueda == 2){ /* CUANDO SE BUSCA UN UNICO PERIODO POR ID */
       $query =<<<sql
 SELECT * FROM prorrateo_periodo WHERE prorrateo_periodo_id = "$data->_prorrateo_periodo_id" 
 sql;
     }
-
     return $mysqli->queryAll($query);
   }
-
   public static function getStatus(){
       $mysqli = Database::getInstance();
       $query=<<<sql
@@ -78,25 +82,20 @@ sql;
 sql;
         return $mysqli->queryAll($query);
     }
-
     public static function getAll(){
-
 	$mysqli = Database::getInstance();
         $query=<<<sql
         SELECT * FROM catalogo_dia_festivo;
 sql;
         return $mysqli->queryAll($query);
     }
-
     public static function getDatosUsuarioLogeado($user){
         $mysqli = Database::getInstance();
         $query=<<<sql
         SELECT * FROM utilerias_administradores WHERE usuario LIKE '$user'
 sql;
-
         return $mysqli->queryOne($query);
     }
-
     public static function getDatosColaborador($idColaborador){
         $mysqli = Database::getInstance();
         $query=<<<sql
@@ -107,8 +106,6 @@ WHERE cc.catalogo_colaboradores_id = "$idColaborador" AND cc.identificador_noi =
 sql;
         return $mysqli->queryOne($query);
     }
-
-
     public static function getDatosUsuario($user){
         $mysqli = Database::getInstance();
         $query=<<<sql
@@ -122,13 +119,11 @@ WHERE ua.usuario = "$user"
 sql;
         return $mysqli->queryOne($query);
     }
-
     public static function insert($datos){
 	      $mysqli = Database::getInstance(1);
         $query=<<<sql
         INSERT INTO catalogo_dia_festivo (catalogo_dia_festivo_id, nombre, descripcion, fecha, status) VALUES (NULL, :nombre, :descripcion, :fecha, '1');
 sql;
-
     	$parametros = array(
     		':nombre'=>$datos->_nombre,
     		':descripcion'=>$datos->_descripcion,
@@ -139,12 +134,9 @@ sql;
       $accion->_sql= $query;
       $accion->_parametros = $parametros;
       $accion->_id = $id;
-
       UtileriasLog::addAccion($accion);
       return $id;
     }
-
-
     public static function update($datos){
         $mysqli = Database::getInstance(true);
       $query=<<<sql
@@ -164,9 +156,7 @@ sql;
         UtileriasLog::addAccion($accion);
         return $mysqli->update($query, $parametros);
     }
-
     public static function delete($id){
-
 	$mysqli = Database::getInstance();
         $query=<<<sql
         DELETE FROM `catalogo_dia_festivo` WHERE `catalogo_dia_festivo`.`catalogo_dia_festivo_id` = $id
@@ -179,7 +169,6 @@ sql;
         UtileriasLog::addAccion($accion);
         return $mysqli->update($query, $parametros);
     }
-
     public static function deleteById($id){
         $mysqli = Database::getInstance();
         $query=<<<sql
@@ -192,16 +181,13 @@ sql;
       UtileriasLog::addAccion($accion);
         return $mysqli->queryOne($query);
     }
-
     public static function getById($id){
         $mysqli = Database::getInstance();
         $query=<<<sql
 SELECT *  FROM catalogo_dia_festivo WHERE catalogo_dia_festivo_id = $id
 sql;
-
       return $mysqli->queryOne($query);
     }
-
     public static function getPermisos($usuario){
       $mysqli = Database::getInstance();
       $query=<<<sql
@@ -209,7 +195,6 @@ sql;
 sql;
       return $mysqli->queryAll($query);
     }
-
     public static function getUsuario($usuario){
       $mysqli = Database::getInstance();
       $query=<<<sql
@@ -217,7 +202,6 @@ sql;
 sql;
       return $mysqli->queryOne($query);
     }
-
     /*
         Buscar los colaboradores 
         @tipo: SEMANAL o QUINCENAL
@@ -241,7 +225,6 @@ sql;
 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.catalogo_ubicacion_id = "$catalogoPlantaId"
 sql;
             }
-
             if($status == 2){
                 $query.=<<<sql
 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.catalogo_ubicacion_id = "$catalogoPlantaId" AND cc.catalogo_departamento_id = "$catalogoDepartamentoId"
@@ -252,32 +235,27 @@ sql;
 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.catalogo_ubicacion_id = "$catalogoPlantaId"
 sql;
             }
-
             if($status == 4){
                 $query.=<<<sql
 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.catalogo_departamento_id = "$catalogoDepartamentoId"
 sql;
             }
-
             if($status == 5){ // TODAS LAS PLANTAS
                 $query.=<<<sql
 WHERE cc.status = 1 
 sql;
             }
-
             if($status == 6){ // TODAS LAS PLANTAS
                 $query.=<<<sql
 WHERE cc.pago  = "$tipo" AND cc.status = 1 
 sql;
             }
-
             if($status == 10){
                 $query.=<<<sql
 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.identificador_noi = "$identificadorNOI"
 sql;
             }
         }
-
         // PERFIL PARA 4 "Administrador" y 5 "Personalizado"
         if($perfilUsuario == 5){
             $query =<<<sql
@@ -291,9 +269,7 @@ INNER JOIN catalogo_ubicacion cu USING (catalogo_ubicacion_id)
 INNER JOIN catalogo_empresa ce USING (catalogo_empresa_id)
 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.catalogo_departamento_id = "$catalogoDepartamentoId"
 sql;
-
         }
-
         if($perfilUsuario == 6){
             $query=<<<sql
 SELECT 
@@ -310,34 +286,28 @@ sql;
                 WHERE cc.pago = "$tipo" AND cc.status = 1 
 sql;
             }
-
             if($status == 2){ // ES DE RECUSOS HUMANOS Y PUEDE VER TODOS LOS DEPARTAMENTOS DE SU PLANTA EXCEPTO RH XOCHIMILCO
                 $query.=<<<sql
                 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.catalogo_departamento_id = "$catalogoDepartamentoId" 
 sql;
             }
-
              //WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.catalogo_ubicacion_id = "$catalogoPlantaId" AND cc.catalogo_departamento_id = "$catalogoDepartamentoId"
             if($status == 3){ // ES DE RH y tiene incentivos propios 
                 $query.=<<<sql
                 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.identificador_noi = "$identificadorNOI" 
 sql;
             }
-
             if($status == 4){ // ES DE RH y tiene incentivos propios 
                 $query.=<<<sql
                 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.catalogo_ubicacion_id = "$catalogoPlantaId" AND cc.catalogo_departamento_id = "$catalogoDepartamentoId" 
 sql;
             }
-
             if($status == 5){ // ES DE RH y tiene incentivos propios 
                 $query.=<<<sql
                 WHERE cc.pago = "$tipo" AND cc.status = 1 AND cc.catalogo_ubicacion_id = "$catalogoPlantaId"
 sql;
             }
-
         }
-
         $nuevoFiltro = "";
         foreach ($filtro as $key => $value) {
           if(!empty($value)){
@@ -345,12 +315,10 @@ sql;
             else $nuevoFiltro .= " AND " . $key . " = " . " '$value' " . " ";
           }
         }
-
         $query.= $nuevoFiltro;
         //echo $query;
         return $mysqli->queryAll($query);
     }
-
     public static function getLastPeriodo($tipo){
       $mysqli = Database::getInstance();
       $query=<<<sql
@@ -358,7 +326,6 @@ sql;
 sql;
       return $mysqli->queryOne($query);
     }
-
     public static function getSalarioMinimo(){
       $mysqli = Database::getInstance();
       $query=<<<sql
@@ -366,7 +333,6 @@ SELECT * FROM `salario_minimo` ORDER BY `salario_minimo`.`id_salario` DESC LIMIT
 sql;
       return $mysqli->queryOne($query);
     }
-
     public static function insertSalarioMinimo($cantidad){
       $mysqli = Database::getInstance();
       $query=<<<sql
@@ -374,6 +340,4 @@ INSERT INTO salario_minimo (id_salario, cantidad) VALUES (NULL, '$cantidad');
 sql;
       return $mysqli->insert($query);
     }
-
-
 }

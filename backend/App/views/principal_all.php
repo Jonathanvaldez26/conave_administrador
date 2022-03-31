@@ -181,7 +181,7 @@
         </div>
 
     </aside>
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <main class="main-content  ">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg position-sticky mt-4 top-1 px-0 mx-4 shadow-none border-radius-xl z-index-sticky" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
@@ -612,63 +612,79 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
-                <div class="card card-plain">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="/Vuelos">
-                                    <div class="card up-card">
-                                        <div class="row m-4">
-                                            <div class="col-3">
-                                                <div class="bg-gradient-red avatar avatar-l position-relative" >
-                                                    <span class="fas fa-plane m-3" style="font-size: x-large;"></span>
+                <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
+                    <div class="card card-plain">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a href="/Vuelos">
+                                        <div class="card up-card">
+                                            <div class="row m-4">
+                                                <div class="col-3">
+                                                    <div class="bg-gradient-red avatar avatar-l position-relative" >
+                                                        <span class="fas fa-plane m-3" style="font-size: x-large;"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-9 m-auto">
+                                                    <div class="col-auto my-auto">
+                                                        <div class="h-100">
+                                                            <h5 class="mb-1">
+                                                                Vuelos
+                                                            </h5>
+                                                            <p class="mb-0 font-weight-bold text-sm">
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-9 m-auto">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
+                    <div class="card card-plain">
+                        <div class="card-body p-3">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="row m-4">
+                                            <div class="col-12">
                                                 <div class="col-auto my-auto">
                                                     <div class="h-100">
                                                         <h5 class="mb-1">
-                                                            Vuelos
+                                                            Soporte
                                                         </h5>
                                                         <p class="mb-0 font-weight-bold text-sm">
+                                                            Línea de Soporte
+                                                            <br> <br>
+                                                            <a href="mailto:jvaldez_2610@hotmail.com">
+                                                                <h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> jvaldez_2610@hotmail.com</h6>
+                                                            </a>
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-lg-6 col-md-4 position-relative z-index-2">
-                <div class="card card-plain">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="row m-4">
-                                        <div class="col-12">
-                                            <div class="col-auto my-auto">
-                                                <div class="h-100">
-                                                    <h5 class="mb-1">
-                                                        Soporte
-                                                    </h5>
-                                                    <p class="mb-0 font-weight-bold text-sm">
-                                                        Línea de Soporte
-                                                        <br> <br>
-                                                        <a href="mailto:jvaldez_2610@hotmail.com"><h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> jvaldez_2610@hotmail.com</h6></a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+            <div class="row mt-4">
+                <div class="col-lg-5 mb-lg-0 mb-4">
+                    <div class="card z-index-2">
+                        <div class="card-body p-3" hidden>
+                            <div class="bg-gradient-dark border-radius-lg py-3 pe-1 mb-3">
+                                <div class="chart">
+                                    <canvas id="chart-bars" class="chart-canvas" height="170" hidden></canvas>
                                 </div>
                             </div>
 

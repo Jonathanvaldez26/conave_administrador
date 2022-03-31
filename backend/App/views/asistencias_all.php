@@ -518,12 +518,83 @@
             </div>
         </div>
         <!-- Fin barrita -->
-
-
     </div>
 
-    <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!-- Modal asignar habitacion-->
+    <div class="modal fade" id="Modal_Add" role="dialog" aria-labelledby="asignar_habitacionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal" id="add" action="/Asistencias/asistenciasAdd">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="asignar_habitacionLabel">Generar Lista de Asistencia</h5>
+                        <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body pt-0">
+                            <div class="row mb-3">
+                                <label class="form-label">Nombre *</label>
+                                <div class="input-group">
+                                    <input id="nombre" name="nombre"  class="form-control" type="text" placeholder="Asistencia Plenaria Bienvenida" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="form-label">Descripción (Opcional)</label>
+                                <div class="input-group">
+                                    <textarea id="descripcion" name="descripcion" maxlength="1000" class="form-control" placeholder="Descripción"></textarea>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="form-label">Fecha *</label>
+                                <div class="input-group">
+                                    <input id="fecha_asistencia" name="fecha_asistencia" maxlength="29" class="form-control" type="date" min required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="form-label">Hora Asistencia (Inicio) *</label>
+                                <div class="input-group">
+                                    <input id="hora_asistencia_inicio" name="hora_asistencia_inicio" maxlength="29" class="form-control" type="time"  required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label class="form-label">Hora Asistencia (Fin) *</label>
+                                <div class="input-group">
+                                    <input id="hora_asistencia_fin" name="hora_asistencia_fin" maxlength="29" class="form-control" type="time"  required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                </div>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Default radio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Default checked radio
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
+                            <button type="button" class="btn bg-gradient-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--End Modal-->
+
+
+    <div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
@@ -543,49 +614,40 @@
                         <input type="hidden" id="url_asistencia" name="url_asistencia"   class="form-control"  onfocus="focused(this)" onfocusout="defocused(this)">
                             
                             <div class="col-12 col-lg-12">
-                                <label class="form-label">Nombre *</label>
-                                <div class="input-group">
-                                    <input id="nombre" name="nombre"  class="form-control" type="text" placeholder="Nombre" onfocus="focused(this)" onfocusout="defocused(this)" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                </div>
+
                             </div>
 
                             <div class="col-12 col-lg-12">
-                                <label class="form-label">Descripción (Opcional)</label>
-                                <div class="input-group">
-                                    <textarea id="descripcion" name="descripcion" maxlength="1000" class="form-control" placeholder="Descripción"></textarea>
-                                </div>
+
                             </div>
 
                             
                             <div class="col-12 col-lg-12">
-                                <label class="form-label">Fecha *</label>
-                                <div class="input-group">
-                                    <input id="fecha_asistencia" name="fecha_asistencia" maxlength="29" class="form-control" type="date" min required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                </div>
+
                             </div>
 
-
-
                             <div class="col-12 col-lg-6">
-                                <label class="form-label">Hora Asistencia (Inicio) *</label>
-                                <div class="input-group">
-                                    <input id="hora_asistencia_inicio" name="hora_asistencia_inicio" maxlength="29" class="form-control" type="time"  required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                </div>
+
                             </div>
                             <div class="col-12 col-lg-6">
-                                <label class="form-label">Hora Asistencia (Fin) *</label>
-                                <div class="input-group">
-                                    <input id="hora_asistencia_fin" name="hora_asistencia_fin" maxlength="29" class="form-control" type="time"  required="" onfocus="focused(this)" onfocusout="defocused(this)"" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                </div>
+
+                            </div>
+
+                            <br>
+                            <div class="form-check">
+
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Default checked radio
+                                </label>
                             </div>
 
 
                          <!-- <input type="hidden" id="utilerias_administrador_id" name="utilerias_administrador_id" value="<?=$_SESSION["utilerias_administradores_id"]?>">-->
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn bg-gradient-success" id="btn_upload" name="btn_upload">Aceptar</button>
-                            <button type="button" class="btn bg-gradient-secondary" data-dismiss="modal">Cancelar</button>
-                        </div>
+
                     </form>
                 </div>
 

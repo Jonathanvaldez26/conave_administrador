@@ -467,7 +467,7 @@
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fecha Asistencia</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hora inicio</th>
                                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Hora fin</th>
-                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Acciones</th>
+                                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">URL's</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

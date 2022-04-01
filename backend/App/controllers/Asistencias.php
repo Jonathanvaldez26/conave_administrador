@@ -169,7 +169,7 @@ html;
         <td class="text-center">{$value['fecha_asistencia']}</td>
         <td class="text-center">{$value['hora_asistencia_inicio']}</td>
         <td class="text-center"><i class='fa-alarm-clock'></i>{$value['hora_asistencia_fin']}</td>
-        <td class="text-center"><a href='{$value['url']}'><i class='fas fa-globe'></i></a></td>
+        <td class="text-center"><a href='{$value['url_plenaria_general']}'><i class='fas fa-globe'></i></a></td>
       </tr>
  
 html;
